@@ -2,7 +2,7 @@
 
 namespace App\Models\Helpers;
 
-trait Setting {
+trait SettingHelper {
 
 	public function getSettingValue($settingLocale, $settingType, $settingName) {
         return $this->settings()

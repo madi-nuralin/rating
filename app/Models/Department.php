@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    use HasFactory, Helpers\Setting;
+    use HasFactory, Helpers\SettingHelper;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +15,7 @@ class Department extends Model
      * @var string[]
      */
     protected $fillable = [
-        'root',
+        'parent',
     ];
 
     public function settings() {
@@ -26,16 +26,16 @@ class Department extends Model
         return $this->belongsTo(Position::class);
     }
 
-    public function getRoot() {
-        return $this->root;
+    public function getParent() {
+        return $this->parent;
     }
 
-    public function setRoot($root) {
-        $this->root = $root;
+    public function setParent($parent) {
+        $this->parent = $parent;
     }
 
     public function getName() {
-        return getSettingValue(
+        return $this->getSettingValue(
             app()->currentLocale(),
             'string',
             'name'
@@ -52,7 +52,7 @@ class Department extends Model
     }
 
     public function getDescription() {
-        return getSettingValue(
+        return $this->getSettingValue(
             app()->currentLocale(),
             'string',
             'description'
@@ -74,12 +74,22 @@ class Department extends Model
         });
     }
 
+    public function createdAt() {
+        return $this->created_at;
+    }
+
+    public function updatedAt() {
+        return $this->updated_at;
+    }
+
     public function toArray() {
         return [
             'id' => $this->getId(),
-            'root' => $this->getRoot(),
+            'parent' => $this->getParent(),
             'name' => $this->getName(),
-            'description' => $this->getDescription()
+            'description' => $this->getDescription(),
+            'createdAt' => $this->createdAt(),
+            'updatedAt' => $this->updatedAt(),
         ]
     }
 }

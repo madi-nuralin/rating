@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    use HasFactory, Helpers\Setting;
+    use HasFactory, Helpers\SettingHelper;
 
     public function settings() {
         return $this->hasMany(PositionSetting::class);
@@ -18,7 +18,7 @@ class Position extends Model
     }
 
     public function getName() {
-        return getSettingValue(
+        return $this->getSettingValue(
             app()->currentLocale(),
             'string',
             'name'
@@ -35,7 +35,7 @@ class Position extends Model
     }
 
     public function getDescription() {
-        return getSettingValue(
+        return $this->getSettingValue(
             app()->currentLocale(),
             'string',
             'description'
@@ -52,18 +52,26 @@ class Position extends Model
     }
 
     public function getDepartments() {
-        return $this->departments->map(
-            function($department) {
-                return $department->toArray();
-            }
-        );
+        return $this->departments->map(function($department) {
+            return $department->toArray();
+        });
+    }
+
+    public function createdAt() {
+        return $this->created_at;
+    }
+
+    public function updatedAt() {
+        return $this->updated_at;
     }
 
     public function toArray() {
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'description' => $this->getDescription()
+            'description' => $this->getDescription(),
+            'createdAt' => $this->createdAt(),
+            'updatedAt' => $this->updatedAt(),
         ]
     }
 }

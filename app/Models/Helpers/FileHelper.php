@@ -4,7 +4,7 @@ namespace App\Models\Helpers;
 
 use Illuminate\Support\Facades\Storage;
 
-trait FileUploader {
+trait FileHelper {
 
 	/**
      * Update the module's configuration file.
