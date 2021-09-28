@@ -23,7 +23,11 @@ class Department extends Model
     }
 
     public function positions() {
-        return $this->belongsTo(Position::class);
+        return $this->belongsToMany(Position::class);
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getParent() {
@@ -69,9 +73,9 @@ class Department extends Model
     }
 
     public function getPositions() {
-        return $this->positions->map(function($position) {
+        return $this->positions ? $this->positions->map(function($position) {
             return $position->toArray();
-        });
+        }) : null;
     }
 
     public function createdAt() {
@@ -88,8 +92,8 @@ class Department extends Model
             'parent' => $this->getParent(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'createdAt' => $this->createdAt(),
-            'updatedAt' => $this->updatedAt(),
-        ]
+            'created_at' => $this->createdAt(),
+            'updated_at' => $this->updatedAt(),
+        ];
     }
 }

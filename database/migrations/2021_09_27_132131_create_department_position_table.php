@@ -15,6 +15,18 @@ class CreateDepartmentPositionTable extends Migration
     {
         Schema::create('department_position', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('department_id')
+                  ->unsigned();
+            $table->foreign('department_id')
+                  ->references('id')
+                  ->on('departments')
+                  ->onDelete('cascade');
+            $table->bigInteger('position_id')
+                  ->unsigned();
+            $table->foreign('position_id')
+                  ->references('id')
+                  ->on('positions')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

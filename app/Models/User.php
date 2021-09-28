@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Helpers\SettingsHelper;
+    use HasApiTokens, HasFactory, Notifiable, Helpers\SettingHelper, Helpers\FileHelper;
 
     /**
      * The attributes that are mass assignable.
@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     public function roles() {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
     public function getId() {
@@ -73,6 +73,29 @@ class User extends Authenticatable
 
     public function getProfilePhotoPath() {
         return $this->profile_photo_path;
+    }
+
+    public function getProfilePhotoUrl() {
+        return $this->getFileUrl(
+            $this->profile_photo_path,
+            'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF'
+        );
+    }
+
+    public function updateProfilePhoto($photo) {
+        $this->updateFile(
+            $photo,
+            $this->profile_photo_path,
+            'profile_photo_path',
+            'profile-photos'
+        );
+    }
+
+    public function deleteProfilePhoto() {
+        $this->deleteFile(
+            $this->profile_photo_path,
+            'profile_photo_path'
+        );
     }
 
     public function setFirstname($firstname) {
@@ -130,9 +153,9 @@ class User extends Authenticatable
             'email' => $this->getEmail(),
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
-            'profilePhotoPath' => $this->getProfilePhotoPath(),
-            'createdAt' => $this->createdAt(),
-            'updatedAt' => $this->updatedAt(),
+            'profile_photo_path' => $this->getProfilePhotoUrl(),
+            'created_at' => $this->createdAt(),
+            'updated_at' => $this->updatedAt(),
         ];
     }
 }

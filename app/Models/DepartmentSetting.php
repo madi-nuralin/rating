@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class DepartmentSetting extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'setting_locale',
+        'setting_name',
+        'setting_value',
+        'setting_type'
+    ];
+
+    public function department() {
+        return $this->belongsTo(Department::class);
+    }
 }

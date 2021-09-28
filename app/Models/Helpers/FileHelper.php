@@ -12,11 +12,11 @@ trait FileHelper {
      * @param  \Illuminate\Http\UploadedFile  $file
      * @return void
      */
-    public function updateFile($file, $filePath, $publicly)
+    public function updateFile($file, $fileVariable, $fileVariableName, $publicly)
     {
-        tap($filePath, function ($previous) use ($file) {
+        tap($this->{$fileVariable}, function ($previous) use ($file, $fileVariableName, $publicly) {
             $this->forceFill([
-                $filePath => $file->storePublicly(
+                $fileVariableName => $file->storePublicly(
                     $publicly, ['disk' => $this->fileDisk()]
                 ),
             ])->save();
@@ -32,16 +32,16 @@ trait FileHelper {
      *
      * @return void
      */
-    public function deleteFile($filePath, $filePath_var_name)
+    public function deleteFile($fileVariable, $fileVariableName)
     {
         /*if (! Features::managesConfigurationFiles()) {
             return;
         }*/
 
-        Storage::disk($this->fileDisk())->delete($filePath);
+        Storage::disk($this->fileDisk())->delete($fileVariable);
 
         $this->forceFill([
-            $filePath_var_name => null,
+            $fileVariableName => null,
         ])->save();
     }
 
@@ -50,11 +50,11 @@ trait FileHelper {
      *
      * @return string
      */
-    public function getFileUrlAttribute($filePath, $default_url)
+    public function getFileUrlAttribute($fileVariable, $defaultUrl)
     {
-        return $filePath
-                    ? Storage::disk($this->fileDisk())->url($filePath)
-                    : $this->defaultFileUrl($default_url);
+        return $fileVariable
+                    ? Storage::disk($this->fileDisk())->url($fileVariable)
+                    : $this->defaultFileUrl($defaultUrl);
     }
 
     /**
@@ -62,11 +62,11 @@ trait FileHelper {
      *
      * @return string
      */
-    public function getFileGetAttribute($filePath)
+    public function getFileGetAttribute($fileVariable, $defaultUrl)
     {
-        return $filePath
-                    ? Storage::disk($this->fileDisk())->get($filePath)
-                    : $this->defaultFileUrl($default_url);
+        return $fileVariable
+                    ? Storage::disk($this->fileDisk())->get($fileVariable)
+                    : $this->defaultFileUrl($defaultUrl);
     }
 
     /**
@@ -74,11 +74,11 @@ trait FileHelper {
      *
      * @return string
      */
-    public function getFileUrl($filePath, $default_url)
+    public function getFileUrl($fileVariable, $defaultUrl)
     {
-        return $filePath
-                    ? Storage::url($filePath)
-                    : $this->defaultFileUrl($default_url);
+        return $fileVariable
+                    ? Storage::url($fileVariable)
+                    : $this->defaultFileUrl($defaultUrl);
     }
 
     /**

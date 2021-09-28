@@ -24,8 +24,35 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Profile\CurrentUserController;
+use App\Http\Controllers\Management\PositionController;
+use App\Http\Controllers\Management\DepartmentController;
+use App\Http\Controllers\Management\UserController;
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::group(['prefix' => 'profile'], function() {
+        Route::delete('delete', [CurrentUserController::class, 'destroy'])
+        ->name('current-user.destroy');
+        Route::get('', [CurrentUserController::class, 'show'])
+        ->name('profile');
+    });
+
+    Route::group(['middleware' => 'manager'], function () {
+        Route::group(['prefix' => 'management'], function() {
+            Route::resource('position', PositionController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::resource('department', DepartmentController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::resource('user', UserController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+        });
+    });
+});
 
 require __DIR__.'/auth.php';

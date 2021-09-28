@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Role extends Model
 {
     use HasFactory, Helpers\SettingHelper;
 
@@ -14,7 +14,7 @@ class Roles extends Model
     }
 
     public function users() {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsToMany(User::class);
     }
 
     public function getId() {
@@ -56,8 +56,8 @@ class Roles extends Model
     	return [
     		'id' => $this->getId(),
     		'name' => $this->getName(),
-    		'createdAt' => $this->createdAt(),
-            'updatedAt' => $this->updatedAt(),
-    	]
+    		'created_at' => $this->createdAt(),
+            'updated_at' => $this->updatedAt(),
+    	];
     }
 }

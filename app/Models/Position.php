@@ -14,7 +14,11 @@ class Position extends Model
     }
 
     public function departments() {
-        return $this->belongsTo(Department::class);
+        return $this->belongsToMany(Department::class);
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getName() {
@@ -70,8 +74,8 @@ class Position extends Model
             'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'createdAt' => $this->createdAt(),
-            'updatedAt' => $this->updatedAt(),
-        ]
+            'created_at' => $this->createdAt(),
+            'updated_at' => $this->updatedAt(),
+        ];
     }
 }
