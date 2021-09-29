@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
-use App\Models\Position;
+use \App\Models\Assessment;
 
-class PositionController extends Controller
+class AssessmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,9 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Positions/Index', [
-            'positions' => Position::all()->map(function($position) {
-                return $position->toArray();
+        return Inertia::render('Management/Assessments/Index', [
+            'assessments' => Assessment::all()->map(function($assessment) {
+                return $assessment->toArray();
             }),
         ]);
     }
@@ -33,7 +33,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Positions/Create');
+        return Inertia::render('Management/Assessments/Create');
     }
 
     /**
@@ -49,14 +49,18 @@ class PositionController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-        ])->validateWithBag('createPosition');
+            'valid_from' => ['required'],
+            'valid_to' => ['required'],
+        ])->validateWithBag('createAssessment');
 
-        $position = Position::create();
-        $position->setName($input['name']);
-        $position->setDescription($input['description']);
-        $position->save();
+        $assessment = Assessment::create();
+        $assessment->setName($input['name']);
+        $assessment->setDescription($input['description']);
+        $assessment->setValidFrom($input['valid_from']);
+        $assessment->setValidTo($input['valid_to']);
+        $assessment->save();
 
-        return $this->show($position->getId());
+        return $this->show($assessment->getId());
     }
 
     /**
@@ -67,8 +71,8 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Management/Positions/Show', [
-            'position' => Position::findOrFail($id)->toArray(),
+        return Inertia::render('Management/Assessments/Show', [
+            'assessment' => Assessment::findOrFail($id)->toArray(),
         ]);
     }
 
@@ -97,23 +101,33 @@ class PositionController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-        ])->validateWithBag('updatePosition');
+            'valid_from' => ['required'],
+            'valid_to' => ['required'],
+        ])->validateWithBag('updateAssessment');
 
-        $position = Position::findOrFail($id);
+        $assessment = Assessment::findOrFail($id);
         
-        if ( $position->getName() != $input['name'] ) {
-            $position->setName($input['name']);    
+        if ( $assessment->getName() != $input['name'] ) {
+            $assessment->setName($input['name']);    
         }
 
-        if ( $position->getDescription() != $input['description'] ) {
-            $position->setDescription($input['description']);
+        if ( $assessment->getDescription() != $input['description'] ) {
+            $assessment->setDescription($input['description']);
         }
 
-        $position->save();
+        if ( $assessment->getValidFrom() != $input['valid_from'] ) {
+            $assessment->setValidFrom($input['valid_from']);
+        }
+
+        if ( $assessment->getValidTo() != $input['valid_to'] ) {
+            $assessment->setValidTo($input['valid_to']);
+        }
+
+        $assessment->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
-                    : back()->with('status', 'position-updated');
+                    : back()->with('status', 'assessment-updated');
     }
 
     /**
@@ -124,8 +138,8 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        Position::findOrFail($id)->delete();
+        Assessment::findOrFail($id)->delete();
 
-        return Inertia::location(route('position.index'));
+        return Inertia::location(route('assessment.index'));
     }
 }

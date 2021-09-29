@@ -151,6 +151,58 @@ var messages = {
               createButton: 'Create New'
             }
           }
+        },
+        assessments: {
+          head: {
+            title: 'Assessments management'
+          },
+          header: 'Assessments management',
+          create: {
+            title: 'Create a new assessment',
+            description: 'Create a new assessment to collaborate with others on projects.',
+            form: {
+              name: 'Assessment name',
+              description: 'Assessment description',
+              validFrom: 'Valid from date',
+              validTo: 'Valid to date'
+            }
+          },
+          update: {
+            title: 'Update Assessment',
+            description: 'The assessment\'s name and description information.',
+            form: {
+              name: 'Assessment name',
+              description: 'Assessment description',
+              validFrom: 'Valid from date',
+              validTo: 'Valid to date'
+            }
+          },
+          delete: {
+            title: 'Delete Assessment',
+            description: 'Permanently delete this assessment.',
+            content: {
+              deleteInfo: 'Once a assessment is deleted, all of its resources and data will be permanently deleted. Before deleting this assessment, please download any data or information regarding this assessment that you wish to retain.',
+              deleteButton: 'Delete Assessment',
+              modal: {
+                title: 'Delete Assessment',
+                content: 'Are you sure you want to delete this assessment? Once a assessment is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete Assessment'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Assessments list',
+            description: 'The assessments list which are registered.',
+            form: {
+              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
+            },
+            actions: {
+              createButton: 'Create New'
+            }
+          }
         }      
       },
       profile: {
@@ -199,6 +251,7 @@ var messages = {
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
+          assessments: 'Assessments',
           profile: 'Profile',
           logout: 'Log out'
         }
@@ -357,6 +410,58 @@ var messages = {
               createButton: 'Создайте новый'
             }
           }
+        },
+        assessments: {
+          head: {
+            title: 'Управление оценкой персонала'
+          },
+          header: 'Управление оценкой персонала',
+          create: {
+            title: 'Создать новую экземпляр оценки персонала',
+            description: 'Создайте новую экземпляр оценки персонала, чтобы сотрудничать с другими над проектами.',
+            form: {
+              name: 'Название экземпляра оценки персонала',
+              description: 'Описание экземпляра оценки персонала',
+              validFrom: 'Доступно периода с',
+              validTo: 'Доступно до периода'
+            }
+          },
+          update: {
+            title: 'Обновить экземпляр оценки персонала',
+            description: 'Информация о названии и описании экземпляра оценки персонала.',
+            form: {
+              name: 'Название экземпляра оценки персонала',
+              description: 'Описание экземпляра оценки персонала',
+              validFrom: 'Доступно периода с',
+              validTo: 'Доступно до периода'
+            }
+          },
+          delete: {
+            title: 'Удалить экземпляр оценки персонала',
+            description: 'Удалить эту экземпляр оценки персонала навсегда.',
+            content: {
+              deleteInfo: 'После удаления экземпляр оценки персонала все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой экземпляр оценки персонала, пожалуйста, загрузите любые данные или информацию относительно этой экземпляр оценки персонала, которые вы хотите сохранить.',
+              deleteButton: 'Удалить экземпляр оценки персонала',
+              modal: {
+                title: 'Удалить экземпляр оценки персонала',
+                content: 'Вы уверены, что хотите удалить эту экземпляр оценки персонала? После удаления экземпляра оценки персонала все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить экземпляр оценки персонала'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Список оцениваний',
+            description: 'Список оцениваний, которые зарегистрированы.',
+            form: {
+              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
+            },
+            actions: {
+              createButton: 'Создайте новый'
+            }
+          }
         }
       },
       profile: {
@@ -405,6 +510,7 @@ var messages = {
           positions: 'Должности',
           departments: 'Отделения',
           users: 'Пользователи',
+          assessments: 'Оценивание персонала',
           profile: 'Профиль',
           logout: 'Выйти'
         }

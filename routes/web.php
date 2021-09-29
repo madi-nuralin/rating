@@ -26,9 +26,11 @@ Route::get('/', function () {
 
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Profile\CurrentUserController;
+use App\Http\Controllers\Profile\PasswordController;
 use App\Http\Controllers\Management\PositionController;
 use App\Http\Controllers\Management\DepartmentController;
 use App\Http\Controllers\Management\UserController;
+use App\Http\Controllers\Management\AssessmentController;
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
@@ -37,10 +39,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     })->name('dashboard');
 
     Route::group(['prefix' => 'profile'], function() {
-        Route::delete('delete', [CurrentUserController::class, 'destroy'])
+        Route::delete('', [CurrentUserController::class, 'destroy'])
         ->name('current-user.destroy');
         Route::get('', [CurrentUserController::class, 'show'])
         ->name('profile');
+        Route::put('password', [PasswordController::class, 'update'])
+        ->name('user-password.update');
     });
 
     Route::group(['middleware' => 'manager'], function () {
@@ -50,6 +54,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('department', DepartmentController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('user', UserController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::resource('assessment', AssessmentController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
         });
     });
