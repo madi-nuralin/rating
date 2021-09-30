@@ -50,6 +50,9 @@
                                         <BreezeDropdownLink :href="route('assessment.index')">
                                             {{ $t('layouts.authenticated.links.assessments') }}
                                         </BreezeDropdownLink>
+                                        <BreezeDropdownLink :href="route('parameter.index')">
+                                            {{ $t('layouts.authenticated.links.parameters') }}
+                                        </BreezeDropdownLink>
                                     </template>
                                 </BreezeDropdown>
                             </div>
@@ -138,6 +141,9 @@
                             </BreezeResponsiveNavLink>
                             <BreezeResponsiveNavLink :href="route('assessment.index')">
                                 {{ $t('layouts.authenticated.links.assessments') }}
+                            </BreezeResponsiveNavLink>
+                            <BreezeResponsiveNavLink :href="route('parameter.index')">
+                                {{ $t('layouts.authenticated.links.parameters') }}
                             </BreezeResponsiveNavLink>
                         </div>
                     </div>

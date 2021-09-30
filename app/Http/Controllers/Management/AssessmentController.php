@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
-use \App\Models\Assessment;
+use App\Models\Assessment;
+use App\Models\Employement;
+use App\Models\Department;
+use App\Models\Position;
+use App\Models\User;
+use App\Models\Parameter;
 
 class AssessmentController extends Controller
 {
@@ -60,7 +65,7 @@ class AssessmentController extends Controller
         $assessment->setValidTo($input['valid_to']);
         $assessment->save();
 
-        return $this->show($assessment->getId());
+        return Inertia::location(route('assessment.show', ['assessment' => $assessment->getId()]));
     }
 
     /**
@@ -71,8 +76,30 @@ class AssessmentController extends Controller
      */
     public function show($id)
     {
+        $assessment = Assessment::findOrFail($id);
+
         return Inertia::render('Management/Assessments/Show', [
-            'assessment' => Assessment::findOrFail($id)->toArray(),
+            'assessment' => array_merge(
+                $assessment->toArray(), [
+                    'employements' => $assessment->getEmployements(),
+                    'supervisors' => $assessment->getSupervisors(),
+                    'parameters' => $assessment->getParameters(),
+                ]
+            ),
+            'employements' => Employement::all()->map(function($employement) {
+                return array_merge(
+                    $employement->toArray(),[
+                        'department' => $employement->getDepartment(),
+                        'position' => $employement->getPosition(),
+                    ]
+                );
+            }),
+            'supervisors' => User::all()->map(function($user) {
+                return $user->toArray();
+            }),
+            'parameters' => Parameter::all()->map(function($parameter) {
+                return $parameter->toArray();
+            }),
         ]);
     }
 
@@ -121,6 +148,33 @@ class AssessmentController extends Controller
 
         if ( $assessment->getValidTo() != $input['valid_to'] ) {
             $assessment->setValidTo($input['valid_to']);
+        }
+
+        if (isset($input['employements'])) {
+            if ($assessment->employements()) {
+                $assessment->employements()->detach();
+            }
+            if (count($input['employements']) > 0) {
+                $assessment->employements()->attach($input['employements']);
+            }
+        }
+
+        if (isset($input['supervisors'])) {
+            if ($assessment->supervisors()) {
+                $assessment->supervisors()->detach();
+            }
+            if (count($input['supervisors']) > 0) {
+                $assessment->supervisors()->attach($input['supervisors']);
+            }
+        }
+
+        if (isset($input['parameters'])) {
+            if ($assessment->parameters()) {
+                $assessment->parameters()->detach();
+            }
+            if (count($input['parameters']) > 0) {
+                $assessment->parameters()->attach($input['parameters']);
+            }
         }
 
         $assessment->save();

@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
-use App\Models\Position;
+use App\Models\Parameter;
 
-class PositionController extends Controller
+class ParameterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,9 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Positions/Index', [
-            'positions' => Position::all()->map(function($position) {
-                return $position->toArray();
+        return Inertia::render('Management/Parameters/Index', [
+            'parameters' => Parameter::all()->map(function($parameter) {
+                return $parameter->toArray();
             }),
         ]);
     }
@@ -33,7 +33,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Positions/Create');
+        return Inertia::render('Management/Parameters/Create');
     }
 
     /**
@@ -49,14 +49,14 @@ class PositionController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-        ])->validateWithBag('createPosition');
+        ])->validateWithBag('createParameter');
 
-        $position = Position::create();
-        $position->setName($input['name']);
-        $position->setDescription($input['description']);
-        $position->save();
+        $parameter = Parameter::create();
+        $parameter->setName($input['name']);
+        $parameter->setDescription($input['description']);
+        $parameter->save();
 
-        return Inertia::location(route('position.show', ['position' => $position->getId()]));
+        return Inertia::location(route('parameter.show', ['parameter' => $parameter->getId()]));
     }
 
     /**
@@ -67,8 +67,8 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Management/Positions/Show', [
-            'position' => Position::findOrFail($id)->toArray(),
+        return Inertia::render('Management/Parameters/Show', [
+            'parameter' => Parameter::findOrFail($id)->toArray(),
         ]);
     }
 
@@ -97,23 +97,23 @@ class PositionController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-        ])->validateWithBag('updatePosition');
+        ])->validateWithBag('updateParameter');
 
-        $position = Position::findOrFail($id);
+        $parameter = Parameter::findOrFail($id);
         
-        if ( $position->getName() != $input['name'] ) {
-            $position->setName($input['name']);    
+        if ( $parameter->getName() != $input['name'] ) {
+            $parameter->setName($input['name']);    
         }
 
-        if ( $position->getDescription() != $input['description'] ) {
-            $position->setDescription($input['description']);
+        if ( $parameter->getDescription() != $input['description'] ) {
+            $parameter->setDescription($input['description']);
         }
 
-        $position->save();
+        $parameter->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
-                    : back()->with('status', 'position-updated');
+                    : back()->with('status', 'parameter-updated');
     }
 
     /**
@@ -124,8 +124,8 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        Position::findOrFail($id)->delete();
+        Parameter::findOrFail($id)->delete();
 
-        return Inertia::location(route('position.index'));
+        return Inertia::location(route('parameter.index'));
     }
 }

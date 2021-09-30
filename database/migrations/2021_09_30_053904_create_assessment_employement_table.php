@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDepartmentPositionTable extends Migration
+class CreateAssessmentEmployementTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateDepartmentPositionTable extends Migration
      */
     public function up()
     {
-        Schema::create('department_position', function (Blueprint $table) {
+        Schema::create('assessment_employement', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('department_id')
+            $table->bigInteger('assessment_id')
                   ->unsigned();
-            $table->foreign('department_id')
+            $table->foreign('assessment_id')
                   ->references('id')
-                  ->on('departments')
+                  ->on('assessments')
                   ->onDelete('cascade');
-            $table->bigInteger('position_id')
+            $table->bigInteger('employement_id')
                   ->unsigned();
-            $table->foreign('position_id')
+            $table->foreign('employement_id')
                   ->references('id')
-                  ->on('positions')
+                  ->on('employements')
                   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -38,6 +38,6 @@ class CreateDepartmentPositionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('department_position');
+        Schema::dropIfExists('assessment_employement');
     }
 }

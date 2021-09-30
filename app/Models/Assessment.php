@@ -23,6 +23,18 @@ class Assessment extends Model
         return $this->hasMany(AssessmentSetting::class);
     }
 
+    public function employements() {
+        return $this->belongsToMany(Employement::class);
+    }
+
+    public function supervisors() {
+        return $this->belongsToMany(User::class, 'assessment_supervisor', 'assessment_id', 'user_id');
+    }
+
+    public function parameters() {
+        return $this->belongsToMany(Parameter::class);
+    }
+
     public function getId() {
         return $this->id;
     }
@@ -75,7 +87,25 @@ class Assessment extends Model
             'description',
             $description
         );
-    }    
+    }
+
+    public function getEmployements() {
+        return $this->employements->map(function($employement) {
+            return $employement->toArray();
+        });
+    }
+
+    public function getSupervisors() {
+        return $this->supervisors->map(function($supervisor) {
+            return $supervisor->toArray();
+        });
+    }
+
+    public function getParameters() {
+        return $this->parameters->map(function($parameter) {
+            return $parameter->toArray();
+        });
+    }
 
     public function toArray() {
         return [

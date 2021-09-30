@@ -2,7 +2,7 @@
     <div class="relative">
         <div @click="open = ! disabled ? ! open : false" class="relative">
 
-            <input type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50" readonly="readonly" :disabled="disabled" />
+            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50" readonly="readonly" :disabled="disabled" />
 
             <svg
                 class="h-4 w-4 absolute top-1/2 transform -translate-y-1/2 right-3"
@@ -69,6 +69,9 @@ export default {
     },
 
     props: {
+        id: {
+            //
+        },
         align: {
             default: 'top'
         },
@@ -206,5 +209,12 @@ export default {
                 : this.modelValue && this.modelValue == value;
         }
     },
-}
+};
 </script>
+
+<!--style>
+    ::-webkit-scrollbar {
+        width: 0;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+    }
+</style-->

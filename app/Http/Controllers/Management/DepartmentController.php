@@ -57,7 +57,7 @@ class DepartmentController extends Controller
         $department->setDescription($input['description']);
         $department->save();
 
-        return $this->show($department->getId());
+        return Inertia::location(route('department.show', ['department' => $department->getId()]));
     }
 
     /**

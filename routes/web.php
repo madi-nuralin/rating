@@ -31,6 +31,7 @@ use App\Http\Controllers\Management\PositionController;
 use App\Http\Controllers\Management\DepartmentController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\AssessmentController;
+use App\Http\Controllers\Management\ParameterController;
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
@@ -56,6 +57,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('user', UserController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('assessment', AssessmentController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::resource('parameter', ParameterController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
         });
     });

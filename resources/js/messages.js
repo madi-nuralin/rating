@@ -164,7 +164,25 @@ var messages = {
               name: 'Assessment name',
               description: 'Assessment description',
               validFrom: 'Valid from date',
-              validTo: 'Valid to date'
+              validTo: 'Valid to date',
+              employements: 'Select department positions for assessment',
+              employement: {
+                option: { 
+                  description: 'The position of {department} department'
+                }
+              },
+              supervisors: 'Select supervisors for assessment',
+              supervisor: {
+                option: { 
+                  description: ''
+                }
+              },
+              parameters: 'Select assessment parameters',
+              parameter: {
+                option: { 
+                  description: ''
+                }
+              }
             }
           },
           update: {
@@ -174,7 +192,25 @@ var messages = {
               name: 'Assessment name',
               description: 'Assessment description',
               validFrom: 'Valid from date',
-              validTo: 'Valid to date'
+              validTo: 'Valid to date',
+              employements: 'Select department positions for assessment',
+              employement: {
+                option: { 
+                  description: 'The position of {department} department'
+                }
+              },
+              supervisors: 'Select supervisors for assessment',
+              supervisor: {
+                option: { 
+                  description: ''
+                }
+              },
+              parameters: 'Select assessment parameters',
+              parameter: {
+                option: { 
+                  description: ''
+                }
+              }
             }
           },
           delete: {
@@ -203,7 +239,55 @@ var messages = {
               createButton: 'Create New'
             }
           }
-        }      
+        },
+        parameters: {
+          head: {
+            title: 'Parameters management'
+          },
+          header: 'Parameters management',
+          create: {
+            title: 'Create a new parameter',
+            description: 'Create a new parameter to collaborate with others on projects.',
+            form: {
+              name: 'Parameter name',
+              description: 'Parameter description'
+            }
+          },
+          update: {
+            title: 'Update Parameter',
+            description: 'The parameter\'s name and description information.',
+            form: {
+              name: 'Parameter name',
+              description: 'Parameter description'
+            }
+          },
+          delete: {
+            title: 'Delete Parameter',
+            description: 'Permanently delete this parameter.',
+            content: {
+              deleteInfo: 'Once a parameter is deleted, all of its resources and data will be permanently deleted. Before deleting this parameter, please download any data or information regarding this parameter that you wish to retain.',
+              deleteButton: 'Delete Parameter',
+              modal: {
+                title: 'Delete Parameter',
+                content: 'Are you sure you want to delete this parameter? Once a parameter is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete Parameter'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Parameters list',
+            description: 'The parameters list which are registered.',
+            form: {
+              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
+            },
+            actions: {
+              createButton: 'Create New'
+            }
+          }
+        }    
       },
       profile: {
         head: {
@@ -252,6 +336,7 @@ var messages = {
           departments: 'Departments',
           users: 'Users',
           assessments: 'Assessments',
+          parameters: 'Assessment parameters',
           profile: 'Profile',
           logout: 'Log out'
         }
@@ -423,7 +508,25 @@ var messages = {
               name: 'Название экземпляра оценки персонала',
               description: 'Описание экземпляра оценки персонала',
               validFrom: 'Доступно периода с',
-              validTo: 'Доступно до периода'
+              validTo: 'Доступно до периода',
+              employements: 'Выберите должности отдела для оценки',
+              employement: {
+                option: {
+                  description: 'Должность отдела: {department}'
+                }
+              },
+              supervisors: 'Выберите контролеров для оценки',
+              supervisor: {
+                option: { 
+                  description: ''
+                }
+              },
+              parameters: 'Выберите параметры оценивания',
+              parameter: {
+                option: { 
+                  description: ''
+                }
+              }
             }
           },
           update: {
@@ -433,7 +536,25 @@ var messages = {
               name: 'Название экземпляра оценки персонала',
               description: 'Описание экземпляра оценки персонала',
               validFrom: 'Доступно периода с',
-              validTo: 'Доступно до периода'
+              validTo: 'Доступно до периода',
+              employements: 'Выберите должности отдела для оценки',
+              employement: {
+                option: {
+                  description: 'Должность отдела: {department}'
+                }
+              },
+              supervisors: 'Выберите контролеров для оценки',
+              supervisor: {
+                option: { 
+                  description: ''
+                }
+              },
+              parameters: 'Выберите параметры оценивания',
+              parameter: {
+                option: { 
+                  description: ''
+                }
+              }
             }
           },
           delete: {
@@ -455,6 +576,54 @@ var messages = {
           list: {
             title: 'Список оцениваний',
             description: 'Список оцениваний, которые зарегистрированы.',
+            form: {
+              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
+            },
+            actions: {
+              createButton: 'Создайте новый'
+            }
+          }
+        },
+        parameters: {
+          head: {
+            title: 'Управление параметрами оценки'
+          },
+          header: 'Управление параметрами оценки',
+          create: {
+            title: 'Создать новую параметр оценки',
+            description: 'Создайте новую параметр оценки, чтобы сотрудничать с другими над проектами.',
+            form: {
+              name: 'Название параметра оценки',
+              description: 'Описание параметра оценки'
+            }
+          },
+          update: {
+            title: 'Обновить параметр оценки',
+            description: 'Информация о названии и описании параметра оценки.',
+            form: {
+              name: 'Название параметра оценки',
+              description: 'Описание параметра оценки'
+            }
+          },
+          delete: {
+            title: 'Удалить параметр оценки',
+            description: 'Удалить эту параметр оценки навсегда.',
+            content: {
+              deleteInfo: 'После удаления параметров оценки все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой параметров оценки, пожалуйста, загрузите любые данные или информацию относительно этой параметров оценки, которые вы хотите сохранить.',
+              deleteButton: 'Удалить параметр оценки',
+              modal: {
+                title: 'Удалить параметр оценки',
+                content: 'Вы уверены, что хотите удалить эту параметр оценки? После удаления параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить параметр оценки'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Список параметров оценки',
+            description: 'Список параметров оценки, которые зарегистрированы.',
             form: {
               listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             },
@@ -511,6 +680,7 @@ var messages = {
           departments: 'Отделения',
           users: 'Пользователи',
           assessments: 'Оценивание персонала',
+          parameters: 'Параметры оценивания',
           profile: 'Профиль',
           logout: 'Выйти'
         }

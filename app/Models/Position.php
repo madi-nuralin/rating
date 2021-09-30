@@ -14,7 +14,7 @@ class Position extends Model
     }
 
     public function departments() {
-        return $this->belongsToMany(Department::class);
+        return $this->belongsToMany(Department::class, 'employements');
     }
 
     public function getId() {

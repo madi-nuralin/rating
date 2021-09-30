@@ -23,7 +23,7 @@ class Department extends Model
     }
 
     public function positions() {
-        return $this->belongsToMany(Position::class);
+        return $this->belongsToMany(Position::class, 'employements');
     }
 
     public function getId() {

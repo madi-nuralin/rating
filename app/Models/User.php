@@ -51,6 +51,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function supervisingAssessments() {
+        return $this->belongsToMany(Assessment::class, 'assessment_supervisor', 'user_id', 'assessment_id');
+    }
+
     public function getId() {
         return $this->id;
     }
@@ -143,6 +147,12 @@ class User extends Authenticatable
     public function getRoles() {
         return $this->roles->map(function($role) {
             return $role->toArray();
+        });
+    }
+
+    public function getSupervisingAssessments() {
+        return $this->supervisingAssessments->map(function($supervisingAssessment) {
+            return $supervisingAssessment->toArray();
         });
     }
 
