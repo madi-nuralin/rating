@@ -68,6 +68,12 @@
                 <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" />
                 <BreezeInputError :message="form.errors.lastname" class="mt-2" />
             </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="employements" :value="$t('pages.management.users.update.form.employements')" />
+                <BreezeSelect id="employements" class="mt-1 block w-full" :value="form.employements" @input="form.employements = $event" :options="options.employements"/>
+                <BreezeInputError :message="form.errors.employements" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -90,6 +96,7 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeActionMessage from '@/Components/ActionMessage.vue'
     import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
+    import BreezeSelect from '@/Components/Select.vue'
 
     export default {
         components: {
@@ -100,9 +107,10 @@
             BreezeInputError,
             BreezeLabel,
             BreezeButtonSecondary,
+            BreezeSelect,
         },
 
-        props: ['user'],
+        props: ['user', 'employements'],
 
         data() {
             return {
@@ -113,6 +121,9 @@
                     firstname: this.user.firstname,
                     lastname: this.user.lastname,
                     photo: this.user.profile_photo_path,
+                    employements: this.user.employements.map(function(employement) {
+                        return employement.id;
+                    }),
                 }),
 
                 photoPreview: null,
@@ -166,5 +177,22 @@
                 }
             },
         },
+
+        computed: {
+            options() {
+                let employements;
+
+                employements = this.employements ?
+                this.employements.map(function(employement) {
+                    return {
+                        value: employement.id,
+                        name: employement.position.name,
+                        description: this.$t('pages.management.assessments.update.form.employement.option.description', {department: employement.department.name})
+                    };
+                }, {$t: this.$t}) : null;
+
+                return {'employements': employements};
+            }
+        }
     }
 </script>

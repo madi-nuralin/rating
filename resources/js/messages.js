@@ -112,7 +112,8 @@ var messages = {
               name: 'User name',
               email: 'User email',
               firstname: 'Firstname',
-              lastname: 'Lastname'
+              lastname: 'Lastname',
+              employements: 'Employement Information'
             }
           },
           update: {
@@ -122,7 +123,8 @@ var messages = {
               name: 'User name',
               email: 'User email',
               firstname: 'Firstname',
-              lastname: 'Lastname'
+              lastname: 'Lastname',
+              employements: 'Employement Information'
             }
           },
           delete: {
@@ -456,7 +458,8 @@ var messages = {
               name: 'Имя пользователя',
               email: 'Электронная почта пользователя',
               firstname: 'Имя',
-              lastname: 'Фамилия'
+              lastname: 'Фамилия',
+              employements: 'Информация о занятости'
             }
           },
           update: {
@@ -466,7 +469,8 @@ var messages = {
               name: 'Имя пользователя',
               email: 'Электронная почта пользователя',
               firstname: 'Имя',
-              lastname: 'Фамилия'
+              lastname: 'Фамилия',
+              employements: 'Информация о занятости'
             }
           },
           delete: {

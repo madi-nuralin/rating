@@ -35,19 +35,19 @@
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="employements" :value="$t('pages.management.assessments.update.form.employements')" />
-                <BreezeSelect id="employements" class="mt-1 block w-full" :value="form.employements" @input="form.employements = $event" :options="getEmployementOptions()"/>
+                <BreezeSelect id="employements" class="mt-1 block w-full" :value="form.employements" @input="form.employements = $event" :options="options.employements"/>
                 <BreezeInputError :message="form.errors.employements" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="supervisors" :value="$t('pages.management.assessments.update.form.supervisors')" />
-                <BreezeSelect id="supervisors" class="mt-1 block w-full" :value="form.supervisors" @input="form.supervisors = $event" :options="getSupervisorOptions()"/>
+                <BreezeSelect id="supervisors" class="mt-1 block w-full" :value="form.supervisors" @input="form.supervisors = $event" :options="options.supervisors"/>
                 <BreezeInputError :message="form.errors.supervisors" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="parameters" :value="$t('pages.management.assessments.update.form.parameters')" />
-                <BreezeSelect id="parameters" class="mt-1 block w-full" :value="form.parameters" @input="form.parameters = $event" :options="getParameterOptions()"/>
+                <BreezeSelect id="parameters" class="mt-1 block w-full" :value="form.parameters" @input="form.parameters = $event" :options="options.parameters"/>
                 <BreezeInputError :message="form.errors.parameters" class="mt-2" />
             </div>
         </template>
@@ -95,9 +95,15 @@
                     description: this.assessment.description,
                     valid_from: this.assessment.valid_from,
                     valid_to: this.assessment.valid_to,
-                    employements: this.getEmployements(),
-                    supervisors: this.getSupervisors(),
-                    parameters: this.getParameters(),
+                    employements: this.assessment.employements.map(function(employement) {
+                        return employement.id;
+                    }),
+                    supervisors: this.assessment.supervisors.map(function(supervisor) {
+                        return supervisor.id;
+                    }),
+                    parameters: this.assessment.parameters.map(function(parameter) {
+                        return parameter.id;
+                    })
                 })
             }
         },
@@ -109,72 +115,24 @@
                     preserveScroll: true
                 });
             },
-            getEmployements() {
-                if (this.assessment.employements) {
-                    return this.assessment.employements.map(function(employement) {
-                        return employement.id;
-                    });
-                } else {
-                    return null;
-                }
-            },
-            getEmployementOptions() {
-                if (this.employements) {
-                    return this.employements.map(function(employement) {
-                        return {
-                            value: employement.id,
-                            name: employement.position.name,
-                            description: this.$t('pages.management.assessments.update.form.employement.option.description', {department: employement.department.name})
-                        };
-                    }, {$t: this.$t});
-                } else {
-                    return null;
-                }
-            },
-            getSupervisors() {
-                if (this.assessment.supervisors) {
-                    return this.assessment.supervisors.map(function(supervisor) {
-                        return supervisor.id;
-                    });
-                } else {
-                    return null;
-                }
-            },
-            getSupervisorOptions() {
-                if (this.supervisors) {
-                    return this.supervisors.map(function(supervisor) {
-                        return {
-                            value: supervisor.id,
-                            name: supervisor.name,
-                            description: supervisor.email
-                        };
-                    }, {$t: this.$t});
-                } else {
-                    return null;
-                }
-            },
-            getParameters() {
-                if (this.assessment.parameters) {
-                    return this.assessment.parameters.map(function(parameter) {
-                        return parameter.id;
-                    });
-                } else {
-                    return null;
-                }
-            },
-            getParameterOptions() {
-                if (this.parameters) {
-                    return this.parameters.map(function(parameter) {
-                        return {
-                            value: parameter.id,
-                            name: parameter.name,
-                            description: parameter.description
-                        };
-                    }, {$t: this.$t});
-                } else {
-                    return null;
-                }
-            },
         },
+        computed: {
+            options() {
+                return {
+                    'employements': this.employements ?
+                        this.employements.map(function(employement) {
+                            return { value: employement.id, name: employement.position.name, description: this.$t('pages.management.assessments.update.form.employement.option.description', {department: employement.department.name})};
+                        }, {$t: this.$t}) : null,
+                    'supervisors': this.supervisors ?
+                        this.supervisors.map(function(supervisor) {
+                            return { value: supervisor.id, name: supervisor.name, description: supervisor.email };
+                        }, {$t: this.$t}) : null,
+                    'parameters': this.parameters ?
+                        this.parameters.map(function(parameter) {
+                            return { value: parameter.id, name: parameter.name, description: parameter.description };
+                        }, {$t: this.$t}) : null,
+                };
+            }
+        }
     }
 </script>

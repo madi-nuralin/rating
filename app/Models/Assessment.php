@@ -35,6 +35,10 @@ class Assessment extends Model
         return $this->belongsToMany(Parameter::class);
     }
 
+    public function assignments() {
+        return $this->hasMany(Assignment::class);
+    }
+
     public function getId() {
         return $this->id;
     }
@@ -106,6 +110,12 @@ class Assessment extends Model
             return $parameter->toArray();
         });
     }
+
+    public function getAssignments() {
+        return $this->assignments->map(function($assignment) {
+            return $assignment->toArray();
+        });
+    }    
 
     public function toArray() {
         return [

@@ -31,6 +31,10 @@ class Employement extends Model
         return $this->belongsToMany(Assessment::class, 'assessment_employement');
     }
 
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
+
     public function getId() {
         return $this->id;
     }

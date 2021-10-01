@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use DB;
 
 use App\Models\User;
+use App\Models\Employement;
 
 class UserController extends Controller
 {
@@ -57,8 +58,22 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = User::findOrFail($id);
+
         return Inertia::render('Management/Users/Show', [
-            'user' => User::findOrFail($id)->toArray(),
+            'user' => array_merge(
+                $user->toArray(), [
+                    'employements' => $user->getEmployements()
+                ]
+            ),
+            'employements' => Employement::all()->map(function($employement) {
+                return array_merge(
+                    $employement->toArray(),[
+                        'department' => $employement->getDepartment(),
+                        'position' => $employement->getPosition(),
+                    ]
+                );
+            }),
         ]);
     }
 
@@ -101,6 +116,15 @@ class UserController extends Controller
         }
         if (isset($input['lastname'])) {
             $user->setLastname($input['lastname']);
+        }
+
+        if (isset($input['employements'])) {
+            if ($user->employements()) {
+                $user->employements()->detach();
+            }
+            if (count($input['employements']) > 0) {
+                $user->employements()->attach($input['employements']);
+            }
         }
 
         if ($input['email'] !== $user->email &&

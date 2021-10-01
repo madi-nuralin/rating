@@ -32,12 +32,17 @@ use App\Http\Controllers\Management\DepartmentController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\AssessmentController;
 use App\Http\Controllers\Management\ParameterController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\AssignmentController;
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::group(['prefix' => 'dashboard'], function() {
+        Route::get('', [DashboardController::class, 'index'])
+            ->name('dashboard');
+        Route::resource('assignment', AssignmentController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+    });
 
     Route::group(['prefix' => 'profile'], function() {
         Route::delete('', [CurrentUserController::class, 'destroy'])
