@@ -322,6 +322,63 @@ var messages = {
             }
           }
         }
+      },
+      dashboard: {
+        assignments: {
+          head: {
+            title: 'Assignments management'
+          },
+          header: 'Assignments management',
+          create: {
+            title: 'Create a new assignment',
+            description: 'Create a new assignment to collaborate with others on projects.',
+            form: {
+              name: 'Assignment name',
+              description: 'Assignment description'
+            }
+          },
+          update: {
+            title: 'Update Assignment',
+            description: 'The assignment\'s name and description information.',
+            form: {
+              name: 'Assignment name',
+              description: 'Assignment description'
+            }
+          },
+          delete: {
+            title: 'Delete Assignment',
+            description: 'Permanently delete this assignment.',
+            content: {
+              deleteInfo: 'Once a assignment is deleted, all of its resources and data will be permanently deleted. Before deleting this assignment, please download any data or information regarding this assignment that you wish to retain.',
+              deleteButton: 'Delete Assignment',
+              modal: {
+                title: 'Delete Assignment',
+                content: 'Are you sure you want to delete this assignment? Once a assignment is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete Assignment'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Assignments list',
+            description: 'The assignments list which are registered.',
+            supervisors: 'Assignment supervisors',
+            valid: 'Valid date: {from} up to {to}',
+            employement: {
+              department: 'Department: ',
+              position: 'Position: '
+            },
+            score: 'Your score for current assessment',
+            form: {
+              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
+            },
+            actions: {
+              createButton: 'Create New'
+            }
+          }
+        }
       }
     },
     layouts: {
@@ -665,6 +722,63 @@ var messages = {
                 cancelButton: 'Отмена',
                 deleteButton: 'Удалить аккаунт'
               }
+            }
+          }
+        }
+      },
+      dashboard: {
+        assignments: {
+          head: {
+            title: 'Управление заданиями'
+          },
+          header: 'Управление заданиями',
+          create: {
+            title: 'Добавить новое задание',
+            description: 'Создайте новое задание, чтобы сотрудничать с другими над проектами.',
+            form: {
+              name: 'Название задания',
+              description: 'Описание задания'
+            }
+          },
+          update: {
+            title: 'Обновить назначение',
+            description: 'Информация о названии и описании задания.',
+            form: {
+              name: 'Название задания',
+              description: 'Описание задания'
+            }
+          },
+          delete: {
+            title: 'Удалить задание',
+            description: 'Удалить это задание без возможности восстановления.',
+            content: {
+              deleteInfo: 'После удаления назначения все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого задания загрузите все данные или информацию о нем, которые вы хотите сохранить.',
+              deleteButton: 'Удалить задание',
+              modal: {
+                title: 'Удалить задание',
+                content: 'Вы действительно хотите удалить это задание? После удаления назначения все его ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить задание'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Список задании',
+            description: 'Список задании зарегистрированных в системе',
+            supervisors: 'Контролеры',
+            valid: 'Срок действия: с {from} по {to}',
+            employement: {
+              department: 'Отдел: ',
+              position: 'Должность: '
+            },
+            score: 'Ваша оценка за текущее оценивание',
+            form: {
+              listInfo: 'Список задании зарегистрированных в системе. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
+            },
+            actions: {
+              createButton: 'Создать новый'
             }
           }
         }

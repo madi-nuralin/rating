@@ -5,11 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Assessment;
-use App\Models\Employement;
-use App\Models\Parameter;
-use App\Models\User;
-
 class Assignment extends Model
 {
     use HasFactory;

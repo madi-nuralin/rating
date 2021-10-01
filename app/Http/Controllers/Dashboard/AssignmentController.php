@@ -8,6 +8,8 @@ use Inertia\Inertia;
 
 use App\Models\Assessment;
 use App\Models\Assignment;
+use App\Models\Employement;
+use App\Models\Parameter;
 use App\Models\User;
 
 class AssignmentController extends Controller
@@ -19,16 +21,29 @@ class AssignmentController extends Controller
      */
     public function index()
     {
+        $assessment = Assessment::findOrFail(request()->input('assessment'));
+        $employement = Employement::findOrFail(request()->input('employement'));
         $assignments = collect(
             Assignment::where('user_id', auth()->user()->id)
-                      ->where('assessment_id', request()->input('assessment'))
-                      ->where('employement_id', request()->input('employement'))
+                      ->where('assessment_id', $assessment->id)
+                      ->where('employement_id', $employement->id)
                       ->get());
 
         return Inertia::render('Dashboard/Assignments/Index', [
             'assignments' => $assignments->map(function($assignment) {
                 return $assignment->toArray();
             }),
+            'assessment' => array_merge(
+                $assessment->toArray(), [
+                    'supervisors' => $assessment->getSupervisors()
+                ]
+            ),
+            'employement' => array_merge(
+                $employement->toArray(), [
+                    'department' => $employement->getDepartment(),
+                    'position' => $employement->getPosition()
+                ]
+            )
         ]);
     }
 
