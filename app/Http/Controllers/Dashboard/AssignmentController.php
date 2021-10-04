@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 use App\Models\Assessment;
@@ -31,7 +33,11 @@ class AssignmentController extends Controller
 
         return Inertia::render('Dashboard/Assignments/Index', [
             'assignments' => $assignments->map(function($assignment) {
-                return $assignment->toArray();
+                return array_merge(
+                    $assignment->toArray(), [
+                        'parameter' => $assignment->getParameter()
+                    ]
+                );
             }),
             'assessment' => array_merge(
                 $assessment->toArray(), [
@@ -54,7 +60,23 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        //
+        $assessment = Assessment::findOrFail(request()->input('assessment'));
+        $employement = Employement::findOrFail(request()->input('employement'));
+
+        return Inertia::render('Dashboard/Assignments/Create', [
+            'assessment' => array_merge(
+                $assessment->toArray(), [
+                    'supervisors' => $assessment->getSupervisors(),
+                    'parameters' => $assessment->getParameters()
+                ]
+            ),
+            'employement' => array_merge(
+                $employement->toArray(), [
+                    'department' => $employement->getDepartment(),
+                    'position' => $employement->getPosition()
+                ]
+            )
+        ]);
     }
 
     /**
@@ -65,7 +87,35 @@ class AssignmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $assignment = null;
+
+        if (isset($input['parameter'])) {
+            $assignment = Assignment::create([
+                'assessment_id' => $input['assessment'],
+                'parameter_id' => $input['parameter'],
+                'employement_id' => $input['employement'],
+                'user_id' => auth()->user()->getId(),
+                'score' => 0
+            ]);
+        } else {
+            throw ValidationException::withMessages([
+                'parameter' => 'Please select assessment parameter.',
+            ]);
+        }
+
+        $assignment->save();
+
+        return Inertia::location(route('assignment.show', [
+            'assignment' => $assignment->id,
+            'parameter' => $assignment->getParameter(),
+            'employement' => array_merge(
+                $assignment->getEmployement(), [
+                    'department' => $assignment->employement->getDepartment(),
+                    'position' => $assignment->employement->getPosition()
+                ]
+            )
+        ]));
     }
 
     /**

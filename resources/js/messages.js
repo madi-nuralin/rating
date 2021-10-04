@@ -767,7 +767,7 @@ var messages = {
           list: {
             title: 'Список задании',
             description: 'Список задании зарегистрированных в системе',
-            supervisors: 'Контролеры',
+            supervisors: 'Список подтверждающих лиц',
             valid: 'Срок действия: с {from} по {to}',
             employement: {
               department: 'Отдел: ',

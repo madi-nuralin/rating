@@ -15,6 +15,10 @@ class Assignment extends Model
      * @var string[]
      */
     protected $fillable = [
+        'assessment_id',
+        'parameter_id',
+        'employement_id',
+        'user_id',
         'score'
     ];
 

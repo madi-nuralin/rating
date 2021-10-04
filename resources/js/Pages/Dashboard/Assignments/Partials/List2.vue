@@ -8,17 +8,17 @@
             </div>
                 
             <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer col-span-6 sm:col-span-4">
-                <button class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200" type="button" v-for="(assignment, i) in assignments" :key="assignment.id" :class="{'border-t border-gray-200 rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(assignments).length - 1}">
+	            <button class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200" type="button" v-for="(supervisor, i) in supervisors" :key="supervisor.id" :class="{'border-t border-gray-200 rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(supervisors).length - 1}">
 
-                    <div class="w-full">
+	                <div class="w-full">
                         <div class="flex items-center justify-between">
                             <div class="text-sm text-gray-600">
-                                {{ assignment.parameter.name }}
+                                {{ supervisor.name }}
                             </div>
 
                             <Link 
                                 class="w-4 mr-2 transform text-gray-400 hover:text-blue-400 hover:scale-110"
-                                :href="route('assignment.show', {'id': assignment.id})">
+                                :href="route('user.show', {'id': supervisor.id})">
                                 <svg class="ml-2 h-5 w-5"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="18"
@@ -35,33 +35,42 @@
                         </div>
 
                         <div class="mt-2 text-xs text-gray-600 text-left">
-                            {{ assignment.parameter.description }} | Score: {{ assignment.score }}
+                            {{ supervisor.email }}
                         </div>
                     </div>
-                </button>
-            </div>
+	            </button>
+        	</div>
         </div>
     </div>
 
     <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-        <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('assignment.create', {'assessment': assessment.id, 'employement': employement.id})">
-            {{ $t('pages.dashboard.assignments.list.actions.createButton') }}
+        <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" >
         </Link>
     </div>
 </template>
 
+
 <script>
     import BreezeButton from '@/Components/Button.vue'
-    import BreezeFormSection from '@/Components/FormSection.vue'
+    import BreezeInput from '@/Components/Input.vue'
+    import BreezeInputError from '@/Components/InputError.vue'
+    import BreezeTextarea from '@/Components/Textarea.vue'
+    import BreezeLabel from '@/Components/Label.vue'
+    import BreezeSelect from '@/Components/Select.vue'
+    import { Inertia } from '@inertiajs/inertia'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
         components: {
             BreezeButton,
-            BreezeFormSection,
-            Link,
+            BreezeInput,
+            BreezeInputError,
+            BreezeTextarea,
+            BreezeLabel,
+            BreezeSelect,
+            Link
         },
 
-        props: ['assignments', 'assessment', 'employement'],
+        props: ['supervisors'],
     }
 </script>
