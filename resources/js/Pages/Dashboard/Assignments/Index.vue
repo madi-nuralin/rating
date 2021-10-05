@@ -12,11 +12,10 @@
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1 flex flex-col">
-                        <info :assessment="$page.props.assessment" :employement="$page.props.employement" />
+                        <info1 :assessment="$page.props.assessment" :employement="$page.props.employement" />
+                        <info2 :supervisors="$page.props.assessment.supervisors" />
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <!--resource-list2 :supervisors="$page.props.assessment.supervisors" />
-                        <breeze-section-border /-->
                         <resource-list :assignments="$page.props.assignments" :assessment="$page.props.assessment" :employement="$page.props.employement"/>
                     </div>
                 </div>
@@ -32,8 +31,8 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
     import ResourceList from '@/Pages/Dashboard/Assignments/Partials/List.vue'
-    import ResourceList2 from '@/Pages/Dashboard/Assignments/Partials/List2.vue'
-    import Info from '@/Pages/Dashboard/Assignments/Partials/Info.vue'
+    import Info1 from '@/Pages/Dashboard/Assignments/Partials/Info1.vue'
+    import Info2 from '@/Pages/Dashboard/Assignments/Partials/Info2.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -44,8 +43,8 @@
             BreezeLabel,
             BreezeInput,
             ResourceList,
-            ResourceList2,
-            Info,
+            Info1,
+            Info2,
             Head,
         },
     }

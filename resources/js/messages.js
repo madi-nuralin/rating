@@ -365,7 +365,7 @@ var messages = {
             title: 'Assignments list',
             description: 'The assignments list which are registered.',
             supervisors: 'Assignment supervisors',
-            valid: 'Valid date: {from} up to {to}',
+            validDate: 'Valid date: ',
             employement: {
               department: 'Department: ',
               position: 'Position: '
@@ -768,7 +768,7 @@ var messages = {
             title: 'Список задании',
             description: 'Список задании зарегистрированных в системе',
             supervisors: 'Список подтверждающих лиц',
-            valid: 'Срок действия: с {from} по {to}',
+            validDate: 'Срок действия: ',
             employement: {
               department: 'Отдел: ',
               position: 'Должность: '
