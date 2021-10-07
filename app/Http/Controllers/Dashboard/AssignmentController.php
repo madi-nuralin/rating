@@ -67,7 +67,13 @@ class AssignmentController extends Controller
             'assessment' => array_merge(
                 $assessment->toArray(), [
                     'supervisors' => $assessment->getSupervisors(),
-                    'parameters' => $assessment->getParameters()
+                    'parameters' => $assessment->parameters->map(function($parameter) {
+                        return array_merge(
+                            $parameter->toArray(), [
+                                'rules' => $parameter->getRules()
+                            ]
+                        );
+                    })
                 ]
             ),
             'employement' => array_merge(

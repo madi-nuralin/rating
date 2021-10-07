@@ -1,24 +1,32 @@
 <template>
-    <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
-        <div class="grid grid-cols-6 gap-6">
+    <BreezeFormSection>
+        <template #title>
+            {{ t('title') }}
+        </template>
+
+        <template #description>
+            {{ t('description') }}
+        </template>
+
+        <template #form>
             <div class="col-span-6">
                 <div class="max-w-xl text-sm text-gray-600">
-                    {{ $t('pages.dashboard.assignments.list.form.listInfo') }}
+                    {{ t('form.listInfo') }}
                 </div>
             </div>
                 
             <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer col-span-6 sm:col-span-4">
-                <button class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200" type="button" v-for="(assignment, i) in assignments" :key="assignment.id" :class="{'border-t border-gray-200 rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(assignments).length - 1}">
+                <button class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200" type="button" v-for="(rule, i) in parameter.rules" :class="{'border-t border-gray-200 rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(parameter.rules).length - 1}">
 
                     <div class="w-full">
                         <div class="flex items-center justify-between">
                             <div class="text-left text-sm text-gray-600">
-                                {{ assignment.parameter.name }}
+                                {{ t('type.' + rule.type + '.name') }}
                             </div>
 
                             <Link 
                                 class="w-4 mr-2 transform text-gray-400 hover:text-blue-400 hover:scale-110"
-                                :href="route('assignment.show', {'id': assignment.id})">
+                                :href="route('rule.show', {'id': rule.id})">
                                 <svg class="ml-2 h-5 w-5"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="18"
@@ -35,19 +43,20 @@
                         </div>
 
                         <div class="mt-2 text-xs text-gray-600 text-left">
-                            {{ assignment.parameter.description }} | Score: {{ assignment.score }}
+                            <p>{{ t('form.name') }}: {{ rule.name }}</p>
+                            <p>{{ t('form.description') }}: {{ rule.description }}</p>
                         </div>
                     </div>
                 </button>
             </div>
-        </div>
-    </div>
+        </template>
 
-    <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-        <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('assignment.create', {'assessment': assessment.id, 'employement': employement.id})">
-            {{ $t('pages.dashboard.assignments.list.actions.createButton') }}
-        </Link>
-    </div>
+        <template #actions>
+            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('rule.create', {'parameter': parameter.id})">
+                {{ t('actions.createButton') }}
+            </Link>
+        </template>
+    </BreezeFormSection>
 </template>
 
 <script>
@@ -62,6 +71,12 @@
             Link,
         },
 
-        props: ['assignments', 'assessment', 'employement'],
+        props: ['parameter'],
+
+        methods: {
+            t(path) {
+                return this.$t('pages.management.parameters.rules.list.' + path);
+            }
+        }
     }
 </script>

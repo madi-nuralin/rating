@@ -1,19 +1,19 @@
 <template>
-    <Head :title="$t('pages.management.assessments.head.title')" />
+    <Head :title="t('head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.assessments.header') }}
+                {{ t('header') }}
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :assessment="$page.props.assessment" :employements="$page.props.employements" :supervisors="$page.props.supervisors" :parameters="$page.props.parameters"/>
+                <update-form :rule="$page.props.rule"/>
                 <breeze-section-border />
 
-                <delete-form :assessment="$page.props.assessment" class="mt-10 sm:mt-0"/>
+                <delete-form :rule="$page.props.rule" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -22,8 +22,8 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import UpdateForm from '@/Pages/Management/Assessments/Partials/UpdateForm.vue'
-    import DeleteForm from '@/Pages/Management/Assessments/Partials/DeleteForm.vue'
+    import UpdateForm from '@/Pages/Management/Parameters/Rules/Partials/UpdateForm.vue'
+    import DeleteForm from '@/Pages/Management/Parameters/Rules/Partials/DeleteForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -34,5 +34,11 @@
             DeleteForm,
             Head,
         },
+
+        methods: {
+            t(path) {
+                return this.$t('pages.management.parameters.rules.' + path);
+            }
+        }
     }
 </script>

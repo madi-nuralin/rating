@@ -83,7 +83,13 @@ class AssessmentController extends Controller
                 $assessment->toArray(), [
                     'employements' => $assessment->getEmployements(),
                     'supervisors' => $assessment->getSupervisors(),
-                    'parameters' => $assessment->getParameters(),
+                    'parameters' => $assessment->parameters->map(function($parameter) {
+                        return array_merge(
+                            $parameter->toArray(), [
+                                'rules' => $parameter->getRules()
+                            ]
+                        );
+                    })
                 ]
             ),
             'employements' => Employement::all()->map(function($employement) {

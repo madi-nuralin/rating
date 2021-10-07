@@ -21,7 +21,7 @@
                 <div class="col-span-1 overflow-ellipsis overflow-hidden">{{ $t('pages.dashboard.assignments.list.validDate') }}</div>
                 <div class="col-span-2 overflow-ellipsis overflow-hidden">{{ assessment.valid_from + ', ' + assessment.valid_to }}</div>
                 <div class="col-span-1 overflow-ellipsis overflow-hidden">{{ $t('pages.dashboard.assignments.list.score') }}</div>
-                <div class="col-span-2 overflow-ellipsis overflow-hidden">{{ assessment.score }}</div>
+                <div class="col-span-2 overflow-ellipsis overflow-hidden">{{ 0.0 }}</div>
             </div>
         </div>
     </div>

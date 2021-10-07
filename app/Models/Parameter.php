@@ -17,6 +17,10 @@ class Parameter extends Model
         return $this->belongsToMany(Assessment::class);
     }
 
+    public function rules() {
+        return $this->belongsToMany(Rule::class);
+    }
+
     public function getId() {
         return $this->id;
     }
@@ -58,6 +62,12 @@ class Parameter extends Model
     public function getAssessments() {
         return $this->assessments->map(function($assessment) {
             return $assessment->toArray();
+        });
+    }
+
+    public function getRules() {
+        return $this->rules->map(function($rule) {
+            return $rule->toArray();
         });
     }
 

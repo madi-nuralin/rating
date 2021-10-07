@@ -10,10 +10,13 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <UpdateForm :parameter="$page.props.parameter"/>
-                <BreezeSectionBorder />
+                <update-form :parameter="$page.props.parameter"/>
+                <breeze-section-border />
 
-                <DeleteForm :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
+                <rules-resource-list :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
+                <breeze-section-border />
+
+                <delete-form :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -24,6 +27,7 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from '@/Pages/Management/Parameters/Partials/UpdateForm.vue'
     import DeleteForm from '@/Pages/Management/Parameters/Partials/DeleteForm.vue'
+    import RulesResourceList from '@/Pages/Management/Parameters/Rules/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -32,6 +36,7 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
+            RulesResourceList,
             Head,
         },
     }

@@ -288,6 +288,146 @@ var messages = {
             actions: {
               createButton: 'Create New'
             }
+          },
+          rules: {
+            head: {
+              title: 'Parameter rules management'
+            },
+            header: 'Parameter rules management',
+            create: {
+              title: 'Create a new parameter rule',
+              description: 'Create a new parameter rule to collaborate with others on projects.',
+              form: {
+                type: 'Rule type',
+                name: 'Name',
+                description: 'Description',
+                input_type: 'Input field type',
+                validation_rules: 'Validation rules',
+                math_expression: 'Formula expression'
+              },
+              type: {
+                metadata: {
+                  name: 'Metadata',
+                  description: 'Metadata rule'
+                },
+                formula: {
+                  name: 'Formula',
+                  description: 'Formula rule'
+                },
+                submission: {
+                  name: 'Submission',
+                  description: 'Submission rules'
+                }
+              },
+              input_type: {
+                text: {
+                  name: 'Text data',
+                  description: 'Use to enter text data'
+                },
+                select: {
+                  name: 'Select',
+                  description: 'Use to select items from the list provided'
+                },
+                file: {
+                  name: 'File',
+                  description: 'Use to attach files'
+                },
+                link: {
+                  name: 'Link',
+                  description: 'Use to link to external resources'
+                }
+              }
+            },
+            update: {
+              title: 'Update Rule',
+              description: 'The rule\'s name and description information.',
+              form: {
+                type: 'Rule type',
+                name: 'Name',
+                description: 'Description',
+                input_type: 'Input field type',
+                validation_rules: 'Validation rules',
+                math_expression: 'Formula expression'
+              },
+              type: {
+                metadata: {
+                  name: 'Metadata',
+                  description: 'Metadata rule'
+                },
+                formula: {
+                  name: 'Formula',
+                  description: 'Formula rule'
+                },
+                submission: {
+                  name: 'Submission',
+                  description: 'Submission rules'
+                }
+              },
+              input_type: {
+                text: {
+                  name: 'Text data',
+                  description: 'Use to enter text data'
+                },
+                select: {
+                  name: 'Select',
+                  description: 'Use to select items from the list provided'
+                },
+                file: {
+                  name: 'File',
+                  description: 'Use to attach files'
+                },
+                link: {
+                  name: 'Link',
+                  description: 'Use to link to external resources'
+                }
+              }
+            },
+            delete: {
+              title: 'Delete Rule',
+              description: 'Permanently delete this rule.',
+              content: {
+                deleteInfo: 'Once a rule is deleted, all of its resources and data will be permanently deleted. Before deleting this rule, please download any data or information regarding this parameter that you wish to retain.',
+                deleteButton: 'Delete Rule',
+                modal: {
+                  title: 'Delete Rule',
+                  content: 'Are you sure you want to delete this rule? Once a rule is deleted, all of its resources and data will be permanently deleted.',
+                  footer: {
+                    cancelButton: 'Cancel',
+                    deleteButton: 'Delete Rule'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Rules list',
+              description: 'The rules list which are registered.',
+              form: {
+                listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
+                type: 'Rule type',
+                name: 'Name',
+                description: 'Description',
+                input_type: 'Input field type',
+                validation_rules: 'Validation rules',
+                math_expression: 'Formula expression'
+              },
+              type: {
+                metadata: {
+                  name: 'Metadata',
+                  description: 'Metadata rule'
+                },
+                formula: {
+                  name: 'Formula',
+                  description: 'Formula rule'
+                },
+                submission: {
+                  name: 'Submission',
+                  description: 'Submission rules'
+                }
+              },
+              actions: {
+                createButton: 'Create New'
+              }
+            }
           }
         }    
       },
@@ -334,7 +474,8 @@ var messages = {
             description: 'Create a new assignment to collaborate with others on projects.',
             form: {
               name: 'Assignment name',
-              description: 'Assignment description'
+              description: 'Assignment description',
+              parameter: 'Select parameter'
             }
           },
           update: {
@@ -691,6 +832,146 @@ var messages = {
             actions: {
               createButton: 'Создайте новый'
             }
+          },
+          rules: {
+            head: {
+              title: 'Управление правилами параметров оценки'
+            },
+            header: 'Управление правилами параметров оценки',
+            create: {
+              title: 'Создать новое правило параметра оценки',
+              description: 'Создать новое правило параметра оценки, чтобы сотрудничать с другими над проектами.',
+              form: {
+                type: 'Тип правила',
+                name: 'Название',
+                description: 'Описание',
+                input_type: 'Тип заполнения',
+                validation_rules: 'Правила валидаций',
+                math_expression: 'Выражение'
+              },
+              type: {
+                metadata: {
+                  name: 'Метаданные',
+                  description: 'Правила метаданных'
+                },
+                formula: {
+                  name: 'Формула',
+                  description: 'Правила формулы'
+                },
+                submission: {
+                  name: 'Отправка',
+                  description: 'Правила для отправки файлов и ссылки'
+                }
+              },
+              input_type: {
+                text: {
+                  name: 'Текстовые данные',
+                  description: 'Используйте для ввода текстовых данных'
+                },
+                select: {
+                  name: 'Выборка',
+                  description: 'Используйте для выбора элементов из приведенного списка'
+                },
+                file: {
+                  name: 'Файл',
+                  description: 'Используйте для приклепления файлов'
+                },
+                link: {
+                  name: 'Ссылка',
+                  description: 'Используйте для ссылки на внешние ресурсы'
+                }
+              }
+            },
+            update: {
+              title: 'Обновить правило параметра оценки',
+              description: 'Информация о названии и описании правилы параметра оценки.',
+              form: {
+                type: 'Тип правила',
+                name: 'Название',
+                description: 'Описание',
+                input_type: 'Тип заполнения',
+                validation_rules: 'Правила валидаций',
+                math_expression: 'Выражение'
+              },
+              type: {
+                metadata: {
+                  name: 'Метаданные',
+                  description: 'Правила метаданных'
+                },
+                formula: {
+                  name: 'Формула',
+                  description: 'Правила формулы'
+                },
+                submission: {
+                  name: 'Отправка',
+                  description: 'Правила для отправки файлов и ссылки'
+                }
+              },
+              input_type: {
+                text: {
+                  name: 'Текстовые данные',
+                  description: 'Используйте для ввода текстовых данных'
+                },
+                select: {
+                  name: 'Выборка',
+                  description: 'Используйте для выбора элементов из приведенного списка'
+                },
+                file: {
+                  name: 'Файл',
+                  description: 'Используйте для приклепления файлов'
+                },
+                link: {
+                  name: 'Ссылка',
+                  description: 'Используйте для ссылки на внешние ресурсы'
+                }
+              }
+            },
+            delete: {
+              title: 'Удалить правило параметра оценки',
+              description: 'Удалить этот правило параметра оценки навсегда.',
+              content: {
+                deleteInfo: 'После удаления правила параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой параметров оценки, пожалуйста, загрузите любые данные или информацию относительно этой параметров оценки, которые вы хотите сохранить.',
+                deleteButton: 'Удалить правило параметра оценки',
+                modal: {
+                  title: 'Удалить правило параметра оценки',
+                  content: 'Вы уверены, что хотите удалить это правило параметра оценки? После удаления правила параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления.',
+                  footer: {
+                    cancelButton: 'Отмена',
+                    deleteButton: 'Удалить правило параметра оценки'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Список правил параметра оценки',
+              description: 'Список правил параметра оценки, которые зарегистрированы.',
+              form: {
+                listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
+                type: 'Тип правила',
+                name: 'Название',
+                description: 'Описание',
+                input_type: 'Тип заполнения',
+                validation_rules: 'Правила валидаций',
+                math_expression: 'Выражение'
+              },
+              type: {
+                metadata: {
+                  name: 'Метаданные',
+                  description: 'Правила метаданных'
+                },
+                formula: {
+                  name: 'Формула',
+                  description: 'Правила формулы'
+                },
+                submission: {
+                  name: 'Отправка',
+                  description: 'Правила для отправки файлов и ссылки'
+                }
+              },
+              actions: {
+                createButton: 'Создайте новый'
+              }
+            }
           }
         }
       },
@@ -737,7 +1018,8 @@ var messages = {
             description: 'Создайте новое задание, чтобы сотрудничать с другими над проектами.',
             form: {
               name: 'Название задания',
-              description: 'Описание задания'
+              description: 'Описание задания',
+              parameter: 'Выберите параметр оценки'
             }
           },
           update: {
