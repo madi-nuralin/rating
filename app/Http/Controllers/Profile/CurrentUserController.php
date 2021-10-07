@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 use App\Models\User;
+use App\Models\Employement;
 
 class CurrentUserController extends Controller
 {
@@ -23,7 +24,19 @@ class CurrentUserController extends Controller
     public function show()
     {
         return Inertia::render('Profile/Show', [
-            'user' => auth()->user()->toArray(),
+            'user' => array_merge(
+                auth()->user()->toArray(), [
+                    'employements' => auth()->user()->getEmployements()
+                ]
+            ),
+            'employements' => Employement::all()->map(function($employement) {
+                return array_merge(
+                    $employement->toArray(),[
+                        'department' => $employement->getDepartment(),
+                        'position' => $employement->getPosition(),
+                    ]
+                );
+            }),
         ]);
     }
 
