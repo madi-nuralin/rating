@@ -94,7 +94,7 @@ class AssessmentController extends Controller
             ),
             'employements' => Employement::all()->map(function($employement) {
                 return array_merge(
-                    $employement->toArray(),[
+                    $employement->toArray(), [
                         'department' => $employement->getDepartment(),
                         'position' => $employement->getPosition(),
                     ]

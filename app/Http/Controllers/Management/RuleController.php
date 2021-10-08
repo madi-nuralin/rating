@@ -82,12 +82,8 @@ class RuleController extends Controller
                 ]);
         }
 
-        error_log('message');
-
         Validator::make($input, $validationRules)
                     ->validateWithBag('createRule');
-
-        error_log('message3');
 
         $rule = Rule::create(['type' => $input['type']]);
         $rule->setName($input['name']);
@@ -123,8 +119,14 @@ class RuleController extends Controller
      */
     public function show($id)
     {
+        $rule = Rule::findOrFail($id);
+
         return Inertia::render('Management/Parameters/Rules/Show', [
-            'rule' => Rule::findOrFail($id)->toArray()
+            'rule' => array_merge(
+                $rule->toArray(), [
+                    'options' => $rule->getOptions()
+                ]
+            ),
         ]);
     }
 
