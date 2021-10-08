@@ -10,33 +10,7 @@
 
         <template #form>
 
-            <template v-if="rule.type == 'metadata'">
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="name" :value="t('form.name')" />
-                    <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" />
-                    <BreezeInputError :message="form.errors.name" class="mt-2" />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="description" :value="t('form.description')" />
-                    <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
-                    <BreezeInputError :message="form.errors.description" class="mt-2" />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="input_type" :value="t('form.input_type')" />
-                    <BreezeSelect id="input_type" class="mt-1 block w-full" :value="form.input_type" @input="form.input_type = $event" :options="options.input_type" :multiple="false"/>
-                    <BreezeInputError :message="form.errors.input_type" class="mt-2" />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="validation_rules" :value="t('form.validation_rules')" />
-                    <BreezeInput id="validation_rules" type="text" class="mt-1 block w-full" v-model="form.validation_rules" />
-                    <BreezeInputError :message="form.errors.validation_rules" class="mt-2" />
-                </div>
-            </template>
-
-            <template v-if="rule.type == 'formula'">
+            <template v-if="Array('metadata', 'submission', 'formula').includes(rule.type)">
                 <div class="col-span-6 sm:col-span-4">
                     <BreezeLabel for="name" :value="t('form.name')" />
                     <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
@@ -50,38 +24,41 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="math_expression" :value="t('form.math_expression')" />
-                    <BreezeInput id="math_expression" type="text" class="mt-1 block w-full" v-model="form.math_expression" autofocus />
-                    <BreezeInputError :message="form.errors.math_expression" class="mt-2" />
+                    <BreezeLabel for="input_id" :value="t('form.input_id')" />
+                    <BreezeInput id="input_id" type="text" class="mt-1 block w-full" v-model="form.input_id" autofocus />
+                    <BreezeInputError :message="form.errors.input_id" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <BreezeLabel for="input_label" :value="t('form.input_label')" />
+                    <BreezeInput id="input_label" type="text" class="mt-1 block w-full" v-model="form.input_label" autofocus />
+                    <BreezeInputError :message="form.errors.input_label" class="mt-2" />
                 </div>
             </template>
 
-            <template v-if="rule.type == 'submission'">
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="name" :value="t('form.name')" />
-                    <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
-                    <BreezeInputError :message="form.errors.name" class="mt-2" />
-                </div>
+            <div class="col-span-6 sm:col-span-4" v-if="Array('metadata', 'submission').includes(rule.type)">
+                <BreezeLabel for="input_type" :value="t('form.input_type')" />
+                <BreezeSelect id="input_type" class="mt-1 block w-full" :value="form.input_type" @input="form.input_type = $event" :options="options.input_type" :multiple="false"/>
+                <BreezeInputError :message="form.errors.input_type" class="mt-2" />
+            </div>
 
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="description" :value="t('form.description')" />
-                    <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
-                    <BreezeInputError :message="form.errors.description" class="mt-2" />
-                </div>
+            <div class="col-span-6 sm:col-span-4" v-if="Array('text', 'select', 'file', 'link').includes(form.input_type)">
+                <BreezeLabel for="input_validation" :value="t('form.input_validation')" />
+                <BreezeInput id="input_validation" type="text" class="mt-1 block w-full" v-model="form.input_validation" />
+                <BreezeInputError :message="form.errors.input_validation" class="mt-2" />
+            </div>
 
-                <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="input_type" :value="t('form.input_type')" />
-                    <BreezeSelect id="input_type" class="mt-1 block w-full" :value="form.input_type" @input="form.input_type = $event" :options="options.input_type" :multiple="false"/>
-                    <BreezeInputError :message="form.errors.input_type" class="mt-2" />
-                </div>
+            <div class="col-span-6 sm:col-span-4" v-if="Array('formula').includes(rule.type)">
+                <BreezeLabel for="input_expression_type" :value="t('form.input_expression_type')" />
+                <BreezeSelect id="input_expression_type" class="mt-1 block w-full" :value="form.input_expression_type" @input="form.input_expression_type = $event" :options="options.input_expression_type" :multiple="false"/>
+                <BreezeInputError :message="form.errors.input_expression_type" class="mt-2" />
+            </div>
 
-                <div class="col-span-6 sm:col-span-4" v-if="form.input_type == 'file'">
-                    <BreezeLabel for="validation_rules" :value="t('form.validation_rules')" />
-                    <BreezeInput id="validation_rules" type="text" class="mt-1 block w-full" v-model="form.validation_rules" />
-                    <BreezeInputError :message="form.errors.validation_rules" class="mt-2" />
-                </div>
-            </template>
-
+            <div class="col-span-6 sm:col-span-4" v-if="Array('formula').includes(rule.type) && Array('php').includes(form.input_expression_type)">
+                <BreezeLabel for="input_expression" :value="t('form.input_expression')" />
+                <BreezeInput id="input_expression" type="text" class="mt-1 block w-full" v-model="form.input_expression" autofocus />
+                <BreezeInputError :message="form.errors.input_expression" class="mt-2" />
+            </div>
         </template>
 
         <template #actions v-if="true">
@@ -125,9 +102,12 @@
                 form: this.$inertia.form({
                     name: this.rule.name,
                     description: this.rule.description,
+                    input_id: this.rule.input_id,
                     input_type: this.rule.input_type,
-                    validation_rules: this.rule.validation_rules,
-                    math_expression: this.rule.math_expression
+                    input_label: this.rule.input_label,
+                    input_validation: this.rule.input_validation,
+                    input_expression: this.rule.input_expression,
+                    input_expression_type: this.rule.input_expression_type,
                 })
             }
         },
@@ -152,6 +132,12 @@
                         this.rule.type == 'metadata' ? Array('text', 'select') :
                         this.rule.type == 'submission' ? Array('link', 'file') : null;
 
+                let input_expression_type = [{
+                    value: 'php',
+                    name: this.t('input_expression_type.php.name'),
+                    description: this.t('input_expression_type.php.description')
+                }];
+
                 if (input_type_array) {
                     input_type = input_type_array.map(function(o) {
                         return {
@@ -163,7 +149,7 @@
                 }
 
                 return {
-                    input_type: input_type
+                    'input_type': input_type, 'input_expression_type': input_expression_type
                 }
             }
         }

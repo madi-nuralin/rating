@@ -38,6 +38,10 @@
                                     </template>
 
                                     <template #content>
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ $t('layouts.authenticated.linkGroups.manageEntities') }}
+                                        </div>
+                                        
                                         <BreezeDropdownLink :href="route('position.index')">
                                             {{ $t('layouts.authenticated.links.positions') }}
                                         </BreezeDropdownLink>
@@ -47,6 +51,11 @@
                                         <BreezeDropdownLink :href="route('user.index')">
                                             {{ $t('layouts.authenticated.links.users') }}
                                         </BreezeDropdownLink>
+
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ $t('layouts.authenticated.linkGroups.manageAssessment') }}
+                                        </div>
+
                                         <BreezeDropdownLink :href="route('assessment.index')">
                                             {{ $t('layouts.authenticated.links.assessments') }}
                                         </BreezeDropdownLink>

@@ -26,8 +26,20 @@ class Rule extends Model
         return $this->belongsToMany(Parameter::class);
     }
 
+    public function options() {
+        return $this->hasMany(RuleOption::class);
+    }
+
     public function getId() {
         return $this->id;
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+
+    public function setType($type) {
+        $this->type = $type;
     }
 
     public function getName() {
@@ -64,6 +76,23 @@ class Rule extends Model
         );
     }
 
+    public function getInputId() {
+        return $this->getSettingValue(
+            app()->currentLocale(),
+            'string',
+            'input_id'
+        );
+    }
+
+    public function setInputId($inputId) {
+        $this->updateSettingValue(
+            app()->currentLocale(),
+            'string',
+            'input_id',
+            $inputId
+        );
+    }
+
     public function getInputType() {
         return $this->getSettingValue(
             app()->currentLocale(),
@@ -81,51 +110,83 @@ class Rule extends Model
         );
     }
 
-    public function getValidationRules() {
+    public function getInputLabel() {
         return $this->getSettingValue(
             app()->currentLocale(),
             'string',
-            'validation_rules'
+            'input_label'
         );
     }
 
-    public function setValidationRules($validationRules) {
+    public function setInputLabel($inputLabel) {
         $this->updateSettingValue(
             app()->currentLocale(),
             'string',
-            'validation_rules',
-            $validationRules
+            'input_label',
+            $inputLabel
         );
     }
 
-    public function getMathExpression() {
+    public function getInputValidation() {
         return $this->getSettingValue(
             app()->currentLocale(),
             'string',
-            'math_expression'
+            'input_validation'
         );
     }
 
-    public function setMathExpression($mathExpression) {
+    public function setInputValidation($inputValidation) {
         $this->updateSettingValue(
             app()->currentLocale(),
             'string',
-            'math_expression',
-            $mathExpression
+            'input_validation',
+            $inputValidation
         );
     }
 
-    public function getType() {
-        return $this->type;
+    public function getInputExpression() {
+        return $this->getSettingValue(
+            app()->currentLocale(),
+            'string',
+            'input_expression'
+        );
     }
 
-    public function setType($type) {
-        $this->type = $type;
+    public function setInputExpression($inputExpression) {
+        $this->updateSettingValue(
+            app()->currentLocale(),
+            'string',
+            'input_expression',
+            $inputExpression
+        );
+    }
+
+    public function getInputExpressionType() {
+        return $this->getSettingValue(
+            app()->currentLocale(),
+            'string',
+            'input_expression_type'
+        );
+    }
+
+    public function setInputExpressionType($inputExpressionType) {
+        $this->updateSettingValue(
+            app()->currentLocale(),
+            'string',
+            'input_expression_type',
+            $inputExpressionType
+        );
     }
 
     public function getParameters() {
         return $this->parameters->map(function($parameter) {
             return $parameter->toArray();
+        });
+    }
+
+    public function getOptions() {
+        return $this->options->map(function($option) {
+            return $option->toArray();
         });
     }
 
@@ -135,9 +196,14 @@ class Rule extends Model
             'type' => $this->getType(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'input_id' => $this->getInputId(),
             'input_type' => $this->getInputType(),
-            'validation_rules' => $this->getValidationRules(),
-            'math_expression' => $this->getMathExpression(),
+            'input_label' => $this->getInputLabel(),
+            'input_validation' => $this->getInputValidation(),
+            'input_expression' => $this->getInputExpression(),
+            'input_expression_type' => $this->getInputExpressionType(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

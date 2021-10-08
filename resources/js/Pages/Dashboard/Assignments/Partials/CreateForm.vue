@@ -18,19 +18,19 @@
             <template v-if="parameter" v-for="(rule, i) in parameter.rules">
                 <div class="col-span-6 sm:col-span-4" >
                     <template v-if="rule.type == 'metadata'">
-                        <BreezeLabel :for="rule.name" :value="rule.description" />
-                        <BreezeInput :id="rule.name" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.name]"/>
-                        <BreezeInputError :message="form.errors[rule.name]" class="mt-2" />
+                        <BreezeLabel :for="rule.input_id" :value="rule.input_label" />
+                        <BreezeInput :id="rule.input_id" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.input_id]"/>
+                        <BreezeInputError :message="form.errors[rule.input_id]" class="mt-2" />
                     </template>
 
                     <template v-if="rule.type == 'formula'">
                     </template>
 
                     <template v-if="rule.type == 'submission'">
-                        <BreezeLabel :for="rule.name" :value="rule.description" />
-                        <BreezeFileInput :id="rule.name" :href="null" :href-delete="null" v-if="rule.input_type == 'file'"/>
-                        <BreezeInput :id="rule.name" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.name]" v-if="rule.input_type == 'link'"/>
-                        <BreezeInputError :message="form.errors[rule.name]" class="mt-2" />
+                        <BreezeLabel :for="rule.input_id" :value="rule.input_label" />
+                        <BreezeFileInput :id="rule.input_id" :href="null" :href-delete="null" v-if="rule.input_type == 'file'"/>
+                        <BreezeInput :id="rule.input_id" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.input_id]" v-if="rule.input_type == 'link'"/>
+                        <BreezeInputError :message="form.errors[rule.input_id]" class="mt-2" />
                     </template>
                 </div>
             </template>
@@ -111,23 +111,23 @@
 
                     switch (rule.type) {
                         case 'metadata':
-                            this.form[rule.name] = '';
-                            this.form.errors[rule.name] = '';
+                            this.form[rule.input_id] = '';
+                            this.form.errors[rule.input_id] = '';
                             break;
 
                         case 'formula':
                             break;
 
                         case 'submission':
-                            this.form[rule.name] = '';
-                            this.form.errors[rule.name] = '';
+                            this.form[rule.input_id] = '';
+                            this.form.errors[rule.input_id] = '';
                             break;
                     }
                 }
             },
 
-            t(path) {
-                return this.$t('pages.dashboard.assignments.create.' + path);
+            t(p) {
+                return this.$t('pages.dashboard.assignments.create.' + p);
             }
         },
 

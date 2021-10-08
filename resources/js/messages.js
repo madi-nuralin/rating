@@ -301,9 +301,12 @@ var messages = {
                 type: 'Rule type',
                 name: 'Name',
                 description: 'Description',
+                input_id: 'Input identifier',
                 input_type: 'Input field type',
-                validation_rules: 'Validation rules',
-                math_expression: 'Formula expression'
+                input_label: 'Input label',
+                input_validation: 'Input validation rules',
+                input_expression: 'Input computable expression',
+                input_expression_type: 'Type of input expression'
               },
               type: {
                 metadata: {
@@ -335,6 +338,12 @@ var messages = {
                 link: {
                   name: 'Link',
                   description: 'Use to link to external resources'
+                }
+              },
+              input_expression_type: {
+                php: {
+                  name: 'Php expression',
+                  description: 'Use to use Php language expressions'
                 }
               }
             },
@@ -345,9 +354,12 @@ var messages = {
                 type: 'Rule type',
                 name: 'Name',
                 description: 'Description',
+                input_id: 'Input identifier',
                 input_type: 'Input field type',
-                validation_rules: 'Validation rules',
-                math_expression: 'Formula expression'
+                input_label: 'Input label',
+                input_validation: 'Input validation rules',
+                input_expression: 'Input computable expression',
+                input_expression_type: 'Type of input expression'
               },
               type: {
                 metadata: {
@@ -379,6 +391,12 @@ var messages = {
                 link: {
                   name: 'Link',
                   description: 'Use to link to external resources'
+                }
+              },
+              input_expression_type: {
+                php: {
+                  name: 'Php expression',
+                  description: 'Use to use Php language expressions'
                 }
               }
             },
@@ -407,8 +425,8 @@ var messages = {
                 name: 'Name',
                 description: 'Description',
                 input_type: 'Input field type',
-                validation_rules: 'Validation rules',
-                math_expression: 'Formula expression'
+                input_validation: 'Validation rules',
+                input_expression: 'Formula expression'
               },
               type: {
                 metadata: {
@@ -845,9 +863,12 @@ var messages = {
                 type: 'Тип правила',
                 name: 'Название',
                 description: 'Описание',
-                input_type: 'Тип заполнения',
-                validation_rules: 'Правила валидаций',
-                math_expression: 'Выражение'
+                input_id: 'Идентификатор поля заполнения',
+                input_type: 'Тип поля заполнения',
+                input_label: 'Метка поля заполнения',
+                input_validation: 'Правила валидаций поля заполнения',
+                input_expression: 'Вычисляемое выражение',
+                input_expression_type: 'Тип вычисляемого выражения'
               },
               type: {
                 metadata: {
@@ -879,6 +900,12 @@ var messages = {
                 link: {
                   name: 'Ссылка',
                   description: 'Используйте для ссылки на внешние ресурсы'
+                }
+              },
+              input_expression_type: {
+                php: {
+                  name: 'Вычисляемое выражение на языке Php',
+                  description: 'Используйте для вычисление формул и задач'
                 }
               }
             },
@@ -889,9 +916,12 @@ var messages = {
                 type: 'Тип правила',
                 name: 'Название',
                 description: 'Описание',
-                input_type: 'Тип заполнения',
-                validation_rules: 'Правила валидаций',
-                math_expression: 'Выражение'
+                input_id: 'Идентификатор поля заполнения',
+                input_type: 'Тип поля заполнения',
+                input_label: 'Метка поля заполнения',
+                input_validation: 'Правила валидаций поля заполнения',
+                input_expression: 'Вычисляемое выражение',
+                input_expression_type: 'Тип вычисляемого выражения'
               },
               type: {
                 metadata: {
@@ -923,6 +953,12 @@ var messages = {
                 link: {
                   name: 'Ссылка',
                   description: 'Используйте для ссылки на внешние ресурсы'
+                }
+              },
+              input_expression_type: {
+                php: {
+                  name: 'Вычисляемое выражение на языке Php',
+                  description: 'Используйте для вычисление формул и задач'
                 }
               }
             },
@@ -950,9 +986,12 @@ var messages = {
                 type: 'Тип правила',
                 name: 'Название',
                 description: 'Описание',
-                input_type: 'Тип заполнения',
-                validation_rules: 'Правила валидаций',
-                math_expression: 'Выражение'
+                input_id: 'Идентификатор поля заполнения',
+                input_type: 'Тип поля заполнения',
+                input_label: 'Метка поля заполнения',
+                input_validation: 'Правила валидаций поля заполнения',
+                input_expression: 'Вычисляемое выражение',
+                input_expression_type: 'Тип вычисляемого выражения'
               },
               type: {
                 metadata: {
@@ -1072,15 +1111,16 @@ var messages = {
           management: 'Управление'
         },
         linkGroups: {
-          manageEntities: 'Управление объектами'
+          manageEntities: 'Управление объектами',
+          manageAssessment: 'Управление конфигурациями оценивания',
         },
         links: {
           dashboard: 'Панель управления',
           positions: 'Должности',
           departments: 'Отделения',
           users: 'Пользователи',
-          assessments: 'Оценивание персонала',
-          parameters: 'Параметры оценивания',
+          assessments: 'Настройка оценивания персонала',
+          parameters: 'Настройка параметров оценивания',
           profile: 'Профиль',
           logout: 'Выйти'
         }

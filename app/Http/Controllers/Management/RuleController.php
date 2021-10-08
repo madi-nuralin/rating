@@ -47,65 +47,33 @@ class RuleController extends Controller
         $input = $request->all();
         $parameter = Parameter::findOrFail($input['parameter']);
         $rule = null;
+        $validationRules = [
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'input_id' => ['required', 'string', 'max:255'],
+            'input_label' => ['required', 'string', 'max:255'],
+        ];
 
         switch ( $input['type'] ) {
             case 'metadata':
-                Validator::make($input, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'description' => ['required', 'string', 'max:255'],
-                    'validation_rules' => ['required', 'string', 'max:255'],
-                ])->validateWithBag('createRule');
-
-                if (! in_array($input['input_type'], array('text', 'select')) ) {
-                    throw ValidationException::withMessages([
-                        'input_type' => 'Please select input type.',
-                    ]);
-                }
-
-                $rule = Rule::create(['type' => $input['type']]);
-                $rule->setName($input['name']);
-                $rule->setDescription($input['description']);
-                $rule->setInputType($input['input_type']);
-                $rule->setValidationRules($input['validation_rules']);
-                $rule->save();
-
-                break;
-
-            case 'formula':
-                Validator::make($input, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'description' => ['required', 'string', 'max:255'],
-                    'math_expression' => ['required', 'string', 'max:255'],
-                ])->validateWithBag('createRule');
-
-                $rule = Rule::create(['type' => $input['type']]);
-                $rule->setName($input['name']);
-                $rule->setDescription($input['description']);
-                $rule->setMathExpression($input['math_expression']);
-                $rule->save();
-
+                $validationRules = array_merge($validationRules, [
+                    'input_type' => ['required', 'in:text,select'],
+                    'input_validation' => ['required', 'string', 'max:255']
+                ]);
                 break;
 
             case 'submission':
-                Validator::make($input, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'description' => ['required', 'string', 'max:255'],
-                    'validation_rules' => ['required', 'string', 'max:255']
-                ])->validateWithBag('createRule');
+                $validationRules = array_merge($validationRules, [
+                    'input_type' => ['required', 'in:file,link'],
+                    'input_validation' => ['required', 'string', 'max:255']
+                ]);
+                break;
 
-                if (! in_array($input['input_type'], array('file', 'link')) ) {
-                    throw ValidationException::withMessages([
-                        'input_type' => 'Please select input type.',
-                    ]);
-                }
-
-                $rule = Rule::create(['type' => $input['type']]);
-                $rule->setName($input['name']);
-                $rule->setDescription($input['description']);
-                $rule->setInputType($input['input_type']);
-                $rule->setValidationRules($input['validation_rules']);
-                $rule->save();
-
+            case 'formula':
+                $validationRules = array_merge($validationRules, [
+                    'input_expression_type' => ['required', 'in:php'],
+                    'input_expression' => ['required', 'string'],
+                ]);
                 break;
 
             default:
@@ -114,6 +82,34 @@ class RuleController extends Controller
                 ]);
         }
 
+        error_log('message');
+
+        Validator::make($input, $validationRules)
+                    ->validateWithBag('createRule');
+
+        error_log('message3');
+
+        $rule = Rule::create(['type' => $input['type']]);
+        $rule->setName($input['name']);
+        $rule->setDescription($input['description']);
+        $rule->setInputId($input['input_id']);
+        $rule->setInputLabel($input['input_label']);
+
+        switch ( $input['type'] ) {
+            case 'metadata':
+            case 'submission':
+                $rule->setInputType($input['input_type']);
+                $rule->setInputValidation($input['input_validation']);
+                break;
+            case 'formula':
+                $rule->setInputExpression($input['input_expression']);
+                $rule->setInputExpressionType($input['input_expression_type']);
+                break;
+            default:
+                break;
+        }
+
+        $rule->save();
         $parameter->rules()->attach($rule->getId());
 
         return Inertia::location(route('rule.show', ['rule' => $rule->getId()]));
@@ -155,61 +151,33 @@ class RuleController extends Controller
         $input = $request->all();
         $rule = Rule::findOrFail($id);
 
+        $validationRules = [
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'input_id' => ['required', 'string', 'max:255'],
+            'input_label' => ['required', 'string', 'max:255'],
+        ];
+
         switch ( $rule->getType() ) {
             case 'metadata':
-                Validator::make($input, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'description' => ['required', 'string', 'max:255'],
-                    'validation_rules' => ['required', 'string', 'max:255'],
-                ])->validateWithBag('updateRule');
-
-                if (! in_array($input['input_type'], array('text', 'select')) ) {
-                    throw ValidationException::withMessages([
-                        'input_type' => 'Please select input type.',
-                    ]);
-                }
-
-                $rule->setName($input['name']);
-                $rule->setDescription($input['description']);
-                $rule->setInputType($input['input_type']);
-                $rule->setValidationRules($input['validation_rules']);
-                $rule->save();
-
-                break;
-
-            case 'formula':
-                Validator::make($input, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'description' => ['required', 'string', 'max:255'],
-                    'math_expression' => ['required', 'string', 'max:255'],
-                ])->validateWithBag('updateRule');
-
-                $rule->setName($input['name']);
-                $rule->setDescription($input['description']);
-                $rule->setMathExpression($input['math_expression']);
-                $rule->save();
-
+                $validationRules = array_merge($validationRules, [
+                    'input_type' => ['required', 'in:text,select'],
+                    'input_validation' => ['required', 'string', 'max:255']
+                ]);
                 break;
 
             case 'submission':
-                Validator::make($input, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'description' => ['required', 'string', 'max:255'],
-                    'validation_rules' => ['required', 'string', 'max:255']
-                ])->validateWithBag('updateRule');
+                $validationRules = array_merge($validationRules, [
+                    'input_type' => ['required', 'in:file,link'],
+                    'input_validation' => ['required', 'string', 'max:255']
+                ]);
+                break;
 
-                if (! in_array($input['input_type'], array('file', 'link')) ) {
-                    throw ValidationException::withMessages([
-                        'input_type' => 'Please select input type.',
-                    ]);
-                }
-
-                $rule->setName($input['name']);
-                $rule->setDescription($input['description']);
-                $rule->setInputType($input['input_type']);
-                $rule->setValidationRules($input['validation_rules']);
-                $rule->save();
-
+            case 'formula':
+                $validationRules = array_merge($validationRules, [
+                    'input_expression_type' => ['required', 'in:php'],
+                    'input_expression' => ['required', 'string'],
+                ]);
                 break;
 
             default:
@@ -217,6 +185,30 @@ class RuleController extends Controller
                     'type' => 'Please select rule type.',
                 ]);
         }
+
+        Validator::make($input, $validationRules)
+                    ->validateWithBag('updateRule');
+
+        $rule->setName($input['name']);
+        $rule->setDescription($input['description']);
+        $rule->setInputId($input['input_id']);
+        $rule->setInputLabel($input['input_label']);
+
+        switch ( $rule->getType() ) {
+            case 'metadata':
+            case 'submission':
+                $rule->setInputType($input['input_type']);
+                $rule->setInputValidation($input['input_validation']);
+                break;
+            case 'formula':
+                $rule->setInputExpression($input['input_expression']);
+                $rule->setInputExpressionType($input['input_expression_type']);
+                break;
+            default:
+                break;
+        }
+
+        $rule->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
