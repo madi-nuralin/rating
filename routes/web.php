@@ -39,6 +39,11 @@ use App\Http\Controllers\Management\RuleOptionController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
 
+Route::get('locale/{locale}', function ($locale) {
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('locale');
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['prefix' => 'dashboard'], function() {

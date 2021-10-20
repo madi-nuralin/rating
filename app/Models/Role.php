@@ -38,6 +38,23 @@ class Role extends Model
     	);
     }
 
+    public function getDescription($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'description'
+        );
+    }
+
+    public function setDescription($description, $locale=null) {
+        return $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'description',
+            $description
+        );
+    }
+
     public function getUsers() {
     	return $this->users->map(function($user) {
     		return $user->toArray();
@@ -56,6 +73,7 @@ class Role extends Model
     	return [
     		'id' => $this->getId(),
     		'name' => $this->getName(),
+            'description' => $this->getDescription(),
     		'created_at' => $this->createdAt(),
            	'updated_at' => $this->updatedAt(),
     	];

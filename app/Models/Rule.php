@@ -42,136 +42,136 @@ class Rule extends Model
         $this->type = $type;
     }
 
-    public function getName() {
+    public function getName($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'name'
         );
     }
 
-    public function setName($name) {
+    public function setName($name, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'name',
             $name
         );
     }
 
-    public function getDescription() {
+    public function getDescription($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'description'
         );
     }
 
-    public function setDescription($description) {
-        $this->updateSettingValue(
-            app()->currentLocale(),
+    public function setDescription($description, $locale=null) {
+        return $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'description',
             $description
         );
     }
 
-    public function getInputId() {
+    public function getInputId($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_id'
         );
     }
 
-    public function setInputId($inputId) {
+    public function setInputId($inputId, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_id',
             $inputId
         );
     }
 
-    public function getInputType() {
+    public function getInputType($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_type'
         );
     }
 
-    public function setInputType($inputType) {
+    public function setInputType($inputType, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_type',
             $inputType
         );
     }
 
-    public function getInputLabel() {
+    public function getInputLabel($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_label'
         );
     }
 
-    public function setInputLabel($inputLabel) {
+    public function setInputLabel($inputLabel, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_label',
             $inputLabel
         );
     }
 
-    public function getInputValidation() {
+    public function getInputValidation($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_validation'
         );
     }
 
-    public function setInputValidation($inputValidation) {
+    public function setInputValidation($inputValidation, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_validation',
             $inputValidation
         );
     }
 
-    public function getInputExpression() {
+    public function getInputExpression($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_expression'
         );
     }
 
-    public function setInputExpression($inputExpression) {
+    public function setInputExpression($inputExpression, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_expression',
             $inputExpression
         );
     }
 
-    public function getInputExpressionType() {
+    public function getInputExpressionType($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_expression_type'
         );
     }
 
-    public function setInputExpressionType($inputExpressionType) {
+    public function setInputExpressionType($inputExpressionType, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'input_expression_type',
             $inputExpressionType

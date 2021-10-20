@@ -59,34 +59,34 @@ class Assessment extends Model
         $this->valid_to = $validTo;
     }
 
-    public function getName() {
+    public function getName($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'name'
         );
     }
 
-    public function setName($name) {
+    public function setName($name, $locale=null) {
         return $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'name',
             $name
         );
     }
 
-    public function getDescription() {
+    public function getDescription($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'description'
         );
     }
 
-    public function setDescription($description) {
+    public function setDescription($description, $locale=null) {
         return $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'description',
             $description

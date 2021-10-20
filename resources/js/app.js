@@ -7,7 +7,7 @@ import { createI18n } from "vue-i18n";
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 const { messages } = require('./messages.js');
-const i18n = createI18n( { locale: 'ru', messages} );
+const i18n = createI18n( { locale: 'en', messages} );
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

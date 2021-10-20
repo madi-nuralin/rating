@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
+use App\Models\Assessment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,6 +33,13 @@ class DatabaseSeeder extends Seeder
             $role->save();
         }
 
+        $user = User::create([
+            'name' => 'Manager',
+            'email' => 'admin@mail.ru',
+            'password' => '12345678',
+            'profile_photo_path' => '',
+        ]);
+
         DB::table('role_user')->insert([
             'role_id' => 1,
             'user_id' => 1
@@ -41,6 +49,7 @@ class DatabaseSeeder extends Seeder
 
         $this->seedPosition();
         $this->seedDepartment();
+        $this->seedAssessment();
     }
 
     protected function seedDepartment() {
@@ -207,4 +216,47 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    protected function seedAssessment() {
+        $locales = ['en', 'ru'];
+
+        $definitions = [
+            [
+                'en' => [
+                    'name' => 'Assessment of the effective performance of the teaching staff for 2021-2022',
+                    'description' => 'Regulations on the assessment of the effective performance of the teaching staff of JSC "International University of Information Technologies"'
+                ],
+                'ru' => [
+                    'name' => 'Оценка эффективной деятельности профессорско-преподавательского состава за 2021-2022 гг.',
+                    'description' => 'Положение по оценке эффективной деятельности профессорско-преподавательского состава АО «Международный Университет Информационных Технологий»'
+                ],
+                'valid_from' => '2021-09-01',
+                'valid_to' => '2022-06-01'
+            ], [
+                'en' => [
+                    'name' => 'Assessment of the effective performance of the heads of departments for 2021-2022',
+                    'description' => 'Regulations on the assessment of the effective activities of the heads of departments of JSC "International University of Information Technologies"'
+                ],
+                'ru' => [
+                    'name' => 'Оценка эффективной деятельности заведующих кафедр за 2021-2022 гг.',
+                    'description' => 'Положение по оценке эффективной деятельности заведующих кафедр АО «Международный Университет Информационных Технологий»'
+                ],
+                'valid_from' => '2021-09-01',
+                'valid_to' => '2022-06-01'
+            ],
+        ];
+
+        foreach ($definitions as $definition) {
+            $assessment = Assessment::create();
+
+            foreach ($locales as $locale) {
+                $assessment->setName($definition[$locale]['name'], $locale);
+                $assessment->setDescription($definition[$locale]['description'], $locale);
+            }
+            
+            $assessment->setValidFrom($definition['valid_from']);
+            $assessment->setValidTo($definition['valid_to']);
+
+            $assessment->save();
+        }
+    }
 }

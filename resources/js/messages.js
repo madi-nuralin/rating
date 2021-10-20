@@ -543,7 +543,8 @@ var messages = {
     layouts: {
       authenticated: {
         triggers: {
-          management: 'Management'
+          management: 'Management',
+          locale: 'Language'
         },
         linkGroups: {
           manageEntities: 'Manage entitites'
@@ -556,7 +557,11 @@ var messages = {
           assessments: 'Assessments',
           parameters: 'Assessment parameters',
           profile: 'Profile',
-          logout: 'Log out'
+          logout: 'Log out',
+          locales: {
+            ru: 'Russian',
+            en: 'English'
+          }
         }
       }
     }
@@ -1108,7 +1113,8 @@ var messages = {
     layouts: {
       authenticated: {
         triggers: {
-          management: 'Управление'
+          management: 'Управление',
+          locale: 'Язык'
         },
         linkGroups: {
           manageEntities: 'Управление объектами',
@@ -1122,7 +1128,11 @@ var messages = {
           assessments: 'Настройка оценивания персонала',
           parameters: 'Настройка параметров оценивания',
           profile: 'Профиль',
-          logout: 'Выйти'
+          logout: 'Выйти',
+          locales: {
+            ru: 'Русский',
+            en: 'Англиский'
+          }
         }
       }
     }
