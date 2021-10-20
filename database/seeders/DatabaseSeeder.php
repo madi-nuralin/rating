@@ -12,6 +12,7 @@ use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
 use App\Models\Assessment;
+use App\Models\Parameter;
 
 class DatabaseSeeder extends Seeder
 {
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
         $this->seedPosition();
         $this->seedDepartment();
         $this->seedAssessment();
+        $this->seedParameter();
     }
 
     protected function seedDepartment() {
@@ -257,6 +259,34 @@ class DatabaseSeeder extends Seeder
             $assessment->setValidTo($definition['valid_to']);
 
             $assessment->save();
+        }
+    }
+
+    protected function seedParameter() {
+        $locales = ['en', 'ru'];
+
+        $definitions = [
+            [
+                'en' => [
+                    'name' => 'Number of published scientific works:',
+                    'description' => 'Number of scientific papers published in international peer-reviewed scientific journals in the 1st and 2nd quartile according to Journal Citation Reports'
+                ],
+                'ru' => [
+                    'name' => 'Количество опубликованных научных работ:',
+                    'description' => 'Количество опубликованных научных работ в международных рецензируемых научных журналах, входящих в 1 и 2 квартиль по данным Journal Citation Reports'
+                ]
+            ]
+        ];
+
+        foreach ($definitions as $definition) {
+            $parameter = Parameter::create();
+
+            foreach ($locales as $locale) {
+                $parameter->setName($definition[$locale]['name'], $locale);
+                $parameter->setDescription($definition[$locale]['description'], $locale);
+            }
+
+            $parameter->save();
         }
     }
 }
