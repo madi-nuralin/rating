@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Position;
+use App\Models\Department;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -22,7 +27,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($definitions as $definition) {
-            $role = \App\Models\Role::create();
+            $role = Role::create();
             $role->setName($definition[0]);
             $role->save();
         }
@@ -32,32 +37,174 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1
         ]);     
 
-        \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
 
-        // Positions
+        $this->seedPosition();
+        $this->seedDepartment();
+    }
+
+    protected function seedDepartment() {
+        $locales = ['en', 'ru'];
+    
         $definitions = [
-            ['Manager', 'Managers are the people in charge of employees and the facilities they work for. '],
-            ['Assistant', 'Customize your administrative assistant job description by using this template'],
+            [
+                'en' => [
+                    'name' => 'Media communications and history of Kazakhstan',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра Медиакоммуникации и Истории Казахстана',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Computer Engineering and Information Security',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра Компьютерная инженерия и информационная безопасность',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Mathematical Computer Modeling',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра Математическое компьютерное моделирование',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Economics and business',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра Экономика и бизнес',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Radio Engineering, Electronics and Telecommunications',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра Радиотехника, электроника и телекоммуникации',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Department of Languages',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра языков',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Military Training Department',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Военная кафедра',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Information Systems',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Кафедра Информационные системы',
+                    'description' => ''
+                ]
+            ]
         ];
 
         foreach ($definitions as $definition) {
-            $position = \App\Models\Position::create();
-            $position->setName($definition[0]);
-            $position->setDescription($definition[1]);
-            $position->save();
-        }
+            $department = Department::create();
 
-        // Departments
-        $definitions = [
-            ['MCM', 'Mathematical and computer modelling cathedra'],
-            ['CS', 'Computer science cathedra'],
-        ];
-
-        foreach ($definitions as $definition) {
-            $department = \App\Models\Department::create();
-            $department->setName($definition[0]);
-            $department->setDescription($definition[1]);
+            foreach ($locales as $locale) {
+                $department->setName($definition[$locale]['name'], $locale);
+                $department->setDescription($definition[$locale]['description'], $locale);
+            }
+            
             $department->save();
         }
     }
+
+    protected function seedPosition() {
+        $locales = ['en', 'ru'];
+
+	    $definitions = [
+		    [
+                'en' => [
+                    'name' => 'Professor',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Профессор',
+                    'description' => ''
+                ]
+		    ], [
+			    'en' => [
+                    'name' => 'Assistant Professor',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Ассистент-Профессор',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Associate professor',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Ассоциированный профессор',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Senior Lecturer',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Сениор-лектор',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Lecturer',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Лектор',
+                    'description' => ''
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Tutor',
+                    'description' => ''
+                ],
+                'ru' => [
+                    'name' => 'Тьютор',
+                    'description' => ''
+                ]
+            ]
+        ];
+
+        foreach ($definitions as $definition) {
+            $position = Position::create();
+
+            foreach ($locales as $locale) {
+                $position->setName($definition[$locale]['name'], $locale);
+                $position->setDescription($definition[$locale]['description'], $locale);
+            }
+
+            $position->save();
+        }
+    }
+
 }

@@ -106,35 +106,35 @@ class User extends Authenticatable
         );
     }
 
-    public function setFirstname($firstname) {
+    public function setFirstname($firstname, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'firstname',
             $firstname
         );
     }
 
-    public function getFirstname() {
+    public function getFirstname($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'firstname'
         );
     }
 
-    public function setLastname($lastname) {
+    public function setLastname($lastname, $locale=null) {
         $this->updateSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'lastname',
             $lastname
         );
     }
 
-    public function getLastname() {
+    public function getLastname($locale=null) {
         return $this->getSettingValue(
-            app()->currentLocale(),
+            isset($locale) ? $locale : app()->currentLocale(),
             'string',
             'lastname'
         );

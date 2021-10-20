@@ -21,17 +21,17 @@ class Role extends Model
     	return $this->id;
     }
 
-    public function getName() {
+    public function getName($locale=null) {
     	return $this->getSettingValue(
-    		app()->currentLocale(),
+    		isset($locale) ? $locale : app()->currentLocale(),
     		'string',
     		'name'
     	);
     }
 
-    public function setName($name) {
+    public function setName($name, $locale=null) {
     	$this->updateSettingValue(
-    		app()->currentLocale(),
+    		isset($locale) ? $locale : app()->currentLocale(),
     		'string',
     		'name',
     		$name
@@ -57,7 +57,7 @@ class Role extends Model
     		'id' => $this->getId(),
     		'name' => $this->getName(),
     		'created_at' => $this->createdAt(),
-            'updated_at' => $this->updatedAt(),
+           	'updated_at' => $this->updatedAt(),
     	];
     }
 }
