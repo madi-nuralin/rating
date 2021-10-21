@@ -21,7 +21,7 @@
                     <div class="w-full">
                         <div class="flex items-center justify-between">
                             <div class="text-left text-sm text-gray-600">
-                                {{ t('type.' + rule.type + '.name') }}
+                                {{ rule.description }}
                             </div>
 
                             <Link 
@@ -43,8 +43,8 @@
                         </div>
 
                         <div class="mt-2 text-xs text-gray-600 text-left">
-                            <p>{{ t('form.name') }}: {{ rule.name }}</p>
-                            <p>{{ t('form.description') }}: {{ rule.description }}</p>
+                            <p>{{ rule.description }}</p>
+                            <p>{{ t('type.' + rule.type + '.name') }}</p>
                         </div>
                     </div>
                 </button>

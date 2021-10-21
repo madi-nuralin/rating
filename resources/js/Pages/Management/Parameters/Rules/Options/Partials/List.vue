@@ -1,17 +1,17 @@
 <template>
     <BreezeFormSection>
         <template #title>
-            {{ t('title') }}
+            {{ tc('title', ruleTypeId) }}
         </template>
 
         <template #description>
-            {{ t('description') }}
+            {{ tc('description', ruleTypeId) }}
         </template>
 
         <template #form>
             <div class="col-span-6">
                 <div class="max-w-xl text-sm text-gray-600">
-                    {{ t('form.listInfo') }}
+                    {{ tc('form.listInfo', ruleTypeId) }}
                 </div>
             </div>
                 
@@ -21,12 +21,12 @@
                     <div class="w-full">
                         <div class="flex items-center justify-between">
                             <div class="text-left text-sm text-gray-600">
-                                {{ t('name') }}
+                                {{ tc('form.name', ruleTypeId) }}: {{ option.name }}
                             </div>
 
                             <Link 
                                 class="w-4 mr-2 transform text-gray-400 hover:text-blue-400 hover:scale-110"
-                                :href="route('rule.show', {'id': rule.id})">
+                                :href="route('option.show', {'id': option.id})">
                                 <svg class="ml-2 h-5 w-5"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="18"
@@ -43,8 +43,7 @@
                         </div>
 
                         <div class="mt-2 text-xs text-gray-600 text-left">
-                            <p>{{ t('form.name') }}: {{ option.name }}</p>
-                            <p>{{ t('form.description') }}: {{ option.description }}</p>
+                            <p>{{ tc('form.description', ruleTypeId) }}: {{ option.description }}</p>
                         </div>
                     </div>
                 </button>
@@ -53,7 +52,7 @@
 
         <template #actions>
             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('option.create', {'rule': rule.id})">
-                {{ t('actions.createButton') }}
+                {{ tc('actions.createButton', ruleTypeId) }}
             </Link>
         </template>
     </BreezeFormSection>
@@ -74,8 +73,23 @@
         props: ['rule'],
 
         methods: {
-            t(path) {
-                return this.$t('pages.management.parameters.rules.list.' + path);
+            t(p) {
+                return this.$t('pages.management.parameters.rules.options.list.' + p);
+            },
+
+            tc(p, i) {
+                return this.$tc('pages.management.parameters.rules.options.list.' + p, i);
+            }
+        },
+
+        computed: {
+            ruleTypeId() {
+                switch (this.rule.type) {
+                    case 'metadata':
+                        return 1;
+                    case 'formula':
+                        return 2;
+                }
             }
         }
     }

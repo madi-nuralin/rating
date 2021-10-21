@@ -20,7 +20,7 @@
 
                     <div class="w-full">
                         <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">
+                            <div class="text-sm text-gray-600 text-left">
                                 {{ position.name }}
                             </div>
 

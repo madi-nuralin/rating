@@ -430,20 +430,72 @@ var messages = {
               },
               type: {
                 metadata: {
-                  name: 'Metadata',
+                  name: 'Rule type: Metadata',
                   description: 'Metadata rule'
                 },
                 formula: {
-                  name: 'Formula',
+                  name: 'Rule type: Formula',
                   description: 'Formula rule'
                 },
                 submission: {
-                  name: 'Submission',
+                  name: 'Rule type: Submission',
                   description: 'Submission rules'
                 }
               },
               actions: {
                 createButton: 'Create New'
+              }
+            },
+            options: {
+              head: {
+                title: 'Parameter rule management'
+              },
+              header: 'Parameter rule management',
+              create: {
+                title: 'Create a new option | Create a new variable',
+                description: 'Create a new option | Create a new variable',
+                form: {
+                  name: 'Name',
+                  description: 'Description'
+                }
+              },
+              update: {
+                title: 'Update option | Update variable',
+                description: 'The option\'s name and description information. | The variable\'s name and description information.',
+                form: {
+                  name: 'Name',
+                  description: 'Description'
+                }
+              },
+              delete: {
+                title: 'Delete option | Delete variable',
+                description: 'Permanently delete this option. | Permanently delete this variable.',
+                content: {
+                  deleteInfo: 'Once a option is deleted, all of its resources and data will be permanently deleted. Before deleting this option, please download any data or information regarding this option that you wish to retain.' +
+                    ' | Once a variable is deleted, all of its resources and data will be permanently deleted. Before deleting this variable, please download any data or information regarding this variable that you wish to retain.',
+                  deleteButton: 'Delete option | Delete variable',
+                  modal: {
+                    title: 'Delete option | Delete variable',
+                    content: 'Are you sure you want to delete this option? Once a option is deleted, all of its resources and data will be permanently deleted.' +
+                      ' | Are you sure you want to delete this variable? Once a variable is deleted, all of its resources and data will be permanently deleted.',
+                    footer: {
+                      cancelButton: 'Cancel',
+                      deleteButton: 'Delete option | Delete variable'
+                    }
+                  }
+                }
+              },
+              list: {
+                title: 'Option list | Variable list',
+                description: 'The option list which are registered. | The variable list which are registered.',
+                form: {
+                  listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
+                  name: 'Select option | Variable',
+                  description: 'Description',
+                },
+                actions: {
+                  createButton: 'Create New'
+                }
               }
             }
           }
@@ -547,15 +599,16 @@ var messages = {
           locale: 'Language'
         },
         linkGroups: {
-          manageEntities: 'Manage entitites'
+          manageEntities: 'Manage entitites',
+          manageAssessment: 'Manage assignments'
         },
         links: {
           dashboard: 'Dashboard',
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
-          assessments: 'Assessments',
-          parameters: 'Assessment parameters',
+          assessments: 'Staff assessment configuration',
+          parameters: 'Parameters configuration',
           profile: 'Profile',
           logout: 'Log out',
           locales: {
@@ -1000,20 +1053,72 @@ var messages = {
               },
               type: {
                 metadata: {
-                  name: 'Метаданные',
+                  name: 'Тип правила: Метаданные',
                   description: 'Правила метаданных'
                 },
                 formula: {
-                  name: 'Формула',
+                  name: 'Тип правила: Формула',
                   description: 'Правила формулы'
                 },
                 submission: {
-                  name: 'Отправка',
+                  name: 'Тип правила: Отправка',
                   description: 'Правила для отправки файлов и ссылки'
                 }
               },
               actions: {
                 createButton: 'Создайте новый'
+              }
+            },
+            options: {
+              head: {
+                title: 'Управление правилами параметров'
+              },
+              header: 'Управление правилами параметров',
+              create: {
+                title: 'Создать новую опцию выбора | Создать новую переменную формулы',
+                description: 'Создать новую опцию выбора | Создать новую переменную формулы',
+                form: {
+                  name: 'Название',
+                  description: 'Описание'
+                }
+              },
+              update: {
+                title: 'Обновить опцию выбора | Обновить переменную формулы',
+                description: 'Информация о названии и описании опции. | Информация об имени и описании переменной.',
+                form: {
+                  name: 'Название',
+                  description: 'Описание'
+                }
+              },
+              delete: {
+                title: 'Удалить опцию выбора | Удалить переменную формулы',
+                description: 'Удалить эту опцию навсегда. | Удалить эту переменную навсегда.',
+                content: {
+                  deleteInfo: 'После удаления опции все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой опции загрузите любые данные или информацию о ней, которые вы хотите сохранить.' +
+                    ' | После удаления переменной все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой переменной загрузите любые данные или информацию об этой переменной, которые вы хотите сохранить.',
+                  deleteButton: 'Удалить опцию выбора | Удалить переменную формулы',
+                  modal: {
+                    title: 'Удалить опцию выбора | Удалить переменную формулы',
+                    content: 'Вы уверены, что хотите удалить эту опцию? После удаления опции все ее ресурсы и данные будут удалены без возможности восстановления.' +
+                      ' | Вы уверены, что хотите удалить эту переменную? После удаления переменной все ее ресурсы и данные будут удалены без возможности восстановления.',
+                    footer: {
+                      cancelButton: 'Отмена',
+                      deleteButton: 'Удалить опцию выбора | Удалить переменную формулы'
+                    }
+                  }
+                }
+              },
+              list: {
+                title: 'Список опции выбора | Список переменных формулы',
+                description: 'Список опций, которые зарегистрированы. | Список переменных, которые зарегистрированы.',
+                form: {
+                  listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
+                  name: 'Опция выбора | Переменная',
+                  description: 'Описание',
+                },
+                actions: {
+                  createButton: 'Создать новый'
+                }
               }
             }
           }

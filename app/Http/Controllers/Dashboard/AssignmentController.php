@@ -70,7 +70,13 @@ class AssignmentController extends Controller
                     'parameters' => $assessment->parameters->map(function($parameter) {
                         return array_merge(
                             $parameter->toArray(), [
-                                'rules' => $parameter->getRules()
+                                'rules' => $parameter->rules->map(function($rule) {
+                                    return array_merge(
+                                        $rule->toArray(), [
+                                            'options' => $rule->getOptions()
+                                        ]
+                                    );
+                                })
                             ]
                         );
                     })

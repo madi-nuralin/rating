@@ -13,8 +13,10 @@
                 <update-form :rule="$page.props.rule"/>
                 <breeze-section-border />
 
-                <options-resource-list :rule="$page.props.rule" class="mt-10 sm:mt-0"/>
-                <breeze-section-border />
+                <template v-if="$page.props.rule.input_type == 'select' || $page.props.rule.type == 'formula'">
+                    <options-resource-list :rule="$page.props.rule" class="mt-10 sm:mt-0" />
+                    <breeze-section-border />
+                </template>
 
                 <delete-form :rule="$page.props.rule" class="mt-10 sm:mt-0"/>
             </div>

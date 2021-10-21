@@ -39,6 +39,7 @@ class HandleInertiaRequests extends Middleware
                     array_merge($request->user()->toArray(), ['roles' => $request->user()->getRoles()]):
                     $request->user(),
             ],
+            'locale' => app()->currentLocale()
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -36,8 +37,8 @@ class DatabaseSeeder extends Seeder
 
         $user = User::create([
             'name' => 'Manager',
-            'email' => 'admin@mail.ru',
-            'password' => '12345678',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('12345678'),
             'profile_photo_path' => '',
         ]);
 

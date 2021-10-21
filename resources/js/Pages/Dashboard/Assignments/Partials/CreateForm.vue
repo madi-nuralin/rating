@@ -19,16 +19,20 @@
                 <div class="col-span-6 sm:col-span-4" >
                     <template v-if="rule.type == 'metadata'">
                         <BreezeLabel :for="rule.input_id" :value="rule.input_label" />
-                        <BreezeInput :id="rule.input_id" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.input_id]"/>
+                        <BreezeInput :id="rule.input_id" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.input_id]" v-if="rule.input_type == 'text'"/>
+                        <BreezeSelect :id="rule.input_id" class="mt-1 block w-full" :value="form[rule.input_id]" @input="form[rule.input_id] = $event" :options="options[rule.input_id]" :multiple="false" v-else/>
                         <BreezeInputError :message="form.errors[rule.input_id]" class="mt-2" />
                     </template>
 
-                    <template v-if="rule.type == 'formula'">
+                    <template v-if="rule.type == 'formula'" v-for="(variable, j) in rule.options">
+                        <BreezeLabel :for="variable.name" :value="variable.description" />
+                        <BreezeInput :id="variable.name" type="text" class="mt-1 block w-full" v-model="form[variable.name]"/>
+                        <BreezeInputError :message="form.errors[variable.name]" class="mt-2" />
                     </template>
 
                     <template v-if="rule.type == 'submission'">
                         <BreezeLabel :for="rule.input_id" :value="rule.input_label" />
-                        <BreezeFileInput :id="rule.input_id" :href="null" :href-delete="null" v-if="rule.input_type == 'file'"/>
+                        <BreezeInputFile :id="rule.input_id" :href="null" :href-delete="null" v-if="rule.input_type == 'file'"/>
                         <BreezeInput :id="rule.input_id" :type="rule.input_type" class="mt-1 block w-full" v-model="form[rule.input_id]" v-if="rule.input_type == 'link'"/>
                         <BreezeInputError :message="form.errors[rule.input_id]" class="mt-2" />
                     </template>
@@ -57,7 +61,7 @@
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeSelect from '@/Components/Select.vue'
-    import BreezeFileInput from '@/Components/FileInput.vue'
+    import BreezeInputFile from '@/Components/FileInput.vue'
     import { Inertia } from '@inertiajs/inertia'
 
     export default {
@@ -70,7 +74,7 @@
             BreezeTextarea,
             BreezeLabel,
             BreezeSelect,
-            BreezeFileInput
+            BreezeInputFile
         },
 
         props: ['assessment', 'employement'],
@@ -116,6 +120,12 @@
                             break;
 
                         case 'formula':
+                            for (var j in rule.options) {
+                                let variable = rule.options[j];
+
+                                this.form[variable.name] = '';
+                                this.form.errors[variable.name] = '';
+                            }
                             break;
 
                         case 'submission':
@@ -133,11 +143,32 @@
 
         computed: {
             options() {
-                return {
-                    parameter: this.assessment.parameters.map(function(parameter) {
-                        return { value: parameter.id, name: parameter.name, description: parameter.description };
-                    })
+                let parameter = this.parameter;
+                let ret = {parameter:[]};
+
+                if (parameter) {
+
+                    for (var i in parameter.rules) {
+                        let rule = parameter.rules[i];
+
+                        if (rule.input_type == 'select') {
+
+                            ret[rule.input_id] = [];
+
+                            for (var j in rule.options) {
+                                let option = rule.options[j];
+                                ret[rule.input_id].push({value: option.id, name: option.name, description: option.description});
+                            }
+                        }
+                    }
+
                 }
+
+                ret['parameter'] = this.assessment.parameters.map(function(parameter) {
+                    return { value: parameter.id, name: parameter.name, description: parameter.description };
+                });
+
+                return ret;
             }
         }
     }
