@@ -100,7 +100,10 @@ class AssessmentController extends Controller
                     ]
                 );
             }),
-            'supervisors' => User::all()->map(function($user) {
+            'supervisors' => User::whereHas(
+                'roles', function($q) {
+                    $q->where('context', 'manager');
+                })->get()->map(function($user) {
                 return $user->toArray();
             }),
             'parameters' => Parameter::all()->map(function($parameter) {

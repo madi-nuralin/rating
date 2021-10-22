@@ -24,28 +24,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Roles
-        $definitions = [
-            ['manager']
-        ];
+        $this->seedRole();
 
-        foreach ($definitions as $definition) {
-            $role = Role::create();
-            $role->setName($definition[0]);
-            $role->save();
-        }
+            $user = User::create([
+                'name' => 'Manager',
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('12345678'),
+                'profile_photo_path' => '',
+            ]);
 
-        $user = User::create([
-            'name' => 'Manager',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('12345678'),
-            'profile_photo_path' => '',
-        ]);
-
-        DB::table('role_user')->insert([
-            'role_id' => 1,
-            'user_id' => 1
-        ]);     
+            DB::table('role_user')->insert([
+                'role_id' => 2,
+                'user_id' => 1
+            ]);     
 
         User::factory(10)->create();
 
@@ -53,6 +44,55 @@ class DatabaseSeeder extends Seeder
         $this->seedDepartment();
         $this->seedAssessment();
         $this->seedParameter();
+    }
+
+    protected function seedRole() {
+        $locales = ['en', 'ru'];
+    
+        $definitions = [
+            [
+                'en' => [
+                    'name' => 'Site administrator',
+                    'description' => 'A site administrator is a one who is responsible for maintaining the site.'
+                ],
+                'ru' => [
+                    'name' => 'Администратор сайта',
+                    'description' => 'Роль для технической поддержки и администрирования сайта'
+                ],
+                'context' => 'admin'
+            ], [
+                'en' => [
+                    'name' => 'Manager',
+                    'description' => 'Site activity manager, staff assessment settings'
+                ],
+                'ru' => [
+                    'name' => 'Управляющий',
+                    'description' => 'Управляющий деятельностью сайта, настройка оценивания'
+                ],
+                'context' => 'manager'
+            ], [
+                'en' => [
+                    'name' => 'Supervisor',
+                    'description' => 'Authorized to confirm this assessment'
+                ],
+                'ru' => [
+                    'name' => 'Комиссия',
+                    'description' => 'Уполномочен подтвердить оценку деятельности персонала'
+                ],
+                'context' => 'supervisor'
+            ],
+        ];
+
+        foreach ($definitions as $definition) {
+            $role = Role::create(['context' => $definition['context']]);
+
+            foreach ($locales as $locale) {
+                $role->setName($definition[$locale]['name'], $locale);
+                $role->setDescription($definition[$locale]['description'], $locale);
+            }
+            
+            $role->save();
+        }
     }
 
     protected function seedDepartment() {

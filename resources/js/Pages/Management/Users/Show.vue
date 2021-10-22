@@ -10,7 +10,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <UpdateForm :user="$page.props.user" :employements="$page.props.employements"/>
+                <UpdateForm :user="$page.props.user" :employements="$page.props.employements" :roles="$page.props.roles"/>
                 <BreezeSectionBorder />
                 
                 <DeleteForm class="mt-10 sm:mt-0" :user="$page.props.user"/>

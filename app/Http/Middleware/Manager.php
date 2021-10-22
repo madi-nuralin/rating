@@ -17,7 +17,7 @@ class Manager
     public function handle(Request $request, Closure $next)
     {
         foreach (auth()->user()->roles as $role) {
-            if ($role->getSettingValue('en', 'string', 'name') == 'manager') {
+            if ($role->getContext() == 'manager') {
                 return $next($request);
             }
         }

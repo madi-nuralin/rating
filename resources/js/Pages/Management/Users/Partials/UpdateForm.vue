@@ -69,10 +69,18 @@
                 <BreezeInputError :message="form.errors.lastname" class="mt-2" />
             </div>
 
+            <!-- Employement -->
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="employements" :value="$t('pages.management.users.update.form.employements')" />
                 <BreezeSelect id="employements" class="mt-1 block w-full" :value="form.employements" @input="form.employements = $event" :options="options.employements"/>
                 <BreezeInputError :message="form.errors.employements" class="mt-2" />
+            </div>
+
+            <!-- Role -->
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="roles" :value="$t('pages.management.users.update.form.roles')" />
+                <BreezeSelect id="roles" class="mt-1 block w-full" :value="form.roles" @input="form.roles = $event" :options="options.roles"/>
+                <BreezeInputError :message="form.errors.roles" class="mt-2" />
             </div>
         </template>
 
@@ -110,7 +118,7 @@
             BreezeSelect,
         },
 
-        props: ['user', 'employements'],
+        props: ['user', 'employements', 'roles'],
 
         data() {
             return {
@@ -123,6 +131,9 @@
                     photo: this.user.profile_photo_path,
                     employements: this.user.employements.map(function(employement) {
                         return employement.id;
+                    }),
+                    roles: this.user.roles.map(function(role) {
+                        return role.id;
                     }),
                 }),
 
@@ -180,7 +191,7 @@
 
         computed: {
             options() {
-                let employements;
+                let employements, roles;
 
                 employements = this.employements ?
                 this.employements.map(function(employement) {
@@ -191,7 +202,16 @@
                     };
                 }, {$t: this.$t}) : null;
 
-                return {'employements': employements};
+                roles = this.roles ?
+                this.roles.map(function(role) {
+                    return {
+                        value: role.id,
+                        name: role.name,
+                        description: role.description,
+                    };
+                }, {$t: this.$t}) : null;
+
+                return {'employements': employements, 'roles': roles};
             }
         }
     }

@@ -9,6 +9,15 @@ class Role extends Model
 {
     use HasFactory, Helpers\SettingHelper;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'context',
+    ];
+
     public function settings() {
     	return $this->hasMany(RoleSetting::class);
     }
@@ -19,6 +28,14 @@ class Role extends Model
 
     public function getId() {
     	return $this->id;
+    }
+
+    public function getContext() {
+        return $this->context;
+    }
+
+    public function setContext($context) {
+        $this->context = $context;
     }
 
     public function getName($locale=null) {
@@ -72,6 +89,7 @@ class Role extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
+            'context' => $this->getContext(),
     		'name' => $this->getName(),
             'description' => $this->getDescription(),
     		'created_at' => $this->createdAt(),

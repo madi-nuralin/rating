@@ -256,7 +256,7 @@ export default {
             var roles = this.$page.props.auth.user.roles;
             if (roles) {
                 for (var i=0; i < roles.length; ++i) {
-                    if (roles[i].name == 'manager') {
+                    if (roles[i].context == 'manager') {
                         return true;
                     }
                 }

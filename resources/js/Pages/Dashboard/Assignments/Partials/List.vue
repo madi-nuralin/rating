@@ -15,45 +15,15 @@
             <div class="col-span-6">
                 <hr/>
             </div>
-            
-            <div class="col-span-6">
-                <div class="max-w-xl text-sm text-gray-600">
-                    {{ $t('pages.dashboard.assignments.list.form.listInfo') }}
-                </div>
-            </div>
                 
-            <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer col-span-6 sm:col-span-4">
-                <button class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200" type="button" v-for="(assignment, i) in assignments" :key="assignment.id" :class="{'border-t border-gray-200 rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(assignments).length - 1}">
+            <div class="col-span-5 mt-2" v-for="(assignment, i) in assignments" :key="assignment.id">
+                <Link class="text-left text-sm text-gray-600 cursor-pointer hover:text-indigo-500 hover:underline uppercase" :href="route('assignment.show', {'id': assignment.id})">
+                    {{ (i + 1) + '. ' + assignment.parameter.name }}
+                </Link>
 
-                    <div class="w-full">
-                        <div class="flex items-center justify-between">
-                            <div class="text-left text-sm text-gray-600">
-                                {{ assignment.parameter.name }}
-                            </div>
-
-                            <Link 
-                                class="w-4 mr-2 transform text-gray-400 hover:text-blue-400 hover:scale-110"
-                                :href="route('assignment.show', {'id': assignment.id})">
-                                <svg class="ml-2 h-5 w-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="18"
-                                    height="18"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M7 17l9.2-9.2M17 17V7H7"/>
-                                </svg>
-                            </Link>
-                        </div>
-
-                        <div class="mt-2 text-xs text-gray-600 text-left">
-                            {{ assignment.parameter.description }} | Score: {{ assignment.score }}
-                        </div>
-                    </div>
-                </button>
+                <div class="mt-2 text-xs text-gray-600 text-left">
+                    {{ assignment.parameter.description }} | Score: {{ assignment.score }}
+                </div>
             </div>
         </div>
     </div>

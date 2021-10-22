@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use DB;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Employement;
 
 class UserController extends Controller
@@ -63,17 +64,21 @@ class UserController extends Controller
         return Inertia::render('Management/Users/Show', [
             'user' => array_merge(
                 $user->toArray(), [
-                    'employements' => $user->getEmployements()
+                    'employements' => $user->getEmployements(),
+                    'roles' => $user->getRoles()
                 ]
             ),
             'employements' => Employement::all()->map(function($employement) {
                 return array_merge(
-                    $employement->toArray(),[
+                    $employement->toArray(), [
                         'department' => $employement->getDepartment(),
                         'position' => $employement->getPosition(),
                     ]
                 );
             }),
+            'roles' => Role::all()->map(function($role) {
+                return $role->toArray();
+            })
         ]);
     }
 
@@ -124,6 +129,15 @@ class UserController extends Controller
             }
             if (count($input['employements']) > 0) {
                 $user->employements()->attach($input['employements']);
+            }
+        }
+
+        if (isset($input['roles'])) {
+            if ($user->roles()) {
+                $user->roles()->detach();
+            }
+            if (count($input['roles']) > 0) {
+                $user->roles()->attach($input['roles']);
             }
         }
 
