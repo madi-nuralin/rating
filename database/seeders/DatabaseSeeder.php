@@ -24,22 +24,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->seedRole();
-
-            $user = User::create([
-                'name' => 'Manager',
-                'email' => 'admin@admin.com',
-                'password' => Hash::make('12345678'),
-                'profile_photo_path' => '',
-            ]);
-
-            DB::table('role_user')->insert([
-                'role_id' => 2,
-                'user_id' => 1
-            ]);     
-
         User::factory(10)->create();
-
+        $this->seedRole();
         $this->seedPosition();
         $this->seedDepartment();
         $this->seedAssessment();
