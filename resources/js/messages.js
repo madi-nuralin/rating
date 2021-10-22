@@ -575,19 +575,26 @@ var messages = {
           list: {
             title: 'Assignments list',
             description: 'The assignments list which are registered.',
-            supervisors: 'Assignment supervisors',
-            validDate: 'Valid date: ',
-            employement: {
-              department: 'Department: ',
-              position: 'Position: '
-            },
-            score: 'Your score for current assessment',
             form: {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             },
             actions: {
               createButton: 'Create New'
             }
+          },
+          card1: {
+            title: 'General information',
+            description: 'Position assessment information',
+            valid_date: 'Valid date',
+            employement: {
+              department: 'Department',
+              position: 'Position'
+            },
+            score: 'Score'
+          },
+          card2: {
+            title: 'Commission',
+            description: 'List of committee members authorized to confirm this assessment'
           }
         }
       }
@@ -1198,19 +1205,26 @@ var messages = {
           list: {
             title: 'Список задании',
             description: 'Список задании зарегистрированных в системе',
-            supervisors: 'Список подтверждающих лиц',
-            validDate: 'Срок действия: ',
-            employement: {
-              department: 'Отдел: ',
-              position: 'Должность: '
-            },
-            score: 'Ваша оценка за текущее оценивание',
             form: {
               listInfo: 'Список задании зарегистрированных в системе. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             },
             actions: {
               createButton: 'Создать новый'
             }
+          },
+          card1: {
+            title: 'Общая информация',
+            description: 'Информация об оценке по занимаемой должности',
+            valid_date: 'Срок действия',
+            employement: {
+              department: 'Отдел',
+              position: 'Должность'
+            },
+            score: 'Оценка'
+          },
+          card2: {
+            title: 'Комиссия',
+            description: 'Список членов комисии уполномоченные для подтверждения данного оценивания'
           }
         }
       }

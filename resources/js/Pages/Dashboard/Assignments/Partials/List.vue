@@ -1,6 +1,21 @@
 <template>
-    <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
+    <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md min-h-full">
         <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6">
+                <h3 class="text-lg font-medium text-gray-900">
+                    {{ assessment.name }}
+                </h3>
+            </div>
+            <div class="col-span-6">
+                <p class="text-sm text-gray-600">
+                    {{ assessment.description }}
+                </p>
+            </div>
+
+            <div class="col-span-6">
+                <hr/>
+            </div>
+            
             <div class="col-span-6">
                 <div class="max-w-xl text-sm text-gray-600">
                     {{ $t('pages.dashboard.assignments.list.form.listInfo') }}
