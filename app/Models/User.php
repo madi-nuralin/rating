@@ -158,10 +158,28 @@ class User extends Authenticatable
         });
     }
 
+    public function setRoles($roles) {
+        if ($this->roles()) {
+            $this->roles()->detach();
+        }
+        if (count($roles) > 0) {
+            $this->roles()->attach($roles);
+        }
+    }
+
     public function getEmployements() {
         return $this->employements->map(function($employement) {
             return $employement->toArray();
         });
+    }
+
+    public function setEmployements($employements) {
+        if ($this->employements()) {
+            $this->employements()->detach();
+        }
+        if (count($employements) > 0) {
+            $this->employements()->attach($employements);
+        }
     }
 
     public function getConfirmer() {
@@ -169,7 +187,7 @@ class User extends Authenticatable
     }
 
     public function setConfirmer($confirmer) {
-        if ($user->confirmer === null) {
+        if ($this->confirmer === null) {
             $this->confirmer()->save($confirmer);
         }
     }
@@ -178,7 +196,7 @@ class User extends Authenticatable
         return $this->assignments->toArray();
     }
 
-    public function setAssignmetns($assignments) {
+    public function setAssignments($assignments) {
         //
     }
 

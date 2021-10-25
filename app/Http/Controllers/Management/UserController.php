@@ -122,23 +122,24 @@ class UserController extends Controller
         if (isset($input['lastname'])) {
             $user->setLastname($input['lastname']);
         }
-
         if (isset($input['employements'])) {
-            if ($user->employements()) {
-                $user->employements()->detach();
-            }
-            if (count($input['employements']) > 0) {
-                $user->employements()->attach($input['employements']);
-            }
+            $user->setEmployements($input['employements']);
+            /*foreach (Assessment::all() as $assessment) {
+                foreach ($assessment->employements as $employement) {
+                    foreach ($employement->users as $user) {
+                        $assignment = Assignment::create([
+                            'assessment_id' => $assessment->getId(),
+                            'employement_id' => $employement->getId(),
+                            'user_id' => $user->getId(),
+                            'score' => 0
+                        ]);
+                        $assignment->save();
+                    }
+                }
+            }*/
         }
-
         if (isset($input['roles'])) {
-            if ($user->roles()) {
-                $user->roles()->detach();
-            }
-            if (count($input['roles']) > 0) {
-                $user->roles()->attach($input['roles']);
-            }
+            $user->setRoles($input['roles']);
         }
 
         if ($input['email'] !== $user->email &&

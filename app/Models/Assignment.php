@@ -65,16 +65,41 @@ class Assignment extends Model
         return $this->user->toArray();
     }
 
+    public function setUser($user) {
+        if ($this->user()) {
+            $this->user()->delete();
+        }
+        $this->user->save($user);
+    }
+
     public function getConfirmers() {
         return $this->confirmers->map(function($confirmer) {
             return $this->confirmer->toArray();
         });
     }
 
+    public function setConfirmers($confirmers) {
+        if ($this->confirmers()) {
+            $this->confirmers()->delete();
+        }
+        if (count($confirmers) > 0) {
+            $this->confirmers()->attach($confirmers);
+        }
+    }
+
     public function getActivities() {
         return $this->activities->map(function($activity) {
             return $this->activity->toArray();
         });
+    }
+
+    public function setActivities($activity) {
+        if ($this->activities()) {
+            $this->activities()->detach();
+        }
+        if (count($activities) > 0) {
+            $this->activities()->attach($activities);
+        }
     }
 
     public function toArray() {

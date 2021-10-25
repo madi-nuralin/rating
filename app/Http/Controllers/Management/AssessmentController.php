@@ -172,16 +172,27 @@ class AssessmentController extends Controller
             $assessment->setEmployements($input['employements']);
         }
 
+        $assessment->assignments()->delete();
+        foreach ($assessment->employements as $employement) {
+            foreach ($employement->users as $user) {
+                $assignment = Assignment::create([
+                    'assessment_id' => $assessment->getId(),
+                    'employement_id' => $employement->getId(),
+                    'user_id' => $user->getId(),
+                    'score' => 0
+                ]);
+                $assignment->save();
+            }
+        }
+
         if (isset($input['confirmers'])) {
             $assessment->setConfirmers($input['confirmers']);
-
-            foreach ($assessment->confirmers as $confirmer) {
-                $assignments = collect(Assignment::where('assessment_id', $assessment->id)
-                    ->where('employement_id', $input['employements'])
-                    ->get()
+            foreach ($assessment->assignments as $assignment) {
+                $assignment->setConfirmers(
+                    $assessment->confirmers->map(function($confirmer) {
+                        return $confirmer->getId();
+                    })
                 );
-
-                $confirmer->setAssignments();
             }
         }
 

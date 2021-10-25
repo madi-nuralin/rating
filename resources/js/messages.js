@@ -593,7 +593,7 @@ var messages = {
             score: 'Score'
           },
           card2: {
-            title: 'Commission',
+            title: 'Confirmers',
             description: 'List of committee members authorized to confirm this assessment'
           }
         }
@@ -614,8 +614,8 @@ var messages = {
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
-          assessments: 'Staff assessment configuration',
-          parameters: 'Parameters configuration',
+          assessments: 'Setting up staff assessment',
+          parameters: 'Setting up assessment parameters',
           profile: 'Profile',
           logout: 'Log out',
           locales: {
@@ -1223,7 +1223,7 @@ var messages = {
             score: 'Оценка'
           },
           card2: {
-            title: 'Комиссия',
+            title: 'Подтверждение',
             description: 'Список членов комисии уполномоченные для подтверждения данного оценивания'
           }
         }

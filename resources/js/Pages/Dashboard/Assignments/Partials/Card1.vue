@@ -11,15 +11,15 @@
         <template #content>
             <div class="grid grid-cols-3 gap-2 text-xs">
                 <div class="col-span-3 text-sm">{{ t('employement.department') }}</div>
-                <div class="col-span-3 text-gray-600">{{ employement.department.name }}</div>
+                <div class="col-span-3 text-gray-600">{{ assignment.employement.department.name }}</div>
                 <div class="col-span-3 text-sm">{{ t('employement.position') }}</div>
-                <div class="col-span-3 text-gray-600">{{ employement.position.name }}</div>
+                <div class="col-span-3 text-gray-600">{{ assignment.employement.position.name }}</div>
                 <div class="col-span-3 text-sm">{{ t('valid_date') }}</div>
                 <div class="col-span-3 text-gray-600">
-                    {{ new Date(assessment.valid_from).toDateString() + ' - ' + new Date(assessment.valid_to).toDateString() }}
+                    {{ new Date(assignment.assessment.valid_from).toDateString() + ' - ' + new Date(assignment.assessment.valid_to).toDateString() }}
                 </div>
                 <div class="col-span-3 text-sm">{{ t('score') }}</div>
-                <div class="col-span-3 text-gray-600">{{ '0.00' }}</div>
+                <div class="col-span-3 text-gray-600">{{ assignment.score }}</div>
             </div>
         </template>
     </Card>
@@ -46,7 +46,7 @@
             Card,
         },
 
-        props: ['assessment', 'employement'],
+        props: ['assignment'],
 
         methods: {
             t(p) {

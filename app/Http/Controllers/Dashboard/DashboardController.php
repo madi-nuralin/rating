@@ -19,12 +19,46 @@ class DashboardController extends Controller
     public function index()
     {
         return Inertia::render('Dashboard', [
-            'employements' => auth()->user()->employements->map(function($employement) {
+            'assignments' => auth()->user()->assignments->map(function($assignment) {
                 return array_merge(
-                    $employement->toArray(), [
-                        'department' => $employement->getDepartment(),
-                        'position' => $employement->getPosition(),
-                        'assessments' => $employement->getAssessments(),
+                    $assignment->toArray(), [
+                        'assessment' => $assignment->getAssessment(),
+                        'activities' => $assignment->getActivities(),
+                        'confirmers' => $assignment->confirmers->map(function($confirmer) {
+                            return array_merge(
+                                $confirmer->toArray(), [
+                                    'user' => $confirmer->getUser()
+                                ]
+                            );
+                        }),
+                        'employement' => array_merge(
+                            $assignment->employement->toArray(), [
+                                'department' => $assignment->employement->getDepartment(),
+                                'position' => $assignment->employement->getPosition()
+                            ]
+                        )
+                    ]
+                );
+            }),
+            'confirmations' => auth()->user()->confirmer->assignments->map(function($assignment) {
+                return array_merge(
+                    $assignment->toArray(), [
+                        'user' => $assignment->getUser(),
+                        'assessment' => $assignment->getAssessment(),
+                        'activities' => $assignment->getActivities(),
+                        'confirmers' => $assignment->confirmers->map(function($confirmer) {
+                            return array_merge(
+                                $confirmer->toArray(), [
+                                    'user' => $confirmer->getUser()
+                                ]
+                            );
+                        }),
+                        'employement' => array_merge(
+                            $assignment->employement->toArray(), [
+                                'department' => $assignment->employement->getDepartment(),
+                                'position' => $assignment->employement->getPosition()
+                            ]
+                        )
                     ]
                 );
             })

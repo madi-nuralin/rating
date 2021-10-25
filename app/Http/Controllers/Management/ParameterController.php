@@ -103,11 +103,10 @@ class ParameterController extends Controller
 
         $parameter = Parameter::findOrFail($id);
         
-        if ( $parameter->getName() != $input['name'] ) {
+        if ($parameter->getName() != $input['name'] ) {
             $parameter->setName($input['name']);    
         }
-
-        if ( $parameter->getDescription() != $input['description'] ) {
+        if ($parameter->getDescription() != $input['description'] ) {
             $parameter->setDescription($input['description']);
         }
 

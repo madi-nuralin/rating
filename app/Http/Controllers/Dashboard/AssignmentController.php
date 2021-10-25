@@ -23,40 +23,7 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        $assessment = Assessment::findOrFail(request()->input('assessment'));
-        $employement = Employement::findOrFail(request()->input('employement'));
-        $assignments = collect(
-            Assignment::where('user_id', auth()->user()->id)
-                      ->where('assessment_id', $assessment->id)
-                      ->where('employement_id', $employement->id)
-                      ->get());
-
-        return Inertia::render('Dashboard/Assignments/Index', [
-            'assignments' => $assignments->map(function($assignment) {
-                return array_merge(
-                    $assignment->toArray(), [
-                        'parameter' => $assignment->getParameter()
-                    ]
-                );
-            }),
-            'assessment' => array_merge(
-                $assessment->toArray(), [
-                    'confirmers' => $assessment->confirmers->map(function($confirmer) {
-                        return array_merge(
-                            $confirmer->toArray(), [
-                                'user' => $confirmer->getUser()
-                            ]
-                        );
-                    })
-                ]
-            ),
-            'employement' => array_merge(
-                $employement->toArray(), [
-                    'department' => $employement->getDepartment(),
-                    'position' => $employement->getPosition()
-                ]
-            )
-        ]);
+        //
     }
 
     /**
@@ -66,23 +33,7 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        /*$assessment = Assessment::findOrFail(request()->input('assessment'));
-        $employement = Employement::findOrFail(request()->input('employement'));
-
-        return Inertia::render('Dashboard/Assignments/Create', [
-            'assessment' => array_merge(
-                $assessment->toArray(), [
-                    'confirmers' => $assessment->getConfirmers(),
-                    'parameters' => $assessment->getParameters()
-                ]
-            ),
-            'employement' => array_merge(
-                $employement->toArray(), [
-                    'department' => $employement->getDepartment(),
-                    'position' => $employement->getPosition()
-                ]
-            )
-        ]);*/
+        //
     }
 
     /**
@@ -93,35 +44,7 @@ class AssignmentController extends Controller
      */
     public function store(Request $request)
     {
-        /*$input = $request->all();
-        $assignment = null;
-
-        if (isset($input['parameter'])) {
-            $assignment = Assignment::create([
-                'assessment_id' => $input['assessment'],
-                'parameter_id' => $input['parameter'],
-                'employement_id' => $input['employement'],
-                'user_id' => auth()->user()->getId(),
-                'score' => 0
-            ]);
-        } else {
-            throw ValidationException::withMessages([
-                'parameter' => 'Please select assessment parameter.',
-            ]);
-        }
-
-        $assignment->save();
-
-        return Inertia::location(route('assignment.show', [
-            'assignment' => $assignment->id,
-            'parameter' => $assignment->getParameter(),
-            'employement' => array_merge(
-                $assignment->getEmployement(), [
-                    'department' => $assignment->employement->getDepartment(),
-                    'position' => $assignment->employement->getPosition()
-                ]
-            )
-        ]));*/
+        //
     }
 
     /**
@@ -132,7 +55,30 @@ class AssignmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $assignment = Assignment::findOrFail($id);
+
+
+        return Inertia::render('Dashboard/Assignments/Show', [
+            'assignment' => array_merge(
+                $assignment->toArray(), [
+                    'assessment' => $assignment->getAssessment(),
+                    'activities' => $assignment->getActivities(),
+                    'confirmers' => $assignment->confirmers->map(function($confirmer) {
+                        return array_merge(
+                            $confirmer->toArray(), [
+                                'user' => $confirmer->getUser()
+                            ]
+                        );
+                    }),
+                    'employement' => array_merge(
+                        $assignment->employement->toArray(), [
+                            'department' => $assignment->employement->getDepartment(),
+                            'position' => $assignment->employement->getPosition()
+                        ]
+                    )
+                ]
+            ),     
+        ]);
     }
 
     /**
