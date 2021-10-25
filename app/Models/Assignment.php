@@ -16,7 +16,6 @@ class Assignment extends Model
      */
     protected $fillable = [
         'assessment_id',
-        'parameter_id',
         'employement_id',
         'user_id',
         'score'
@@ -30,12 +29,16 @@ class Assignment extends Model
         return $this->belongsTo(Employement::class);
     }
 
-    public function parameter() {
-        return $this->belongsTo(Parameter::class);
-    }
-
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function confirmers() {
+        return $this->belongsToMany(Confirmer::class);
+    }
+
+    public function activities() {
+        return $this->hasMany(Activity::class);
     }
 
     public function getId() {
@@ -58,12 +61,20 @@ class Assignment extends Model
         return $this->employement->toArray();
     }
 
-    public function getParameter() {
-        return $this->parameter->toArray();
-    }
-
     public function getUser() {
         return $this->user->toArray();
+    }
+
+    public function getConfirmers() {
+        return $this->confirmers->map(function($confirmer) {
+            return $this->confirmer->toArray();
+        });
+    }
+
+    public function getActivities() {
+        return $this->activities->map(function($activity) {
+            return $this->activity->toArray();
+        });
     }
 
     public function toArray() {

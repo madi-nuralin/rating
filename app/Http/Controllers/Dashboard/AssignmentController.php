@@ -41,7 +41,13 @@ class AssignmentController extends Controller
             }),
             'assessment' => array_merge(
                 $assessment->toArray(), [
-                    'supervisors' => $assessment->getSupervisors()
+                    'confirmers' => $assessment->confirmers->map(function($confirmer) {
+                        return array_merge(
+                            $confirmer->toArray(), [
+                                'user' => $confirmer->getUser()
+                            ]
+                        );
+                    })
                 ]
             ),
             'employement' => array_merge(
@@ -60,26 +66,14 @@ class AssignmentController extends Controller
      */
     public function create()
     {
-        $assessment = Assessment::findOrFail(request()->input('assessment'));
+        /*$assessment = Assessment::findOrFail(request()->input('assessment'));
         $employement = Employement::findOrFail(request()->input('employement'));
 
         return Inertia::render('Dashboard/Assignments/Create', [
             'assessment' => array_merge(
                 $assessment->toArray(), [
-                    'supervisors' => $assessment->getSupervisors(),
-                    'parameters' => $assessment->parameters->map(function($parameter) {
-                        return array_merge(
-                            $parameter->toArray(), [
-                                'rules' => $parameter->rules->map(function($rule) {
-                                    return array_merge(
-                                        $rule->toArray(), [
-                                            'options' => $rule->getOptions()
-                                        ]
-                                    );
-                                })
-                            ]
-                        );
-                    })
+                    'confirmers' => $assessment->getConfirmers(),
+                    'parameters' => $assessment->getParameters()
                 ]
             ),
             'employement' => array_merge(
@@ -88,7 +82,7 @@ class AssignmentController extends Controller
                     'position' => $employement->getPosition()
                 ]
             )
-        ]);
+        ]);*/
     }
 
     /**
@@ -99,7 +93,7 @@ class AssignmentController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        /*$input = $request->all();
         $assignment = null;
 
         if (isset($input['parameter'])) {
@@ -127,7 +121,7 @@ class AssignmentController extends Controller
                     'position' => $assignment->employement->getPosition()
                 ]
             )
-        ]));
+        ]));*/
     }
 
     /**

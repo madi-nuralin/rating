@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParameterRuleTable extends Migration
+class CreateActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,22 @@ class CreateParameterRuleTable extends Migration
      */
     public function up()
     {
-        Schema::create('parameter_rule', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('assignment_id')
+                  ->unsigned();
+            $table->foreign('assignment_id')
+                  ->references('id')
+                  ->on('assignments')
+                  ->onDelete('cascade');
             $table->bigInteger('parameter_id')
                   ->unsigned();
             $table->foreign('parameter_id')
                   ->references('id')
                   ->on('parameters')
                   ->onDelete('cascade');
-            $table->bigInteger('rule_id')
-                  ->unsigned();
-            $table->foreign('rule_id')
-                  ->references('id')
-                  ->on('rules')
-                  ->onDelete('cascade');
+            $table->bigInteger('score')
+                  ->default(0);
             $table->timestamps();
         });
     }
@@ -38,6 +40,6 @@ class CreateParameterRuleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parameter_rule');
+        Schema::dropIfExists('activities');
     }
 }

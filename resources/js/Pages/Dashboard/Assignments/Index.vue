@@ -16,7 +16,7 @@
                     </div>
                     <div class="md:col-span-1 flex flex-col">
                         <card1 :assessment="$page.props.assessment" :employement="$page.props.employement" />
-                        <card2 :supervisors="$page.props.assessment.supervisors" />
+                        <card2 :confirmers="$page.props.assessment.confirmers" />
                     </div>
                 </div>
             </div>

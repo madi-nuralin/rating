@@ -70,11 +70,7 @@ class ParameterController extends Controller
         $parameter = Parameter::findOrFail($id);
 
         return Inertia::render('Management/Parameters/Show', [
-            'parameter' => array_merge(
-                $parameter->toArray(), [
-                    'rules' => $parameter->getRules()
-                ]
-            ),
+            'parameter' => $parameter->toArray()
         ]);
     }
 

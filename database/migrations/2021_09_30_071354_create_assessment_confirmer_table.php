@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssignmentsTable extends Migration
+class CreateAssessmentConfirmerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignments', function (Blueprint $table) {
+        Schema::create('assessment_confirmer', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('assessment_id')
                   ->unsigned();
@@ -21,20 +21,12 @@ class CreateAssignmentsTable extends Migration
                   ->references('id')
                   ->on('assessments')
                   ->onDelete('cascade');
-            $table->bigInteger('employement_id')
+            $table->bigInteger('confirmer_id')
                   ->unsigned();
-            $table->foreign('employement_id')
+            $table->foreign('confirmer_id')
                   ->references('id')
-                  ->on('employements')
+                  ->on('confirmers')
                   ->onDelete('cascade');
-            $table->bigInteger('user_id')
-                  ->unsigned();
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
-            $table->bigInteger('score')
-                  ->default(0);
             $table->timestamps();
         });
     }
@@ -46,6 +38,6 @@ class CreateAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignments');
+        Schema::dropIfExists('assessment_confirmer');
     }
 }

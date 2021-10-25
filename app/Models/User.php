@@ -55,8 +55,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Employement::class);
     }
 
-    public function supervisingAssessments() {
-        return $this->belongsToMany(Assessment::class, 'assessment_supervisor', 'user_id', 'assessment_id');
+    public function confirmer() {
+        return $this->hasOne(Confirmer::class);
+    }
+
+    public function assignments() {
+        return $this->hasMany(Assignment::class);
     }
 
     public function getId() {
@@ -160,10 +164,22 @@ class User extends Authenticatable
         });
     }
 
-    public function getSupervisingAssessments() {
-        return $this->supervisingAssessments->map(function($supervisingAssessment) {
-            return $supervisingAssessment->toArray();
-        });
+    public function getConfirmer() {
+        return $this->confirmer->toArray();
+    }
+
+    public function setConfirmer($confirmer) {
+        if ($user->confirmer === null) {
+            $this->confirmer()->save($confirmer);
+        }
+    }
+
+    public function getAssignments() {
+        return $this->assignments->toArray();
+    }
+
+    public function setAssignmetns($assignments) {
+        //
     }
 
     public function toArray() {

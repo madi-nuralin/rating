@@ -11,13 +11,13 @@
         <template #content>
             <div class="grid grid-cols-3 gap-2 text-sm">
                 <div class="col-span-3">
-                    <div v-for="(supervisor, i) in supervisors" class="w-full mt-1 flex">
+                    <div v-for="(confirmer, i) in confirmers" class="w-full mt-1 flex">
                         <div class="flex items-center pr-4">
-                            <img class="rounded-full w-7 h-7" :src="supervisor.profile_photo_path" />
+                            <img class="rounded-full w-7 h-7" :src="confirmer.user.profile_photo_path" />
                         </div>
                         <div class="flex flex-col">
-                            <div class="text-sm text-gray-600 overflow-ellipsis overflow-hidden">{{ supervisor.name }}</div>
-                            <div class="text-xs text-gray-600 overflow-ellipsis overflow-hidden">{{ supervisor.email }}</div>
+                            <div class="text-sm text-gray-600 overflow-ellipsis overflow-hidden">{{ confirmer.user.name }}</div>
+                            <div class="text-xs text-gray-600 overflow-ellipsis overflow-hidden">{{ confirmer.user.email }}</div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
             Link
         },
 
-        props: ['supervisors'],
+        props: ['confirmers'],
 
         methods: {
             t(p) {

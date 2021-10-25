@@ -58,14 +58,14 @@ class DatabaseSeeder extends Seeder
                 'context' => 'manager'
             ], [
                 'en' => [
-                    'name' => 'Supervisor',
+                    'name' => 'Confirmer',
                     'description' => 'Authorized to confirm this assessment'
                 ],
                 'ru' => [
-                    'name' => 'Комиссия',
+                    'name' => 'Подтверждающий',
                     'description' => 'Уполномочен подтвердить оценку деятельности персонала'
                 ],
-                'context' => 'supervisor'
+                'context' => 'confirmer'
             ],
         ];
 

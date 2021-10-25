@@ -33,8 +33,6 @@ use App\Http\Controllers\Management\DepartmentController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\AssessmentController;
 use App\Http\Controllers\Management\ParameterController;
-use App\Http\Controllers\Management\RuleController;
-use App\Http\Controllers\Management\Rule\OptionController;
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
@@ -74,14 +72,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('parameter', ParameterController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-            Route::group(['prefix' => 'parameter'], function() {
-                Route::resource('rule', RuleController::class,
-                    ['only' => ['create', 'store', 'show', 'update', 'destroy']]);
-                Route::group(['prefix' => 'rule'], function() {
-                    Route::resource('option', OptionController::class,
-                        ['only' => ['create', 'store', 'show', 'update', 'destroy']]);
-                });
-            });
         });
     });
 });

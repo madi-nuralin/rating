@@ -27,8 +27,8 @@ class Assessment extends Model
         return $this->belongsToMany(Employement::class);
     }
 
-    public function supervisors() {
-        return $this->belongsToMany(User::class, 'assessment_supervisor', 'assessment_id', 'user_id');
+    public function confirmers() {
+        return $this->belongsToMany(Confirmer::class);
     }
 
     public function parameters() {
@@ -99,10 +99,28 @@ class Assessment extends Model
         });
     }
 
-    public function getSupervisors() {
-        return $this->supervisors->map(function($supervisor) {
-            return $supervisor->toArray();
+    public function setEmployements($employements) {
+        if ($this->employements()) {
+            $this->employements()->detach();
+        }
+        if (count($employements) > 0) {
+            $this->employements()->attach($employements);
+        }
+    }
+
+    public function getConfirmers() {
+        return $this->confirmers->map(function($confirmer) {
+            return $confirmer->toArray();
         });
+    }
+
+    public function setConfirmers($confirmers) {
+        if ($this->confirmers()) {
+            $this->confirmers()->detach();
+        }
+        if (count($confirmers) > 0) {
+            $this->confirmers()->attach($confirmers);
+        }
     }
 
     public function getParameters() {
@@ -111,11 +129,29 @@ class Assessment extends Model
         });
     }
 
+    public function setParameters($parameters) {
+        if ($this->parameters()) {
+            $this->parameters()->detach();
+        }
+        if (count($parameters) > 0) {
+            $this->parameters()->attach($parameters);
+        }
+    }
+
     public function getAssignments() {
         return $this->assignments->map(function($assignment) {
             return $assignment->toArray();
         });
-    }    
+    }
+
+    public function setAssignments($assignments) {
+        /*if ($this->assignments()) {
+            $this->assignments()->detach();
+        }
+        if (count($assignments) > 0) {
+            $this->assignments()->attach($assignments);
+        }*/
+    }
 
     public function toArray() {
         return [

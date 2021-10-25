@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Confirmer;
 
 class UserCommand extends Command
 {
@@ -40,6 +41,14 @@ class UserCommand extends Command
      */
     public function handle()
     {
-        return User::firstWhere('email', $this->argument('email'))->roles()->attach(Role::firstWhere('context', $this->argument('role'))->getId());
+        $user = User::firstWhere('email', $this->argument('email'));
+
+        if ($user && $this->argument('role') == 'confirmer') {
+            if ($user->confirmer === null) {
+                $user->setConfirmer(new Confirmer());
+            }            
+        }
+
+        return $user->roles()->attach(Role::firstWhere('context', $this->argument('role'))->getId());
     }
 }

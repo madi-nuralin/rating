@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssessmentSupervisorTable extends Migration
+class CreateAssignmentConfirmerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,22 @@ class CreateAssessmentSupervisorTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessment_supervisor', function (Blueprint $table) {
+        Schema::create('assignment_confirmer', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('assessment_id')
+            $table->bigInteger('assignment_id')
                   ->unsigned();
-            $table->foreign('assessment_id')
+            $table->foreign('assignment_id')
                   ->references('id')
-                  ->on('assessments')
+                  ->on('assignments')
                   ->onDelete('cascade');
-            $table->bigInteger('user_id')
+            $table->bigInteger('confirmer_id')
                   ->unsigned();
-            $table->foreign('user_id')
+            $table->foreign('confirmer_id')
                   ->references('id')
-                  ->on('users')
+                  ->on('confirmers')
                   ->onDelete('cascade');
+            $table->bigInteger('status')
+                  ->default(0);
             $table->timestamps();
         });
     }
@@ -38,6 +40,6 @@ class CreateAssessmentSupervisorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assessment_supervisor');
+        Schema::dropIfExists('assignment_confirmer');
     }
 }

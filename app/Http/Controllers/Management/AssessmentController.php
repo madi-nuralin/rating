@@ -9,10 +9,12 @@ use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 use App\Models\Assessment;
+use App\Models\Assignment;
 use App\Models\Employement;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\User;
+use App\Models\Confirmer;
 use App\Models\Parameter;
 
 class AssessmentController extends Controller
@@ -82,11 +84,11 @@ class AssessmentController extends Controller
             'assessment' => array_merge(
                 $assessment->toArray(), [
                     'employements' => $assessment->getEmployements(),
-                    'supervisors' => $assessment->getSupervisors(),
-                    'parameters' => $assessment->parameters->map(function($parameter) {
+                    'parameters' => $assessment->getParameters(),
+                    'confirmers' => $assessment->confirmers->map(function($confirmer) {
                         return array_merge(
-                            $parameter->toArray(), [
-                                'rules' => $parameter->getRules()
+                            $confirmer->toArray(), [
+                                'user' => $confirmer->getUser()
                             ]
                         );
                     })
@@ -100,12 +102,19 @@ class AssessmentController extends Controller
                     ]
                 );
             }),
-            'supervisors' => User::whereHas(
+            'confirmers' => Confirmer::all()->map(function($confirmer) {
+                return array_merge(
+                    $confirmer->toArray(), [
+                        'user' => $confirmer->getUser()
+                    ]
+                );
+            }),
+            /*User::whereHas(
                 'roles', function($q) {
-                    $q->where('context', 'manager');
+                    $q->where('context', 'confirmer');
                 })->get()->map(function($user) {
                 return $user->toArray();
-            }),
+            }),*/
             'parameters' => Parameter::all()->map(function($parameter) {
                 return $parameter->toArray();
             }),
@@ -143,47 +152,41 @@ class AssessmentController extends Controller
 
         $assessment = Assessment::findOrFail($id);
         
-        if ( $assessment->getName() != $input['name'] ) {
+        if ($assessment->getName() != $input['name']) {
             $assessment->setName($input['name']);    
         }
 
-        if ( $assessment->getDescription() != $input['description'] ) {
+        if ($assessment->getDescription() != $input['description']) {
             $assessment->setDescription($input['description']);
         }
 
-        if ( $assessment->getValidFrom() != $input['valid_from'] ) {
+        if ($assessment->getValidFrom() != $input['valid_from']) {
             $assessment->setValidFrom($input['valid_from']);
         }
 
-        if ( $assessment->getValidTo() != $input['valid_to'] ) {
+        if ($assessment->getValidTo() != $input['valid_to']) {
             $assessment->setValidTo($input['valid_to']);
         }
 
         if (isset($input['employements'])) {
-            if ($assessment->employements()) {
-                $assessment->employements()->detach();
-            }
-            if (count($input['employements']) > 0) {
-                $assessment->employements()->attach($input['employements']);
-            }
+            $assessment->setEmployements($input['employements']);
         }
 
-        if (isset($input['supervisors'])) {
-            if ($assessment->supervisors()) {
-                $assessment->supervisors()->detach();
-            }
-            if (count($input['supervisors']) > 0) {
-                $assessment->supervisors()->attach($input['supervisors']);
+        if (isset($input['confirmers'])) {
+            $assessment->setConfirmers($input['confirmers']);
+
+            foreach ($assessment->confirmers as $confirmer) {
+                $assignments = collect(Assignment::where('assessment_id', $assessment->id)
+                    ->where('employement_id', $input['employements'])
+                    ->get()
+                );
+
+                $confirmer->setAssignments();
             }
         }
 
         if (isset($input['parameters'])) {
-            if ($assessment->parameters()) {
-                $assessment->parameters()->detach();
-            }
-            if (count($input['parameters']) > 0) {
-                $assessment->parameters()->attach($input['parameters']);
-            }
+            $assessment->setConfirmers($input['parameters']);
         }
 
         $assessment->save();
