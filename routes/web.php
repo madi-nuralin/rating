@@ -36,6 +36,7 @@ use App\Http\Controllers\Management\ParameterController;
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
+use App\Http\Controllers\Dashboard\ConfirmationController;
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -45,10 +46,14 @@ Route::get('locale/{locale}', function ($locale) {
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['prefix' => 'dashboard'], function() {
+
         Route::get('', [DashboardController::class, 'index'])
-            ->name('dashboard');
+        ->name('dashboard');
+
         Route::resource('assignment', AssignmentController::class,
-                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+                ['only' => ['show']]);
+        Route::resource('confirmation', ConfirmationController::class,
+                ['only' => ['show', 'update']]);
     });
 
     Route::group(['prefix' => 'profile'], function() {

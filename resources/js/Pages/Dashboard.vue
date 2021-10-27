@@ -30,61 +30,46 @@
                                 </div>
                             </div>
 
-                            <div class="bg-gray-100 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-                                <div class="p-6 py-3 text-center uppercase" @click="content = 'assignments'" :class="content == 'assignments' ? 'bg-gray-200 border-indigo-400 border-b-2' : ''">
-                                    My assignments
+                            <div class="bg-gray-200 bg-opacity-25 flex justify-end flex-col md:flex-row text-sm text-left md:text-center text-gray-500 cursor-pointer">
+                                <div class="px-2 py-3 transition duration-500 border-b-2" @click="content = 'assignments'" :class="content == 'assignments' ? 'border-indigo-400 text-indigo-400' : ''">
+                                    <p>Мои задания</p>
                                 </div>
-                                <div class="p-6 py-3 text-center uppercase" @click="content = 'confirmation'" :class="content == 'confirmation' ? 'bg-gray-200 border-indigo-400 border-b-2' : ''">
-                                    Confirmation
+                                <div class="px-2 py-3 transition duration-500 border-b-2" @click="content = 'confirmation'" :class="content == 'confirmation' ? 'border-indigo-400 text-indigo-400' : ''">
+                                    <p>Оценивания для подтверждения</p>
                                 </div>
                             </div>
 
-                            <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2" v-if="content == 'assignments'">
-                                <template v-for="(assignment, i) in $page.props.assignments">              
-                                    <div :class="gridClass(i+1)">
-                                        <div class="flex items-center">
-                                            <svg fill="none"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                viewBox="0 0 24 24"
-                                                class="w-8 h-8 text-gray-400">
-                                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                            </svg>
-                                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                                                <a href="https://laravel.com/docs">
-                                                    {{ assignment.assessment.name }}
-                                                </a>
-                                                <p class="text-sm text-gray-500">
-                                                    {{ assignment.assessment.description }}
-                                                </p>
-                                                <p class="text-sm text-gray-400 mt-2">
-                                                    <span class="underline">{{ assignment.employement.department.name }}</span>
-                                                    <span>, </span>
-                                                    <span class="underline">{{ assignment.employement.position.name }}</span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="ml-12">
-                                            <Link :href="route('assignment.show', {'id': assignment.id})">
-                                                <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                                                    <div>Go to activity</div>
-
-                                                    <div class="ml-1 text-indigo-500">
-                                                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                                                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    </div>   
-                                </template>
+                            <div class="bg-gray-200" v-if="content == 'assignments'">
+                                <Link v-for="(assignment, i) in $page.props.assignments" class="grid grid-cols-1 md:grid-cols-3 p-6 text-sm text-gray-500 hover:bg-gray-100" :href="route('assignment.show', {'id': assignment.id})">
+                                    <div>
+                                        {{ assignment.assessment.name }}
+                                    </div>
+                                    <div>
+                                        {{ assignment.assessment.description }}
+                                    </div>
+                                    <div class="text-gray-400 underline">
+                                        <p>{{ assignment.employement.department.name }}</p>
+                                        <p>{{ assignment.employement.position.name }}</p>
+                                    </div>
+                                </Link>
                             </div>
 
-                            <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2" v-if="content == 'confirmation'">
+                            <div class="bg-gray-200" v-if="content == 'confirmation'">
+                                <Link v-for="(confirmation, i) in $page.props.confirmations" class="grid grid-cols-1 md:grid-cols-4 p-6 text-sm text-gray-500 hover:bg-gray-100" :href="route('confirmation.show', {'id': confirmation.id})">
+                                    <div>
+                                        {{ confirmation.assignment.user.name }}
+                                    </div>
+                                    <div>
+                                        {{ confirmation.assignment.assessment.name }}
+                                    </div>
+                                    <div>
+                                        {{ confirmation.assignment.assessment.description }}
+                                    </div>
+                                    <div class="text-gray-400 underline">
+                                        <p>{{ confirmation.assignment.employement.department.name }}</p>
+                                        <p>{{ confirmation.assignment.employement.position.name }}</p>
+                                    </div> 
+                                </Link>
                             </div>
 
                         </div>

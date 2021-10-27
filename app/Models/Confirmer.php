@@ -27,7 +27,11 @@ class Confirmer extends Model
     }
 
     public function assignments() {
-    	return $this->belongsToMany(Assignment::class);
+    	return $this->belongsToMany(Assignment::class, 'confirmations');
+    }
+
+    public function confirmations() {
+        return $this->hasMany(Confirmation::class);
     }
 
     public function getId() {
@@ -44,7 +48,7 @@ class Confirmer extends Model
     	});
     }
 
-    public function setAssessments() {
+    public function setAssessments($assessments) {
         if ($this->assessments()) {
             $this->assessments()->detach();
         }
@@ -59,12 +63,27 @@ class Confirmer extends Model
     	});
     }
 
-    public function setAssignments() {
+    public function setAssignments($assignments) {
         if ($this->assignments()) {
             $this->assignments()->detach();
         }
         if (count($assignments) > 0) {
             $this->assignments()->attach($assignments);
+        }
+    }
+
+    public function getConfirmations() {
+        return $this->confirmations->map(function($confirmation) {
+            return $confirmation->toArray();
+        });
+    }
+
+    public function setConfirmations($confirmations) {
+        if ($this->confirmations()) {
+            $this->confirmations()->detach();
+        }
+        if (count($confirmations) > 0) {
+            $this->confirmations()->attach($confirmations);
         }
     }
 

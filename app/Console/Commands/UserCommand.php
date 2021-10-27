@@ -46,7 +46,7 @@ class UserCommand extends Command
         if ($user && $this->argument('role') == 'confirmer') {
             if ($user->confirmer === null) {
                 $user->setConfirmer(new Confirmer());
-            }            
+            }
         }
 
         return $user->roles()->attach(Role::firstWhere('context', $this->argument('role'))->getId());

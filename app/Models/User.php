@@ -165,6 +165,13 @@ class User extends Authenticatable
         if (count($roles) > 0) {
             $this->roles()->attach($roles);
         }
+        foreach ($this->roles as $role) {
+            if ($role->getContext() == 'confirmer') {
+                if ($this->confirmer === null) {
+                    $this->setConfirmer(new Confirmer());
+                }
+            }
+        }
     }
 
     public function getEmployements() {

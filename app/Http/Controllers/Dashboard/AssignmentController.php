@@ -61,12 +61,17 @@ class AssignmentController extends Controller
         return Inertia::render('Dashboard/Assignments/Show', [
             'assignment' => array_merge(
                 $assignment->toArray(), [
+                    'user' => $assignment->getUser(),
                     'assessment' => $assignment->getAssessment(),
                     'activities' => $assignment->getActivities(),
-                    'confirmers' => $assignment->confirmers->map(function($confirmer) {
+                    'confirmations' => $assignment->confirmations->map(function($confirmation) {
                         return array_merge(
-                            $confirmer->toArray(), [
-                                'user' => $confirmer->getUser()
+                            $confirmation->toArray(), [
+                                'confirmer' => array_merge(
+                                    $confirmation->confirmer->toArray(), [
+                                        'user' => $confirmation->confirmer->getUser()
+                                    ]
+                                )
                             ]
                         );
                     }),

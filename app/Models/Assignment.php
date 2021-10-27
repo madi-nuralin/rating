@@ -34,7 +34,11 @@ class Assignment extends Model
     }
 
     public function confirmers() {
-        return $this->belongsToMany(Confirmer::class);
+        return $this->belongsToMany(Confirmer::class, 'confirmations');
+    }
+
+    public function confirmations() {
+        return $this->hasMany(Confirmation::class);
     }
 
     public function activities() {
@@ -99,6 +103,21 @@ class Assignment extends Model
         }
         if (count($activities) > 0) {
             $this->activities()->attach($activities);
+        }
+    }
+
+    public function getConfirmations() {
+        return $this->confirmations->map(function($confirmation) {
+            return $confirmation->toArray();
+        });
+    }
+
+    public function setConfirmations($confirmations) {
+        if ($this->confirmations()) {
+            $this->confirmations()->detach();
+        }
+        if (count($confirmations) > 0) {
+            $this->confirmations()->attach($confirmations);
         }
     }
 

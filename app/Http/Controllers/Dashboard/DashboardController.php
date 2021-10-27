@@ -8,6 +8,7 @@ use Inertia\Inertia;
 
 use App\Models\Assessment;
 use App\Models\User;
+use App\Models\Confirmer;
 
 class DashboardController extends Controller
 {
@@ -22,12 +23,17 @@ class DashboardController extends Controller
             'assignments' => auth()->user()->assignments->map(function($assignment) {
                 return array_merge(
                     $assignment->toArray(), [
+                        'user' => $assignment->getUser(),
                         'assessment' => $assignment->getAssessment(),
                         'activities' => $assignment->getActivities(),
-                        'confirmers' => $assignment->confirmers->map(function($confirmer) {
+                        'confirmations' => $assignment->confirmations->map(function($confirmation) {
                             return array_merge(
-                                $confirmer->toArray(), [
-                                    'user' => $confirmer->getUser()
+                                $confirmation->toArray(), [
+                                    'confirmer' => array_merge(
+                                        $confirmation->confirmer->toArray(), [
+                                            'user' => $confirmation->confirmer->getUser()
+                                        ]
+                                    )
                                 ]
                             );
                         }),
@@ -40,23 +46,31 @@ class DashboardController extends Controller
                     ]
                 );
             }),
-            'confirmations' => auth()->user()->confirmer->assignments->map(function($assignment) {
+            'confirmations' => auth()->user()->confirmer->confirmations->map(function($confirmation) {
                 return array_merge(
-                    $assignment->toArray(), [
-                        'user' => $assignment->getUser(),
-                        'assessment' => $assignment->getAssessment(),
-                        'activities' => $assignment->getActivities(),
-                        'confirmers' => $assignment->confirmers->map(function($confirmer) {
-                            return array_merge(
-                                $confirmer->toArray(), [
-                                    'user' => $confirmer->getUser()
-                                ]
-                            );
-                        }),
-                        'employement' => array_merge(
-                            $assignment->employement->toArray(), [
-                                'department' => $assignment->employement->getDepartment(),
-                                'position' => $assignment->employement->getPosition()
+                    $confirmation->toArray(), [
+                        'assignment' => array_merge(
+                            $confirmation->assignment->toArray(), [
+                                'user' => $confirmation->assignment->getUser(),
+                                'assessment' => $confirmation->assignment->getAssessment(),
+                                'activities' => $confirmation->assignment->getActivities(),
+                                'confirmations' => $confirmation->assignment->confirmations->map(function($confirmation) {
+                                    return array_merge(
+                                        $confirmation->toArray(), [
+                                            'confirmer' => array_merge(
+                                                $confirmation->confirmer->toArray(), [
+                                                    'user' => $confirmation->confirmer->getUser()
+                                                ]
+                                            )
+                                        ]
+                                    );
+                                }),
+                                'employement' => array_merge(
+                                    $confirmation->assignment->employement->toArray(), [
+                                        'department' => $confirmation->assignment->employement->getDepartment(),
+                                        'position' => $confirmation->assignment->employement->getPosition()
+                                    ]
+                                )
                             ]
                         )
                     ]

@@ -197,7 +197,7 @@ class AssessmentController extends Controller
         }
 
         if (isset($input['parameters'])) {
-            $assessment->setConfirmers($input['parameters']);
+            $assessment->setParameters($input['parameters']);
         }
 
         $assessment->save();
