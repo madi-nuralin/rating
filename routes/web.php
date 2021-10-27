@@ -37,6 +37,7 @@ use App\Http\Controllers\Management\ParameterController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
 use App\Http\Controllers\Dashboard\ConfirmationController;
+use App\Http\Controllers\Dashboard\ActivityController;
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -54,6 +55,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['show']]);
         Route::resource('confirmation', ConfirmationController::class,
                 ['only' => ['show', 'update']]);
+        Route::resource('activity', ActivityController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
     });
 
     Route::group(['prefix' => 'profile'], function() {

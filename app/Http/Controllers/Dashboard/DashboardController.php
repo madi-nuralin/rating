@@ -46,7 +46,7 @@ class DashboardController extends Controller
                     ]
                 );
             }),
-            'confirmations' => auth()->user()->confirmer->confirmations->map(function($confirmation) {
+            'confirmations' => auth()->user()->confirmer ? auth()->user()->confirmer->confirmations->map(function($confirmation) {
                 return array_merge(
                     $confirmation->toArray(), [
                         'assignment' => array_merge(
@@ -75,7 +75,7 @@ class DashboardController extends Controller
                         )
                     ]
                 );
-            })
+            }) : []
         ]);
     }
 
