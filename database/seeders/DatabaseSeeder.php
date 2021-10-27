@@ -179,58 +179,67 @@ class DatabaseSeeder extends Seeder
 		    [
                 'en' => [
                     'name' => 'Professor',
-                    'description' => ''
+                    'description' => 'Position of a researcher or teacher'
                 ],
                 'ru' => [
                     'name' => 'Профессор',
-                    'description' => ''
+                    'description' => 'Должность научного сотрудника или преподавателя'
                 ]
 		    ], [
 			    'en' => [
                     'name' => 'Assistant Professor',
-                    'description' => ''
+                    'description' => 'Junior professor; usually the first position a successful graduate student receives.'
                 ],
                 'ru' => [
-                    'name' => 'Ассистент-Профессор',
-                    'description' => ''
+                    'name' => 'Ассистент-профессор',
+                    'description' => 'Младший профессор; обычно первая должность, которую получает успешный выпускник аспирантуры.'
                 ]
             ], [
                 'en' => [
                     'name' => 'Associate professor',
-                    'description' => ''
+                    'description' => 'Research and teaching position (title) in some, mainly Russian-speaking, countries comparable to the position (title) of associate professor in the educational system'
                 ],
                 'ru' => [
                     'name' => 'Ассоциированный профессор',
-                    'description' => ''
+                    'description' => 'Научно-преподавательская должность (звание) в некоторых, преимущественно англоязычных, странах, сопоставимая с должностью (званием) доцента в образовательной системе'
                 ]
             ], [
                 'en' => [
                     'name' => 'Senior Lecturer',
-                    'description' => ''
+                    'description' => 'Лектор высокого академического уровня'
                 ],
                 'ru' => [
                     'name' => 'Сениор-лектор',
-                    'description' => ''
+                    'description' => 'Speaker which is at a high academic level '
                 ]
             ], [
                 'en' => [
                     'name' => 'Lecturer',
-                    'description' => ''
+                    'description' => 'Lecturer'
                 ],
                 'ru' => [
                     'name' => 'Лектор',
-                    'description' => ''
+                    'description' => 'Лектор'
                 ]
             ], [
                 'en' => [
                     'name' => 'Tutor',
-                    'description' => ''
+                    'description' => 'A teacher who conducts additional classes with a student or multiple students daily, weekly, or monthly'
                 ],
                 'ru' => [
                     'name' => 'Тьютор',
-                    'description' => ''
+                    'description' => 'Преподаватель, который проводит дополнительные занятия с учеником или с несколькими учениками ежедневно, еженедельно или ежемесячно'
                 ]
-            ]
+            ], [
+                'en' => [
+                    'name' => 'Head of department',
+                    'description' => 'Head of the department in higher educational institutions'
+                ],
+                'ru' => [
+                    'name' => 'Заведующий кафедры',
+                    'description' => 'Руководитель кафедры в высших учебных заведениях'
+                ]
+            ],
         ];
 
         foreach ($definitions as $definition) {
