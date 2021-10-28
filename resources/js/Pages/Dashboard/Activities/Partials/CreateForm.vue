@@ -10,15 +10,9 @@
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.dashboard.activities.create.form.name')" />
-                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
-                <BreezeInputError :message="form.errors.name" class="mt-2" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.dashboard.activities.create.form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
-                <BreezeInputError :message="form.errors.description" class="mt-2" />
+                <BreezeLabel for="parameter" :value="t('form.parameter')" />
+                <BreezeSelect id="parameter" class="mt-1 block w-full" :value="form.parameter" @input="this.form.parameter = $event" :options="options.parameters" :multiple="false" />
+                <BreezeInputError :message="form.errors.parameter" class="mt-2" />
             </div>
         </template>
 
@@ -40,6 +34,7 @@
     import BreezeFormSection from '@/Components/FormSection.vue'
     import BreezeInput from '@/Components/Input.vue'
     import BreezeInputError from '@/Components/InputError.vue'
+    import BreezeSelect from '@/Components/Select.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
     import { Inertia } from '@inertiajs/inertia'
@@ -51,27 +46,43 @@
             BreezeFormSection,
             BreezeInput,
             BreezeInputError,
+            BreezeSelect,
             BreezeTextarea,
             BreezeLabel,
         },
 
+        props: ['assignment'],
+
         data() {
             return {
                 form: this.$inertia.form({
-                    name: '',
-                    description: '',
+                    parameter: null,
                 })
             }
         },
 
         methods: {
             createActivity() {
-                this.form.post(route('activity.store'), {
+                this.form.post(route('activity.store', {'assignment': this.assignment.id}), {
                     errorBag: 'createActivity',
                     preserveScroll: true,
                     //onSuccess: () => Inertia.reload({ only: ['activities'] })
                 });
             },
+
+            t(p) {
+                return this.$t('pages.dashboard.activities.create.' + p);
+            }
         },
+
+        computed: {
+            options() {
+                let parameters = this.assignment.assessment.parameters.map(function(parameter) {
+                    return { value: parameter.id, name: parameter.name, description: parameter.description };
+                });
+
+                return {'parameters': parameters};
+            }
+        }
     }
 </script>

@@ -10,15 +10,9 @@
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.dashboard.activities.update.form.name')" />
-                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" />
-                <BreezeInputError :message="form.errors.name" class="mt-2" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.dashboard.activities.update.form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
-                <BreezeInputError :message="form.errors.description" class="mt-2" />
+                <BreezeLabel for="parameter" :value="$t('pages.dashboard.activities.update.form.parameter')" />
+                <BreezeInput id="parameter" type="text" class="mt-1 block w-full" v-model="form.parameter" :disabled="true"/>
+                <BreezeInputError :message="form.errors.parameter" class="mt-2" />
             </div>
         </template>
 
@@ -59,8 +53,7 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    name: this.activity.name,
-                    description: this.activity.description,
+                    parameter: this.activity.parameter.name,
                 })
             }
         },

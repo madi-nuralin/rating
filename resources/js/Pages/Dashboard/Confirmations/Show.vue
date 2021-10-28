@@ -13,7 +13,7 @@
                 <UpdateForm :confirmation="$page.props.confirmation" />
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <resource-list :assignment="$page.props.confirmation.assignment" />
+                        <resource-list :assignment="$page.props.confirmation.assignment" :disabled="true"/>
                     </div>
                     <div class="md:col-span-1 flex flex-col">
                         <AssignmentInformation :assignment="$page.props.confirmation.assignment" />
@@ -31,7 +31,7 @@
     import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
-    import ResourceList from '@/Pages/Dashboard/Assignments/Partials/List.vue'
+    import ResourceList from '@/Pages/Dashboard/Confirmations/Partials/List.vue'
     import AssignmentInformation from '@/Pages/Dashboard/Confirmations/Partials/AssignmentInformation.vue'
     import ConfirmationInformation from '@/Pages/Dashboard/Assignments/Partials/ConfirmationInformation.vue'
     import UpdateForm from '@/Pages/Dashboard/Confirmations/Partials/UpdateForm.vue'

@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('confirmation', ConfirmationController::class,
                 ['only' => ['show', 'update']]);
         Route::resource('activity', ActivityController::class,
-                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+                ['only' => ['index', 'create', 'edit', 'store', 'show', 'update', 'destroy']]);
     });
 
     Route::group(['prefix' => 'profile'], function() {

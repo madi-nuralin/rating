@@ -78,7 +78,7 @@ class Assignment extends Model
 
     public function getConfirmers() {
         return $this->confirmers->map(function($confirmer) {
-            return $this->confirmer->toArray();
+            return $confirmer->toArray();
         });
     }
 
@@ -93,7 +93,7 @@ class Assignment extends Model
 
     public function getActivities() {
         return $this->activities->map(function($activity) {
-            return $this->activity->toArray();
+            return $activity->toArray();
         });
     }
 

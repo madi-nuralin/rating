@@ -63,7 +63,14 @@ class AssignmentController extends Controller
                 $assignment->toArray(), [
                     'user' => $assignment->getUser(),
                     'assessment' => $assignment->getAssessment(),
-                    'activities' => $assignment->getActivities(),
+                    'activities' => $assignment->activities ? $assignment->activities->map(function($activity) {
+                        return array_merge(
+                            $activity->toArray(), [
+                                'parameter' => $activity->getParameter(),
+                                'assignment' => $activity->getAssignment(),
+                            ]
+                        );
+                    }) : [],
                     'confirmations' => $assignment->confirmations->map(function($confirmation) {
                         return array_merge(
                             $confirmation->toArray(), [

@@ -17,7 +17,7 @@
                 
             </div>
             <div v-else class="col-span-5 mt-2" v-for="(activity, i) in assignment.activities">
-                <Link class="text-left text-sm text-gray-600 cursor-pointer hover:text-indigo-500 hover:underline uppercase" :href="route('activity.edit', {'id': activity.id})">
+                <Link class="text-left text-sm text-gray-600 cursor-pointer hover:text-indigo-500 hover:underline uppercase" :href="route('activity.show', {'id': activity.id})">
                     {{ (i + 1) + '. ' + activity.parameter.name }}
                 </Link>
 
@@ -28,9 +28,6 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('activity.create', {'assignment': assignment.id})">
-                Add New
-            </Link>
         </template>
     </BreezeFormCard>
 </template>

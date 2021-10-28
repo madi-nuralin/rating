@@ -44,8 +44,16 @@ class Activity extends Model
     	return $this->assignment->toArray();
     }
 
+    public function setAssignment($assignment) {
+        $this->assignment()->associate($assignment);
+    }
+
     public function getParameter() {
     	return $this->parameter->toArray();
+    }
+
+    public function setParameter($parameter) {
+        $this->parameter()->associate($parameter);
     }
 
     public function toArray() {

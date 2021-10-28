@@ -60,7 +60,14 @@ class ConfirmationController extends Controller
                         $confirmation->assignment->toArray(), [
                             'user' => $confirmation->assignment->getUser(),
                             'assessment' => $confirmation->assignment->getAssessment(),
-                            'activities' => $confirmation->assignment->getActivities(),
+                            'activities' => $confirmation->assignment && $confirmation->assignment->activities ? $confirmation->assignment->activities->map(function($activity) {
+                                return array_merge(
+                                    $activity->toArray(), [
+                                        'parameter' => $activity->getParameter(),
+                                        'assignment' => $activity->getAssignment(),
+                                    ]
+                                );
+                            }) : [],
                             'confirmations' => $confirmation->assignment->confirmations->map(function($confirmation) {
                                 return array_merge(
                                     $confirmation->toArray(), [
