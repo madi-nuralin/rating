@@ -53,10 +53,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         Route::resource('assignment', AssignmentController::class,
                 ['only' => ['show']]);
-        Route::resource('confirmation', ConfirmationController::class,
-                ['only' => ['show', 'update']]);
+        
         Route::resource('activity', ActivityController::class,
                 ['only' => ['index', 'create', 'edit', 'store', 'show', 'update', 'destroy']]);
+
+        Route::group(['middleware' => 'confirmer'], function () {
+            Route::resource('confirmation', ConfirmationController::class,
+                ['only' => ['show', 'update']]);
+        });
     });
 
     Route::group(['prefix' => 'profile'], function() {

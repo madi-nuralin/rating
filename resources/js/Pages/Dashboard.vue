@@ -30,39 +30,48 @@
                                 </div>
                             </div>
 
-                            <div class="bg-gray-200 bg-opacity-25 flex justify-end flex-col md:flex-row text-sm text-left md:text-center text-gray-500 cursor-pointer">
-                                <div class="px-2 py-3 transition duration-500 border-b-2" @click="content = 'assignments'" :class="content == 'assignments' ? 'border-indigo-400 text-indigo-400' : ''">
-                                    <p>Мои задания</p>
+                            <div class="grid grid-cols-2 text-sm text-left md:text-center text-gray-500 cursor-pointer uppercase">
+                                <div class="px-5 py-3 transition duration-500 col-span-2 md:col-span-1 border-l-4 md:border-l-0 md:border-b-2" @click="content = 'assignments'" :class="content == 'assignments' ? 'border-indigo-400 text-indigo-400' : ''">
+                                    <p>Мои оценивания</p>
                                 </div>
-                                <div class="px-2 py-3 transition duration-500 border-b-2" @click="content = 'confirmation'" :class="content == 'confirmation' ? 'border-indigo-400 text-indigo-400' : ''">
-                                    <p>Оценивания для подтверждения</p>
+                                <div class="px-5 py-3 transition duration-500 col-span-2 md:col-span-1 border-l-4 md:border-l-0 md:border-b-2" @click="content = 'confirmation'" :class="content == 'confirmation' ? 'border-indigo-400 text-indigo-400' : ''" v-if="confirmerContent">
+                                    <p>Оценивание других сотрудников</p>
                                 </div>
                             </div>
 
-                            <div class="bg-gray-200" v-if="content == 'assignments'">
-                                <Link v-for="(assignment, i) in $page.props.assignments" class="grid grid-cols-1 md:grid-cols-3 p-6 text-sm text-gray-500 hover:bg-gray-100" :href="route('assignment.show', {'id': assignment.id})">
-                                    <div>
+                            <div class="bg-gray-200 bg-opacity-25" v-if="content == 'assignments'">
+                                <Link v-for="(assignment, i) in $page.props.assignments" class="grid grid-cols-1 md:grid-cols-9 gap-2 p-6 text-sm border-b-2 border-white text-gray-500 hover:bg-gray-100" :href="route('assignment.show', {'id': assignment.id})">
+                                    <div class="md:col-span-1">
+                                        {{ i + 1}}.
+                                    </div>
+                                    <div class="md:col-span-2">
                                         {{ assignment.assessment.name }}
                                     </div>
-                                    <div>
+                                    <div class="md:col-span-4">
                                         {{ assignment.assessment.description }}
                                     </div>
                                     <div class="text-gray-400 underline">
                                         <p>{{ assignment.employement.department.name }}</p>
                                         <p>{{ assignment.employement.position.name }}</p>
                                     </div>
+                                    <div>
+                                        {{ assignment.score }}
+                                    </div>
                                 </Link>
                             </div>
 
-                            <div class="bg-gray-200" v-if="content == 'confirmation'">
-                                <Link v-for="(confirmation, i) in $page.props.confirmations" class="grid grid-cols-1 md:grid-cols-4 p-6 text-sm text-gray-500 hover:bg-gray-100" :href="route('confirmation.show', {'id': confirmation.id})">
-                                    <div>
+                            <div class="bg-gray-200 bg-opacity-25" v-if="content == 'confirmation'">
+                                <Link v-for="(confirmation, i) in $page.props.confirmations" class="grid grid-cols-1 md:grid-cols-10 p-6 text-sm border-b-2 border-white text-gray-500 hover:bg-gray-100" :href="route('confirmation.show', {'id': confirmation.id})">
+                                    <div class="md:col-span-1">
+                                        {{ i + 1}}.
+                                    </div>
+                                    <div class="md:col-span-1">
                                         {{ confirmation.assignment.user.name }}
                                     </div>
-                                    <div>
+                                    <div class="md:col-span-2">
                                         {{ confirmation.assignment.assessment.name }}
                                     </div>
-                                    <div>
+                                    <div class="md:col-span-4">
                                         {{ confirmation.assignment.assessment.description }}
                                     </div>
                                     <div class="text-gray-400 underline">
@@ -83,6 +92,7 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
+import BreezeCheckbox from '@/Components/Checkbox'
 import { Link } from '@inertiajs/inertia-vue3';
 import { Head } from '@inertiajs/inertia-vue3';
 
@@ -90,6 +100,7 @@ export default {
     components: {
         BreezeAuthenticatedLayout,
         BreezeApplicationLogo,
+        BreezeCheckbox,
         Link,
         Head,
     },
@@ -116,5 +127,18 @@ export default {
             }
         }
     },
+    computed: {
+        confirmerContent() {
+            var roles = this.$page.props.auth.user.roles;
+            if (roles) {
+                for (var i=0; i < roles.length; ++i) {
+                    if (roles[i].context == 'confirmer') {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
 }
 </script>

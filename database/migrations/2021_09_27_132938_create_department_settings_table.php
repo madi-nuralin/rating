@@ -27,7 +27,7 @@ class CreateDepartmentSettingsTable extends Migration
                   ->nullable();
             $table->string('setting_name')
                   ->nullable();
-            $table->string('setting_value')
+            $table->string('setting_value', 2048)
                   ->nullable();
             $table->timestamps();
         });
