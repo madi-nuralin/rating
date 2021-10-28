@@ -172,26 +172,36 @@ class AssessmentController extends Controller
             $assessment->setEmployements($input['employements']);
         }
 
-        $assessment->assignments()->delete();
+        $ids = [];
         foreach ($assessment->employements as $employement) {
             foreach ($employement->users as $user) {
-                $assignment = Assignment::create([
-                    'assessment_id' => $assessment->getId(),
-                    'employement_id' => $employement->getId(),
-                    'user_id' => $user->getId(),
-                    'score' => 0
-                ]);
-                $assignment->save();
+                $assignment = Assignment::where('assessment_id', $assessment->getId())
+                    ->where('employement_id', $employement->getId())
+                    ->firstWhere('user_id', $user->getId());
+
+                if (!$assignment) {
+                    $assignment = new Assignment();
+                    $assignment->setAssessment($assessment->getId());
+                    $assignment->setEmployement($employement->getId());
+                    $assignment->setUser($user->getId());
+                    $assignment->setScore(0);
+                    $assignment->save();   
+                }
+                if (!in_array($assignment->getId(), $ids))
+                    array_push($ids, $assignment->getId());
             }
         }
+
+        $ids = array_diff($assessment->assignments()->pluck('id')->toArray(), $ids);
+        $assessment->assignments()->find($ids)->each(function($assignment) {
+            $assignment->delete();
+        });
 
         if (isset($input['confirmers'])) {
             $assessment->setConfirmers($input['confirmers']);
             foreach ($assessment->assignments as $assignment) {
                 $assignment->setConfirmers(
-                    $assessment->confirmers->map(function($confirmer) {
-                        return $confirmer->getId();
-                    })
+                    $assessment->confirmers()->pluck('confirmers.id')->toArray()
                 );
             }
         }

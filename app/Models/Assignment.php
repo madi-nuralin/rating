@@ -61,8 +61,16 @@ class Assignment extends Model
         return $this->assessment->toArray();
     }
 
+    public function setAssessment($assessment) {
+        $this->assessment()->associate($assessment);
+    }
+
     public function getEmployement() {
         return $this->employement->toArray();
+    }
+
+    public function setEmployement($employement) {
+        $this->employement()->associate($employement);
     }
 
     public function getUser() {
@@ -70,10 +78,7 @@ class Assignment extends Model
     }
 
     public function setUser($user) {
-        if ($this->user()) {
-            $this->user()->delete();
-        }
-        $this->user->save($user);
+        $this->user()->associate($user);
     }
 
     public function getConfirmers() {
@@ -83,10 +88,17 @@ class Assignment extends Model
     }
 
     public function setConfirmers($confirmers) {
-        if ($this->confirmers()) {
-            $this->confirmers()->delete();
+        if (is_null($confirmers) || empty($confirmers)) {
+            $this->confirmers()->detach();
+            return;
         }
-        if (count($confirmers) > 0) {
+
+        if ($this->confirmers()) {
+            $this->confirmers()->detach(
+                array_diff($this->confirmers()->pluck('confirmers.id')->toArray(), $confirmers));
+            $this->confirmers()->attach(
+                array_diff($confirmers, $this->confirmers()->pluck('confirmers.id')->toArray()));
+        } else {
             $this->confirmers()->attach($confirmers);
         }
     }
@@ -98,10 +110,17 @@ class Assignment extends Model
     }
 
     public function setActivities($activity) {
-        if ($this->activities()) {
+        if (is_null($activities) || empty($activities)) {
             $this->activities()->detach();
+            return;
         }
-        if (count($activities) > 0) {
+
+        if ($this->activities()) {
+            $this->activities()->detach(
+                array_diff($this->activities()->pluck('activities.id')->toArray(), $activities));
+            $this->activities()->attach(
+                array_diff($activities, $this->activities()->pluck('activities.id')->toArray()));
+        } else {
             $this->activities()->attach($activities);
         }
     }
@@ -113,10 +132,17 @@ class Assignment extends Model
     }
 
     public function setConfirmations($confirmations) {
-        if ($this->confirmations()) {
+        if (is_null($confirmations) || empty($confirmations)) {
             $this->confirmations()->detach();
+            return;
         }
-        if (count($confirmations) > 0) {
+
+        if ($this->confirmations()) {
+            $this->confirmations()->detach(
+                array_diff($this->confirmations()->pluck('confirmations.id')->toArray(), $confirmations));
+            $this->confirmations()->attach(
+                array_diff($confirmations, $this->confirmations()->pluck('confirmations.id')->toArray()));
+        } else {
             $this->confirmations()->attach($confirmations);
         }
     }

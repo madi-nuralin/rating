@@ -100,10 +100,17 @@ class Assessment extends Model
     }
 
     public function setEmployements($employements) {
-        if ($this->employements()) {
+        if (is_null($employements) || empty($employements)) {
             $this->employements()->detach();
+            return;
         }
-        if (count($employements) > 0) {
+
+        if ($this->employements()) {
+            $this->employements()->detach(
+                array_diff($this->employements()->pluck('employements.id')->toArray(), $employements));
+            $this->employements()->attach(
+                array_diff($employements, $this->employements()->pluck('employements.id')->toArray()));
+        } else {
             $this->employements()->attach($employements);
         }
     }
@@ -115,10 +122,17 @@ class Assessment extends Model
     }
 
     public function setConfirmers($confirmers) {
-        if ($this->confirmers()) {
+        if (is_null($confirmers) || empty($confirmers)) {
             $this->confirmers()->detach();
+            return;
         }
-        if (count($confirmers) > 0) {
+
+        if ($this->confirmers()) {
+            $this->confirmers()->detach(
+                array_diff($this->confirmers()->pluck('confirmers.id')->toArray(), $confirmers));
+            $this->confirmers()->attach(
+                array_diff($confirmers, $this->confirmers()->pluck('confirmers.id')->toArray()));
+        } else {
             $this->confirmers()->attach($confirmers);
         }
     }
@@ -130,10 +144,17 @@ class Assessment extends Model
     }
 
     public function setParameters($parameters) {
-        if ($this->parameters()) {
+        if (is_null($parameters) || empty($parameters)) {
             $this->parameters()->detach();
+            return;
         }
-        if (count($parameters) > 0) {
+
+        if ($this->parameters()) {
+            $this->parameters()->detach(
+                array_diff($this->parameters()->pluck('parameters.id')->toArray(), $parameters));
+            $this->parameters()->attach(
+                array_diff($parameters, $this->parameters()->pluck('parameters.id')->toArray()));
+        } else {
             $this->parameters()->attach($parameters);
         }
     }

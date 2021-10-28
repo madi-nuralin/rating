@@ -636,8 +636,8 @@ var messages = {
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
-          assessments: 'Setting up staff assessment',
-          parameters: 'Setting up assessment parameters',
+          assessments: 'Assessments',
+          parameters: 'Parameters',
           profile: 'Profile',
           logout: 'Log out',
           locales: {
