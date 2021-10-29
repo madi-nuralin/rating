@@ -34,6 +34,9 @@ use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\AssessmentController;
 use App\Http\Controllers\Management\ParameterController;
 
+use App\Http\Controllers\Forms\FormController;
+use App\Http\Controllers\Forms\FormFieldController;
+
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
 use App\Http\Controllers\Dashboard\ConfirmationController;
@@ -84,6 +87,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('parameter', ParameterController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+
+            Route::group(['prefix' => 'parameter-form'], function() {
+                Route::resource('form', FormController::class,
+                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+                Route::resource('form-field', FormFieldController::class,
+                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            });
         });
     });
 });

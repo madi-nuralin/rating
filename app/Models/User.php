@@ -181,10 +181,17 @@ class User extends Authenticatable
     }
 
     public function setEmployements($employements) {
-        if ($this->employements()) {
+        if (is_null($employements) || empty($employements)) {
             $this->employements()->detach();
+            return;
         }
-        if (count($employements) > 0) {
+
+        if ($this->employements()) {
+            $this->employements()->detach(
+                array_diff($this->employements()->pluck('employements.id')->toArray(), $employements));
+            $this->employements()->attach(
+                array_diff($employements, $this->employements()->pluck('employements.id')->toArray()));
+        } else {
             $this->employements()->attach($employements);
         }
     }

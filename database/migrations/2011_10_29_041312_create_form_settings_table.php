@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParametersTable extends Migration
+class CreateFormSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateParametersTable extends Migration
      */
     public function up()
     {
-        Schema::create('parameters', function (Blueprint $table) {
+        Schema::create('form_settings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('form_id')
                   ->unsigned();
@@ -21,6 +21,14 @@ class CreateParametersTable extends Migration
                   ->references('id')
                   ->on('forms')
                   ->onDelete('cascade');
+            $table->string('setting_locale')
+                  ->nullable();
+            $table->string('setting_type')
+                  ->nullable();
+            $table->string('setting_name')
+                  ->nullable();
+            $table->string('setting_value', 2048)
+                  ->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +40,6 @@ class CreateParametersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parameters');
+        Schema::dropIfExists('form_settings');
     }
 }

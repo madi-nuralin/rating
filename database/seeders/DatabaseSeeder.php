@@ -14,6 +14,7 @@ use App\Models\Position;
 use App\Models\Department;
 use App\Models\Assessment;
 use App\Models\Parameter;
+use App\Models\Forms\Form;
 
 class DatabaseSeeder extends Seeder
 {
@@ -360,7 +361,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($definitions as $definition) {
-            $parameter = Parameter::create();
+            $form = new Form();
+            $form->save();
+
+            $parameter = Parameter::create(['form_id' => $form->getId()]);
 
             foreach ($locales as $locale) {
                 $parameter->setName($definition[$locale]['name'], $locale);

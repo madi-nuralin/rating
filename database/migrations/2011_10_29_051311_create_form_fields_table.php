@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParametersTable extends Migration
+class CreateFormFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateParametersTable extends Migration
      */
     public function up()
     {
-        Schema::create('parameters', function (Blueprint $table) {
+        Schema::create('form_fields', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('form_id')
                   ->unsigned();
@@ -21,6 +21,7 @@ class CreateParametersTable extends Migration
                   ->references('id')
                   ->on('forms')
                   ->onDelete('cascade');
+            $table->string('type'); /* text, select, multiselect, file */
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateParametersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parameters');
+        Schema::dropIfExists('form_fields');
     }
 }
