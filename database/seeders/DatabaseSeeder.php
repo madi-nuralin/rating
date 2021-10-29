@@ -14,6 +14,7 @@ use App\Models\Position;
 use App\Models\Department;
 use App\Models\Assessment;
 use App\Models\Parameter;
+use App\Models\Forms\Form;
 
 class DatabaseSeeder extends Seeder
 {
@@ -58,14 +59,14 @@ class DatabaseSeeder extends Seeder
                 'context' => 'manager'
             ], [
                 'en' => [
-                    'name' => 'Supervisor',
+                    'name' => 'Confirmer',
                     'description' => 'Authorized to confirm this assessment'
                 ],
                 'ru' => [
-                    'name' => 'Комиссия',
+                    'name' => 'Подтверждающий',
                     'description' => 'Уполномочен подтвердить оценку деятельности персонала'
                 ],
-                'context' => 'supervisor'
+                'context' => 'confirmer'
             ],
         ];
 
@@ -179,58 +180,67 @@ class DatabaseSeeder extends Seeder
 		    [
                 'en' => [
                     'name' => 'Professor',
-                    'description' => ''
+                    'description' => 'Position of a researcher or teacher'
                 ],
                 'ru' => [
                     'name' => 'Профессор',
-                    'description' => ''
+                    'description' => 'Должность научного сотрудника или преподавателя'
                 ]
 		    ], [
 			    'en' => [
                     'name' => 'Assistant Professor',
-                    'description' => ''
+                    'description' => 'Junior professor; usually the first position a successful graduate student receives.'
                 ],
                 'ru' => [
-                    'name' => 'Ассистент-Профессор',
-                    'description' => ''
+                    'name' => 'Ассистент-профессор',
+                    'description' => 'Младший профессор; обычно первая должность, которую получает успешный выпускник аспирантуры.'
                 ]
             ], [
                 'en' => [
                     'name' => 'Associate professor',
-                    'description' => ''
+                    'description' => 'Research and teaching position (title) in some, mainly Russian-speaking, countries comparable to the position (title) of associate professor in the educational system'
                 ],
                 'ru' => [
                     'name' => 'Ассоциированный профессор',
-                    'description' => ''
+                    'description' => 'Научно-преподавательская должность (звание) в некоторых, преимущественно англоязычных, странах, сопоставимая с должностью (званием) доцента в образовательной системе'
                 ]
             ], [
                 'en' => [
                     'name' => 'Senior Lecturer',
-                    'description' => ''
+                    'description' => 'Лектор высокого академического уровня'
                 ],
                 'ru' => [
                     'name' => 'Сениор-лектор',
-                    'description' => ''
+                    'description' => 'Speaker which is at a high academic level '
                 ]
             ], [
                 'en' => [
                     'name' => 'Lecturer',
-                    'description' => ''
+                    'description' => 'Lecturer'
                 ],
                 'ru' => [
                     'name' => 'Лектор',
-                    'description' => ''
+                    'description' => 'Лектор'
                 ]
             ], [
                 'en' => [
                     'name' => 'Tutor',
-                    'description' => ''
+                    'description' => 'A teacher who conducts additional classes with a student or multiple students daily, weekly, or monthly'
                 ],
                 'ru' => [
                     'name' => 'Тьютор',
-                    'description' => ''
+                    'description' => 'Преподаватель, который проводит дополнительные занятия с учеником или с несколькими учениками ежедневно, еженедельно или ежемесячно'
                 ]
-            ]
+            ], [
+                'en' => [
+                    'name' => 'Head of department',
+                    'description' => 'Head of the department in higher educational institutions'
+                ],
+                'ru' => [
+                    'name' => 'Заведующий кафедры',
+                    'description' => 'Руководитель кафедры в высших учебных заведениях'
+                ]
+            ],
         ];
 
         foreach ($definitions as $definition) {
@@ -295,18 +305,66 @@ class DatabaseSeeder extends Seeder
         $definitions = [
             [
                 'en' => [
-                    'name' => 'Number of published scientific works:',
-                    'description' => 'Number of scientific papers published in international peer-reviewed scientific journals in the 1st and 2nd quartile according to Journal Citation Reports'
+                    'name' => 'Publications in international peer-reviewed scientific journals in the 1st and 2nd quartile',
+                    'description' => 'Publications in international peer-reviewed scientific journals included in 1 and 2 quarters according to Journal Citation Reports by Clarivate Analytics (Clarivate Analytics), or having in the database Scopus data CiteScore percentile not less than 65 in at least one of the scientific areas, in the field of social and humanitarian sciences, in journals indexed in the Web of Science Core Collection database (The Wep of Science Core Calculation) (Arts and Humanities Citation Index (Arts and Humanitis City Index), Science Citation Index Expanded (Science City Index Expanded), Social Sciences Citation Index (Link Science City Index)), by Clarivate Analytics and of type Article, Review or Article in Press'
                 ],
                 'ru' => [
-                    'name' => 'Количество опубликованных научных работ:',
-                    'description' => 'Количество опубликованных научных работ в международных рецензируемых научных журналах, входящих в 1 и 2 квартиль по данным Journal Citation Reports'
+                    'name' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квартиль',
+                    'description' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квар-тиль по данным Journal Citation Reports (Джоурнал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Анали-тикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль по CiteScore (СайтСкор) не менее 65 хотя бы по одной из научных областей, в об-ласти социальных и гуманитарных наук, в журналах, индексируемых в базе дан-ных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) илиArticle in Press (Статья в печати)'
                 ]
-            ]
+            ], [
+                'en' => [
+                    'name' => 'Publications in 3 quartile international peer-reviewed scientific journals',
+                    'description' => 'Publications in international peer-reviewed scientific journals included in the 3rd quartile according to Journal Citation Reports by Clarivate Analytics, or having a percentile index of at least 35 percentile in the Scopus database (Scopus) for at least one of the scientific fields, social sciences and humanities, in journals indexed in the Web of Science Core Collection database (Arts and Humanities Citation Index (Arts and Humanities City Index), Science Citation Index Expanded (Science City Expanded Index, Social Sciences Citation Index), by Clarivate Analytics and of type Article, Review or Article in Press'
+                ],
+                'ru' => [
+                    'name' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль',
+                    'description' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль по данным Journal Citation Reports (Джоур-нал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Аналитикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль не менее 35 хотя бы по одной из научных областей, в области социальных и гуманитарных наук, в журналах, индексируемых в базе данных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) или Article in Press (Статья в печати)'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Clarivate Analytics Journal Citation Reports or Scopus publications without quartile and percentile',
+                    'description' => 'Clarivate Analytics Journal Citation Reports or Scopus publications without quartile and percentile'
+                ],
+                'ru' => [
+                    'name' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля',
+                    'description' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Publications in the materials of international scientific conferences (Proceedings), indexed in the international database Scopus or Clarivate',
+                    'description' => 'Publications in the materials of international scientific conferences (Proceedings), indexed in the international database Scopus or Clarivate'
+                ],
+                'ru' => [
+                    'name' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate ',
+                    'description' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Basic education of the teaching staff of the department is 100% consistent with the profile of the department',
+                    'description' => 'Basic education of the teaching staff of the department is 100% consistent with the profile of the department'
+                ],
+                'ru' => [
+                    'name' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры',
+                    'description' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'The share of the teaching staff of the department with academic degrees and titles meets the established requirements',
+                    'description' => 'The share of the teaching staff of the department with academic degrees and titles meets the established requirements'
+                ],
+                'ru' => [
+                    'name' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям',
+                    'description' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям'
+                ]
+            ]   
         ];
 
         foreach ($definitions as $definition) {
-            $parameter = Parameter::create();
+            $form = new Form();
+            $form->save();
+
+            $parameter = Parameter::create(['form_id' => $form->getId()]);
 
             foreach ($locales as $locale) {
                 $parameter->setName($definition[$locale]['name'], $locale);

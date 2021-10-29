@@ -72,9 +72,15 @@ class ParameterController extends Controller
         return Inertia::render('Management/Parameters/Show', [
             'parameter' => array_merge(
                 $parameter->toArray(), [
-                    'rules' => $parameter->getRules()
+                    'form' => array_merge(
+                        $parameter->getForm(), [
+                            'fields' => $parameter->form && $parameter->form->fields ? $parameter->form->fields->map(function($field) {
+                                return $field->toArray();
+                            }) : []
+                        ]
+                    )
                 ]
-            ),
+            )
         ]);
     }
 
@@ -107,11 +113,10 @@ class ParameterController extends Controller
 
         $parameter = Parameter::findOrFail($id);
         
-        if ( $parameter->getName() != $input['name'] ) {
+        if ($parameter->getName() != $input['name'] ) {
             $parameter->setName($input['name']);    
         }
-
-        if ( $parameter->getDescription() != $input['description'] ) {
+        if ($parameter->getDescription() != $input['description'] ) {
             $parameter->setDescription($input['description']);
         }
 

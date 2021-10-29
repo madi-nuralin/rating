@@ -13,7 +13,7 @@
                 <update-form :parameter="$page.props.parameter"/>
                 <breeze-section-border />
 
-                <rules-resource-list :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
+                <resource-list :form="$page.props.parameter.form"/>
                 <breeze-section-border />
 
                 <delete-form :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
@@ -27,7 +27,7 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from '@/Pages/Management/Parameters/Partials/UpdateForm.vue'
     import DeleteForm from '@/Pages/Management/Parameters/Partials/DeleteForm.vue'
-    import RulesResourceList from '@/Pages/Management/Parameters/Rules/Partials/List.vue'
+    import ResourceList from '@/Pages/Forms/Fields/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -36,7 +36,7 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
-            RulesResourceList,
+            ResourceList,
             Head,
         },
     }

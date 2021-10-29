@@ -55,8 +55,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Employement::class);
     }
 
-    public function supervisingAssessments() {
-        return $this->belongsToMany(Assessment::class, 'assessment_supervisor', 'user_id', 'assessment_id');
+    public function confirmer() {
+        return $this->hasOne(Confirmer::class);
+    }
+
+    public function assignments() {
+        return $this->hasMany(Assignment::class);
     }
 
     public function getId() {
@@ -154,16 +158,60 @@ class User extends Authenticatable
         });
     }
 
+    public function setRoles($roles) {
+        if ($this->roles()) {
+            $this->roles()->detach();
+        }
+        if (count($roles) > 0) {
+            $this->roles()->attach($roles);
+        }
+        foreach ($this->roles as $role) {
+            if ($role->getContext() == 'confirmer') {
+                if ($this->confirmer === null) {
+                    $this->setConfirmer(new Confirmer());
+                }
+            }
+        }
+    }
+
     public function getEmployements() {
         return $this->employements->map(function($employement) {
             return $employement->toArray();
         });
     }
 
-    public function getSupervisingAssessments() {
-        return $this->supervisingAssessments->map(function($supervisingAssessment) {
-            return $supervisingAssessment->toArray();
-        });
+    public function setEmployements($employements) {
+        if (is_null($employements) || empty($employements)) {
+            $this->employements()->detach();
+            return;
+        }
+
+        if ($this->employements()) {
+            $this->employements()->detach(
+                array_diff($this->employements()->pluck('employements.id')->toArray(), $employements));
+            $this->employements()->attach(
+                array_diff($employements, $this->employements()->pluck('employements.id')->toArray()));
+        } else {
+            $this->employements()->attach($employements);
+        }
+    }
+
+    public function getConfirmer() {
+        return $this->confirmer->toArray();
+    }
+
+    public function setConfirmer($confirmer) {
+        if ($this->confirmer === null) {
+            $this->confirmer()->save($confirmer);
+        }
+    }
+
+    public function getAssignments() {
+        return $this->assignments->toArray();
+    }
+
+    public function setAssignments($assignments) {
+        //
     }
 
     public function toArray() {

@@ -33,11 +33,14 @@ use App\Http\Controllers\Management\DepartmentController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\AssessmentController;
 use App\Http\Controllers\Management\ParameterController;
-use App\Http\Controllers\Management\RuleController;
-use App\Http\Controllers\Management\Rule\OptionController;
+
+use App\Http\Controllers\Forms\FormController;
+use App\Http\Controllers\Forms\FormFieldController;
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
+use App\Http\Controllers\Dashboard\ConfirmationController;
+use App\Http\Controllers\Dashboard\ActivityController;
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -47,10 +50,20 @@ Route::get('locale/{locale}', function ($locale) {
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['prefix' => 'dashboard'], function() {
+
         Route::get('', [DashboardController::class, 'index'])
-            ->name('dashboard');
+        ->name('dashboard');
+
         Route::resource('assignment', AssignmentController::class,
-                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+                ['only' => ['show']]);
+        
+        Route::resource('activity', ActivityController::class,
+                ['only' => ['index', 'create', 'edit', 'store', 'show', 'update', 'destroy']]);
+
+        Route::group(['middleware' => 'confirmer'], function () {
+            Route::resource('confirmation', ConfirmationController::class,
+                ['only' => ['show', 'update']]);
+        });
     });
 
     Route::group(['prefix' => 'profile'], function() {
@@ -74,13 +87,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('parameter', ParameterController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-            Route::group(['prefix' => 'parameter'], function() {
-                Route::resource('rule', RuleController::class,
-                    ['only' => ['create', 'store', 'show', 'update', 'destroy']]);
-                Route::group(['prefix' => 'rule'], function() {
-                    Route::resource('option', OptionController::class,
-                        ['only' => ['create', 'store', 'show', 'update', 'destroy']]);
-                });
+
+            Route::group(['prefix' => 'parameter-form'], function() {
+                Route::resource('form', FormController::class,
+                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+                Route::resource('form-field', FormFieldController::class,
+                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             });
         });
     });

@@ -536,53 +536,10 @@ var messages = {
       dashboard: {
         assignments: {
           head: {
-            title: 'Assignments management'
+            title: 'Assignments'
           },
-          header: 'Assignments management',
-          create: {
-            title: 'Create a new assignment',
-            description: 'Create a new assignment to collaborate with others on projects.',
-            form: {
-              name: 'Assignment name',
-              description: 'Assignment description',
-              parameter: 'Select parameter'
-            }
-          },
-          update: {
-            title: 'Update Assignment',
-            description: 'The assignment\'s name and description information.',
-            form: {
-              name: 'Assignment name',
-              description: 'Assignment description'
-            }
-          },
-          delete: {
-            title: 'Delete Assignment',
-            description: 'Permanently delete this assignment.',
-            content: {
-              deleteInfo: 'Once a assignment is deleted, all of its resources and data will be permanently deleted. Before deleting this assignment, please download any data or information regarding this assignment that you wish to retain.',
-              deleteButton: 'Delete Assignment',
-              modal: {
-                title: 'Delete Assignment',
-                content: 'Are you sure you want to delete this assignment? Once a assignment is deleted, all of its resources and data will be permanently deleted.',
-                footer: {
-                  cancelButton: 'Cancel',
-                  deleteButton: 'Delete Assignment'
-                }
-              }
-            }
-          },
-          list: {
-            title: 'Assignments list',
-            description: 'The assignments list which are registered.',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            },
-            actions: {
-              createButton: 'Create New'
-            }
-          },
-          card1: {
+          header: 'Assignments',
+          assignment_information: {
             title: 'General information',
             description: 'Position assessment information',
             valid_date: 'Valid date',
@@ -592,9 +549,74 @@ var messages = {
             },
             score: 'Score'
           },
-          card2: {
-            title: 'Commission',
+          confirmation_information: {
+            title: 'Confirmation of assessment',
             description: 'List of committee members authorized to confirm this assessment'
+          }
+        },
+        confirmations: {
+          head: {
+            title: 'Assignments confirmation'
+          },
+          header: 'Assignments confirmation',
+          assignment_information: {
+            title: 'General information',
+            description: 'Position assessment information',
+            user: 'User',
+            valid_date: 'Valid date',
+            employement: {
+              department: 'Department',
+              position: 'Position'
+            },
+            score: 'Score'
+          },
+          confirmation_information: {
+            title: 'Confirmation of assessment',
+            description: 'List of committee members authorized to confirm this assessment'
+          },
+          update: {
+            title: 'Your decision',
+            description: 'Decide whether to approve or reject the user\'s current assessment'
+          }
+        },
+        activities: {
+          head: {
+            title: 'Оценивание'
+          },
+          header: 'Оценивание',
+          create: {
+            title: 'Добавить новое действи оценки',
+            description: 'Добавить новое действи оценки',
+            form: {
+              name: 'Название',
+              description: 'Описание'
+            }
+          },
+          update: {
+            title: 'Обновить действие',
+            description: 'Обновить действие.',
+            form: {
+              name: 'Имя пользователя',
+              email: 'Эл. адрес',
+              firstname: 'Имя',
+              lastname: 'Фамилия'
+            }
+          },
+          delete: {
+            title: 'Удалить аккаунт',
+            description: 'Удалить аккаунт без возможности восстановления.',
+            content: {
+              deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
+              deleteButton: 'Удалить аккаунт',
+              modal: {
+                title: 'Удалить аккаунт',
+                content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить аккаунт'
+                }
+              }
+            }
           }
         }
       }
@@ -614,8 +636,8 @@ var messages = {
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
-          assessments: 'Staff assessment configuration',
-          parameters: 'Parameters configuration',
+          assessments: 'Assessments',
+          parameters: 'Parameters',
           profile: 'Profile',
           logout: 'Log out',
           locales: {
@@ -1166,65 +1188,87 @@ var messages = {
       dashboard: {
         assignments: {
           head: {
-            title: 'Управление заданиями'
+            title: 'Оценивание'
           },
-          header: 'Управление заданиями',
-          create: {
-            title: 'Добавить новое задание',
-            description: 'Создайте новое задание, чтобы сотрудничать с другими над проектами.',
-            form: {
-              name: 'Название задания',
-              description: 'Описание задания',
-              parameter: 'Выберите параметр оценки'
-            }
-          },
-          update: {
-            title: 'Обновить назначение',
-            description: 'Информация о названии и описании задания.',
-            form: {
-              name: 'Название задания',
-              description: 'Описание задания'
-            }
-          },
-          delete: {
-            title: 'Удалить задание',
-            description: 'Удалить это задание без возможности восстановления.',
-            content: {
-              deleteInfo: 'После удаления назначения все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого задания загрузите все данные или информацию о нем, которые вы хотите сохранить.',
-              deleteButton: 'Удалить задание',
-              modal: {
-                title: 'Удалить задание',
-                content: 'Вы действительно хотите удалить это задание? После удаления назначения все его ресурсы и данные будут удалены без возможности восстановления.',
-                footer: {
-                  cancelButton: 'Отмена',
-                  deleteButton: 'Удалить задание'
-                }
-              }
-            }
-          },
-          list: {
-            title: 'Список задании',
-            description: 'Список задании зарегистрированных в системе',
-            form: {
-              listInfo: 'Список задании зарегистрированных в системе. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            },
-            actions: {
-              createButton: 'Создать новый'
-            }
-          },
-          card1: {
-            title: 'Общая информация',
-            description: 'Информация об оценке по занимаемой должности',
-            valid_date: 'Срок действия',
+          header: 'Оценивание',
+          assignment_information: {
+            title: 'Информация о пользователе',
+            description: 'Подробная информация о пользователе: отдел, должность',
+            valid_date: 'Время действия текущего оцнивания',
             employement: {
               department: 'Отдел',
               position: 'Должность'
             },
-            score: 'Оценка'
+            score: 'Текущий балл'
           },
-          card2: {
-            title: 'Комиссия',
-            description: 'Список членов комисии уполномоченные для подтверждения данного оценивания'
+          confirmation_information: {
+            title: 'Подтверждение текущего оценивания',
+            description: 'Список сотрудников подтверждающие данное оценивание'
+          }
+        },
+        confirmations: {
+          head: {
+            title: 'Подтверждение оценки деятельности пользователя'
+          },
+          header: 'Подтверждение оценки деятельности пользователя',
+          assignment_information: {
+            title: 'Информация о пользователе',
+            description: 'Подробная информация о пользователе: отдел, должность',
+            user: 'Пользователь',
+            valid_date: 'Время действия текущего оцнивания',
+            employement: {
+              department: 'Отдел',
+              position: 'Должность'
+            },
+            score: 'Текущий балл'
+          },
+          confirmation_information: {
+            title: 'Подтверждение текущего оценивания',
+            description: 'Список сотрудников подтверждающие данное оценивание'
+          },
+          update: {
+            title: 'Ваше решение',
+            description: 'Примите решение подтвердить или отклонить текущее оценивание пользователя'
+          }
+        },
+        activities: {
+          head: {
+            title: 'Оценивание'
+          },
+          header: 'Оценивание',
+          create: {
+            title: 'Добавить новое действи оценки',
+            description: 'Добавить новое действи оценки',
+            form: {
+              name: 'Название',
+              description: 'Описание'
+            }
+          },
+          update: {
+            title: 'Обновить действие',
+            description: 'Обновить действие.',
+            form: {
+              name: 'Имя пользователя',
+              email: 'Эл. адрес',
+              firstname: 'Имя',
+              lastname: 'Фамилия'
+            }
+          },
+          delete: {
+            title: 'Удалить аккаунт',
+            description: 'Удалить аккаунт без возможности восстановления.',
+            content: {
+              deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
+              deleteButton: 'Удалить аккаунт',
+              modal: {
+                title: 'Удалить аккаунт',
+                content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить аккаунт'
+                }
+              }
+            }
           }
         }
       }

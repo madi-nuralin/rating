@@ -1,18 +1,24 @@
 <template>
-    <Head :title="$t('pages.management.departments.head.title')" />
+    <Head :title="$t('pages.dashboard.assignments.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.departments.header') }}
+                {{ $t('pages.dashboard.assignments.header') }}
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :assignment="$page.props.assignment"/>
-                <breeze-section-border />
-                <delete-form :assignment="$page.props.assignment" class="mt-10 sm:mt-0"/>
+                <div class="md:grid md:grid-cols-3 md:gap-6">
+                    <div class="mt-5 md:mt-0 md:col-span-2">
+                        <resource-list :assignment="$page.props.assignment" />
+                    </div>
+                    <div class="md:col-span-1 flex flex-col">
+                        <AssignmentInformation :assignment="$page.props.assignment" />
+                        <ConfirmationInformation :confirmations="$page.props.assignment.confirmations" />
+                    </div>
+                </div>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -21,16 +27,24 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import UpdateForm from '@/Pages/Management/Departments/Partials/UpdateForm.vue'
-    import DeleteForm from '@/Pages/Management/Departments/Partials/DeleteForm.vue'
+    import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
+    import BreezeLabel from '@/Components/Label.vue'
+    import BreezeInput from '@/Components/Input.vue'
+    import ResourceList from '@/Pages/Dashboard/Assignments/Partials/List.vue'
+    import AssignmentInformation from '@/Pages/Dashboard/Assignments/Partials/AssignmentInformation.vue'
+    import ConfirmationInformation from '@/Pages/Dashboard/Assignments/Partials/ConfirmationInformation.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
         components: {
             BreezeAuthenticatedLayout,
             BreezeSectionBorder,
-            UpdateForm,
-            DeleteForm,
+            BreezeButtonSecondary,
+            BreezeLabel,
+            BreezeInput,
+            ResourceList,
+            AssignmentInformation,
+            ConfirmationInformation,
             Head,
         },
     }

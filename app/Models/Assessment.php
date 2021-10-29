@@ -27,8 +27,8 @@ class Assessment extends Model
         return $this->belongsToMany(Employement::class);
     }
 
-    public function supervisors() {
-        return $this->belongsToMany(User::class, 'assessment_supervisor', 'assessment_id', 'user_id');
+    public function confirmers() {
+        return $this->belongsToMany(Confirmer::class);
     }
 
     public function parameters() {
@@ -99,10 +99,42 @@ class Assessment extends Model
         });
     }
 
-    public function getSupervisors() {
-        return $this->supervisors->map(function($supervisor) {
-            return $supervisor->toArray();
+    public function setEmployements($employements) {
+        if (is_null($employements) || empty($employements)) {
+            $this->employements()->detach();
+            return;
+        }
+
+        if ($this->employements()) {
+            $this->employements()->detach(
+                array_diff($this->employements()->pluck('employements.id')->toArray(), $employements));
+            $this->employements()->attach(
+                array_diff($employements, $this->employements()->pluck('employements.id')->toArray()));
+        } else {
+            $this->employements()->attach($employements);
+        }
+    }
+
+    public function getConfirmers() {
+        return $this->confirmers->map(function($confirmer) {
+            return $confirmer->toArray();
         });
+    }
+
+    public function setConfirmers($confirmers) {
+        if (is_null($confirmers) || empty($confirmers)) {
+            $this->confirmers()->detach();
+            return;
+        }
+
+        if ($this->confirmers()) {
+            $this->confirmers()->detach(
+                array_diff($this->confirmers()->pluck('confirmers.id')->toArray(), $confirmers));
+            $this->confirmers()->attach(
+                array_diff($confirmers, $this->confirmers()->pluck('confirmers.id')->toArray()));
+        } else {
+            $this->confirmers()->attach($confirmers);
+        }
     }
 
     public function getParameters() {
@@ -111,11 +143,36 @@ class Assessment extends Model
         });
     }
 
+    public function setParameters($parameters) {
+        if (is_null($parameters) || empty($parameters)) {
+            $this->parameters()->detach();
+            return;
+        }
+
+        if ($this->parameters()) {
+            $this->parameters()->detach(
+                array_diff($this->parameters()->pluck('parameters.id')->toArray(), $parameters));
+            $this->parameters()->attach(
+                array_diff($parameters, $this->parameters()->pluck('parameters.id')->toArray()));
+        } else {
+            $this->parameters()->attach($parameters);
+        }
+    }
+
     public function getAssignments() {
         return $this->assignments->map(function($assignment) {
             return $assignment->toArray();
         });
-    }    
+    }
+
+    public function setAssignments($assignments) {
+        /*if ($this->assignments()) {
+            $this->assignments()->detach();
+        }
+        if (count($assignments) > 0) {
+            $this->assignments()->attach($assignments);
+        }*/
+    }
 
     public function toArray() {
         return [

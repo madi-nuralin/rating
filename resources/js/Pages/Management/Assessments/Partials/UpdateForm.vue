@@ -40,9 +40,9 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="supervisors" :value="$t('pages.management.assessments.update.form.supervisors')" />
-                <BreezeSelect id="supervisors" class="mt-1 block w-full" :value="form.supervisors" @input="form.supervisors = $event" :options="options.supervisors"/>
-                <BreezeInputError :message="form.errors.supervisors" class="mt-2" />
+                <BreezeLabel for="confirmers" :value="$t('pages.management.assessments.update.form.confirmers')" />
+                <BreezeSelect id="confirmers" class="mt-1 block w-full" :value="form.confirmers" @input="form.confirmers = $event" :options="options.confirmers"/>
+                <BreezeInputError :message="form.errors.confirmers" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -86,7 +86,7 @@
             BreezeLabel,
         },
 
-        props: ['assessment', 'employements', 'supervisors', 'parameters'],
+        props: ['assessment', 'employements', 'confirmers', 'parameters'],
 
         data() {
             return {
@@ -98,8 +98,8 @@
                     employements: this.assessment.employements.map(function(employement) {
                         return employement.id;
                     }),
-                    supervisors: this.assessment.supervisors.map(function(supervisor) {
-                        return supervisor.id;
+                    confirmers: this.assessment.confirmers.map(function(confirmer) {
+                        return confirmer.id;
                     }),
                     parameters: this.assessment.parameters.map(function(parameter) {
                         return parameter.id;
@@ -123,9 +123,9 @@
                         this.employements.map(function(employement) {
                             return { value: employement.id, name: employement.position.name, description: this.$t('pages.management.assessments.update.form.employement.option.description', {department: employement.department.name})};
                         }, {$t: this.$t}) : null,
-                    'supervisors': this.supervisors ?
-                        this.supervisors.map(function(supervisor) {
-                            return { value: supervisor.id, name: supervisor.name, description: supervisor.email };
+                    'confirmers': this.confirmers ?
+                        this.confirmers.map(function(confirmer) {
+                            return { value: confirmer.id, name: confirmer.user.name, description: confirmer.user.email };
                         }, {$t: this.$t}) : null,
                     'parameters': this.parameters ?
                         this.parameters.map(function(parameter) {

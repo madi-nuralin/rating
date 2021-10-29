@@ -30,54 +30,57 @@
                                 </div>
                             </div>
 
-                            <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-
-                                <template v-for="(employement, i) in $page.props.employements" :key="employement.id">
-                                    <template v-for="(assessment, j) in employement.assessments" :key="assessment.id">
-                                        <div :class="gridClass(j+1)">
-                                            <div class="flex items-center">
-                                                <svg fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    viewBox="0 0 24 24"
-                                                    class="w-8 h-8 text-gray-400">
-                                                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                                </svg>
-                                                <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                                                    <a href="https://laravel.com/docs">
-                                                        {{ assessment.name }}
-                                                    </a>
-                                                    <p class="text-sm text-gray-500">
-                                                        {{ assessment.description }}
-                                                    </p>
-                                                    <p class="text-sm text-gray-400 mt-2">
-                                                        <span class="underline">{{ employement.department.name }}</span>
-                                                        <span>, </span>
-                                                        <span class="underline">{{ employement.position.name }}</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="ml-12">
-                                                <Link :href="route('assignment.index', {'assessment': assessment.id, 'employement': employement.id})">
-                                                    <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                                                        <div>Go to activity</div>
-
-                                                        <div class="ml-1 text-indigo-500">
-                                                            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                                                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </template>
-                                </template>
-
+                            <div class="grid grid-cols-2 text-sm text-left md:text-center text-gray-500 cursor-pointer uppercase">
+                                <div class="px-5 py-3 transition duration-500 col-span-2 md:col-span-1 border-l-4 md:border-l-0 md:border-b-2" @click="content = 'assignments'" :class="content == 'assignments' ? 'border-indigo-400 text-indigo-400' : ''">
+                                    <p>Мои оценивания</p>
+                                </div>
+                                <div class="px-5 py-3 transition duration-500 col-span-2 md:col-span-1 border-l-4 md:border-l-0 md:border-b-2" @click="content = 'confirmation'" :class="content == 'confirmation' ? 'border-indigo-400 text-indigo-400' : ''" v-if="confirmerContent">
+                                    <p>Оценивание других сотрудников</p>
+                                </div>
                             </div>
+
+                            <div class="bg-gray-200 bg-opacity-25" v-if="content == 'assignments'">
+                                <Link v-for="(assignment, i) in $page.props.assignments" class="grid grid-cols-1 md:grid-cols-9 gap-2 p-6 text-sm border-b-2 border-white text-gray-500 hover:bg-gray-100" :href="route('assignment.show', {'id': assignment.id})">
+                                    <div class="md:col-span-1">
+                                        {{ i + 1}}.
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        {{ assignment.assessment.name }}
+                                    </div>
+                                    <div class="md:col-span-4">
+                                        {{ assignment.assessment.description }}
+                                    </div>
+                                    <div class="text-gray-400 underline">
+                                        <p>{{ assignment.employement.department.name }}</p>
+                                        <p>{{ assignment.employement.position.name }}</p>
+                                    </div>
+                                    <div>
+                                        {{ assignment.score }}
+                                    </div>
+                                </Link>
+                            </div>
+
+                            <div class="bg-gray-200 bg-opacity-25" v-if="content == 'confirmation'">
+                                <Link v-for="(confirmation, i) in $page.props.confirmations" class="grid grid-cols-1 md:grid-cols-10 p-6 text-sm border-b-2 border-white text-gray-500 hover:bg-gray-100" :href="route('confirmation.show', {'id': confirmation.id})">
+                                    <div class="md:col-span-1">
+                                        {{ i + 1}}.
+                                    </div>
+                                    <div class="md:col-span-1">
+                                        {{ confirmation.assignment.user.name }}
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        {{ confirmation.assignment.assessment.name }}
+                                    </div>
+                                    <div class="md:col-span-4">
+                                        {{ confirmation.assignment.assessment.description }}
+                                    </div>
+                                    <div class="text-gray-400 underline">
+                                        <p>{{ confirmation.assignment.employement.department.name }}</p>
+                                        <p>{{ confirmation.assignment.employement.position.name }}</p>
+                                    </div> 
+                                </Link>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -89,6 +92,7 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
+import BreezeCheckbox from '@/Components/Checkbox'
 import { Link } from '@inertiajs/inertia-vue3';
 import { Head } from '@inertiajs/inertia-vue3';
 
@@ -96,9 +100,17 @@ export default {
     components: {
         BreezeAuthenticatedLayout,
         BreezeApplicationLogo,
+        BreezeCheckbox,
         Link,
         Head,
     },
+
+    data() {
+        return {
+            content: 'assignments'
+        };
+    },
+
     methods: {
         gridClass(v) {
             switch (v % 4) {
@@ -115,5 +127,18 @@ export default {
             }
         }
     },
+    computed: {
+        confirmerContent() {
+            var roles = this.$page.props.auth.user.roles;
+            if (roles) {
+                for (var i=0; i < roles.length; ++i) {
+                    if (roles[i].context == 'confirmer') {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
 }
 </script>

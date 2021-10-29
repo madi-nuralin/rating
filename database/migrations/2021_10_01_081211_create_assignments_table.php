@@ -21,12 +21,6 @@ class CreateAssignmentsTable extends Migration
                   ->references('id')
                   ->on('assessments')
                   ->onDelete('cascade');
-            $table->bigInteger('parameter_id')
-                  ->unsigned();
-            $table->foreign('parameter_id')
-                  ->references('id')
-                  ->on('parameters')
-                  ->onDelete('cascade');
             $table->bigInteger('employement_id')
                   ->unsigned();
             $table->foreign('employement_id')

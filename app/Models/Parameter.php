@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Forms\Form;
 
 class Parameter extends Model
 {
@@ -19,6 +20,10 @@ class Parameter extends Model
 
     public function rules() {
         return $this->belongsToMany(Rule::class);
+    }
+
+    public function form() {
+        return $this->belongsTo(Form::class);
     }
 
     public function getId() {
@@ -69,6 +74,14 @@ class Parameter extends Model
         return $this->rules->map(function($rule) {
             return $rule->toArray();
         });
+    }
+
+    public function getForm() {
+        return $this->form->toArray();
+    }
+
+    public function setForm($form) {
+        $this->form()->save($form);
     }
 
     public function toArray() {
