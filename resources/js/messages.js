@@ -619,6 +619,74 @@ var messages = {
             }
           }
         }
+      },
+      forms: {
+        fields: {
+          head: {
+            title: 'Form management'
+          },
+          header: 'Form management',
+          create: {
+            title: 'Create a form',
+            description: 'Create a new form field by inserting name and type',
+            form: {
+              name: 'Name',
+              type: 'Field type'
+            }
+          },
+          update: {
+            title: 'Update the form field',
+            description: 'Update the existing form field',
+            form: {
+              name: 'Name',
+              type: 'Field type'
+            }
+          },
+          delete: {
+            title: 'Delete the form field',
+            description: 'Permanently delete the form field',
+            content: {
+              deleteInfo: 'Once a form field is deleted, all of its resources and data will be permanently deleted. Before deleting this field, please download any data or information regarding this field that you wish to retain.',
+              deleteButton: 'Delete form field',
+              modal: {
+                title: 'Delete a form field',
+                content: 'Are you sure you want to delete this form field? Once a field is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Form management',
+            description: 'Create and manage form fileds',
+            form: {
+              listInfo: 'The list of created form fields.'
+            },
+            actions: {
+              createButton: 'Create a new form filed'
+            }
+          },
+          types: {
+            text: {
+              name: 'Text or string data',
+              description: 'Text or string data'
+            },
+            select: {
+              name: 'Select from list',
+              description: 'Select from the list'
+            },
+            multiselect: {
+              name: 'Multiple selection from the list',
+              description: 'Multiple selection from the list'
+            },
+            file: {
+              name: 'Upload file',
+              description: 'Upload file'
+            }
+          }
+        }
       }
     },
     layouts: {
@@ -1268,6 +1336,74 @@ var messages = {
                   deleteButton: 'Удалить аккаунт'
                 }
               }
+            }
+          }
+        }
+      },
+      forms: {
+        fields: {
+          head: {
+            title: 'Создание и управление формами'
+          },
+          header: 'Создание и управление формами',
+          create: {
+            title: 'Создать поле формы',
+            description: 'Создать новое поле формы',
+            form: {
+              name: 'Название',
+              type: 'Выберите тип поля'
+            }
+          },
+          update: {
+            title: 'Обновить поле формы',
+            description: 'Обновить поле формы',
+            form: {
+              name: 'Название',
+              type: 'Выберите тип поля'
+            }
+          },
+          delete: {
+            title: 'Удалить поле формы',
+            description: 'Удалить поле формы навсегда',
+            content: {
+              deleteInfo: 'После удаления поля формы все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого поля загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
+              deleteButton: 'Удалить поле формы',
+              modal: {
+                title: 'Удалить поле формы',
+                content: 'Вы уверены, что хотите удалить это поле формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Управление формами',
+            description: 'Создание и управление полями форм',
+            form: {
+              listInfo: 'Список созданных полей формы.'
+            },
+            actions: {
+              createButton: 'Создать новое поле формы'
+            }
+          },
+          types: {
+            text: {
+              name: 'Текстовые или строковые данные',
+              description: 'Текстовые или строковые данные'
+            },
+            select: {
+              name: 'Выбрать из списка',
+              description: 'Выбрать из списка'
+            },
+            multiselect: {
+              name: 'Множественный выбор из списка',
+              description: 'Множественный выбор из списка'
+            },
+            file: {
+              name: 'Загрузка файла',
+              description: 'Загрузка файла'
             }
           }
         }

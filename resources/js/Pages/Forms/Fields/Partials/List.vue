@@ -5,7 +5,7 @@
         </template>
 
         <template #description>
-            Список полей формы
+            {{ $t('pages.forms.fields.list.description') }}
         </template>
 
         <template #form>

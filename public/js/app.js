@@ -24635,20 +24635,20 @@ __webpack_require__.r(__webpack_exports__);
     options: function options() {
       var types = [{
         value: 'text',
-        name: 'Текст',
-        description: 'Текстовый ввод'
+        name: this.$t('pages.forms.fields.types.text.name'),
+        description: this.$t('pages.forms.fields.types.text.description')
       }, {
         value: 'select',
-        name: 'Выбрать',
-        description: 'Выбор из списка'
+        name: this.$t('pages.forms.fields.types.select.name'),
+        description: this.$t('pages.forms.fields.types.select.description')
       }, {
         value: 'multiselect',
-        name: 'Множественный выбор',
-        description: 'Выбор несколько из списка'
+        name: this.$t('pages.forms.fields.types.multiselect.name'),
+        description: this.$t('pages.forms.fields.types.multiselect.description')
       }, {
         value: 'file',
-        name: 'Файл',
-        description: 'Загрузка файла'
+        name: this.$t('pages.forms.fields.types.file.name'),
+        description: this.$t('pages.forms.fields.types.file.description')
       }];
       return {
         'types': types
@@ -24801,20 +24801,20 @@ __webpack_require__.r(__webpack_exports__);
     options: function options() {
       var types = [{
         value: 'text',
-        name: 'Текст',
-        description: 'Текстовый ввод'
+        name: this.$t('pages.forms.fields.types.text.name'),
+        description: this.$t('pages.forms.fields.types.text.description')
       }, {
         value: 'select',
-        name: 'Выбрать',
-        description: 'Выбор из списка'
+        name: this.$t('pages.forms.fields.types.select.name'),
+        description: this.$t('pages.forms.fields.types.select.description')
       }, {
         value: 'multiselect',
-        name: 'Множественный выбор',
-        description: 'Выбор несколько из списка'
+        name: this.$t('pages.forms.fields.types.multiselect.name'),
+        description: this.$t('pages.forms.fields.types.multiselect.description')
       }, {
         value: 'file',
-        name: 'Файл',
-        description: 'Загрузка файла'
+        name: this.$t('pages.forms.fields.types.file.name'),
+        description: this.$t('pages.forms.fields.types.file.description')
       }];
       return {
         'types': types
@@ -31069,29 +31069,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Список полей формы ");
-
-var _hoisted_2 = {
+var _hoisted_1 = {
   "class": "col-span-6"
 };
-var _hoisted_3 = {
+var _hoisted_2 = {
   "class": "max-w-xl text-sm text-gray-600"
 };
-var _hoisted_4 = {
+var _hoisted_3 = {
   "class": "relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer col-span-6 sm:col-span-4"
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "w-full"
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "flex items-center justify-between"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "text-sm text-gray-600 text-left"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "ml-2 h-5 w-5",
   xmlns: "http://www.w3.org/2000/svg",
   width: "18",
@@ -31108,7 +31105,7 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_9 = {
+var _hoisted_8 = {
   "class": "mt-2 text-xs text-gray-600 text-left"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -31123,12 +31120,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )];
     }),
     description: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.forms.fields.list.description')), 1
+      /* TEXT */
+      )];
     }),
     form: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.forms.fields.list.form.listInfo')), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.forms.fields.list.form.listInfo')), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.form.fields, function (field, i) {
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.form.fields, function (field, i) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
             'border-t border-gray-200 rounded-t-none': i > 0,
@@ -31136,7 +31135,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }]),
           type: "button",
           key: field.id
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.name), 1
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.name), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
           "class": "w-4 mr-2 transform text-gray-400 hover:text-blue-400 hover:scale-110",
@@ -31145,14 +31144,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           })
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_8];
+            return [_hoisted_7];
           }),
           _: 2
           /* DYNAMIC */
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.type), 1
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.type), 1
         /* TEXT */
         )])], 2
         /* CLASS */
@@ -36832,6 +36831,74 @@ var messages = {
             }
           }
         }
+      },
+      forms: {
+        fields: {
+          head: {
+            title: 'Form management'
+          },
+          header: 'Form management',
+          create: {
+            title: 'Create a form',
+            description: 'Create a new form field by inserting name and type',
+            form: {
+              name: 'Name',
+              type: 'Field type'
+            }
+          },
+          update: {
+            title: 'Update the form field',
+            description: 'Update the existing form field',
+            form: {
+              name: 'Name',
+              type: 'Field type'
+            }
+          },
+          "delete": {
+            title: 'Delete the form field',
+            description: 'Permanently delete the form field',
+            content: {
+              deleteInfo: 'Once a form field is deleted, all of its resources and data will be permanently deleted. Before deleting this field, please download any data or information regarding this field that you wish to retain.',
+              deleteButton: 'Delete form field',
+              modal: {
+                title: 'Delete a form field',
+                content: 'Are you sure you want to delete this form field? Once a field is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Form management',
+            description: 'Create and manage form fileds',
+            form: {
+              listInfo: 'The list of created form fields.'
+            },
+            actions: {
+              createButton: 'Create a new form filed'
+            }
+          },
+          types: {
+            text: {
+              name: 'Text or string data',
+              description: 'Text or string data'
+            },
+            select: {
+              name: 'Select from list',
+              description: 'Select from the list'
+            },
+            multiselect: {
+              name: 'Multiple selection from the list',
+              description: 'Multiple selection from the list'
+            },
+            file: {
+              name: 'Upload file',
+              description: 'Upload file'
+            }
+          }
+        }
       }
     },
     layouts: {
@@ -37479,6 +37546,74 @@ var messages = {
                   deleteButton: 'Удалить аккаунт'
                 }
               }
+            }
+          }
+        }
+      },
+      forms: {
+        fields: {
+          head: {
+            title: 'Создание и управление формами'
+          },
+          header: 'Создание и управление формами',
+          create: {
+            title: 'Создать поле формы',
+            description: 'Создать новое поле формы',
+            form: {
+              name: 'Название',
+              type: 'Выберите тип поля'
+            }
+          },
+          update: {
+            title: 'Обновить поле формы',
+            description: 'Обновить поле формы',
+            form: {
+              name: 'Название',
+              type: 'Выберите тип поля'
+            }
+          },
+          "delete": {
+            title: 'Удалить поле формы',
+            description: 'Удалить поле формы навсегда',
+            content: {
+              deleteInfo: 'После удаления поля формы все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого поля загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
+              deleteButton: 'Удалить поле формы',
+              modal: {
+                title: 'Удалить поле формы',
+                content: 'Вы уверены, что хотите удалить это поле формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Управление формами',
+            description: 'Создание и управление полями форм',
+            form: {
+              listInfo: 'Список созданных полей формы.'
+            },
+            actions: {
+              createButton: 'Создать новое поле формы'
+            }
+          },
+          types: {
+            text: {
+              name: 'Текстовые или строковые данные',
+              description: 'Текстовые или строковые данные'
+            },
+            select: {
+              name: 'Выбрать из списка',
+              description: 'Выбрать из списка'
+            },
+            multiselect: {
+              name: 'Множественный выбор из списка',
+              description: 'Множественный выбор из списка'
+            },
+            file: {
+              name: 'Загрузка файла',
+              description: 'Загрузка файла'
             }
           }
         }

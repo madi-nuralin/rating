@@ -81,10 +81,10 @@
         computed: {
             options() {
                 let types = [
-                    { value: 'text', name: 'Текст', description: 'Текстовый ввод' },
-                    { value: 'select', name: 'Выбрать', description: 'Выбор из списка' },
-                    { value: 'multiselect', name: 'Множественный выбор', description: 'Выбор несколько из списка' },
-                    { value: 'file', name: 'Файл', description: 'Загрузка файла' }
+                    { value: 'text', name: this.$t('pages.forms.fields.types.text.name'), description: this.$t('pages.forms.fields.types.text.description') },
+                    { value: 'select', name: this.$t('pages.forms.fields.types.select.name'), description: this.$t('pages.forms.fields.types.select.description') },
+                    { value: 'multiselect', name: this.$t('pages.forms.fields.types.multiselect.name'), description: this.$t('pages.forms.fields.types.multiselect.description') },
+                    { value: 'file', name: this.$t('pages.forms.fields.types.file.name'), description: this.$t('pages.forms.fields.types.file.description') }
                 ];
 
 
