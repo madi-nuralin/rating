@@ -50,7 +50,7 @@
 
             <div class="col-span-6 text-xs">
                 <p>
-                    {{ t('score') }}
+                    {{ $t('pages.dashboard.confirmations.informationCard01.score') }}
                 </p>
                 <p class="text-gray-600">
                     {{ assignment.score }}

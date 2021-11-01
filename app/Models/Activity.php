@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Forms\FormFieldValue;
 
 class Activity extends Model
 {
@@ -26,6 +27,10 @@ class Activity extends Model
 
     public function parameter() {
     	return $this->belongsTo(Parameter::class);
+    }
+
+    public function formFieldValues() {
+        return $this->belongsToMany(FormFieldValue::class);
     }
 
     public function getId() {
@@ -54,6 +59,28 @@ class Activity extends Model
 
     public function setParameter($parameter) {
         $this->parameter()->associate($parameter);
+    }
+
+    public function getFormFieldValues() {
+        return $this->formFieldValues->map(function($value) {
+            return $value->toArray();
+        });
+    }
+
+    public function setFormFieldValues($formFieldValues) {
+        if (is_null($formFieldValues) || empty($formFieldValues)) {
+            $this->formFieldValues()->detach();
+            return;
+        }
+
+        if ($this->formFieldValues()) {
+            $this->formFieldValues()->detach(
+                array_diff($this->formFieldValues()->pluck('form_field_values.id')->toArray(), $formFieldValues));
+            $this->formFieldValues()->attach(
+                array_diff($formFieldValues, $this->formFieldValues()->pluck('form_field_values.id')->toArray()));
+        } else {
+            $this->formFieldValues()->attach($formFieldValues);
+        }
     }
 
     public function toArray() {

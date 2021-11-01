@@ -1,7 +1,7 @@
 <template>
 	<input type="file" class="hidden" ref="file" @change="updateFilePreview">
 
-	<div class="max-w-xl mt-2" v-if="! href">
+	<div class="max-w-xl" v-if="! href">
         <breeze-button-secondary class="mt-2 mr-2" type="button" @click.prevent="selectNewFile">
             Upload A New File
         </breeze-button-secondary>
@@ -11,8 +11,8 @@
         </span>
     </div>
 
-    <div class="max-w-xl mt-2" v-else>
-        <a :href="href" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mt-2 mr-2">
+    <div class="max-w-xl" v-else>
+        <a :href="href" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mr-2">
             Download file
         </a>
 

@@ -12,6 +12,15 @@ class FormFieldValue extends Model
 
     protected $table = 'form_field_values';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'form_field_id',
+    ];
+
     public function settings() {
     	return $this->hasMany(FormFieldValueSetting::class);
     }

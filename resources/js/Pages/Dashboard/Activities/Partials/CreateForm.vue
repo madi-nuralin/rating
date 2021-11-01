@@ -19,28 +19,31 @@
                 <BreezeLabel :for="field.id" :value="field.name" />
 
                 <BreezeInput v-if="field.type == 'text'"
-                            :id="field.id"
+                            :id="__(field.id)"
                             type="text"
-                            class="mt-1 block w-full" />
+                            class="mt-1 block w-full"
+                            v-model="form.fields[__(field.id)]" />
                 <BreezeSelect v-if="field.type == 'select'"
                             class="mt-1 block w-full"
-                            :id="field.id"
-                            :value="form[field.id]"
-                            @input="form[field.id] = $event"
-                            :options="options[field.id]"
+                            :id="__('field', field.id)"
+                            :value="form.fields[__(field.id)]"
+                            @input="form.fields[__(field.id)] = $event"
+                            :options="options[__(field.id)]"
                             :multiple="false" />
                 <BreezeSelect v-if="field.type == 'multiselect'"
                             class="mt-1 block w-full"
-                            :id="field.id"
-                            :value="form[field.id]"
-                            @input="form[field.id] = $event"
-                            :options="options[field.id]"
+                            :id="__('field', field.id)"
+                            :value="form.fields[__(field.id)]"
+                            @input="form.fields[__(field.id)] = $event"
+                            :options="options[__(field.id)]"
                             :multiple="true" />
                 <BreezeInputFile v-if="field.type == 'file'"
                             class="mt-1 block w-full"
-                            :id="field.id" />
+                            :id="__(field.id)"
+                            :href="''"
+                            :href-delete="''" />
 
-                <BreezeInputError :message="form.errors[field.id]" class="mt-2" />
+                <BreezeInputError :message="form.errors[__('field', field.id)]" class="mt-2" />
             </div>
 
         </template>
@@ -88,6 +91,7 @@
             return {
                 form: this.$inertia.form({
                     parameter: null,
+                    fields: {},
                 }),
                 parameter: null,
             }
@@ -115,15 +119,20 @@
                         
                         for (var j = 0; j < form_fields.length; ++j) {
                             
-                            if (! Array('select', 'multiselect').includes(form_fields[i].type) )
-                                continue;
+                            /*if (! Array('select', 'multiselect').includes(form_fields[i].type) )
+                                continue;*/
 
-                            this.form[form_fields[j]] = '';
+                            this.form.fields[this.__(form_fields[j].id)] = '';
+                            this.form.errors[this.__(form_fields[j].id)] = '';
                         }
 
                         break;
                     }
                 }
+            },
+
+            __(id) {
+                return id;
             }
         },
 
@@ -140,7 +149,7 @@
                         if (! Array('select', 'multiselect').includes(form_fields[i].type) )
                             continue;
 
-                        ret_val[form_fields[i].id] = form_fields[i].options.map(function(option) {
+                        ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function(option) {
                             return {
                                 value: option.id,
                                 name: option.name,

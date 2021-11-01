@@ -24073,7 +24073,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: this.$inertia.form({
-        parameter: null
+        parameter: null,
+        fields: {}
       }),
       parameter: null
     };
@@ -24098,13 +24099,18 @@ __webpack_require__.r(__webpack_exports__);
           var form_fields = this.parameter.form.fields;
 
           for (var j = 0; j < form_fields.length; ++j) {
-            if (!Array('select', 'multiselect').includes(form_fields[i].type)) continue;
-            this.form[form_fields[j]] = '';
+            /*if (! Array('select', 'multiselect').includes(form_fields[i].type) )
+                continue;*/
+            this.form.fields[this.__(form_fields[j].id)] = '';
+            this.form.errors[this.__(form_fields[j].id)] = '';
           }
 
           break;
         }
       }
+    },
+    __: function __(id) {
+      return id;
     }
   },
   computed: {
@@ -24116,7 +24122,7 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var i = 0; i < form_fields.length; ++i) {
           if (!Array('select', 'multiselect').includes(form_fields[i].type)) continue;
-          ret_val[form_fields[i].id] = form_fields[i].options.map(function (option) {
+          ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function (option) {
             return {
               value: option.id,
               name: option.name,
@@ -24208,6 +24214,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_InputError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/InputError */ "./resources/js/Components/InputError.vue");
 /* harmony import */ var _Components_Textarea__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.vue");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
+/* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
+
 
 
 
@@ -27626,7 +27634,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "max-w-xl mt-2"
+  "class": "max-w-xl"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Upload A New File ");
@@ -27636,7 +27644,7 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = {
   key: 1,
-  "class": "max-w-xl mt-2"
+  "class": "max-w-xl"
 };
 var _hoisted_5 = ["href"];
 
@@ -27673,7 +27681,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.href,
-    "class": "inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mt-2 mr-2"
+    "class": "inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mr-2"
   }, " Download file ", 8
   /* PROPS */
   , _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_danger, {
@@ -30070,43 +30078,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: field.id,
+          id: $options.__(field.id),
           type: "text",
-          "class": "mt-1 block w-full"
+          "class": "mt-1 block w-full",
+          modelValue: $data.form.fields[$options.__(field.id)],
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return $data.form.fields[$options.__(field.id)] = $event;
+          }
         }, null, 8
         /* PROPS */
-        , ["id"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+        , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form[field.id],
+          id: $options.__('field', field.id),
+          value: $data.form.fields[$options.__(field.id)],
           onInput: function onInput($event) {
-            return $data.form[field.id] = $event;
+            return $data.form.fields[$options.__(field.id)] = $event;
           },
-          options: $options.options[field.id],
+          options: $options.options[$options.__(field.id)],
           multiple: false
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form[field.id],
+          id: $options.__('field', field.id),
+          value: $data.form.fields[$options.__(field.id)],
           onInput: function onInput($event) {
-            return $data.form[field.id] = $event;
+            return $data.form.fields[$options.__(field.id)] = $event;
           },
-          options: $options.options[field.id],
+          options: $options.options[$options.__(field.id)],
           multiple: true
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: field.id
+          id: $options.__(field.id),
+          href: '',
+          "href-delete": ''
         }, null, 8
         /* PROPS */
         , ["id"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors[field.id],
+          message: $data.form.errors[$options.__('field', field.id)],
           "class": "mt-2"
         }, null, 8
         /* PROPS */
@@ -30889,7 +30903,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(new Date(_this.assignment.assessment.valid_from).toDateString() + ' - ' + new Date(_this.assignment.assessment.valid_to).toDateString()), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.t('score')), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.confirmations.informationCard01.score')), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.assignment.score), 1
       /* TEXT */

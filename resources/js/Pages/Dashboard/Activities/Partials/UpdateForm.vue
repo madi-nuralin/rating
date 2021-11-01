@@ -36,6 +36,7 @@
     import BreezeInputError from '@/Components/InputError'
     import BreezeTextarea from '@/Components/Textarea'
     import BreezeLabel from '@/Components/Label'
+    import BreezeSelect from '@/Components/Select'
 
     export default {
         components: {
