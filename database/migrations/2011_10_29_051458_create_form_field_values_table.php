@@ -15,6 +15,12 @@ class CreateFormFieldValuesTable extends Migration
     {
         Schema::create('form_field_values', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('form_field_id')
+                  ->unsigned();
+            $table->foreign('form_field_id')
+                  ->references('id')
+                  ->on('form_fields')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

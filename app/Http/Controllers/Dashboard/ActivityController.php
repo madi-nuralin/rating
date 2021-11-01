@@ -11,6 +11,9 @@ use Inertia\Inertia;
 use App\Models\Assignment;
 use App\Models\Activity;
 use App\Models\Parameter;
+use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldOption;
+use App\Models\Forms\FormFieldValue;
 
 class ActivityController extends Controller
 {
@@ -83,6 +86,20 @@ class ActivityController extends Controller
         $activity->setParameter($parameter->getId());
         $activity->setAssignment($assignment->getId());
         $activity->setScore(2);
+
+        /*foreach ($input['fields'] as $key => $value) {
+            $formField = FormField::findOrFail($key);
+
+            if ($formField->getType() != 'multiselect') {
+
+            } else {
+                $formFieldValue = FormFieldValue::create([
+                    $value]);
+            }
+
+            $activity->setFormFieldValues([$formFieldValue->getId()]);
+        }*/
+
         $activity->save();
 
         $activity->assignment->setScore($activity->getScore() + $activity->assignment->getScore());
@@ -104,7 +121,21 @@ class ActivityController extends Controller
         return Inertia::render('Dashboard/Activities/Show', [
             'activity' => array_merge(
                 $activity->toArray(), [
-                    'parameter' => $activity->getParameter(),
+                    'parameter' => array_merge(
+                        $activity->parameter->toArray(), [
+                            'form' => array_merge(
+                                $activity->parameter->form->toArray(), [
+                                    'fields' => $activity->parameter->form->fields ? $activity->parameter->form->fields->map(function($field) {
+                                        return array_merge(
+                                            $field->toArray(), [
+                                                'options' => $field->getOptions()
+                                            ]
+                                        );
+                                    }) : []
+                                ]
+                            )
+                        ]
+                    ),
                     'assignment' => $activity->getAssignment()
                 ]
             ),
@@ -124,7 +155,22 @@ class ActivityController extends Controller
         return Inertia::render('Dashboard/Activities/Edit', [
             'activity' => array_merge(
                 $activity->toArray(), [
-                    'parameter' => $activity->getParameter(),
+                    'parameter' => array_merge(
+                        $activity->parameter->toArray(), [
+                            'form' => array_merge(
+                                $activity->parameter->form->toArray(), [
+                                    'fields' => $activity->parameter->form->fields ? $activity->parameter->form->fields->map(function($field) {
+                                        return array_merge(
+                                            $field->toArray(), [
+                                                'options' => $field->getOptions(),
+                                                'values' => $field->getValues()
+                                            ]
+                                        );
+                                    }) : []
+                                ]
+                            )
+                        ]
+                    ),
                     'assignment' => $activity->getAssignment()
                 ]
             ),
