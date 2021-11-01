@@ -10,8 +10,9 @@ use Inertia\Inertia;
 
 use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldOption;
 
-class FormFieldController extends Controller
+class FormFieldOptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,8 +31,8 @@ class FormFieldController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Forms/Fields/Create', [
-            'form' => Form::findOrfail(request()->input('form'))
+        return Inertia::render('Forms/Fields/Options/Create', [
+            'field' => FormField::findOrfail(request()->input('field'))
         ]);
     }
 
@@ -47,17 +48,16 @@ class FormFieldController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'type' => ['required'],
-        ])->validateWithBag('createFormField');
+            'description' => ['required', 'string', 'max:255'],
+        ])->validateWithBag('createFormFieldOption');
 
-        $field = FormField::create([
-            'form_id' => $input['form'],
-            'type' => $input['type']
+        $option = FormFieldOption::create([
+            'form_field_id' => $input['field']
         ]);
-        $field->setName($input['name']);
-        $field->save();
+        $option->setName($input['name']);
+        $option->setDescription($input['description']);
 
-        return Inertia::location(route('form-field.show', ['form_field' => $field->getId()]));
+        return Inertia::location(route('form-field-option.show', ['form_field_option' => $option->getId()]));
     }
 
     /**
@@ -68,14 +68,10 @@ class FormFieldController extends Controller
      */
     public function show($id)
     {
-        $field = FormField::findOrFail($id);
+        $option = FormFieldOption::findOrFail($id);
 
-        return Inertia::render('Forms/Fields/Show', [
-            'field' => array_merge(
-                $field->toArray(), [
-                    'options' => $field->getOptions()
-                ]
-            )
+        return Inertia::render('Forms/Fields/Options/Show', [
+            'option' => $option->toArray()
         ]);
     }
 
@@ -103,17 +99,17 @@ class FormFieldController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'type' => ['required'],
-        ])->validateWithBag('updateFormField');
+            'description' => ['required', 'string', 'max:255'],
+        ])->validateWithBag('updateFormFieldOption');
 
-        $field = FormField::findOrfail($id);
-        $field->setName($input['name']);
-        $field->setType($input['type']);
-        $field->save();
+        $option = FormFieldOption::findOrfail($id);
+        $option->setName($input['name']);
+        $option->setDescription($input['description']);
+        $option->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
-                    : back()->with('status', 'form-field-updated');
+                    : back()->with('status', 'form-field-option-updated');
     }
 
     /**
@@ -124,6 +120,10 @@ class FormFieldController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $option = FormFieldOption::findOrfail($id);
+        $field = $option->field;
+        $option->delete();
+
+        return Inertia::location(route('form-field.show', ['form_field' => $field->getId()]));
     }
 }

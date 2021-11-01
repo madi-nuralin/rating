@@ -12,11 +12,11 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <resource-list :assignment="$page.props.assignment" />
+                        <ResourceList :assignment="$page.props.assignment" />
                     </div>
                     <div class="md:col-span-1 flex flex-col">
-                        <AssignmentInformation :assignment="$page.props.assignment" />
-                        <ConfirmationInformation :confirmations="$page.props.assignment.confirmations" />
+                        <InformationCard01 :assignment="$page.props.assignment" />
+                        <InformationCard02 :confirmations="$page.props.assignment.confirmations" />
                     </div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
     import ResourceList from '@/Pages/Dashboard/Assignments/Partials/List.vue'
-    import AssignmentInformation from '@/Pages/Dashboard/Assignments/Partials/AssignmentInformation.vue'
-    import ConfirmationInformation from '@/Pages/Dashboard/Assignments/Partials/ConfirmationInformation.vue'
+    import InformationCard01 from '@/Pages/Dashboard/Assignments/Partials/InformationCard01.vue'
+    import InformationCard02 from '@/Pages/Dashboard/Assignments/Partials/InformationCard02.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -43,8 +43,8 @@
             BreezeLabel,
             BreezeInput,
             ResourceList,
-            AssignmentInformation,
-            ConfirmationInformation,
+            InformationCard01,
+            InformationCard02,
             Head,
         },
     }

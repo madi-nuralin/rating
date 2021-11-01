@@ -1,11 +1,11 @@
 <template>
     <BreezeFormCard>
         <template #title>
-            {{ t('title') }}
+            {{ $t('pages.dashboard.assignments.informationCard02.title') }}
         </template>
 
         <template #description>
-            {{ t('description') }}
+            {{ $t('pages.dashboard.assignments.informationCard02.description') }}
         </template>
 
         <template #form>
@@ -66,12 +66,6 @@
             Link
         },
 
-        props: ['confirmations'],
-
-        methods: {
-            t(p) {
-                return this.$t('pages.dashboard.assignments.confirmation_information.' + p);
-            }
-        }
+        props: ['confirmations']
     }
 </script>

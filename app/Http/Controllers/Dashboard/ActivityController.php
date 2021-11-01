@@ -38,7 +38,23 @@ class ActivityController extends Controller
                 $assignment->toArray(), [
                     'assessment' => array_merge(
                         $assignment->assessment->toArray(), [
-                            'parameters' => $assignment->assessment->getParameters()
+                            'parameters' => $assignment->assessment->parameters->map(function($parameter) {
+                                return array_merge(
+                                    $parameter->toArray(), [
+                                        'form' => array_merge(
+                                            $parameter->form->toArray(), [
+                                                'fields' => $parameter->form->fields ? $parameter->form->fields->map(function($field) {
+                                                    return array_merge(
+                                                        $field->toArray(), [
+                                                            'options' => $field->getOptions()
+                                                        ]
+                                                    );
+                                                }) : []
+                                            ]
+                                        )
+                                    ]
+                                );
+                            })
                         ]
                     )
                 ]

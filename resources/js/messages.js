@@ -288,216 +288,6 @@ var messages = {
             actions: {
               createButton: 'Create New'
             }
-          },
-          rules: {
-            head: {
-              title: 'Parameter rules management'
-            },
-            header: 'Parameter rules management',
-            create: {
-              title: 'Create a new parameter rule',
-              description: 'Create a new parameter rule to collaborate with others on projects.',
-              form: {
-                type: 'Rule type',
-                name: 'Name',
-                description: 'Description',
-                input_id: 'Input identifier',
-                input_type: 'Input field type',
-                input_label: 'Input label',
-                input_validation: 'Input validation rules',
-                input_expression: 'Input computable expression',
-                input_expression_type: 'Type of input expression'
-              },
-              type: {
-                metadata: {
-                  name: 'Metadata',
-                  description: 'Metadata rule'
-                },
-                formula: {
-                  name: 'Formula',
-                  description: 'Formula rule'
-                },
-                submission: {
-                  name: 'Submission',
-                  description: 'Submission rules'
-                }
-              },
-              input_type: {
-                text: {
-                  name: 'Text data',
-                  description: 'Use to enter text data'
-                },
-                select: {
-                  name: 'Select',
-                  description: 'Use to select items from the list provided'
-                },
-                file: {
-                  name: 'File',
-                  description: 'Use to attach files'
-                },
-                link: {
-                  name: 'Link',
-                  description: 'Use to link to external resources'
-                }
-              },
-              input_expression_type: {
-                php: {
-                  name: 'Php expression',
-                  description: 'Use to use Php language expressions'
-                }
-              }
-            },
-            update: {
-              title: 'Update Rule',
-              description: 'The rule\'s name and description information.',
-              form: {
-                type: 'Rule type',
-                name: 'Name',
-                description: 'Description',
-                input_id: 'Input identifier',
-                input_type: 'Input field type',
-                input_label: 'Input label',
-                input_validation: 'Input validation rules',
-                input_expression: 'Input computable expression',
-                input_expression_type: 'Type of input expression'
-              },
-              type: {
-                metadata: {
-                  name: 'Metadata',
-                  description: 'Metadata rule'
-                },
-                formula: {
-                  name: 'Formula',
-                  description: 'Formula rule'
-                },
-                submission: {
-                  name: 'Submission',
-                  description: 'Submission rules'
-                }
-              },
-              input_type: {
-                text: {
-                  name: 'Text data',
-                  description: 'Use to enter text data'
-                },
-                select: {
-                  name: 'Select',
-                  description: 'Use to select items from the list provided'
-                },
-                file: {
-                  name: 'File',
-                  description: 'Use to attach files'
-                },
-                link: {
-                  name: 'Link',
-                  description: 'Use to link to external resources'
-                }
-              },
-              input_expression_type: {
-                php: {
-                  name: 'Php expression',
-                  description: 'Use to use Php language expressions'
-                }
-              }
-            },
-            delete: {
-              title: 'Delete Rule',
-              description: 'Permanently delete this rule.',
-              content: {
-                deleteInfo: 'Once a rule is deleted, all of its resources and data will be permanently deleted. Before deleting this rule, please download any data or information regarding this parameter that you wish to retain.',
-                deleteButton: 'Delete Rule',
-                modal: {
-                  title: 'Delete Rule',
-                  content: 'Are you sure you want to delete this rule? Once a rule is deleted, all of its resources and data will be permanently deleted.',
-                  footer: {
-                    cancelButton: 'Cancel',
-                    deleteButton: 'Delete Rule'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Rules list',
-              description: 'The rules list which are registered.',
-              form: {
-                listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
-                type: 'Rule type',
-                name: 'Name',
-                description: 'Description',
-                input_type: 'Input field type',
-                input_validation: 'Validation rules',
-                input_expression: 'Formula expression'
-              },
-              type: {
-                metadata: {
-                  name: 'Rule type: Metadata',
-                  description: 'Metadata rule'
-                },
-                formula: {
-                  name: 'Rule type: Formula',
-                  description: 'Formula rule'
-                },
-                submission: {
-                  name: 'Rule type: Submission',
-                  description: 'Submission rules'
-                }
-              },
-              actions: {
-                createButton: 'Create New'
-              }
-            },
-            options: {
-              head: {
-                title: 'Parameter rule management'
-              },
-              header: 'Parameter rule management',
-              create: {
-                title: 'Create a new option | Create a new variable',
-                description: 'Create a new option | Create a new variable',
-                form: {
-                  name: 'Name',
-                  description: 'Description'
-                }
-              },
-              update: {
-                title: 'Update option | Update variable',
-                description: 'The option\'s name and description information. | The variable\'s name and description information.',
-                form: {
-                  name: 'Name',
-                  description: 'Description'
-                }
-              },
-              delete: {
-                title: 'Delete option | Delete variable',
-                description: 'Permanently delete this option. | Permanently delete this variable.',
-                content: {
-                  deleteInfo: 'Once a option is deleted, all of its resources and data will be permanently deleted. Before deleting this option, please download any data or information regarding this option that you wish to retain.' +
-                    ' | Once a variable is deleted, all of its resources and data will be permanently deleted. Before deleting this variable, please download any data or information regarding this variable that you wish to retain.',
-                  deleteButton: 'Delete option | Delete variable',
-                  modal: {
-                    title: 'Delete option | Delete variable',
-                    content: 'Are you sure you want to delete this option? Once a option is deleted, all of its resources and data will be permanently deleted.' +
-                      ' | Are you sure you want to delete this variable? Once a variable is deleted, all of its resources and data will be permanently deleted.',
-                    footer: {
-                      cancelButton: 'Cancel',
-                      deleteButton: 'Delete option | Delete variable'
-                    }
-                  }
-                }
-              },
-              list: {
-                title: 'Option list | Variable list',
-                description: 'The option list which are registered. | The variable list which are registered.',
-                form: {
-                  listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
-                  name: 'Select option | Variable',
-                  description: 'Description',
-                },
-                actions: {
-                  createButton: 'Create New'
-                }
-              }
-            }
           }
         }    
       },
@@ -539,17 +329,17 @@ var messages = {
             title: 'Assignments'
           },
           header: 'Assignments',
-          assignment_information: {
+          informationCard01: {
             title: 'General information',
             description: 'Position assessment information',
-            valid_date: 'Valid date',
+            date: 'Valid date',
             employement: {
               department: 'Department',
               position: 'Position'
             },
             score: 'Score'
           },
-          confirmation_information: {
+          informationCard02: {
             title: 'Confirmation of assessment',
             description: 'List of committee members authorized to confirm this assessment'
           }
@@ -559,18 +349,18 @@ var messages = {
             title: 'Assignments confirmation'
           },
           header: 'Assignments confirmation',
-          assignment_information: {
+          informationCard01: {
             title: 'General information',
             description: 'Position assessment information',
             user: 'User',
-            valid_date: 'Valid date',
+            date: 'Valid date',
             employement: {
               department: 'Department',
               position: 'Position'
             },
             score: 'Score'
           },
-          confirmation_information: {
+          informationCard02: {
             title: 'Confirmation of assessment',
             description: 'List of committee members authorized to confirm this assessment'
           },
@@ -660,7 +450,7 @@ var messages = {
           },
           list: {
             title: 'Form management',
-            description: 'Create and manage form fileds',
+            description: 'Create and manage form fields',
             form: {
               listInfo: 'The list of created form fields.'
             },
@@ -684,6 +474,54 @@ var messages = {
             file: {
               name: 'Upload file',
               description: 'Upload file'
+            }
+          },
+          options: {
+            head: {
+              title: 'Form management'
+            },
+            header: 'Form management',
+            create: {
+              title: 'Create an option',
+              description: 'Create a new form field option by inserting name and description',
+              form: {
+                name: 'Name',
+                description: 'Description'
+              }
+            },
+            update: {
+              title: 'Update the form field option',
+              description: 'Update the existing form field option',
+              form: {
+                name: 'Name',
+                type: 'Description'
+              }
+            },
+            delete: {
+              title: 'Delete the form field option',
+              description: 'Permanently delete the form field option',
+              content: {
+                deleteInfo: 'Once a form field option is deleted, all of its resources and data will be permanently deleted. Before deleting this field option, please download any data or information regarding this field option that you wish to retain.',
+                deleteButton: 'Delete form field option',
+                modal: {
+                  title: 'Delete a form field option',
+                  content: 'Are you sure you want to delete this form field option? Once a field option is deleted, all of its resources and data will be permanently deleted.',
+                  footer: {
+                    cancelButton: 'Cancel',
+                    deleteButton: 'Delete'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Form field options',
+              description: 'Create and manage form field options',
+              form: {
+                listInfo: 'The list of created form field options.'
+              },
+              actions: {
+                createButton: 'Create a new form filed option'
+              }
             }
           }
         }
@@ -769,39 +607,39 @@ var messages = {
         },
         departments: {
           head: {
-            title: 'Управление отеделениями'
+            title: 'Управление отделами'
           },
-          header: 'Управление отеделениями',
+          header: 'Управление отделами',
           create: {
-            title: 'Создать новую отеделению',
-            description: 'Создайте новую отеделению, чтобы сотрудничать с другими над проектами.',
+            title: 'Создать новый отедел',
+            description: 'Создайте новый отеделами, чтобы сотрудничать с другими над проектами.',
             form: {
-              name: 'Название отеделении',
-              description: 'Описание отеделении'
+              name: 'Название отдела',
+              description: 'Описание отедела'
             }
           },
           update: {
-            title: 'Обновить отеделению',
+            title: 'Обновить отдела',
             description: 'Информация о названии и описании отеделении.',
             form: {
-              name: 'Название отеделении',
-              description: 'Описание отеделении',
+              name: 'Название отдела',
+              description: 'Описание отдела',
               parent: 'Родительский отдел',
-              positions: 'Должности отделения'
+              positions: 'Должности отдела'
             }
           },
           delete: {
-            title: 'Удалить отеделению',
-            description: 'Удалить эту отеделению навсегда.',
+            title: 'Удалить отдел',
+            description: 'Удалить этот отдел навсегда.',
             content: {
               deleteInfo: 'После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой отеделении, пожалуйста, загрузите любые данные или информацию относительно этой отеделении, которые вы хотите сохранить.',
-              deleteButton: 'Удалить отеделению',
+              deleteButton: 'Удалить отдел',
               modal: {
-                title: 'Удалить отеделению',
-                content: 'Вы уверены, что хотите удалить эту отеделению? После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления.',
+                title: 'Удалить отдел',
+                content: 'Вы уверены, что хотите удалить этот отдел? После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления.',
                 footer: {
                   cancelButton: 'Отмена',
-                  deleteButton: 'Удалить отеделению'
+                  deleteButton: 'Удалить отдел'
                 }
               }
             }
@@ -1005,219 +843,6 @@ var messages = {
             actions: {
               createButton: 'Создайте новый'
             }
-          },
-          rules: {
-            head: {
-              title: 'Управление правилами параметров оценки'
-            },
-            header: 'Управление правилами параметров оценки',
-            create: {
-              title: 'Создать новое правило параметра оценки',
-              description: 'Создать новое правило параметра оценки, чтобы сотрудничать с другими над проектами.',
-              form: {
-                type: 'Тип правила',
-                name: 'Название',
-                description: 'Описание',
-                input_id: 'Идентификатор поля заполнения',
-                input_type: 'Тип поля заполнения',
-                input_label: 'Метка поля заполнения',
-                input_validation: 'Правила валидаций поля заполнения',
-                input_expression: 'Вычисляемое выражение',
-                input_expression_type: 'Тип вычисляемого выражения'
-              },
-              type: {
-                metadata: {
-                  name: 'Метаданные',
-                  description: 'Правила метаданных'
-                },
-                formula: {
-                  name: 'Формула',
-                  description: 'Правила формулы'
-                },
-                submission: {
-                  name: 'Отправка',
-                  description: 'Правила для отправки файлов и ссылки'
-                }
-              },
-              input_type: {
-                text: {
-                  name: 'Текстовые данные',
-                  description: 'Используйте для ввода текстовых данных'
-                },
-                select: {
-                  name: 'Выборка',
-                  description: 'Используйте для выбора элементов из приведенного списка'
-                },
-                file: {
-                  name: 'Файл',
-                  description: 'Используйте для приклепления файлов'
-                },
-                link: {
-                  name: 'Ссылка',
-                  description: 'Используйте для ссылки на внешние ресурсы'
-                }
-              },
-              input_expression_type: {
-                php: {
-                  name: 'Вычисляемое выражение на языке Php',
-                  description: 'Используйте для вычисление формул и задач'
-                }
-              }
-            },
-            update: {
-              title: 'Обновить правило параметра оценки',
-              description: 'Информация о названии и описании правилы параметра оценки.',
-              form: {
-                type: 'Тип правила',
-                name: 'Название',
-                description: 'Описание',
-                input_id: 'Идентификатор поля заполнения',
-                input_type: 'Тип поля заполнения',
-                input_label: 'Метка поля заполнения',
-                input_validation: 'Правила валидаций поля заполнения',
-                input_expression: 'Вычисляемое выражение',
-                input_expression_type: 'Тип вычисляемого выражения'
-              },
-              type: {
-                metadata: {
-                  name: 'Метаданные',
-                  description: 'Правила метаданных'
-                },
-                formula: {
-                  name: 'Формула',
-                  description: 'Правила формулы'
-                },
-                submission: {
-                  name: 'Отправка',
-                  description: 'Правила для отправки файлов и ссылки'
-                }
-              },
-              input_type: {
-                text: {
-                  name: 'Текстовые данные',
-                  description: 'Используйте для ввода текстовых данных'
-                },
-                select: {
-                  name: 'Выборка',
-                  description: 'Используйте для выбора элементов из приведенного списка'
-                },
-                file: {
-                  name: 'Файл',
-                  description: 'Используйте для приклепления файлов'
-                },
-                link: {
-                  name: 'Ссылка',
-                  description: 'Используйте для ссылки на внешние ресурсы'
-                }
-              },
-              input_expression_type: {
-                php: {
-                  name: 'Вычисляемое выражение на языке Php',
-                  description: 'Используйте для вычисление формул и задач'
-                }
-              }
-            },
-            delete: {
-              title: 'Удалить правило параметра оценки',
-              description: 'Удалить этот правило параметра оценки навсегда.',
-              content: {
-                deleteInfo: 'После удаления правила параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой параметров оценки, пожалуйста, загрузите любые данные или информацию относительно этой параметров оценки, которые вы хотите сохранить.',
-                deleteButton: 'Удалить правило параметра оценки',
-                modal: {
-                  title: 'Удалить правило параметра оценки',
-                  content: 'Вы уверены, что хотите удалить это правило параметра оценки? После удаления правила параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления.',
-                  footer: {
-                    cancelButton: 'Отмена',
-                    deleteButton: 'Удалить правило параметра оценки'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Список правил параметра оценки',
-              description: 'Список правил параметра оценки, которые зарегистрированы.',
-              form: {
-                listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
-                type: 'Тип правила',
-                name: 'Название',
-                description: 'Описание',
-                input_id: 'Идентификатор поля заполнения',
-                input_type: 'Тип поля заполнения',
-                input_label: 'Метка поля заполнения',
-                input_validation: 'Правила валидаций поля заполнения',
-                input_expression: 'Вычисляемое выражение',
-                input_expression_type: 'Тип вычисляемого выражения'
-              },
-              type: {
-                metadata: {
-                  name: 'Тип правила: Метаданные',
-                  description: 'Правила метаданных'
-                },
-                formula: {
-                  name: 'Тип правила: Формула',
-                  description: 'Правила формулы'
-                },
-                submission: {
-                  name: 'Тип правила: Отправка',
-                  description: 'Правила для отправки файлов и ссылки'
-                }
-              },
-              actions: {
-                createButton: 'Создайте новый'
-              }
-            },
-            options: {
-              head: {
-                title: 'Управление правилами параметров'
-              },
-              header: 'Управление правилами параметров',
-              create: {
-                title: 'Создать новую опцию выбора | Создать новую переменную формулы',
-                description: 'Создать новую опцию выбора | Создать новую переменную формулы',
-                form: {
-                  name: 'Название',
-                  description: 'Описание'
-                }
-              },
-              update: {
-                title: 'Обновить опцию выбора | Обновить переменную формулы',
-                description: 'Информация о названии и описании опции. | Информация об имени и описании переменной.',
-                form: {
-                  name: 'Название',
-                  description: 'Описание'
-                }
-              },
-              delete: {
-                title: 'Удалить опцию выбора | Удалить переменную формулы',
-                description: 'Удалить эту опцию навсегда. | Удалить эту переменную навсегда.',
-                content: {
-                  deleteInfo: 'После удаления опции все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой опции загрузите любые данные или информацию о ней, которые вы хотите сохранить.' +
-                    ' | После удаления переменной все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой переменной загрузите любые данные или информацию об этой переменной, которые вы хотите сохранить.',
-                  deleteButton: 'Удалить опцию выбора | Удалить переменную формулы',
-                  modal: {
-                    title: 'Удалить опцию выбора | Удалить переменную формулы',
-                    content: 'Вы уверены, что хотите удалить эту опцию? После удаления опции все ее ресурсы и данные будут удалены без возможности восстановления.' +
-                      ' | Вы уверены, что хотите удалить эту переменную? После удаления переменной все ее ресурсы и данные будут удалены без возможности восстановления.',
-                    footer: {
-                      cancelButton: 'Отмена',
-                      deleteButton: 'Удалить опцию выбора | Удалить переменную формулы'
-                    }
-                  }
-                }
-              },
-              list: {
-                title: 'Список опции выбора | Список переменных формулы',
-                description: 'Список опций, которые зарегистрированы. | Список переменных, которые зарегистрированы.',
-                form: {
-                  listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента',
-                  name: 'Опция выбора | Переменная',
-                  description: 'Описание',
-                },
-                actions: {
-                  createButton: 'Создать новый'
-                }
-              }
-            }
           }
         }
       },
@@ -1259,17 +884,17 @@ var messages = {
             title: 'Оценивание'
           },
           header: 'Оценивание',
-          assignment_information: {
+          informationCard01: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
-            valid_date: 'Время действия текущего оцнивания',
+            date: 'Время действия текущего оцнивания',
             employement: {
               department: 'Отдел',
               position: 'Должность'
             },
             score: 'Текущий балл'
           },
-          confirmation_information: {
+          informationCard02: {
             title: 'Подтверждение текущего оценивания',
             description: 'Список сотрудников подтверждающие данное оценивание'
           }
@@ -1279,18 +904,18 @@ var messages = {
             title: 'Подтверждение оценки деятельности пользователя'
           },
           header: 'Подтверждение оценки деятельности пользователя',
-          assignment_information: {
+          informationCard01: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
             user: 'Пользователь',
-            valid_date: 'Время действия текущего оцнивания',
+            date: 'Время действия текущего оцнивания',
             employement: {
               department: 'Отдел',
               position: 'Должность'
             },
             score: 'Текущий балл'
           },
-          confirmation_information: {
+          informationCard02: {
             title: 'Подтверждение текущего оценивания',
             description: 'Список сотрудников подтверждающие данное оценивание'
           },
@@ -1404,6 +1029,54 @@ var messages = {
             file: {
               name: 'Загрузка файла',
               description: 'Загрузка файла'
+            }
+          },
+          options: {
+              head: {
+              title: 'Создание и управление формами'
+            },
+            header: 'Создание и управление формами',
+            create: {
+              title: 'Создать новый вариант выбора поля формы',
+              description: 'Создать новый вариант выбора поля формы',
+              form: {
+                name: 'Название',
+                type: 'Описание'
+              }
+            },
+            update: {
+              title: 'Обновить вариант выбора поля формы',
+              description: 'Обновить вариант выбора поля формы',
+              form: {
+                name: 'Название',
+                description: 'Описание'
+              }
+            },
+            delete: {
+              title: 'Удалить вариант выбора поля формы',
+              description: 'Удалить вариант выбора поля формы',
+              content: {
+                deleteInfo: 'После удаления варианта выбора поля формы все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого варианта выбора поля формы загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
+                deleteButton: 'Удалить вариант выбора поля формы',
+                modal: {
+                  title: 'Удалить вариант выбора поля формы',
+                  content: 'Вы уверены, что хотите удалить этого варианта выбора поля формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
+                  footer: {
+                    cancelButton: 'Отмена',
+                    deleteButton: 'Удалить'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Варианты выбора поля формы',
+              description: 'Создание и управление вариантами выбора поля формы',
+              form: {
+                listInfo: 'Список созданных вариантов выбора поля формы.'
+              },
+              actions: {
+                createButton: 'Создать новое вариант выбора поля формы'
+              }
             }
           }
         }

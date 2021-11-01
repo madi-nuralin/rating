@@ -12,6 +12,15 @@ class FormFieldOption extends Model
 
     protected $table = 'form_field_options';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'form_field_id',
+    ];
+
     public function settings() {
     	return $this->hasMany(FormFieldOptionSetting::class);
     }
@@ -22,6 +31,40 @@ class FormFieldOption extends Model
 
     public function getId() {
     	return $this->id;
+    }
+
+    public function getName($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'name'
+        );
+    }
+
+    public function setName($name, $locale=null) {
+        $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'name',
+            $name
+        );
+    }
+
+    public function getDescription($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'description'
+        );
+    }
+
+    public function setDescription($name, $locale=null) {
+        $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'description',
+            $name
+        );
     }
 
     public function getField() {
@@ -35,6 +78,8 @@ class FormFieldOption extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];
