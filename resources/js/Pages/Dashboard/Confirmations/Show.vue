@@ -13,11 +13,11 @@
                 <UpdateForm :confirmation="$page.props.confirmation" />
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <resource-list :assignment="$page.props.confirmation.assignment" :disabled="true"/>
+                        <ResourceList :assignment="$page.props.confirmation.assignment" :disabled="true"/>
                     </div>
                     <div class="md:col-span-1 flex flex-col">
-                        <AssignmentInformation :assignment="$page.props.confirmation.assignment" />
-                        <ConfirmationInformation :confirmations="$page.props.confirmation.assignment.confirmations" />
+                        <InformationCard01 :assignment="$page.props.confirmation.assignment" />
+                        <InformationCard02 :confirmations="$page.props.confirmation.assignment.confirmations" />
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
     import ResourceList from '@/Pages/Dashboard/Confirmations/Partials/List.vue'
-    import AssignmentInformation from '@/Pages/Dashboard/Confirmations/Partials/AssignmentInformation.vue'
-    import ConfirmationInformation from '@/Pages/Dashboard/Assignments/Partials/ConfirmationInformation.vue'
+    import InformationCard01 from '@/Pages/Dashboard/Confirmations/Partials/InformationCard01.vue'
+    import InformationCard02 from '@/Pages/Dashboard/Assignments/Partials/InformationCard02.vue'
     import UpdateForm from '@/Pages/Dashboard/Confirmations/Partials/UpdateForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
@@ -45,8 +45,8 @@
             BreezeLabel,
             BreezeInput,
             ResourceList,
-            AssignmentInformation,
-            ConfirmationInformation,
+            InformationCard01,
+            InformationCard02,
             UpdateForm,
             Head,
         },

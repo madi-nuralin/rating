@@ -1,24 +1,24 @@
 <template>
-    <BreezeFormSection @submitted="createFormField">
+    <BreezeFormSection @submitted="updateFormFieldOption">
         <template #title>
-            {{ $t('pages.forms.fields.create.title') }}
+            {{ $t('pages.forms.fields.options.update.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.forms.fields.create.description') }}
+            {{ $t('pages.forms.fields.options.update.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.forms.fields.create.form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.forms.fields.options.update.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="type" :value="$t('pages.forms.fields.create.form.type')" />
-                <BreezeSelect id="type" class="mt-1 block w-full" :value="form.type" @input="form.type = $event" :options="options.types" :multiple="false" />
-                <BreezeInputError :message="form.errors.type" class="mt-2" />
+                <BreezeLabel for="description" :value="$t('pages.forms.fields.options.update.form.description')" />
+                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
+                <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
         </template>
 
@@ -28,7 +28,7 @@
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Create
+                Update
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -36,8 +36,6 @@
 
 <script>
     import BreezeButton from '@/Components/Button.vue'
-    import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
-    import BreezeButtonDanger from '@/Components/ButtonDanger.vue'
     import BreezeActionMessage from '@/Components/ActionMessage.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
     import BreezeInput from '@/Components/Input.vue'
@@ -50,8 +48,6 @@
     export default {
         components: {
             BreezeButton,
-            BreezeButtonSecondary,
-            BreezeButtonDanger,
             BreezeActionMessage,
             BreezeFormSection,
             BreezeInput,
@@ -61,41 +57,25 @@
             BreezeSelect,
         },
 
-        props: ['propForm'],
+        props: ['option'],
 
         data() {
             return {
                 form: this.$inertia.form({
-                    name: '',
-                    type: '',
+                    name: this.option.name,
+                    description: this.option.description,
                 })
             }
         },
 
         methods: {
-            createFormField() {
-                this.form.post(route('form-field.store', {'form': this.propForm.id}), {
-                    errorBag: 'createFormField',
+            updateFormFieldOption() {
+                this.form.put(route('form-field-option.update', {'id': this.option.id}), {
+                    errorBag: 'updateFormFieldOption',
                     preserveScroll: true,
                     //onSuccess: () => Inertia.reload({ only: ['parameters'] })
                 });
             },
         },
-
-        computed: {
-            options() {
-                let types = [
-                    { value: 'text', name: this.$t('pages.forms.fields.types.text.name'), description: this.$t('pages.forms.fields.types.text.description') },
-                    { value: 'select', name: this.$t('pages.forms.fields.types.select.name'), description: this.$t('pages.forms.fields.types.select.description') },
-                    { value: 'multiselect', name: this.$t('pages.forms.fields.types.multiselect.name'), description: this.$t('pages.forms.fields.types.multiselect.description') },
-                    { value: 'file', name: this.$t('pages.forms.fields.types.file.name'), description: this.$t('pages.forms.fields.types.file.description') }
-                ];
-
-
-                return {
-                    'types' : types
-                }
-            }
-        }
     }
 </script>

@@ -1,26 +1,17 @@
 <template>
     <BreezeFormCard>
         <template #title>
-            {{ t('title') }}
+            {{ $t('pages.dashboard.assignments.informationCard01.title') }}
         </template>
 
         <template #description>
-            {{ t('description') }}
+            {{ $t('pages.dashboard.assignments.informationCard01.description') }}
         </template>
 
         <template #form>
-            <div class="col-span-6 text-sm">
-                <p>
-                    {{ t('user') }}
-                </p>
-                <p class="text-xs text-gray-600">
-                    {{ assignment.user.name }}, {{ assignment.user.email }}
-                </p>
-            </div>
-
             <div class="col-span-6 text-xs">
                 <p>
-                    {{ t('employement.department') }}
+                    {{ $t('pages.dashboard.assignments.informationCard01.employement.department') }}
                 </p>
                 <p class="text-gray-600">
                     {{ assignment.employement.department.name }}
@@ -29,7 +20,7 @@
 
             <div class="col-span-6 text-xs">
                 <p>
-                    {{ t('employement.position') }}
+                    {{ $t('pages.dashboard.assignments.informationCard01.employement.position') }}
                 </p>
                 <p class="text-gray-600">
                     {{ assignment.employement.position.name }}
@@ -38,7 +29,7 @@
 
             <div class="col-span-6 text-xs">
                 <p>
-                    {{ t('valid_date') }}
+                    {{ $t('pages.dashboard.assignments.informationCard01.date') }}
                 </p>
                 <p class="text-gray-600">
                     {{
@@ -50,7 +41,7 @@
 
             <div class="col-span-6 text-xs">
                 <p>
-                    {{ t('score') }}
+                    {{ $t('pages.dashboard.assignments.informationCard01.score') }}
                 </p>
                 <p class="text-gray-600">
                     {{ assignment.score }}
@@ -81,12 +72,6 @@
             BreezeFormCard,
         },
 
-        props: ['assignment'],
-
-        methods: {
-            t(p) {
-                return this.$t('pages.dashboard.confirmations.assignment_information.' + p);
-            },
-        }
+        props: ['assignment']
     }
 </script>
