@@ -40,16 +40,24 @@ class ActivityController extends Controller
             'assignment' => array_merge(
                 $assignment->toArray(), [
                     'assessment' => array_merge(
-                        $assignment->assessment->toArray(), [
-                            'parameters' => $assignment->assessment->parameters->map(function($parameter) {
+                        $assignment->assessment
+                                   ->toArray(), [
+                            'parameters' => $assignment->assessment
+                                                       ->parameters
+                                                       ->map(function($parameter) {
                                 return array_merge(
                                     $parameter->toArray(), [
                                         'form' => array_merge(
-                                            $parameter->form->toArray(), [
-                                                'fields' => $parameter->form->fields ? $parameter->form->fields->map(function($field) {
+                                            $parameter->form
+                                                      ->toArray(), [
+                                                'fields' => $parameter->form
+                                                                      ->fields ?
+                                                            $parameter->form
+                                                                      ->fields
+                                                                      ->map(function($formField) {
                                                     return array_merge(
-                                                        $field->toArray(), [
-                                                            'options' => $field->getOptions()
+                                                        $formField->toArray(), [
+                                                            'options' => $formField->getOptions()
                                                         ]
                                                     );
                                                 }) : []
@@ -86,19 +94,35 @@ class ActivityController extends Controller
         $activity->setParameter($parameter->getId());
         $activity->setAssignment($assignment->getId());
         $activity->setScore(2);
+        $activity->save();
 
-        /*foreach ($input['fields'] as $key => $value) {
+        foreach ($input['fields'] as $key => $value) {
+            //error_log(json_encode($input['fields']));
             $formField = FormField::findOrFail($key);
 
-            if ($formField->getType() != 'multiselect') {
+            if ($formField->getType() == FormField::MULTISELECT) {
+                foreach ($value as $v) {
+                    $formFieldValue = FormFieldValue::create([
+                        'form_field_id' => $formField->getId(),
+                    ]);
 
-            } else {
-                $formFieldValue = FormFieldValue::create([
-                    $value]);
+                    $formFieldValue->setContext($v);
+                    $formFieldValue->save();
+
+                    $activity->addFormFieldValues([$formFieldValue->getId()]);
+                }
+                continue;
             }
 
-            $activity->setFormFieldValues([$formFieldValue->getId()]);
-        }*/
+            $formFieldValue = FormFieldValue::create([
+                'form_field_id' => $formField->getId(),
+            ]);
+
+            $formFieldValue->setContext($value);
+            $formFieldValue->save();
+
+            $activity->addFormFieldValues([$formFieldValue->getId()]);
+        }
 
         $activity->save();
 
@@ -122,13 +146,22 @@ class ActivityController extends Controller
             'activity' => array_merge(
                 $activity->toArray(), [
                     'parameter' => array_merge(
-                        $activity->parameter->toArray(), [
+                        $activity->parameter
+                                 ->toArray(), [
                             'form' => array_merge(
-                                $activity->parameter->form->toArray(), [
-                                    'fields' => $activity->parameter->form->fields ? $activity->parameter->form->fields->map(function($field) {
+                                $activity->parameter
+                                         ->form
+                                         ->toArray(), [
+                                    'fields' => $activity->parameter
+                                                         ->form
+                                                         ->fields ?
+                                                $activity->parameter
+                                                         ->form
+                                                         ->fields
+                                                         ->map(function($formField) {
                                         return array_merge(
-                                            $field->toArray(), [
-                                                'options' => $field->getOptions()
+                                            $formField->toArray(), [
+                                                'options' => $formField->getOptions()
                                             ]
                                         );
                                     }) : []
@@ -156,14 +189,29 @@ class ActivityController extends Controller
             'activity' => array_merge(
                 $activity->toArray(), [
                     'parameter' => array_merge(
-                        $activity->parameter->toArray(), [
+                        $activity->parameter
+                                 ->toArray(), [
                             'form' => array_merge(
-                                $activity->parameter->form->toArray(), [
-                                    'fields' => $activity->parameter->form->fields ? $activity->parameter->form->fields->map(function($field) {
+                                $activity->parameter
+                                         ->form
+                                         ->toArray(), [
+                                    'fields' => $activity->parameter
+                                                         ->form
+                                                         ->fields ?
+                                                $activity->parameter
+                                                         ->form
+                                                         ->fields
+                                                         ->map(function($formField) use ($activity) {
                                         return array_merge(
-                                            $field->toArray(), [
-                                                'options' => $field->getOptions(),
-                                                'values' => $field->getValues()
+                                            $formField->toArray(), [
+                                                'options' => $formField->getOptions(),
+                                                'values' => collect(
+                                                    $activity->formFieldValues()
+                                                             ->where('form_field_id', $formField->getId())
+                                                             ->get()
+                                                )->map(function($formFieldValue) {
+                                                    return $formFieldValue->getContext();
+                                                })
                                             ]
                                         );
                                     }) : []
@@ -186,7 +234,50 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $activity = Activity::findOrFail($id);
+
+        foreach ($input['fields'] as $key => $value) {
+            if (is_null($value)) {
+                throw ValidationException::withMessages([
+                    $key => 'Field is required.',
+                ]);
+            }
+
+            $formField = FormField::find($key);
+
+            if ($formField->getType() == FormField::FILE) {
+                continue;
+            }
+
+            if ($formField->getType() == FormField::MULTISELECT) {
+                $activity->formFieldValues()
+                         ->where('form_field_id', $formField->id)
+                         ->delete();
+
+                foreach ($value as $v) {
+                    $formFieldValue = FormFieldValue::create([
+                        'form_field_id' => $formField->getId(),
+                    ]);
+
+                    $formFieldValue->setContext($v);
+                    $formFieldValue->save();
+                    $activity->addFormFieldValues([$formFieldValue->getId()]);
+                }
+
+                continue;
+            }
+
+            $formFieldValue = $activity->formFieldValues()
+                                       ->firstWhere('form_field_id', $formField->id);
+
+            $formFieldValue->setContext($value);
+            $formFieldValue->save();
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'activity-updated');
     }
 
     /**

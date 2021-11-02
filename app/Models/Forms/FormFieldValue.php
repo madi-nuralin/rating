@@ -25,7 +25,7 @@ class FormFieldValue extends Model
     	return $this->hasMany(FormFieldValueSetting::class);
     }
 
-    public function field() {
+    public function formField() {
     	return $this->belongsTo(FormField::class);
     }
 
@@ -33,12 +33,80 @@ class FormFieldValue extends Model
     	return $this->id;
     }
 
-    public function getField() {
-    	return $this->field;
+    public function getFormField() {
+    	return $this->formField;
     }
 
-    public function setField($field) {
-    	//
+    public function setFormField($formField) {
+    	$this->formField()->associate($formField)->save();
+    }
+
+    private function _getSettingLocale() {
+        switch ($this->formField->getType()) {
+            case FormField::TEXT:
+                return app()->currentLocale();
+
+            case FormField::SELECT:
+            case FormField::MULTISELECT:
+            case FormField::FILE:
+                return '';
+
+            default:
+                return '';
+        }
+    }
+
+    private function _getSettingType() {
+        switch ($this->formField->getType()) {
+            case FormField::TEXT:
+            case FormField::FILE:
+                return 'string';
+
+            case FormField::SELECT:
+            case FormField::MULTISELECT:
+                return 'integer';
+
+            default:
+                return 'string';
+        }
+    }
+
+    /*public function getContext($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'context'
+        );
+    }
+
+    public function setContext($context, $locale=null) {
+        return $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'context',
+            $context
+        );
+    }*/
+
+    public function setContext($context) {
+
+        $this->updateSettingValue(
+            $this->_getSettingLocale(),
+            $this->_getSettingType(),
+            'context',
+            $context
+        );
+    }
+
+    public function getContext() {
+        $ret = $this->getSettingValue(
+            $this->_getSettingLocale(),
+            $this->_getSettingType(),
+            'context'
+        );
+        return $this->_getSettingType() == 'integer'
+            ? intval($ret)
+            : $ret;
     }
 
     public function toArray() {

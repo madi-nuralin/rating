@@ -50,14 +50,14 @@ class FormFieldController extends Controller
             'type' => ['required'],
         ])->validateWithBag('createFormField');
 
-        $field = FormField::create([
+        $formField = FormField::create([
             'form_id' => $input['form'],
             'type' => $input['type']
         ]);
-        $field->setName($input['name']);
-        $field->save();
+        $formField->setName($input['name']);
+        $formField->save();
 
-        return Inertia::location(route('form-field.show', ['form_field' => $field->getId()]));
+        return Inertia::location(route('form-field.show', ['form_field' => $formField->getId()]));
     }
 
     /**
@@ -68,12 +68,12 @@ class FormFieldController extends Controller
      */
     public function show($id)
     {
-        $field = FormField::findOrFail($id);
+        $formField = FormField::findOrFail($id);
 
         return Inertia::render('Forms/Fields/Show', [
             'field' => array_merge(
-                $field->toArray(), [
-                    'options' => $field->getOptions()
+                $formField->toArray(), [
+                    'options' => $formField->getOptions()
                 ]
             )
         ]);
@@ -106,10 +106,10 @@ class FormFieldController extends Controller
             'type' => ['required'],
         ])->validateWithBag('updateFormField');
 
-        $field = FormField::findOrfail($id);
-        $field->setName($input['name']);
-        $field->setType($input['type']);
-        $field->save();
+        $formField = FormField::findOrfail($id);
+        $formField->setName($input['name']);
+        $formField->setType($input['type']);
+        $formField->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)

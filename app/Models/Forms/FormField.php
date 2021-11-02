@@ -12,6 +12,12 @@ class FormField extends Model
 
     protected $table = 'form_fields';
 
+    const TEXT = 'text';
+    const TEXTAREA = 'textarea';
+    const SELECT = 'select';
+    const MULTISELECT = 'multiselect';
+    const FILE = 'file';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -35,7 +41,7 @@ class FormField extends Model
     }
 
     public function values() {
-    	return $this->hasMany(FormFieldValues::class);
+    	return $this->hasMany(FormFieldValue::class);
     }
 
     public function getId() {

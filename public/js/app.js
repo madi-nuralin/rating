@@ -24212,9 +24212,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FormSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/FormSection */ "./resources/js/Components/FormSection.vue");
 /* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.vue");
 /* harmony import */ var _Components_InputError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/InputError */ "./resources/js/Components/InputError.vue");
-/* harmony import */ var _Components_Textarea__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.vue");
-/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
-/* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
+/* harmony import */ var _Components_FileInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/FileInput */ "./resources/js/Components/FileInput.vue");
+/* harmony import */ var _Components_Textarea__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.vue");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
+/* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
+
 
 
 
@@ -24230,14 +24232,17 @@ __webpack_require__.r(__webpack_exports__);
     BreezeFormSection: _Components_FormSection__WEBPACK_IMPORTED_MODULE_2__["default"],
     BreezeInput: _Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
     BreezeInputError: _Components_InputError__WEBPACK_IMPORTED_MODULE_4__["default"],
-    BreezeTextarea: _Components_Textarea__WEBPACK_IMPORTED_MODULE_5__["default"],
-    BreezeLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_6__["default"]
+    BreezeInputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_5__["default"],
+    BreezeTextarea: _Components_Textarea__WEBPACK_IMPORTED_MODULE_6__["default"],
+    BreezeLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_7__["default"],
+    BreezeSelect: _Components_Select__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   props: ['activity'],
   data: function data() {
     return {
       form: this.$inertia.form({
-        parameter: this.activity.parameter.name
+        parameter: this.activity.parameter.name,
+        fields: this.getFields()
       })
     };
   },
@@ -24249,6 +24254,41 @@ __webpack_require__.r(__webpack_exports__);
         errorBag: 'updateActivity',
         preserveScroll: true
       });
+    },
+    getFields: function getFields() {
+      var ret_val = {};
+      var form_fields = this.activity.parameter.form.fields;
+
+      for (var i = 0; i < form_fields.length; ++i) {
+        if (form_fields[i].type == 'multiselect') ret_val[this.__(form_fields[i].id)] = form_fields[i].values;else ret_val[this.__(form_fields[i].id)] = form_fields[i].values[0];
+      }
+
+      return ret_val;
+    },
+    __: function __(id) {
+      return id;
+    }
+  },
+  computed: {
+    options: function options() {
+      var ret_val = {};
+
+      if (true) {
+        var form_fields = this.activity.parameter.form.fields;
+
+        for (var i = 0; i < form_fields.length; ++i) {
+          if (!Array('select', 'multiselect').includes(form_fields[i].type)) continue;
+          ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function (option) {
+            return {
+              value: option.id,
+              name: option.name,
+              description: option.description
+            };
+          });
+        }
+      }
+
+      return ret_val;
     }
   }
 });
@@ -30090,7 +30130,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: $options.__('field', field.id),
+          id: $options.__(field.id),
           value: $data.form.fields[$options.__(field.id)],
           onInput: function onInput($event) {
             return $data.form.fields[$options.__(field.id)] = $event;
@@ -30102,7 +30142,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: $options.__('field', field.id),
+          id: $options.__(field.id),
           value: $data.form.fields[$options.__(field.id)],
           onInput: function onInput($event) {
             return $data.form.fields[$options.__(field.id)] = $event;
@@ -30303,10 +30343,13 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_2 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -30314,6 +30357,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInput");
 
   var _component_BreezeInputError = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInputError");
+
+  var _component_BreezeSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeSelect");
+
+  var _component_BreezeInputFile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInputFile");
 
   var _component_BreezeActionMessage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeActionMessage");
 
@@ -30356,7 +30403,64 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
-      , ["message"])])];
+      , ["message"])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.activity.parameter.form.fields, function (field, i) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+          "for": field.id,
+          value: field.name
+        }, null, 8
+        /* PROPS */
+        , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
+          key: 0,
+          id: $options.__(field.id),
+          type: "text",
+          "class": "mt-1 block w-full",
+          modelValue: $data.form.fields[$options.__(field.id)],
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return $data.form.fields[$options.__(field.id)] = $event;
+          }
+        }, null, 8
+        /* PROPS */
+        , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+          key: 1,
+          "class": "mt-1 block w-full",
+          id: $options.__(field.id),
+          value: $data.form.fields[$options.__(field.id)],
+          onInput: function onInput($event) {
+            return $data.form.fields[$options.__(field.id)] = $event;
+          },
+          options: $options.options[$options.__(field.id)],
+          multiple: false
+        }, null, 8
+        /* PROPS */
+        , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+          key: 2,
+          "class": "mt-1 block w-full",
+          id: $options.__(field.id),
+          value: $data.form.fields[$options.__(field.id)],
+          onInput: function onInput($event) {
+            return $data.form.fields[$options.__(field.id)] = $event;
+          },
+          options: $options.options[$options.__(field.id)],
+          multiple: true
+        }, null, 8
+        /* PROPS */
+        , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
+          key: 3,
+          "class": "mt-1 block w-full",
+          id: $options.__(field.id),
+          href: '',
+          "href-delete": ''
+        }, null, 8
+        /* PROPS */
+        , ["id"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+          message: $data.form.errors[$options.__(field.id)],
+          "class": "mt-2"
+        }, null, 8
+        /* PROPS */
+        , ["message"])]);
+      }), 256
+      /* UNKEYED_FRAGMENT */
+      ))];
     }),
     _: 2
     /* DYNAMIC */
@@ -30369,7 +30473,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_2];
+          return [_hoisted_3];
         }),
         _: 1
         /* STABLE */
@@ -30383,7 +30487,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_4];
         }),
         _: 1
         /* STABLE */
@@ -38476,7 +38580,7 @@ var messages = {
         links: {
           dashboard: 'Панель управления',
           positions: 'Должности',
-          departments: 'Отделения',
+          departments: 'Отделы',
           users: 'Пользователи',
           assessments: 'Настройка оценивания персонала',
           parameters: 'Настройка параметров оценивания',

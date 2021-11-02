@@ -23,7 +23,7 @@ class FormFieldValueSetting extends Model
         'setting_type'
     ];
 
-    public function value() {
+    public function formFieldValue() {
         return $this->belongsTo(FormFieldValue::class);
     }
 }

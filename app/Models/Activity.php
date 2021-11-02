@@ -83,6 +83,10 @@ class Activity extends Model
         }
     }
 
+    public function addFormFieldValues($formFieldValues) {
+        $this->formFieldValues()->attach($formFieldValues);
+    }
+
     public function toArray() {
     	return [
     		'id' => $this->getId(),

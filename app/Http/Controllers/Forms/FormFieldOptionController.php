@@ -51,13 +51,13 @@ class FormFieldOptionController extends Controller
             'description' => ['required', 'string', 'max:255'],
         ])->validateWithBag('createFormFieldOption');
 
-        $option = FormFieldOption::create([
+        $formFieldOption = FormFieldOption::create([
             'form_field_id' => $input['field']
         ]);
-        $option->setName($input['name']);
-        $option->setDescription($input['description']);
+        $formFieldOption->setName($input['name']);
+        $formFieldOption->setDescription($input['description']);
 
-        return Inertia::location(route('form-field-option.show', ['form_field_option' => $option->getId()]));
+        return Inertia::location(route('form-field-option.show', ['form_field_option' => $formFieldOption->getId()]));
     }
 
     /**
@@ -68,10 +68,10 @@ class FormFieldOptionController extends Controller
      */
     public function show($id)
     {
-        $option = FormFieldOption::findOrFail($id);
+        $formFieldOption = FormFieldOption::findOrFail($id);
 
         return Inertia::render('Forms/Fields/Options/Show', [
-            'option' => $option->toArray()
+            'option' => $formFieldOption->toArray()
         ]);
     }
 
@@ -102,10 +102,10 @@ class FormFieldOptionController extends Controller
             'description' => ['required', 'string', 'max:255'],
         ])->validateWithBag('updateFormFieldOption');
 
-        $option = FormFieldOption::findOrfail($id);
-        $option->setName($input['name']);
-        $option->setDescription($input['description']);
-        $option->save();
+        $formFieldOption = FormFieldOption::findOrfail($id);
+        $formFieldOption->setName($input['name']);
+        $formFieldOption->setDescription($input['description']);
+        $formFieldOption->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
@@ -120,10 +120,10 @@ class FormFieldOptionController extends Controller
      */
     public function destroy($id)
     {
-        $option = FormFieldOption::findOrfail($id);
-        $field = $option->field;
-        $option->delete();
+        $formFieldOption = FormFieldOption::findOrfail($id);
+        $formField = $formFieldOption->field;
+        $formFieldOption->delete();
 
-        return Inertia::location(route('form-field.show', ['form_field' => $field->getId()]));
+        return Inertia::location(route('form-field.show', ['form_field' => $formField->getId()]));
     }
 }

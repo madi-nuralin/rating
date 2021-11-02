@@ -1095,7 +1095,7 @@ var messages = {
         links: {
           dashboard: 'Панель управления',
           positions: 'Должности',
-          departments: 'Отделения',
+          departments: 'Отделы',
           users: 'Пользователи',
           assessments: 'Настройка оценивания персонала',
           parameters: 'Настройка параметров оценивания',
