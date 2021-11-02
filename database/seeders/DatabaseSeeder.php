@@ -15,6 +15,8 @@ use App\Models\Department;
 use App\Models\Assessment;
 use App\Models\Parameter;
 use App\Models\Forms\Form;
+use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldOption;
 
 class DatabaseSeeder extends Seeder
 {
@@ -311,6 +313,93 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квартиль',
                     'description' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квар-тиль по данным Journal Citation Reports (Джоурнал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Анали-тикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль по CiteScore (СайтСкор) не менее 65 хотя бы по одной из научных областей, в об-ласти социальных и гуманитарных наук, в журналах, индексируемых в базе дан-ных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) илиArticle in Press (Статья в печати)'
+                ],
+                'form' => [
+                    'fields' => [
+                        [
+                            'type' => 'text',
+                            'en' => [
+                                'name' => 'Article title'
+                            ],
+                            'ru' => [
+                                'name' => 'Название статьи'
+                            ]
+                        ], [
+                            'type' => 'text',
+                            'en' => [
+                                'name' => 'Article abstract'
+                            ],
+                            'ru' => [
+                                'name' => 'Аннотация статьи'
+                            ]
+                        ], [
+                            'en' => [
+                                'name' => 'Publication journal'
+                            ],
+                            'ru' => [
+                                'name' => 'Журнал публикаций'
+                            ],
+                            'type' => 'select',
+                            'options' => [
+                                [
+                                    'en' => [
+                                        'name' => 'IEEE Xplore Digital Library',
+                                        'description' => 'IEEE Xplore Digital Library'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Цифровая библиотека IEEE Xplore',
+                                        'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
+                                    ]
+                                ], [
+                                    'en' => [
+                                        'name' => 'International Journal of Information and Communication Technology',
+                                        'description' => 'International Journal of Information and Communication Technology'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Международный журнал информационных и коммуникационных технологий',
+                                        'description' => 'Международный журнал информационных и коммуникационных технологий'
+                                    ]
+                                ]
+                            ]
+                        ], [
+                            'en' => [
+                                'name' => 'Article language'
+                            ],
+                            'ru' => [
+                                'name' => 'Язык статьи'
+                            ],
+                            'type' => 'multiselect',
+                            'options' => [
+                                [
+                                    'en' => [
+                                        'name' => 'English',
+                                        'description' => 'English'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Англииский',
+                                        'description' => 'Англииский'
+                                    ]
+                                ], [
+                                    'en' => [
+                                        'name' => 'Russian',
+                                        'description' => 'Russian'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Русский',
+                                        'description' => 'Русский'
+                                    ]
+                                ]
+                            ]
+                        ], [
+                            'type' => 'file',
+                            'en' => [
+                                'name' => 'Upload article text'
+                            ],
+                            'ru' => [
+                                'name' => 'Загрузите текст статьи'
+                            ]
+                        ]
+                    ]
                 ]
             ], [
                 'en' => [
@@ -320,6 +409,93 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль',
                     'description' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль по данным Journal Citation Reports (Джоур-нал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Аналитикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль не менее 35 хотя бы по одной из научных областей, в области социальных и гуманитарных наук, в журналах, индексируемых в базе данных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) или Article in Press (Статья в печати)'
+                ],
+                'form' => [
+                    'fields' => [
+                        [
+                            'type' => 'text',
+                            'en' => [
+                                'name' => 'Article title'
+                            ],
+                            'ru' => [
+                                'name' => 'Название статьи'
+                            ]
+                        ], [
+                            'type' => 'text',
+                            'en' => [
+                                'name' => 'Article abstract'
+                            ],
+                            'ru' => [
+                                'name' => 'Аннотация статьи'
+                            ]
+                        ], [
+                            'en' => [
+                                'name' => 'Publication journal'
+                            ],
+                            'ru' => [
+                                'name' => 'Журнал публикаций'
+                            ],
+                            'type' => 'select',
+                            'options' => [
+                                [
+                                    'en' => [
+                                        'name' => 'IEEE Xplore Digital Library',
+                                        'description' => 'IEEE Xplore Digital Library'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Цифровая библиотека IEEE Xplore',
+                                        'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
+                                    ]
+                                ], [
+                                    'en' => [
+                                        'name' => 'International Journal of Information and Communication Technology',
+                                        'description' => 'International Journal of Information and Communication Technology'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Международный журнал информационных и коммуникационных технологий',
+                                        'description' => 'Международный журнал информационных и коммуникационных технологий'
+                                    ]
+                                ]
+                            ]
+                        ], [
+                            'en' => [
+                                'name' => 'Article language'
+                            ],
+                            'ru' => [
+                                'name' => 'Язык статьи'
+                            ],
+                            'type' => 'multiselect',
+                            'options' => [
+                                [
+                                    'en' => [
+                                        'name' => 'English',
+                                        'description' => 'English'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Английский',
+                                        'description' => 'Английский'
+                                    ]
+                                ], [
+                                    'en' => [
+                                        'name' => 'Russian',
+                                        'description' => 'Russian'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Русский',
+                                        'description' => 'Русский'
+                                    ]
+                                ]
+                            ]
+                        ], [
+                            'type' => 'file',
+                            'en' => [
+                                'name' => 'Upload article text'
+                            ],
+                            'ru' => [
+                                'name' => 'Загрузите текст статьи'
+                            ]
+                        ]
+                    ]
                 ]
             ], [
                 'en' => [
@@ -369,6 +545,36 @@ class DatabaseSeeder extends Seeder
             foreach ($locales as $locale) {
                 $parameter->setName($definition[$locale]['name'], $locale);
                 $parameter->setDescription($definition[$locale]['description'], $locale);
+            }
+
+
+            if (array_key_exists('form', $definition)) {
+
+                foreach ($definition['form']['fields'] as $field) {
+                    $formField = FormField::create([
+                        'form_id' => $parameter->form->getId(),
+                        'type' => $field['type']
+                    ]);
+
+                    foreach ($locales as $locale) {
+                        $formField->setName($field[$locale]['name'], $locale);
+                    }
+
+                    if ( in_array($formField->getType(), ['select', 'multiselect']) ) {
+                        foreach ($field['options'] as $option) {
+                            $formFieldOption = FormFieldOption::create([
+                                'form_field_id' => $formField->getId()
+                            ]);
+                            foreach ($locales as $locale) {
+                                $formFieldOption->setName($option[$locale]['name'], $locale);
+                                $formFieldOption->setDescription($option[$locale]['description'], $locale);
+                            }
+                            $formFieldOption->save();
+                        }
+                    }
+
+                    $formField->save();
+                }
             }
 
             $parameter->save();

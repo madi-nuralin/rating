@@ -23,20 +23,23 @@
                             type="text"
                             class="mt-1 block w-full"
                             v-model="form.fields[__(field.id)]" />
+
                 <BreezeSelect v-if="field.type == 'select'"
                             class="mt-1 block w-full"
-                            :id="__('field', field.id)"
+                            :id="__(field.id)"
                             :value="form.fields[__(field.id)]"
                             @input="form.fields[__(field.id)] = $event"
                             :options="options[__(field.id)]"
                             :multiple="false" />
+
                 <BreezeSelect v-if="field.type == 'multiselect'"
                             class="mt-1 block w-full"
-                            :id="__('field', field.id)"
+                            :id="__(field.id)"
                             :value="form.fields[__(field.id)]"
                             @input="form.fields[__(field.id)] = $event"
                             :options="options[__(field.id)]"
                             :multiple="true" />
+
                 <BreezeInputFile v-if="field.type == 'file'"
                             class="mt-1 block w-full"
                             :id="__(field.id)"
