@@ -378,18 +378,14 @@ var messages = {
             title: 'Добавить новое действи оценки',
             description: 'Добавить новое действи оценки',
             form: {
-              name: 'Название',
-              description: 'Описание'
+              parameter: 'Select assessment parameter'
             }
           },
           update: {
             title: 'Обновить действие',
             description: 'Обновить действие.',
             form: {
-              name: 'Имя пользователя',
-              email: 'Эл. адрес',
-              firstname: 'Имя',
-              lastname: 'Фамилия'
+              parameter: 'The assessment parameter'
             }
           },
           delete: {
@@ -535,7 +531,8 @@ var messages = {
         },
         linkGroups: {
           manageEntities: 'Manage entitites',
-          manageAssessment: 'Manage assignments'
+          manageAssessment: 'Manage assignments',
+          notifications: 'Notifications'
         },
         links: {
           dashboard: 'Dashboard',
@@ -933,32 +930,28 @@ var messages = {
             title: 'Добавить новое действи оценки',
             description: 'Добавить новое действи оценки',
             form: {
-              name: 'Название',
-              description: 'Описание'
+              parameter: 'Выберите параметр оценивания'
             }
           },
           update: {
             title: 'Обновить действие',
             description: 'Обновить действие.',
             form: {
-              name: 'Имя пользователя',
-              email: 'Эл. адрес',
-              firstname: 'Имя',
-              lastname: 'Фамилия'
+              parameter: 'Выберите параметр оценивания'
             }
           },
           delete: {
-            title: 'Удалить аккаунт',
-            description: 'Удалить аккаунт без возможности восстановления.',
+            title: 'Удалить действие',
+            description: 'Удалить действие без возможности восстановления.',
             content: {
-              deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              deleteButton: 'Удалить аккаунт',
+              deleteInfo: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
+              deleteButton: 'Удалить действие',
               modal: {
-                title: 'Удалить аккаунт',
+                title: 'Удалить действие',
                 content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
                 footer: {
                   cancelButton: 'Отмена',
-                  deleteButton: 'Удалить аккаунт'
+                  deleteButton: 'Удалить действие'
                 }
               }
             }
@@ -1091,6 +1084,7 @@ var messages = {
         linkGroups: {
           manageEntities: 'Управление объектами',
           manageAssessment: 'Управление конфигурациями оценивания',
+          notifications: 'Уведомления'
         },
         links: {
           dashboard: 'Панель управления',

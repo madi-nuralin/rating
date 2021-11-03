@@ -10,6 +10,15 @@ class Parameter extends Model
 {
     use HasFactory, Helpers\SettingHelper;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'score',
+    ];
+
     public function settings() {
         return $this->hasMany(ParameterSetting::class);
     }
@@ -28,6 +37,14 @@ class Parameter extends Model
 
     public function getId() {
         return $this->id;
+    }
+
+    public function getScore() {
+        return $this->score;
+    }
+
+    public function setScore($score) {
+        $this->score = $score;
     }
 
     public function getName($locale=null) {
@@ -89,6 +106,7 @@ class Parameter extends Model
             'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'score' => $this->getScore(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

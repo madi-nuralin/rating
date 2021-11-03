@@ -45,7 +45,8 @@
                             :id="__(field.id)"
                             :value="form.fields[__(field.id)]"
                             @input="form.fields[__(field.id)] = $event"
-                            :route="''" />
+                            :route="''"
+                            :readonly="true" />
 
                 <BreezeInputError :message="form.errors[__(field.id)]" class="mt-2" />
             </div>
@@ -53,13 +54,13 @@
         </template>
 
         <template #actions v-if="true">
-            <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
+            <!--BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
                 Saved.
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
-            </BreezeButton>
+            </BreezeButton-->
         </template>
     </BreezeFormSection>
 </template>
@@ -101,10 +102,10 @@
 
         methods: {
             updateActivity() {
-                this.form.put(route( 'activity.update', {'id': this.activity.id} ), {
+                /*this.form.put(route( 'activity.update', {'id': this.activity.id} ), {
                     errorBag: 'updateActivity',
                     preserveScroll: true
-                });
+                });*/
             },
 
             getFields() {

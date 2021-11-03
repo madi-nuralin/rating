@@ -21,6 +21,8 @@ class CreateParametersTable extends Migration
                   ->references('id')
                   ->on('forms')
                   ->onDelete('cascade');
+            $table->bigInteger('score')
+                  ->default(0);
             $table->timestamps();
         });
     }
