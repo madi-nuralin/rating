@@ -14,7 +14,7 @@
                     <div class="p-0 bg-white border-b border-gray-200">
                         <div>
                             <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                                <div class="flex">
+                                <div class="flex items-center">
                                     <!--BreezeApplicationLogo class="block h-12 w-auto" /-->
                                     <img :src="$page.props.auth.user.profile_photo_path" class="w-12 h-12 rounded-full shadow" />
                                     <div class="ml-8 flex flex-col">
@@ -26,98 +26,76 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!--div class="mt-8 text-2xl">
-                                    Welcome to your Dashboard!
-                                </div-->
-
-                                <!--div class="mt-6 text-gray-500">
-                                    Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
+                            </div>
+                            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500">
+                                Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
                                     to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
                                     you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
                                     ecosystem to be a breath of fresh air. We hope you love it.
-                                </div-->
-                            </div>
-
-                            <div class="flex flex-col md:flex-row md:justify-center w-full md:w-auto text-xs text-left md:text-center text-gray-400 cursor-pointer uppercase">
-                                <div class="px-5 py-3 md:flex md:flex-col md:justify-center md:items-center transition duration-500 col-span-2 md:col-span-1 border-l-4 md:border-l-0 md:border-b-2" @click="content = 'assignments'" :class="content == 'assignments' ? 'border-indigo-400 text-indigo-400' : ''">
-                                    <svg class="w-5 h-5 hidden _md:block"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/>
-                                        <circle cx="12" cy="10" r="3"/>
-                                        <circle cx="12" cy="12" r="10"/>
-                                    </svg>
-                                    <p class="md:pt-2 font-semibold">Мои оценивания</p>
-                                </div>
-                                <div class="px-5 py-3 md:flex md:flex-col md:justify-center md:items-center transition duration-500 col-span-2 md:col-span-1 border-l-4 md:border-l-0 md:border-b-2"  @click="content = 'confirmation'" :class="content == 'confirmation' ? 'border-indigo-400 text-indigo-400' : ''" v-if="confirmerContent">
-                                    <svg class="w-5 h-5 hidden _md:block" 
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
-                                    </svg>
-                                    <p class="md:pt-2 font-semibold">Оценивание других сотрудников</p>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 bg-gray-200 bg-opacity-25">
+                            <div class="p-6">
 
-                <div class="mt-5 overflow-hidden" style="min-height: 900px;">
-                    <div class="p-0 border-b border-gray-200">
-                        <div>
+                                <div class="flex flex-col sm:flex-row items-center">
+                                    <div class="flex-shrink-0 flex items-center justify-center rounded-full _bg-gray-100 sm:mx-0 h-10 w-10">
+                                        <svg class="h-6 w-6 text-gray-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24" >
+                                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 text-lg leading-7">
+                                        <Link :href="route('assignment.index')" class="text-lg font-thin dark:text-white">
+                                            {{ $t('pages.dashboard.tabs.assignments') }}
+                                        </Link>
+                                    </div>
+                                </div>
 
-                            <div class="bg-gray-200 bg-opacity-25" v-if="content == 'assignments'">
-                                <template v-if="$page.props.assignments.length <= 0">
-                                    No items found
-                                </template>
-                                <template v-else>
-                                    <Link v-for="(assignment, i) in $page.props.assignments" class="flex flex-col md:flex-row p-6 sm:px-20 text-sm border-b border-gray-200 text-gray-500 hover:bg-gray-100" :href="route('assignment.show', {'id': assignment.id})">
-                                        <div>
-                                            <p class="pr-4">{{ i + 1 }}</p>
-                                        </div>
-                                        <div>
-                                            <p>{{ assignment.assessment.name }}</p>
-                                            <p>{{ assignment.assessment.description }}</p>
-                                            <p>{{ assignment.employement.department.name }}</p>
-                                            <p>{{ assignment.employement.position.name }}</p>
-                                            <p>{{ assignment.score }} баллов</p>
-                                        </div>
-                                    </Link>
-                                </template>
+                                <div class="sm:ml-14">
+                                    <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                        Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="bg-gray-200 bg-opacity-25" v-if="content == 'confirmation'">
-                                <template v-if="$page.props.confirmations.length <= 0">
-                                    No items found
-                                </template>
-                                <template v-else>
-                                    <Link v-for="(confirmation, i) in $page.props.confirmations" class="flex flex-col md:flex-row p-6 sm:px-20 text-sm border-b border-gray-200 text-gray-500 hover:bg-gray-100" :href="route('confirmation.show', {'id': confirmation.id})">
-                                        <div>
-                                            <p class="pr-4">{{ i + 1 }}</p>
-                                        </div>
-                                        <div>
-                                            <p>{{ confirmation.assignment.assessment.name }}</p>
-                                            <p>{{ confirmation.assignment.assessment.description }}</p>
-                                            <p>{{ confirmation.assignment.employement.department.name }}</p>
-                                            <p>{{ confirmation.assignment.employement.position.name }}</p>
-                                            <p>{{ confirmation.assignment.user.name }}</p>
-                                            <p>{{ confirmation.assignment.score }} баллов</p>
-                                        </div>
-                                    </Link>
-                                </template>
+                            <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                                <div class="flex flex-col sm:flex-row items-center">
+                                    <div class="flex-shrink-0 flex items-center justify-center rounded-full _bg-gray-100 sm:mx-0 h-10 w-10">
+                                        <svg class="h-6 w-6 text-gray-500" 
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 text-lg leading-7">
+                                        <Link :href="route('confirmation.index')" class="text-lg font-thin dark:text-white">
+                                            {{ $t('pages.dashboard.tabs.confirmations') }}
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                <div class="sm:ml-14">
+                                    <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                                    </div>
+                                </div>
                             </div>
 
+                            <!--div class="p-6 border-t border-gray-200 dark:border-gray-700">
+                            </div-->
+
+                            <!--div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
+                            </div-->
                         </div>
                     </div>
                 </div>
@@ -131,6 +109,8 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
 import BreezeCheckbox from '@/Components/Checkbox'
+import BreezeNavLink from '@/Components/NavLink.vue'
+import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
 import { Link } from '@inertiajs/inertia-vue3';
 import { Head } from '@inertiajs/inertia-vue3';
 
@@ -139,6 +119,8 @@ export default {
         BreezeAuthenticatedLayout,
         BreezeApplicationLogo,
         BreezeCheckbox,
+        BreezeNavLink,
+        BreezeResponsiveNavLink,
         Link,
         Head,
     },
@@ -155,11 +137,11 @@ export default {
                 case 1:
                     return 'p-6';
                 case 2:
-                    return 'p-6 border-t border-gray-200 md:border-t-0 md:border-l';
+                    return 'p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l';
                 case 3:
-                    return 'p-6 border-gray-200';
+                    return 'p-6 border-t border-gray-200 dark:border-gray-700';
                 case 4:
-                    return 'p-6 border-gray-200 md:border-l';
+                    return 'p-6 border-t border-gray-200 dark:border-gray-700 md:border-l';
                 default:
                     break;
             }

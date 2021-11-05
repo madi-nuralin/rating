@@ -19,7 +19,43 @@ class ConfirmationController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard/Confirmations/Index', [
+            'confirmations' => auth()->user()
+                                     ->confirmer ?
+                               auth()->user()
+                                     ->confirmer
+                                     ->confirmations
+                                     ->map(function($confirmation) {
+                return array_merge(
+                    $confirmation->toArray(), [
+                        'assignment' => array_merge(
+                            $confirmation->assignment->toArray(), [
+                                'user' => $confirmation->assignment->getUser(),
+                                'assessment' => $confirmation->assignment->getAssessment(),
+                                'activities' => $confirmation->assignment->getActivities(),
+                                'confirmations' => $confirmation->assignment->confirmations->map(function($confirmation) {
+                                    return array_merge(
+                                        $confirmation->toArray(), [
+                                            'confirmer' => array_merge(
+                                                $confirmation->confirmer->toArray(), [
+                                                    'user' => $confirmation->confirmer->getUser()
+                                                ]
+                                            )
+                                        ]
+                                    );
+                                }),
+                                'employement' => array_merge(
+                                    $confirmation->assignment->employement->toArray(), [
+                                        'department' => $confirmation->assignment->employement->getDepartment(),
+                                        'position' => $confirmation->assignment->employement->getPosition()
+                                    ]
+                                )
+                            ]
+                        )
+                    ]
+                );
+            }) : []
+        ]);
     }
 
     /**

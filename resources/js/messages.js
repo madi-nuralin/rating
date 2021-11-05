@@ -324,6 +324,11 @@ var messages = {
         }
       },
       dashboard: {
+        tabs: {
+          assignments: 'My assessments',
+          confirmations: 'Staff assessment'
+        },
+        empty: 'No items found',
         assignments: {
           head: {
             title: 'Assignments'
@@ -876,6 +881,11 @@ var messages = {
         }
       },
       dashboard: {
+        tabs: {
+          assignments: 'Мои оценивания',
+          confirmations: 'Оценка персонала'
+        },
+        empty: 'Не найдено элементов',
         assignments: {
           head: {
             title: 'Оценивание'

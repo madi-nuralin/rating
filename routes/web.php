@@ -56,14 +56,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         ->name('dashboard');
 
         Route::resource('assignment', AssignmentController::class,
-                ['only' => ['show']]);
+                ['only' => ['index', 'show']]);
         
         Route::resource('activity', ActivityController::class,
                 ['only' => ['index', 'create', 'edit', 'store', 'show', 'update', 'destroy']]);
 
         Route::group(['middleware' => 'confirmer'], function () {
             Route::resource('confirmation', ConfirmationController::class,
-                ['only' => ['show', 'update']]);
+                ['only' => ['index', 'show', 'update']]);
         });
     });
 

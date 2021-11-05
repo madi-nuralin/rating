@@ -23,7 +23,37 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard/Assignments/Index', [
+            'assignments' => auth()->user()
+                                   ->assignments
+                                   ->map(function($assignment) {
+                return array_merge(
+                    $assignment->toArray(), [
+                        'user' => $assignment->getUser(),
+                        'assessment' => $assignment->getAssessment(),
+                        'activities' => $assignment->getActivities(),
+                        'confirmations' => $assignment->confirmations
+                                                      ->map(function($confirmation) {
+                            return array_merge(
+                                $confirmation->toArray(), [
+                                    'confirmer' => array_merge(
+                                        $confirmation->confirmer->toArray(), [
+                                            'user' => $confirmation->confirmer->getUser()
+                                        ]
+                                    )
+                                ]
+                            );
+                        }),
+                        'employement' => array_merge(
+                            $assignment->employement->toArray(), [
+                                'department' => $assignment->employement->getDepartment(),
+                                'position' => $assignment->employement->getPosition()
+                            ]
+                        )
+                    ]
+                );
+            })
+        ]);
     }
 
     /**

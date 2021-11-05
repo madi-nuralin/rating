@@ -30,7 +30,7 @@
     import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
-    import ResourceList from '@/Pages/Dashboard/Assignments/Partials/List.vue'
+    import ResourceList from '@/Pages/Dashboard/Activities/Partials/List.vue'
     import InformationCard01 from '@/Pages/Dashboard/Assignments/Partials/InformationCard01.vue'
     import InformationCard02 from '@/Pages/Dashboard/Assignments/Partials/InformationCard02.vue'
     import { Head } from '@inertiajs/inertia-vue3';
