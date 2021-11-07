@@ -48,12 +48,14 @@ class ParameterController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:2048'],
+            'score' => ['required', 'numeric'],
         ])->validateWithBag('createParameter');
 
         $parameter = Parameter::create();
         $parameter->setName($input['name']);
         $parameter->setDescription($input['description']);
+        $parameter->setScore($input['score']);
         $parameter->save();
 
         return Inertia::location(route('parameter.show', ['parameter' => $parameter->getId()]));
@@ -74,8 +76,13 @@ class ParameterController extends Controller
                 $parameter->toArray(), [
                     'form' => array_merge(
                         $parameter->getForm(), [
-                            'fields' => $parameter->form && $parameter->form->fields ? $parameter->form->fields->map(function($field) {
-                                return $field->toArray();
+                            'fields' => $parameter->form && 
+                                        $parameter->form
+                                                  ->fields ?
+                                        $parameter->form
+                                                  ->fields
+                                                  ->map(function($formField) {
+                                return $formField->toArray();
                             }) : []
                         ]
                     )
@@ -108,7 +115,8 @@ class ParameterController extends Controller
 
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:2048'],
+            'score' => ['required', 'numeric'],
         ])->validateWithBag('updateParameter');
 
         $parameter = Parameter::findOrFail($id);
@@ -118,6 +126,9 @@ class ParameterController extends Controller
         }
         if ($parameter->getDescription() != $input['description'] ) {
             $parameter->setDescription($input['description']);
+        }
+        if ($parameter->getScore() != $input['score'] ) {
+            $parameter->setScore($input['score']);
         }
 
         $parameter->save();

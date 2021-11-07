@@ -43,10 +43,11 @@
                 <BreezeInputFile v-if="field.type == 'file'"
                             class="mt-1 block w-full"
                             :id="__(field.id)"
-                            :href="''"
-                            :href-delete="''" />
+                            :value="form.fields[__(field.id)]"
+                            @input="form.fields[__(field.id)] = $event"
+                            :route="''" />
 
-                <BreezeInputError :message="form.errors[__('field', field.id)]" class="mt-2" />
+                <BreezeInputError :message="form.errors[__(field.id)]" class="mt-2" />
             </div>
 
         </template>
@@ -69,7 +70,7 @@
     import BreezeFormSection from '@/Components/FormSection.vue'
     import BreezeInput from '@/Components/Input.vue'
     import BreezeInputError from '@/Components/InputError.vue'
-    import BreezeInputFile from '@/Components/FileInput.vue'
+    import BreezeInputFile from '@/Components/InputFile.vue'
     import BreezeSelect from '@/Components/Select.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'

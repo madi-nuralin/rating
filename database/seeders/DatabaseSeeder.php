@@ -61,11 +61,11 @@ class DatabaseSeeder extends Seeder
                 'context' => 'manager'
             ], [
                 'en' => [
-                    'name' => 'Confirmer',
+                    'name' => 'Confirmer staff',
                     'description' => 'Authorized to confirm this assessment'
                 ],
                 'ru' => [
-                    'name' => 'Подтверждающий',
+                    'name' => 'Подтверждающий оценивание сотрудник',
                     'description' => 'Уполномочен подтвердить оценку деятельности персонала'
                 ],
                 'context' => 'confirmer'
@@ -314,6 +314,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квартиль',
                     'description' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квар-тиль по данным Journal Citation Reports (Джоурнал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Анали-тикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль по CiteScore (СайтСкор) не менее 65 хотя бы по одной из научных областей, в об-ласти социальных и гуманитарных наук, в журналах, индексируемых в базе дан-ных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) илиArticle in Press (Статья в печати)'
                 ],
+                'score' => 4,
                 'form' => [
                     'fields' => [
                         [
@@ -410,6 +411,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль',
                     'description' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль по данным Journal Citation Reports (Джоур-нал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Аналитикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль не менее 35 хотя бы по одной из научных областей, в области социальных и гуманитарных наук, в журналах, индексируемых в базе данных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) или Article in Press (Статья в печати)'
                 ],
+                'score' => 3,
                 'form' => [
                     'fields' => [
                         [
@@ -505,7 +507,8 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля',
                     'description' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля'
-                ]
+                ],
+                'score' => 4
             ], [
                 'en' => [
                     'name' => 'Publications in the materials of international scientific conferences (Proceedings), indexed in the international database Scopus or Clarivate',
@@ -514,7 +517,8 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate ',
                     'description' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate'
-                ]
+                ],
+                'score' => 5
             ], [
                 'en' => [
                     'name' => 'Basic education of the teaching staff of the department is 100% consistent with the profile of the department',
@@ -523,7 +527,8 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры',
                     'description' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры'
-                ]
+                ],
+                'score' => 7
             ], [
                 'en' => [
                     'name' => 'The share of the teaching staff of the department with academic degrees and titles meets the established requirements',
@@ -532,7 +537,8 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям',
                     'description' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям'
-                ]
+                ],
+                'score' => 5
             ]   
         ];
 
@@ -547,6 +553,9 @@ class DatabaseSeeder extends Seeder
                 $parameter->setDescription($definition[$locale]['description'], $locale);
             }
 
+            if (array_key_exists('score', $definition)) {
+                $parameter->setScore($definition['score']);
+            }
 
             if (array_key_exists('form', $definition)) {
 

@@ -35,9 +35,20 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user() ?
-                    array_merge($request->user()->toArray(), ['roles' => $request->user()->getRoles()]):
-                    $request->user(),
+                'user' => $request->user()
+                    ? array_merge(
+                        $request->user()->toArray(), [
+                            'roles' => $request->user()->getRoles(),
+                            'employements' => $request->user()->employements->map(function($employement) {
+                                return array_merge(
+                                    $employement->toArray(), [
+                                        'department' => $employement->getDepartment(),
+                                        'position' => $employement->getPosition()
+                                    ]
+                                );
+                            })
+                        ])
+                    : $request->user(),
             ],
             'locale' => app()->currentLocale()
         ]);

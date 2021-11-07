@@ -10,8 +10,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :activity="$page.props.activity"/>
-                <breeze-section-border />
+                <show-form :activity="$page.props.activity"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -20,14 +19,14 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import UpdateForm from '@/Pages/Dashboard/Activities/Partials/UpdateForm.vue'
+    import ShowForm from '@/Pages/Dashboard/Activities/Partials/ShowForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
         components: {
             BreezeAuthenticatedLayout,
             BreezeSectionBorder,
-            UpdateForm,
+            ShowForm,
             Head,
         },
     }

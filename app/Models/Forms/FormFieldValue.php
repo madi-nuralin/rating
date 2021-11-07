@@ -5,10 +5,11 @@ namespace App\Models\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Helpers\SettingHelper;
+use App\Models\Helpers\FileHelper;
 
 class FormFieldValue extends Model
 {
-    use HasFactory, SettingHelper;
+    use HasFactory, SettingHelper, FileHelper;
 
     protected $table = 'form_field_values';
 
@@ -19,6 +20,7 @@ class FormFieldValue extends Model
      */
     protected $fillable = [
         'form_field_id',
+        'file_path'
     ];
 
     public function settings() {
@@ -71,24 +73,11 @@ class FormFieldValue extends Model
         }
     }
 
-    /*public function getContext($locale=null) {
-        return $this->getSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'context'
-        );
-    }
-
-    public function setContext($context, $locale=null) {
-        return $this->updateSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'context',
-            $context
-        );
-    }*/
-
     public function setContext($context) {
+        if ($this->formField->getType() == FormField::FILE) {
+            $this->updateFile($context, $this->file_path, 'file_path', 'form-files');
+            $context = $this->file_path;
+        }
 
         $this->updateSettingValue(
             $this->_getSettingLocale(),
@@ -104,6 +93,10 @@ class FormFieldValue extends Model
             $this->_getSettingType(),
             'context'
         );
+
+        if ($this->formField->getType() == FormField::FILE)
+            return $this->getFileUrl($this->file_path, '');
+
         return $this->_getSettingType() == 'integer'
             ? intval($ret)
             : $ret;
@@ -112,6 +105,7 @@ class FormFieldValue extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
+            'context' => $this->getContext(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

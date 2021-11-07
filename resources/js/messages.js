@@ -173,18 +173,8 @@ var messages = {
                   description: 'The position of {department} department'
                 }
               },
-              supervisors: 'Select supervisors for assessment',
-              supervisor: {
-                option: { 
-                  description: ''
-                }
-              },
+              confirmers: 'Select confirmers for assessment',
               parameters: 'Select assessment parameters',
-              parameter: {
-                option: { 
-                  description: ''
-                }
-              }
             }
           },
           update: {
@@ -201,8 +191,8 @@ var messages = {
                   description: 'The position of {department} department'
                 }
               },
-              supervisors: 'Select supervisors for assessment',
-              supervisor: {
+              confirmers: 'Select confirmers for assessment',
+              confirmer: {
                 option: { 
                   description: ''
                 }
@@ -324,11 +314,30 @@ var messages = {
         }
       },
       dashboard: {
+        tabs: {
+          assignments: 'My assessments',
+          assignment: {
+            description: 'An instance of assessment is assigned by the system managers. Here you can add your performed activities for confirmation'
+          },
+          confirmations: 'Staff assessment',
+          confirmation: {
+            description: 'Check and confirm the effective activity of employees. This role was assigned to you by the system manager'
+          }
+        },
+        description: 'A Staff Performance Assessment (SPA) application provides an employee to see his overall ratings(self as well as supervisor\'s). SPA allows system managers\' to create and manage staff assessment instances with configurable performance parameters.',
+        empty: 'No items found',
         assignments: {
           head: {
-            title: 'Assignments'
+            title: 'My assignments'
           },
-          header: 'Assignments',
+          header: 'My assignments',
+          list: {
+            title: 'My assignments',
+            description: 'The list of assignments',
+            form: {
+              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
+            }
+          },
           informationCard01: {
             title: 'General information',
             description: 'Position assessment information',
@@ -346,9 +355,16 @@ var messages = {
         },
         confirmations: {
           head: {
-            title: 'Assignments confirmation'
+            title: 'Staff assessment confirmation'
           },
-          header: 'Assignments confirmation',
+          header: 'Staff assessment confirmation',
+          list: {
+            title: 'Staff assessment confirmation',
+            description: 'The list of assignments for confirmation',
+            form: {
+              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
+            }
+          },
           informationCard01: {
             title: 'General information',
             description: 'Position assessment information',
@@ -378,18 +394,14 @@ var messages = {
             title: 'Добавить новое действи оценки',
             description: 'Добавить новое действи оценки',
             form: {
-              name: 'Название',
-              description: 'Описание'
+              parameter: 'Select assessment parameter'
             }
           },
           update: {
             title: 'Обновить действие',
             description: 'Обновить действие.',
             form: {
-              name: 'Имя пользователя',
-              email: 'Эл. адрес',
-              firstname: 'Имя',
-              lastname: 'Фамилия'
+              parameter: 'The assessment parameter'
             }
           },
           delete: {
@@ -535,7 +547,8 @@ var messages = {
         },
         linkGroups: {
           manageEntities: 'Manage entitites',
-          manageAssessment: 'Manage assignments'
+          manageAssessment: 'Manage assignments',
+          notifications: 'Notifications'
         },
         links: {
           dashboard: 'Dashboard',
@@ -728,18 +741,8 @@ var messages = {
                   description: 'Должность отдела: {department}'
                 }
               },
-              supervisors: 'Выберите контролеров для оценки',
-              supervisor: {
-                option: { 
-                  description: ''
-                }
-              },
+              confirmers: 'Выберите сотрудников подтверждающие данное оценивание',
               parameters: 'Выберите параметры оценивания',
-              parameter: {
-                option: { 
-                  description: ''
-                }
-              }
             }
           },
           update: {
@@ -756,17 +759,13 @@ var messages = {
                   description: 'Должность отдела: {department}'
                 }
               },
-              supervisors: 'Выберите контролеров для оценки',
-              supervisor: {
-                option: { 
-                  description: ''
-                }
+              confirmers: 'Выберите сотрудников подтверждающие данное оценивание',
+              confirmer: {
+                option: {}
               },
               parameters: 'Выберите параметры оценивания',
               parameter: {
-                option: { 
-                  description: ''
-                }
+                option: {}
               }
             }
           },
@@ -879,11 +878,30 @@ var messages = {
         }
       },
       dashboard: {
+        tabs: {
+          assignments: 'Мои оценивания',
+          assignment: {
+            description: 'Экземпляр оценки назначается системными менеджерами. Здесь вы можете добавить свои выполненные действия для подтверждения'
+          },
+          confirmations: 'Оценка персонала',
+          confirmation: {
+            description: 'Проверяйте и выполните подтверждение эффективной деятельности сотрудников. Данная роль вам была присвоена менеджером системы'
+          }
+        },
+        description: 'Приложение для оценки эффективности работы персонала (SPA), которое позволяет сотруднику видеть свои общие оценки (как собственные, так и руководителя). SPA позволяет системным менеджерам создавать экземпляры оценки персонала и управлять ими с настраиваемыми параметрами производительности.',
+        empty: 'Не найдено элементов',
         assignments: {
           head: {
-            title: 'Оценивание'
+            title: 'Мои оценивания'
           },
-          header: 'Оценивание',
+          header: 'Мои оценивания',
+          list: {
+            title: 'Список оценивании назначенные мне',
+            description: 'Список оценивании для расчета эффективной деятельности сотрудника',
+            form: {
+              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
+            }
+          },
           informationCard01: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
@@ -904,6 +922,13 @@ var messages = {
             title: 'Подтверждение оценки деятельности пользователя'
           },
           header: 'Подтверждение оценки деятельности пользователя',
+          list: {
+            title: 'Список деятельности сотрудника для подтверждения',
+            description: 'Список деятельности сотрудника для подтверждения. Подтвердите действия и заработанные баллы сотрудника за текущий период',
+            form: {
+              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
+            }
+          },
           informationCard01: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
@@ -933,32 +958,28 @@ var messages = {
             title: 'Добавить новое действи оценки',
             description: 'Добавить новое действи оценки',
             form: {
-              name: 'Название',
-              description: 'Описание'
+              parameter: 'Выберите параметр оценивания'
             }
           },
           update: {
             title: 'Обновить действие',
             description: 'Обновить действие.',
             form: {
-              name: 'Имя пользователя',
-              email: 'Эл. адрес',
-              firstname: 'Имя',
-              lastname: 'Фамилия'
+              parameter: 'Выберите параметр оценивания'
             }
           },
           delete: {
-            title: 'Удалить аккаунт',
-            description: 'Удалить аккаунт без возможности восстановления.',
+            title: 'Удалить действие',
+            description: 'Удалить действие без возможности восстановления.',
             content: {
-              deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              deleteButton: 'Удалить аккаунт',
+              deleteInfo: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
+              deleteButton: 'Удалить действие',
               modal: {
-                title: 'Удалить аккаунт',
+                title: 'Удалить действие',
                 content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
                 footer: {
                   cancelButton: 'Отмена',
-                  deleteButton: 'Удалить аккаунт'
+                  deleteButton: 'Удалить действие'
                 }
               }
             }
@@ -1091,6 +1112,7 @@ var messages = {
         linkGroups: {
           manageEntities: 'Управление объектами',
           manageAssessment: 'Управление конфигурациями оценивания',
+          notifications: 'Уведомления'
         },
         links: {
           dashboard: 'Панель управления',

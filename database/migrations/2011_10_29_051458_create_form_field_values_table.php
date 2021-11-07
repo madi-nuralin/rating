@@ -21,6 +21,8 @@ class CreateFormFieldValuesTable extends Migration
                   ->references('id')
                   ->on('form_fields')
                   ->onDelete('cascade');
+            $table->string('file_path', 2048)
+                  ->nullable();
             $table->timestamps();
         });
     }

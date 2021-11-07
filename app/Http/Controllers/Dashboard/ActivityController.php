@@ -93,11 +93,16 @@ class ActivityController extends Controller
         $activity = new Activity();
         $activity->setParameter($parameter->getId());
         $activity->setAssignment($assignment->getId());
-        $activity->setScore(2);
+        $activity->setScore($parameter->getScore());
         $activity->save();
 
         foreach ($input['fields'] as $key => $value) {
-            //error_log(json_encode($input['fields']));
+            if (is_null($value)) {
+                throw ValidationException::withMessages([
+                    $key => 'The field is required.',
+                ]);
+            }
+
             $formField = FormField::findOrFail($key);
 
             if ($formField->getType() == FormField::MULTISELECT) {
@@ -158,10 +163,17 @@ class ActivityController extends Controller
                                                 $activity->parameter
                                                          ->form
                                                          ->fields
-                                                         ->map(function($formField) {
+                                                         ->map(function($formField) use ($activity) {
                                         return array_merge(
                                             $formField->toArray(), [
-                                                'options' => $formField->getOptions()
+                                                'options' => $formField->getOptions(),
+                                                'values' => collect(
+                                                    $activity->formFieldValues()
+                                                             ->where('form_field_id', $formField->getId())
+                                                             ->get()
+                                                )->map(function($formFieldValue) {
+                                                    return $formFieldValue->getContext();
+                                                })
                                             ]
                                         );
                                     }) : []
@@ -240,7 +252,7 @@ class ActivityController extends Controller
         foreach ($input['fields'] as $key => $value) {
             if (is_null($value)) {
                 throw ValidationException::withMessages([
-                    $key => 'Field is required.',
+                    $key => 'The field is required.',
                 ]);
             }
 
