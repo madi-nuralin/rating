@@ -61,11 +61,11 @@ class DatabaseSeeder extends Seeder
                 'context' => 'manager'
             ], [
                 'en' => [
-                    'name' => 'Confirmer',
+                    'name' => 'Confirmer staff',
                     'description' => 'Authorized to confirm this assessment'
                 ],
                 'ru' => [
-                    'name' => 'Подтверждающий',
+                    'name' => 'Подтверждающий оценивание сотрудник',
                     'description' => 'Уполномочен подтвердить оценку деятельности персонала'
                 ],
                 'context' => 'confirmer'

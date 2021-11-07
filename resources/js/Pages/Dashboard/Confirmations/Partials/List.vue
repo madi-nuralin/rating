@@ -43,7 +43,20 @@
                         </div>
 
                         <div class="mt-2 text-xs text-gray-600 text-left">
-                            {{ confirmation.assignment.assessment.description }}
+                            <div class="flex flex-col">
+                                <div>{{ confirmation.assignment.assessment.description }}</div>
+
+                                <ul class="list-disc list-inside mt-2">
+                                    <li>
+                                        {{ confirmation.assignment.user.name }}</li>
+                                    <li>
+                                        {{ confirmation.assignment.employement.department.name }}</li>
+                                    <li>
+                                        {{ confirmation.assignment.employement.position.name }}</li>
+                                    <li>
+                                        {{ confirmation.assignment.score }} pts.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </button>
