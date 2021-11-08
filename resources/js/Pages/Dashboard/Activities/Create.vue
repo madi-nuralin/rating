@@ -1,10 +1,10 @@
 <template>
-    <Head :title="$t('pages.management.assessments.head.title')" />
+    <Head :title="$t('pages.dashboard.activities.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.assessments.header') }}
+                {{ $t('pages.dashboard.activities.header') }}
             </h2>
         </template>
 

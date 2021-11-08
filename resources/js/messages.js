@@ -324,6 +324,10 @@ var messages = {
             description: 'Check and confirm the effective activity of employees. This role was assigned to you by the system manager'
           }
         },
+        user: {
+          employement: 'Your employement information',
+          roles: 'Your roles'
+        },
         description: 'A Staff Performance Assessment (SPA) application provides an employee to see his overall ratings(self as well as supervisor\'s). SPA allows system managers\' to create and manage staff assessment instances with configurable performance parameters.',
         empty: 'No items found',
         assignments: {
@@ -387,35 +391,38 @@ var messages = {
         },
         activities: {
           head: {
-            title: 'Оценивание'
+            title: 'Add new activity'
           },
-          header: 'Оценивание',
+          header: 'Add new activity',
           create: {
-            title: 'Добавить новое действи оценки',
-            description: 'Добавить новое действи оценки',
+            title: 'Add new assessment activity',
+            description: 'Add new assessment activity by selecting assessment parameter',
             form: {
               parameter: 'Select assessment parameter'
+            },
+            actions: {
+              message: 'For this parameter you will receive {pts} points'
             }
           },
           update: {
-            title: 'Обновить действие',
-            description: 'Обновить действие.',
+            title: 'Update activity',
+            description: 'Update assessment activity details.',
             form: {
               parameter: 'The assessment parameter'
             }
           },
           delete: {
-            title: 'Удалить аккаунт',
-            description: 'Удалить аккаунт без возможности восстановления.',
+            title: 'Delete activity',
+            description: 'Permanently delete this activity.',
             content: {
-              deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              deleteButton: 'Удалить аккаунт',
+              deleteInfo: 'After deleting an activity all its resources and data will be permanently deleted. Before deleting this activity, download any data or information about this account that you want to keep.',
+              deleteButton: 'Delete activity',
               modal: {
-                title: 'Удалить аккаунт',
-                content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
+                title: 'Delete activity',
+                content: 'Are you sure you want to delete this assessment activity? After deletion, all of its resources and data will be permanently deleted.',
                 footer: {
-                  cancelButton: 'Отмена',
-                  deleteButton: 'Удалить аккаунт'
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete activity'
                 }
               }
             }
@@ -888,6 +895,10 @@ var messages = {
             description: 'Проверяйте и выполните подтверждение эффективной деятельности сотрудников. Данная роль вам была присвоена менеджером системы'
           }
         },
+        user: {
+          employement: 'Информация о вашей занятости',
+          roles: 'Ваши роли'
+        },
         description: 'Приложение для оценки эффективности работы персонала (SPA), которое позволяет сотруднику видеть свои общие оценки (как собственные, так и руководителя). SPA позволяет системным менеджерам создавать экземпляры оценки персонала и управлять ими с настраиваемыми параметрами производительности.',
         empty: 'Не найдено элементов',
         assignments: {
@@ -951,14 +962,17 @@ var messages = {
         },
         activities: {
           head: {
-            title: 'Оценивание'
+            title: 'Мои действия'
           },
-          header: 'Оценивание',
+          header: 'Мои действия',
           create: {
             title: 'Добавить новое действи оценки',
-            description: 'Добавить новое действи оценки',
+            description: 'Добавить новое действи оценки. Выберите соответсвующий параметр и заполните форму',
             form: {
               parameter: 'Выберите параметр оценивания'
+            },
+            actions: {
+              message: 'Для этого параметра вам будет начислено {pts} баллов'
             }
           },
           update: {

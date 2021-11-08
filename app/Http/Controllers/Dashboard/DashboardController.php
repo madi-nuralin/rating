@@ -19,7 +19,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'roles' => auth()->user()
+                             ->getRoles(),
+            'employements' => auth()->user()
+                                    ->employements
+                                    ->map(function($employement) {
+                return array_merge(
+                    $employement->toArray(), [
+                        'department' => $employement->getDepartment(),
+                        'position' => $employement->getPosition()
+                    ]
+                );
+            })
+        ]);
     }
 
     /**
