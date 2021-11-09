@@ -1,28 +1,28 @@
 <template>
     <BreezeFormSection @submitted="updatePassword">
         <template #title>
-            Update Password
+            {{ $t('pages.profile.updatePassword.title') }}
         </template>
 
         <template #description>
-            Ensure your account is using a long, random password to stay secure.
+            {{ $t('pages.profile.updatePassword.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="current_password" value="Current Password" />
+                <BreezeLabel for="current_password" :value=" $t('pages.profile.updatePassword.form.current_password')" />
                 <BreezeInput id="current_password" type="password" class="mt-1 block w-full" v-model="form.current_password" ref="current_password" autocomplete="current-password" />
                 <BreezeInputError :message="form.errors.current_password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="password" value="New Password" />
+                <BreezeLabel for="password" :value=" $t('pages.profile.updatePassword.form.password')" />
                 <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" ref="password" autocomplete="new-password" />
                 <BreezeInputError :message="form.errors.password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="password_confirmation" value="Confirm Password" />
+                <BreezeLabel for="password_confirmation" :value=" $t('pages.profile.updatePassword.form.password_confirmation')" />
                 <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" autocomplete="new-password" />
                 <BreezeInputError :message="form.errors.password_confirmation" class="mt-2" />
             </div>
@@ -30,11 +30,11 @@
 
         <template #actions>
             <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                {{ $t('pages.profile.updateProfileInformation.actions.savedMessage') }}
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('pages.profile.updateProfileInformation.actions.saveButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>

@@ -106,7 +106,7 @@
                                     </template>
 
                                     <template #content>
-                                        <BreezeDropdownLink :href="route('profile')">
+                                        <BreezeDropdownLink :href="route('profile.show')">
                                             {{ $t('layouts.authenticated.links.profile') }}
                                         </BreezeDropdownLink>
                                         <BreezeDropdownLink :href="route('logout')" method="post" as="button">
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <BreezeResponsiveNavLink :href="route('profile')">
+                            <BreezeResponsiveNavLink :href="route('profile.show')">
                                 {{ $t('layouts.authenticated.links.profile') }}
                             </BreezeResponsiveNavLink>
                             <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">

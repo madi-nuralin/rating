@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use DB;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -42,7 +43,8 @@ class HandleInertiaRequests extends Middleware
                         ])
                     : $request->user(),
             ],
-            'locale' => app()->currentLocale()
+            'locale' => app()->currentLocale(),
+            //'sessions' => DB::table('sessions')->get()
         ]);
     }
 }

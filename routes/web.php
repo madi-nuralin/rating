@@ -24,9 +24,12 @@ Route::get('/', function () {
     ]);
 });
 
-use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Profile\ProfileInformationController;
+use App\Http\Controllers\Profile\ProfilePhotoController;
 use App\Http\Controllers\Profile\CurrentUserController;
 use App\Http\Controllers\Profile\PasswordController;
+use App\Http\Controllers\Profile\UserProfileController;
+use App\Http\Controllers\Profile\OtherBrowserSessionsController;
 
 use App\Http\Controllers\Management\PositionController;
 use App\Http\Controllers\Management\DepartmentController;
@@ -67,13 +70,24 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         });
     });
 
-    Route::group(['prefix' => 'profile'], function() {
+    Route::group(['prefix' => 'user'], function() {
         Route::delete('', [CurrentUserController::class, 'destroy'])
-        ->name('current-user.destroy');
-        Route::get('', [CurrentUserController::class, 'show'])
-        ->name('profile');
+            ->name('current-user.destroy');
+
+        Route::get('profile', [UserProfileController::class, 'show'])
+            ->name('profile.show');
+
         Route::put('password', [PasswordController::class, 'update'])
-        ->name('user-password.update');
+            ->name('user-password.update');
+
+        Route::put('information', [ProfileInformationController::class, 'update'])
+            ->name('user-profile-information.update');
+
+        Route::delete('profile-photo', [ProfilePhotoController::class, 'destroy'])
+            ->name('current-user-photo.destroy');
+
+        Route::delete('other-browser-sessions', [OtherBrowserSessionsController::class, 'destroy'])
+            ->name('other-browser-sessions.destroy');
     });
 
     Route::group(['middleware' => 'manager'], function () {

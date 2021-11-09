@@ -283,17 +283,36 @@ var messages = {
       },
       profile: {
         head: {
-          title: 'Profile management'
+          title: 'Profile'
         },
-        header: 'Profile management',
-        update: {
-          title: 'Update Profile',
-          description: 'The user\'s name and description information.',
+        header: 'Profile',
+        updateProfileInformation: {
+          title: 'Profile Information',
+          description: 'Update your account\'s profile information and email address.',
           form: {
             name: 'Name',
             email: 'Email',
             firstname: 'Firstname',
-            lastname: 'Lastname'
+            lastname: 'Lastname',
+            selectNewPhotoButton: 'Select A New Photo',
+            removePhotoButton: 'Remove Photo'
+          },
+          actions: {
+            savedMessage: 'Saved.',
+            saveButton: 'Save'
+          }
+        },
+        updatePassword: {
+          title: 'Update Password',
+          description: 'Ensure your account is using a long, random password to stay secure.',
+          form: {
+            current_password: 'Current Password',
+            password: 'New Password',
+            password_confirmation: 'Confirm Password'
+          },
+          actions: {
+            savedMessage: 'Saved.',
+            saveButton: 'Save'
           }
         },
         delete: {
@@ -854,22 +873,41 @@ var messages = {
       },
       profile: {
         head: {
-          title: 'Управление профилем'
+          title: 'Профиль'
         },
-        header: 'Управление профилем',
-        update: {
-          title: 'Обновить профиль',
-          description: 'Информация об имени и описании пользователя.',
+        header: 'Профиль',
+        updateProfileInformation: {
+          title: 'Информация профиля',
+          description: 'Обновите информацию в профиле вашей учетной записи и адрес электронной почты.',
           form: {
             name: 'Имя пользователя',
             email: 'Эл. адрес',
             firstname: 'Имя',
-            lastname: 'Фамилия'
+            lastname: 'Фамилия',
+            selectNewPhotoButton: 'Выбрать новую фотографию',
+            removePhotoButton: 'Удалить фото'
+          },
+          actions: {
+            savedMessage: 'Сохранено.',
+            saveButton: 'Сохранить'
+          }
+        },
+        updatePassword: {
+          title: 'Обновить пароль',
+          description: 'Убедитесь, что в вашей учетной записи используется длинный случайный пароль, чтобы оставаться в безопасности.',
+          form: {
+            current_password: 'Текущий пароль',
+            password: 'Новый пароль',
+            password_confirmation: 'Подтвердите пароль'
+          },
+          actions: {
+            savedMessage: 'Сохранено.',
+            saveButton: 'Сохранить'
           }
         },
         delete: {
           title: 'Удалить аккаунт',
-          description: 'Удалить аккаунт без возможности восстановления.',
+          description: 'Удалить этого пользователя без возможности восстановления.',
           content: {
             deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
             deleteButton: 'Удалить аккаунт',
