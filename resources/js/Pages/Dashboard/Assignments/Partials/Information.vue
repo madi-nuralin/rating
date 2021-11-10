@@ -10,7 +10,7 @@
 
         <template #content>
             <div :class="{'mt-2': i > 0}" v-for="(item, i) in items">
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 text-sm">
                     <div class="text-gray-600">
                         {{ item.name }}
                     </div>
