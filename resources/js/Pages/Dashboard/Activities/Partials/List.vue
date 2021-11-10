@@ -1,5 +1,5 @@
 <template>
-    <BreezeFormCard>
+    <BreezeFormSection>
         <template #title>
             <h3 class="text-lg font-medium text-gray-900">
                 {{ assignment.assessment.name }}
@@ -55,18 +55,18 @@
                 Add New
             </Link>
         </template>
-    </BreezeFormCard>
+    </BreezeFormSection>
 </template>
 
 <script>
     import BreezeButton from '@/Components/Button.vue'
-    import BreezeFormCard from '@/Components/FormCard.vue'
+    import BreezeFormSection from '@/Components/FormSection.vue'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
         components: {
             BreezeButton,
-            BreezeFormCard,
+            BreezeFormSection,
             Link,
         },
 

@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['prefix' => 'dashboard'], function() {
 
         Route::get('', [DashboardController::class, 'index'])
-        ->name('dashboard');
+            ->name('dashboard');
 
         Route::resource('assignment', AssignmentController::class,
                 ['only' => ['index', 'show']]);
@@ -73,19 +73,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['prefix' => 'user'], function() {
         Route::delete('', [CurrentUserController::class, 'destroy'])
             ->name('current-user.destroy');
-
         Route::get('profile', [UserProfileController::class, 'show'])
             ->name('profile.show');
-
         Route::put('password', [PasswordController::class, 'update'])
             ->name('user-password.update');
-
         Route::put('information', [ProfileInformationController::class, 'update'])
             ->name('user-profile-information.update');
-
         Route::delete('profile-photo', [ProfilePhotoController::class, 'destroy'])
             ->name('current-user-photo.destroy');
-
         Route::delete('other-browser-sessions', [OtherBrowserSessionsController::class, 'destroy'])
             ->name('other-browser-sessions.destroy');
     });

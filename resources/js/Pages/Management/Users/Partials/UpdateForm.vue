@@ -12,9 +12,7 @@
             <!-- Profile Photo -->
             <div class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            ref="photo"
-                            @change="updatePhotoPreview">
+                <input type="file" class="hidden" ref="photo" @change="updatePhotoPreview">
 
                 <BreezeLabel for="photo" value="Photo" />
 

@@ -361,19 +361,17 @@ var messages = {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             }
           },
-          informationCard01: {
+          information: {
             title: 'General information',
             description: 'Position assessment information',
+            assessment: 'Assessment',
+            user: 'User',
             date: 'Valid date',
             employement: {
               department: 'Department',
               position: 'Position'
             },
             score: 'Score'
-          },
-          informationCard02: {
-            title: 'Confirmation of assessment',
-            description: 'List of committee members authorized to confirm this assessment'
           }
         },
         confirmations: {
@@ -388,20 +386,14 @@ var messages = {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             }
           },
-          informationCard01: {
-            title: 'General information',
-            description: 'Position assessment information',
-            user: 'User',
-            date: 'Valid date',
-            employement: {
-              department: 'Department',
-              position: 'Position'
-            },
-            score: 'Score'
-          },
-          informationCard02: {
+          information: {
             title: 'Confirmation of assessment',
-            description: 'List of committee members authorized to confirm this assessment'
+            description: 'List of committee members authorized to confirm this assessment',
+            status: {
+              not_viewed: 'Not viewed',
+              denied: 'Denied',
+              confirmed: 'Confirmed'
+            }
           },
           update: {
             title: 'Your decision',
@@ -951,19 +943,17 @@ var messages = {
               listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             }
           },
-          informationCard01: {
+          information: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
+            assessment: 'Оценивание',
+            user: 'Пользователь',
             date: 'Время действия текущего оцнивания',
             employement: {
               department: 'Отдел',
               position: 'Должность'
             },
             score: 'Текущий балл'
-          },
-          informationCard02: {
-            title: 'Подтверждение текущего оценивания',
-            description: 'Список сотрудников подтверждающие данное оценивание'
           }
         },
         confirmations: {
@@ -978,20 +968,14 @@ var messages = {
               listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             }
           },
-          informationCard01: {
-            title: 'Информация о пользователе',
-            description: 'Подробная информация о пользователе: отдел, должность',
-            user: 'Пользователь',
-            date: 'Время действия текущего оцнивания',
-            employement: {
-              department: 'Отдел',
-              position: 'Должность'
-            },
-            score: 'Текущий балл'
-          },
-          informationCard02: {
+          information: {
             title: 'Подтверждение текущего оценивания',
-            description: 'Список сотрудников подтверждающие данное оценивание'
+            description: 'Список сотрудников подтверждающие данное оценивание',
+            status: {
+              not_viewed: 'Не просмотрено',
+              denied: 'Отказано',
+              confirmed: 'Подтверждено'
+            }
           },
           update: {
             title: 'Ваше решение',
