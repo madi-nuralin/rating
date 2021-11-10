@@ -397,7 +397,33 @@ var messages = {
           },
           update: {
             title: 'Your decision',
-            description: 'Decide whether to approve or reject the user\'s current assessment'
+            description: 'Decide whether to approve or reject the user\'s current assessment',
+            content: {
+              info: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
+              status: {
+                not_viewed: 'Not viewed',
+                denied: 'Denied',
+                confirmed: 'Confirmed'
+              },
+              changeDecisionButton: 'Change decision',
+              denyButton: 'Deny',
+              confirmButton: 'Confirm',
+              modal: {
+                title: {
+                  deny: 'Deny',
+                  confirm: 'Confirm'
+                },
+                content: {
+                  deny: 'Are you sure to deny user\'s assignment?',
+                  confirm: 'Are you sure to confirm user\'s assignment?'
+                },
+                footer: {
+                  cancelButton: 'Cancel',
+                  denyButton: 'Deny',
+                  confirmButton: 'Confirm'
+                }
+              }
+            }
           }
         },
         activities: {
@@ -979,7 +1005,33 @@ var messages = {
           },
           update: {
             title: 'Ваше решение',
-            description: 'Примите решение подтвердить или отклонить текущее оценивание пользователя'
+            description: 'Примите решение подтвердить или отклонить текущее оценивание пользователя',
+            content: {
+              info: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
+              status: {
+                not_viewed: 'Не просмотрено',
+                denied: 'Отказано',
+                confirmed: 'Подтверждено'
+              },
+              changeDecisionButton: 'Изменить решение',
+              denyButton: 'Отказать',
+              confirmButton: 'Подтвердить',
+              modal: {
+                title: {
+                  deny: 'Отказать',
+                  confirm: 'Подтвердить'
+                },
+                content: {
+                  deny: 'Вы уверены, что отклоняете оценивание?',
+                  confirm: 'Вы уверены, что подтверждаете правильность данного оценивания?'
+                },
+                footer: {
+                  cancelButton: 'Отмена',
+                  denyButton: 'Отказать',
+                  confirmButton: 'Подтвердить'
+                }
+              }
+            }
           }
         },
         activities: {

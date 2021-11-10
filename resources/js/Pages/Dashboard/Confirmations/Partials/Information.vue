@@ -10,12 +10,12 @@
 
         <template #content>
             <div :class="{'mt-2': i > 0}" v-for="(confirmation, i) in confirmations">
-                <div class="grid grid-cols-2">
-                    <div class="flex items-center text-gray-600">
+                <div class="grid grid-cols-1 md:grid-cols-2 text-sm">
+                    <div class="flex flex-col md:flex-row md:items-center text-gray-600">
                         <div class="flex-shrink">
                             <img class="rounded-full w-8 h-8" :src="confirmation.confirmer.user.profile_photo_path" />
                         </div>
-                        <div class="overflow-ellipsis overflow-hidden pl-4">
+                        <div class="overflow-ellipsis overflow-hidden md:pl-4">
                             <div>{{ confirmation.confirmer.user.name }}</div>
                             <div>{{ confirmation.confirmer.user.email }}</div>
                         </div>
