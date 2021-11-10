@@ -53,6 +53,10 @@
         </template>
 
         <template #actions>
+            <p class="mr-3" v-if="parameter">
+                {{ $t('pages.dashboard.activities.create.actions.message', { pts: parameter.score }) }}
+            </p>
+
             <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
                 Saved.
             </BreezeActionMessage>

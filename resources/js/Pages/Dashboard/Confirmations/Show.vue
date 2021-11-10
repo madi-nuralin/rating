@@ -10,16 +10,16 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <UpdateForm :confirmation="$page.props.confirmation" />
-                <div class="md:grid md:grid-cols-3 md:gap-6">
-                    <div class="mt-5 md:mt-0 md:col-span-2">
-                        <ResourceList :assignment="$page.props.confirmation.assignment" :readonly="true"/>
-                    </div>
-                    <div class="md:col-span-1 flex flex-col">
-                        <InformationCard01 :assignment="$page.props.confirmation.assignment" />
-                        <InformationCard02 :confirmations="$page.props.confirmation.assignment.confirmations" />
-                    </div>
-                </div>
+                <show-assignment-information :assignment="$page.props.confirmation.assignment" class="mt-10 sm:mt-0" />
+                <breeze-section-border />
+
+                <show-confirmation-information :confirmations="$page.props.confirmation.assignment.confirmations" class="mt-10 sm:mt-0" />
+                <breeze-section-border />
+
+                <update-form :confirmation="$page.props.confirmation" class="mt-10 sm:mt-0" />
+                <breeze-section-border />
+
+                <resource-list :assignment="$page.props.confirmation.assignment" :readonly="true" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -32,8 +32,8 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
     import ResourceList from '@/Pages/Dashboard/Activities/Partials/List.vue'
-    import InformationCard01 from '@/Pages/Dashboard/Confirmations/Partials/InformationCard01.vue'
-    import InformationCard02 from '@/Pages/Dashboard/Assignments/Partials/InformationCard02.vue'
+    import ShowAssignmentInformation from '@/Pages/Dashboard/Assignments/Partials/Information.vue'
+    import ShowConfirmationInformation from '@/Pages/Dashboard/Confirmations/Partials/Information.vue'
     import UpdateForm from '@/Pages/Dashboard/Confirmations/Partials/UpdateForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
@@ -45,8 +45,8 @@
             BreezeLabel,
             BreezeInput,
             ResourceList,
-            InformationCard01,
-            InformationCard02,
+            ShowAssignmentInformation,
+            ShowConfirmationInformation,
             UpdateForm,
             Head,
         },

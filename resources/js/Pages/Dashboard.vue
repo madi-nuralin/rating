@@ -30,16 +30,16 @@
                             <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-gray-500">
                                 <div class="flex flex-col">
                                     <div class="text-sm text-gray-500">
-                                        <p>Employement information</p>
-                                        <ul class="list-disc ml-8 text-xs" v-for="(employement, i) in $page.props.auth.user.employements">
+                                        <p>{{ $t('pages.dashboard.user.employement') }}</p>
+                                        <ul class="list-disc ml-8 text-xs" v-for="(employement, i) in $page.props.employements">
                                            <li>
                                                 {{ employement.department.name }}, {{ employement.position.name }}
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="text-sm text-gray-500">
-                                        <p>Roles</p>
-                                        <ul class="list-disc ml-8 text-xs" v-for="(role, i) in $page.props.auth.user.roles">
+                                        <p>{{ $t('pages.dashboard.user.roles') }}</p>
+                                        <ul class="list-disc ml-8 text-xs" v-for="(role, i) in $page.props.roles">
                                            <li>
                                                 {{ role.name }}
                                             </li>

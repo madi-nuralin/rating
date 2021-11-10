@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use DB;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,19 +39,12 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user()
                     ? array_merge(
                         $request->user()->toArray(), [
-                            'roles' => $request->user()->getRoles(),
-                            'employements' => $request->user()->employements->map(function($employement) {
-                                return array_merge(
-                                    $employement->toArray(), [
-                                        'department' => $employement->getDepartment(),
-                                        'position' => $employement->getPosition()
-                                    ]
-                                );
-                            })
+                            'roles' => $request->user()->getRoles()
                         ])
                     : $request->user(),
             ],
-            'locale' => app()->currentLocale()
+            'locale' => app()->currentLocale(),
+            //'sessions' => DB::table('sessions')->get()
         ]);
     }
 }

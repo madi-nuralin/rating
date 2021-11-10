@@ -283,17 +283,36 @@ var messages = {
       },
       profile: {
         head: {
-          title: 'Profile management'
+          title: 'Profile'
         },
-        header: 'Profile management',
-        update: {
-          title: 'Update Profile',
-          description: 'The user\'s name and description information.',
+        header: 'Profile',
+        updateProfileInformation: {
+          title: 'Profile Information',
+          description: 'Update your account\'s profile information and email address.',
           form: {
             name: 'Name',
             email: 'Email',
             firstname: 'Firstname',
-            lastname: 'Lastname'
+            lastname: 'Lastname',
+            selectNewPhotoButton: 'Select A New Photo',
+            removePhotoButton: 'Remove Photo'
+          },
+          actions: {
+            savedMessage: 'Saved.',
+            saveButton: 'Save'
+          }
+        },
+        updatePassword: {
+          title: 'Update Password',
+          description: 'Ensure your account is using a long, random password to stay secure.',
+          form: {
+            current_password: 'Current Password',
+            password: 'New Password',
+            password_confirmation: 'Confirm Password'
+          },
+          actions: {
+            savedMessage: 'Saved.',
+            saveButton: 'Save'
           }
         },
         delete: {
@@ -324,6 +343,10 @@ var messages = {
             description: 'Check and confirm the effective activity of employees. This role was assigned to you by the system manager'
           }
         },
+        user: {
+          employement: 'Your employement information',
+          roles: 'Your roles'
+        },
         description: 'A Staff Performance Assessment (SPA) application provides an employee to see his overall ratings(self as well as supervisor\'s). SPA allows system managers\' to create and manage staff assessment instances with configurable performance parameters.',
         empty: 'No items found',
         assignments: {
@@ -338,19 +361,17 @@ var messages = {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             }
           },
-          informationCard01: {
+          information: {
             title: 'General information',
             description: 'Position assessment information',
+            assessment: 'Assessment',
+            user: 'User',
             date: 'Valid date',
             employement: {
               department: 'Department',
               position: 'Position'
             },
             score: 'Score'
-          },
-          informationCard02: {
-            title: 'Confirmation of assessment',
-            description: 'List of committee members authorized to confirm this assessment'
           }
         },
         confirmations: {
@@ -365,20 +386,14 @@ var messages = {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             }
           },
-          informationCard01: {
-            title: 'General information',
-            description: 'Position assessment information',
-            user: 'User',
-            date: 'Valid date',
-            employement: {
-              department: 'Department',
-              position: 'Position'
-            },
-            score: 'Score'
-          },
-          informationCard02: {
+          information: {
             title: 'Confirmation of assessment',
-            description: 'List of committee members authorized to confirm this assessment'
+            description: 'List of committee members authorized to confirm this assessment',
+            status: {
+              not_viewed: 'Not viewed',
+              denied: 'Denied',
+              confirmed: 'Confirmed'
+            }
           },
           update: {
             title: 'Your decision',
@@ -387,35 +402,38 @@ var messages = {
         },
         activities: {
           head: {
-            title: 'Оценивание'
+            title: 'Add new activity'
           },
-          header: 'Оценивание',
+          header: 'Add new activity',
           create: {
-            title: 'Добавить новое действи оценки',
-            description: 'Добавить новое действи оценки',
+            title: 'Add new assessment activity',
+            description: 'Add new assessment activity by selecting assessment parameter',
             form: {
               parameter: 'Select assessment parameter'
+            },
+            actions: {
+              message: 'For this parameter you will receive {pts} points'
             }
           },
           update: {
-            title: 'Обновить действие',
-            description: 'Обновить действие.',
+            title: 'Update activity',
+            description: 'Update assessment activity details.',
             form: {
               parameter: 'The assessment parameter'
             }
           },
           delete: {
-            title: 'Удалить аккаунт',
-            description: 'Удалить аккаунт без возможности восстановления.',
+            title: 'Delete activity',
+            description: 'Permanently delete this activity.',
             content: {
-              deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              deleteButton: 'Удалить аккаунт',
+              deleteInfo: 'After deleting an activity all its resources and data will be permanently deleted. Before deleting this activity, download any data or information about this account that you want to keep.',
+              deleteButton: 'Delete activity',
               modal: {
-                title: 'Удалить аккаунт',
-                content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
+                title: 'Delete activity',
+                content: 'Are you sure you want to delete this assessment activity? After deletion, all of its resources and data will be permanently deleted.',
                 footer: {
-                  cancelButton: 'Отмена',
-                  deleteButton: 'Удалить аккаунт'
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete activity'
                 }
               }
             }
@@ -847,22 +865,41 @@ var messages = {
       },
       profile: {
         head: {
-          title: 'Управление профилем'
+          title: 'Профиль'
         },
-        header: 'Управление профилем',
-        update: {
-          title: 'Обновить профиль',
-          description: 'Информация об имени и описании пользователя.',
+        header: 'Профиль',
+        updateProfileInformation: {
+          title: 'Информация профиля',
+          description: 'Обновите информацию в профиле вашей учетной записи и адрес электронной почты.',
           form: {
             name: 'Имя пользователя',
             email: 'Эл. адрес',
             firstname: 'Имя',
-            lastname: 'Фамилия'
+            lastname: 'Фамилия',
+            selectNewPhotoButton: 'Выбрать новую фотографию',
+            removePhotoButton: 'Удалить фото'
+          },
+          actions: {
+            savedMessage: 'Сохранено.',
+            saveButton: 'Сохранить'
+          }
+        },
+        updatePassword: {
+          title: 'Обновить пароль',
+          description: 'Убедитесь, что в вашей учетной записи используется длинный случайный пароль, чтобы оставаться в безопасности.',
+          form: {
+            current_password: 'Текущий пароль',
+            password: 'Новый пароль',
+            password_confirmation: 'Подтвердите пароль'
+          },
+          actions: {
+            savedMessage: 'Сохранено.',
+            saveButton: 'Сохранить'
           }
         },
         delete: {
           title: 'Удалить аккаунт',
-          description: 'Удалить аккаунт без возможности восстановления.',
+          description: 'Удалить этого пользователя без возможности восстановления.',
           content: {
             deleteInfo: 'После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
             deleteButton: 'Удалить аккаунт',
@@ -888,6 +925,10 @@ var messages = {
             description: 'Проверяйте и выполните подтверждение эффективной деятельности сотрудников. Данная роль вам была присвоена менеджером системы'
           }
         },
+        user: {
+          employement: 'Информация о вашей занятости',
+          roles: 'Ваши роли'
+        },
         description: 'Приложение для оценки эффективности работы персонала (SPA), которое позволяет сотруднику видеть свои общие оценки (как собственные, так и руководителя). SPA позволяет системным менеджерам создавать экземпляры оценки персонала и управлять ими с настраиваемыми параметрами производительности.',
         empty: 'Не найдено элементов',
         assignments: {
@@ -902,19 +943,17 @@ var messages = {
               listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             }
           },
-          informationCard01: {
+          information: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
+            assessment: 'Оценивание',
+            user: 'Пользователь',
             date: 'Время действия текущего оцнивания',
             employement: {
               department: 'Отдел',
               position: 'Должность'
             },
             score: 'Текущий балл'
-          },
-          informationCard02: {
-            title: 'Подтверждение текущего оценивания',
-            description: 'Список сотрудников подтверждающие данное оценивание'
           }
         },
         confirmations: {
@@ -929,20 +968,14 @@ var messages = {
               listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             }
           },
-          informationCard01: {
-            title: 'Информация о пользователе',
-            description: 'Подробная информация о пользователе: отдел, должность',
-            user: 'Пользователь',
-            date: 'Время действия текущего оцнивания',
-            employement: {
-              department: 'Отдел',
-              position: 'Должность'
-            },
-            score: 'Текущий балл'
-          },
-          informationCard02: {
+          information: {
             title: 'Подтверждение текущего оценивания',
-            description: 'Список сотрудников подтверждающие данное оценивание'
+            description: 'Список сотрудников подтверждающие данное оценивание',
+            status: {
+              not_viewed: 'Не просмотрено',
+              denied: 'Отказано',
+              confirmed: 'Подтверждено'
+            }
           },
           update: {
             title: 'Ваше решение',
@@ -951,14 +984,17 @@ var messages = {
         },
         activities: {
           head: {
-            title: 'Оценивание'
+            title: 'Мои действия'
           },
-          header: 'Оценивание',
+          header: 'Мои действия',
           create: {
             title: 'Добавить новое действи оценки',
-            description: 'Добавить новое действи оценки',
+            description: 'Добавить новое действи оценки. Выберите соответсвующий параметр и заполните форму',
             form: {
               parameter: 'Выберите параметр оценивания'
+            },
+            actions: {
+              message: 'Для этого параметра вам будет начислено {pts} баллов'
             }
           },
           update: {

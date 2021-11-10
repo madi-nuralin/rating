@@ -16,48 +16,7 @@ use App\Models\Employement;
 
 class CurrentUserController extends Controller
 {
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        return Inertia::render('Profile/Show', [
-            'user' => array_merge(
-                auth()->user()->toArray(), [
-                    'employements' => auth()->user()->getEmployements(),
-                    'roles' => auth()->user()->getRoles()
-                ]
-            ),
-            'employements' => Employement::all()->map(function($employement) {
-                return array_merge(
-                    $employement->toArray(),[
-                        'department' => $employement->getDepartment(),
-                        'position' => $employement->getPosition(),
-                    ]
-                );
-            }),
-            'roles' => Role::all()->map(function($role) {
-                return $role->toArray();
-            })
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        return UserController::update($request, $id);
-    }
-
-    /**
+    /**л
      * Remove the specified resource from storage.
      *
      * @param  Request $request

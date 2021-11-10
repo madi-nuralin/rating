@@ -24,8 +24,59 @@ class ProfileInformationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        return UserController::update($request, $id);
+        $input = $request->all();
+        $user = auth()->user();
+
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'firstname' => ['nullable', 'string', 'max:255'],
+            'lastname' => ['nullable', 'string', 'max:255'],
+        ])->validateWithBag('updateUser');
+
+        if (isset($input['photo'])) {
+            $user->updateProfilePhoto($input['photo']);
+        }
+        if (isset($input['firstname'])) {
+            $user->setFirstname($input['firstname']);
+        }
+        if (isset($input['lastname'])) {
+            $user->setLastname($input['lastname']);
+        }
+
+        if ($input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail) {
+            $this->updateVerifiedUser($user, $input);
+        } else {
+            $user->forceFill([
+                'name' => $input['name'],
+                'email' => $input['email'],
+            ])->save();
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'user-updated');
+    }
+
+    /**
+     * Update the given verified user's profile information.
+     *
+     * @param  mixed  $user
+     * @param  array  $input
+     * @return void
+     */
+    protected function updateVerifiedUser($user, array $input)
+    {
+        $user->forceFill([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'email_verified_at' => null,
+        ])->save();
+
+        $user->sendEmailVerificationNotification();
     }
 }

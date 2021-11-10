@@ -10,16 +10,16 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <UpdateForm :user="$page.props.user" />
-                <BreezeSectionBorder />
+                <update-profile-information-form :user="$page.props.user" />
+                <breeze-section-border />
 
-                <UpdatePasswordForm class="mt-10 sm:mt-0"/>
-                <BreezeSectionBorder />
+                <update-password-form class="mt-10 sm:mt-0"/>
+                <breeze-section-border />
 
-                <!--employement-information-form :user="$page.props.user" class="mt-10 sm:mt-0" />
+                <!--logout-other-browser-sessions-form :sessions="$page.props.sessions" class="mt-10 sm:mt-0" />
                 <breeze-section-border /-->
 
-                <DeleteForm class="mt-10 sm:mt-0" :user="$page.props.user"/>
+                <delete-form class="mt-10 sm:mt-0" :user="$page.props.user"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -28,9 +28,9 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-import UpdateForm from '@/Pages/Management/Users/Partials/UpdateForm.vue'
+import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue'
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
-//import EmployementInformationForm from '@/Pages/Profile/Employement/Partials/List.vue'
+import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue'
 import DeleteForm from '@/Pages/Profile/Partials/DeleteForm.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 
@@ -39,9 +39,9 @@ export default {
         BreezeAuthenticatedLayout,
         BreezeSectionBorder,
         Head,
+        UpdateProfileInformationForm,
         UpdatePasswordForm,
-        UpdateForm,
-        //EmployementInformationForm,
+        LogoutOtherBrowserSessionsForm,
         DeleteForm,
     },
 }

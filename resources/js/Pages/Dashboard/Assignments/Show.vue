@@ -10,15 +10,13 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="md:grid md:grid-cols-3 md:gap-6">
-                    <div class="mt-5 md:mt-0 md:col-span-2">
-                        <ResourceList :assignment="$page.props.assignment" />
-                    </div>
-                    <div class="md:col-span-1 flex flex-col">
-                        <InformationCard01 :assignment="$page.props.assignment" />
-                        <InformationCard02 :confirmations="$page.props.assignment.confirmations" />
-                    </div>
-                </div>
+                <show-assignment-information :assignment="$page.props.assignment" />
+                <breeze-section-border />
+
+                <show-confirmation-information :confirmations="$page.props.assignment.confirmations" class="mt-10 sm:mt-0" />
+                <breeze-section-border />
+
+                <resource-list :assignment="$page.props.assignment" class="mt-10 sm:mt-0" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -31,8 +29,8 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeInput from '@/Components/Input.vue'
     import ResourceList from '@/Pages/Dashboard/Activities/Partials/List.vue'
-    import InformationCard01 from '@/Pages/Dashboard/Assignments/Partials/InformationCard01.vue'
-    import InformationCard02 from '@/Pages/Dashboard/Assignments/Partials/InformationCard02.vue'
+    import ShowAssignmentInformation from '@/Pages/Dashboard/Assignments/Partials/Information.vue'
+    import ShowConfirmationInformation from '@/Pages/Dashboard/Confirmations/Partials/Information.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -43,8 +41,8 @@
             BreezeLabel,
             BreezeInput,
             ResourceList,
-            InformationCard01,
-            InformationCard02,
+            ShowAssignmentInformation,
+            ShowConfirmationInformation,
             Head,
         },
     }

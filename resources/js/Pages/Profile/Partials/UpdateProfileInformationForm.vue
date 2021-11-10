@@ -1,11 +1,11 @@
 <template>
-    <BreezeFormSection @submitted="updateUser">
+    <BreezeFormSection @submitted="updateProfileInformation">
         <template #title>
-            {{ $t('pages.management.users.update.title') }}
+            {{ $t('pages.profile.updateProfileInformation.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.users.update.description') }}
+            {{ $t('pages.profile.updateProfileInformation.description') }}
         </template>
 
         <template #form>
@@ -29,66 +29,48 @@
                 </div>
 
                 <BreezeButtonSecondary class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
-                    Select A New Photo
+                    {{ $t('pages.profile.updateProfileInformation.form.selectNewPhotoButton') }}
                 </BreezeButtonSecondary>
 
                 <BreezeButtonSecondary type="button" class="mt-2" @click.prevent="deletePhoto" v-if="user.profile_photo_path">
-                    Remove Photo
+                    {{ $t('pages.profile.updateProfileInformation.form.removePhotoButton') }}
                 </BreezeButtonSecondary>
 
                 <BreezeInputError :message="form.errors.photo" class="mt-2" />
             </div>
 
-            <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.management.users.update.form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.profile.updateProfileInformation.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
-            <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="email" :value="$t('pages.management.users.update.form.email')" />
+                <BreezeLabel for="email" :value="$t('pages.profile.updateProfileInformation.form.email')" />
                 <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                 <BreezeInputError :message="form.errors.email" class="mt-2" />
             </div>
 
-            <!-- Firstname -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="firstname" :value="$t('pages.management.users.update.form.firstname')" />
+                <BreezeLabel for="firstname" :value="$t('pages.profile.updateProfileInformation.form.firstname')" />
                 <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" />
                 <BreezeInputError :message="form.errors.firstname" class="mt-2" />
             </div>
 
-            <!-- Lastname -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="lastname" :value="$t('pages.management.users.update.form.lastname')" />
+                <BreezeLabel for="lastname" :value="$t('pages.profile.updateProfileInformation.form.lastname')" />
                 <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" />
                 <BreezeInputError :message="form.errors.lastname" class="mt-2" />
-            </div>
-
-            <!-- Employement -->
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="employements" :value="$t('pages.management.users.update.form.employements')" />
-                <BreezeSelect id="employements" class="mt-1 block w-full" :value="form.employements" @input="form.employements = $event" :options="options.employements"/>
-                <BreezeInputError :message="form.errors.employements" class="mt-2" />
-            </div>
-
-            <!-- Role -->
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="roles" :value="$t('pages.management.users.update.form.roles')" />
-                <BreezeSelect id="roles" class="mt-1 block w-full" :value="form.roles" @input="form.roles = $event" :options="options.roles"/>
-                <BreezeInputError :message="form.errors.roles" class="mt-2" />
             </div>
         </template>
 
         <template #actions>
             <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                {{ $t('pages.profile.updateProfileInformation.actions.savedMessage') }}
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('pages.profile.updateProfileInformation.actions.saveButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -102,7 +84,6 @@
     import BreezeLabel from '@/Components/Label.vue'
     import BreezeActionMessage from '@/Components/ActionMessage.vue'
     import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
-    import BreezeSelect from '@/Components/Select.vue'
 
     export default {
         components: {
@@ -113,10 +94,9 @@
             BreezeInputError,
             BreezeLabel,
             BreezeButtonSecondary,
-            BreezeSelect,
         },
 
-        props: ['user', 'employements', 'roles'],
+        props: ['user'],
 
         data() {
             return {
@@ -126,13 +106,7 @@
                     email: this.user.email,
                     firstname: this.user.firstname,
                     lastname: this.user.lastname,
-                    photo: this.user.profile_photo_path,
-                    employements: this.user.employements.map(function(employement) {
-                        return employement.id;
-                    }),
-                    roles: this.user.roles.map(function(role) {
-                        return role.id;
-                    }),
+                    photo: this.user.profile_photo_path
                 }),
 
                 photoPreview: null,
@@ -140,13 +114,13 @@
         },
 
         methods: {
-            updateUser() {
+            updateProfileInformation() {
                 if (this.$refs.photo) {
                     this.form.photo = this.$refs.photo.files[0]
                 }
 
-                this.form.post(route('user.update', {'id': this.user.id}), {
-                    errorBag: 'updateUser',
+                this.form.post(route('user-profile-information.update'), {
+                    errorBag: 'updateProfileInformation',
                     preserveScroll: true,
                     onSuccess: () => (this.clearPhotoFileInput()),
                 });
@@ -171,13 +145,13 @@
             },
 
             deletePhoto() {
-                /*this.$inertia.delete(route('current-user-photo.destroy'), {
+                this.$inertia.delete(route('current-user-photo.destroy'), {
                     preserveScroll: true,
                     onSuccess: () => {
                         this.photoPreview = null;
                         this.clearPhotoFileInput();
                     },
-                });*/
+                });
             },
 
             clearPhotoFileInput() {
@@ -186,31 +160,5 @@
                 }
             },
         },
-
-        computed: {
-            options() {
-                let employements, roles;
-
-                employements = this.employements ?
-                this.employements.map(function(employement) {
-                    return {
-                        value: employement.id,
-                        name: employement.position.name,
-                        description: this.$t('pages.management.assessments.update.form.employement.option.description', {department: employement.department.name})
-                    };
-                }, {$t: this.$t}) : null;
-
-                roles = this.roles ?
-                this.roles.map(function(role) {
-                    return {
-                        value: role.id,
-                        name: role.name,
-                        description: role.description,
-                    };
-                }, {$t: this.$t}) : null;
-
-                return {'employements': employements, 'roles': roles};
-            }
-        }
     }
 </script>
