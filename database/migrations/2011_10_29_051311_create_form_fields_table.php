@@ -21,7 +21,7 @@ class CreateFormFieldsTable extends Migration
                   ->references('id')
                   ->on('forms')
                   ->onDelete('cascade');
-            $table->string('type'); /* text, select, multiselect, file */
+            $table->string('type'); /* text, select, multiselect, file, formula */
             $table->timestamps();
         });
     }

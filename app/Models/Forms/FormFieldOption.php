@@ -19,6 +19,7 @@ class FormFieldOption extends Model
      */
     protected $fillable = [
         'form_field_id',
+        'score'
     ];
 
     public function settings() {
@@ -67,6 +68,14 @@ class FormFieldOption extends Model
         );
     }
 
+    public function getScore() {
+        return $this->score;
+    }
+
+    public function setScore($score) {
+        $this->score = $score;
+    }
+
     public function getField() {
     	return $this->field;
     }
@@ -80,6 +89,7 @@ class FormFieldOption extends Model
     		'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'score' => $this->getScore(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

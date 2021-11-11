@@ -23365,41 +23365,45 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    onClick: function onClick(value) {
+    onClick: function onClick(newValue) {
       if (this.multiple) {
-        if (this.modelValue && this.modelValue.includes(value)) {
-          for (var i = 0; i < this.modelValue.length; i++) {
-            if (this.modelValue[i] == value) {
-              this.modelValue.splice(i, 1);
+        var modelValue = this.value.slice();
+
+        if (modelValue && modelValue.includes(newValue)) {
+          for (var i = 0; i < modelValue.length; i++) {
+            if (modelValue[i] == newValue) {
+              modelValue.splice(i, 1);
             }
           }
         } else {
-          if (!this.modelValue) this.modelValue = Array();
-          this.modelValue.push(value);
+          if (!modelValue) modelValue = Array();
+          modelValue.push(newValue);
         }
 
         this.displayValue = "";
 
         for (var i = 0; i < this.options.length; i++) {
-          if (this.modelValue.includes(this.options[i].value)) {
+          if (modelValue.includes(this.options[i].value)) {
             this.displayValue += this.options[i].name + "; ";
           }
         }
+
+        this.$emit('input', modelValue);
       } else {
-        this.modelValue = value;
+        this.modelValue = newValue;
 
         for (var i = 0; i < this.options.length; i++) {
-          if (this.options[i].value == value) {
+          if (this.options[i].value == newValue) {
             this.displayValue = this.options[i].name;
             break;
           }
         }
-      }
 
-      this.$emit('input', this.modelValue);
+        this.$emit('input', this.modelValue);
+      }
     },
-    isClicked: function isClicked(value) {
-      return this.multiple ? this.modelValue && this.modelValue.includes(value) : this.modelValue && this.modelValue == value;
+    isClicked: function isClicked(newValue) {
+      return this.multiple ? this.value && this.value.includes(newValue) : this.modelValue && this.modelValue == newValue;
     }
   }
 });
@@ -24038,6 +24042,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Textarea_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Textarea.vue */ "./resources/js/Components/Textarea.vue");
 /* harmony import */ var _Components_Label_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/Label.vue */ "./resources/js/Components/Label.vue");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -24065,6 +24075,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         parameter: null,
+        score: 0,
         fields: {}
       }),
       parameter: null
@@ -24082,55 +24093,180 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectParameter: function selectParameter(event) {
       this.form.parameter = event;
-      var parameters = this.assignment.assessment.parameters;
 
-      for (var i = 0; i < parameters.length; ++i) {
-        if (this.form.parameter == parameters[i].id) {
-          this.parameter = parameters[i];
-          var form_fields = this.parameter.form.fields;
+      var _iterator = _createForOfIteratorHelper(this.assignment.assessment.parameters),
+          _step;
 
-          for (var j = 0; j < form_fields.length; ++j) {
-            /*if (! Array('select', 'multiselect').includes(form_fields[i].type) )
-                continue;*/
-            this.form.fields[this.__(form_fields[j].id)] = '';
-            this.form.errors[this.__(form_fields[j].id)] = '';
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var parameter = _step.value;
+
+          if (this.form.parameter == parameter.id) {
+            this.parameter = parameter;
+            this.form.score = parameter.score;
+
+            var _iterator2 = _createForOfIteratorHelper(parameter.form.fields),
+                _step2;
+
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var field = _step2.value;
+
+                /*if (! Array('select', 'multiselect').includes(field.type) )
+                    continue;*/
+                this.form.fields[field.id] = '';
+                this.form.errors[field.id] = '';
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+
+            break;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    },
+    selectField: function selectField(field, pid, nid) {
+      var score = 0;
+
+      switch (field.type) {
+        case 'text':
+          break;
+
+        case 'select':
+          var _iterator3 = _createForOfIteratorHelper(field.options),
+              _step3;
+
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var option = _step3.value;
+
+              if (pid === option.id) {
+                score -= option.score;
+                break;
+              }
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+
+          var _iterator4 = _createForOfIteratorHelper(field.options),
+              _step4;
+
+          try {
+            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+              var _option = _step4.value;
+
+              if (nid === _option.id) {
+                score += _option.score;
+                break;
+              }
+            }
+          } catch (err) {
+            _iterator4.e(err);
+          } finally {
+            _iterator4.f();
           }
 
           break;
-        }
+
+        case 'multiselect':
+          for (var _i = 0, _Array$from = Array.from(pid); _i < _Array$from.length; _i++) {
+            var v = _Array$from[_i];
+
+            var _iterator5 = _createForOfIteratorHelper(field.options),
+                _step5;
+
+            try {
+              for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+                var _option2 = _step5.value;
+
+                if (v === _option2.id) {
+                  score -= _option2.score;
+                  break;
+                }
+              }
+            } catch (err) {
+              _iterator5.e(err);
+            } finally {
+              _iterator5.f();
+            }
+          }
+
+          for (var _i2 = 0, _Array$from2 = Array.from(nid); _i2 < _Array$from2.length; _i2++) {
+            var _v = _Array$from2[_i2];
+
+            var _iterator6 = _createForOfIteratorHelper(field.options),
+                _step6;
+
+            try {
+              for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                var _option3 = _step6.value;
+
+                if (_v === _option3.id) {
+                  score += _option3.score;
+                  break;
+                }
+              }
+            } catch (err) {
+              _iterator6.e(err);
+            } finally {
+              _iterator6.f();
+            }
+          }
+
+          break;
+
+        default:
+          break;
       }
-    },
-    __: function __(id) {
-      return id;
+
+      this.form.score += score;
     }
   },
   computed: {
     options: function options() {
-      var ret_val = {};
+      var obj = {};
 
       if (this.parameter) {
-        var form_fields = this.parameter.form.fields;
+        var _iterator7 = _createForOfIteratorHelper(this.parameter.form.fields),
+            _step7;
 
-        for (var i = 0; i < form_fields.length; ++i) {
-          if (!Array('select', 'multiselect').includes(form_fields[i].type)) continue;
-          ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function (option) {
-            return {
-              value: option.id,
-              name: option.name,
-              description: option.description
-            };
-          });
+        try {
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var field = _step7.value;
+            if (!Array('select', 'multiselect').includes(field.type)) continue;
+            obj[field.id] = field.options.map(function (option) {
+              return {
+                value: option.id,
+                name: option.name,
+                description: option.description
+              };
+            });
+          }
+        } catch (err) {
+          _iterator7.e(err);
+        } finally {
+          _iterator7.f();
         }
       }
 
-      ret_val['parameters'] = this.assignment.assessment.parameters.map(function (parameter) {
+      obj['parameters'] = this.assignment.assessment.parameters.map(function (parameter) {
         return {
           value: parameter.id,
           name: parameter.name,
           description: parameter.description
         };
       });
-      return ret_val;
+      return obj;
     }
   }
 });
@@ -24241,6 +24377,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Textarea__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.vue");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
 /* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -24267,6 +24409,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         parameter: this.activity.parameter.name,
+        score: this.activity.score,
         fields: this.getFields()
       })
     };
@@ -24279,39 +24422,58 @@ __webpack_require__.r(__webpack_exports__);
       });*/
     },
     getFields: function getFields() {
-      var ret_val = {};
-      var form_fields = this.activity.parameter.form.fields;
+      var obj = {};
 
-      for (var i = 0; i < form_fields.length; ++i) {
-        if (form_fields[i].type == 'multiselect') ret_val[this.__(form_fields[i].id)] = form_fields[i].values;else ret_val[this.__(form_fields[i].id)] = form_fields[i].values[0];
+      var _iterator = _createForOfIteratorHelper(this.activity.parameter.form.fields),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var field = _step.value;
+
+          if (field.type == 'multiselect') {
+            obj[field.id] = field.values;
+          } else {
+            obj[field.id] = field.values[0];
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
       }
 
-      return ret_val;
-    },
-    __: function __(id) {
-      return id;
+      return obj;
     }
   },
   computed: {
     options: function options() {
-      var ret_val = {};
+      var obj = {};
 
       if (true) {
-        var form_fields = this.activity.parameter.form.fields;
+        var _iterator2 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
+            _step2;
 
-        for (var i = 0; i < form_fields.length; ++i) {
-          if (!Array('select', 'multiselect').includes(form_fields[i].type)) continue;
-          ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function (option) {
-            return {
-              value: option.id,
-              name: option.name,
-              description: option.description
-            };
-          });
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var field = _step2.value;
+            if (!Array('select', 'multiselect').includes(field.type)) continue;
+            obj[field.id] = field.options.map(function (option) {
+              return {
+                value: option.id,
+                name: option.name,
+                description: option.description
+              };
+            });
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
         }
       }
 
-      return ret_val;
+      return obj;
     }
   }
 });
@@ -24338,6 +24500,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Textarea__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.vue");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
 /* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -24364,6 +24532,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         parameter: this.activity.parameter.name,
+        score: this.activity.score,
         fields: this.getFields()
       })
     };
@@ -24378,39 +24547,157 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getFields: function getFields() {
-      var ret_val = {};
-      var form_fields = this.activity.parameter.form.fields;
+      var obj = {};
 
-      for (var i = 0; i < form_fields.length; ++i) {
-        if (form_fields[i].type == 'multiselect') ret_val[this.__(form_fields[i].id)] = form_fields[i].values;else ret_val[this.__(form_fields[i].id)] = form_fields[i].values[0];
+      var _iterator = _createForOfIteratorHelper(this.activity.parameter.form.fields),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var field = _step.value;
+
+          if (field.type == 'multiselect') {
+            obj[field.id] = field.values;
+          } else {
+            obj[field.id] = field.values[0];
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
       }
 
-      return ret_val;
+      return obj;
     },
-    __: function __(id) {
-      return id;
+    selectField: function selectField(field, pid, nid) {
+      var score = 0;
+
+      switch (field.type) {
+        case 'text':
+          break;
+
+        case 'select':
+          var _iterator2 = _createForOfIteratorHelper(field.options),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var option = _step2.value;
+
+              if (pid === option.id) {
+                score -= option.score;
+                break;
+              }
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+
+          var _iterator3 = _createForOfIteratorHelper(field.options),
+              _step3;
+
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var _option = _step3.value;
+
+              if (nid === _option.id) {
+                score += _option.score;
+                break;
+              }
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+
+          break;
+
+        case 'multiselect':
+          for (var _i = 0, _Array$from = Array.from(pid); _i < _Array$from.length; _i++) {
+            var v = _Array$from[_i];
+
+            var _iterator4 = _createForOfIteratorHelper(field.options),
+                _step4;
+
+            try {
+              for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                var _option2 = _step4.value;
+
+                if (v === _option2.id) {
+                  score -= _option2.score;
+                  break;
+                }
+              }
+            } catch (err) {
+              _iterator4.e(err);
+            } finally {
+              _iterator4.f();
+            }
+          }
+
+          for (var _i2 = 0, _Array$from2 = Array.from(nid); _i2 < _Array$from2.length; _i2++) {
+            var _v = _Array$from2[_i2];
+
+            var _iterator5 = _createForOfIteratorHelper(field.options),
+                _step5;
+
+            try {
+              for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+                var _option3 = _step5.value;
+
+                if (_v === _option3.id) {
+                  score += _option3.score;
+                  break;
+                }
+              }
+            } catch (err) {
+              _iterator5.e(err);
+            } finally {
+              _iterator5.f();
+            }
+          }
+
+          break;
+
+        default:
+          break;
+      }
+
+      this.form.score += score;
     }
   },
   computed: {
     options: function options() {
-      var ret_val = {};
+      var obj = {};
 
       if (true) {
-        var form_fields = this.activity.parameter.form.fields;
+        var _iterator6 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
+            _step6;
 
-        for (var i = 0; i < form_fields.length; ++i) {
-          if (!Array('select', 'multiselect').includes(form_fields[i].type)) continue;
-          ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function (option) {
-            return {
-              value: option.id,
-              name: option.name,
-              description: option.description
-            };
-          });
+        try {
+          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            var field = _step6.value;
+            if (!Array('select', 'multiselect').includes(field.type)) continue;
+            obj[field.id] = field.options.map(function (option) {
+              return {
+                value: option.id,
+                name: option.name,
+                description: option.description
+              };
+            });
+          }
+        } catch (err) {
+          _iterator6.e(err);
+        } finally {
+          _iterator6.f();
         }
       }
 
-      return ret_val;
+      return obj;
     }
   }
 });
@@ -24940,7 +25227,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         name: '',
-        description: ''
+        description: '',
+        score: ''
       })
     };
   },
@@ -25082,7 +25370,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         name: this.option.name,
-        description: this.option.description
+        description: this.option.description,
+        score: this.option.score
       })
     };
   },
@@ -30051,8 +30340,7 @@ var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_3 = {
-  key: 0,
-  "class": "mr-3"
+  "class": "col-span-6 sm:col-span-4"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
@@ -30119,66 +30407,83 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: $options.__(field.id),
+          id: field.id,
           type: "text",
           "class": "mt-1 block w-full",
-          modelValue: $data.form.fields[$options.__(field.id)],
+          modelValue: $data.form.fields[field.id],
           "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return $data.form.fields[field.id] = $event;
           }
         }, null, 8
         /* PROPS */
         , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return $options.selectField(field, $data.form.fields[field.id], $data.form.fields[field.id] = $event);
           },
-          options: $options.options[$options.__(field.id)],
+          options: $options.options[field.id],
           multiple: false
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return $options.selectField(field, $data.form.fields[field.id], $data.form.fields[field.id] = $event);
           },
-          options: $options.options[$options.__(field.id)],
+          options: $options.options[field.id],
           multiple: true
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            $data.form.fields[field.id] = $event;
           },
           route: ''
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors[$options.__(field.id)],
+          message: $data.form.errors[field.id],
           "class": "mt-2"
         }, null, 8
         /* PROPS */
         , ["message"])]);
       }), 256
       /* UNKEYED_FRAGMENT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: _ctx.$t('pages.dashboard.activities.create.form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return $data.form.score = $event;
+        }),
+        disabled: true
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.score,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [$data.parameter ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.create.actions.message', {
-        pts: $data.parameter.score
-      })), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeActionMessage, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeActionMessage, {
         on: $data.form.recentlySuccessful,
         "class": "mr-3"
       }, {
@@ -30485,6 +30790,9 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_3 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
 
@@ -30502,19 +30810,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmitted: $options.updateActivity
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createSlots)({
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.update.title')), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.show.title')), 1
       /* TEXT */
       )];
     }),
     description: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.update.description')), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.show.description')), 1
       /* TEXT */
       )];
     }),
     form: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parameter",
-        value: _ctx.$t('pages.dashboard.activities.update.form.parameter')
+        value: _ctx.$t('pages.dashboard.activities.show.form.parameter')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -30541,60 +30849,82 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: $options.__(field.id),
+          id: field.id,
           type: "text",
           "class": "mt-1 block w-full",
-          modelValue: $data.form.fields[$options.__(field.id)],
+          modelValue: $data.form.fields[field.id],
           "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
-          }
+            return $data.form.fields[field.id] = $event;
+          },
+          disabled: true
         }, null, 8
         /* PROPS */
         , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return _ctx.selectField(field, $data.form.fields[field.id], $data.form.fields[field.id] = $event);
           },
-          options: $options.options[$options.__(field.id)],
+          options: $options.options[field.id],
           multiple: false
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return _ctx.selectField(field, $data.form.fields[field.id], $data.form.fields[field.id] = $event);
           },
-          options: $options.options[$options.__(field.id)],
+          options: $options.options[field.id],
           multiple: true
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            $data.form.fields[field.id] = $event;
           },
           route: '',
           readonly: true
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors[$options.__(field.id)],
+          message: $data.form.errors[field.id],
           "class": "mt-2"
         }, null, 8
         /* PROPS */
         , ["message"])]);
       }), 256
       /* UNKEYED_FRAGMENT */
-      ))];
+      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: _ctx.$t('pages.dashboard.activities.show.form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.form.score = $event;
+        }),
+        disabled: true
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.score,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])])];
     }),
     _: 2
     /* DYNAMIC */
@@ -30630,10 +30960,13 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_3 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -30695,59 +31028,80 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: $options.__(field.id),
+          id: field.id,
           type: "text",
           "class": "mt-1 block w-full",
-          modelValue: $data.form.fields[$options.__(field.id)],
+          modelValue: $data.form.fields[field.id],
           "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return $data.form.fields[field.id] = $event;
           }
         }, null, 8
         /* PROPS */
         , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return $options.selectField(field, $data.form.fields[field.id], $data.form.fields[field.id] = $event);
           },
-          options: $options.options[$options.__(field.id)],
+          options: $options.options[field.id],
           multiple: false
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            return $options.selectField(field, $data.form.fields[field.id], $data.form.fields[field.id] = $event);
           },
-          options: $options.options[$options.__(field.id)],
+          options: $options.options[field.id],
           multiple: true
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: $options.__(field.id),
-          value: $data.form.fields[$options.__(field.id)],
+          id: field.id,
+          value: $data.form.fields[field.id],
           onInput: function onInput($event) {
-            return $data.form.fields[$options.__(field.id)] = $event;
+            $data.form.fields[field.id] = $event;
           },
           route: ''
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors[$options.__(field.id)],
+          message: $data.form.errors[field.id],
           "class": "mt-2"
         }, null, 8
         /* PROPS */
         , ["message"])]);
       }), 256
       /* UNKEYED_FRAGMENT */
-      ))];
+      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: _ctx.$t('pages.dashboard.activities.update.form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.form.score = $event;
+        }),
+        disabled: true
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.score,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])])];
     }),
     _: 2
     /* DYNAMIC */
@@ -30760,7 +31114,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_4];
         }),
         _: 1
         /* STABLE */
@@ -30774,7 +31128,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
@@ -31839,10 +32193,13 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_3 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -31912,6 +32269,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: _ctx.$t('pages.forms.fields.options.create.form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.form.score = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.description,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
       , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -31920,7 +32297,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_4];
         }),
         _: 1
         /* STABLE */
@@ -31934,7 +32311,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
@@ -32222,10 +32599,13 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_3 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -32295,6 +32675,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: _ctx.$t('pages.forms.fields.options.update.form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.form.score = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.score,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
       , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32303,7 +32703,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_4];
         }),
         _: 1
         /* STABLE */
@@ -32317,7 +32717,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
@@ -38178,7 +38578,8 @@ var messages = {
             title: 'Add new assessment activity',
             description: 'Add new assessment activity by selecting assessment parameter',
             form: {
-              parameter: 'Select assessment parameter'
+              parameter: 'Select assessment parameter',
+              score: 'The amount of score which you will receive after submission. Note: Вepending on the form fields, if additional points are assigned to them, tthen you may be awarded additional points'
             },
             actions: {
               message: 'For this parameter you will receive {pts} points'
@@ -38188,7 +38589,16 @@ var messages = {
             title: 'Update activity',
             description: 'Update assessment activity details.',
             form: {
-              parameter: 'The assessment parameter'
+              parameter: 'Assessment parameter',
+              score: 'The amount of score which you will receive after submission. Note: Вepending on the form fields, if additional points are assigned to them, tthen you may be awarded additional points'
+            }
+          },
+          show: {
+            title: 'User activity',
+            description: 'Show assessment activity details.',
+            form: {
+              parameter: 'Assessment parameter',
+              score: 'The amount of score which user earned for this activity, taking into account points that are assigned additionally when filling out the form fields'
             }
           },
           "delete": {
@@ -38786,17 +39196,24 @@ var messages = {
             title: 'Добавить новое действи оценки',
             description: 'Добавить новое действи оценки. Выберите соответсвующий параметр и заполните форму',
             form: {
-              parameter: 'Выберите параметр оценивания'
-            },
-            actions: {
-              message: 'Для этого параметра вам будет начислено {pts} баллов'
+              parameter: 'Выберите параметр оценивания',
+              score: 'Количество баллов, которые вы получите после подачи заявки. Примечание: В зависимости от полей формы, если им присвоены дополнительные баллы, тогда вам могут быть начислены дополнительные баллы'
             }
           },
           update: {
             title: 'Обновить действие',
             description: 'Обновить действие.',
             form: {
-              parameter: 'Выберите параметр оценивания'
+              parameter: 'Выберите параметр оценивания',
+              score: 'Количество баллов, которые вы получите после подачи заявки. Примечание: В зависимости от полей формы, если им присвоены дополнительные баллы, тогда вам могут быть начислены дополнительные баллы'
+            }
+          },
+          show: {
+            title: 'Действие пользователя',
+            description: 'Показать подробные сведения об оценке.',
+            form: {
+              parameter: 'Параметр оценки',
+              score: 'Количество баллов, которые пользователь заработал за это действие, с учетом баллов, которые начисляются дополнительно при заполнении полей формы.'
             }
           },
           "delete": {

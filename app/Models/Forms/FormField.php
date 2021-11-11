@@ -17,6 +17,7 @@ class FormField extends Model
     const SELECT = 'select';
     const MULTISELECT = 'multiselect';
     const FILE = 'file';
+    const FORMULA = 'formula';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +26,7 @@ class FormField extends Model
      */
     protected $fillable = [
         'form_id',
-        'type'
+        'type',
     ];
 
     public function settings() {

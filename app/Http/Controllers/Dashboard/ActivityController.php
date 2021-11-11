@@ -106,27 +106,13 @@ class ActivityController extends Controller
             $formField = FormField::findOrFail($key);
 
             if ($formField->getType() == FormField::MULTISELECT) {
-                foreach ($value as $v) {
-                    $formFieldValue = FormFieldValue::create([
-                        'form_field_id' => $formField->getId(),
-                    ]);
-
-                    $formFieldValue->setContext($v);
-                    $formFieldValue->save();
-
-                    $activity->addFormFieldValues([$formFieldValue->getId()]);
+                $values = $value;
+                foreach ($values as $value) {
+                    $this->addFormFieldValuesToActivity($formField, $value, $activity);
                 }
-                continue;
+            } else {
+                $this->addFormFieldValuesToActivity($formField, $value, $activity);
             }
-
-            $formFieldValue = FormFieldValue::create([
-                'form_field_id' => $formField->getId(),
-            ]);
-
-            $formFieldValue->setContext($value);
-            $formFieldValue->save();
-
-            $activity->addFormFieldValues([$formFieldValue->getId()]);
         }
 
         $activity->save();
@@ -135,6 +121,21 @@ class ActivityController extends Controller
         $activity->assignment->save();
 
         return Inertia::location(route('assignment.show', ['assignment' => $assignment->getId()]));
+    }
+
+    private function addFormFieldValuesToActivity($formField, $value, $activity) {
+        $formFieldValue = FormFieldValue::create([
+            'form_field_id' => $formField->getId(),
+        ]);
+
+        $formFieldValue->setContext($value);
+        $formFieldValue->save();
+
+        $activity->addFormFieldValues([$formFieldValue->getId()]);
+
+        if ( in_array( $formField->getType(), array( FormField::SELECT, FormField::MULTISELECT ) ) ) {
+            $activity->setScore($activity->getScore() + $formField->options->find($value)->getScore());
+        }
     }
 
     /**

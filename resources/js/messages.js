@@ -435,7 +435,8 @@ var messages = {
             title: 'Add new assessment activity',
             description: 'Add new assessment activity by selecting assessment parameter',
             form: {
-              parameter: 'Select assessment parameter'
+              parameter: 'Select assessment parameter',
+              score: 'The amount of score which you will receive after submission. Note: Вepending on the form fields, if additional points are assigned to them, tthen you may be awarded additional points'
             },
             actions: {
               message: 'For this parameter you will receive {pts} points'
@@ -445,7 +446,16 @@ var messages = {
             title: 'Update activity',
             description: 'Update assessment activity details.',
             form: {
-              parameter: 'The assessment parameter'
+              parameter: 'Assessment parameter',
+              score: 'The amount of score which you will receive after submission. Note: Вepending on the form fields, if additional points are assigned to them, tthen you may be awarded additional points'
+            }
+          },
+          show: {
+            title: 'User activity',
+            description: 'Show assessment activity details.',
+            form: {
+              parameter: 'Assessment parameter',
+              score: 'The amount of score which user earned for this activity, taking into account points that are assigned additionally when filling out the form fields'
             }
           },
           delete: {
@@ -1043,17 +1053,24 @@ var messages = {
             title: 'Добавить новое действи оценки',
             description: 'Добавить новое действи оценки. Выберите соответсвующий параметр и заполните форму',
             form: {
-              parameter: 'Выберите параметр оценивания'
+              parameter: 'Выберите параметр оценивания',
+              score: 'Количество баллов, которые вы получите после подачи заявки. Примечание: В зависимости от полей формы, если им присвоены дополнительные баллы, тогда вам могут быть начислены дополнительные баллы'
             },
-            actions: {
-              message: 'Для этого параметра вам будет начислено {pts} баллов'
-            }
           },
           update: {
             title: 'Обновить действие',
             description: 'Обновить действие.',
             form: {
-              parameter: 'Выберите параметр оценивания'
+              parameter: 'Выберите параметр оценивания',
+              score: 'Количество баллов, которые вы получите после подачи заявки. Примечание: В зависимости от полей формы, если им присвоены дополнительные баллы, тогда вам могут быть начислены дополнительные баллы'
+            }
+          },
+          show: {
+            title: 'Действие пользователя',
+            description: 'Показать подробные сведения об оценке.',
+            form: {
+              parameter: 'Параметр оценки',
+              score: 'Количество баллов, которые пользователь заработал за это действие, с учетом баллов, которые начисляются дополнительно при заполнении полей формы.'
             }
           },
           delete: {
