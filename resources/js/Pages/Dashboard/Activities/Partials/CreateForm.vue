@@ -15,40 +15,55 @@
                 <BreezeInputError :message="form.errors.parameter" class="mt-2" />
             </div>
 
-            <div class="col-span-6 sm:col-span-4" v-for="(field, i) in parameter.form.fields" v-if="parameter">
-                <BreezeLabel :for="field.id" :value="field.name" />
+            <template v-for="(field, i) in parameter.form.fields" v-if="parameter">
+                <template v-if="field.type == 'formula'">
+                    <div class="col-span-6 sm:col-span-4" v-for="(variable, j) in field.variables">
+                        <BreezeLabel :for="variable.id" :value="variable.description" />
 
-                <BreezeInput v-if="field.type == 'text'"
-                            :id="field.id"
-                            type="text"
-                            class="mt-1 block w-full"
-                            v-model="form.fields[ field.id ]" />
+                        <BreezeInput :id="variable.id"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.variables[variable.id]" />
 
-                <BreezeSelect v-if="field.type == 'select'"
-                            class="mt-1 block w-full"
-                            :id="field.id"
-                            :value="form.fields[ field.id ]"
-                            @input="selectField(field, form.fields[ field.id ], form.fields[ field.id ] = $event)"
-                            :options="options[ field.id ]"
-                            :multiple="false" />
+                        <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
+                    </div>
+                </template>
 
-                <BreezeSelect v-if="field.type == 'multiselect'"
-                            class="mt-1 block w-full"
-                            :id="field.id"
-                            :value="form.fields[ field.id ]"
-                            @input="selectField(field, form.fields[ field.id ], form.fields[ field.id ] = $event)"
-                            :options="options[ field.id ]"
-                            :multiple="true" />
+                <div class="col-span-6 sm:col-span-4" v-else>
+                    <BreezeLabel :for="field.id" :value="field.name" />
 
-                <BreezeInputFile v-if="field.type == 'file'"
-                            class="mt-1 block w-full"
-                            :id="field.id"
-                            :value="form.fields[ field.id ]"
-                            @input="form.fields[ field.id ] = $event;"
-                            :route="''" />
+                    <BreezeInput v-if="field.type == 'text'"
+                                :id="field.id"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.fields[field.id]" />
 
-                <BreezeInputError :message="form.errors[ field.id ]" class="mt-2" />
-            </div>
+                    <BreezeSelect v-if="field.type == 'select'"
+                                class="mt-1 block w-full"
+                                :id="field.id"
+                                :value="form.fields[field.id]"
+                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                :options="options[field.id]"
+                                :multiple="false" />
+
+                    <BreezeSelect v-if="field.type == 'multiselect'"
+                                class="mt-1 block w-full"
+                                :id="field.id"
+                                :value="form.fields[field.id]"
+                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                :options="options[field.id]"
+                                :multiple="true" />
+
+                    <BreezeInputFile v-if="field.type == 'file'"
+                                class="mt-1 block w-full"
+                                :id="field.id"
+                                :value="form.fields[field.id]"
+                                @input="form.fields[field.id] = $event;"
+                                :route="''" />
+
+                    <BreezeInputError :message="form.errors['fields' + field.id]" class="mt-2" />
+                </div>
+            </template>
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="score" :value="$t('pages.dashboard.activities.create.form.score')" />
@@ -104,6 +119,7 @@
                     parameter: null,
                     score: 0,
                     fields: {},
+                    variables: {}
                 }),
                 parameter: null,
             }
@@ -129,11 +145,15 @@
                         
                         for (const field of parameter.form.fields)  {
                             
-                            /*if (! Array('select', 'multiselect').includes(field.type) )
-                                continue;*/
-
-                            this.form.fields[ field.id ] = '';
-                            this.form.errors[ field.id ] = '';
+                            if (field.type == 'formula') {
+                                for (const variable of field.variables) {
+                                    this.form.variables[variable.id] = '';
+                                    this.form.errors['variables' + variable.id] = '';
+                                }
+                            } else {
+                                this.form.fields[field.id] = '';
+                                this.form.errors['fields' + field.id] = '';
+                            }
                         }
 
                         break;
@@ -198,7 +218,7 @@
                         if (! Array('select', 'multiselect').includes(field.type) )
                             continue;
 
-                        obj[ field.id ] = field.options.map(function(option) {
+                        obj[field.id] = field.options.map(function(option) {
                             return {
                                 value: option.id,
                                 name: option.name,

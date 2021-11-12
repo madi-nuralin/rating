@@ -511,6 +511,70 @@ class DatabaseSeeder extends Seeder
                 'score' => 4
             ], [
                 'en' => [
+                    'name' => 'Participation in funded research programs and projects funded: from the state budget (GF, PCF)',
+                    'description' => 'Participation in funded research programs and projects funded: from the state budget (GF, PCF)'
+                ],
+                'ru' => [
+                    'name' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)',
+                    'description' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)'
+                ],
+                'score' => 0,
+                'form' => [
+                    'fields' => [
+                        [
+                            'type' => 'select',
+                            'en' => [
+                                'name' => 'Article title'
+                            ],
+                            'ru' => [
+                                'name' => 'Название статьи'
+                            ],
+                            'options' => [
+                                [
+                                    'en' => [
+                                        'name' => 'Scientific supervisor of the PCF project',
+                                        'description' => 'Scientific supervisor of the PCF project'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Научный руководитель проекта ПЦФ',
+                                        'description' => 'Научный руководитель проекта ПЦФ'
+                                    ],
+                                    'score' => 100
+                                ], [
+                                    'en' => [
+                                        'name' => 'Scientific supervisor of the GF project',
+                                        'description' => 'Scientific supervisor of the GF project'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Научный руководитель проекта ГФ',
+                                        'description' => 'Научный руководитель проекта ГФ'
+                                    ],
+                                    'score' => 70
+                                ], [
+                                    'en' => [
+                                        'name' => 'Research Group Member',
+                                        'description' => 'Research Group Member'
+                                    ],
+                                    'ru' => [
+                                        'name' => 'Членисследовательской группы',
+                                        'description' => 'Членисследовательской группы'
+                                    ],
+                                    'score' => 25
+                                ]
+                            ]
+                        ], [
+                            'en' => [
+                                'name' => 'A copy of the contract and staffing table'
+                            ],
+                            'ru' => [
+                                'name' => 'Копия договора и штатного расписания'
+                            ],
+                            'type' => 'file'
+                        ]
+                    ]
+                ]
+            ], [
+                'en' => [
                     'name' => 'Publications in the materials of international scientific conferences (Proceedings), indexed in the international database Scopus or Clarivate',
                     'description' => 'Publications in the materials of international scientific conferences (Proceedings), indexed in the international database Scopus or Clarivate'
                 ],
@@ -578,6 +642,8 @@ class DatabaseSeeder extends Seeder
                                 $formFieldOption->setName($option[$locale]['name'], $locale);
                                 $formFieldOption->setDescription($option[$locale]['description'], $locale);
                             }
+                            if (array_key_exists('score', $option))
+                                $formFieldOption->setScore($option['score']);
                             $formFieldOption->save();
                         }
                     }

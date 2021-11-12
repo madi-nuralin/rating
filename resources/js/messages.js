@@ -242,7 +242,8 @@ var messages = {
             description: 'Create a new parameter to collaborate with others on projects.',
             form: {
               name: 'Parameter name',
-              description: 'Parameter description'
+              description: 'Parameter description',
+              score: 'Score'
             }
           },
           update: {
@@ -250,7 +251,8 @@ var messages = {
             description: 'The parameter\'s name and description information.',
             form: {
               name: 'Parameter name',
-              description: 'Parameter description'
+              description: 'Parameter description',
+              score: 'Score'
             }
           },
           delete: {
@@ -487,7 +489,8 @@ var messages = {
             description: 'Create a new form field by inserting name and type',
             form: {
               name: 'Name',
-              type: 'Field type'
+              type: 'Field type',
+              formula: 'Formula'
             }
           },
           update: {
@@ -495,7 +498,8 @@ var messages = {
             description: 'Update the existing form field',
             form: {
               name: 'Name',
-              type: 'Field type'
+              type: 'Field type',
+              formula: 'Formula'
             }
           },
           delete: {
@@ -540,6 +544,10 @@ var messages = {
             file: {
               name: 'Upload file',
               description: 'Upload file'
+            },
+            formula: {
+              name: 'Formula',
+              description: 'Formula input, a computable math expression'
             }
           },
           options: {
@@ -552,7 +560,8 @@ var messages = {
               description: 'Create a new form field option by inserting name and description',
               form: {
                 name: 'Name',
-                description: 'Description'
+                description: 'Description',
+                score: 'Score'
               }
             },
             update: {
@@ -560,7 +569,8 @@ var messages = {
               description: 'Update the existing form field option',
               form: {
                 name: 'Name',
-                type: 'Description'
+                description: 'Description',
+                score: 'Score'
               }
             },
             delete: {
@@ -587,6 +597,54 @@ var messages = {
               },
               actions: {
                 createButton: 'Create a new form filed option'
+              }
+            }
+          },
+          variables: {
+            head: {
+              title: 'Form management'
+            },
+            header: 'Form management',
+            create: {
+              title: 'Create a variable',
+              description: 'Create a new form field variable by inserting name and description',
+              form: {
+                name: 'Name',
+                description: 'Description'
+              }
+            },
+            update: {
+              title: 'Update the form field variable',
+              description: 'Update the existing form field variable',
+              form: {
+                name: 'Name',
+                description: 'Description'
+              }
+            },
+            delete: {
+              title: 'Delete the form field variable',
+              description: 'Permanently delete the form field variable',
+              content: {
+                deleteInfo: 'Once a form field variable is deleted, all of its resources and data will be permanently deleted. Before deleting this field option, please download any data or information regarding this field option that you wish to retain.',
+                deleteButton: 'Delete form field variable',
+                modal: {
+                  title: 'Delete a form field variable',
+                  content: 'Are you sure you want to delete this form field variable? Once a field variable is deleted, all of its resources and data will be permanently deleted.',
+                  footer: {
+                    cancelButton: 'Cancel',
+                    deleteButton: 'Delete'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Form field variables',
+              description: 'Create and manage form field variables',
+              form: {
+                listInfo: 'The list of created form field variables.'
+              },
+              actions: {
+                createButton: 'Create a new form filed variable'
               }
             }
           }
@@ -860,7 +918,8 @@ var messages = {
             description: 'Создайте новую параметр оценки, чтобы сотрудничать с другими над проектами.',
             form: {
               name: 'Название параметра оценки',
-              description: 'Описание параметра оценки'
+              description: 'Описание параметра оценки',
+              score: 'Количество баллов'
             }
           },
           update: {
@@ -868,7 +927,8 @@ var messages = {
             description: 'Информация о названии и описании параметра оценки.',
             form: {
               name: 'Название параметра оценки',
-              description: 'Описание параметра оценки'
+              description: 'Описание параметра оценки',
+              score: 'Количество баллов'
             }
           },
           delete: {
@@ -1102,7 +1162,8 @@ var messages = {
             description: 'Создать новое поле формы',
             form: {
               name: 'Название',
-              type: 'Выберите тип поля'
+              type: 'Выберите тип поля',
+              formula: 'Введите формулу'
             }
           },
           update: {
@@ -1110,7 +1171,8 @@ var messages = {
             description: 'Обновить поле формы',
             form: {
               name: 'Название',
-              type: 'Выберите тип поля'
+              type: 'Выберите тип поля',
+              formula: 'Формула'
             }
           },
           delete: {
@@ -1155,10 +1217,14 @@ var messages = {
             file: {
               name: 'Загрузка файла',
               description: 'Загрузка файла'
+            },
+            formula: {
+              name: 'Формула',
+              description: 'Ввод формулы, вычисляемое математическое выражение'
             }
           },
           options: {
-              head: {
+            head: {
               title: 'Создание и управление формами'
             },
             header: 'Создание и управление формами',
@@ -1167,7 +1233,8 @@ var messages = {
               description: 'Создать новый вариант выбора поля формы',
               form: {
                 name: 'Название',
-                type: 'Описание'
+                description: 'Описание',
+                score: 'Количество баллов'
               }
             },
             update: {
@@ -1175,7 +1242,8 @@ var messages = {
               description: 'Обновить вариант выбора поля формы',
               form: {
                 name: 'Название',
-                description: 'Описание'
+                description: 'Описание',
+                score: 'Количество баллов'
               }
             },
             delete: {
@@ -1202,6 +1270,54 @@ var messages = {
               },
               actions: {
                 createButton: 'Создать новое вариант выбора поля формы'
+              }
+            }
+          },
+          variables: {
+            head: {
+              title: 'Создание и управление формами'
+            },
+            header: 'Создание и управление формами',
+            create: {
+              title: 'Создать новую переменную',
+              description: 'Создать новую переменную формулы',
+              form: {
+                name: 'Название',
+                description: 'Описание'
+              }
+            },
+            update: {
+              title: 'Обновить переменную формулы',
+              description: 'Обновить переменную формулы поля формы',
+              form: {
+                name: 'Название',
+                description: 'Описание'
+              }
+            },
+            delete: {
+              title: 'Удалить переменную формулы',
+              description: 'Удалить переменную формулы поля формы',
+              content: {
+                deleteInfo: 'После удаления переменной все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой переменной загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
+                deleteButton: 'Удалить переменную формулы',
+                modal: {
+                  title: 'Удалить переменную формулы',
+                  content: 'Вы уверены, что хотите удалить эпеременную формулы поля формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
+                  footer: {
+                    cancelButton: 'Отмена',
+                    deleteButton: 'Удалить'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Переменные формулы поля формы',
+              description: 'Создание и управление переменными формулы поля формы',
+              form: {
+                listInfo: 'Список переменных формулы поля формы.'
+              },
+              actions: {
+                createButton: 'Добавить'
               }
             }
           }

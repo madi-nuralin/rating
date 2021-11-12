@@ -172,7 +172,7 @@ export default {
     methods:  {
         onClick(newValue) {
             if (this.multiple) {
-                var modelValue = this.value.slice();
+                var modelValue = this.value ? this.value.slice() : null;
                 if (modelValue && modelValue.includes(newValue)) {
                     for (var i = 0; i < modelValue.length; i++) {
                         if (modelValue[i] == newValue) {

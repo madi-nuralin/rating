@@ -50,11 +50,24 @@ class FormFieldController extends Controller
             'type' => ['required'],
         ])->validateWithBag('createFormField');
 
+        if ($input['type'] == 'formula') {
+            Validator::make($input, [
+                'formula' => ['required'],
+            ])->validateWithBag('createFormField');
+
+            // TODO: Validate math expression ...
+        }
+
         $formField = FormField::create([
             'form_id' => $input['form'],
             'type' => $input['type']
         ]);
         $formField->setName($input['name']);
+
+        if ($input['type'] == 'formula') {
+            $formField->setFormula($input['formula']);
+        }
+
         $formField->save();
 
         return Inertia::location(route('form-field.show', ['form_field' => $formField->getId()]));
@@ -73,7 +86,8 @@ class FormFieldController extends Controller
         return Inertia::render('Forms/Fields/Show', [
             'field' => array_merge(
                 $formField->toArray(), [
-                    'options' => $formField->getOptions()
+                    'options' => $formField->getOptions(),
+                    'variables' => $formField->getVariables()
                 ]
             )
         ]);
@@ -106,9 +120,22 @@ class FormFieldController extends Controller
             'type' => ['required'],
         ])->validateWithBag('updateFormField');
 
+        if ($input['type'] == 'formula') {
+            Validator::make($input, [
+                'formula' => ['required'],
+            ])->validateWithBag('updateFormField');
+
+            // TODO: Validate math expression ...
+        }
+
         $formField = FormField::findOrfail($id);
         $formField->setName($input['name']);
         $formField->setType($input['type']);
+
+        if ($input['type'] == 'formula') {
+            $formField->setFormula($input['formula']);
+        }
+
         $formField->save();
 
         return $request->wantsJson()

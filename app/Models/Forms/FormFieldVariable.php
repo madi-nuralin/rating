@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Helpers\SettingHelper;
 
-class FormFieldOption extends Model
+class FormFieldVariable extends Model
 {
     use HasFactory, SettingHelper;
 
-    protected $table = 'form_field_options';
+    protected $table = 'form_field_variables';
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +19,10 @@ class FormFieldOption extends Model
      */
     protected $fillable = [
         'form_field_id',
-        'score'
     ];
 
     public function settings() {
-    	return $this->hasMany(FormFieldOptionSetting::class);
+    	return $this->hasMany(FormFieldVariableSetting::class);
     }
 
     public function formField() {
@@ -68,14 +67,6 @@ class FormFieldOption extends Model
         );
     }
 
-    public function getScore() {
-        return $this->score;
-    }
-
-    public function setScore($score) {
-        $this->score = $score;
-    }
-
     public function getFormField() {
     	return $this->formField;
     }
@@ -89,7 +80,6 @@ class FormFieldOption extends Model
     		'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'score' => $this->getScore(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

@@ -13,6 +13,7 @@ use App\Models\Activity;
 use App\Models\Parameter;
 use App\Models\Forms\FormField;
 use App\Models\Forms\FormFieldOption;
+use App\Models\Forms\FormFieldVariable;
 use App\Models\Forms\FormFieldValue;
 
 class ActivityController extends Controller
@@ -57,7 +58,8 @@ class ActivityController extends Controller
                                                                       ->map(function($formField) {
                                                     return array_merge(
                                                         $formField->toArray(), [
-                                                            'options' => $formField->getOptions()
+                                                            'options' => $formField->getOptions(),
+                                                            'variables' => $formField->getVariables()
                                                         ]
                                                     );
                                                 }) : []
@@ -99,7 +101,7 @@ class ActivityController extends Controller
         foreach ($input['fields'] as $key => $value) {
             if (is_null($value)) {
                 throw ValidationException::withMessages([
-                    $key => 'The field is required.',
+                    'fields' . $key => 'The field is required.',
                 ]);
             }
 
@@ -113,6 +115,16 @@ class ActivityController extends Controller
             } else {
                 $this->addFormFieldValuesToActivity($formField, $value, $activity);
             }
+        }
+
+        foreach ($input['variables'] as $key => $value) {
+            if (is_null($value)) {
+                throw ValidationException::withMessages([
+                    'variables' . $key => 'The field is required.',
+                ]);
+            }
+
+            $formFieldVariable = FormFieldVariable::findOrFail($key);
         }
 
         $activity->save();
@@ -168,6 +180,7 @@ class ActivityController extends Controller
                                         return array_merge(
                                             $formField->toArray(), [
                                                 'options' => $formField->getOptions(),
+                                                'variables' => $formField->getVariables(),
                                                 'values' => collect(
                                                     $activity->formFieldValues()
                                                              ->where('form_field_id', $formField->getId())
@@ -218,6 +231,7 @@ class ActivityController extends Controller
                                         return array_merge(
                                             $formField->toArray(), [
                                                 'options' => $formField->getOptions(),
+                                                'variables' => $formField->getVariables(),
                                                 'values' => collect(
                                                     $activity->formFieldValues()
                                                              ->where('form_field_id', $formField->getId())
@@ -249,11 +263,14 @@ class ActivityController extends Controller
     {
         $input = $request->all();
         $activity = Activity::findOrFail($id);
+        $activity->assignment->setScore($activity->assignment->getScore() - $activity->getScore());
+        $activity->setScore($activity->parameter->getScore());
 
         foreach ($input['fields'] as $key => $value) {
+
             if (is_null($value)) {
                 throw ValidationException::withMessages([
-                    $key => 'The field is required.',
+                    'fields' . $key => 'The field is required.',
                 ]);
             }
 
@@ -276,9 +293,14 @@ class ActivityController extends Controller
                     $formFieldValue->setContext($v);
                     $formFieldValue->save();
                     $activity->addFormFieldValues([$formFieldValue->getId()]);
+                    $activity->setScore($activity->getScore() + $formField->options->find($v)->getScore());
                 }
 
                 continue;
+            }
+
+            if ($formField->getType() == FormField::SELECT) {
+                $activity->setScore($activity->getScore() + $formField->options->find($value)->getScore());
             }
 
             $formFieldValue = $activity->formFieldValues()
@@ -287,6 +309,20 @@ class ActivityController extends Controller
             $formFieldValue->setContext($value);
             $formFieldValue->save();
         }
+
+        foreach ($input['variables'] as $key => $value) {
+            if (is_null($value)) {
+                throw ValidationException::withMessages([
+                    'variables' . $key => 'The field is required.',
+                ]);
+            }
+
+            $formFieldVariable = FormFieldVariable::findOrFail($key);
+        }
+
+        $activity->assignment->setScore($activity->assignment->getScore() + $activity->getScore());
+        $activity->assignment->save();
+        $activity->save();
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
