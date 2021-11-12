@@ -17,6 +17,7 @@ class FormField extends Model
     const SELECT = 'select';
     const MULTISELECT = 'multiselect';
     const FILE = 'file';
+    const FORMULA = 'formula';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +26,7 @@ class FormField extends Model
      */
     protected $fillable = [
         'form_id',
-        'type'
+        'type',
     ];
 
     public function settings() {
@@ -38,6 +39,10 @@ class FormField extends Model
 
     public function options() {
     	return $this->hasMany(FormFieldOption::class);
+    }
+
+    public function variables() {
+        return $this->hasMany(FormFieldVariable::class);
     }
 
     public function values() {
@@ -81,6 +86,23 @@ class FormField extends Model
         );
     }
 
+    public function getFormula($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : '',
+            'string',
+            'formula'
+        );
+    }
+
+    public function setFormula($formula, $locale=null) {
+        $this->updateSettingValue(
+            isset($locale) ? $locale : '',
+            'string',
+            'formula',
+            $formula
+        );
+    }
+
     public function getOptions() {
     	return $this->options->map(function($option) {
     		return $option->toArray();
@@ -89,6 +111,16 @@ class FormField extends Model
 
     public function setOptions($options) {
     	//
+    }
+
+    public function getVariables() {
+        return $this->variables->map(function($variable) {
+            return $variable->toArray();
+        });
+    }
+
+    public function setVariables($variables) {
+        //
     }
 
     public function getValues() {
@@ -103,12 +135,13 @@ class FormField extends Model
 
     public function toArray() {
     	return [
-    		'id' => $this->getId(),
+            'id' => $this->getId(),
             'name' => $this->getName(),
-    		'type' => $this->getType(),
-    		'created_at' => $this->created_at,
-    		'updated_at' => $this->updated_at
-    	];
+            'type' => $this->getType(),
+            'formula' => $this->getFormula(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
+        ];
     }
 
 }

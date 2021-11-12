@@ -14,7 +14,12 @@
                 <breeze-section-border />
 
                 <template v-if="Array('select', 'multiselect').includes($page.props.field.type)">
-                    <resource-list :field="$page.props.field"/>
+                    <options :field="$page.props.field"/>
+                    <breeze-section-border />
+                </template>
+
+                <template v-if="Array('formula').includes($page.props.field.type)">
+                    <variables :field="$page.props.field"/>
                     <breeze-section-border />
                 </template>
 
@@ -29,7 +34,8 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from '@/Pages/Forms/Fields/Partials/UpdateForm.vue'
     import DeleteForm from '@/Pages/Forms/Fields/Partials/DeleteForm.vue'
-    import ResourceList from '@/Pages/Forms/Fields/Options/Partials/List.vue'
+    import Options from '@/Pages/Forms/Fields/Options/Partials/List.vue'
+    import Variables from '@/Pages/Forms/Fields/Variables/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -38,7 +44,8 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
-            ResourceList,
+            Options,
+            Variables,
             Head,
         },
     }

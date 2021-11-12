@@ -15,47 +15,65 @@
                 <BreezeInputError :message="form.errors.parameter" class="mt-2" />
             </div>
 
-            <div class="col-span-6 sm:col-span-4" v-for="(field, i) in parameter.form.fields" v-if="parameter">
-                <BreezeLabel :for="field.id" :value="field.name" />
+            <template v-for="(field, i) in parameter.form.fields" v-if="parameter">
+                <template v-if="field.type == 'formula'">
+                    <div class="col-span-6 sm:col-span-4" v-for="(variable, j) in field.variables">
+                        <BreezeLabel :for="variable.id" :value="variable.description" />
 
-                <BreezeInput v-if="field.type == 'text'"
-                            :id="__(field.id)"
-                            type="text"
-                            class="mt-1 block w-full"
-                            v-model="form.fields[__(field.id)]" />
+                        <BreezeInput :id="variable.id"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.variables[variable.id]" />
 
-                <BreezeSelect v-if="field.type == 'select'"
-                            class="mt-1 block w-full"
-                            :id="__(field.id)"
-                            :value="form.fields[__(field.id)]"
-                            @input="form.fields[__(field.id)] = $event"
-                            :options="options[__(field.id)]"
-                            :multiple="false" />
+                        <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
+                    </div>
+                </template>
 
-                <BreezeSelect v-if="field.type == 'multiselect'"
-                            class="mt-1 block w-full"
-                            :id="__(field.id)"
-                            :value="form.fields[__(field.id)]"
-                            @input="form.fields[__(field.id)] = $event"
-                            :options="options[__(field.id)]"
-                            :multiple="true" />
+                <div class="col-span-6 sm:col-span-4" v-else>
+                    <BreezeLabel :for="field.id" :value="field.name" />
 
-                <BreezeInputFile v-if="field.type == 'file'"
-                            class="mt-1 block w-full"
-                            :id="__(field.id)"
-                            :value="form.fields[__(field.id)]"
-                            @input="form.fields[__(field.id)] = $event"
-                            :route="''" />
+                    <BreezeInput v-if="field.type == 'text'"
+                                :id="field.id"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.fields[field.id]" />
 
-                <BreezeInputError :message="form.errors[__(field.id)]" class="mt-2" />
+                    <BreezeSelect v-if="field.type == 'select'"
+                                class="mt-1 block w-full"
+                                :id="field.id"
+                                :value="form.fields[field.id]"
+                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                :options="options[field.id]"
+                                :multiple="false" />
+
+                    <BreezeSelect v-if="field.type == 'multiselect'"
+                                class="mt-1 block w-full"
+                                :id="field.id"
+                                :value="form.fields[field.id]"
+                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                :options="options[field.id]"
+                                :multiple="true" />
+
+                    <BreezeInputFile v-if="field.type == 'file'"
+                                class="mt-1 block w-full"
+                                :id="field.id"
+                                :value="form.fields[field.id]"
+                                @input="form.fields[field.id] = $event;"
+                                :route="''" />
+
+                    <BreezeInputError :message="form.errors['fields' + field.id]" class="mt-2" />
+                </div>
+            </template>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="score" :value="$t('pages.dashboard.activities.create.form.score')" />
+                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" :disabled="true" />
+                <BreezeInputError :message="form.errors.score" class="mt-2" />
             </div>
 
         </template>
 
         <template #actions>
-            <p class="mr-3" v-if="parameter">
-                {{ $t('pages.dashboard.activities.create.actions.message', { pts: parameter.score }) }}
-            </p>
 
             <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
                 Saved.
@@ -99,7 +117,9 @@
             return {
                 form: this.$inertia.form({
                     parameter: null,
+                    score: 0,
                     fields: {},
+                    variables: {}
                 }),
                 parameter: null,
             }
@@ -117,21 +137,23 @@
             selectParameter(event) {
                 this.form.parameter = event;
 
-                let parameters = this.assignment.assessment.parameters;
+                for (const parameter of this.assignment.assessment.parameters)  {
 
-                for (var i = 0; i < parameters.length; ++i) {
-                    if (this.form.parameter == parameters[i].id) {
-                        this.parameter = parameters[i];
+                    if (this.form.parameter == parameter.id) {
+                        this.parameter = parameter;
+                        this.form.score = parameter.score;
                         
-                        let form_fields = this.parameter.form.fields;
-                        
-                        for (var j = 0; j < form_fields.length; ++j) {
+                        for (const field of parameter.form.fields)  {
                             
-                            /*if (! Array('select', 'multiselect').includes(form_fields[i].type) )
-                                continue;*/
-
-                            this.form.fields[this.__(form_fields[j].id)] = '';
-                            this.form.errors[this.__(form_fields[j].id)] = '';
+                            if (field.type == 'formula') {
+                                for (const variable of field.variables) {
+                                    this.form.variables[variable.id] = '';
+                                    this.form.errors['variables' + variable.id] = '';
+                                }
+                            } else {
+                                this.form.fields[field.id] = '';
+                                this.form.errors['fields' + field.id] = '';
+                            }
                         }
 
                         break;
@@ -139,25 +161,64 @@
                 }
             },
 
-            __(id) {
-                return id;
-            }
+            selectField(field, pid, nid) {
+                var score = 0;
+
+                switch (field.type) {
+                    case 'text':
+                        break;
+                    case 'select':
+                        for (const option of field.options) {
+                            if (pid === option.id) {
+                                score -= option.score;
+                                break;
+                            }
+                        }
+                        for (const option of field.options) {
+                            if (nid === option.id) {
+                                score += option.score;
+                                break;
+                            }
+                        }
+                        break;
+                    case 'multiselect':
+                        for (const v of Array.from(pid)) {
+                            for (const option of field.options) {
+                                if (v === option.id) {
+                                    score -= option.score;
+                                    break;
+                                }
+                            }
+                        }
+                        for (const v of Array.from(nid)) {
+                            for (const option of field.options) {
+                                if (v === option.id) {
+                                    score += option.score;
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                this.form.score += score;
+            },
         },
 
         computed: {
             options() {
-                let ret_val = {};
+                let obj = {};
 
                 if (this.parameter) {
 
-                    let form_fields = this.parameter.form.fields;
+                    for (const field of this.parameter.form.fields) {
 
-                    for (var i = 0; i < form_fields.length; ++i) {
-
-                        if (! Array('select', 'multiselect').includes(form_fields[i].type) )
+                        if (! Array('select', 'multiselect').includes(field.type) )
                             continue;
 
-                        ret_val[this.__(form_fields[i].id)] = form_fields[i].options.map(function(option) {
+                        obj[field.id] = field.options.map(function(option) {
                             return {
                                 value: option.id,
                                 name: option.name,
@@ -167,11 +228,11 @@
                     }
                 }
 
-                ret_val['parameters'] = this.assignment.assessment.parameters.map(function(parameter) {
+                obj['parameters'] = this.assignment.assessment.parameters.map(function(parameter) {
                     return { value: parameter.id, name: parameter.name, description: parameter.description };
                 });
 
-                return ret_val;
+                return obj;
             }
         }
     }

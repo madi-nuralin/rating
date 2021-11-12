@@ -170,43 +170,44 @@ export default {
     },
 
     methods:  {
-        onClick(value) {
+        onClick(newValue) {
             if (this.multiple) {
-                if (this.modelValue && this.modelValue.includes(value)) {
-                    for (var i = 0; i < this.modelValue.length; i++) {
-                        if (this.modelValue[i] == value) {
-                            this.modelValue.splice(i, 1);
+                var modelValue = this.value ? this.value.slice() : null;
+                if (modelValue && modelValue.includes(newValue)) {
+                    for (var i = 0; i < modelValue.length; i++) {
+                        if (modelValue[i] == newValue) {
+                            modelValue.splice(i, 1);
                         }
                     }
                 } else {
-                    if (!this.modelValue)
-                        this.modelValue = Array();
-                    this.modelValue.push(value);
+                    if (!modelValue)
+                        modelValue = Array();
+                    modelValue.push(newValue);
                 }
 
                 this.displayValue = "";
                 for (var i = 0; i < this.options.length; i++) {
-                    if (this.modelValue.includes(this.options[i].value)) {
+                    if (modelValue.includes(this.options[i].value)) {
                         this.displayValue += (this.options[i].name + "; ");
                     }
                 }
+                this.$emit('input', modelValue);
             } else {
-                this.modelValue = value;
+                this.modelValue = newValue;
 
                 for (var i = 0; i < this.options.length; i++) {
-                    if (this.options[i].value == value) {
+                    if (this.options[i].value == newValue) {
                         this.displayValue = this.options[i].name;
                         break;
                     }
                 }
+                this.$emit('input', this.modelValue);
             }
-
-            this.$emit('input', this.modelValue);
         },
-        isClicked(value) {
+        isClicked(newValue) {
             return this.multiple
-                ? this.modelValue && this.modelValue.includes(value)
-                : this.modelValue && this.modelValue == value;
+                ? this.value && this.value.includes(newValue)
+                : this.modelValue && this.modelValue == newValue;
         }
     },
 };

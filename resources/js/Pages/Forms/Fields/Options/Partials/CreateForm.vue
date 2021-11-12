@@ -20,6 +20,12 @@
                 <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
+
+            <div class="col-span-6 sm:col-span-4" v-if="Array('select', 'multiselect').includes(field.type)">
+                <BreezeLabel for="score" :value="$t('pages.forms.fields.options.create.form.score')" />
+                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" />
+                <BreezeInputError :message="form.errors.description" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -62,6 +68,7 @@
                 form: this.$inertia.form({
                     name: '',
                     description: '',
+                    score: ''
                 })
             }
         },
