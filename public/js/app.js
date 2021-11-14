@@ -24075,8 +24075,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       form: this.$inertia.form({
         parameter: null,
-        fields: {},
-        variables: {}
+        attributes: {}
       }),
       parameter: null
     };
@@ -24090,7 +24089,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         preserveScroll: true //onSuccess: () => Inertia.reload({ only: ['activities'] })
 
       });
-      console.log(this.form.errors);
+    },
+    getIndex: function getIndex(key) {
+      return "attribute".concat(key);
     },
     selectParameter: function selectParameter(event) {
       this.form.parameter = event;
@@ -24105,8 +24106,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (this.form.parameter == parameter.id) {
             this.parameter = parameter;
             this.form.score = parameter.score;
-            this.form.fields = {};
+            this.form.attributes = {};
             this.form.errors = {};
+            var i = 0,
+                getIndex = this.getIndex;
 
             var _iterator2 = _createForOfIteratorHelper(parameter.form.fields),
                 _step2;
@@ -24122,8 +24125,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   try {
                     for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                       var variable = _step3.value;
-                      this.form.variables[variable.id] = '';
-                      this.form.errors['variables' + variable.id] = '';
+                      this.form.attributes[getIndex(i)] = {};
+                      this.form.attributes[getIndex(i)]['id'] = variable.id;
+                      this.form.attributes[getIndex(i)]['type'] = 'variable';
+                      this.form.attributes[getIndex(i)]['value'] = null;
+                      this.form.errors[getIndex(i)] = null;
+                      ++i;
                     }
                   } catch (err) {
                     _iterator3.e(err);
@@ -24131,8 +24138,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     _iterator3.f();
                   }
                 } else {
-                  this.form.fields[field.id] = null;
-                  this.form.errors[field.id] = null;
+                  this.form.attributes[getIndex(i)] = {};
+                  this.form.attributes[getIndex(i)]['id'] = field.id;
+                  this.form.attributes[getIndex(i)]['type'] = 'field';
+                  this.form.attributes[getIndex(i)]['value'] = null;
+                  this.form.errors[getIndex(i)] = null;
+                  ++i;
                 }
               }
             } catch (err) {
@@ -24328,8 +24339,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       form: this.$inertia.form({
         parameter: this.activity.parameter.name,
-        fields: this.getFields(),
-        variables: this.getVariables()
+        attributes: this.getAttributes()
       }),
       score: this.activity.score
     };
@@ -24341,8 +24351,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           preserveScroll: true
       });*/
     },
-    getFields: function getFields() {
-      var obj = {};
+    getIndex: function getIndex(key) {
+      return "attribute".concat(key);
+    },
+    getAttributes: function getAttributes() {
+      var obj = {},
+          i = 0,
+          getIndex = this.getIndex;
 
       var _iterator = _createForOfIteratorHelper(this.activity.parameter.form.fields),
           _step;
@@ -24351,48 +24366,43 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var field = _step.value;
 
-          if (field.type == 'multiselect') {
-            obj[field.id] = field.values;
+          if (field.type == 'formula') {
+            var _iterator2 = _createForOfIteratorHelper(field.variables),
+                _step2;
+
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var variable = _step2.value;
+                obj[getIndex(i)] = {};
+                obj[getIndex(i)]['id'] = variable.id;
+                obj[getIndex(i)]['type'] = 'variable';
+                obj[getIndex(i)]['value'] = 0; //
+
+                ++i;
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+          } else if (field.type == 'multiselect') {
+            obj[getIndex(i)] = {};
+            obj[getIndex(i)]['id'] = field.id;
+            obj[getIndex(i)]['type'] = 'field';
+            obj[getIndex(i)]['value'] = field.values;
+            ++i;
           } else {
-            obj[field.id] = field.values[0];
+            obj[getIndex(i)] = {};
+            obj[getIndex(i)]['id'] = field.id;
+            obj[getIndex(i)]['type'] = 'field';
+            obj[getIndex(i)]['value'] = field.values[0];
+            ++i;
           }
         }
       } catch (err) {
         _iterator.e(err);
       } finally {
         _iterator.f();
-      }
-
-      return obj;
-    },
-    getVariables: function getVariables() {
-      var obj = {};
-
-      var _iterator2 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var field = _step2.value;
-
-          var _iterator3 = _createForOfIteratorHelper(field.variables),
-              _step3;
-
-          try {
-            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-              var variable = _step3.value;
-              obj[variable.id] = 0; //
-            }
-          } catch (err) {
-            _iterator3.e(err);
-          } finally {
-            _iterator3.f();
-          }
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
       }
 
       return obj;
@@ -24403,12 +24413,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var obj = {};
 
       if (true) {
-        var _iterator4 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
-            _step4;
+        var _iterator3 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
+            _step3;
 
         try {
-          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-            var field = _step4.value;
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var field = _step3.value;
             if (!Array('select', 'multiselect').includes(field.type)) continue;
             obj[field.id] = field.options.map(function (option) {
               return {
@@ -24419,9 +24429,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             });
           }
         } catch (err) {
-          _iterator4.e(err);
+          _iterator3.e(err);
         } finally {
-          _iterator4.f();
+          _iterator3.f();
         }
       }
 
@@ -24486,8 +24496,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       form: this.$inertia.form({
         parameter: this.activity.parameter.name,
-        fields: this.getFields(),
-        variables: this.getVariables(),
+        attributes: this.getAttributes(),
         score: this.activity.score
       })
     };
@@ -24506,8 +24515,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       });
     },
-    getFields: function getFields() {
-      var obj = {};
+    getIndex: function getIndex(key) {
+      return "attribute".concat(key);
+    },
+    getAttributes: function getAttributes() {
+      var obj = {},
+          i = 0,
+          getIndex = this.getIndex;
 
       var _iterator = _createForOfIteratorHelper(this.activity.parameter.form.fields),
           _step;
@@ -24516,52 +24530,43 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var field = _step.value;
 
-          if (field.type == 'multiselect') {
-            obj[field.id] = field.values;
+          if (field.type == 'formula') {
+            var _iterator2 = _createForOfIteratorHelper(field.variables),
+                _step2;
+
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var variable = _step2.value;
+                obj[getIndex(i)] = {};
+                obj[getIndex(i)]['id'] = variable.id;
+                obj[getIndex(i)]['type'] = 'variable';
+                obj[getIndex(i)]['value'] = 0; //
+
+                ++i;
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+          } else if (field.type == 'multiselect') {
+            obj[getIndex(i)] = {};
+            obj[getIndex(i)]['id'] = field.id;
+            obj[getIndex(i)]['type'] = 'field';
+            obj[getIndex(i)]['value'] = field.values;
+            ++i;
           } else {
-            obj[field.id] = field.values[0];
+            obj[getIndex(i)] = {};
+            obj[getIndex(i)]['id'] = field.id;
+            obj[getIndex(i)]['type'] = 'field';
+            obj[getIndex(i)]['value'] = field.values[0];
+            ++i;
           }
         }
       } catch (err) {
         _iterator.e(err);
       } finally {
         _iterator.f();
-      }
-
-      return obj;
-    },
-    getVariables: function getVariables() {
-      var obj = {};
-
-      var _iterator2 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var field = _step2.value;
-
-          if (field.type != 'formula') {
-            continue;
-          }
-
-          var _iterator3 = _createForOfIteratorHelper(field.variables),
-              _step3;
-
-          try {
-            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-              var variable = _step3.value;
-              obj[variable.id] = 0; //
-            }
-          } catch (err) {
-            _iterator3.e(err);
-          } finally {
-            _iterator3.f();
-          }
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
       }
 
       return obj;
@@ -24572,12 +24577,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var obj = {};
 
       if (true) {
-        var _iterator4 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
-            _step4;
+        var _iterator3 = _createForOfIteratorHelper(this.activity.parameter.form.fields),
+            _step3;
 
         try {
-          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-            var field = _step4.value;
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var field = _step3.value;
             if (!Array('select', 'multiselect').includes(field.type)) continue;
             obj[field.id] = field.options.map(function (option) {
               return {
@@ -24588,9 +24593,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             });
           }
         } catch (err) {
-          _iterator4.e(err);
+          _iterator3.e(err);
         } finally {
-          _iterator4.f();
+          _iterator3.f();
         }
       }
 
@@ -30579,22 +30584,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(field.variables, function (variable, j) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-            "for": variable.id,
+            "for": j == 0 ? i : ++i,
             value: variable.description
           }, null, 8
           /* PROPS */
           , ["for", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-            id: variable.id,
+            id: i,
             type: "text",
             "class": "mt-1 block w-full",
-            modelValue: $data.form.variables[variable.id],
+            modelValue: $data.form.attributes[$options.getIndex(i)]['value'],
             "onUpdate:modelValue": function onUpdateModelValue($event) {
-              return $data.form.variables[variable.id] = $event;
+              return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
             }
           }, null, 8
           /* PROPS */
           , ["id", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-            message: $data.form.errors['variables' + variable.id],
+            message: $data.form.errors[$options.getIndex(i)],
             "class": "mt-2"
           }, null, 8
           /* PROPS */
@@ -30602,28 +30607,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }), 256
         /* UNKEYED_FRAGMENT */
         )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-          "for": field.id,
+          "for": i,
           value: field.name
         }, null, 8
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: field.id,
+          id: i,
           type: "text",
           "class": "mt-1 block w-full",
-          modelValue: $data.form.fields[field.id],
+          modelValue: $data.form.attributes[$options.getIndex(i)]['value'],
           "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           }
         }, null, 8
         /* PROPS */
         , ["id", "modelValue", "onUpdate:modelValue"])) : field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           options: $options.options[field.id],
           multiple: false
@@ -30632,10 +30637,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["id", "value", "onInput", "options"])) : field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           options: $options.options[field.id],
           multiple: true
@@ -30644,16 +30649,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["id", "value", "onInput", "options"])) : field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           route: ''
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors[field.id],
+          message: $data.form.errors[$options.getIndex(i)],
           "class": "mt-2"
         }, null, 8
         /* PROPS */
@@ -30980,10 +30985,10 @@ var _hoisted_4 = {
   "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_5 = {
-  "class": "w-full flex text-sm"
+  "class": "w-full flex text-sm text-gray-600"
 };
 var _hoisted_6 = {
-  "class": "text-gray-600"
+  "class": ""
 };
 var _hoisted_7 = {
   "class": "pl-2"
@@ -31041,23 +31046,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(field.variables, function (variable, j) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-            "for": variable.id,
+            "for": j == 0 ? i : ++i,
             value: variable.description
           }, null, 8
           /* PROPS */
           , ["for", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-            id: variable.id,
+            id: i,
             type: "text",
             "class": "mt-1 block w-full",
-            modelValue: $data.form.variables[variable.id],
+            modelValue: $data.form.attributes[$options.getIndex(i)]['value'],
             "onUpdate:modelValue": function onUpdateModelValue($event) {
-              return $data.form.variables[variable.id] = $event;
+              return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
             },
             disabled: true
           }, null, 8
           /* PROPS */
           , ["id", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-            message: $data.form.errors['variables' + variable.id],
+            message: $data.form.errors[$options.getIndex(i)],
             "class": "mt-2"
           }, null, 8
           /* PROPS */
@@ -31065,60 +31070,60 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }), 256
         /* UNKEYED_FRAGMENT */
         )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-          "for": field.id,
+          "for": i,
           value: field.name
         }, null, 8
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: field.id,
+          id: i,
           type: "text",
           "class": "mt-1 block w-full",
-          modelValue: $data.form.fields[field.id],
+          modelValue: $data.form.attributes[$options.getIndex(i)]['value'],
           "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           disabled: true
         }, null, 8
         /* PROPS */
-        , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+        , ["id", "modelValue", "onUpdate:modelValue"])) : field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           options: $options.options[field.id],
           multiple: false
         }, null, 8
         /* PROPS */
-        , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+        , ["id", "value", "onInput", "options"])) : field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           options: $options.options[field.id],
           multiple: true
         }, null, 8
         /* PROPS */
-        , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
+        , ["id", "value", "onInput", "options"])) : field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           route: '',
           readonly: true
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors['fields' + field.id],
+          message: $data.form.errors[$options.getIndex(i)],
           "class": "mt-2"
         }, null, 8
         /* PROPS */
@@ -31175,10 +31180,10 @@ var _hoisted_4 = {
   "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_5 = {
-  "class": "w-full flex text-sm"
+  "class": "w-full flex text-sm text-gray-600"
 };
 var _hoisted_6 = {
-  "class": "text-gray-600"
+  "class": ""
 };
 var _hoisted_7 = {
   "class": "pl-2"
@@ -31245,22 +31250,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(field.variables, function (variable, j) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-            "for": variable.id,
+            "for": j == 0 ? i : ++i,
             value: variable.description
           }, null, 8
           /* PROPS */
           , ["for", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-            id: variable.id,
+            id: i,
             type: "text",
             "class": "mt-1 block w-full",
-            modelValue: $data.form.variables[variable.id],
+            modelValue: $data.form.attributes[$options.getIndex(i)]['value'],
             "onUpdate:modelValue": function onUpdateModelValue($event) {
-              return $data.form.variables[variable.id] = $event;
+              return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
             }
           }, null, 8
           /* PROPS */
           , ["id", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-            message: $data.form.errors['variables' + variable.id],
+            message: $data.form.errors[$options.getIndex(i)],
             "class": "mt-2"
           }, null, 8
           /* PROPS */
@@ -31268,58 +31273,58 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }), 256
         /* UNKEYED_FRAGMENT */
         )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-          "for": field.id,
+          "for": i,
           value: field.name
         }, null, 8
         /* PROPS */
         , ["for", "value"]), field.type == 'text' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 0,
-          id: field.id,
+          id: i,
           type: "text",
           "class": "mt-1 block w-full",
-          modelValue: $data.form.fields[field.id],
+          modelValue: $data.form.attributes[$options.getIndex(i)]['value'],
           "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           }
         }, null, 8
         /* PROPS */
-        , ["id", "modelValue", "onUpdate:modelValue"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+        , ["id", "modelValue", "onUpdate:modelValue"])) : field.type == 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 1,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           options: $options.options[field.id],
           multiple: false
         }, null, 8
         /* PROPS */
-        , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
+        , ["id", "value", "onInput", "options"])) : field.type == 'multiselect' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeSelect, {
           key: 2,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            return $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           options: $options.options[field.id],
           multiple: true
         }, null, 8
         /* PROPS */
-        , ["id", "value", "onInput", "options"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
+        , ["id", "value", "onInput", "options"])) : field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInputFile, {
           key: 3,
           "class": "mt-1 block w-full",
-          id: field.id,
-          value: $data.form.fields[field.id],
+          id: i,
+          value: $data.form.attributes[$options.getIndex(i)]['value'],
           onInput: function onInput($event) {
-            $data.form.fields[field.id] = $event;
+            return $data.form.attributes[$options.getIndex(i)]['value'] = $event;
           },
           route: ''
         }, null, 8
         /* PROPS */
         , ["id", "value", "onInput"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-          message: $data.form.errors['fields' + field.id],
+          message: $data.form.errors[$options.getIndex(i)],
           "class": "mt-2"
         }, null, 8
         /* PROPS */

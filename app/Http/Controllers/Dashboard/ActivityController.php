@@ -96,29 +96,28 @@ class ActivityController extends Controller
         $activity->setParameter($parameter->getId());
         $activity->setAssignment($assignment->getId());
         $activity->setScore($parameter->getScore());
-        if (array_key_exists('fields', $input))
-            $this->_validate($input['fields']);
-        //$this->_validate($input, 'variables');
+
+        if (array_key_exists('attributes', $input))
+            $this->_validate($input['attributes'], 'createActivity');
+
         $activity->save();
 
-        if (array_key_exists('fields', $input)) {
-            foreach ($input['fields'] as $key => $value) {
-                $formField = FormField::findOrFail($key);
+        if (array_key_exists('attributes', $input)) {
+            foreach ($input['attributes'] as $key => $attribute) {
+                if ($attribute['type'] == 'field') {
 
-                if ($formField->getType() == FormField::MULTISELECT) {
-                    $values = $value;
-                    foreach ($values as $value) {
-                        $this->addFormFieldValuesToActivity($formField, $value, $activity);
+                    $formField = FormField::findOrFail($attribute['id']);
+
+                    if ($formField->getType() == FormField::MULTISELECT) {
+                        foreach ($attribute['value'] as $value) {
+                            $this->addFormFieldValuesToActivity($formField, $value, $activity);
+                        }
+                    } else {
+                        $this->addFormFieldValuesToActivity($formField, $attribute['value'], $activity);
                     }
-                } else {
-                    $this->addFormFieldValuesToActivity($formField, $value, $activity);
+                } elseif ($attribute['type'] == 'variable') {
+                    # code...
                 }
-            }
-        }
-
-        if (array_key_exists('variables', $input)) {
-            foreach ($input['variables'] as $key => $value) {
-                $formFieldVariable = FormFieldVariable::findOrFail($key);
             }
         }
 
@@ -130,50 +129,44 @@ class ActivityController extends Controller
         return Inertia::location(route('assignment.show', ['assignment' => $assignment->getId()]));
     }
 
-    private function _validate($input) {
-        $rules = [];
+    private function _validate($input, $errorBag) {
+        $rules = array();
+        $input_ = [];
 
         foreach ($input as $key => $value) {
-            //*
+            if ($value['type'] == 'field') {
 
-            if (is_null($value)) {
-                throw ValidationException::withMessages([
-                    $key => 'The field is required.',
-                ]);
-            }
+                $formField = FormField::findOrFail($value['id']);
+                $input_[$key] = $value['value'];
 
-            if (is_array($value)) {
-                if (empty($value)) {
-                    throw ValidationException::withMessages([
-                        $key => 'The field is required.',
-                    ]);
+                switch ($formField->getType()) {
+                    case FormField::TEXT:
+                        $rules[$key] = ['required','max:255'];
+                        break;
+                    case FormField::SELECT:
+                        $rules[$key] = ['required'];
+                        break;
+                    case FormField::MULTISELECT:
+                        $rules[$key] = ['required'];
+                        break;
+                    case FormField::FILE:
+                        $rules[$key] = ['required', 'file', 'max:2048'];
+                        break;
+                    case FormField::FORMULA:
+                        break;
+                    default:
+                        break;
                 }
-            }//*/
+            } elseif ($value['type'] == 'variable') {
+                $formFieldVariable = FormFieldVariable::findOrFail($value['id']);
+                $input_[$key] = $value['value'];
 
-            $formField = FormField::findOrFail($key);
-
-            /*switch ($formField->getType()) {
-                case FormField::TEXT:
-                    array_push($rules, [$key => ['required','max:255']]);
-                    break;
-                case FormField::SELECT:
-                    array_push($rules, [$key => ['required']]);
-                    break;
-                case FormField::MULTISELECT:
-                    array_push($rules, [$key => ['required']]);
-                    break;
-                case FormField::FILE:
-                    array_push($rules, [$key => ['required', 'file', 'size:2048']]);
-                    break;
-                case FormField::FORMULA:
-                    break;
-                default:
-                    break;
-            }*/
+                $rules[$key] = ['required'];
+            }
+                
         }
-        /*error_log(json_encode($rules));
 
-        Validator::make($input, $rules)->validateWithBag('createActivity');*/
+        Validator::make($input_, $rules)->validateWithBag($errorBag);
     }
 
     private function addFormFieldValuesToActivity($formField, $value, $activity) {
@@ -307,61 +300,57 @@ class ActivityController extends Controller
         $activity->assignment->setScore($activity->assignment->getScore() - $activity->getScore());
         $activity->setScore($activity->parameter->getScore());
 
-        if (array_key_exists('fields', $input)) {
-            foreach ($input['fields'] as $key => $value) {
+        if (array_key_exists('attributes', $input))
+            $this->_validate($input['attributes'], 'updateActivity');
 
-                if (is_null($value)) {
-                    throw ValidationException::withMessages([
-                        'fields' . $key => 'The field is required.',
-                    ]);
-                }
+        if (array_key_exists('attributes', $input)) {
+            foreach ($input['attributes'] as $key => $attribute) {
 
-                $formField = FormField::find($key);
+                if ($attribute['type'] == 'field') {
 
-                if ($formField->getType() == FormField::FILE) {
-                    continue;
-                }
+                    $formField = FormField::find($attribute['id']);
 
-                if ($formField->getType() == FormField::MULTISELECT) {
-                    $activity->formFieldValues()
-                             ->where('form_field_id', $formField->id)
-                             ->delete();
+                    switch ($formField->getType()) {
+                        case FormField::TEXT:
+                            $activity->updateFormFieldValue($value);
+                            $formFieldValue = $activity->formFieldValues()
+                                                       ->firstWhere('form_field_id', $formField->id);
+                            $formFieldValue->setContext($value);
+                            $formFieldValue->save();
+                            break;
+                        case FormField::SELECT:
+                            $activity->setScore(
+                                $activity->getScore() + $formField->options->find($value)->getScore()
+                            );
+                            $formFieldValue = $activity->formFieldValues()
+                                                       ->firstWhere('form_field_id', $formField->id);
+                            $formFieldValue->setContext($value);
+                            $formFieldValue->save();
+                            break;
+                        case FormField::MULTISELECT:
+                            $activity->formFieldValues()
+                                     ->where('form_field_id', $formField->id)
+                                     ->delete();
+                            foreach ($attribute['value'] as $value) {
+                                $formFieldValue = FormFieldValue::create([
+                                    'form_field_id' => $formField->getId(),
+                                ]);
 
-                    foreach ($value as $v) {
-                        $formFieldValue = FormFieldValue::create([
-                            'form_field_id' => $formField->getId(),
-                        ]);
-
-                        $formFieldValue->setContext($v);
-                        $formFieldValue->save();
-                        $activity->addFormFieldValues([$formFieldValue->getId()]);
-                        $activity->setScore($activity->getScore() + $formField->options->find($v)->getScore());
+                                $formFieldValue->setContext($value);
+                                $formFieldValue->save();
+                                $activity->addFormFieldValues([$formFieldValue->getId()]);
+                                $activity->setScore(
+                                    $activity->getScore() + $formField->options->find($value)->getScore());
+                            }
+                            break;
+                        case FormField::FILE:
+                            break;
+                        default:
+                            break;
                     }
-
-                    continue;
+                } elseif ($attribute['value'] == 'variable') {
+                    # code...
                 }
-
-                if ($formField->getType() == FormField::SELECT) {
-                    $activity->setScore($activity->getScore() + $formField->options->find($value)->getScore());
-                }
-
-                $formFieldValue = $activity->formFieldValues()
-                                           ->firstWhere('form_field_id', $formField->id);
-
-                $formFieldValue->setContext($value);
-                $formFieldValue->save();
-            }
-        }
-
-        if (array_key_exists('variables', $input)) {
-            foreach ($input['variables'] as $key => $value) {
-                if (is_null($value)) {
-                    throw ValidationException::withMessages([
-                        'variables' . $key => 'The field is required.',
-                    ]);
-                }
-
-                $formFieldVariable = FormFieldVariable::findOrFail($key);
             }
         }
 
