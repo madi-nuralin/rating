@@ -151,6 +151,10 @@ class FormFieldController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $formField = FormField::findOrfail($id);
+        $form = $formField->field;
+        $formField->delete();
+
+        return Inertia::location(route('parameter.show', ['parameter' => $form->parameter->getId()]));
     }
 }

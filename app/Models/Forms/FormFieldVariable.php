@@ -29,6 +29,10 @@ class FormFieldVariable extends Model
     	return $this->belongsTo(FormField::class);
     }
 
+    public function values() {
+        return $this->hasMany(FormFieldVariableValue::class);
+    }
+
     public function getId() {
     	return $this->id;
     }
