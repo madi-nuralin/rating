@@ -16,21 +16,23 @@
             </div>
 
             <template v-for="(field, i) in activity.parameter.form.fields">
-                <template v-if="field.type == 'formula'">
-                    <div class="col-span-6 sm:col-span-4" v-for="(variable, j) in field.variables">
-                        <BreezeLabel :for="variable.id" :value="variable.description" />
+                <div class="col-span-6 sm:col-span-4" v-if="field.type == 'formula'"
+                        v-for="(variable, j) in field.variables">
+                    <BreezeLabel :for="variable.id"
+                                :value="variable.description" />
 
-                        <BreezeInput :id="variable.id"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                    v-model="form.variables[variable.id]" />
+                    <BreezeInput :id="variable.id"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.variables[variable.id]" />
 
-                        <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
-                    </div>
-                </template>
+                    <BreezeInputError :message="form.errors['variables' + variable.id]"
+                                class="mt-2" />
+                </div>
 
                 <div class="col-span-6 sm:col-span-4" v-else>
-                    <BreezeLabel :for="field.id" :value="field.name" />
+                    <BreezeLabel :for="field.id"
+                                :value="field.name" />
 
                     <BreezeInput v-if="field.type == 'text'"
                                 :id="field.id"
@@ -42,7 +44,7 @@
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                @input="form.fields[field.id] = $event"
                                 :options="options[field.id]"
                                 :multiple="false" />
 
@@ -50,7 +52,7 @@
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                @input="form.fields[field.id] = $event"
                                 :options="options[field.id]"
                                 :multiple="true" />
 
@@ -61,14 +63,16 @@
                                 @input="form.fields[field.id] = $event;"
                                 :route="''" />
 
-                    <BreezeInputError :message="form.errors['fields' + field.id]" class="mt-2" />
+                    <BreezeInputError :message="form.errors['fields' + field.id]"
+                                class="mt-2" />
                 </div>
             </template>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="$t('pages.dashboard.activities.update.form.score')" />
-                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" :disabled="true" />
-                <BreezeInputError :message="form.errors.score" class="mt-2" />
+                <div class="w-full flex text-sm">
+                    <div class="text-gray-600">{{ $t('pages.dashboard.activities.update.form.score') }}</div>
+                    <div class="pl-2">{{ form.score }}</div>
+                </div>
             </div>
 
         </template>
@@ -95,6 +99,7 @@
     import BreezeTextarea from '@/Components/Textarea'
     import BreezeLabel from '@/Components/Label'
     import BreezeSelect from '@/Components/Select'
+    import { Inertia } from '@inertiajs/inertia'
 
     export default {
         components: {
@@ -115,10 +120,10 @@
             return {
                 form: this.$inertia.form({
                     parameter: this.activity.parameter.name,
-                    score: this.activity.score,
                     fields: this.getFields(),
                     variables: this.getVariables(),
-                })
+                    score: this.activity.score,
+                }),
             }
         },
 
@@ -126,7 +131,8 @@
             updateActivity() {
                 this.form.put(route( 'activity.update', {'id': this.activity.id} ), {
                     errorBag: 'updateActivity',
-                    preserveScroll: true
+                    preserveScroll: true,
+                    onSuccess: () => Inertia.reload({ only: ['activity'] })
                 });
             },
 
@@ -157,51 +163,6 @@
                 }
 
                 return obj;
-            },
-
-            selectField(field, pid, nid) {
-                var score = 0;
-
-                switch (field.type) {
-                    case 'text':
-                        break;
-                    case 'select':
-                        for (const option of field.options) {
-                            if (pid === option.id) {
-                                score -= option.score;
-                                break;
-                            }
-                        }
-                        for (const option of field.options) {
-                            if (nid === option.id) {
-                                score += option.score;
-                                break;
-                            }
-                        }
-                        break;
-                    case 'multiselect':
-                        for (const v of Array.from(pid)) {
-                            for (const option of field.options) {
-                                if (v === option.id) {
-                                    score -= option.score;
-                                    break;
-                                }
-                            }
-                        }
-                        for (const v of Array.from(nid)) {
-                            for (const option of field.options) {
-                                if (v === option.id) {
-                                    score += option.score;
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                this.form.score += score;
             },
         },
 

@@ -16,18 +16,17 @@
             </div>
 
             <template v-for="(field, i) in parameter.form.fields" v-if="parameter">
-                <template v-if="field.type == 'formula'">
-                    <div class="col-span-6 sm:col-span-4" v-for="(variable, j) in field.variables">
-                        <BreezeLabel :for="variable.id" :value="variable.description" />
+                <div class="col-span-6 sm:col-span-4" v-if="field.type == 'formula'"
+                        v-for="(variable, j) in field.variables">
+                    <BreezeLabel :for="variable.id" :value="variable.description" />
 
-                        <BreezeInput :id="variable.id"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                    v-model="form.variables[variable.id]" />
+                    <BreezeInput :id="variable.id"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.variables[variable.id]" />
 
-                        <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
-                    </div>
-                </template>
+                    <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
+                </div>
 
                 <div class="col-span-6 sm:col-span-4" v-else>
                     <BreezeLabel :for="field.id" :value="field.name" />
@@ -38,39 +37,32 @@
                                 class="mt-1 block w-full"
                                 v-model="form.fields[field.id]" />
 
-                    <BreezeSelect v-if="field.type == 'select'"
+                    <BreezeSelect v-else-if="field.type == 'select'"
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                @input="form.fields[field.id] = $event"
                                 :options="options[field.id]"
                                 :multiple="false" />
 
-                    <BreezeSelect v-if="field.type == 'multiselect'"
+                    <BreezeSelect v-else-if="field.type == 'multiselect'"
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                @input="form.fields[field.id] = $event"
                                 :options="options[field.id]"
                                 :multiple="true" />
 
-                    <BreezeInputFile v-if="field.type == 'file'"
+                    <BreezeInputFile v-else-if="field.type == 'file'"
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="form.fields[field.id] = $event;"
+                                @input="form.fields[field.id] = $event"
                                 :route="''" />
 
-                    <BreezeInputError :message="form.errors['fields' + field.id]" class="mt-2" />
+                    <BreezeInputError :message="form.errors[field.id]" class="mt-2" />
                 </div>
             </template>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="$t('pages.dashboard.activities.create.form.score')" />
-                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" :disabled="true" />
-                <BreezeInputError :message="form.errors.score" class="mt-2" />
-            </div>
-
         </template>
 
         <template #actions>
@@ -117,7 +109,6 @@
             return {
                 form: this.$inertia.form({
                     parameter: null,
-                    score: 0,
                     fields: {},
                     variables: {}
                 }),
@@ -142,6 +133,9 @@
                     if (this.form.parameter == parameter.id) {
                         this.parameter = parameter;
                         this.form.score = parameter.score;
+
+                        this.form.fields = {};
+                        this.form.errors = {};
                         
                         for (const field of parameter.form.fields)  {
                             
@@ -151,59 +145,14 @@
                                     this.form.errors['variables' + variable.id] = '';
                                 }
                             } else {
-                                this.form.fields[field.id] = '';
-                                this.form.errors['fields' + field.id] = '';
+                                this.form.fields[field.id] = null;
+                                this.form.errors[field.id] = null;
                             }
                         }
 
                         break;
                     }
                 }
-            },
-
-            selectField(field, pid, nid) {
-                var score = 0;
-
-                switch (field.type) {
-                    case 'text':
-                        break;
-                    case 'select':
-                        for (const option of field.options) {
-                            if (pid === option.id) {
-                                score -= option.score;
-                                break;
-                            }
-                        }
-                        for (const option of field.options) {
-                            if (nid === option.id) {
-                                score += option.score;
-                                break;
-                            }
-                        }
-                        break;
-                    case 'multiselect':
-                        for (const v of Array.from(pid)) {
-                            for (const option of field.options) {
-                                if (v === option.id) {
-                                    score -= option.score;
-                                    break;
-                                }
-                            }
-                        }
-                        for (const v of Array.from(nid)) {
-                            for (const option of field.options) {
-                                if (v === option.id) {
-                                    score += option.score;
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                this.form.score += score;
             },
         },
 

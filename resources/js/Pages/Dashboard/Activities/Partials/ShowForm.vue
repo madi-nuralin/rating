@@ -16,22 +16,24 @@
             </div>
 
             <template v-for="(field, i) in activity.parameter.form.fields">
-                <template v-if="field.type == 'formula'">
-                    <div class="col-span-6 sm:col-span-4" v-for="(variable, j) in field.variables">
-                        <BreezeLabel :for="variable.id" :value="variable.description" />
 
-                        <BreezeInput :id="variable.id"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                    v-model="form.variables[variable.id]"
-                                    :disabled="true" />
+                <div class="col-span-6 sm:col-span-4"  v-if="field.type == 'formula'"
+                        v-for="(variable, j) in field.variables">
+                    <BreezeLabel :for="variable.id"
+                                :value="variable.description" />
 
-                        <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
-                    </div>
-                </template>
+                    <BreezeInput :id="variable.id"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.variables[variable.id]"
+                                :disabled="true" />
+
+                    <BreezeInputError :message="form.errors['variables' + variable.id]" class="mt-2" />
+                </div>
 
                 <div class="col-span-6 sm:col-span-4" v-else>
-                    <BreezeLabel :for="field.id" :value="field.name" />
+                    <BreezeLabel :for="field.id"
+                                :value="field.name" />
 
                     <BreezeInput v-if="field.type == 'text'"
                                 :id="field.id"
@@ -44,7 +46,7 @@
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                @input="form.fields[field.id] = $event"
                                 :options="options[field.id]"
                                 :multiple="false" />
 
@@ -52,7 +54,7 @@
                                 class="mt-1 block w-full"
                                 :id="field.id"
                                 :value="form.fields[field.id]"
-                                @input="selectField(field, form.fields[field.id], form.fields[field.id] = $event)"
+                                @input="form.fields[field.id] = $event"
                                 :options="options[field.id]"
                                 :multiple="true" />
 
@@ -64,14 +66,16 @@
                                 :route="''"
                                 :readonly="true" />
 
-                    <BreezeInputError :message="form.errors['fields' + field.id]" class="mt-2" />
+                    <BreezeInputError :message="form.errors['fields' + field.id]"
+                                class="mt-2" />
                 </div>
             </template>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="$t('pages.dashboard.activities.show.form.score')" />
-                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" :disabled="true" />
-                <BreezeInputError :message="form.errors.score" class="mt-2" />
+                <div class="w-full flex text-sm">
+                    <div class="text-gray-600">{{ $t('pages.dashboard.activities.show.form.score') }}</div>
+                    <div class="pl-2">{{ score }}</div>
+                </div>
             </div>
 
         </template>
@@ -118,10 +122,10 @@
             return {
                 form: this.$inertia.form({
                     parameter: this.activity.parameter.name,
-                    score: this.activity.score,
                     fields: this.getFields(),
                     variables: this.getVariables(),
-                })
+                }),
+                score: this.activity.score,
             }
         },
 
