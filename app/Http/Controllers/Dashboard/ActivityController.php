@@ -13,7 +13,6 @@ use App\Models\Activity;
 use App\Models\Parameter;
 use App\Models\Forms\FormField;
 use App\Models\Forms\FormFieldOption;
-use App\Models\Forms\FormFieldVariable;
 use App\Models\Forms\FormFieldValue;
 
 class ActivityController extends Controller
@@ -58,8 +57,7 @@ class ActivityController extends Controller
                                                                       ->map(function($formField) {
                                                     return array_merge(
                                                         $formField->toArray(), [
-                                                            'options' => $formField->getOptions(),
-                                                            'variables' => $formField->getVariables()
+                                                            'options' => $formField->getOptions()
                                                         ]
                                                     );
                                                 }) : []
@@ -97,26 +95,22 @@ class ActivityController extends Controller
         $activity->setAssignment($assignment->getId());
         $activity->setScore($parameter->getScore());
 
-        if (array_key_exists('attributes', $input))
-            $this->_validate($input['attributes'], 'createActivity');
+        if (array_key_exists('fields', $input))
+            $this->_validate($input['fields'], 'createActivity');
 
         $activity->save();
 
-        if (array_key_exists('attributes', $input)) {
-            foreach ($input['attributes'] as $key => $attribute) {
-                if ($attribute['type'] == 'field') {
+        if (array_key_exists('fields', $input)) {
+            foreach ($input['fields'] as $key => $field) {
 
-                    $formField = FormField::findOrFail($attribute['id']);
+                $formField = FormField::findOrFail($field['id']);
 
-                    if ($formField->getType() == FormField::MULTISELECT) {
-                        foreach ($attribute['value'] as $value) {
-                            $this->addFormFieldValuesToActivity($formField, $value, $activity);
-                        }
-                    } else {
-                        $this->addFormFieldValuesToActivity($formField, $attribute['value'], $activity);
+                if ($formField->getType() == FormField::MULTISELECT) {
+                    foreach ($field['value'] as $value) {
+                        $this->addFormFieldValuesToActivity($formField, $value, $activity);
                     }
-                } elseif ($attribute['type'] == 'variable') {
-                    # code...
+                } else {
+                    $this->addFormFieldValuesToActivity($formField, $field['value'], $activity);
                 }
             }
         }
@@ -134,34 +128,27 @@ class ActivityController extends Controller
         $input_ = [];
 
         foreach ($input as $key => $value) {
-            if ($value['type'] == 'field') {
 
-                $formField = FormField::findOrFail($value['id']);
-                $input_[$key] = $value['value'];
+            $formField = FormField::findOrFail($value['id']);
+            $input_[$key] = $value['value'];
 
-                switch ($formField->getType()) {
-                    case FormField::TEXT:
-                        $rules[$key] = ['required','max:255'];
-                        break;
-                    case FormField::SELECT:
-                        $rules[$key] = ['required'];
-                        break;
-                    case FormField::MULTISELECT:
-                        $rules[$key] = ['required'];
-                        break;
-                    case FormField::FILE:
-                        $rules[$key] = ['required', 'file', 'max:2048'];
-                        break;
-                    case FormField::FORMULA:
-                        break;
-                    default:
-                        break;
-                }
-            } elseif ($value['type'] == 'variable') {
-                $formFieldVariable = FormFieldVariable::findOrFail($value['id']);
-                $input_[$key] = $value['value'];
-
-                $rules[$key] = ['required'];
+            switch ($formField->getType()) {
+                case FormField::TEXT:
+                    $rules[$key] = ['required','max:255'];
+                    break;
+                case FormField::SELECT:
+                    $rules[$key] = ['required'];
+                    break;
+                case FormField::MULTISELECT:
+                    $rules[$key] = ['required'];
+                    break;
+                case FormField::FILE:
+                    $rules[$key] = ['required', 'max:2048'];
+                    break;
+                case FormField::FORMULA:
+                    break;
+                default:
+                    break;
             }
                 
         }
@@ -214,7 +201,6 @@ class ActivityController extends Controller
                                         return array_merge(
                                             $formField->toArray(), [
                                                 'options' => $formField->getOptions(),
-                                                'variables' => $formField->getVariables(),
                                                 'values' => collect(
                                                     $activity->formFieldValues()
                                                              ->where('form_field_id', $formField->getId())
@@ -265,7 +251,6 @@ class ActivityController extends Controller
                                         return array_merge(
                                             $formField->toArray(), [
                                                 'options' => $formField->getOptions(),
-                                                'variables' => $formField->getVariables(),
                                                 'values' => collect(
                                                     $activity->formFieldValues()
                                                              ->where('form_field_id', $formField->getId())
@@ -300,56 +285,50 @@ class ActivityController extends Controller
         $activity->assignment->setScore($activity->assignment->getScore() - $activity->getScore());
         $activity->setScore($activity->parameter->getScore());
 
-        if (array_key_exists('attributes', $input))
-            $this->_validate($input['attributes'], 'updateActivity');
+        if (array_key_exists('fields', $input))
+            $this->_validate($input['fields'], 'updateActivity');
 
-        if (array_key_exists('attributes', $input)) {
-            foreach ($input['attributes'] as $key => $attribute) {
+        if (array_key_exists('fields', $input)) {
+            foreach ($input['fields'] as $key => $field) {
 
-                if ($attribute['type'] == 'field') {
+                $formField = FormField::find($field['id']);
 
-                    $formField = FormField::find($attribute['id']);
+                switch ($formField->getType()) {
+                    case FormField::TEXT:
+                        $formFieldValue = $activity->formFieldValues()
+                                                   ->firstWhere('form_field_id', $formField->id);
+                        $formFieldValue->setContext($field['value']);
+                        $formFieldValue->save();
+                        break;
+                    case FormField::SELECT:
+                        $activity->setScore(
+                            $activity->getScore() + $formField->options->find($field['value'])->getScore()
+                        );
+                        $formFieldValue = $activity->formFieldValues()
+                                                   ->firstWhere('form_field_id', $formField->id);
+                        $formFieldValue->setContext($field['value']);
+                        $formFieldValue->save();
+                        break;
+                    case FormField::MULTISELECT:
+                        $activity->formFieldValues()
+                                 ->where('form_field_id', $formField->id)
+                                 ->delete();
+                        foreach ($field['value'] as $value) {
+                            $formFieldValue = FormFieldValue::create([
+                                'form_field_id' => $formField->getId(),
+                            ]);
 
-                    switch ($formField->getType()) {
-                        case FormField::TEXT:
-                            $activity->updateFormFieldValue($value);
-                            $formFieldValue = $activity->formFieldValues()
-                                                       ->firstWhere('form_field_id', $formField->id);
                             $formFieldValue->setContext($value);
                             $formFieldValue->save();
-                            break;
-                        case FormField::SELECT:
+                            $activity->addFormFieldValues([$formFieldValue->getId()]);
                             $activity->setScore(
-                                $activity->getScore() + $formField->options->find($value)->getScore()
-                            );
-                            $formFieldValue = $activity->formFieldValues()
-                                                       ->firstWhere('form_field_id', $formField->id);
-                            $formFieldValue->setContext($value);
-                            $formFieldValue->save();
-                            break;
-                        case FormField::MULTISELECT:
-                            $activity->formFieldValues()
-                                     ->where('form_field_id', $formField->id)
-                                     ->delete();
-                            foreach ($attribute['value'] as $value) {
-                                $formFieldValue = FormFieldValue::create([
-                                    'form_field_id' => $formField->getId(),
-                                ]);
-
-                                $formFieldValue->setContext($value);
-                                $formFieldValue->save();
-                                $activity->addFormFieldValues([$formFieldValue->getId()]);
-                                $activity->setScore(
-                                    $activity->getScore() + $formField->options->find($value)->getScore());
-                            }
-                            break;
-                        case FormField::FILE:
-                            break;
-                        default:
-                            break;
-                    }
-                } elseif ($attribute['value'] == 'variable') {
-                    # code...
+                                $activity->getScore() + $formField->options->find($value)->getScore());
+                        }
+                        break;
+                    case FormField::FILE:
+                        break;
+                    default:
+                        break;
                 }
             }
         }

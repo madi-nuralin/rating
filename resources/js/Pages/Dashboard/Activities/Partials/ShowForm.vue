@@ -15,62 +15,42 @@
                 <BreezeInputError :message="form.errors.parameter" class="mt-2" />
             </div>
 
-            <template v-for="(field, i) in activity.parameter.form.fields">
-                <template v-for="(variable, j) in field.variables" v-if="field.type == 'formula'">
-                    <div class="col-span-6 sm:col-span-4">
-                        <BreezeLabel :for="j == 0 ? i : ++i"
-                                    :value="variable.description" />
+            <div class="col-span-6 sm:col-span-4" v-for="(field, i) in activity.parameter.form.fields">
+                <BreezeLabel :for="i" :value="field.name" />
 
-                        <BreezeInput :id="i"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                    v-model="form.attributes[getIndex(i)]['value']"
-                                    :disabled="true" />
+                <BreezeInput v-if="field.type == 'text'"
+                            :id="i"
+                            type="text"
+                            class="mt-1 block w-full"
+                            v-model="form.fields[map(i)]['value']"
+                            :disabled="true" />
 
-                        <BreezeInputError :message="form.errors[getIndex(i)]"
-                                    class="mt-2" />
-                    </div>
-                </template>
+                <BreezeSelect v-else-if="field.type == 'select'"
+                            class="mt-1 block w-full"
+                            :id="i"
+                            :value="form.fields[map(i)]['value']"
+                            @input="form.fields[map(i)]['value'] = $event"
+                            :options="options[field.id]"
+                            :multiple="false" />
 
-                <template v-else>
-                    <div class="col-span-6 sm:col-span-4">
-                        <BreezeLabel :for="i" :value="field.name" />
+                <BreezeSelect v-else-if="field.type == 'multiselect'"
+                            class="mt-1 block w-full"
+                            :id="i"
+                            :value="form.fields[map(i)]['value']"
+                            @input="form.fields[map(i)]['value'] = $event"
+                            :options="options[field.id]"
+                            :multiple="true" />
 
-                        <BreezeInput v-if="field.type == 'text'"
-                                    :id="i"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                    v-model="form.attributes[getIndex(i)]['value']"
-                                    :disabled="true" />
+                <BreezeInputFile v-else-if="field.type == 'file'"
+                            class="mt-1 block w-full"
+                            :id="i"
+                            :value="form.fields[map(i)]['value']"
+                            @input="form.fields[map(i)]['value'] = $event"
+                            :route="''"
+                            :readonly="true" />
 
-                        <BreezeSelect v-else-if="field.type == 'select'"
-                                    class="mt-1 block w-full"
-                                    :id="i"
-                                    :value="form.attributes[getIndex(i)]['value']"
-                                    @input="form.attributes[getIndex(i)]['value'] = $event"
-                                    :options="options[field.id]"
-                                    :multiple="false" />
-
-                        <BreezeSelect v-else-if="field.type == 'multiselect'"
-                                    class="mt-1 block w-full"
-                                    :id="i"
-                                    :value="form.attributes[getIndex(i)]['value']"
-                                    @input="form.attributes[getIndex(i)]['value'] = $event"
-                                    :options="options[field.id]"
-                                    :multiple="true" />
-
-                        <BreezeInputFile v-else-if="field.type == 'file'"
-                                    class="mt-1 block w-full"
-                                    :id="i"
-                                    :value="form.attributes[getIndex(i)]['value']"
-                                    @input="form.attributes[getIndex(i)]['value'] = $event"
-                                    :route="''"
-                                    :readonly="true" />
-
-                        <BreezeInputError :message="form.errors[getIndex(i)]" class="mt-2" />
-                    </div>
-                </template>
-            </template>
+                <BreezeInputError :message="form.errors[map(i)]" class="mt-2" />
+            </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <div class="w-full flex text-sm text-gray-600">
@@ -123,7 +103,7 @@
             return {
                 form: this.$inertia.form({
                     parameter: this.activity.parameter.name,
-                    attributes: this.getAttributes(),
+                    fields: this.getFields(),
                 }),
                 score: this.activity.score,
             }
@@ -137,35 +117,24 @@
                 });*/
             },
 
-            getIndex(key) {
-                return `attribute${key}`;
+            map(key) {
+                return `field${key}`;
             },
 
-            getAttributes() {
-                let obj = {}, i = 0, getIndex = this.getIndex;
+            getFields() {
+                let obj = {}, i = 0, map = this.map;
 
                 for (const field of this.activity.parameter.form.fields) {
-                    if (field.type == 'formula') {
-                        for (const variable of field.variables) {
-                            obj[getIndex(i)] = {};
-                            obj[getIndex(i)]['id'] = variable.id;
-                            obj[getIndex(i)]['type'] = 'variable';
-                            obj[getIndex(i)]['value'] = 0; //
-                            ++i;
-                        }
-                    } else if (field.type == 'multiselect') {
-                        obj[getIndex(i)] = {};
-                        obj[getIndex(i)]['id'] = field.id;
-                        obj[getIndex(i)]['type'] = 'field';
-                        obj[getIndex(i)]['value'] = field.values;
-                        ++i;
+                    obj[map(i)] = {};
+                    obj[map(i)]['id'] = field.id;
+
+                    if (field.type == 'multiselect') {
+                        obj[map(i)]['value'] = field.values;
                     } else {
-                        obj[getIndex(i)] = {};
-                        obj[getIndex(i)]['id'] = field.id;
-                        obj[getIndex(i)]['type'] = 'field';
-                        obj[getIndex(i)]['value'] = field.values[0];
-                        ++i;
+                        obj[map(i)]['value'] = field.values[0];
                     }
+                    
+                    ++i;
                 }
 
                 return obj;
