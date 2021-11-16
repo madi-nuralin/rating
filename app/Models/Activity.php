@@ -49,6 +49,14 @@ class Activity extends Model
         $this->score = $score;
     }
 
+    public function addScore($score) {
+        $this->score += $score;
+    }
+
+    public function subScore($score) {
+        $this->score -= $score;
+    }
+
     public function getAssignment() {
     	return $this->assignment->toArray();
     }
@@ -90,6 +98,7 @@ class Activity extends Model
     public function addFormFieldValues($formFieldValues) {
         $this->formFieldValues()->attach($formFieldValues);
     }
+
 
     public function toArray() {
     	return [

@@ -57,6 +57,14 @@ class Assignment extends Model
         $this->score = $score;
     }
 
+    public function addScore($score) {
+        $this->score += $score;
+    }
+
+    public function subScore($score) {
+        $this->score -= $score;
+    }
+
     public function getAssessment() {
         return $this->assessment->toArray();
     }

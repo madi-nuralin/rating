@@ -101,11 +101,11 @@ class PositionController extends Controller
 
         $position = Position::findOrFail($id);
         
-        if ( $position->getName() != $input['name'] ) {
+        if ($position->getName() != $input['name']) {
             $position->setName($input['name']);    
         }
 
-        if ( $position->getDescription() != $input['description'] ) {
+        if ($position->getDescription() != $input['description']) {
             $position->setDescription($input['description']);
         }
 

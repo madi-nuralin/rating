@@ -30880,12 +30880,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeFormSection, null, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.assignment.assessment.name), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.list.title')), 1
       /* TEXT */
       )];
     }),
     description: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.assignment.assessment.description), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.activities.list.description')), 1
       /* TEXT */
       )];
     }),
@@ -39712,6 +39712,10 @@ var messages = {
               score: 'Amount of score which user earned for this activity:'
             }
           },
+          list: {
+            title: 'Activity list',
+            description: 'The list of submitted activities.'
+          },
           "delete": {
             title: 'Delete activity',
             description: 'Permanently delete this activity.',
@@ -40383,6 +40387,10 @@ var messages = {
               parameter: 'Параметр оценки',
               score: 'Количество баллов, которые пользователь заработал за это действие:'
             }
+          },
+          list: {
+            title: 'Список действий',
+            description: 'Список представленных действии.'
           },
           "delete": {
             title: 'Удалить действие',

@@ -459,6 +459,10 @@ var messages = {
               score: 'Amount of score which user earned for this activity:'
             }
           },
+          list: {
+            title: 'Activity list',
+            description: 'The list of submitted activities.'
+          },
           delete: {
             title: 'Delete activity',
             description: 'Permanently delete this activity.',
@@ -1130,6 +1134,10 @@ var messages = {
               parameter: 'Параметр оценки',
               score: 'Количество баллов, которые пользователь заработал за это действие:'
             }
+          },
+          list: {
+            title: 'Список действий',
+            description: 'Список представленных действии.'
           },
           delete: {
             title: 'Удалить действие',

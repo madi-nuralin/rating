@@ -72,7 +72,9 @@ class DepartmentController extends Controller
 
         return Inertia::render('Management/Departments/Show', [
             'department' => array_merge($department->toArray(), [
-                'positions' => $department->getPositions()
+                'positions' => $department->positions->map(function($position) {
+                    return $position->toArray();
+                })
             ]),
             'positions' => Position::all()->map(function($position) {
                 return $position->toArray();
@@ -132,12 +134,7 @@ class DepartmentController extends Controller
         }
 
         if (isset($input['positions'])) {
-            if ($department->positions()) {
-                $department->positions()->detach();
-            }
-            if (count($input['positions']) > 0) {
-                $department->positions()->attach($input['positions']);
-            }
+            $department->setPositions($input['positions']);
         }
 
         $department->save();

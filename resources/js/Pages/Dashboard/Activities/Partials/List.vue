@@ -2,13 +2,13 @@
     <BreezeFormSection>
         <template #title>
             <h3 class="text-lg font-medium text-gray-900">
-                {{ assignment.assessment.name }}
+                {{ $t('pages.dashboard.activities.list.title') }}
             </h3>
         </template>
 
         <template #description>
             <p class="text-sm text-gray-600">
-                {{ assignment.assessment.description }}
+                {{ $t('pages.dashboard.activities.list.description') }}
             </p>
         </template>
 

@@ -78,6 +78,22 @@ class Department extends Model
         }) : null;
     }
 
+    public function setPositions($positions) {
+        if (is_null($positions) || empty($positions)) {
+            $this->positions()->detach();
+            return;
+        }
+
+        if ($this->positions()) {
+            $this->positions()->detach(
+                array_diff($this->positions()->pluck('positions.id')->toArray(), $positions));
+            $this->positions()->attach(
+                array_diff($positions, $this->positions()->pluck('positions.id')->toArray()));
+        } else {
+            $this->positions()->attach($positions);
+        }
+    }
+
     public function createdAt() {
         return $this->created_at;
     }
