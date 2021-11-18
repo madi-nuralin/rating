@@ -13,16 +13,17 @@ Staff Performance Assessment (SPA) application provides an employee to see his o
 
 ## Installation
 
-1. `git clone`
-2. `cd`
+1. `git clone https://github.com/madi-nuralin/spa.git`
+2. `cd spa`
 3. `composer install`
 4. `npm install`
-5. `cp .env.example .env`
+5. `npm run dev`
+6. `cp .env.example .env`
 6. `php artisan migrate --seed`
-7. `php artisan key:generate`
-8. `php artisan app:user:role:add <role> <email>`, where <role> {confirmer, manager, admin}
-9. `php artisan storage:link`
-10. `php artisan serve`
+8. `php artisan key:generate`
+9. `php artisan app:user:role:add <role> <email>`, (where roles: confirmer, manager, admin)
+10. `php artisan storage:link`
+11. `php artisan serve`
 
 ## Contributing
 
