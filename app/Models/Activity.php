@@ -33,10 +33,6 @@ class Activity extends Model
         return $this->belongsToMany(FormFieldValue::class);
     }
 
-    public function formFieldVariableValues() {
-        return $this->belongsToMany(FormFieldVariableValue::class);
-    }
-
     public function getId() {
     	return $this->id;
     }

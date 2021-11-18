@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
+use MathParser\StdMathParser;
+use MathParser\Interpreting\Evaluator;
+
 use App\Models\Assignment;
 use App\Models\Activity;
 use App\Models\Parameter;
@@ -107,10 +110,10 @@ class ActivityController extends Controller
 
                 if ($formField->getType() == FormField::MULTISELECT) {
                     foreach ($field['value'] as $value) {
-                        $this->addFormFieldValuesToActivity($formField, $value, $activity);
+                        $this->addFormFieldValuesToActivity($formField, $key, $value, $activity, 'createActivity');
                     }
                 } else {
-                    $this->addFormFieldValuesToActivity($formField, $field['value'], $activity);
+                    $this->addFormFieldValuesToActivity($formField, $key,  $field['value'], $activity, 'createActivity');
                 }
             }
         }
@@ -145,8 +148,6 @@ class ActivityController extends Controller
                 case FormField::FILE:
                     $rules[$key] = ['required', 'max:2048'];
                     break;
-                case FormField::FORMULA:
-                    break;
                 default:
                     break;
             }
@@ -156,10 +157,27 @@ class ActivityController extends Controller
         Validator::make($array, $rules)->validateWithBag($errorBag);
     }
 
-    private function addFormFieldValuesToActivity($formField, $value, $activity) {
+    private function addFormFieldValuesToActivity($formField, $key, $value, $activity, $errorBag) {
         $formFieldValue = FormFieldValue::create([
             'form_field_id' => $formField->getId(),
         ]);
+
+        if ($formField->getFormula() !== null) {
+            try {
+                $parser = new StdMathParser();
+                // Generate an abstract syntax tree
+                $formula = $parser->parse($formField->getFormula());
+
+                $evaluator = new Evaluator();
+                $evaluator->setVariables([ 'x' => $value ]);
+                $activity->addScore($formula->accept($evaluator));
+
+            } catch (\Exception $e) {
+                throw ValidationException::withMessages([
+                    $key => $e->getMessage(),
+                ]);
+            }
+        }
 
         $formFieldValue->setContext($value);
         $formFieldValue->save();
@@ -310,7 +328,7 @@ class ActivityController extends Controller
                         $activity->formFieldValues()->where('form_field_id', $formField->id)->delete();
 
                         foreach ($field['value'] as $value) {
-                            $this->addFormFieldValuesToActivity($formField, $field['value'], $activity);
+                            $this->addFormFieldValuesToActivity($formField,  $key, $field['value'], $activity, 'updateActivity');
                         }
                         break;
 

@@ -18,11 +18,6 @@
                     <breeze-section-border />
                 </template>
 
-                <template v-if="Array('formula').includes($page.props.field.type)">
-                    <variables :field="$page.props.field"/>
-                    <breeze-section-border />
-                </template>
-
                 <delete-form :field="$page.props.field" class="mt-10 sm:mt-0"/>
             </div>
         </div>
@@ -35,7 +30,6 @@
     import UpdateForm from '@/Pages/Forms/Fields/Partials/UpdateForm.vue'
     import DeleteForm from '@/Pages/Forms/Fields/Partials/DeleteForm.vue'
     import Options from '@/Pages/Forms/Fields/Options/Partials/List.vue'
-    import Variables from '@/Pages/Forms/Fields/Variables/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -45,7 +39,6 @@
             UpdateForm,
             DeleteForm,
             Options,
-            Variables,
             Head,
         },
     }

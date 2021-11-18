@@ -40,7 +40,6 @@ use App\Http\Controllers\Management\ParameterController;
 use App\Http\Controllers\Forms\FormController;
 use App\Http\Controllers\Forms\FormFieldController;
 use App\Http\Controllers\Forms\FormFieldOptionController;
-use App\Http\Controllers\Forms\FormFieldVariableController;
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\AssignmentController;
@@ -105,8 +104,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('form-field', FormFieldController::class,
                     ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
                 Route::resource('form-field-option', FormFieldOptionController::class,
-                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-                Route::resource('form-field-variable', FormFieldVariableController::class,
                     ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             });
         });

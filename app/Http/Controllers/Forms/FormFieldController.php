@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
+use MathParser\StdMathParser;
+use MathParser\Interpreting\Evaluator;
+
 use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
 
@@ -50,21 +53,27 @@ class FormFieldController extends Controller
             'type' => ['required'],
         ])->validateWithBag('createFormField');
 
-        if ($input['type'] == 'formula') {
-            Validator::make($input, [
-                'formula' => ['required'],
-            ])->validateWithBag('createFormField');
+        if (isset($input['formula'])) {
 
-            // TODO: Validate math expression ...
+            $parser = new StdMathParser();
+
+            try {
+                $formula = $parser->parse($input['formula']);
+            } catch (\Exception $e) {
+                throw ValidationException::withMessages([
+                    'formula' => $e->getMessage(),
+                ]);
+            }
         }
 
         $formField = FormField::create([
             'form_id' => $input['form'],
             'type' => $input['type']
         ]);
+
         $formField->setName($input['name']);
 
-        if ($input['type'] == 'formula') {
+        if (isset($input['formula'])) {
             $formField->setFormula($input['formula']);
         }
 
@@ -87,7 +96,6 @@ class FormFieldController extends Controller
             'field' => array_merge(
                 $formField->toArray(), [
                     'options' => $formField->getOptions(),
-                    'variables' => $formField->getVariables()
                 ]
             )
         ]);
@@ -120,19 +128,24 @@ class FormFieldController extends Controller
             'type' => ['required'],
         ])->validateWithBag('updateFormField');
 
-        if ($input['type'] == 'formula') {
-            Validator::make($input, [
-                'formula' => ['required'],
-            ])->validateWithBag('updateFormField');
+        if (isset($input['formula'])) {
 
-            // TODO: Validate math expression ...
+            $parser = new StdMathParser();
+            
+            try {
+                $formula = $parser->parse($input['formula']);
+            } catch (\Exception $e) {
+                throw ValidationException::withMessages([
+                    'formula' => $e->getMessage(),
+                ]);
+            }
         }
 
         $formField = FormField::findOrfail($id);
         $formField->setName($input['name']);
         $formField->setType($input['type']);
 
-        if ($input['type'] == 'formula') {
+        if (isset($input['formula'])) {
             $formField->setFormula($input['formula']);
         }
 

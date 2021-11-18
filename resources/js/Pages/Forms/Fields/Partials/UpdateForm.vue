@@ -21,7 +21,7 @@
                 <BreezeInputError :message="form.errors.type" class="mt-2" />
             </div>
 
-            <div class="col-span-6 sm:col-span-4" v-if="form.type == 'formula'">
+            <div class="col-span-6 sm:col-span-4" v-if="form.type == 'text'">
                 <BreezeLabel for="formula" :value="$t('pages.forms.fields.create.form.formula')" />
                 <BreezeInput id="formula" type="text" class="mt-1 block w-full" v-model="form.formula" autofocus />
                 <BreezeInputError :message="form.errors.formula" class="mt-2" />
@@ -91,8 +91,7 @@
                     { value: 'text', name: this.$t('pages.forms.fields.types.text.name'), description: this.$t('pages.forms.fields.types.text.description') },
                     { value: 'select', name: this.$t('pages.forms.fields.types.select.name'), description: this.$t('pages.forms.fields.types.select.description') },
                     { value: 'multiselect', name: this.$t('pages.forms.fields.types.multiselect.name'), description: this.$t('pages.forms.fields.types.multiselect.description') },
-                    { value: 'file', name: this.$t('pages.forms.fields.types.file.name'), description: this.$t('pages.forms.fields.types.file.description') },
-                    { value: 'formula', name: this.$t('pages.forms.fields.types.formula.name'), description: this.$t('pages.forms.fields.types.formula.description') }
+                    { value: 'file', name: this.$t('pages.forms.fields.types.file.name'), description: this.$t('pages.forms.fields.types.file.description') }
                 ];
 
 
