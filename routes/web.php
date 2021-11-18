@@ -46,6 +46,8 @@ use App\Http\Controllers\Dashboard\AssignmentController;
 use App\Http\Controllers\Dashboard\ConfirmationController;
 use App\Http\Controllers\Dashboard\ActivityController;
 
+use App\Http\Controllers\Administration\AuthenticationController;
+
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
@@ -108,6 +110,28 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             });
         });
     });
+
+    Route::group(['middleware' => 'admin'], function () {
+        Route::group(['prefix' => 'administration'], function() {
+            Route::group(['prefix' => 'authentication'], function() {
+                Route::get('', [AuthenticationController::class, 'show'])->name('authentication.show');
+                Route::put('', [AuthenticationController::class, 'update'])->name('authentication.update');
+            });
+        });
+    });
+});
+
+use Laravel\Socialite\Facades\Socialite;
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    error_log($user->getEmail());     
+    // $user->token
 });
 
 require __DIR__.'/auth.php';

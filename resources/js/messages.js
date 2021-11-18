@@ -1,6 +1,25 @@
 var messages = {
   en: {
     pages: {
+      administration: {
+        authentication: {
+          head: {
+            title: 'Authentication settings'
+          },
+          header: 'Authentication settings',
+          update: {
+            title: 'Update authentication settings',
+            description: 'Update and manage authentication options',
+            form: {
+              allow_user_register: 'Allow user registration'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
+            }
+          }
+        }
+      },
       management: {
         positions: {
           head: {
@@ -657,15 +676,18 @@ var messages = {
     layouts: {
       authenticated: {
         triggers: {
+          administration: 'Administration',
           management: 'Management',
           locale: 'Language'
         },
         linkGroups: {
+          siteSettings: 'Website settings',
           manageEntities: 'Manage entitites',
           manageAssessment: 'Manage assignments',
           notifications: 'Notifications'
         },
         links: {
+          authentication: 'Authentication',
           dashboard: 'Dashboard',
           positions: 'Positions',
           departments: 'Departments',
@@ -684,6 +706,25 @@ var messages = {
   },
   ru: {
     pages: {
+      administration: {
+        authentication: {
+          head: {
+            title: 'Настройки аутентификации'
+          },
+          header: 'Настройки аутентификации',
+          update: {
+            title: 'Обновить настройки аутентификации',
+            description: 'Обновление параметров аутентификации и управление ими',
+            form: {
+              allow_user_register: 'Разрешить регистрацию пользователей'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
+            }
+          }
+        }
+      },
       management: {
         positions: {
           head: {
@@ -1333,15 +1374,18 @@ var messages = {
     layouts: {
       authenticated: {
         triggers: {
+          administration: 'Администрирование',
           management: 'Управление',
           locale: 'Язык'
         },
         linkGroups: {
+          siteSettings: 'Настройки веб сайта',
           manageEntities: 'Управление объектами',
           manageAssessment: 'Управление конфигурациями оценивания',
           notifications: 'Уведомления'
         },
         links: {
+          authentication: 'Аутентификация',
           dashboard: 'Панель управления',
           positions: 'Должности',
           departments: 'Отделы',
