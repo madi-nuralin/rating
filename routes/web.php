@@ -122,16 +122,34 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\Setting;
+use App\Providers\RouteServiceProvider;
 
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
+Route::get('/auth/{provider}/redirect', function ($provider) {
+    if (Setting::get("auth.oauth2.providers.{$provider}.enabled") == false) {
+        error_log($provider);
+        return 404;
+    }
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+    return Socialite::driver($provider)->redirect();
+})->name('auth.redirect');
 
-    error_log($user->getEmail());     
-    // $user->token
+Route::get('/auth/{provider}/callback', function ($provider) {
+    try {
+        $user = Socialite::driver($provider)->user();
+
+        $user = \App\Models\User::firstWhere(
+            ['email' => $user->getEmail()],
+        );
+
+        auth()->login($user);
+
+        return redirect(RouteServiceProvider::HOME);
+
+    } catch(Exception $e) {
+        error_log($e->getMessage());
+        return redirect('/login');
+    }
 });
 
 require __DIR__.'/auth.php';

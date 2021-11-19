@@ -11,7 +11,23 @@ var messages = {
             title: 'Update authentication settings',
             description: 'Update and manage authentication options',
             form: {
-              allow_user_register: 'Allow user registration'
+              allowed_user_register: 'Allow user registration',
+              oauth2: {
+                providers: {
+                  github: {
+                    title: 'Github OAuth2.0',
+                    description: 'GitHub\'s OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don\'t have access to a web browser.',
+                    client_id: 'Client ID',
+                    client_secret: 'Client Secret'
+                  },
+                  google: {
+                    title: 'Google OAuth2.0',
+                    description: 'Google APIs use the OAuth 2.0 protocol for authentication and authorization. Google supports common OAuth 2.0 scenarios such as those for web server, client-side, installed, and limited-input device applications.',
+                    client_id: 'Client ID',
+                    client_secret: 'Client Secret'
+                  },
+                }
+              }
             },
             actions: {
               savedMessage: 'Saved.',
@@ -716,7 +732,23 @@ var messages = {
             title: 'Обновить настройки аутентификации',
             description: 'Обновление параметров аутентификации и управление ими',
             form: {
-              allow_user_register: 'Разрешить регистрацию пользователей'
+              allowed_user_register: 'Разрешить регистрацию пользователей',
+              oauth2: {
+                providers: {
+                  github: {
+                    title: 'Github OAuth 2.0',
+                    description: 'Реализация OAuth на GitHub поддерживает стандартный тип предоставления кода авторизации и разрешение на авторизацию устройства OAuth 2.0 для приложений, у которых нет доступа к веб-браузеру.',
+                    client_id: 'ID клиента',
+                    client_secret: 'Секрет клиента'
+                  },
+                  google: {
+                    title: 'Google OAuth 2.0',
+                    description: 'API Google используют протокол OAuth 2.0 для аутентификации и авторизации. Google поддерживает распространенные сценарии OAuth 2.0, например, для веб-сервера, клиентских, установленных приложений и приложений с ограниченным вводом.',
+                    client_id: 'ID клиента',
+                    client_secret: 'Секрет клиента'
+                  },
+                }
+              }
             },
             actions: {
               savedMessage: 'Сохранено.',

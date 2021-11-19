@@ -22,6 +22,16 @@ class AuthenticatedSessionController extends Controller
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
+            'oauth2' => [
+                'providers' => [
+                    'github' => [
+                        'enabled' => \App\Models\Setting::get('auth.oauth2.providers.github.enabled'),
+                    ],
+                    'google' => [
+                        'enabled' => \App\Models\Setting::get('auth.oauth2.providers.google.enabled'),
+                    ],
+                ]
+            ]
         ]);
     }
 
