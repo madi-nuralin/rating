@@ -22,15 +22,22 @@ class AuthenticatedSessionController extends Controller
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
-            'oauth2' => [
-                'providers' => [
-                    'github' => [
-                        'enabled' => \App\Models\Setting::get('auth.oauth2.providers.github.enabled'),
-                    ],
-                    'google' => [
-                        'enabled' => \App\Models\Setting::get('auth.oauth2.providers.google.enabled'),
-                    ],
-                ]
+            'services' => [
+                'github' => (
+                    config("services.github.client_id") and 
+                    config("services.github.client_secret") and 
+                    config("services.github.redirect")
+                ),
+                'google' => (
+                    config("services.google.client_id") and 
+                    config("services.google.client_secret") and 
+                    config("services.google.redirect")
+                ),
+                'azure' => (
+                    config("services.azure.client_id") and 
+                    config("services.azure.client_secret") and 
+                    config("services.azure.redirect")
+                )
             ]
         ]);
     }

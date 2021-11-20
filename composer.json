@@ -14,6 +14,8 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "mossadal/math-parser": "^1.3",
+        "socialiteproviders/microsoft": "^4.1",
+        "socialiteproviders/microsoft-azure": "^5.0",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

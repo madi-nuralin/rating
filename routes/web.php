@@ -46,7 +46,6 @@ use App\Http\Controllers\Dashboard\AssignmentController;
 use App\Http\Controllers\Dashboard\ConfirmationController;
 use App\Http\Controllers\Dashboard\ActivityController;
 
-use App\Http\Controllers\Administration\AuthenticationController;
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -113,10 +112,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['middleware' => 'admin'], function () {
         Route::group(['prefix' => 'administration'], function() {
-            Route::group(['prefix' => 'authentication'], function() {
-                Route::get('', [AuthenticationController::class, 'show'])->name('authentication.show');
-                Route::put('', [AuthenticationController::class, 'update'])->name('authentication.update');
-            });
+
         });
     });
 });
@@ -126,7 +122,14 @@ use App\Models\Setting;
 use App\Providers\RouteServiceProvider;
 
 Route::get('/auth/{provider}/redirect', function ($provider) {
-    if (Setting::get("auth.oauth2.providers.{$provider}.enabled") == false) {
+    
+    $enabled = (
+        config("services.{$provider}.client_id") and 
+        config("services.{$provider}.client_secret") and 
+        config("services.{$provider}.redirect")
+    );
+    
+    if (! $enabled ) {
         error_log($provider);
         return 404;
     }

@@ -41,11 +41,6 @@
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ $t('layouts.authenticated.linkGroups.siteSettings') }}
                                         </div>
-
-                                        <BreezeDropdownLink :href="route('authentication.show')">
-                                            {{ $t('layouts.authenticated.links.authentication') }}
-                                        </BreezeDropdownLink>
-
                                     </template>
                                 </BreezeDropdown>
                             </div>
