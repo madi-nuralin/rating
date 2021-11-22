@@ -33,10 +33,16 @@ class AuthenticatedSessionController extends Controller
                     config("services.google.client_secret") and 
                     config("services.google.redirect")
                 ),
+                'microsoft' => (
+                    config("services.microsoft.client_id") and 
+                    config("services.microsoft.client_secret") and 
+                    config("services.microsoft.redirect")
+                ),
                 'azure' => (
                     config("services.azure.client_id") and 
                     config("services.azure.client_secret") and 
-                    config("services.azure.redirect")
+                    config("services.azure.redirect") and
+                    config("services.azure.tenant")
                 )
             ]
         ]);

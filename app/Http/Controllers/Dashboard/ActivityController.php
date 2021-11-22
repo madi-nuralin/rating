@@ -162,6 +162,8 @@ class ActivityController extends Controller
             'form_field_id' => $formField->getId(),
         ]);
 
+        error_log($formField->getFormula());
+        
         if ($formField->getFormula() !== null) {
             try {
                 $parser = new StdMathParser();
@@ -328,7 +330,7 @@ class ActivityController extends Controller
                         $activity->formFieldValues()->where('form_field_id', $formField->id)->delete();
 
                         foreach ($field['value'] as $value) {
-                            $this->addFormFieldValuesToActivity($formField,  $key, $field['value'], $activity, 'updateActivity');
+                            $this->addFormFieldValuesToActivity($formField,  $key, $value, $activity, 'updateActivity');
                         }
                         break;
 

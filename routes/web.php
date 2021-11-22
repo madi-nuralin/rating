@@ -120,6 +120,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Setting;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Str;
 
 Route::get('/auth/{provider}/redirect', function ($provider) {
     
@@ -129,28 +131,40 @@ Route::get('/auth/{provider}/redirect', function ($provider) {
         config("services.{$provider}.redirect")
     );
     
-    if (! $enabled ) {
-        error_log($provider);
-        return 404;
-    }
+    if (! $enabled )
+        return redirect(404);
 
     return Socialite::driver($provider)->redirect();
-})->name('auth.redirect');
+    
+})->middleware('guest')->name('auth.redirect');
 
 Route::get('/auth/{provider}/callback', function ($provider) {
+
     try {
         $user = Socialite::driver($provider)->user();
 
-        $user = \App\Models\User::firstWhere(
+        $_user = \App\Models\User::firstWhere(
             ['email' => $user->getEmail()],
         );
 
-        auth()->login($user);
+        if (!$_user) {
+            # code...
+        
+            $_user = \App\Models\User::create([
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => Hash::make(Str::random(8)),
+            ]);
+
+            event(new Registered($_user));
+        }
+
+        auth()->login($_user);
 
         return redirect(RouteServiceProvider::HOME);
 
-    } catch(Exception $e) {
-        error_log($e->getMessage());
+    } catch (Exception $e) {
+        //error_log($e->getMessage());
         return redirect('/login');
     }
 });
