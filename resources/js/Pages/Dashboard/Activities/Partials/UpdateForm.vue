@@ -50,13 +50,6 @@
                 <BreezeInputError :message="form.errors[map(i)]" class="mt-2" />
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
-                <div class="w-full flex text-sm text-gray-600">
-                    <div class="">{{ $t('pages.dashboard.activities.update.form.score') }}</div>
-                    <div class="pl-2">{{ form.score }}</div>
-                </div>
-            </div>
-
         </template>
 
         <template #actions v-if="true">
