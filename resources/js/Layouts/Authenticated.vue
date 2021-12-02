@@ -89,29 +89,6 @@
                                 </BreezeDropdown>
                             </div>
 
-                            <div class="ml-3 relative">
-                                <BreezeDropdown align="right" width="48">
-                                    <template #trigger>
-                                        <svg
-                                            class="w-5 h-5" 
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="1"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
-                                        </svg>
-                                    </template>
-                                    <template #content>
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ $t('layouts.authenticated.linkGroups.notifications') }}
-                                        </div>
-                                    </template>
-                                </BreezeDropdown>
-                            </div>
-
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <BreezeDropdown align="right" width="48">
@@ -119,11 +96,11 @@
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                                 <img :src="$page.props.auth.user.profile_photo_path" class="block rounded-full w-9 h-9 hover:shadow">
-                                                <!--{{ $page.props.auth.user.name }}
+                                                <span class="ml-2">{{ $page.props.auth.user.name }}</span>
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                </svg-->
+                                                </svg>
                                             </button>
                                         </span>
                                     </template>
