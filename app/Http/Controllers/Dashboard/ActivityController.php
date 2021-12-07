@@ -120,7 +120,7 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        $activity->assignment->setScore($activity->getScore() + $activity->assignment->getScore());
+        $activity->assignment->addScore($activity->getScore());
         $activity->assignment->save();
 
         return Inertia::location(route('assignment.show', ['assignment' => $assignment->getId()]));
@@ -161,8 +161,6 @@ class ActivityController extends Controller
         $formFieldValue = FormFieldValue::create([
             'form_field_id' => $formField->getId(),
         ]);
-
-        error_log($formField->getFormula());
         
         if ($formField->getFormula() !== null) {
             try {
@@ -318,6 +316,22 @@ class ActivityController extends Controller
                     case FormField::TEXT:
                         $formFieldValue = $activity->formFieldValues()->firstWhere('form_field_id', $formField->id);
                         $formFieldValue->setContext($field['value']);
+                        if ($formField->getFormula() !== null) {
+                            try {
+                                $parser = new StdMathParser();
+                                // Generate an abstract syntax tree
+                                $formula = $parser->parse($formField->getFormula());
+
+                                $evaluator = new Evaluator();
+                                $evaluator->setVariables([ 'x' => $field['value']]);
+                                $activity->addScore($formula->accept($evaluator));
+
+                            } catch (\Exception $e) {
+                                throw ValidationException::withMessages([
+                                    $key => $e->getMessage(),
+                                ]);
+                            }
+                        }
                         break;
 
                     case FormField::SELECT:
