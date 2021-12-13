@@ -75,6 +75,9 @@
                                             {{ $t('layouts.authenticated.links.users') }}
                                         </BreezeDropdownLink>
 
+                                        <!-- Manage assessments-->
+                                        <div class="border-t border-gray-100"></div>
+
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ $t('layouts.authenticated.linkGroups.manageAssessment') }}
                                         </div>
@@ -106,13 +109,23 @@
                                     </template>
 
                                     <template #content>
+                                        <!-- Account Management -->
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            Manage Account
+                                        </div>
+
                                         <BreezeDropdownLink :href="route('profile.show')">
                                             {{ $t('layouts.authenticated.links.profile') }}
                                         </BreezeDropdownLink>
+
+                                        <!-- Authentication -->
                                         <BreezeDropdownLink :href="route('logout')" method="post" as="button">
                                             {{ $t('layouts.authenticated.links.logout') }}
                                         </BreezeDropdownLink>
 
+                                        <div class="border-t border-gray-100"></div>
+
+                                        <!-- Locale -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ $t('layouts.authenticated.triggers.locale') }}
                                         </div>
@@ -151,9 +164,15 @@
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                        <div class="flex items-center px-4">
+                            <div class="flex-shrink-0 mr-3" >
+                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_path" :alt="$page.props.auth.user.name" />
+                            </div>
+
+                            <div>
+                                <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
+                                <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                            </div>
                         </div>
 
                         <div class="mt-3 space-y-1">
@@ -163,45 +182,39 @@
                             <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
                                 {{ $t('layouts.authenticated.links.logout') }}
                             </BreezeResponsiveNavLink>
-                        </div>
-                    </div>
 
-                    <!-- Responsive Management Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">
-                                {{ $t('layouts.authenticated.triggers.management') }}
-                            </div>
-                        </div>
+                            <div class="border-t border-gray-200"></div>
 
-                        <div class="mt-3 space-y-1" v-if="content('manager')">
-                            <BreezeResponsiveNavLink :href="route('position.index')">
-                                {{ $t('layouts.authenticated.links.positions') }}
-                            </BreezeResponsiveNavLink>
-                            <BreezeResponsiveNavLink :href="route('department.index')">
-                                {{ $t('layouts.authenticated.links.departments') }}
-                            </BreezeResponsiveNavLink>
-                            <BreezeResponsiveNavLink :href="route('user.index')">
-                                {{ $t('layouts.authenticated.links.users') }}
-                            </BreezeResponsiveNavLink>
-                            <BreezeResponsiveNavLink :href="route('assessment.index')">
-                                {{ $t('layouts.authenticated.links.assessments') }}
-                            </BreezeResponsiveNavLink>
-                            <BreezeResponsiveNavLink :href="route('parameter.index')">
-                                {{ $t('layouts.authenticated.links.parameters') }}
-                            </BreezeResponsiveNavLink>
-                        </div>
-                    </div>
+                            <!-- Responsive Management -->
+                            <template v-if="content('manager')">
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ $t('layouts.authenticated.triggers.management') }}
+                                </div>
 
-                     <!-- Responsive Locale -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">
+                                <BreezeResponsiveNavLink :href="route('position.index')">
+                                    {{ $t('layouts.authenticated.links.positions') }}
+                                </BreezeResponsiveNavLink>
+                                <BreezeResponsiveNavLink :href="route('department.index')">
+                                    {{ $t('layouts.authenticated.links.departments') }}
+                                </BreezeResponsiveNavLink>
+                                <BreezeResponsiveNavLink :href="route('user.index')">
+                                    {{ $t('layouts.authenticated.links.users') }}
+                                </BreezeResponsiveNavLink>
+                                <BreezeResponsiveNavLink :href="route('assessment.index')">
+                                    {{ $t('layouts.authenticated.links.assessments') }}
+                                </BreezeResponsiveNavLink>
+                                <BreezeResponsiveNavLink :href="route('parameter.index')">
+                                    {{ $t('layouts.authenticated.links.parameters') }}
+                                </BreezeResponsiveNavLink>
+                            </template>
+
+                            <div class="border-t border-gray-200"></div>
+
+                            <!-- Responsive Locale -->
+                            <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ $t('layouts.authenticated.triggers.locale') }}
                             </div>
-                        </div>
 
-                        <div class="mt-3 space-y-1">
                             <BreezeResponsiveNavLink :href="route('locale', {locale:'en'})" v-on:click="setLocale('en')">
                                 {{ $t('layouts.authenticated.links.locales.en') }}
                             </BreezeResponsiveNavLink>
