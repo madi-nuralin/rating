@@ -1,7 +1,7 @@
 ## Installation
 
-1. `git clone https://github.com/madi-nuralin/EmployeeRating.git`
-2. `cd EmployeeRating`
+1. `git clone https://github.com/madi-nuralin/rating.git`
+2. `cd rating`
 3. `composer install`
 4. `npm install`
 5. `npm run dev`
