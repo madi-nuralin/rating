@@ -1,7 +1,7 @@
 ## Installation
 
-1. `git clone https://github.com/madi-nuralin/EmployeeRatingApp.git`
-2. `cd EmployeeRatingApp`
+1. `git clone https://github.com/madi-nuralin/EmployeeRating.git`
+2. `cd EmployeeRating`
 3. `composer install`
 4. `npm install`
 5. `npm run dev`
