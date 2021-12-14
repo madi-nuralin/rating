@@ -183,10 +183,10 @@
                                 {{ $t('layouts.authenticated.links.logout') }}
                             </BreezeResponsiveNavLink>
 
-                            <div class="border-t border-gray-200"></div>
-
                             <!-- Responsive Management -->
                             <template v-if="content('manager')">
+                                <div class="border-t border-gray-200"></div>
+                                
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ $t('layouts.authenticated.triggers.management') }}
                                 </div>
