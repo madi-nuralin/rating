@@ -268,6 +268,7 @@ export default {
     methods: {
         setLocale(locale) {
             this.$root.$i18n.locale = locale;
+            this.$store.commit('setAppLocale', locale);
         },
 
         content(context) {
