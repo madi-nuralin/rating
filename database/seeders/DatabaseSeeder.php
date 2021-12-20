@@ -13,6 +13,7 @@ use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
 use App\Models\Assessment;
+use App\Models\Category;
 use App\Models\Parameter;
 use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->seedPosition();
         $this->seedDepartment();
         $this->seedAssessment();
+        $this->seedCategory();
         $this->seedParameter();
     }
 
@@ -301,6 +303,133 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    protected function seedCategory() {
+        $locales = ['en', 'ru'];
+
+        $definitions = [
+            [
+                'en' => [
+                    'name' => 'Educational-methodical work',
+                    'description' => 'Methodical work is a set of activities aimed at providing the educational process with educational and methodological documentation, conducting classroom and other types of classes with students at a high theoretical and scientific level, improving the pedagogical skills of teachers.'
+                ],
+                'ru' => [
+                    'name' => 'Учебно-методическая работа',
+                    'description' => 'Методическая работа представляет собой комплекс мероприятий, направленных на обеспечение учебного процесса учебно-методической документацией, проведение аудиторных и других видов занятий со студентами на высоком теоретическом и научном уровне, повышение педагогического мастерства преподавателей.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Research work',
+                    'description' => 'The research activity of a teacher is a conscious, independent and responsibly carried out practical activity aimed at increasing pedagogical professionalism.'
+                ],
+                'ru' => [
+                    'name' => 'Научно-исследовательскя работа',
+                    'description' => 'Исследовательская деятельность педагога – это осознанная, самостоятельная и ответственно осуществляемая практическая деятельность, направленная на повышение педагогического профессионализма.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Social educational work',
+                    'description' => 'Social work in an inextricable connection with educational work involves the organization of interaction with students, including with their socially unprotected category, in order to identify their social and living conditions, emerging difficulties, to introduce expedient changes and transformations in their life.'
+                ],
+                'ru' => [
+                    'name' => 'Социально-воспитательная работа',
+                    'description' => 'Социальная работа в неразрывной связи с воспитательной работой предполагает организацию взаимодействия со студентами, в том числе и с социально незащищённой их категорией, с целью выявления их социально-бытовых условий, возникающих трудностей, привнесения целесообразных изменений и преобразований в их жизнедеятельность.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Expert-analytical, social-activities, mass media',
+                    'description' => 'Expert-analytical, social-activities, mass media'
+                ],
+                'ru' => [
+                    'name' => 'Экспертно-аналитическая, общественная-деятельность, СМИ',
+                    'description' => 'Экспертно-аналитическая, общественная-деятельность, СМИ'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Qualification',
+                    'description' => 'Qualification'
+                ],
+                'ru' => [
+                    'name' => 'Квалификация',
+                    'description' => 'Квалификация'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'International activity',
+                    'description' => 'International activity'
+                ],
+                'ru' => [
+                    'name' => 'Международная деятельность',
+                    'description' => 'Международная деятельность'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Recruiting applicants. Activities for the recruitment of a contingent of students',
+                    'description' => 'Recruiting applicants. Activities for the recruitment of a contingent of students'
+                ],
+                'ru' => [
+                    'name' => 'Рекрутинг абитуриентов. Деятельность по набору контингента обучающихся',
+                    'description' => 'Рекрутинг абитуриентов. Деятельность по набору контингента обучающихся'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'The qualification composition of the teaching staff of the department',
+                    'description' => 'The qualification composition of the teaching staff of the department'
+                ],
+                'ru' => [
+                    'name' => 'Квалификационный состав ППС кафедры',
+                    'description' => 'Квалификационный состав ППС кафедры.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Organization of study work',
+                    'description' => 'Organization of study work'
+                ],
+                'ru' => [
+                    'name' => 'Организация учебой работы',
+                    'description' => 'Организация учебой работы.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Organization of research work at the department',
+                    'description' => 'Organization of research work at the department'
+                ],
+                'ru' => [
+                    'name' => 'Организация НИР на кафедре',
+                    'description' => 'Организация НИР на кафедре.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Organizational, educational, career guidance image work',
+                    'description' => 'Organizational, educational, career guidance image work'
+                ],
+                'ru' => [
+                    'name' => 'Организационно-воспитательная, профоориентационная имиджевая работа',
+                    'description' => 'Организационно-воспитательная, профоориентационная имиджевая работа.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Social educational, career guidance image work',
+                    'description' => 'Social educational, career guidance image workю'
+                ],
+                'ru' => [
+                    'name' => 'Социально-воспитательная, профоориентационная имиджевая работа',
+                    'description' => 'Социально-воспитательная, профоориентационная имиджевая работа.'
+                ]
+            ],
+        ];
+
+        foreach ($definitions as $definition) {
+            $category = Category::create();
+
+            foreach ($locales as $locale) {
+                $category->setName($definition[$locale]['name'], $locale);
+                $category->setDescription($definition[$locale]['description'], $locale);
+            }
+
+            $category->save();
+        }
+    }
+
     protected function seedParameter() {
         $locales = ['en', 'ru'];
 
@@ -314,6 +443,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квартиль',
                     'description' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квар-тиль по данным Journal Citation Reports (Джоурнал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Анали-тикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль по CiteScore (СайтСкор) не менее 65 хотя бы по одной из научных областей, в об-ласти социальных и гуманитарных наук, в журналах, индексируемых в базе дан-ных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) илиArticle in Press (Статья в печати)'
                 ],
+                'category' => 2,
                 'score' => 4,
                 'form' => [
                     'fields' => [
@@ -411,6 +541,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль',
                     'description' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль по данным Journal Citation Reports (Джоур-нал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Аналитикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль не менее 35 хотя бы по одной из научных областей, в области социальных и гуманитарных наук, в журналах, индексируемых в базе данных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) или Article in Press (Статья в печати)'
                 ],
+                'category' => 2,
                 'score' => 3,
                 'form' => [
                     'fields' => [
@@ -508,6 +639,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля',
                     'description' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля'
                 ],
+                'category' => 2,
                 'score' => 4
             ], [
                 'en' => [
@@ -518,6 +650,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)',
                     'description' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)'
                 ],
+                'category' => 2,
                 'score' => 0,
                 'form' => [
                     'fields' => [
@@ -582,6 +715,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate ',
                     'description' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate'
                 ],
+                'category' => 2,
                 'score' => 5
             ], [
                 'en' => [
@@ -592,6 +726,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры',
                     'description' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры'
                 ],
+                'category' => 8,
                 'score' => 7
             ], [
                 'en' => [
@@ -602,6 +737,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям',
                     'description' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям'
                 ],
+                'category' => 8,
                 'score' => 5
             ]   
         ];
@@ -610,7 +746,10 @@ class DatabaseSeeder extends Seeder
             $form = new Form();
             $form->save();
 
-            $parameter = Parameter::create(['form_id' => $form->getId()]);
+            $parameter = Parameter::create([
+                'form_id' => $form->getId(),
+                'category_id' => $definition['category']
+            ]);
 
             foreach ($locales as $locale) {
                 $parameter->setName($definition[$locale]['name'], $locale);

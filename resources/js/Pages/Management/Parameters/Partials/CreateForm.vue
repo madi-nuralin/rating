@@ -22,6 +22,12 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="category" :value="$t('pages.management.departments.update.form.category')" />
+                <BreezeSelect id="category" class="mt-1 block w-full" :value="form.category" @input="form.category = $event" :options="options.category" :multiple="false" />
+                <BreezeInputError :message="form.errors.category" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="score" :value="$t('pages.management.parameters.create.form.score')" />
                 <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" />
                 <BreezeInputError :message="form.errors.score" class="mt-2" />
@@ -48,6 +54,7 @@
     import BreezeInputError from '@/Components/InputError.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
+    import BreezeSelect from '@/Components/Select.vue'
     import { Inertia } from '@inertiajs/inertia'
 
     export default {
@@ -59,13 +66,17 @@
             BreezeInputError,
             BreezeTextarea,
             BreezeLabel,
+            BreezeSelect,
         },
+
+        props: ['categories'],
 
         data() {
             return {
                 form: this.$inertia.form({
                     name: '',
                     description: '',
+                    category: '',
                     score: '',
                 })
             }
@@ -78,6 +89,18 @@
                     preserveScroll: true,
                     //onSuccess: () => Inertia.reload({ only: ['parameters'] })
                 });
+            },
+        },
+
+        computed: {
+            options() {
+                let categories = this.categories;
+
+                return {
+                    category: categories ? categories.map(function(category) {
+                        return { value: category.id, name: category.name, description: category.description };
+                    }) : null
+                }
             },
         },
     }

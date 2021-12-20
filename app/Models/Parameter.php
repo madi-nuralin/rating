@@ -16,6 +16,8 @@ class Parameter extends Model
      * @var string[]
      */
     protected $fillable = [
+        'form_id',
+        'category_id',
         'score',
     ];
 
@@ -33,6 +35,10 @@ class Parameter extends Model
 
     public function form() {
         return $this->belongsTo(Form::class);
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 
     public function getId() {
@@ -99,6 +105,14 @@ class Parameter extends Model
 
     public function setForm($form) {
         $this->form()->save($form);
+    }
+
+    public function getCategory() {
+        return $this->category->toArray();
+    }
+
+    public function setCategory($category) {
+        $this->category()->associate($category);
     }
 
     public function toArray() {

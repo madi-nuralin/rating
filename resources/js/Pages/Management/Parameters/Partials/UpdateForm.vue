@@ -22,6 +22,12 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="category" :value="$t('pages.management.departments.update.form.category')" />
+                <BreezeSelect id="category" class="mt-1 block w-full" :value="form.category" @input="form.category = $event" :options="options.category" :multiple="false" />
+                <BreezeInputError :message="form.errors.category" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="score" :value="$t('pages.management.parameters.create.form.score')" />
                 <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" />
                 <BreezeInputError :message="form.errors.score" class="mt-2" />
@@ -48,6 +54,7 @@
     import BreezeInputError from '@/Components/InputError'
     import BreezeTextarea from '@/Components/Textarea'
     import BreezeLabel from '@/Components/Label'
+    import BreezeSelect from '@/Components/Select.vue'
 
     export default {
         components: {
@@ -58,15 +65,17 @@
             BreezeInputError,
             BreezeTextarea,
             BreezeLabel,
+            BreezeSelect,
         },
 
-        props: ['parameter'],
+        props: ['parameter', 'categories'],
 
         data() {
             return {
                 form: this.$inertia.form({
                     name: this.parameter.name,
                     description: this.parameter.description,
+                    category: this.parameter.category.id,
                     score: this.parameter.score,
                 })
             }
@@ -78,6 +87,18 @@
                     errorBag: 'updateParameter',
                     preserveScroll: true
                 });
+            },
+        },
+
+        computed: {
+            options() {
+                let categories = this.categories;
+
+                return {
+                    category: categories ? categories.map(function(category) {
+                        return { value: category.id, name: category.name, description: category.description };
+                    }) : null
+                }
             },
         },
     }

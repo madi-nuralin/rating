@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    use HasFactory, Helpers\SettingHelper;
+
+    public function settings() {
+        return $this->hasMany(CategorySetting::class);
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'name'
+        );
+    }
+
+    public function setName($name, $locale=null) {
+        $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'name',
+            $name
+        );
+    }
+
+    public function getDescription($locale=null) {
+        return $this->getSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'description'
+        );
+    }
+
+    public function setDescription($description, $locale=null) {
+        $this->updateSettingValue(
+            isset($locale) ? $locale : app()->currentLocale(),
+            'string',
+            'description',
+            $description
+        );
+    }
+
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
+        ];
+    }
+}
