@@ -340,11 +340,11 @@ var messages = {
       },
       dashboard: {
         tabs: {
-          assignments: 'My assessments',
+          assignments: 'My ratings',
           assignment: {
             description: 'An instance of assessment is assigned by the system managers. Here you can add your performed activities for confirmation'
           },
-          confirmations: 'Staff assessment',
+          confirmations: 'Employees rating',
           confirmation: {
             description: 'Check and confirm the effective activity of employees. This role was assigned to you by the system manager'
           }
@@ -357,9 +357,9 @@ var messages = {
         empty: 'No items found',
         assignments: {
           head: {
-            title: 'My assignments'
+            title: 'My ratings'
           },
-          header: 'My assignments',
+          header: 'My ratings',
           list: {
             title: 'My assignments',
             description: 'The list of assignments',
@@ -1026,11 +1026,11 @@ var messages = {
       },
       dashboard: {
         tabs: {
-          assignments: 'Мои оценивания',
+          assignments: 'Мои рейтинги',
           assignment: {
             description: 'Экземпляр оценки назначается системными менеджерами. Здесь вы можете добавить свои выполненные действия для подтверждения'
           },
-          confirmations: 'Оценка персонала',
+          confirmations: 'Рейтинг персонала',
           confirmation: {
             description: 'Проверяйте и выполните подтверждение эффективной деятельности сотрудников. Данная роль вам была присвоена менеджером системы'
           }
@@ -1043,9 +1043,9 @@ var messages = {
         empty: 'Не найдено элементов',
         assignments: {
           head: {
-            title: 'Мои оценивания'
+            title: 'Мои рейтинги'
           },
-          header: 'Мои оценивания',
+          header: 'Мои рейтинги',
           list: {
             title: 'Список оценивании назначенные мне',
             description: 'Список оценивании для расчета эффективной деятельности сотрудника',
@@ -1360,7 +1360,7 @@ var messages = {
           positions: 'Должности',
           departments: 'Отделы',
           users: 'Пользователи',
-          assessments: 'Настройка оценивания персонала',
+          assessments: 'Оценивание',
           parameters: 'Параметры оценивания',
           profile: 'Профиль',
           logout: 'Выйти',

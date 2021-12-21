@@ -212,6 +212,12 @@
                                 <BreezeResponsiveNavLink :href="route('user.index')">
                                     {{ $t('layouts.authenticated.links.users') }}
                                 </BreezeResponsiveNavLink>
+
+                                <div class="border-t border-gray-200"></div>
+                                
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ $t('layouts.authenticated.linkGroups.manageAssessment') }}
+                                </div>
                                 <BreezeResponsiveNavLink :href="route('assessment.index')">
                                     {{ $t('layouts.authenticated.links.assessments') }}
                                 </BreezeResponsiveNavLink>
