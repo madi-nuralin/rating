@@ -1,5 +1,5 @@
 <template>
-    <BreezeFormSection>
+    <BreezeSectionTitle class="flex-col">
         <template #title>
             {{ $t('pages.dashboard.assignments.list.title') }}
         </template>
@@ -8,73 +8,35 @@
             {{ $t('pages.dashboard.assignments.list.description') }}
         </template>
 
-        <template #form>
-            <div class="col-span-6">
-                <div class="max-w-xl text-sm text-gray-600">
-                    {{ $t('pages.dashboard.assignments.list.form.listInfo') }}
-                </div>
-            </div>
-                
-            <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer col-span-6 sm:col-span-4">
-                <button class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200" type="button" v-for="(assignment, i) in assignments" :key="assignment.id" :class="{'border-t border-gray-200 rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(assignments).length - 1}">
-
-                    <div class="w-full">
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600 text-left">
-                                {{ assignment.assessment.name }}
-                            </div>
-
-                            <Link 
-                                class="w-4 mr-2 transform text-gray-400 hover:text-blue-400 hover:scale-110"
-                                :href="route('assignment.show', {'id': assignment.id})">
-                                <svg class="ml-2 h-5 w-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="18"
-                                    height="18"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M7 17l9.2-9.2M17 17V7H7"/>
-                                </svg>
-                            </Link>
+        <template #aside>
+            <div class="w-full mt-5 grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-0 sm:gap-6">
+                <Link class="inline-flex items-center justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-sm text-gray-700 tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition" v-for="(assignment, i) in assignments" :href="route('assignment.show', {'id': assignment.id})">
+                    <div class="flex flex-row sm:flex-col items-center h-full text-left sm:text-center">
+                        <div class="flex-shrink">
+                            <img :src="'https://ui-avatars.com/api/?name=' + assignment.assessment.name + '&color=7F9CF5&background=EBF4FF'" class="object-contain rounded-lg pointer-events-none sm:m-2 w-12 h-12 sm:w-20 sm:h-20">
                         </div>
-
-                        <div class="mt-2 text-xs text-gray-600 text-left">
-                            <div class="flex flex-col">
-                                <div>{{ assignment.assessment.description }}</div>
-
-                                <ul class="list-disc list-inside mt-2">
-                                    <li>
-                                        {{ assignment.employement.department.name }}</li>
-                                    <li>
-                                        {{ assignment.employement.position.name }}</li>
-                                    <li>
-                                        {{ assignment.score }} pts.</li>
-                                </ul>
-                            </div>
+                        
+                        <div class="flex items-center h-full ml-2 sm:ml-0">
+                            <p class="sm:p-2">
+                                {{ assignment.assessment.name }}
+                            </p>
                         </div>
                     </div>
-                </button>
+                </Link>
             </div>
         </template>
-
-        <template #actions>
-        </template>
-    </BreezeFormSection>
+    </BreezeSectionTitle>
 </template>
 
 <script>
     import BreezeButton from '@/Components/Button.vue'
-    import BreezeFormSection from '@/Components/FormSection.vue'
+    import BreezeSectionTitle from '@/Components/SectionTitle.vue'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
         components: {
             BreezeButton,
-            BreezeFormSection,
+            BreezeSectionTitle,
             Link,
         },
 
