@@ -93,74 +93,74 @@ class DatabaseSeeder extends Seeder
             [
                 'en' => [
                     'name' => 'Media communications and history of Kazakhstan',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра Медиакоммуникации и Истории Казахстана',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Computer Engineering and Information Security',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра Компьютерная инженерия и информационная безопасность',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Mathematical Computer Modeling',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра Математическое компьютерное моделирование',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Economics and business',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра Экономика и бизнес',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Radio Engineering, Electronics and Telecommunications',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра Радиотехника, электроника и телекоммуникации',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Department of Languages',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра языков',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Military Training Department',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Военная кафедра',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ], [
                 'en' => [
                     'name' => 'Information Systems',
-                    'description' => ''
+                    'description' => 'Deparment'
                 ],
                 'ru' => [
                     'name' => 'Кафедра Информационные системы',
-                    'description' => ''
+                    'description' => 'Кафедра'
                 ]
             ]
         ];
