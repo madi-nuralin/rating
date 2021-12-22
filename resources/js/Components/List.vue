@@ -18,7 +18,7 @@
             </Link>
 
             <!-- Remove Item -->
-            <button class="cursor-pointer ml-6 text-sm text-red-500">
+            <button class="cursor-pointer ml-6 text-sm text-red-500" v-if="showDeleteLink" >
                 Remove
             </button>
         </div>
@@ -33,6 +33,6 @@
             Link,
         },
 
-        props: ['items', 'name'],
+        props: ['items', 'name', 'showDeleteLink'],
 	}
 </script>

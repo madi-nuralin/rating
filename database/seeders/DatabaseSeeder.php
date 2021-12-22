@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
+use App\Models\EmployementType;
 use App\Models\Assessment;
 use App\Models\Category;
 use App\Models\Parameter;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->seedRole();
         $this->seedPosition();
         $this->seedDepartment();
+        $this->seedEmployementType();
         $this->seedAssessment();
         $this->seedCategory();
         $this->seedParameter();
@@ -427,6 +429,52 @@ class DatabaseSeeder extends Seeder
             }
 
             $category->save();
+        }
+    }
+
+    protected function seedEmployementType() {
+        $locales = ['en', 'ru'];
+
+        $definitions = [
+            [
+                'en' => [
+                    'name' => 'Staffed',
+                    'description' => 'Staffed.'
+                ],
+                'ru' => [
+                    'name' => 'Штатный',
+                    'description' => 'Штатный.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Internal part-time',
+                    'description' => 'Internal part-time.'
+                ],
+                'ru' => [
+                    'name' => 'Внутренний совместитель',
+                    'description' => 'Внутренний совместитель.'
+                ]
+            ], [
+                'en' => [
+                    'name' => 'Side job',
+                    'description' => 'Side job.'
+                ],
+                'ru' => [
+                    'name' => 'Совместитель со стороны',
+                    'description' => 'Совместитель со стороны.'
+                ]
+            ]
+        ];
+
+        foreach ($definitions as $definition) {
+            $employementType = EmployementType::create();
+
+            foreach ($locales as $locale) {
+                $employementType->setName($definition[$locale]['name'], $locale);
+                $employementType->setDescription($definition[$locale]['description'], $locale);
+            }
+
+            $employementType->save();
         }
     }
 

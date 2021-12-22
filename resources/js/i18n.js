@@ -1,3 +1,24 @@
+const datetimeFormats = {
+  'en': {
+    short: {
+      year: 'numeric', month: 'short', day: 'numeric'
+    },
+    long: {
+      year: 'numeric', month: 'short', day: 'numeric',
+      weekday: 'short', hour: 'numeric', minute: 'numeric'
+    }
+  },
+  'ru': {
+    short: {
+      year: 'numeric', month: 'short', day: 'numeric'
+    },
+    long: {
+      year: 'numeric', month: 'short', day: 'numeric',
+      weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
+    }
+  }
+}
+
 var messages = {
   en: {
     pages: {
@@ -150,6 +171,61 @@ var messages = {
             description: 'The users list which are registered.',
             form: {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
+            },
+            actions: {
+              createButton: 'Create New'
+            }
+          }
+        },
+        employement: {
+          head: {
+            title: 'Employements management'
+          },
+          header: 'Employements management',
+          create: {
+            title: 'Create a new user employement information',
+            description: 'Create a new employement to collaborate with others on projects.',
+            form: {
+              employement_type: 'Employement Type',
+              department: 'Select Department',
+              position: 'Select Position',
+              department: 'Select User',
+              appointed_at: 'Appointed at',
+              terminated_at: 'Terminated at',
+            }
+          },
+          update: {
+            title: 'Update Employement Information',
+            description: 'The user employement information details.',
+            form: {
+              employement_type: 'Employement Type',
+              department: 'Department',
+              position: 'Position',
+              user: 'User',
+              appointed_at: 'Appointed at',
+              terminated_at: 'Terminated at',
+            }
+          },
+          delete: {
+            title: 'Delete Employement Information',
+            description: 'Permanently delete this employement information.',
+            content: {
+              deleteInfo: 'Once a employement information is deleted, all of its resources and data will be permanently deleted. Before deleting this employement information, please download any data or information regarding this position that you wish to retain.',
+              deleteButton: 'Delete Employement Information',
+              modal: {
+                title: 'Delete Employement Information',
+                content: 'Are you sure you want to delete this employement information? Once a employement information is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete Employement Information'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Users employement information',
+            description: 'The employement list which are registered.',
+            form: {
             },
             actions: {
               createButton: 'Create New'
@@ -677,6 +753,7 @@ var messages = {
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
+          employements: 'Employements',
           assessments: 'Assessments',
           parameters: 'Parameters',
           profile: 'Profile',
@@ -843,6 +920,61 @@ var messages = {
             },
             actions: {
               createButton: 'Создайте новый'
+            }
+          }
+        },
+        employement: {
+          head: {
+            title: 'Управление трудоустройством пользователей'
+          },
+          header: 'Управление трудоустройством пользователей',
+          create: {
+            title: 'Создать информацию о занятости пользователя',
+            description: 'Создайте новую работу, чтобы сотрудничать с другими над проектами.',
+            form: {
+              employement_type: 'Вид трудоустройства',
+              department: 'Выберите отдел',
+              position: 'Выбрать позицию',
+              department: 'Выбрать пользователя',
+              appointed_at: 'Назначен в',
+              terminated_at: 'Прекращено в',
+            }
+          },
+          update: {
+            title: 'Обновить информацию о занятости',
+            description: 'Сведения о занятости пользователя.',
+            form: {
+              employement_type: 'Вид трудоустройства',
+              department: 'Отдел',
+              position: 'Позиция',
+              user: 'Пользователь',
+              appointed_at: 'Назначен в',
+              terminated_at: 'Прекращено в',
+            }
+          },
+          delete: {
+            title: 'Обновить информацию о занятости',
+            description: 'Удалить эту информацию о занятости без возможности восстановления.',
+            content: {
+              deleteInfo: 'После удаления информации о занятости все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой информации о занятости, пожалуйста, загрузите любые данные или информацию об этой должности, которые вы хотите сохранить.',
+              deleteButton: 'Удалить информацию о занятости',
+              modal: {
+                title: 'Удалить информацию о занятости',
+                content: 'Вы уверены, что хотите удалить эту информацию о занятости? После удаления информации о занятости все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить информацию о занятости'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Users employement information',
+            description: 'The employement list which are registered.',
+            form: {
+            },
+            actions: {
+              createButton: 'Create New'
             }
           }
         },
@@ -1360,8 +1492,9 @@ var messages = {
           positions: 'Должности',
           departments: 'Отделы',
           users: 'Пользователи',
+          employements: 'Трудоустройство',
           assessments: 'Оценивание',
-          parameters: 'Параметры оценивания',
+          parameters: 'Параметры',
           profile: 'Профиль',
           logout: 'Выйти',
           locales: {
@@ -1374,4 +1507,4 @@ var messages = {
   }
 };
 
-module.exports = { messages };
+module.exports = { messages, datetimeFormats };

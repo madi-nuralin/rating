@@ -7,7 +7,7 @@ import { createI18n } from "vue-i18n";
 import { createStore } from 'vuex'
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
-const { messages } = require('./messages.js');
+const { messages, datetimeFormats } = require('./i18n.js');
 const store = createStore({ 
     state: {
         appLocale: localStorage.getItem("appLocale") || process.env.VUE_APP_I18N_LOCALE || 'en'
@@ -22,7 +22,7 @@ const store = createStore({
         }
     }
 });
-const i18n = createI18n( { locale: store.getters.getAppLocale, messages} );
+const i18n = createI18n( { locale: store.getters.getAppLocale, messages, datetimeFormats} );
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

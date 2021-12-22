@@ -67,13 +67,6 @@
                 <BreezeInputError :message="form.errors.lastname" class="mt-2" />
             </div>
 
-            <!-- Employement -->
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="employements" :value="$t('pages.management.users.update.form.employements')" />
-                <BreezeSelect id="employements" class="mt-1 block w-full" :value="form.employements" @input="form.employements = $event" :options="options.employements"/>
-                <BreezeInputError :message="form.errors.employements" class="mt-2" />
-            </div>
-
             <!-- Role -->
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="roles" :value="$t('pages.management.users.update.form.roles')" />
@@ -127,9 +120,6 @@
                     firstname: this.user.firstname,
                     lastname: this.user.lastname,
                     photo: this.user.profile_photo_path,
-                    employements: this.user.employements.map(function(employement) {
-                        return employement.id;
-                    }),
                     roles: this.user.roles.map(function(role) {
                         return role.id;
                     }),
@@ -189,16 +179,7 @@
 
         computed: {
             options() {
-                let employements, roles;
-
-                employements = this.employements ?
-                this.employements.map(function(employement) {
-                    return {
-                        value: employement.id,
-                        name: employement.position.name,
-                        description: this.$t('pages.management.assessments.update.form.employement.option.description', {department: employement.department.name})
-                    };
-                }, {$t: this.$t}) : null;
+                let roles;
 
                 roles = this.roles ?
                 this.roles.map(function(role) {
@@ -209,7 +190,7 @@
                     };
                 }, {$t: this.$t}) : null;
 
-                return {'employements': employements, 'roles': roles};
+                return {'roles': roles};
             }
         }
     }

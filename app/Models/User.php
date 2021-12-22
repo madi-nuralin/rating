@@ -10,7 +10,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Helpers\SettingHelper, Helpers\FileHelper;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        Helpers\HasId,
+        Helpers\HasFirstname,
+        Helpers\HasLastname,
+        Helpers\FileHelper;
 
     /**
      * The attributes that are mass assignable.
@@ -52,7 +58,7 @@ class User extends Authenticatable
     }
 
     public function employements() {
-        return $this->belongsToMany(Employement::class);
+        return $this->hasMany(Employement::class);
     }
 
     public function confirmer() {
@@ -61,10 +67,6 @@ class User extends Authenticatable
 
     public function assignments() {
         return $this->hasMany(Assignment::class);
-    }
-
-    public function getId() {
-        return $this->id;
     }
 
     public function getName() {
@@ -108,48 +110,6 @@ class User extends Authenticatable
             $this->profile_photo_path,
             'profile_photo_path'
         );
-    }
-
-    public function setFirstname($firstname, $locale=null) {
-        $this->updateSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'firstname',
-            $firstname
-        );
-    }
-
-    public function getFirstname($locale=null) {
-        return $this->getSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'firstname'
-        );
-    }
-
-    public function setLastname($lastname, $locale=null) {
-        $this->updateSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'lastname',
-            $lastname
-        );
-    }
-
-    public function getLastname($locale=null) {
-        return $this->getSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'lastname'
-        );
-    }
-
-    public function createdAt() {
-        return $this->created_at;
-    }
-
-    public function updatedAt() {
-        return $this->updated_at;
     }
 
     public function getRoles() {
@@ -222,8 +182,8 @@ class User extends Authenticatable
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
             'profile_photo_path' => $this->getProfilePhotoUrl(),
-            'created_at' => $this->createdAt(),
-            'updated_at' => $this->updatedAt(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
