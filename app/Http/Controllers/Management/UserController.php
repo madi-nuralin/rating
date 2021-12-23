@@ -83,6 +83,14 @@ class UserController extends Controller
 
         $user->save();
 
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('position.show', ['position' => $position->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+        
+
         return Inertia::location(route('user.show', ['user' => $user->getId()]));
     }
 
@@ -214,6 +222,9 @@ class UserController extends Controller
                 $user->tokens->each->delete();
             $user->delete();
         });
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('user.index'));
     }
