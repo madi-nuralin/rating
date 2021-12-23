@@ -1,5 +1,8 @@
 <template>
     <div>
+        
+        <BreezeBanner />
+
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
@@ -267,6 +270,7 @@
 
 <script>
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
+import BreezeBanner from '@/Components/Banner.vue'
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeNavLink from '@/Components/NavLink.vue'
@@ -276,6 +280,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 export default {
     components: {
         BreezeApplicationLogo,
+        BreezeBanner,
         BreezeDropdown,
         BreezeDropdownLink,
         BreezeNavLink,

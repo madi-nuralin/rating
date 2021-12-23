@@ -57,7 +57,14 @@ class DepartmentController extends Controller
         $department->setDescription($input['description']);
         $department->save();
 
-        return Inertia::location(route('department.show', ['department' => $department->getId()]));
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('department.show', ['department' => $department->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('department.index'));
     }
 
     /**
@@ -153,6 +160,9 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         Department::findOrFail($id)->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('department.index'));
     }

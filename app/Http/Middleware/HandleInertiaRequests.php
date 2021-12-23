@@ -44,6 +44,10 @@ class HandleInertiaRequests extends Middleware
                     : $request->user(),
             ],
             'locale' => app()->currentLocale(),
+            'flash' => [
+                'banner' => session()->get('flash.banner'),
+                'bannerStyle' => session()->get('flash.bannerStyle')
+            ]
             //'sessions' => DB::table('sessions')->get()
         ]);
     }

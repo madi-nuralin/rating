@@ -732,7 +732,7 @@ var messages = {
             }
           }
         }
-      }
+      },
     },
     layouts: {
       authenticated: {
@@ -762,6 +762,15 @@ var messages = {
             ru: 'Russian',
             en: 'English'
           }
+        }
+      }
+    },
+    components: {
+      banner: {
+        resource: {
+          created: 'Record created successfully! <a class="underline" href="{href}">Switch to record</a>',
+          updated: 'Record updated successfully!',
+          deleted: 'Record deleted successfully!'
         }
       }
     }
@@ -1501,6 +1510,15 @@ var messages = {
             ru: 'Русский',
             en: 'Англиский'
           }
+        }
+      }
+    },
+    components: {
+      banner: {
+        resource: {
+          created: 'Запись успешно создано! <a class="underline" href="{href}">Перейти к записи</a>',
+          updated: 'Запись успешно обновлена!',
+          deleted: 'Запись успешно удалена!'
         }
       }
     }

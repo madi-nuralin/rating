@@ -98,7 +98,14 @@ class EmployementController extends Controller
 
         $employement->save();
 
-        return Inertia::location(route('employement.show', ['employement' => $employement->getId()]));
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('employement.show', ['employement' => $employement->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('employement.index'));
     }
 
     /**
@@ -198,6 +205,9 @@ class EmployementController extends Controller
     public function destroy($id)
     {
         Employement::findOrFail($id)->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('employement.index'));
     }

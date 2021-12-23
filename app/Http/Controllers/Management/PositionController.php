@@ -56,7 +56,14 @@ class PositionController extends Controller
         $position->setDescription($input['description']);
         $position->save();
 
-        return Inertia::location(route('position.show', ['position' => $position->getId()]));
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('position.show', ['position' => $position->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('position.index'));
     }
 
     /**
@@ -125,6 +132,9 @@ class PositionController extends Controller
     public function destroy($id)
     {
         Position::findOrFail($id)->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('position.index'));
     }
