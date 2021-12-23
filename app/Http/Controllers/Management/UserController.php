@@ -91,7 +91,7 @@ class UserController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
 
-        return Inertia::location(route('user.show', ['user' => $user->getId()]));
+        return Inertia::location(route('user.index'));
     }
 
     /**
