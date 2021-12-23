@@ -24,7 +24,7 @@ class EmployementController extends Controller
     public function index()
     {
         return Inertia::render('Management/Employement/Index', [
-            'employements' => Employement::all()->map(function($employement) {
+            'employements' => Employement::paginate(10)->through(function($employement) {
                 return array_merge(
                     $employement->toArray(), [
                         'employement_type' => $employement->employementType->toArray(),

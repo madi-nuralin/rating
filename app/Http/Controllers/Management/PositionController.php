@@ -20,7 +20,7 @@ class PositionController extends Controller
     public function index()
     {
         return Inertia::render('Management/Positions/Index', [
-            'positions' => Position::all()->map(function($position) {
+            'positions' => Position::paginate(10)->through(function($position) {
                 return $position->toArray();
             }),
         ]);

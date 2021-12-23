@@ -10,7 +10,7 @@
 
         <template #form>
             <div class="col-span-6">
-                <breeze-list :name="'position'" :items="positions" />
+                <breeze-list :name="'position'" :items="items" />
             </div>
         </template>
 
@@ -37,5 +37,20 @@
         },
 
         props: ['positions'],
+
+        computed: {
+            items() {
+                return {
+                    'data': this.positions.data.map(function(position) {
+                        return {
+                            id: position.id,
+                            name: position.name,
+                            description: position.description
+                        }
+                    }),
+                    'links': this.positions.links
+                };
+            }
+        },
     }
 </script>

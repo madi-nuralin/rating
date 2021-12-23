@@ -22,7 +22,7 @@ class ParameterController extends Controller
     public function index()
     {
         return Inertia::render('Management/Parameters/Index', [
-            'parameters' => Parameter::all()->map(function($parameter) {
+            'parameters' => Parameter::paginate(10)->through(function($parameter) {
                 return $parameter->toArray();
             }),
         ]);

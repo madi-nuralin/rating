@@ -27,7 +27,7 @@ class AssessmentController extends Controller
     public function index()
     {
         return Inertia::render('Management/Assessments/Index', [
-            'assessments' => Assessment::all()->map(function($assessment) {
+            'assessments' => Assessment::paginate(10)->through(function($assessment) {
                 return $assessment->toArray();
             }),
         ]);

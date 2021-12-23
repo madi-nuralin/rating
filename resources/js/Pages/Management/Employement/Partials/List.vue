@@ -40,13 +40,16 @@
 
         computed: {
             items() {
-                return this.employements.map(function(employement) {
-                    return {
-                        id: employement.id,
-                        name: `${employement.user.name} - ${employement.position.name}`,
-                        description: `${employement.department.name}`
-                    }
-                });
+                return {
+                    'data': this.employements.data.map(function(employement) {
+                        return {
+                            id: employement.id,
+                            name: `${employement.user.name} - ${employement.position.name}`,
+                            description: `${employement.department.name}`
+                        }
+                    }),
+                    'links': this.employements.links
+                };
             }
         },
     }

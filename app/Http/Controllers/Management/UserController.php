@@ -28,7 +28,7 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Management/Users/Index', [
-            'users' => User::all()->map(function($user) {
+            'users' => User::paginate(10)->through(function($user) {
                 return $user->toArray();
             }),
         ]);

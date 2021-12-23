@@ -21,7 +21,7 @@ class DepartmentController extends Controller
     public function index()
     {
         return Inertia::render('Management/Departments/Index', [
-            'departments' => Department::all()->map(function($department) {
+            'departments' => Department::paginate(10)->through(function($department) {
                 return $department->toArray();
             }),
         ]);

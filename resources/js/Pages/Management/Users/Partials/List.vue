@@ -40,14 +40,17 @@
 
         computed: {
             items() {
-                return this.users.map(function(user) {
-                    return {
-                        id: user.id,
-                        name: user.name,
-                        description: user.email,
-                        avatar: user.profile_photo_path
-                    }
-                })
+                return {
+                    'data': this.users.data.map(function(user) {
+                        return {
+                            id: user.id,
+                            name: user.name,
+                            description: user.email,
+                            avatar: user.profile_photo_path
+                        }
+                    }),
+                    'links': this.users.links
+                }
             }
         }
     }
