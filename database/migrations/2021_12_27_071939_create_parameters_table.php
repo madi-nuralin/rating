@@ -15,20 +15,12 @@ class CreateParametersTable extends Migration
     {
         Schema::create('parameters', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('form_id')
+            $table->bigInteger('parameter_target_id')
                   ->unsigned();
-            $table->foreign('form_id')
+            $table->foreign('parameter_target_id')
                   ->references('id')
-                  ->on('forms')
+                  ->on('parameter_targets')
                   ->onDelete('cascade');
-            $table->bigInteger('category_id')
-                  ->unsigned();
-            $table->foreign('category_id')
-                  ->references('id')
-                  ->on('categories')
-                  ->onDelete('cascade');
-            $table->bigInteger('score')
-                  ->default(0);
             $table->timestamps();
         });
     }

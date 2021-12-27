@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategorySettingsTable extends Migration
+class CreateParameterVersionSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCategorySettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_settings', function (Blueprint $table) {
+        Schema::create('parameter_version_settings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')
+            $table->bigInteger('parameter_version_id')
                   ->unsigned();
-            $table->foreign('category_id')
+            $table->foreign('parameter_version_id')
                   ->references('id')
-                  ->on('categories')
+                  ->on('parameter_versions')
                   ->onDelete('cascade');
             $table->string('setting_locale')
                   ->nullable();
@@ -40,6 +40,6 @@ class CreateCategorySettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_settings');
+        Schema::dropIfExists('parameter_version_settings');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivitiesTable extends Migration
+class CreateVerificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,20 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('verifications', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('assignment_id')
+            $table->bigInteger('submission_id')
                   ->unsigned();
-            $table->foreign('assignment_id')
+            $table->foreign('submission_id')
                   ->references('id')
-                  ->on('assignments')
+                  ->on('submissions')
                   ->onDelete('cascade');
-            $table->bigInteger('parameter_id')
+            $table->bigInteger('verifier_id')
                   ->unsigned();
-            $table->foreign('parameter_id')
+            $table->foreign('verifier_id')
                   ->references('id')
-                  ->on('parameters')
+                  ->on('verifiers')
                   ->onDelete('cascade');
-            $table->bigInteger('score')
-                  ->default(0);
             $table->timestamps();
         });
     }
@@ -40,6 +38,6 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('verifications');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSettingsTable extends Migration
+class CreateParameterTargetSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('parameter_target_settings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('parameter_target_id')
+                  ->unsigned();
+            $table->foreign('parameter_target_id')
+                  ->references('id')
+                  ->on('parameter_targets')
+                  ->onDelete('cascade');
             $table->string('setting_locale')
                   ->nullable();
             $table->string('setting_type')
@@ -34,6 +40,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('parameter_target_settings');
     }
 }

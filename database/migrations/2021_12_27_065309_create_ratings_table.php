@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfirmersTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateConfirmersTable extends Migration
      */
     public function up()
     {
-        Schema::create('confirmers', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')
-                  ->unsigned();
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
+            $table->date('submission_started_at')->nullable();
+            $table->date('submission_finished_at')->nullable();
+            $table->date('confirmation_started_at')->nullable();
+            $table->date('confirmation_finished_at')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateConfirmersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('confirmers');
+        Schema::dropIfExists('ratings');
     }
 }

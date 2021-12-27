@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivityFormFieldValueTable extends Migration
+class CreateVerifiersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,25 @@ class CreateActivityFormFieldValueTable extends Migration
      */
     public function up()
     {
-        Schema::create('activity_form_field_value', function (Blueprint $table) {
+        Schema::create('verifiers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('activity_id')
+            $table->bigInteger('user_id')
                   ->unsigned();
-            $table->foreign('activity_id')
+            $table->foreign('user_id')
                   ->references('id')
-                  ->on('activities')
+                  ->on('users')
                   ->onDelete('cascade');
-            $table->bigInteger('form_field_value_id')
+            $table->bigInteger('rating_id')
                   ->unsigned();
-            $table->foreign('form_field_value_id')
+            $table->foreign('rating_id')
                   ->references('id')
-                  ->on('form_field_values')
+                  ->on('ratings')
+                  ->onDelete('cascade');
+            $table->bigInteger('parameter_target_id')
+                  ->unsigned();
+            $table->foreign('parameter_target_id')
+                  ->references('id')
+                  ->on('parameter_targets')
                   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -38,6 +44,6 @@ class CreateActivityFormFieldValueTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activity_form_field_value');
+        Schema::dropIfExists('verifiers');
     }
 }

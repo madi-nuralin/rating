@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategorySetting extends Model
+class ParameterTargetSetting extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class CategorySetting extends Model
         'setting_type'
     ];
 
-    public function category() {
-        return $this->belongsTo(Category::class);
+    public function parameterTarget() {
+        return $this->belongsTo(ParameterTarget::class);
     }
 }

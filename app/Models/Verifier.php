@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Parameter extends Model
+class Verifier extends Model
 {
     use HasFactory,
     	Helpers\HasId;
@@ -16,15 +16,41 @@ class Parameter extends Model
      * @var string[]
      */
     protected $fillable = [
+        'user_id',
+        'rating_id',
         'parameter_target_id',
     ];
+
+    public function user() {
+    	return $this->belongsTo(User::class);
+    }
+
+    public function rating() {
+    	return $this->belongsTo(Rating::class);
+    }
 
     public function parameterTarget() {
     	return $this->belongsTo(ParameterTarget::class);
     }
 
+    public function setUser(User $user) {
+    	$this->user()->associate($user);
+    }
+
+    public function setRating(Rating $rating) {
+    	$this->rating()->associate($rating);
+    }
+
     public function setParameterTarget(ParameterTarget $parameterTarget) {
     	$this->parameterTarget()->associate($parameterTarget);
+    }
+
+    public function getUser() {
+    	return $this->user;
+    }
+
+    public function getRating() {
+    	return $this->rating;
     }
 
     public function getParameterTarget() {

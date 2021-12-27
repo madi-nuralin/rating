@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AssessmentSetting extends Model
+class RatingSetting extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class AssessmentSetting extends Model
         'setting_type'
     ];
 
-    public function assessment() {
-        return $this->belongsTo(Assessment::class);
+    public function rating() {
+        return $this->belongsTo(Rating::class);
     }
 }

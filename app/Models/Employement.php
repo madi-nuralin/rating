@@ -40,10 +40,6 @@ class Employement extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function assessments() {
-        return $this->belongsToMany(Assessment::class, 'assessment_employement');
-    }
-
     public function setEmployementType(EmployementType $employementType) {
         $this->employementType()->associate($employementType);
     }
@@ -90,12 +86,6 @@ class Employement extends Model
 
     public function getTerminatedAt() {
         return $this->terminated_at;
-    }
-
-    public function getAssessments() {
-        return $this->assessments->map(function($assessment) {
-            return $assessment->toArray();
-        });
     }
 
     public function toArray() {

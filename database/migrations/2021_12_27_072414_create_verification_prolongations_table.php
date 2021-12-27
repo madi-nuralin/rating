@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssessmentsTable extends Migration
+class CreateVerificationProlongationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateAssessmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessments', function (Blueprint $table) {
+        Schema::create('verification_prolongations', function (Blueprint $table) {
             $table->id();
-            $table->date('valid_from')->nullable();
-            $table->date('valid_to')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateAssessmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assessments');
+        Schema::dropIfExists('verification_prolongations');
     }
 }

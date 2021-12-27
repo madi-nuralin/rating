@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ParameterSetting extends Model
+class ParameterVersionSetting extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class ParameterSetting extends Model
         'setting_type'
     ];
 
-    public function parameter() {
-        return $this->belongsTo(Parameter::class);
+    public function parameterVersion() {
+        return $this->belongsTo(ParameterVersion::class);
     }
 }

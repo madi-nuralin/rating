@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssessmentParameterTable extends Migration
+class CreateApproversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateAssessmentParameterTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessment_parameter', function (Blueprint $table) {
+        Schema::create('approvers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('assessment_id')
+            $table->bigInteger('user_id')
                   ->unsigned();
-            $table->foreign('assessment_id')
+            $table->foreign('user_id')
                   ->references('id')
-                  ->on('assessments')
+                  ->on('users')
                   ->onDelete('cascade');
-            $table->bigInteger('parameter_id')
+            $table->bigInteger('rating_id')
                   ->unsigned();
-            $table->foreign('parameter_id')
+            $table->foreign('rating_id')
                   ->references('id')
-                  ->on('parameters')
+                  ->on('ratings')
                   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -38,6 +38,6 @@ class CreateAssessmentParameterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assessment_parameter');
+        Schema::dropIfExists('approvers');
     }
 }

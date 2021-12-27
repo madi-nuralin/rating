@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssessmentSettingsTable extends Migration
+class CreateRatingSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateAssessmentSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessment_settings', function (Blueprint $table) {
+        Schema::create('rating_settings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('assessment_id')
+            $table->bigInteger('rating_id')
                   ->unsigned();
-            $table->foreign('assessment_id')
+            $table->foreign('rating_id')
                   ->references('id')
-                  ->on('assessments')
+                  ->on('ratings')
                   ->onDelete('cascade');
             $table->string('setting_locale')
                   ->nullable();
@@ -40,6 +40,6 @@ class CreateAssessmentSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assessment_settings');
+        Schema::dropIfExists('rating_settings');
     }
 }

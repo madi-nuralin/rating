@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssessmentEmployementTable extends Migration
+class CreateSubmissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,23 @@ class CreateAssessmentEmployementTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessment_employement', function (Blueprint $table) {
+        Schema::create('submissions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('assessment_id')
-                  ->unsigned();
-            $table->foreign('assessment_id')
+            $table->foreign('user_id')
                   ->references('id')
-                  ->on('assessments')
+                  ->on('users')
                   ->onDelete('cascade');
-            $table->bigInteger('employement_id')
+            $table->bigInteger('rating_id')
                   ->unsigned();
-            $table->foreign('employement_id')
+            $table->foreign('rating_id')
                   ->references('id')
-                  ->on('employements')
+                  ->on('ratings')
+                  ->onDelete('cascade');
+            $table->bigInteger('parameter_version_id')
+                  ->unsigned();
+            $table->foreign('parameter_version_id')
+                  ->references('id')
+                  ->on('parameter_versions')
                   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -38,6 +42,6 @@ class CreateAssessmentEmployementTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assessment_employement');
+        Schema::dropIfExists('submissions');
     }
 }
