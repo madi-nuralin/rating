@@ -15,11 +15,17 @@ class CreateSubmissionProlongationsTable extends Migration
     {
         Schema::create('submission_prolongations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('submission_id')
+            $table->bigInteger('rating_id')
                   ->unsigned();
-            $table->foreign('submission_id')
+            $table->foreign('rating_id')
                   ->references('id')
-                  ->on('submissions')
+                  ->on('ratings')
+                  ->onDelete('cascade');
+            $table->bigInteger('user_id')
+                  ->unsigned();
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
                   ->onDelete('cascade');
             $table->date('prolongated_at');
             $table->timestamps();

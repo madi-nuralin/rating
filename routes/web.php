@@ -35,7 +35,7 @@ use App\Http\Controllers\Management\PositionController;
 use App\Http\Controllers\Management\DepartmentController;
 use App\Http\Controllers\Management\UserController;
 use App\Http\Controllers\Management\EmployementController;
-use App\Http\Controllers\Management\AssessmentController;
+use App\Http\Controllers\Management\RatingController;
 use App\Http\Controllers\Management\ParameterController;
 
 use App\Http\Controllers\Forms\FormController;
@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('employement', EmployementController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-            Route::resource('assessment', AssessmentController::class,
+            Route::resource('rating', RatingController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('parameter', ParameterController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);

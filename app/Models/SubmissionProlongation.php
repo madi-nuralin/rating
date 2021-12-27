@@ -16,8 +16,21 @@ class SubmissionProlongation extends Model
      * @var string[]
      */
     protected $fillable = [
+    	'rating_id'
         'prolongated_at',
     ];
+
+    public function rating() {
+    	return $this->belongsTo(Rating::class);
+    }
+
+    public function setRating(Rating $rating) {
+    	$this->rating()->associate($rating);
+    }
+
+    public function getRating() {
+    	return $this->rating;
+    }
 
     public function toArray() {
     	return [

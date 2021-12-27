@@ -1,10 +1,10 @@
 <template>
-    <Head :title="$t('pages.management.assessments.head.title')" />
+    <Head :title="$t('pages.management.rating.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.assessments.header') }}
+                {{ $t('pages.management.rating.header') }}
             </h2>
         </template>
 
@@ -19,7 +19,7 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import CreateForm from '@/Pages/Management/Assessments/Partials/CreateForm.vue'
+    import CreateForm from './Partials/CreateForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {

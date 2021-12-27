@@ -20,12 +20,38 @@ class Rating extends Model
     protected $fillable = [
         'submission_started_at',
         'submission_finished_at',
-        'confirmation_started_at',
-        'confirmation_finished_at'
+        'verification_started_at',
+        'verification_finished_at',
+        'approvement_started_at',
+        'approvement_finished_at',
     ];
 
     public function settings() {
     	return $this->hasMany(RatingSetting::class);
+    }
+
+    public function setSubmissionStartedAt($submissionStartedAt) {
+    	$this->submission_started_at = $submissionStartedAt;
+    }
+
+    public function setSubmissionFinishedAt($submissionFinishedAt) {
+    	$this->submission_finished_at = $submissionFinishedAt;
+    }
+
+    public function setVerificationStartedAt($verificationStartedAt) {
+    	$this->verification_started_at = $verificationStartedAt;
+    }
+
+    public function setVerificationFinishedAt($verificationFinishedAt) {
+    	$this->verification_finished_at = $verificationFinishedAt;
+    }
+
+    public function setApprovementStartedAt($approvementStartedAt) {
+    	$this->approvement_started_at = $approvementStartedAt;
+    }
+
+    public function setApprovementFinishedAt($approvementFinishedAt) {
+    	$this->approvement_finished_at = $approvementFinishedAt;
     }
 
     public function toArray() {
@@ -35,8 +61,10 @@ class Rating extends Model
     		'description' => $this->getDescription(),
     		'submission_started_at' => $this->submission_started_at,
     		'submission_finished_at' => $this->submission_finished_at,
-    		'confirmation_started_at' => $this->confirmation_started_at,
-    		'confirmation_finished_at' => $this->confirmation_finished_at,
+    		'verification_started_at' => $this->verification_started_at,
+    		'verification_finished_at' => $this->verification_finished_at,
+    		'approvement_started_at' => $this->approvement_started_at,
+    		'approvement_finished_at' => $this->approvement_finished_at,
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

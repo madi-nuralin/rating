@@ -87,15 +87,15 @@
                                             {{ $t('layouts.authenticated.links.employements') }}
                                         </BreezeDropdownLink>
 
-                                        <!-- Manage assessments-->
+                                        <!-- Manage ratings-->
                                         <div class="border-t border-gray-100"></div>
 
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ $t('layouts.authenticated.linkGroups.manageAssessment') }}
+                                            {{ $t('layouts.authenticated.linkGroups.manageRating') }}
                                         </div>
 
-                                        <BreezeDropdownLink :href="route('assessment.index')">
-                                            {{ $t('layouts.authenticated.links.assessments') }}
+                                        <BreezeDropdownLink :href="route('rating.index')">
+                                            {{ $t('layouts.authenticated.links.ratings') }}
                                         </BreezeDropdownLink>
                                         <BreezeDropdownLink :href="route('parameter.index')">
                                             {{ $t('layouts.authenticated.links.parameters') }}
@@ -225,10 +225,10 @@
                                 <div class="border-t border-gray-200"></div>
                                 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ $t('layouts.authenticated.linkGroups.manageAssessment') }}
+                                    {{ $t('layouts.authenticated.linkGroups.manageRating') }}
                                 </div>
-                                <BreezeResponsiveNavLink :href="route('assessment.index')">
-                                    {{ $t('layouts.authenticated.links.assessments') }}
+                                <BreezeResponsiveNavLink :href="route('rating.index')">
+                                    {{ $t('layouts.authenticated.links.ratings') }}
                                 </BreezeResponsiveNavLink>
                                 <BreezeResponsiveNavLink :href="route('parameter.index')">
                                     {{ $t('layouts.authenticated.links.parameters') }}

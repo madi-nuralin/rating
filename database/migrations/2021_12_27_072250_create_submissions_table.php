@@ -15,6 +15,8 @@ class CreateSubmissionsTable extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')
+                  ->unsigned();
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')

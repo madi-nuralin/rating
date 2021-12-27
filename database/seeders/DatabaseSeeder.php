@@ -13,8 +13,8 @@ use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
 use App\Models\EmployementType;
-use App\Models\Assessment;
-use App\Models\Category;
+use App\Models\Rating;
+use App\Models\ParameterTarget;
 use App\Models\Parameter;
 use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
@@ -34,9 +34,9 @@ class DatabaseSeeder extends Seeder
         $this->seedPosition();
         $this->seedDepartment();
         $this->seedEmployementType();
-        $this->seedAssessment();
-        $this->seedCategory();
-        $this->seedParameter();
+        //$this->seedAssessment();
+        //$this->seedParameterTarget();
+        //$this->seedParameter();
     }
 
     protected function seedRole() {
@@ -45,11 +45,11 @@ class DatabaseSeeder extends Seeder
         $definitions = [
             [
                 'en' => [
-                    'name' => 'Site administrator',
+                    'name' => 'Administrator',
                     'description' => 'A site administrator is a one who is responsible for maintaining the site.'
                 ],
                 'ru' => [
-                    'name' => 'Администратор сайта',
+                    'name' => 'Администратор',
                     'description' => 'Роль для технической поддержки и администрирования сайта'
                 ],
                 'context' => 'admin'
@@ -65,14 +65,14 @@ class DatabaseSeeder extends Seeder
                 'context' => 'manager'
             ], [
                 'en' => [
-                    'name' => 'Confirmer staff',
+                    'name' => 'Verifier',
                     'description' => 'Authorized to confirm this assessment'
                 ],
                 'ru' => [
-                    'name' => 'Подтверждающий оценивание сотрудник',
+                    'name' => 'Подтверждающий',
                     'description' => 'Уполномочен подтвердить оценку деятельности персонала'
                 ],
-                'context' => 'confirmer'
+                'context' => 'verifier'
             ],
         ];
 
@@ -261,7 +261,7 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    protected function seedAssessment() {
+    /*protected function seedRating() {
         $locales = ['en', 'ru'];
 
         $definitions = [
@@ -291,21 +291,21 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($definitions as $definition) {
-            $assessment = Assessment::create();
+            $rating = Rating::create();
 
             foreach ($locales as $locale) {
-                $assessment->setName($definition[$locale]['name'], $locale);
-                $assessment->setDescription($definition[$locale]['description'], $locale);
+                $rating->setName($definition[$locale]['name'], $locale);
+                $rating->setDescription($definition[$locale]['description'], $locale);
             }
             
-            $assessment->setValidFrom($definition['valid_from']);
-            $assessment->setValidTo($definition['valid_to']);
+            $rating->setValidFrom($definition['valid_from']);
+            $rating->setValidTo($definition['valid_to']);
 
-            $assessment->save();
+            $rating->save();
         }
-    }
+    }*/
 
-    protected function seedCategory() {
+    /*protected function seedParameterTarget() {
         $locales = ['en', 'ru'];
 
         $definitions = [
@@ -421,7 +421,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($definitions as $definition) {
-            $category = Category::create();
+            $category = ParameterTarget::create();
 
             foreach ($locales as $locale) {
                 $category->setName($definition[$locale]['name'], $locale);
@@ -430,7 +430,7 @@ class DatabaseSeeder extends Seeder
 
             $category->save();
         }
-    }
+    }*/
 
     protected function seedEmployementType() {
         $locales = ['en', 'ru'];
@@ -478,7 +478,7 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    protected function seedParameter() {
+    /*protected function seedParameter() {
         $locales = ['en', 'ru'];
 
         $definitions = [
@@ -841,5 +841,5 @@ class DatabaseSeeder extends Seeder
 
             $parameter->save();
         }
-    }
+    }*/
 }

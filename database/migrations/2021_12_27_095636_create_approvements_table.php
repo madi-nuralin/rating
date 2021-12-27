@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVerificationsTable extends Migration
+class CreateApprovementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateVerificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('verifications', function (Blueprint $table) {
+        Schema::create('approvements', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('verifier_id')
+            $table->bigInteger('approver_id')
                   ->unsigned();
-            $table->foreign('verifier_id')
+            $table->foreign('approver_id')
                   ->references('id')
-                  ->on('verifiers')
+                  ->on('approvers')
                   ->onDelete('cascade');
             $table->bigInteger('submission_id')
                   ->unsigned();
@@ -27,7 +27,7 @@ class CreateVerificationsTable extends Migration
                   ->references('id')
                   ->on('submissions')
                   ->onDelete('cascade');
-            $table->enum('status', ['not considered', 'verified', 'requires changes', 'corrected', 'cancelled']);
+            $table->enum('status',  ['not considered', 'approved', 'needs revision', 'corrected', 'cancelled']);
             $table->timestamps();
         });
     }
@@ -39,6 +39,6 @@ class CreateVerificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('verifications');
+        Schema::dropIfExists('approvements');
     }
 }

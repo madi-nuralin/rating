@@ -232,50 +232,46 @@ var messages = {
             }
           }
         },
-        assessments: {
+        rating: {
           head: {
-            title: 'Assessments management'
+            title: 'Rating management'
           },
-          header: 'Assessments management',
+          header: 'Rating management',
           create: {
-            title: 'Create a new assessment',
-            description: 'Create a new assessment to collaborate with others on projects.',
+            title: 'Create a new rating',
+            description: 'Create a new rating to collaborate with others on projects.',
             form: {
-              name: 'Assessment name',
-              description: 'Assessment description',
-              validFrom: 'Valid from date',
-              validTo: 'Valid to date',
-              employements: 'Select department positions for assessment',
-              employement: {
-                option: { 
-                  description: 'The position of {department} department'
-                }
-              },
-              confirmers: 'Select confirmers for assessment',
-              parameters: 'Select assessment parameters',
+              name: 'Rating name',
+              description: 'Rating description',
+              submission_started_at: 'Submission starts from',
+              submission_finished_at: 'Submission finish date',
+              verification_started_at: 'Verification starts from',
+              verification_finished_at: 'Verification finish date',
+              approvement_started_at: 'Approvement starts from',
+              approvement_finished_at: 'Approvement finish date',
             }
           },
           update: {
-            title: 'Update Assessment',
-            description: 'The assessment\'s name and description information.',
+            title: 'Update Rating',
+            description: 'The rating\'s name and description information.',
             form: {
-              name: 'Assessment name',
-              description: 'Assessment description',
+              name: 'Rating name',
+              description: 'Rating description',
               validFrom: 'Valid from date',
               validTo: 'Valid to date',
-              employements: 'Select department positions for assessment',
+              employements: 'Select department positions for rating',
               employement: {
                 option: { 
                   description: 'The position of {department} department'
                 }
               },
-              confirmers: 'Select confirmers for assessment',
-              confirmer: {
+              verifiers: 'Select verifiers for rating',
+              verifier: {
                 option: { 
                   description: ''
                 }
               },
-              parameters: 'Select assessment parameters',
+              parameters: 'Select rating parameters',
               parameter: {
                 option: { 
                   description: ''
@@ -284,24 +280,24 @@ var messages = {
             }
           },
           delete: {
-            title: 'Delete Assessment',
-            description: 'Permanently delete this assessment.',
+            title: 'Delete Rating',
+            description: 'Permanently delete this rating.',
             content: {
-              deleteInfo: 'Once a assessment is deleted, all of its resources and data will be permanently deleted. Before deleting this assessment, please download any data or information regarding this assessment that you wish to retain.',
-              deleteButton: 'Delete Assessment',
+              deleteInfo: 'Once a rating is deleted, all of its resources and data will be permanently deleted. Before deleting this rating, please download any data or information regarding this rating that you wish to retain.',
+              deleteButton: 'Delete Rating',
               modal: {
-                title: 'Delete Assessment',
-                content: 'Are you sure you want to delete this assessment? Once a assessment is deleted, all of its resources and data will be permanently deleted.',
+                title: 'Delete Rating',
+                content: 'Are you sure you want to delete this rating? Once a rating is deleted, all of its resources and data will be permanently deleted.',
                 footer: {
                   cancelButton: 'Cancel',
-                  deleteButton: 'Delete Assessment'
+                  deleteButton: 'Delete Rating'
                 }
               }
             }
           },
           list: {
-            title: 'Assessments list',
-            description: 'The assessments list which are registered.',
+            title: 'Rating list',
+            description: 'The ratings list which are registered.',
             form: {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             },
@@ -418,7 +414,7 @@ var messages = {
         tabs: {
           assignments: 'My ratings',
           assignment: {
-            description: 'An instance of assessment is assigned by the system managers. Here you can add your performed activities for confirmation'
+            description: 'An instance of rating is assigned by the system managers. Here you can add your performed activities for confirmation'
           },
           confirmations: 'Employees rating',
           confirmation: {
@@ -429,7 +425,7 @@ var messages = {
           employement: 'Your employement information',
           roles: 'Your roles'
         },
-        description: 'A Staff Performance Assessment (SPA) application provides an employee to see his overall ratings(self as well as supervisor\'s). SPA allows system managers\' to create and manage staff assessment instances with configurable performance parameters.',
+        description: 'A Staff Performance Rating (SPA) application provides an employee to see his overall ratings(self as well as supervisor\'s). SPA allows system managers\' to create and manage staff rating instances with configurable performance parameters.',
         empty: 'No items found',
         assignments: {
           head: {
@@ -445,8 +441,8 @@ var messages = {
           },
           information: {
             title: 'General information',
-            description: 'Position assessment information',
-            assessment: 'Assessment',
+            description: 'Position rating information',
+            rating: 'Rating',
             user: 'User',
             date: 'Valid date',
             employement: {
@@ -458,19 +454,19 @@ var messages = {
         },
         confirmations: {
           head: {
-            title: 'Staff assessment confirmation'
+            title: 'Staff rating confirmation'
           },
-          header: 'Staff assessment confirmation',
+          header: 'Staff rating confirmation',
           list: {
-            title: 'Staff assessment confirmation',
+            title: 'Staff rating confirmation',
             description: 'The list of assignments for confirmation',
             form: {
               listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
             }
           },
           information: {
-            title: 'Confirmation of assessment',
-            description: 'List of committee members authorized to confirm this assessment',
+            title: 'Confirmation of rating',
+            description: 'List of committee members authorized to confirm this rating',
             status: {
               not_viewed: 'Not viewed',
               denied: 'Denied',
@@ -479,7 +475,7 @@ var messages = {
           },
           update: {
             title: 'Your decision',
-            description: 'Decide whether to approve or reject the user\'s current assessment',
+            description: 'Decide whether to approve or reject the user\'s current rating',
             content: {
               info: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
               status: {
@@ -514,10 +510,10 @@ var messages = {
           },
           header: 'Add new activity',
           create: {
-            title: 'Add new assessment activity',
-            description: 'Add new assessment activity by selecting assessment parameter',
+            title: 'Add new rating activity',
+            description: 'Add new rating activity by selecting rating parameter',
             form: {
-              parameter: 'Select assessment parameter',
+              parameter: 'Select rating parameter',
             },
             actions: {
               message: 'For this parameter you will receive {pts} points'
@@ -525,17 +521,17 @@ var messages = {
           },
           update: {
             title: 'Update activity',
-            description: 'Update assessment activity details.',
+            description: 'Update rating activity details.',
             form: {
-              parameter: 'Assessment parameter',
+              parameter: 'Rating parameter',
               score: 'Amount of score which you received for this submission:'
             }
           },
           show: {
             title: 'User activity',
-            description: 'Show assessment activity details.',
+            description: 'Show rating activity details.',
             form: {
-              parameter: 'Assessment parameter',
+              parameter: 'Rating parameter',
               score: 'Amount of score which user earned for this activity:'
             }
           },
@@ -551,7 +547,7 @@ var messages = {
               deleteButton: 'Delete activity',
               modal: {
                 title: 'Delete activity',
-                content: 'Are you sure you want to delete this assessment activity? After deletion, all of its resources and data will be permanently deleted.',
+                content: 'Are you sure you want to delete this rating activity? After deletion, all of its resources and data will be permanently deleted.',
                 footer: {
                   cancelButton: 'Cancel',
                   deleteButton: 'Delete activity'
@@ -744,7 +740,7 @@ var messages = {
         linkGroups: {
           siteSettings: 'Website settings',
           manageEntities: 'Manage entitites',
-          manageAssessment: 'Manage assignments',
+          manageRating: 'Manage assignments',
           notifications: 'Notifications'
         },
         links: {
@@ -754,7 +750,7 @@ var messages = {
           departments: 'Departments',
           users: 'Users',
           employements: 'Employements',
-          assessments: 'Assessments',
+          ratings: 'Rating',
           parameters: 'Parameters',
           profile: 'Profile',
           logout: 'Log out',
@@ -987,7 +983,7 @@ var messages = {
             }
           }
         },
-        assessments: {
+        rating: {
           head: {
             title: 'Управление оценкой персонала'
           },
@@ -996,18 +992,14 @@ var messages = {
             title: 'Создать новую экземпляр оценки персонала',
             description: 'Создайте новую экземпляр оценки персонала, чтобы сотрудничать с другими над проектами.',
             form: {
-              name: 'Название экземпляра оценки персонала',
-              description: 'Описание экземпляра оценки персонала',
-              validFrom: 'Доступно периода с',
-              validTo: 'Доступно до периода',
-              employements: 'Выберите должности отдела для оценки',
-              employement: {
-                option: {
-                  description: 'Должность отдела: {department}'
-                }
-              },
-              confirmers: 'Выберите сотрудников подтверждающие данное оценивание',
-              parameters: 'Выберите параметры оценивания',
+              name: 'Название рейтинга',
+              description: 'Описание рейтинга',
+              submission_started_at: 'Подача начинается с',
+              submission_finished_at: 'Дата окончания подачи',
+              verification_started_at: 'Проверка начинается с',
+              verification_finished_at: 'Дата окончания проверки',
+              approvement_started_at: 'Утверждение начинается с',
+              approvement_finished_at: 'Дата окончания утверждения',
             }
           },
           update: {
@@ -1024,8 +1016,8 @@ var messages = {
                   description: 'Должность отдела: {department}'
                 }
               },
-              confirmers: 'Выберите сотрудников подтверждающие данное оценивание',
-              confirmer: {
+              verifiers: 'Выберите сотрудников подтверждающие данное оценивание',
+              verifier: {
                 option: {}
               },
               parameters: 'Выберите параметры оценивания',
@@ -1197,7 +1189,7 @@ var messages = {
           information: {
             title: 'Информация о пользователе',
             description: 'Подробная информация о пользователе: отдел, должность',
-            assessment: 'Оценивание',
+            rating: 'Оценивание',
             user: 'Пользователь',
             date: 'Время действия текущего оцнивания',
             employement: {
@@ -1492,7 +1484,7 @@ var messages = {
         linkGroups: {
           siteSettings: 'Настройки веб сайта',
           manageEntities: 'Управление объектами',
-          manageAssessment: 'Управление конфигурациями оценивания',
+          manageRating: 'Управление конфигурациями оценивания',
           notifications: 'Уведомления'
         },
         links: {
@@ -1502,7 +1494,7 @@ var messages = {
           departments: 'Отделы',
           users: 'Пользователи',
           employements: 'Трудоустройство',
-          assessments: 'Оценивание',
+          ratings: 'Оценивание',
           parameters: 'Параметры',
           profile: 'Профиль',
           logout: 'Выйти',

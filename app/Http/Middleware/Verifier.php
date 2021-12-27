@@ -17,7 +17,7 @@ class Confirmer
     public function handle(Request $request, Closure $next)
     {
         foreach (auth()->user()->roles as $role) {
-            if ($role->getContext() == 'confirmer') {
+            if ($role->getContext() == 'verifier') {
                 return $next($request);
             }
         }

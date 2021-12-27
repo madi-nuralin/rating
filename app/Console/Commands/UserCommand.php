@@ -43,12 +43,6 @@ class UserCommand extends Command
     {
         $user = User::firstWhere('email', $this->argument('email'));
 
-        if ($user && $this->argument('role') == 'confirmer') {
-            if ($user->confirmer === null) {
-                $user->setConfirmer(new Confirmer());
-            }
-        }
-
         return $user->roles()->attach(Role::firstWhere('context', $this->argument('role'))->getId());
     }
 }

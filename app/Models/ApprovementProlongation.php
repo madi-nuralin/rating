@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VerificationProlongation extends Model
+class ApprovementProlongation extends Model
 {
-    use HasFactory;
+    use HasFactory,
+    	Helpers\HasId;
 
     /**
      * The attributes that are mass assignable.
@@ -34,9 +35,8 @@ class VerificationProlongation extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
-    		'prolongated_at' => $this->prolongated_at,
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
-    	]
+    	];
     }
 }

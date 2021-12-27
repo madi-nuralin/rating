@@ -17,8 +17,10 @@ class CreateRatingsTable extends Migration
             $table->id();
             $table->date('submission_started_at')->nullable();
             $table->date('submission_finished_at')->nullable();
-            $table->date('confirmation_started_at')->nullable();
-            $table->date('confirmation_finished_at')->nullable();
+            $table->date('verification_started_at')->nullable();
+            $table->date('verification_finished_at')->nullable();
+            $table->date('approvement_started_at')->nullable();
+            $table->date('approvement_finished_at')->nullable();
             $table->timestamps();
         });
     }
