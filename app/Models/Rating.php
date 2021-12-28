@@ -18,40 +18,64 @@ class Rating extends Model
      * @var string[]
      */
     protected $fillable = [
-        'submission_started_at',
-        'submission_finished_at',
+        'filling_started_at',
+        'filling_expired_at',
         'verification_started_at',
-        'verification_finished_at',
+        'verification_expired_at',
         'approvement_started_at',
-        'approvement_finished_at',
+        'approvement_expired_at',
     ];
 
     public function settings() {
     	return $this->hasMany(RatingSetting::class);
     }
 
-    public function setSubmissionStartedAt($submissionStartedAt) {
-    	$this->submission_started_at = $submissionStartedAt;
+    public function setFillingStartedAt($fillingStartedAt) {
+    	$this->filling_started_at = $fillingStartedAt;
     }
 
-    public function setSubmissionFinishedAt($submissionFinishedAt) {
-    	$this->submission_finished_at = $submissionFinishedAt;
+    public function setFillingExpiredAt($fillingExpiredAt) {
+    	$this->filling_expired_at = $fillingExpiredAt;
     }
 
     public function setVerificationStartedAt($verificationStartedAt) {
     	$this->verification_started_at = $verificationStartedAt;
     }
 
-    public function setVerificationFinishedAt($verificationFinishedAt) {
-    	$this->verification_finished_at = $verificationFinishedAt;
+    public function setVerificationExpiredAt($verificationExpiredAt) {
+    	$this->verification_expired_at = $verificationExpiredAt;
     }
 
     public function setApprovementStartedAt($approvementStartedAt) {
     	$this->approvement_started_at = $approvementStartedAt;
     }
 
-    public function setApprovementFinishedAt($approvementFinishedAt) {
-    	$this->approvement_finished_at = $approvementFinishedAt;
+    public function setApprovementExpiredAt($approvementExpiredAt) {
+    	$this->approvement_expired_at = $approvementExpiredAt;
+    }
+
+    public function getFillingStartedAt() {
+    	return $this->filling_started_at;
+    }
+
+    public function getFillingExpiredAt() {
+    	return $this->filling_expired_at;
+    }
+
+    public function getVerificationStartedAt() {
+    	return $this->verification_started_at;
+    }
+
+    public function getVerificationExpiredAt() {
+    	return $this->verification_expired_at;
+    }
+
+    public function getApprovementStartedAt() {
+    	return $this->approvement_started_at;
+    }
+
+    public function getApprovementExpiredAt() {
+    	return $this->approvement_expired_at;
     }
 
     public function toArray() {
@@ -59,12 +83,12 @@ class Rating extends Model
     		'id' => $this->getId(),
     		'name' => $this->getName(),
     		'description' => $this->getDescription(),
-    		'submission_started_at' => $this->submission_started_at,
-    		'submission_finished_at' => $this->submission_finished_at,
-    		'verification_started_at' => $this->verification_started_at,
-    		'verification_finished_at' => $this->verification_finished_at,
-    		'approvement_started_at' => $this->approvement_started_at,
-    		'approvement_finished_at' => $this->approvement_finished_at,
+    		'filling_started_at' => $this->getFillingStartedAt(),
+    		'filling_expired_at' => $this->getFillingExpiredAt(),
+    		'verification_started_at' => $this->getVerificationStartedAt(),
+    		'verification_expired_at' => $this->getVerificationExpiredAt(),
+    		'approvement_started_at' => $this->getApprovementStartedAt(),
+    		'approvement_expired_at' => $this->getApprovementExpiredAt(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

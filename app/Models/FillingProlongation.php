@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubmissionProlongation extends Model
+class FillingProlongation extends Model
 {
     use HasFactory,
     	Helpers\HasId;

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Submission extends Model
+class Filling extends Model
 {
     use HasFactory,
     	Helpers\Id;
@@ -18,7 +18,7 @@ class Submission extends Model
     protected $fillable = [
         'user_id',
         'rating_id',
-        'parameter_version_id',
+        'parameter_id',
     ];
 
     public function user() {
@@ -29,12 +29,12 @@ class Submission extends Model
     	return $this->belongsTo(Rating::class);
     }
 
-    public function parameterVersion() {
-    	return $this->belongsTo(ParameterVersion::class);
+    public function parameter() {
+    	return $this->belongsTo(Parameter::class);
     }
 
-    public function submissionProlongations() {
-    	return $this->hasMany(SubmissionProlongation::class);
+    public function fillingProlongations() {
+    	return $this->hasMany(FillingProlongation::class);
     }
 
     public function setUser(User $user) {
@@ -45,11 +45,11 @@ class Submission extends Model
     	$this->rating()->associate($rating);
     }
 
-    public function setParameterVersion(ParameterVersion $parameterVersion) {
-    	$this->parameterVersion->associate($parameterVersion);
+    public function setParameter(Parameter $parameter) {
+    	$this->parameter->associate($parameter);
     }
 
-    public setSubmissionProlongations() {
+    public setFillingProlongations() {
     	// TODO: 
     }
 
@@ -61,11 +61,11 @@ class Submission extends Model
     	return $this->rating;
     }
 
-    public function getParameterVersion() {
-    	return $this->parameterVersion;
+    public function getParameter() {
+    	return $this->parameter;
     }
 
-    public getSubmissionProlongations() {
+    public getFillingProlongations() {
     	// TODO: 
     }
 

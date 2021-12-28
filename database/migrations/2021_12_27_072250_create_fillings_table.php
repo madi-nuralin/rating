@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubmissionProlongationsTable extends Migration
+class CreateFillingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,26 @@ class CreateSubmissionProlongationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('submission_prolongations', function (Blueprint $table) {
+        Schema::create('fillings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('rating_id')
-                  ->unsigned();
-            $table->foreign('rating_id')
-                  ->references('id')
-                  ->on('ratings')
-                  ->onDelete('cascade');
             $table->bigInteger('user_id')
                   ->unsigned();
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->date('prolongated_at');
+            $table->bigInteger('rating_id')
+                  ->unsigned();
+            $table->foreign('rating_id')
+                  ->references('id')
+                  ->on('ratings')
+                  ->onDelete('cascade');
+            $table->bigInteger('parameter_id')
+                  ->unsigned();
+            $table->foreign('parameter_id')
+                  ->references('id')
+                  ->on('parameters')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -39,6 +44,6 @@ class CreateSubmissionProlongationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission_prolongations');
+        Schema::dropIfExists('fillings');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParameterVersionsTable extends Migration
+class CreateParameterSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateParameterVersionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parameter_versions', function (Blueprint $table) {
+        Schema::create('parameter_settings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('parameter_id')
                   ->unsigned();
@@ -21,6 +21,14 @@ class CreateParameterVersionsTable extends Migration
                   ->references('id')
                   ->on('parameters')
                   ->onDelete('cascade');
+            $table->string('setting_locale')
+                  ->nullable();
+            $table->string('setting_type')
+                  ->nullable();
+            $table->string('setting_name')
+                  ->nullable();
+            $table->string('setting_value', 2048)
+                  ->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +40,6 @@ class CreateParameterVersionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parameter_versions');
+        Schema::dropIfExists('parameter_settings');
     }
 }

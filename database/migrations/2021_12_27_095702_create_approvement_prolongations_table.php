@@ -21,7 +21,7 @@ class CreateApprovementProlongationsTable extends Migration
                   ->references('id')
                   ->on('approvers')
                   ->onDelete('cascade');
-            $table->date('prolongated_at');
+            $table->timestamp('prolongated_at');
             $table->timestamps();
         });
     }

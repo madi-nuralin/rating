@@ -1,41 +1,41 @@
 <template>
     <breeze-action-section>
         <template #title>
-            {{ $t('pages.management.assessments.delete.title') }}
+            {{ $t('pages.management.rating.delete.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.assessments.delete.description') }}
+            {{ $t('pages.management.rating.delete.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                {{ $t('pages.management.assessments.delete.content.deleteInfo') }}
+                {{ $t('pages.management.rating.delete.content.deleteInfo') }}
             </div>
 
             <div class="mt-5">
                 <breeze-button-danger @click="confirmAssessmentDeletion">
-                    {{ $t('pages.management.assessments.delete.content.deleteButton') }}
+                    {{ $t('pages.management.rating.delete.content.deleteButton') }}
                 </breeze-button-danger>
             </div>
 
             <!-- Confirmation Modal -->
             <breeze-modal-confirmation :show="confirmingAssessmentDeletion" @close="confirmingAssessmentDeletion = false">
                 <template #title>
-                    {{ $t('pages.management.assessments.delete.content.modal.title') }}
+                    {{ $t('pages.management.rating.delete.content.modal.title') }}
                 </template>
 
                 <template #content>
-                    {{ $t('pages.management.assessments.delete.content.modal.content') }}
+                    {{ $t('pages.management.rating.delete.content.modal.content') }}
                 </template>
 
                 <template #footer>
                     <breeze-button-secondary @click="confirmingAssessmentDeletion = false">
-                        {{ $t('pages.management.assessments.delete.content.modal.footer.cancelButton') }}
+                        {{ $t('pages.management.rating.delete.content.modal.footer.cancelButton') }}
                     </breeze-button-secondary>
 
                     <breeze-button-danger class="ml-2" @click="deleteAssessment" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        {{ $t('pages.management.assessments.delete.content.modal.footer.deleteButton') }}
+                        {{ $t('pages.management.rating.delete.content.modal.footer.deleteButton') }}
                     </breeze-button-danger>
                 </template>
             </breeze-modal-confirmation>

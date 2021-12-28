@@ -21,7 +21,7 @@ class CreateVerificationProlongationsTable extends Migration
                   ->references('id')
                   ->on('verifiers')
                   ->onDelete('cascade');
-            $table->date('prolongated_at');
+            $table->timestamp('prolongated_at');
             $table->timestamps();
         });
     }

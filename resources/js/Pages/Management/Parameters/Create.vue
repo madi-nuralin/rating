@@ -10,7 +10,7 @@
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <CreateForm :categories="$page.props.categories" />
+                <CreateForm :parameter-targets="$page.props.targets" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>

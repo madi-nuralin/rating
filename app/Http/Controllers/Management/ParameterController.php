@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
-use App\Models\Category;
+use App\Models\ParameterTarget;
 use App\Models\Parameter;
 use App\Models\Forms\Form;
 
@@ -36,8 +36,8 @@ class ParameterController extends Controller
     public function create()
     {
         return Inertia::render('Management/Parameters/Create', [
-            'categories' => Category::all()->map(function($category) {
-                return $category->toArray();
+            'targets' => ParameterTarget::all()->map(function($parameterTarget) {
+                return $parameterTarget->toArray();
             }),
         ]);
     }
@@ -55,18 +55,18 @@ class ParameterController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
-            'category' => ['required', 'numeric'],
+            'target' => ['required', 'numeric'],
             'score' => ['required', 'numeric'],
         ])->validateWithBag('createParameter');
 
-        $category = Category::findOrFail($input['category']);
+        $parameterTarget = ParameterTarget::findOrFail($input['target']);
 
         $form = new Form();
         $form->save();
 
         $parameter = Parameter::create([
             'form_id' => $form->getId(),
-            'category_id' => $category->getId()
+            'parameter_target_id' => $parameterTarget->getId()
         ]);
 
         $parameter->setName($input['name']);
@@ -91,7 +91,7 @@ class ParameterController extends Controller
             'parameter' => array_merge(
                 $parameter->toArray(), [
                     'form' => array_merge(
-                        $parameter->getForm(), [
+                        $parameter->form->toArray(), [
                             'fields' => $parameter->form && 
                                         $parameter->form
                                                   ->fields ?
@@ -102,11 +102,11 @@ class ParameterController extends Controller
                             }) : []
                         ]
                     ),
-                    'category' => $parameter->getCategory()
+                    'target' => $parameter->parameterTarget->toArray()
                 ]
             ),
-            'categories' => Category::all()->map(function($category) {
-                return $category->toArray();
+            'targets' => ParameterTarget::all()->map(function($parameterTarget) {
+                return $parameterTarget->toArray();
             })
         ]);
     }
@@ -136,25 +136,17 @@ class ParameterController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
-            'category' => ['required', 'numeric'],
+            'target' => ['required', 'numeric'],
             'score' => ['required', 'numeric'],
         ])->validateWithBag('updateParameter');
 
         $parameter = Parameter::findOrFail($id);
-        $category = Category::findOrFail($input['category']);
+        $parameterTarget = ParameterTarget::findOrFail($input['target']);
         
-        if ($parameter->getName() != $input['name'] ) {
-            $parameter->setName($input['name']);    
-        }
-        if ($parameter->getDescription() != $input['description'] ) {
-            $parameter->setDescription($input['description']);
-        }
-        if ($parameter->getCategory() != $input['category'] ) {
-            $parameter->setCategory($input['category']);
-        }
-        if ($parameter->getScore() != $input['score'] ) {
-            $parameter->setScore($input['score']);
-        }
+        $parameter->setName($input['name']);    
+        $parameter->setDescription($input['description']);
+        $parameter->setParameterTarget($parameterTarget);
+        $parameter->setScore($input['score']);
 
         $parameter->save();
 

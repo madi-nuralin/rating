@@ -22,9 +22,9 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="category" :value="$t('pages.management.departments.update.form.category')" />
-                <BreezeSelect id="category" class="mt-1 block w-full" :value="form.category" @input="form.category = $event" :options="options.category" :multiple="false" />
-                <BreezeInputError :message="form.errors.category" class="mt-2" />
+                <BreezeLabel for="target" :value="$t('pages.management.departments.update.form.target')" />
+                <BreezeSelect id="target" class="mt-1 block w-full" :value="form.target" @input="form.target = $event" :options="options.target" :multiple="false" />
+                <BreezeInputError :message="form.errors.target" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -69,14 +69,14 @@
             BreezeSelect,
         },
 
-        props: ['categories'],
+        props: ['parameterTargets'],
 
         data() {
             return {
                 form: this.$inertia.form({
                     name: '',
                     description: '',
-                    category: '',
+                    target: '',
                     score: '',
                 })
             }
@@ -94,11 +94,11 @@
 
         computed: {
             options() {
-                let categories = this.categories;
+                let parameterTargets = this.parameterTargets;
 
                 return {
-                    category: categories ? categories.map(function(category) {
-                        return { value: category.id, name: category.name, description: category.description };
+                    target: parameterTargets ? parameterTargets.map(function(parameterTarget) {
+                        return { value: parameterTarget.id, name: parameterTarget.name, description: parameterTarget.description };
                     }) : null
                 }
             },

@@ -29,14 +29,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
-        $this->seedRole();
-        $this->seedPosition();
-        $this->seedDepartment();
-        $this->seedEmployementType();
+        //User::factory(10)->create();
+        //$this->seedRole();
+        //$this->seedPosition();
+        //$this->seedDepartment();
+        //$this->seedEmployementType();
         //$this->seedAssessment();
         //$this->seedParameterTarget();
-        //$this->seedParameter();
+        $this->seedParameter();
     }
 
     protected function seedRole() {
@@ -305,7 +305,7 @@ class DatabaseSeeder extends Seeder
         }
     }*/
 
-    /*protected function seedParameterTarget() {
+    protected function seedParameterTarget() {
         $locales = ['en', 'ru'];
 
         $definitions = [
@@ -330,7 +330,7 @@ class DatabaseSeeder extends Seeder
             ], [
                 'en' => [
                     'name' => 'Social educational work',
-                    'description' => 'Social work in an inextricable connection with educational work involves the organization of interaction with students, including with their socially unprotected category, in order to identify their social and living conditions, emerging difficulties, to introduce expedient changes and transformations in their life.'
+                    'description' => 'Social work in an inextricable connection with educational work involves the organization of interaction with students, including with their socially unprotected parameterTarget, in order to identify their social and living conditions, emerging difficulties, to introduce expedient changes and transformations in their life.'
                 ],
                 'ru' => [
                     'name' => 'Социально-воспитательная работа',
@@ -421,16 +421,16 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($definitions as $definition) {
-            $category = ParameterTarget::create();
+            $parameterTarget = ParameterTarget::create();
 
             foreach ($locales as $locale) {
-                $category->setName($definition[$locale]['name'], $locale);
-                $category->setDescription($definition[$locale]['description'], $locale);
+                $parameterTarget->setName($definition[$locale]['name'], $locale);
+                $parameterTarget->setDescription($definition[$locale]['description'], $locale);
             }
 
-            $category->save();
+            $parameterTarget->save();
         }
-    }*/
+    }
 
     protected function seedEmployementType() {
         $locales = ['en', 'ru'];
@@ -478,7 +478,7 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    /*protected function seedParameter() {
+    protected function seedParameter() {
         $locales = ['en', 'ru'];
 
         $definitions = [
@@ -491,7 +491,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квартиль',
                     'description' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квар-тиль по данным Journal Citation Reports (Джоурнал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Анали-тикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль по CiteScore (СайтСкор) не менее 65 хотя бы по одной из научных областей, в об-ласти социальных и гуманитарных наук, в журналах, индексируемых в базе дан-ных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) илиArticle in Press (Статья в печати)'
                 ],
-                'category' => 2,
+                'target' => 2,
                 'score' => 4,
                 'form' => [
                     'fields' => [
@@ -589,7 +589,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль',
                     'description' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль по данным Journal Citation Reports (Джоур-нал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Аналитикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль не менее 35 хотя бы по одной из научных областей, в области социальных и гуманитарных наук, в журналах, индексируемых в базе данных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) или Article in Press (Статья в печати)'
                 ],
-                'category' => 2,
+                'target' => 2,
                 'score' => 3,
                 'form' => [
                     'fields' => [
@@ -687,7 +687,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля',
                     'description' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля'
                 ],
-                'category' => 2,
+                'target' => 2,
                 'score' => 4
             ], [
                 'en' => [
@@ -698,7 +698,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)',
                     'description' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)'
                 ],
-                'category' => 2,
+                'target' => 2,
                 'score' => 0,
                 'form' => [
                     'fields' => [
@@ -763,7 +763,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate ',
                     'description' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate'
                 ],
-                'category' => 2,
+                'target' => 2,
                 'score' => 5
             ], [
                 'en' => [
@@ -774,7 +774,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры',
                     'description' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры'
                 ],
-                'category' => 8,
+                'target' => 8,
                 'score' => 7
             ], [
                 'en' => [
@@ -785,7 +785,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям',
                     'description' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям'
                 ],
-                'category' => 8,
+                'target' => 8,
                 'score' => 5
             ]   
         ];
@@ -796,7 +796,7 @@ class DatabaseSeeder extends Seeder
 
             $parameter = Parameter::create([
                 'form_id' => $form->getId(),
-                'category_id' => $definition['category']
+                'parameter_target_id' => $definition['target']
             ]);
 
             foreach ($locales as $locale) {
@@ -841,5 +841,5 @@ class DatabaseSeeder extends Seeder
 
             $parameter->save();
         }
-    }*/
+    }
 }

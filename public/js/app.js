@@ -26471,13 +26471,13 @@ __webpack_require__.r(__webpack_exports__);
     BreezeLabel: _Components_Label_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     BreezeSelect: _Components_Select_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
-  props: ['categories'],
+  props: ['parameterTargets'],
   data: function data() {
     return {
       form: this.$inertia.form({
         name: '',
         description: '',
-        category: '',
+        target: '',
         score: ''
       })
     };
@@ -26493,13 +26493,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     options: function options() {
-      var categories = this.categories;
+      var parameterTargets = this.parameterTargets;
       return {
-        category: categories ? categories.map(function (category) {
+        target: parameterTargets ? parameterTargets.map(function (parameterTarget) {
           return {
-            value: category.id,
-            name: category.name,
-            description: category.description
+            value: parameterTarget.id,
+            name: parameterTarget.name,
+            description: parameterTarget.description
           };
         }) : null
       };
@@ -26642,13 +26642,13 @@ __webpack_require__.r(__webpack_exports__);
     BreezeLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_6__["default"],
     BreezeSelect: _Components_Select_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
-  props: ['parameter', 'categories'],
+  props: ['parameter', 'parameterTargets'],
   data: function data() {
     return {
       form: this.$inertia.form({
         name: this.parameter.name,
         description: this.parameter.description,
-        category: this.parameter.category.id,
+        target: this.parameter.target.id,
         score: this.parameter.score
       })
     };
@@ -26665,13 +26665,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     options: function options() {
-      var categories = this.categories;
+      var parameterTargets = this.parameterTargets;
       return {
-        category: categories ? categories.map(function (category) {
+        target: parameterTargets ? parameterTargets.map(function (parameterTarget) {
           return {
-            value: category.id,
-            name: category.name,
-            description: category.description
+            value: parameterTarget.id,
+            name: parameterTarget.name,
+            description: parameterTarget.description
           };
         }) : null
       };
@@ -27099,7 +27099,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_InputError_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/InputError.vue */ "./resources/js/Components/InputError.vue");
 /* harmony import */ var _Components_Textarea_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Textarea.vue */ "./resources/js/Components/Textarea.vue");
 /* harmony import */ var _Components_Label_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Label.vue */ "./resources/js/Components/Label.vue");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 
@@ -27116,19 +27118,37 @@ __webpack_require__.r(__webpack_exports__);
     BreezeInput: _Components_Input_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     BreezeInputError: _Components_InputError_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     BreezeTextarea: _Components_Textarea_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    BreezeLabel: _Components_Label_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    BreezeLabel: _Components_Label_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    BreezeSelect: _Components_Select__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
+  props: ['parameterTargets', 'verfiers'],
   data: function data() {
     return {
       form: this.$inertia.form({
         name: '',
         description: '',
-        submission_started_at: '',
-        submission_finished_at: '',
+        filling_started_at: '',
+        filling_expired_at: '',
         verification_started_at: '',
-        verification_finished_at: '',
+        verification_expired_at: '',
         approvement_started_at: '',
-        approvement_finished_at: ''
+        approvement_expired_at: '',
+        targets: new Set(),
+        parameters: ''
+      }),
+      targets: this.parameterTargets.map(function (target) {
+        return {
+          'id': target.id,
+          'name': target.name,
+          'description': target.description,
+          'parameters': target.parameters.map(function (parameter) {
+            return {
+              'value': parameter.id,
+              'name': parameter.name,
+              'description': parameter.description
+            };
+          })
+        };
       })
     };
   },
@@ -27139,6 +27159,13 @@ __webpack_require__.r(__webpack_exports__);
         preserveScroll: true //onSuccess: () => Inertia.reload({ only: ['rating'] })
 
       });
+    },
+    addToParameterTargets: function addToParameterTargets(target) {
+      if (this.form.targets.has(target.id)) {
+        this.form.targets["delete"](target.id);
+      } else {
+        this.form.targets.add(target.id);
+      }
     }
   }
 });
@@ -27284,12 +27311,12 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         name: this.rating.name,
         description: this.rating.description,
-        submission_started_at: this.rating.submission_started_at,
-        submission_finished_at: this.rating.submission_finished_at,
+        filling_started_at: this.rating.filling_started_at,
+        filling_expired_at: this.rating.filling_expired_at,
         verification_started_at: this.rating.verification_started_at,
-        verification_finished_at: this.rating.verification_finished_at,
+        verification_expired_at: this.rating.verification_expired_at,
         approvement_started_at: this.rating.approvement_started_at,
-        approvement_finished_at: this.rating.approvement_finished_at
+        approvement_expired_at: this.rating.approvement_expired_at
       })
     };
   },
@@ -35561,10 +35588,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CreateForm, {
-        categories: _ctx.$page.props.categories
+        "parameter-targets": _ctx.$page.props.targets
       }, null, 8
       /* PROPS */
-      , ["categories"])])])];
+      , ["parameter-targets"])])])];
     }),
     _: 1
     /* STABLE */
@@ -35730,23 +35757,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "category",
-        value: _ctx.$t('pages.management.departments.update.form.category')
+        "for": "target",
+        value: _ctx.$t('pages.management.departments.update.form.target')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeSelect, {
-        id: "category",
+        id: "target",
         "class": "mt-1 block w-full",
-        value: $data.form.category,
+        value: $data.form.target,
         onInput: _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.category = $event;
+          return $data.form.target = $event;
         }),
-        options: $options.options.category,
+        options: $options.options.target,
         multiple: false
       }, null, 8
       /* PROPS */
       , ["value", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.category,
+        message: $data.form.errors.target,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -36097,23 +36124,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "category",
-        value: _ctx.$t('pages.management.departments.update.form.category')
+        "for": "target",
+        value: _ctx.$t('pages.management.departments.update.form.target')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeSelect, {
-        id: "category",
+        id: "target",
         "class": "mt-1 block w-full",
-        value: $data.form.category,
+        value: $data.form.target,
         onInput: _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.category = $event;
+          return $data.form.target = $event;
         }),
-        options: $options.options.category,
+        options: $options.options.target,
         multiple: false
       }, null, 8
       /* PROPS */
       , ["value", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.category,
+        message: $data.form.errors.target,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -36228,10 +36255,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_update_form, {
         parameter: _ctx.$page.props.parameter,
-        categories: _ctx.$page.props.categories
+        "parameter-targets": _ctx.$page.props.targets
       }, null, 8
       /* PROPS */
-      , ["parameter", "categories"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_section_border), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_resource_list, {
+      , ["parameter", "parameter-targets"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_section_border), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_resource_list, {
         form: _ctx.$page.props.parameter.form
       }, null, 8
       /* PROPS */
@@ -36909,7 +36936,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CreateForm)])])];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CreateForm, {
+        "parameter-targets": _ctx.$page.props.targets,
+        verifiers: _ctx.$page.props.verifiers
+      }, null, 8
+      /* PROPS */
+      , ["parameter-targets", "verifiers"])])])];
     }),
     _: 1
     /* STABLE */
@@ -36994,27 +37026,61 @@ var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_3 = {
-  "class": "col-span-6 sm:col-span-2 sm:col-start-1"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_4 = {
-  "class": "col-span-6 sm:col-span-2"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_5 = {
-  "class": "col-span-6 sm:col-span-2 sm:col-start-1"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_6 = {
-  "class": "col-span-6 sm:col-span-2"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_7 = {
-  "class": "col-span-6 sm:col-span-2 sm:col-start-1"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_8 = {
-  "class": "col-span-6 sm:col-span-2"
+  "class": "col-span-6 sm:col-span-4"
+};
+var _hoisted_9 = {
+  "class": "col-span-6 lg:col-span-4"
+};
+var _hoisted_10 = {
+  "class": "relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer"
+};
+var _hoisted_11 = ["onClick"];
+var _hoisted_12 = {
+  key: 0,
+  "class": "ml-2 h-5 w-5 text-green-400",
+  fill: "none",
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  stroke: "currentColor",
+  viewBox: "0 0 24 24"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+}, null, -1
+/* HOISTED */
+);
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
+var _hoisted_14 = [_hoisted_13];
+var _hoisted_15 = {
+  "class": "mt-2 text-xs text-gray-600 text-left"
+};
+var _hoisted_16 = {
+  "class": "mt-2 text-xs text-gray-600 text-left"
+};
+var _hoisted_17 = {
+  "class": "mt-2 text-xs text-gray-600 text-left"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -37022,6 +37088,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInput");
 
   var _component_BreezeInputError = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInputError");
+
+  var _component_BreezeSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeSelect");
 
   var _component_BreezeActionMessage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeActionMessage");
 
@@ -37085,42 +37153,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "submission_started_at",
-        value: _ctx.$t('pages.management.rating.create.form.submission_started_at')
+        "for": "filling_started_at",
+        value: _ctx.$t('pages.management.rating.create.form.filling_started_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "submission_started_at",
-        type: "date",
+        id: "filling_started_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.submission_started_at,
+        modelValue: $data.form.filling_started_at,
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.submission_started_at = $event;
+          return $data.form.filling_started_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.submission_started_at,
+        message: $data.form.errors.filling_started_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "submission_finished_at",
-        value: _ctx.$t('pages.management.rating.create.form.submission_finished_at')
+        "for": "filling_expired_at",
+        value: _ctx.$t('pages.management.rating.create.form.filling_expired_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "submission_finished_at",
-        type: "date",
+        id: "filling_expired_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.submission_finished_at,
+        modelValue: $data.form.filling_expired_at,
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-          return $data.form.submission_finished_at = $event;
+          return $data.form.filling_expired_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.submission_finished_at,
+        message: $data.form.errors.filling_expired_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -37131,7 +37199,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "verification_started_at",
-        type: "date",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
         modelValue: $data.form.verification_started_at,
         "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -37145,22 +37213,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "verification_finished_at",
-        value: _ctx.$t('pages.management.rating.create.form.verification_finished_at')
+        "for": "verification_expired_at",
+        value: _ctx.$t('pages.management.rating.create.form.verification_expired_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "verification_finished_at",
-        type: "date",
+        id: "verification_expired_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.verification_finished_at,
+        modelValue: $data.form.verification_expired_at,
         "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $data.form.verification_finished_at = $event;
+          return $data.form.verification_expired_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.verification_finished_at,
+        message: $data.form.errors.verification_expired_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -37171,7 +37239,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "approvement_started_at",
-        type: "date",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
         modelValue: $data.form.approvement_started_at,
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
@@ -37185,26 +37253,111 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "approvement_finished_at",
-        value: _ctx.$t('pages.management.rating.create.form.approvement_finished_at')
+        "for": "approvement_expired_at",
+        value: _ctx.$t('pages.management.rating.create.form.approvement_expired_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "approvement_finished_at",
-        type: "date",
+        id: "approvement_expired_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.approvement_finished_at,
+        modelValue: $data.form.approvement_expired_at,
         "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-          return $data.form.approvement_finished_at = $event;
+          return $data.form.approvement_expired_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.approvement_finished_at,
+        message: $data.form.errors.approvement_expired_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
-      , ["message"])])];
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "targets",
+        value: "Role"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.targets,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.targets, function (target, i) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full rounded-lg focus:z-0 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
+            'border-t border-gray-200 rounded-t-none': i > 0,
+            'rounded-b-none': i != Object.keys($data.targets).length - 1
+          }]),
+          key: target.key
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full", {
+            'opacity-50': !$data.form.targets.has(target.id)
+          }])
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Role Name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          "class": "flex items-center",
+          onClick: function onClick($event) {
+            return $options.addToParameterTargets(target);
+          }
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm text-gray-600 text-left", {
+            'font-semibold': $data.form.targets.has(target.id)
+          }])
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(target.name), 3
+        /* TEXT, CLASS */
+        ), $data.form.targets.has(target.id) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_12, _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8
+        /* PROPS */
+        , _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Role Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(target.description), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+          "for": target.id,
+          value: _ctx.$t('pages.management.rating.update.form.parameters')
+        }, null, 8
+        /* PROPS */
+        , ["for", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeSelect, {
+          id: target.id,
+          "class": "mt-1 block w-full",
+          value: $data.form.parameters,
+          onInput: _cache[8] || (_cache[8] = function ($event) {
+            return $data.form.parameters = $event;
+          }),
+          onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"])),
+          options: target.parameters,
+          multiple: true
+        }, null, 8
+        /* PROPS */
+        , ["id", "value", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+          message: $data.form.errors.parameters,
+          "class": "mt-2"
+        }, null, 8
+        /* PROPS */
+        , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+          "for": target.id,
+          value: _ctx.$t('pages.management.rating.update.form.verifiers')
+        }, null, 8
+        /* PROPS */
+        , ["for", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeSelect, {
+          id: target.id,
+          "class": "mt-1 block w-full",
+          value: $data.form.parameters,
+          onInput: _cache[10] || (_cache[10] = function ($event) {
+            return $data.form.parameters = $event;
+          }),
+          onClick: _cache[11] || (_cache[11] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"])),
+          options: target.parameters,
+          multiple: true
+        }, null, 8
+        /* PROPS */
+        , ["id", "value", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+          message: $data.form.errors.parameters,
+          "class": "mt-2"
+        }, null, 8
+        /* PROPS */
+        , ["message"])])], 2
+        /* CLASS */
+        )], 2
+        /* CLASS */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeActionMessage, {
@@ -37212,7 +37365,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
+          return [_hoisted_18];
         }),
         _: 1
         /* STABLE */
@@ -37226,7 +37379,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_10];
+          return [_hoisted_19];
         }),
         _: 1
         /* STABLE */
@@ -37275,23 +37428,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_action_section, null, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.title')), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.title')), 1
       /* TEXT */
       )];
     }),
     description: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.description')), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.description')), 1
       /* TEXT */
       )];
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.content.deleteInfo')), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.content.deleteInfo')), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_danger, {
         onClick: $options.confirmAssessmentDeletion
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.content.deleteButton')), 1
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.content.deleteButton')), 1
           /* TEXT */
           )];
         }),
@@ -37307,12 +37460,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.content.modal.title')), 1
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.content.modal.title')), 1
           /* TEXT */
           )];
         }),
         content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.content.modal.content')), 1
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.content.modal.content')), 1
           /* TEXT */
           )];
         }),
@@ -37323,7 +37476,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             })
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.content.modal.footer.cancelButton')), 1
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.content.modal.footer.cancelButton')), 1
               /* TEXT */
               )];
             }),
@@ -37338,7 +37491,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             disabled: $data.form.processing
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.assessments.delete.content.modal.footer.deleteButton')), 1
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.management.rating.delete.content.modal.footer.deleteButton')), 1
               /* TEXT */
               )];
             }),
@@ -37451,22 +37604,22 @@ var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_3 = {
-  "class": "col-span-6 sm:col-span-2 sm:col-start-1"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_4 = {
-  "class": "col-span-6 sm:col-span-2"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_5 = {
-  "class": "col-span-6 sm:col-span-2 sm:col-start-1"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_6 = {
-  "class": "col-span-6 sm:col-span-2"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_7 = {
-  "class": "col-span-6 sm:col-span-2 sm:col-start-1"
+  "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_8 = {
-  "class": "col-span-6 sm:col-span-2"
+  "class": "col-span-6 sm:col-span-4"
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
@@ -37542,42 +37695,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "submission_started_at",
-        value: _ctx.$t('pages.management.rating.create.form.submission_started_at')
+        "for": "filling_started_at",
+        value: _ctx.$t('pages.management.rating.create.form.filling_started_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "submission_started_at",
-        type: "date",
+        id: "filling_started_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.submission_started_at,
+        modelValue: $data.form.filling_started_at,
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.submission_started_at = $event;
+          return $data.form.filling_started_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.submission_started_at,
+        message: $data.form.errors.filling_started_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "submission_finished_at",
-        value: _ctx.$t('pages.management.rating.create.form.submission_finished_at')
+        "for": "filling_expired_at",
+        value: _ctx.$t('pages.management.rating.create.form.filling_expired_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "submission_finished_at",
-        type: "date",
+        id: "filling_expired_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.submission_finished_at,
+        modelValue: $data.form.filling_expired_at,
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-          return $data.form.submission_finished_at = $event;
+          return $data.form.filling_expired_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.submission_finished_at,
+        message: $data.form.errors.filling_expired_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -37588,7 +37741,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "verification_started_at",
-        type: "date",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
         modelValue: $data.form.verification_started_at,
         "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -37602,22 +37755,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "verification_finished_at",
-        value: _ctx.$t('pages.management.rating.create.form.verification_finished_at')
+        "for": "verification_expired_at",
+        value: _ctx.$t('pages.management.rating.create.form.verification_expired_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "verification_finished_at",
-        type: "date",
+        id: "verification_expired_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.verification_finished_at,
+        modelValue: $data.form.verification_expired_at,
         "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $data.form.verification_finished_at = $event;
+          return $data.form.verification_expired_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.verification_finished_at,
+        message: $data.form.errors.verification_expired_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -37628,7 +37781,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "approvement_started_at",
-        type: "date",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
         modelValue: $data.form.approvement_started_at,
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
@@ -37642,22 +37795,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
-        "for": "approvement_finished_at",
-        value: _ctx.$t('pages.management.rating.create.form.approvement_finished_at')
+        "for": "approvement_expired_at",
+        value: _ctx.$t('pages.management.rating.create.form.approvement_expired_at')
       }, null, 8
       /* PROPS */
       , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
-        id: "approvement_finished_at",
-        type: "date",
+        id: "approvement_expired_at",
+        type: "datetime-local",
         "class": "mt-1 block w-full",
-        modelValue: $data.form.approvement_finished_at,
+        modelValue: $data.form.approvement_expired_at,
         "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-          return $data.form.approvement_finished_at = $event;
+          return $data.form.approvement_expired_at = $event;
         })
       }, null, 8
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
-        message: $data.form.errors.approvement_finished_at,
+        message: $data.form.errors.approvement_expired_at,
         "class": "mt-2"
       }, null, 8
       /* PROPS */
@@ -39941,12 +40094,12 @@ var messages = {
             form: {
               name: 'Rating name',
               description: 'Rating description',
-              submission_started_at: 'Submission starts from',
-              submission_finished_at: 'Submission finish date',
+              filling_started_at: 'Submission starts from',
+              filling_expired_at: 'Submission finish date',
               verification_started_at: 'Verification starts from',
-              verification_finished_at: 'Verification finish date',
+              verification_expired_at: 'Verification finish date',
               approvement_started_at: 'Approvement starts from',
-              approvement_finished_at: 'Approvement finish date'
+              approvement_expired_at: 'Approvement finish date'
             }
           },
           update: {
@@ -39955,8 +40108,6 @@ var messages = {
             form: {
               name: 'Rating name',
               description: 'Rating description',
-              validFrom: 'Valid from date',
-              validTo: 'Valid to date',
               employements: 'Select department positions for rating',
               employement: {
                 option: {
@@ -40687,12 +40838,12 @@ var messages = {
             form: {
               name: 'Название рейтинга',
               description: 'Описание рейтинга',
-              submission_started_at: 'Подача начинается с',
-              submission_finished_at: 'Дата окончания подачи',
+              filling_started_at: 'Подача начинается с',
+              filling_expired_at: 'Дата окончания подачи',
               verification_started_at: 'Проверка начинается с',
-              verification_finished_at: 'Дата окончания проверки',
+              verification_expired_at: 'Дата окончания проверки',
               approvement_started_at: 'Утверждение начинается с',
-              approvement_finished_at: 'Дата окончания утверждения'
+              approvement_expired_at: 'Дата окончания утверждения'
             }
           },
           update: {

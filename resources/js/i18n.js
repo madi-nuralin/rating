@@ -243,12 +243,12 @@ var messages = {
             form: {
               name: 'Rating name',
               description: 'Rating description',
-              submission_started_at: 'Submission starts from',
-              submission_finished_at: 'Submission finish date',
+              filling_started_at: 'Submission starts from',
+              filling_expired_at: 'Submission finish date',
               verification_started_at: 'Verification starts from',
-              verification_finished_at: 'Verification finish date',
+              verification_expired_at: 'Verification finish date',
               approvement_started_at: 'Approvement starts from',
-              approvement_finished_at: 'Approvement finish date',
+              approvement_expired_at: 'Approvement finish date',
             }
           },
           update: {
@@ -257,8 +257,6 @@ var messages = {
             form: {
               name: 'Rating name',
               description: 'Rating description',
-              validFrom: 'Valid from date',
-              validTo: 'Valid to date',
               employements: 'Select department positions for rating',
               employement: {
                 option: { 
@@ -994,12 +992,12 @@ var messages = {
             form: {
               name: 'Название рейтинга',
               description: 'Описание рейтинга',
-              submission_started_at: 'Подача начинается с',
-              submission_finished_at: 'Дата окончания подачи',
+              filling_started_at: 'Подача начинается с',
+              filling_expired_at: 'Дата окончания подачи',
               verification_started_at: 'Проверка начинается с',
-              verification_finished_at: 'Дата окончания проверки',
+              verification_expired_at: 'Дата окончания проверки',
               approvement_started_at: 'Утверждение начинается с',
-              approvement_finished_at: 'Дата окончания утверждения',
+              approvement_expired_at: 'Дата окончания утверждения',
             }
           },
           update: {

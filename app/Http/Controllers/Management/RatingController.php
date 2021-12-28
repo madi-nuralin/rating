@@ -13,7 +13,8 @@ use App\Models\Employement;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\User;
-use App\Models\Confirmer;
+use App\Models\Verifier;
+use App\Models\ParameterTarget;
 use App\Models\Parameter;
 
 class RatingController extends Controller
@@ -39,7 +40,24 @@ class RatingController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Rating/Create');
+        return Inertia::render('Management/Rating/Create', [
+            'targets' => ParameterTarget::all()->map(function($parameterTarget) {
+                return array_merge(
+                    $parameterTarget->toArray(), [
+                        'parameters' => $parameterTarget->parameters->map(function($parameter) {
+                            return $parameter->toArray();
+                        })
+                    ]
+                );
+            }),
+            'verifiers' => collect(User::whereHas(
+                'roles', function($q) {
+                    $q->where('context', 'verifier');
+                })->get())->map(function($user) {
+                    return $user->toArray();
+                })
+            //
+        ]);
     }
 
     /**
@@ -55,23 +73,23 @@ class RatingController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'submission_started_at' => ['required', 'date'],
-            'submission_finished_at' => ['required', 'date'],
+            'filling_started_at' => ['required', 'date'],
+            'filling_expired_at' => ['required', 'date'],
             'verification_started_at' => ['required', 'date'],
-            'verification_finished_at' => ['required', 'date'],
+            'verification_expired_at' => ['required', 'date'],
             'approvement_started_at' => ['required', 'date'],
-            'approvement_finished_at' => ['required', 'date'],
+            'approvement_expired_at' => ['required', 'date'],
         ])->validateWithBag('createRating');
 
         $rating = Rating::create();
         $rating->setName($input['name']);
         $rating->setDescription($input['description']);
-        $rating->setSubmissionStartedAt($input['submission_started_at']);
-        $rating->setSubmissionFinishedAt($input['submission_finished_at']);
+        $rating->setFillingStartedAt($input['filling_started_at']);
+        $rating->setFillingExpiredAt($input['filling_expired_at']);
         $rating->setVerificationStartedAt($input['verification_started_at']);
-        $rating->setVerificationFinishedAt($input['verification_finished_at']);
+        $rating->setVerificationExpiredAt($input['verification_expired_at']);
         $rating->setApprovementStartedAt($input['approvement_started_at']);
-        $rating->setApprovementFinishedAt($input['approvement_finished_at']);
+        $rating->setApprovementExpiredAt($input['approvement_expired_at']);
 
         $rating->save();
 
@@ -125,24 +143,24 @@ class RatingController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'submission_started_at' => ['required', 'date'],
-            'submission_finished_at' => ['required', 'date'],
+            'filling_started_at' => ['required', 'date'],
+            'filling_expired_at' => ['required', 'date'],
             'verification_started_at' => ['required', 'date'],
-            'verification_finished_at' => ['required', 'date'],
+            'verification_expired_at' => ['required', 'date'],
             'approvement_started_at' => ['required', 'date'],
-            'approvement_finished_at' => ['required', 'date'],
+            'approvement_expired_at' => ['required', 'date'],
         ])->validateWithBag('updateRating');
 
         $rating = Rating::findOrFail($id);
         
         $rating->setName($input['name']);
         $rating->setDescription($input['description']);
-        $rating->setSubmissionStartedAt($input['submission_started_at']);
-        $rating->setSubmissionFinishedAt($input['submission_finished_at']);
+        $rating->setFillingStartedAt($input['filling_started_at']);
+        $rating->setFillingExpiredAt($input['filling_expired_at']);
         $rating->setVerificationStartedAt($input['verification_started_at']);
-        $rating->setVerificationFinishedAt($input['verification_finished_at']);
+        $rating->setVerificationExpiredAt($input['verification_expired_at']);
         $rating->setApprovementStartedAt($input['approvement_started_at']);
-        $rating->setApprovementFinishedAt($input['approvement_finished_at']);
+        $rating->setApprovementExpiredAt($input['approvement_expired_at']);
 
         $rating->save();
 

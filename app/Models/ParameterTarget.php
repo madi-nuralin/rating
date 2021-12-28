@@ -16,6 +16,10 @@ class ParameterTarget extends Model
     	return $this->hasMany(ParameterTargetSetting::class);
     }
 
+    public function parameters() {
+        return $this->hasMany(Parameter::class);
+    }
+
     public function toArray() {
     	return [
     		'id' => $this->getId(),
