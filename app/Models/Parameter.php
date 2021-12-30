@@ -33,6 +33,10 @@ class Parameter extends Model
     	return $this->belongsTo(ParameterTarget::class);
     }
 
+    public function ratings() {
+        return $this->belongsToMany(Rating::class);
+    }
+
     public function form() {
         return $this->belongsTo(Form::class);
     }

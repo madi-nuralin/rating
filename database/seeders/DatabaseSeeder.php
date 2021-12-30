@@ -29,13 +29,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //User::factory(10)->create();
-        //$this->seedRole();
-        //$this->seedPosition();
-        //$this->seedDepartment();
-        //$this->seedEmployementType();
+        User::factory(10)->create();
+        $this->seedRole();
+        $this->seedPosition();
+        $this->seedDepartment();
+        $this->seedEmployementType();
         //$this->seedAssessment();
-        //$this->seedParameterTarget();
+        $this->seedParameterTarget();
         $this->seedParameter();
     }
 

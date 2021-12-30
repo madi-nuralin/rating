@@ -41,22 +41,9 @@ class RatingController extends Controller
     public function create()
     {
         return Inertia::render('Management/Rating/Create', [
-            'targets' => ParameterTarget::all()->map(function($parameterTarget) {
-                return array_merge(
-                    $parameterTarget->toArray(), [
-                        'parameters' => $parameterTarget->parameters->map(function($parameter) {
-                            return $parameter->toArray();
-                        })
-                    ]
-                );
-            }),
-            'verifiers' => collect(User::whereHas(
-                'roles', function($q) {
-                    $q->where('context', 'verifier');
-                })->get())->map(function($user) {
-                    return $user->toArray();
-                })
-            //
+            'parameters' => Parameter::all()->map(function($parameter) {
+                return $parameter->toArray();
+            })
         ]);
     }
 
@@ -79,6 +66,7 @@ class RatingController extends Controller
             'verification_expired_at' => ['required', 'date'],
             'approvement_started_at' => ['required', 'date'],
             'approvement_expired_at' => ['required', 'date'],
+            'parameters' => ['array'],
         ])->validateWithBag('createRating');
 
         $rating = Rating::create();
@@ -90,6 +78,7 @@ class RatingController extends Controller
         $rating->setVerificationExpiredAt($input['verification_expired_at']);
         $rating->setApprovementStartedAt($input['approvement_started_at']);
         $rating->setApprovementExpiredAt($input['approvement_expired_at']);
+        $rating->setParameters($input['parameters']);
 
         $rating->save();
 
@@ -114,7 +103,16 @@ class RatingController extends Controller
         $rating = Rating::findOrFail($id);
 
         return Inertia::render('Management/Rating/Show', [
-            'rating' => $rating->toArray()
+            'rating' => array_merge(
+                $rating->toArray(), [
+                    'parameters' => $rating->parameters->map(function($parameter) {
+                        return $parameter->toArray();
+                    })
+                ]
+            ),
+            'parameters' => Parameter::all()->map(function($parameter) {
+                return $parameter->toArray();
+            })
         ]);
     }
 
@@ -149,6 +147,7 @@ class RatingController extends Controller
             'verification_expired_at' => ['required', 'date'],
             'approvement_started_at' => ['required', 'date'],
             'approvement_expired_at' => ['required', 'date'],
+            'parameters' => ['array'],
         ])->validateWithBag('updateRating');
 
         $rating = Rating::findOrFail($id);
@@ -161,6 +160,7 @@ class RatingController extends Controller
         $rating->setVerificationExpiredAt($input['verification_expired_at']);
         $rating->setApprovementStartedAt($input['approvement_started_at']);
         $rating->setApprovementExpiredAt($input['approvement_expired_at']);
+        $rating->setParameters($input['parameters']);
 
         $rating->save();
 

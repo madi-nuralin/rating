@@ -22,6 +22,12 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="parameters" :value="$t('pages.management.verifier.create.form.parameters')" />
+                <BreezeSelect id="parameters" class="mt-1 block w-full" :value="form.parameters" @input="form.parameters = $event" :options="options.parameters" :multiple="true" />
+                <BreezeInputError :message="form.errors.parameters" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="filling_started_at" :value="$t('pages.management.rating.create.form.filling_started_at')" />
                 <BreezeInput id="filling_started_at" type="datetime-local" class="mt-1 block w-full" v-model="form.filling_started_at" />
                 <BreezeInputError :message="form.errors.filling_started_at" class="mt-2" />
@@ -92,7 +98,7 @@
             BreezeLabel,
         },
 
-        props: ['rating'],
+        props: ['rating', 'parameters'],
 
         data() {
             return {
@@ -105,6 +111,9 @@
                     verification_expired_at: this.rating.verification_expired_at,
                     approvement_started_at: this.rating.approvement_started_at,
                     approvement_expired_at: this.rating.approvement_expired_at,
+                    parameters: this.rating.parameters.map(function(parameter) {
+                        return parameter.id;
+                    }),
                 })
             }
         },
@@ -117,11 +126,19 @@
                 });
             },
         },
+        
         computed: {
             options() {
                 return {
+                    'parameters': this.parameters ? this.parameters.map(function(parameter) {
+                        return {
+                            'value': parameter.id,
+                            'name': parameter.name,
+                            'description': parameter.description
+                        };
+                    }) : null,
                 };
-            }
-        }
+            },
+        },
     }
 </script>

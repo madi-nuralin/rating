@@ -1,19 +1,16 @@
 <template>
-    <Head :title="$t('pages.management.rating.head.title')" />
+    <Head :title="$t('pages.management.verifier.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.rating.header') }}
+                {{ $t('pages.management.verifier.header') }}
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :rating="$page.props.rating" :parameters="$page.props.parameters" />
-                <breeze-section-border />
-
-                <delete-form :rating="$page.props.rating" class="mt-10 sm:mt-0" />
+        <div>
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                <resource-list :verifiers="$page.props.verifiers"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -22,16 +19,14 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import UpdateForm from './Partials/UpdateForm.vue'
-    import DeleteForm from './Partials/DeleteForm.vue'
+    import ResourceList from './Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
         components: {
             BreezeAuthenticatedLayout,
             BreezeSectionBorder,
-            UpdateForm,
-            DeleteForm,
+            ResourceList,
             Head,
         },
     }

@@ -1,19 +1,19 @@
 <template>
-    <Head :title="$t('pages.management.rating.head.title')" />
+    <Head :title="$t('pages.management.verifier.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.rating.header') }}
+                {{ $t('pages.management.verifier.header') }}
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :rating="$page.props.rating" :parameters="$page.props.parameters" />
+                <update-form :verifier="$page.props.verifier" :ratings="$page.props.ratings" :targets="$page.props.targets" :users="$page.props.users" />
                 <breeze-section-border />
 
-                <delete-form :rating="$page.props.rating" class="mt-10 sm:mt-0" />
+                <delete-form :verifier="$page.props.verifier" class="mt-10 sm:mt-0" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>

@@ -304,6 +304,54 @@ var messages = {
             }
           }
         },
+        verifier: {
+          head: {
+            title: 'Rating management: Verifers'
+          },
+          header: 'Rating management: Verifers',
+          create: {
+            title: 'Add a new verifer',
+            description: 'Create a new  verification configuration for this rating.',
+            form: {
+              target: 'Parameter target',
+              user: 'Verifier'
+            }
+          },
+          update: {
+            title: 'Update a verifer',
+            description: 'Update a verification configuration for this rating.',
+            form: {
+              target: 'Parameter target',
+              user: 'Verifier'
+            }
+          },
+          delete: {
+            title: 'Delete Verifer',
+            description: 'Permanently delete this verifer.',
+            content: {
+              deleteInfo: 'Once a verifer is deleted, all of its resources and data will be permanently deleted. Before deleting this rating, please download any data or information regarding this rating that you wish to retain.',
+              deleteButton: 'Delete Verifer',
+              modal: {
+                title: 'Delete Verifer',
+                content: 'Are you sure you want to delete this verifer? Once a verifer is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete Verifer'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Rating verifiers list',
+            description: 'The verifiers of this rating which are registered.',
+            form: {
+              //
+            },
+            actions: {
+              createButton: 'Create New'
+            }
+          },
+        },
         parameters: {
           head: {
             title: 'Parameters management'
@@ -750,6 +798,7 @@ var messages = {
           employements: 'Employements',
           ratings: 'Rating',
           parameters: 'Parameters',
+          verifiers: 'Verifers',
           profile: 'Profile',
           logout: 'Log out',
           locales: {
@@ -1051,6 +1100,54 @@ var messages = {
             }
           }
         },
+        verifier: {
+          head: {
+            title: 'Управление подтверждением рейтнга'
+          },
+          header: 'Управление подтверждением рейтнга',
+          create: {
+            title: 'Добавить нового подтверждающего',
+            description: 'Создайте новую конфигурацию подтверждения для этого рейтинга.',
+            form: {
+              target: 'Направление деятельности',
+              user: 'Подтверждающий'
+            }
+          },
+          update: {
+            title: 'Обновить подтверждающего',
+            description: 'Обновить конфигурацию подтверждения для этого рейтинга.',
+            form: {
+              target: 'Направление деятельности',
+              user: 'Подтверждающий'
+            }
+          },
+          list: {
+            title: 'Список подтверждающих рейтинг лиц',
+            description: 'Зарегистрированные верификаторы этого рейтинга.',
+            form: {
+              //
+            },
+            actions: {
+              createButton: 'Создать новое'
+            }
+          },
+          delete: {
+            title: 'Удалить подтверждающего оценки персонала',
+            description: 'Удалить подтверждающего оценки персонала навсегда.',
+            content: {
+              deleteInfo: 'После удаления эподтверждающего все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой экземпляр оценки персонала, пожалуйста, загрузите любые данные или информацию относительно этой экземпляр оценки персонала, которые вы хотите сохранить.',
+              deleteButton: 'Удалить подтверждающего оценки персонала',
+              modal: {
+                title: 'Удалить подтверждающего оценки персонала',
+                content: 'Вы уверены, что хотите удалить эту подтверждающего оценки персонала? После удаления экземпляра оценки персонала все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить подтверждающего оценки персонала'
+                }
+              }
+            }
+          }
+        },
         parameters: {
           head: {
             title: 'Управление параметрами оценки'
@@ -1157,7 +1254,7 @@ var messages = {
       },
       dashboard: {
         tabs: {
-          assignments: 'Мои рейтинги',
+          assignments: 'Мой рейтинг',
           assignment: {
             description: 'Экземпляр оценки назначается системными менеджерами. Здесь вы можете добавить свои выполненные действия для подтверждения'
           },
@@ -1494,6 +1591,7 @@ var messages = {
           employements: 'Трудоустройство',
           ratings: 'Оценивание',
           parameters: 'Параметры',
+          verifiers: 'Подтверждающие',
           profile: 'Профиль',
           logout: 'Выйти',
           locales: {

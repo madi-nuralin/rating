@@ -30,6 +30,14 @@ class Rating extends Model
     	return $this->hasMany(RatingSetting::class);
     }
 
+    public function verifiers() {
+        return $this->hasMany(Verifier::class);
+    }
+
+    public function parameters() {
+        return $this->belongsToMany(Parameter::class);
+    }
+
     public function setFillingStartedAt($fillingStartedAt) {
     	$this->filling_started_at = $fillingStartedAt;
     }
@@ -54,6 +62,22 @@ class Rating extends Model
     	$this->approvement_expired_at = $approvementExpiredAt;
     }
 
+    public function setParameters($parameters) {
+        if (is_null($parameters) || empty($parameters)) {
+            $this->parameters()->detach();
+            return;
+        }
+
+        if ($this->parameters()) {
+            $this->parameters()->detach(
+                array_diff($this->parameters()->pluck('parameters.id')->toArray(), $parameters));
+            $this->parameters()->attach(
+                array_diff($parameters, $this->parameters()->pluck('parameters.id')->toArray()));
+        } else {
+            $this->parameters()->attach($parameters);
+        }
+    }
+
     public function getFillingStartedAt() {
     	return $this->filling_started_at;
     }
@@ -76,6 +100,10 @@ class Rating extends Model
 
     public function getApprovementExpiredAt() {
     	return $this->approvement_expired_at;
+    }
+
+    public function getParameters() {
+        return $this->parameters;
     }
 
     public function toArray() {
