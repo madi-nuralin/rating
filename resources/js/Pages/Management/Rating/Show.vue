@@ -10,7 +10,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :rating="$page.props.rating" :parameters="$page.props.parameters" />
+                <update-form :rating="$page.props.rating" :parameters="$page.props.parameters" :users="$page.props.users" />
                 <breeze-section-border />
 
                 <delete-form :rating="$page.props.rating" class="mt-10 sm:mt-0" />

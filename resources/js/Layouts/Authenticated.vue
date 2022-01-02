@@ -21,11 +21,8 @@
                                 <!--BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     {{ $t('layouts.authenticated.links.dashboard') }}
                                 </BreezeNavLink-->
-                                <BreezeNavLink :href="route('assignment.index')" :active="route().current('assignment.index')">
+                                <BreezeNavLink :href="route('myrating')" :active="route().current('myrating')">
                                     {{ $t('pages.dashboard.tabs.assignments') }}
-                                </BreezeNavLink>
-                                <BreezeNavLink :href="route('confirmation.index')" :active="route().current('confirmation.index')">
-                                    {{ $t('pages.dashboard.tabs.confirmations') }}
                                 </BreezeNavLink>
                             </div>
                         </div>
@@ -175,11 +172,8 @@
                         <!--BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ $t('layouts.authenticated.links.dashboard') }}
                         </BreezeResponsiveNavLink-->
-                        <BreezeResponsiveNavLink :href="route('assignment.index')" :active="route().current('assignment.index')">
+                        <BreezeResponsiveNavLink :href="route('myrating')" :active="route().current('myrating')">
                             {{ $t('pages.dashboard.tabs.assignments') }}
-                        </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink :href="route('confirmation.index')" :active="route().current('confirmation.index')">
-                            {{ $t('pages.dashboard.tabs.confirmations') }}
                         </BreezeResponsiveNavLink>
                     </div>
 

@@ -38,6 +38,10 @@ class Rating extends Model
         return $this->belongsToMany(Parameter::class);
     }
 
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
+
     public function setFillingStartedAt($fillingStartedAt) {
     	$this->filling_started_at = $fillingStartedAt;
     }
@@ -78,6 +82,22 @@ class Rating extends Model
         }
     }
 
+    public function setUsers($users) {
+        if (is_null($users) || empty($users)) {
+            $this->users()->detach();
+            return;
+        }
+
+        if ($this->users()) {
+            $this->users()->detach(
+                array_diff($this->users()->pluck('users.id')->toArray(), $users));
+            $this->users()->attach(
+                array_diff($users, $this->users()->pluck('users.id')->toArray()));
+        } else {
+            $this->users()->attach($users);
+        }
+    }
+
     public function getFillingStartedAt() {
     	return $this->filling_started_at;
     }
@@ -104,6 +124,10 @@ class Rating extends Model
 
     public function getParameters() {
         return $this->parameters;
+    }
+
+    public function getUsers() {
+        return $this->users;
     }
 
     public function toArray() {

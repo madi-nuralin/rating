@@ -43,6 +43,9 @@ class RatingController extends Controller
         return Inertia::render('Management/Rating/Create', [
             'parameters' => Parameter::all()->map(function($parameter) {
                 return $parameter->toArray();
+            }),
+            'users' => User::all()->map(function($user) {
+                return $user->toArray();
             })
         ]);
     }
@@ -67,6 +70,7 @@ class RatingController extends Controller
             'approvement_started_at' => ['required', 'date'],
             'approvement_expired_at' => ['required', 'date'],
             'parameters' => ['array'],
+            'users' => ['array']
         ])->validateWithBag('createRating');
 
         $rating = Rating::create();
@@ -79,6 +83,7 @@ class RatingController extends Controller
         $rating->setApprovementStartedAt($input['approvement_started_at']);
         $rating->setApprovementExpiredAt($input['approvement_expired_at']);
         $rating->setParameters($input['parameters']);
+        $rating->setUsers($input['users']);
 
         $rating->save();
 
@@ -107,11 +112,17 @@ class RatingController extends Controller
                 $rating->toArray(), [
                     'parameters' => $rating->parameters->map(function($parameter) {
                         return $parameter->toArray();
+                    }),
+                    'users' => $rating->users->map(function($user) {
+                        return $user->toArray();
                     })
                 ]
             ),
             'parameters' => Parameter::all()->map(function($parameter) {
                 return $parameter->toArray();
+            }),
+            'users' => User::all()->map(function($user) {
+                return $user->toArray();
             })
         ]);
     }
@@ -148,6 +159,7 @@ class RatingController extends Controller
             'approvement_started_at' => ['required', 'date'],
             'approvement_expired_at' => ['required', 'date'],
             'parameters' => ['array'],
+            'users' => ['array']
         ])->validateWithBag('updateRating');
 
         $rating = Rating::findOrFail($id);
@@ -161,6 +173,7 @@ class RatingController extends Controller
         $rating->setApprovementStartedAt($input['approvement_started_at']);
         $rating->setApprovementExpiredAt($input['approvement_expired_at']);
         $rating->setParameters($input['parameters']);
+        $rating->setUsers($input['users']);
 
         $rating->save();
 

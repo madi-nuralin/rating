@@ -22,9 +22,15 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="parameters" :value="$t('pages.management.verifier.create.form.parameters')" />
+                <BreezeLabel for="parameters" :value="$t('pages.management.rating.create.form.parameters')" />
                 <BreezeSelect id="parameters" class="mt-1 block w-full" :value="form.parameters" @input="form.parameters = $event" :options="options.parameters" :multiple="true" />
                 <BreezeInputError :message="form.errors.parameters" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="users" :value="$t('pages.management.rating.create.form.users')" />
+                <BreezeSelect id="users" class="mt-1 block w-full" :value="form.users" @input="form.users = $event" :options="options.users" :multiple="true" />
+                <BreezeInputError :message="form.errors.users" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -98,7 +104,7 @@
             BreezeLabel,
         },
 
-        props: ['rating', 'parameters'],
+        props: ['rating', 'parameters', 'users'],
 
         data() {
             return {
@@ -113,6 +119,9 @@
                     approvement_expired_at: this.rating.approvement_expired_at,
                     parameters: this.rating.parameters.map(function(parameter) {
                         return parameter.id;
+                    }),
+                    users: this.rating.users.map(function(user) {
+                        return user.id;
                     }),
                 })
             }
@@ -135,6 +144,13 @@
                             'value': parameter.id,
                             'name': parameter.name,
                             'description': parameter.description
+                        };
+                    }) : null,
+                    'users': this.users ? this.users.map(function(user) {
+                        return {
+                            'value': user.id,
+                            'name': user.name,
+                            'description': user.email
                         };
                     }) : null,
                 };

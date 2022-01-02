@@ -61,8 +61,8 @@ class User extends Authenticatable
         return $this->hasMany(Employement::class);
     }
 
-    public function confirmer() {
-        return $this->hasOne(Confirmer::class);
+    public function ratings() {
+        return $this->belongsToMany(Rating::class);
     }
 
     public function assignments() {
@@ -153,16 +153,6 @@ class User extends Authenticatable
                 array_diff($employements, $this->employements()->pluck('employements.id')->toArray()));
         } else {
             $this->employements()->attach($employements);
-        }
-    }
-
-    public function getConfirmer() {
-        return $this->confirmer->toArray();
-    }
-
-    public function setConfirmer($confirmer) {
-        if ($this->confirmer === null) {
-            $this->confirmer()->save($confirmer);
         }
     }
 

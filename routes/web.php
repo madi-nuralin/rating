@@ -43,12 +43,6 @@ use App\Http\Controllers\Forms\FormController;
 use App\Http\Controllers\Forms\FormFieldController;
 use App\Http\Controllers\Forms\FormFieldOptionController;
 
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\AssignmentController;
-use App\Http\Controllers\Dashboard\ConfirmationController;
-use App\Http\Controllers\Dashboard\ActivityController;
-
-
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
@@ -56,22 +50,17 @@ Route::get('locale/{locale}', function ($locale) {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::group(['prefix' => 'dashboard'], function() {
+    Route::get('myrating', function () {
+        return Inertia::render('MyRating', [
+            'ratings' => auth()->user()->ratings->map(function($rating) {
+                return $rating->toArray();
+            })
+        ]);
+    })->name('myrating');
 
-        Route::get('', [DashboardController::class, 'index'])
-            ->name('dashboard');
-
-        Route::resource('assignment', AssignmentController::class,
-                ['only' => ['index', 'show']]);
-        
-        Route::resource('activity', ActivityController::class,
-                ['only' => ['index', 'create', 'edit', 'store', 'show', 'update', 'destroy']]);
-
-        Route::group(['middleware' => 'confirmer'], function () {
-            Route::resource('confirmation', ConfirmationController::class,
-                ['only' => ['index', 'show', 'update']]);
-        });
-    });
+    Route::get('dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 
     Route::group(['prefix' => 'user'], function() {
         Route::delete('', [CurrentUserController::class, 'destroy'])
