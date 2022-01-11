@@ -58,14 +58,12 @@
 
 <script>
 import { onMounted, onUnmounted, ref } from 'vue'
-import BreezeCheckbox from '@/Components/Checkbox.vue'
 
 export default {
 
     emits: ['input'],
 
     components: {
-        BreezeCheckbox,        
     },
 
     props: {

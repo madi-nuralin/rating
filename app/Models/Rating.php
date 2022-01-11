@@ -18,12 +18,12 @@ class Rating extends Model
      * @var string[]
      */
     protected $fillable = [
-        'filling_started_at',
-        'filling_expired_at',
-        'verification_started_at',
-        'verification_expired_at',
-        'approvement_started_at',
-        'approvement_expired_at',
+        'submission_begin_time_at',
+        'submission_end_time_at',
+        'verification_begin_time_at',
+        'verification_end_time_at',
+        'approvement_begin_time_at',
+        'approvement_end_time_at',
     ];
 
     public function settings() {
@@ -42,28 +42,28 @@ class Rating extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function setFillingStartedAt($fillingStartedAt) {
-    	$this->filling_started_at = $fillingStartedAt;
+    public function setSubmissionBeginTimeAt($timeAt) {
+    	$this->submission_begin_time_at = $timeAt;
     }
 
-    public function setFillingExpiredAt($fillingExpiredAt) {
-    	$this->filling_expired_at = $fillingExpiredAt;
+    public function setSubmissionEndTimeAt($timeAt) {
+    	$this->submission_end_time_at = $timeAt;
     }
 
-    public function setVerificationStartedAt($verificationStartedAt) {
-    	$this->verification_started_at = $verificationStartedAt;
+    public function setVerificationBeginTimeAt($timeAt) {
+    	$this->verification_begin_time_at = $timeAt;
     }
 
-    public function setVerificationExpiredAt($verificationExpiredAt) {
-    	$this->verification_expired_at = $verificationExpiredAt;
+    public function setVerificationEndTimeAt($timeAt) {
+    	$this->verification_end_time_at = $timeAt;
     }
 
-    public function setApprovementStartedAt($approvementStartedAt) {
-    	$this->approvement_started_at = $approvementStartedAt;
+    public function setApprovementBeginTimeAt($timeAt) {
+    	$this->approvement_begin_time_at = $timeAt;
     }
 
-    public function setApprovementExpiredAt($approvementExpiredAt) {
-    	$this->approvement_expired_at = $approvementExpiredAt;
+    public function setApprovementEndTimeAt($timeAt) {
+    	$this->approvement_end_time_at = $timeAt;
     }
 
     public function setParameters($parameters) {
@@ -98,28 +98,28 @@ class Rating extends Model
         }
     }
 
-    public function getFillingStartedAt() {
-    	return $this->filling_started_at;
+    public function getSubmissionBeginTimeAt() {
+    	return $this->submission_begin_time_at;
     }
 
-    public function getFillingExpiredAt() {
-    	return $this->filling_expired_at;
+    public function getSubmissionEndTimeAt() {
+    	return $this->submission_end_time_at;
     }
 
-    public function getVerificationStartedAt() {
-    	return $this->verification_started_at;
+    public function getVerificationBeginTimeAt() {
+    	return $this->verification_begin_time_at;
     }
 
-    public function getVerificationExpiredAt() {
-    	return $this->verification_expired_at;
+    public function getVerificationEndTimeAt() {
+    	return $this->verification_end_time_at;
     }
 
-    public function getApprovementStartedAt() {
-    	return $this->approvement_started_at;
+    public function getApprovementBeginTimeAt() {
+    	return $this->approvement_begin_time_at;
     }
 
-    public function getApprovementExpiredAt() {
-    	return $this->approvement_expired_at;
+    public function getApprovementEndTimeAt() {
+    	return $this->approvement_end_time_at;
     }
 
     public function getParameters() {
@@ -135,12 +135,12 @@ class Rating extends Model
     		'id' => $this->getId(),
     		'name' => $this->getName(),
     		'description' => $this->getDescription(),
-    		'filling_started_at' => $this->getFillingStartedAt(),
-    		'filling_expired_at' => $this->getFillingExpiredAt(),
-    		'verification_started_at' => $this->getVerificationStartedAt(),
-    		'verification_expired_at' => $this->getVerificationExpiredAt(),
-    		'approvement_started_at' => $this->getApprovementStartedAt(),
-    		'approvement_expired_at' => $this->getApprovementExpiredAt(),
+    		'submission_begin_time_at' => $this->getSubmissionBeginTimeAt(),
+    		'submission_end_time_at' => $this->getSubmissionEndTimeAt(),
+    		'verification_begin_time_at' => $this->getVerificationBeginTimeAt(),
+    		'verification_end_time_at' => $this->getVerificationEndTimeAt(),
+    		'approvement_begin_time_at' => $this->getApprovementBeginTimeAt(),
+    		'approvement_end_time_at' => $this->getApprovementEndTimeAt(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

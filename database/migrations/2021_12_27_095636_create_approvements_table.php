@@ -21,11 +21,11 @@ class CreateApprovementsTable extends Migration
                   ->references('id')
                   ->on('approvers')
                   ->onDelete('cascade');
-            $table->bigInteger('filling_id')
+            $table->bigInteger('submission_id')
                   ->unsigned();
-            $table->foreign('filling_id')
+            $table->foreign('submission_id')
                   ->references('id')
-                  ->on('fillings')
+                  ->on('submissions')
                   ->onDelete('cascade');
             $table->enum('status',  ['not considered', 'approved', 'needs revision', 'corrected', 'cancelled']);
             $table->timestamps();

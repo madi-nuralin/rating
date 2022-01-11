@@ -34,39 +34,39 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="filling_started_at" :value="$t('pages.management.rating.create.form.filling_started_at')" />
-                <BreezeInput id="filling_started_at" type="datetime-local" class="mt-1 block w-full" v-model="form.filling_started_at" />
-                <BreezeInputError :message="form.errors.filling_started_at" class="mt-2" />
+                <BreezeLabel for="submission_begin_time_at" :value="$t('pages.management.rating.create.form.submission_begin_time_at')" />
+                <BreezeInput id="submission_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.submission_begin_time_at" />
+                <BreezeInputError :message="form.errors.submission_begin_time_at" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="filling_expired_at" :value="$t('pages.management.rating.create.form.filling_expired_at')" />
-                <BreezeInput id="filling_expired_at" type="datetime-local" class="mt-1 block w-full" v-model="form.filling_expired_at" />
-                <BreezeInputError :message="form.errors.filling_expired_at" class="mt-2" />
+                <BreezeLabel for="submission_end_time_at" :value="$t('pages.management.rating.create.form.submission_end_time_at')" />
+                <BreezeInput id="submission_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.submission_end_time_at" />
+                <BreezeInputError :message="form.errors.submission_end_time_at" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="verification_started_at" :value="$t('pages.management.rating.create.form.verification_started_at')" />
-                <BreezeInput id="verification_started_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_started_at" />
-                <BreezeInputError :message="form.errors.verification_started_at" class="mt-2" />
+                <BreezeLabel for="verification_begin_time_at" :value="$t('pages.management.rating.create.form.verification_begin_time_at')" />
+                <BreezeInput id="verification_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_begin_time_at" />
+                <BreezeInputError :message="form.errors.verification_begin_time_at" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="verification_expired_at" :value="$t('pages.management.rating.create.form.verification_expired_at')" />
-                <BreezeInput id="verification_expired_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_expired_at" />
-                <BreezeInputError :message="form.errors.verification_expired_at" class="mt-2" />
+                <BreezeLabel for="verification_end_time_at" :value="$t('pages.management.rating.create.form.verification_end_time_at')" />
+                <BreezeInput id="verification_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_end_time_at" />
+                <BreezeInputError :message="form.errors.verification_end_time_at" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="approvement_started_at" :value="$t('pages.management.rating.create.form.approvement_started_at')" />
-                <BreezeInput id="approvement_started_at" type="datetime-local" class="mt-1 block w-full" v-model="form.approvement_started_at" />
-                <BreezeInputError :message="form.errors.approvement_started_at" class="mt-2" />
+                <BreezeLabel for="approvement_begin_time_at" :value="$t('pages.management.rating.create.form.approvement_begin_time_at')" />
+                <BreezeInput id="approvement_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.approvement_begin_time_at" />
+                <BreezeInputError :message="form.errors.approvement_begin_time_at" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="approvement_expired_at" :value="$t('pages.management.rating.create.form.approvement_expired_at')" />
-                <BreezeInput id="approvement_expired_at" type="datetime-local" class="mt-1 block w-full" v-model="form.approvement_expired_at" />
-                <BreezeInputError :message="form.errors.approvement_expired_at" class="mt-2" />
+                <BreezeLabel for="approvement_end_time_at" :value="$t('pages.management.rating.create.form.approvement_end_time_at')" />
+                <BreezeInput id="approvement_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.approvement_end_time_at" />
+                <BreezeInputError :message="form.errors.approvement_end_time_at" class="mt-2" />
             </div>
         </template>
 
@@ -111,12 +111,12 @@
                 form: this.$inertia.form({
                     name: this.rating.name,
                     description: this.rating.description,
-                    filling_started_at: this.rating.filling_started_at,
-                    filling_expired_at: this.rating.filling_expired_at,
-                    verification_started_at: this.rating.verification_started_at,
-                    verification_expired_at: this.rating.verification_expired_at,
-                    approvement_started_at: this.rating.approvement_started_at,
-                    approvement_expired_at: this.rating.approvement_expired_at,
+                    submission_begin_time_at: this.rating.submission_begin_time_at,
+                    submission_end_time_at: this.rating.submission_end_time_at,
+                    verification_begin_time_at: this.rating.verification_begin_time_at,
+                    verification_end_time_at: this.rating.verification_end_time_at,
+                    approvement_begin_time_at: this.rating.approvement_begin_time_at,
+                    approvement_end_time_at: this.rating.approvement_end_time_at,
                     parameters: this.rating.parameters.map(function(parameter) {
                         return parameter.id;
                     }),

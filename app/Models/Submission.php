@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Filling extends Model
+class Submission extends Model
 {
     use HasFactory,
-    	Helpers\Id;
+    	Helpers\HasId;
 
     /**
      * The attributes that are mass assignable.
@@ -33,8 +33,8 @@ class Filling extends Model
     	return $this->belongsTo(Parameter::class);
     }
 
-    public function fillingProlongations() {
-    	return $this->hasMany(FillingProlongation::class);
+    public function submissionProlongations() {
+    	return $this->hasMany(SubmissionProlongation::class);
     }
 
     public function setUser(User $user) {
@@ -49,7 +49,7 @@ class Filling extends Model
     	$this->parameter->associate($parameter);
     }
 
-    public setFillingProlongations() {
+    public function setSubmissionProlongations() {
     	// TODO: 
     }
 
@@ -65,7 +65,7 @@ class Filling extends Model
     	return $this->parameter;
     }
 
-    public getFillingProlongations() {
+    public function getSubmissionProlongations() {
     	// TODO: 
     }
 
@@ -74,6 +74,6 @@ class Filling extends Model
     		'id' => $this->getId(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
-    	]
+    	];
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFillingProlongationsTable extends Migration
+class CreateSubmissionProlongationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFillingProlongationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('filling_prolongations', function (Blueprint $table) {
+        Schema::create('submission_prolongations', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('rating_id')
                   ->unsigned();
@@ -39,6 +39,6 @@ class CreateFillingProlongationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('filling_prolongations');
+        Schema::dropIfExists('submission_prolongations');
     }
 }

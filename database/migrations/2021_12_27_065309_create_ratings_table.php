@@ -15,12 +15,12 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('filling_started_at')->nullable();
-            $table->timestamp('filling_expired_at')->nullable();
-            $table->timestamp('verification_started_at')->nullable();
-            $table->timestamp('verification_expired_at')->nullable();
-            $table->timestamp('approvement_started_at')->nullable();
-            $table->timestamp('approvement_expired_at')->nullable();
+            $table->timestamp('submission_begin_time_at')->nullable();
+            $table->timestamp('submission_end_time_at')->nullable();
+            $table->timestamp('verification_begin_time_at')->nullable();
+            $table->timestamp('verification_end_time_at')->nullable();
+            $table->timestamp('approvement_begin_time_at')->nullable();
+            $table->timestamp('approvement_end_time_at')->nullable();
             $table->timestamps();
         });
     }

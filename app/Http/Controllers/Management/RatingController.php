@@ -63,12 +63,12 @@ class RatingController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'filling_started_at' => ['required', 'date'],
-            'filling_expired_at' => ['required', 'date'],
-            'verification_started_at' => ['required', 'date'],
-            'verification_expired_at' => ['required', 'date'],
-            'approvement_started_at' => ['required', 'date'],
-            'approvement_expired_at' => ['required', 'date'],
+            'submission_begin_time_at' => ['required', 'date'],
+            'submission_end_time_at' => ['required', 'date'],
+            'verification_begin_time_at' => ['required', 'date'],
+            'verification_end_time_at' => ['required', 'date'],
+            'approvement_begin_time_at' => ['required', 'date'],
+            'approvement_end_time_at' => ['required', 'date'],
             'parameters' => ['array'],
             'users' => ['array']
         ])->validateWithBag('createRating');
@@ -76,12 +76,12 @@ class RatingController extends Controller
         $rating = Rating::create();
         $rating->setName($input['name']);
         $rating->setDescription($input['description']);
-        $rating->setFillingStartedAt($input['filling_started_at']);
-        $rating->setFillingExpiredAt($input['filling_expired_at']);
-        $rating->setVerificationStartedAt($input['verification_started_at']);
-        $rating->setVerificationExpiredAt($input['verification_expired_at']);
-        $rating->setApprovementStartedAt($input['approvement_started_at']);
-        $rating->setApprovementExpiredAt($input['approvement_expired_at']);
+        $rating->setSubmissionBeginTimeAt($input['submission_begin_time_at']);
+        $rating->setSubmissionEndTimeAt($input['submission_end_time_at']);
+        $rating->setVerificationBeginTimeAt($input['verification_begin_time_at']);
+        $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
+        $rating->setApprovementBeginTimeAt($input['approvement_begin_time_at']);
+        $rating->setApprovementEndTimeAt($input['approvement_end_time_at']);
         $rating->setParameters($input['parameters']);
         $rating->setUsers($input['users']);
 
@@ -152,12 +152,12 @@ class RatingController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'filling_started_at' => ['required', 'date'],
-            'filling_expired_at' => ['required', 'date'],
-            'verification_started_at' => ['required', 'date'],
-            'verification_expired_at' => ['required', 'date'],
-            'approvement_started_at' => ['required', 'date'],
-            'approvement_expired_at' => ['required', 'date'],
+            'submission_begin_time_at' => ['required', 'date'],
+            'submission_end_time_at' => ['required', 'date'],
+            'verification_begin_time_at' => ['required', 'date'],
+            'verification_end_time_at' => ['required', 'date'],
+            'approvement_begin_time_at' => ['required', 'date'],
+            'approvement_end_time_at' => ['required', 'date'],
             'parameters' => ['array'],
             'users' => ['array']
         ])->validateWithBag('updateRating');
@@ -166,12 +166,12 @@ class RatingController extends Controller
         
         $rating->setName($input['name']);
         $rating->setDescription($input['description']);
-        $rating->setFillingStartedAt($input['filling_started_at']);
-        $rating->setFillingExpiredAt($input['filling_expired_at']);
-        $rating->setVerificationStartedAt($input['verification_started_at']);
-        $rating->setVerificationExpiredAt($input['verification_expired_at']);
-        $rating->setApprovementStartedAt($input['approvement_started_at']);
-        $rating->setApprovementExpiredAt($input['approvement_expired_at']);
+        $rating->setSubmissionBeginTimeAt($input['submission_begin_time_at']);
+        $rating->setSubmissionEndTimeAt($input['submission_end_time_at']);
+        $rating->setVerificationBeginTimeAt($input['verification_begin_time_at']);
+        $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
+        $rating->setApprovementBeginTimeAt($input['approvement_begin_time_at']);
+        $rating->setApprovementEndTimeAt($input['approvement_end_time_at']);
         $rating->setParameters($input['parameters']);
         $rating->setUsers($input['users']);
 

@@ -7,7 +7,7 @@
                     <img class="w-8 h-8 mr-2 rounded-full" :src="item.avatar" :alt="item.name" v-if="'avatar' in item">
                     <div class="flex flex-col items-start">
                         <div>{{ item.name }}</div>
-                        <div class="text-gray-400 text-sm">{{ item.description }}</div>
+                        <div class="text-gray-400 text-sm" v-html="item.description" />
                     </div>
                 </div>
             </div>

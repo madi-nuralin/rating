@@ -15,9 +15,9 @@
                     <template #item="{element}">
                         <div class="bg-white shadow rounded px-3 pt-3 pb-5 mb-4 border border-white">
                             <div class="flex justify-between">
-                                <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">
+                                <Link class="text-gray-700 font-semibold font-sans tracking-wide text-base hover:underline" :href="route('submission.index', {'rating': element.id})">
                                     {{element.name}}
-                                </p>
+                                </Link>
 
                                 <img
                                 class="w-6 h-6 rounded-full ml-3"
@@ -26,9 +26,14 @@
                                 >
                             </div>
                             <div class="flex mt-4 justify-between items-center">
-                                <span class="text-sm text-gray-600">
-                                    {{new Date(element.filling_started_at)}}
-                                </span>
+                                <div class="flex flex-col text-sm text-gray-600">
+                                    <div>{{new Date(element.submission_begin_time_at)}}</div>
+                                    <div>{{new Date(element.submission_end_time_at)}}</div>
+                                    <!--div>{{new Date(element.verification_begin_time_at)}}</div>
+                                    <div>{{new Date(element.verification_end_time_at)}}</div>
+                                    <div>{{new Date(element.approvement_begin_time_at)}}</div>
+                                    <div>{{new Date(element.approvement_end_time_at)}}</div-->
+                                </div>
                                 <BreezeBadge :color="'green'">Активно</BreezeBadge>
                             </div>
                         </div>

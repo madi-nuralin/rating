@@ -21,7 +21,7 @@
                                 <!--BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     {{ $t('layouts.authenticated.links.dashboard') }}
                                 </BreezeNavLink-->
-                                <BreezeNavLink :href="route('myrating')" :active="route().current('myrating')">
+                                <BreezeNavLink :href="route('rating-submission')" :active="route().current('rating-submission')">
                                     {{ $t('pages.dashboard.tabs.assignments') }}
                                 </BreezeNavLink>
                             </div>
@@ -172,7 +172,7 @@
                         <!--BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ $t('layouts.authenticated.links.dashboard') }}
                         </BreezeResponsiveNavLink-->
-                        <BreezeResponsiveNavLink :href="route('myrating')" :active="route().current('myrating')">
+                        <BreezeResponsiveNavLink :href="route('rating-submission')" :active="route().current('rating-submission')">
                             {{ $t('pages.dashboard.tabs.assignments') }}
                         </BreezeResponsiveNavLink>
                     </div>

@@ -43,6 +43,10 @@ use App\Http\Controllers\Forms\FormController;
 use App\Http\Controllers\Forms\FormFieldController;
 use App\Http\Controllers\Forms\FormFieldOptionController;
 
+use App\Http\Controllers\Rating\SubmissionController;
+use App\Http\Controllers\Rating\VerificationController;
+use App\Http\Controllers\Rating\ApprovementController;
+
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
@@ -50,17 +54,45 @@ Route::get('locale/{locale}', function ($locale) {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::get('myrating', function () {
-        return Inertia::render('MyRating', [
+    Route::get('rating-submission', function () {
+        return Inertia::render('Submission', [
             'ratings' => auth()->user()->ratings->map(function($rating) {
                 return $rating->toArray();
             })
         ]);
-    })->name('myrating');
+    })->name('rating-submission');
+
+    Route::get('rating-verification', function () {
+        return Inertia::render('Verification', [
+            'ratings' => auth()->user()->ratings->map(function($rating) {
+                return $rating->toArray();
+            })
+        ]);
+    })->name('rating-verification')->middleware('verifier');
+
+    Route::get('rating-approvement', function () {
+        return Inertia::render('Approvement', [
+            'ratings' => auth()->user()->ratings->map(function($rating) {
+                return $rating->toArray();
+            })
+        ]);
+    })->name('rating-approvement')->middleware('approver');
 
     Route::get('dashboard', function () {
-        return Inertia::render('Dashboard');
+        return redirect('rating-submission');
+        //Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::group(['prefix' => 'rating'], function() {
+        Route::resource('submission', SubmissionController::class,
+            ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+        Route::resource('verification', VerificationController::class,
+            ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']])
+                ->middleware('verifier');
+        Route::resource('approvement', ApprovementController::class,
+            ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']])
+                ->middleware('approver');
+    });
 
     Route::group(['prefix' => 'user'], function() {
         Route::delete('', [CurrentUserController::class, 'destroy'])

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFillingsTable extends Migration
+class CreateSubmissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFillingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fillings', function (Blueprint $table) {
+        Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')
                   ->unsigned();
@@ -44,6 +44,6 @@ class CreateFillingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fillings');
+        Schema::dropIfExists('submissions');
     }
 }
