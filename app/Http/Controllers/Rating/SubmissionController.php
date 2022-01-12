@@ -12,6 +12,7 @@ use App\Models\Rating;
 use App\Models\Submission;
 use App\Models\ParameterTarget;
 use App\Models\Verifier;
+use App\Models\Verification;
 
 class SubmissionController extends Controller
 {
@@ -40,11 +41,21 @@ class SubmissionController extends Controller
                                     ])->whereIn('parameter_id', $parameterTarget->parameters()->pluck('parameters.id'))->paginate()->through(function($submission) {
                                         return array_merge(
                                             $submission->toArray(), [
-                                                'parameter' => $submission->parameter->toArray()
+                                                'parameter' => $submission->parameter->toArray(),
+                                                'verifiers' => $submission->verifications->map(function($verification) {
+                                                    return array_merge(
+                                                        $verification->verifier->toArray(), [
+                                                            'user' => $verification->verifier->user->toArray()
+                                                        ]
+                                                    );
+                                                }),
                                             ]
                                         );
                                     }),
-                                    'verifiers' => collect(Verifier::where('parameter_target_id', $parameterTarget->id)->get())->map(function($verifier) {
+                                    'verifiers' => collect(Verifier::where([
+                                        'parameter_target_id' => $parameterTarget->id,
+                                        'rating_id' => $rating->id
+                                    ])->get())->map(function($verifier) {
                                         return array_merge(
                                             $verifier->toArray(), [
                                                 'user' => $verifier->user->toArray()
@@ -74,7 +85,23 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        //
+        $rating = Rating::findOrFail(request()->input('rating'));
+        $user = auth()->user();
+
+        return Inertia::render('Rating/Submission/Create', [
+            'rating' => array_merge(
+                $rating->toArray(), [
+                    'targets' => collect(ParameterTarget::whereHas(
+                        'parameters', function($q) use ($rating) {
+                            $q->whereIn('id', $rating->parameters()->pluck('parameters.id'));
+                        })->get())->map(function($parameterTarget) use ($rating, $user) {
+                            return $parameterTarget->toArray();
+                        }
+                    )
+                ]
+            )
+
+        ]);
     }
 
     /**
@@ -85,7 +112,7 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

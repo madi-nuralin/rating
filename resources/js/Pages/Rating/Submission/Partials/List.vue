@@ -24,8 +24,8 @@
 
         <template #form>
             <div class="col-span-6">
-                <div class="relative z-0 mt-1">
-                    <BreezeAccordion v-for="(target, i) in rating.targets">
+                <div v-for="(target, i) in rating.targets">
+                    <BreezeAccordion >
 
                         <template #trigger>
                             {{target.name}}
@@ -33,24 +33,57 @@
 
                         <template #content>
                             <div class="relative grid grid-cols-4 gap-1 w-full">
-                                <div class="col-span-1">
+                                <!--div class="col-span-1">
                                     <div>Подтверждающие</div>
                                     <BreezeAvatarGroup :space="'-space-x-2'">
                                         <BreezeAvatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="(verifier, j) in target.verifiers" />
                                     </BreezeAvatarGroup>
-                                </div>
-                                <div class="col-span-3">
-                                    <BreezeList :name="'submission'" :items="items(target.submissions)" />
+                                </div-->
+                                <div class="col-span-4">
+                                    <BreezeList :items="target.submissions">
+                                        <template #item="{item}">
+                                            <div class="flex flex-between mt-4">
+                                                <div>
+                                                    <div>{{item.parameter.name}}</div>
+                                                    <div class="flex flex-col text-sm text-gray-400">
+                                                        <h4 class="line-clamp-3">
+                                                            {{item.parameter.description}}
+                                                        </h4>
+                                                        <div class="md:grid md:grid-cols-3 text-gray-700">
+                                                            <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">
+                                                                <p>Подтвердили</p>
+                                                                <breeze-avatar-group :space="'-space-x-2'">
+                                                                    <breeze-avatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="verifier in item.verifiers" v-if="true" />
+                                                                </breeze-avatar-group>
+                                                            </div>
+                                                            <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">
+                                                                <p>Не просмотрено</p>
+                                                                <breeze-avatar-group :space="'-space-x-2'">
+                                                                    <breeze-avatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="verifier in item.verifiers" v-if="true" />
+                                                                </breeze-avatar-group>
+                                                            </div>
+                                                            <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">Заработано</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <Link class="ml-2 text-sm text-gray-400 underline" :href="route('submission.show', {'id': item.id})">
+                                                    Update
+                                                </Link>
+                                            </div>
+                                        </template>
+                                    </BreezeList>
                                 </div>
                             </div>
                         </template>
                     </BreezeAccordion>
+
+                    <hr class="my-6" />
                 </div>
             </div>
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" >
+            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
                 {{ $t('pages.management.rating.list.actions.createButton') }}
             </Link>
         </template>
@@ -60,17 +93,17 @@
 <script>
     import BreezeButton from '@/Components/Button.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
-    import BreezeList from '@/Components/List.vue'
+    import BreezeList from '@/Components/ListScoped.vue'
     import BreezeBadge from '@/Components/Badge.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import BreezeSectionTitle from '@/Components/SectionTitle.vue'
+    import BreezeAccordion from '@/Components/Accordion.vue'
+    import BreezeAvatarGroup from '@/Components/AvatarGroup.vue'
+    import BreezeAvatar from '@/Components/Avatar.vue'
     import ShowName from '../../Partials/ShowName.vue'
     import ShowDescription from '../../Partials/ShowDescription.vue'
     import ShowVerifiers from '../../Partials/ShowVerifiers.vue'
     import ShowDate from '../../Partials/ShowDate.vue'
-    import BreezeAccordion from '@/Components/Accordion.vue'
-    import BreezeAvatarGroup from '@/Components/AvatarGroup.vue'
-    import BreezeAvatar from '@/Components/Avatar.vue'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -81,13 +114,13 @@
             BreezeBadge,
             BreezeSectionBorder,
             BreezeSectionTitle,
+            BreezeAccordion,
+            BreezeAvatarGroup,
+            BreezeAvatar,
             ShowName,
             ShowDescription,
             ShowVerifiers,
             ShowDate,
-            BreezeAccordion,
-            BreezeAvatarGroup,
-            BreezeAvatar,
             Link,
         },
 
@@ -95,30 +128,12 @@
 
         data() {
             return {
+                //
             }
         },
 
         methods: {
-            items(submissions) {
-                return {
-                    'data': submissions.data.map(function(submission) {
-                        return {
-                            id: submission.id,
-                            name: submission.parameter.name,
-                            description: 
-                                `<div class="flex flex-col">
-                                    <div>${submission.parameter.description}</div>
-                                    <div class="mt-2 md:grid md:grid-cols-3">
-                                        <div>Подтвердили</div>
-                                        <div>Не просмотрено</div>
-                                        <div>Заработано</div>
-                                    </div>
-                                </div>`
-                        }
-                    }),
-                    'links': submissions.links
-                };
-            }
+            //
         },
     }
 </script>

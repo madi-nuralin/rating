@@ -18,6 +18,7 @@ class Verification extends Model
     protected $fillable = [
         'submission_id',
         'verifier_id',
+        'status'
     ];
 
     public function submission() {

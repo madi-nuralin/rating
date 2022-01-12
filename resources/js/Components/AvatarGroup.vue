@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-wrap" :class="[spaceClass]">
+	<div class="flex" :class="[spaceClass]">
 		<slot></slot>
 	</div>
 </template>

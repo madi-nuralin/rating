@@ -1,7 +1,7 @@
 <template>
 	<div class="relative">
 		<button class="inline-flex w-full items-center justify-between py-2 font-semibold text-xs text-gray-700 uppercase tracking-widest hover:text-gray-500 focus:outline-none active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition" @click="collapse = ! collapse; $emit('collapsed', collapse)">
-			<h3 class="text-gray-900">
+			<h3 class="text-gray-900 text-left">
 		        <slot name="trigger"></slot>
 		    </h3>
 
@@ -12,7 +12,7 @@
 		    </button>
 		</button>
 
-		<div class="mt-1 text-sm text-gray-600" :class="{'hidden': !collapse}">
+		<div class="mt-1" :class="{'hidden': !collapse}">
 	    	<slot name="content"></slot>
 	    </div>
 	</div>

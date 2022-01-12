@@ -37,6 +37,10 @@ class Submission extends Model
     	return $this->hasMany(SubmissionProlongation::class);
     }
 
+    public function verifications() {
+        return $this->hasMany(Verification::class);
+    }
+
     public function setUser(User $user) {
     	$this->user()->associate($user);
     }

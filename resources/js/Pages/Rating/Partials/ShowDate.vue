@@ -17,11 +17,11 @@
 						</ul-->
 					</div>
 
-					<div class="my-2">
+					<div class="my-1">
 		  				<breeze-progress :color="item.color" :rounded="false" :percentage="percentage(currentTime - item.beginTime, item.endTime - item.beginTime)" />
 		  			</div>
 
-		  			<p class="text-right text-xs text-gray-500">
+		  			<p class="text-right text-sm text-gray-500">
 		  				{{ calculateTime(item.beginTime, item.endTime) }}
 		  			</p>
 		  		</div>

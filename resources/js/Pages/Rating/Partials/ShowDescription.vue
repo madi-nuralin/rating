@@ -5,7 +5,7 @@
 	    </template>
 
 	    <template #content>
-	    	{{rating.description}}
+	    	<p class="text-gray-600 text-sm">{{rating.description}}</p>
 	    </template>
 	</BreezeAccordion>
 </template>
