@@ -39,7 +39,7 @@
                                         <BreezeAvatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="(verifier, j) in target.verifiers" />
                                     </BreezeAvatarGroup>
                                 </div-->
-                                <div class="col-span-4">
+                                <div class="col-span-4" v-if="Object.keys(target.submissions).length > 0">
                                     <BreezeList :items="target.submissions">
                                         <template #item="{item}">
                                             <div class="flex flex-between mt-4">
@@ -83,7 +83,7 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
+            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('wizard.submission.create', {'rating': rating.id})">
                 {{ $t('pages.management.rating.list.actions.createButton') }}
             </Link>
         </template>

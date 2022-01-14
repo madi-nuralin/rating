@@ -19,7 +19,8 @@ class CreateParameterRatingTable extends Migration
                   ->unsigned();
             $table->foreign('parameter_id')
                   ->references('id')
-                  ->on('parameters');
+                  ->on('parameters')
+                  ->onDelete('cascade');
             $table->bigInteger('rating_id')
                   ->unsigned();
             $table->foreign('rating_id')

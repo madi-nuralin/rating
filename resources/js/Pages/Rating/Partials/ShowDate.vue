@@ -8,22 +8,19 @@
 	    	<div class="grid gap-3" >
 	    		<div v-for="(item, i) in items">
 		    		<div>
-						<span class="font-medium text-sm font-medium text-gray-900 mb-3 dark:text-gray-400">
+						<span class="font-medium text-sm text-gray-500 font-mono mb-3 dark:text-gray-400">
 							{{ item.title }}
 						</span>
-						<!--ul class="list-disc list-inside text-normal text-xs text-gray-500 dark:text-gray-200">
+						<ul class="list-disc list-inside text-normal text-sm text-gray-900 dark:text-gray-200">
 							<li>{{ item.beginTime }}</li>
 							<li>{{ item.endTime }}</li>
-						</ul-->
+                            <li>{{ calculateTime(item.beginTime, item.endTime) }}</li>
+						</ul>
 					</div>
 
 					<div class="my-1">
-		  				<breeze-progress :color="item.color" :rounded="false" :percentage="percentage(currentTime - item.beginTime, item.endTime - item.beginTime)" />
+		  				<breeze-progress :color="'indigo'" :rounded="false" :percentage="percentage(currentTime - item.beginTime, item.endTime - item.beginTime)" />
 		  			</div>
-
-		  			<p class="text-right text-sm text-gray-500">
-		  				{{ calculateTime(item.beginTime, item.endTime) }}
-		  			</p>
 		  		</div>
 	  		</div>
 	    </template>

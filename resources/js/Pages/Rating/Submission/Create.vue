@@ -10,7 +10,7 @@
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <CreateForm :rating="$page.props.rating" />
+                <slot />
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -19,13 +19,12 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import CreateForm from './Partials/CreateForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
+    
     export default {
         components: {
             BreezeAuthenticatedLayout,
             BreezeSectionBorder,
-            CreateForm,
             Head,
         },
     }

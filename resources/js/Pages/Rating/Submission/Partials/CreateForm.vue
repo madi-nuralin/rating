@@ -12,11 +12,21 @@
             </div>
 
             <hr class="my-6" />
-
-            <!--img src="https://tailwindui.com/img/components/steps.01-simple-xs.png"-->
+            <show-steps :rating="rating"/>
         </template>
 
         <template #form>
+
+            <!--div class="col-span-6 sm:col-span-4">
+                <breeze-step :items="items">
+                    <template #title="{item}">
+                        {{item}}
+                    </template>
+                    <template #description="{item}">
+                        {{item}}
+                    </template>
+                </breeze-step>
+            </div-->
 
             <div class="col-span-6 sm:col-span-4">
             	<breeze-label for="target" value="Target" />
@@ -68,7 +78,7 @@
     import BreezeInputError from '@/Components/InputError.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
-    import BreezeStep from '@/Components/Step.vue'
+    import ShowSteps from './Partials/ShowSteps.vue'
     import { Inertia } from '@inertiajs/inertia'
 
     export default {
@@ -80,7 +90,7 @@
             BreezeInputError,
             BreezeTextarea,
             BreezeLabel,
-            BreezeStep
+            ShowSteps
         },
 
         props: ['rating'],
@@ -97,10 +107,6 @@
                 	form: 'selectTarget',
                     target: null,
                 }),
-
-                items: [
-                	'Выбор направления деятельности','Выбор параметра', 'Заполнение формы'
-                ]
             }
         },
 
