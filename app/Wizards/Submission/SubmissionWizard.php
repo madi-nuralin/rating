@@ -3,7 +3,15 @@
 namespace App\Wizards\Submission;
 
 use Arcanist\AbstractWizard;
+use Arcanist\Action\ActionResult;
 use Illuminate\Http\Request;
+
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 
 use App\Wizards\Submission\Steps\SelectParameterStep;
 use App\Wizards\Submission\Steps\SelectParameterTargetStep;
@@ -35,5 +43,13 @@ class SubmissionWizard extends AbstractWizard
         return [
             //
         ];
+    }
+
+    protected function onAfterComplete(ActionResult $result): Response | Responsable | Renderable
+    {
+        session()->flash('flash.banner', ['']);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('submission.index', ['submission' => $this->data('submission')]));
     }
 }

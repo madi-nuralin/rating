@@ -12,7 +12,7 @@
             </div>
 
             <hr class="my-6" />
-            <show-steps />
+            <ShowSteps />
         </template>
 
         <template #form>
@@ -76,7 +76,9 @@
     import BreezeInputError from '@/Components/InputError.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
+    import Wizard from "@/Mixins/Wizard";
     import ShowSteps from './ShowSteps.vue'
+    import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
     import { Inertia } from '@inertiajs/inertia'
 
     export default {
@@ -88,10 +90,13 @@
             BreezeInputError,
             BreezeTextarea,
             BreezeLabel,
+            BreezeResponsiveNavLink,
             ShowSteps
         },
 
         props: ['rating'],
+
+        mixins: [Wizard],
 
         data() {
             return {
@@ -104,7 +109,7 @@
 
         methods: {
             selectParameterTarget() {
-                this.form.post(route('wizard.submission.store'), {
+                this.form.post(this.url, {
                     errorBag: 'selectParameterTarget',
                     preserveScroll: true,
                     //onSuccess: () => Inertia.reload({ only: ['positions'] })

@@ -12,7 +12,6 @@
             </div>
 
             <hr class="my-6" />
-            <show-steps :rating="rating"/>
         </template>
 
         <template #form>
@@ -78,7 +77,6 @@
     import BreezeInputError from '@/Components/InputError.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
-    import ShowSteps from './Partials/ShowSteps.vue'
     import { Inertia } from '@inertiajs/inertia'
 
     export default {
@@ -90,7 +88,6 @@
             BreezeInputError,
             BreezeTextarea,
             BreezeLabel,
-            ShowSteps
         },
 
         props: ['rating'],

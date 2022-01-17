@@ -12,7 +12,7 @@ use App\Models\ParameterTarget;
 
 class SelectParameterTargetStep extends WizardStep
 {
-    public string $title = 'Select Parameter Target';
+    public string $title = 'Выбрать направление деятельности';
 
     public string $slug = 'select-parameter-target';
 
@@ -21,7 +21,12 @@ class SelectParameterTargetStep extends WizardStep
         $input = $request->all();
 
         $user = auth()->user();
-        $rating = Rating::findOrFail($input['rating']);
+        
+        if (array_key_exists('rating', $input)) {
+            $rating = Rating::findOrFail($input['rating']);
+        } else {
+            $rating =  Rating::findOrFail($this->data('rating'));
+        } 
 
         return [
             'rating' => array_merge(
