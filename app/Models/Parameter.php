@@ -37,16 +37,16 @@ class Parameter extends Model
         return $this->belongsToMany(Rating::class);
     }
 
-    public function form() {
-        return $this->belongsTo(Form::class);
+    public function forms() {
+        return $this->belongsToMany(Form::class);
     }
 
     public function setParameterTarget(ParameterTarget $parameterTarget) {
     	$this->parameterTarget()->associate($parameterTarget);
     }
 
-    public function setForm(Form $form) {
-        $this->form()->associate($form);
+    public function setForms(Form $form) {
+        //
     }
 
     public function setScore($score) {
@@ -57,12 +57,16 @@ class Parameter extends Model
     	return $this->parameterTarget;
     }
 
-    public function getForm() {
-        return $this->form;
+    public function getForms() {
+        return $this->forms;
     }
 
     public function getScore() {
         return $this->score;
+    }
+
+    public function addForm(Form $form) {
+        $this->forms()->attach($form->id);
     }
 
     public function toArray() {

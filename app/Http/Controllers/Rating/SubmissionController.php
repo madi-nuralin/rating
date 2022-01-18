@@ -42,10 +42,15 @@ class SubmissionController extends Controller
                                         return array_merge(
                                             $submission->toArray(), [
                                                 'parameter' => $submission->parameter->toArray(),
-                                                'verifiers' => $submission->verifications->map(function($verification) {
+                                                'verifications' => $submission->verifications->map(function($verification) {
                                                     return array_merge(
-                                                        $verification->verifier->toArray(), [
-                                                            'user' => $verification->verifier->user->toArray()
+                                                        $verification->toArray(), [
+                                                            'verifier' => array_merge(
+                                                                $verification->verifier->toArray(), [
+                                                                    'user' => $verification->verifier->user->toArray()
+                                                                ]
+                                                            ),
+                                                            'status' => $verification->verificationStatus->toArray()
                                                         ]
                                                     );
                                                 }),
@@ -85,7 +90,7 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        $rating = Rating::findOrFail(request()->input('rating'));
+        /*$rating = Rating::findOrFail(request()->input('rating'));
         $user = auth()->user();
 
         return Inertia::render('Rating/Submission/Create', [
@@ -101,8 +106,8 @@ class SubmissionController extends Controller
                 ]
             )
 
-        ]);
-    }
+        ]);*/
+        return Inertia::location(route('wizard.submission.create', ['rating' => request()->input('rating')]));    }
 
     /**
      * Store a newly created resource in storage.
@@ -123,7 +128,20 @@ class SubmissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $submission = Submission::findOrFail($id);
+
+        return Inertia::render('Rating/Submission/Show', [
+            'submission' => array_merge(
+                $submission->toArray(), [
+                    'rating' => $submission->toArray(),
+                    'parameter' => array_merge(
+                        $submission->parameter->toArray(), [
+                            'target' => $submission->parameter->parameterTarget->toArray()
+                        ]
+                    )
+                ]
+            )
+        ]);
     }
 
     /**
@@ -157,6 +175,14 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $submission = Submission::findOrFail($id);
+        $rating = $submission->rating;
+
+        $submission->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('submission.index', ['rating' => $rating->id]));
     }
 }

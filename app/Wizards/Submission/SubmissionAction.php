@@ -11,6 +11,8 @@ use App\Models\Verification;
 use App\Models\Parameter;
 use App\Models\ParameterTarget;
 
+use App\Models\VerificationStatus;
+
 class SubmissionAction extends WizardAction
 {
     public function execute($payload): ActionResult
@@ -33,7 +35,7 @@ class SubmissionAction extends WizardAction
     		Verification::create([
     			'verifier_id' => $verifier->id,
     			'submission_id' => $submission->id,
-    			'status' => 'not considered'//Verification::NOT_VIEWED
+    			'verification_status_id' => VerificationStatus::firstWhere('context', 'n/r')->id
     		])->save();
     	}
 

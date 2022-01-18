@@ -21,14 +21,8 @@ class CreateParametersTable extends Migration
                   ->references('id')
                   ->on('parameter_targets')
                   ->onDelete('cascade');
-            $table->bigInteger('score')
-                  ->nullable();
-            $table->bigInteger('form_id')
-                  ->unsigned();
-            $table->foreign('form_id')
-                  ->references('id')
-                  ->on('forms')
-                  ->onDelete('cascade');
+            $table->float('score', 8, 2)
+                  ->default(0);
             $table->timestamps();
         });
     }

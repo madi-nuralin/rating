@@ -14,8 +14,9 @@ use App\Models\Position;
 use App\Models\Department;
 use App\Models\EmployementType;
 use App\Models\Rating;
-use App\Models\ParameterTarget;
 use App\Models\Parameter;
+use App\Models\ParameterTarget;
+use App\Models\VerificationStatus;
 use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
 use App\Models\Forms\FormFieldOption;
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
         //$this->seedAssessment();
         $this->seedParameterTarget();
         $this->seedParameter();
+        $this->seedVerificationStatus();
     }
 
     protected function seedRole() {
@@ -483,6 +485,8 @@ class DatabaseSeeder extends Seeder
 
         $definitions = [
             [
+                'score' => 4,
+                'parameter_target' => 2,
                 'en' => [
                     'name' => 'Publications in international peer-reviewed scientific journals in the 1st and 2nd quartile',
                     'description' => 'Publications in international peer-reviewed scientific journals included in 1 and 2 quarters according to Journal Citation Reports by Clarivate Analytics (Clarivate Analytics), or having in the database Scopus data CiteScore percentile not less than 65 in at least one of the scientific areas, in the field of social and humanitarian sciences, in journals indexed in the Web of Science Core Collection database (The Wep of Science Core Calculation) (Arts and Humanities Citation Index (Arts and Humanitis City Index), Science Citation Index Expanded (Science City Index Expanded), Social Sciences Citation Index (Link Science City Index)), by Clarivate Analytics and of type Article, Review or Article in Press'
@@ -491,96 +495,135 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квартиль',
                     'description' => 'Публикации в международных рецензируемых науч-ных журналах, входящих в 1 и 2 квар-тиль по данным Journal Citation Reports (Джоурнал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Анали-тикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль по CiteScore (СайтСкор) не менее 65 хотя бы по одной из научных областей, в об-ласти социальных и гуманитарных наук, в журналах, индексируемых в базе дан-ных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) илиArticle in Press (Статья в печати)'
                 ],
-                'target' => 2,
-                'score' => 4,
-                'form' => [
-                    'fields' => [
-                        [
-                            'type' => 'text',
-                            'en' => [
-                                'name' => 'Article title'
-                            ],
-                            'ru' => [
-                                'name' => 'Название статьи'
-                            ]
-                        ], [
-                            'type' => 'text',
-                            'en' => [
-                                'name' => 'Article abstract'
-                            ],
-                            'ru' => [
-                                'name' => 'Аннотация статьи'
-                            ]
-                        ], [
-                            'en' => [
-                                'name' => 'Publication journal'
-                            ],
-                            'ru' => [
-                                'name' => 'Журнал публикаций'
-                            ],
-                            'type' => 'select',
-                            'options' => [
-                                [
-                                    'en' => [
-                                        'name' => 'IEEE Xplore Digital Library',
-                                        'description' => 'IEEE Xplore Digital Library'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Цифровая библиотека IEEE Xplore',
-                                        'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
-                                    ]
-                                ], [
-                                    'en' => [
-                                        'name' => 'International Journal of Information and Communication Technology',
-                                        'description' => 'International Journal of Information and Communication Technology'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Международный журнал информационных и коммуникационных технологий',
-                                        'description' => 'Международный журнал информационных и коммуникационных технологий'
+                'forms' => [
+                    [
+                        'en' => [
+                            'name' => 'Fill general information',
+                            'description' => 'Fill general information',
+                        ],
+                        'ru' => [
+                            'name' => 'Заполните общую информацию',
+                            'description' => 'Заполните общую информацию',  
+                        ],
+                        'fields' => [
+                            [
+                                'type' => 'text',
+                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
+                                'score' => 1,
+                                'en' => [
+                                    'label' => 'Article title'
+                                ],
+                                'ru' => [
+                                    'label' => 'Название статьи'
+                                ]
+                            ], [
+                                'type' => 'text',
+                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
+                                'score' => 1,
+                                'en' => [
+                                    'label' => 'Article abstract'
+                                ],
+                                'ru' => [
+                                    'label' => 'Аннотация статьи'
+                                ]
+                            ], [
+                                'type' => 'select',
+                                'scoring_policy' => FormField::SCORING_POLICY_USE_OPTIONS,
+                                'en' => [
+                                    'label' => 'Publication journal'
+                                ],
+                                'ru' => [
+                                    'label' => 'Журнал публикаций'
+                                ],
+                                'options' => [
+                                    [
+                                        'en' => [
+                                            'name' => 'IEEE Xplore Digital Library',
+                                            'description' => 'IEEE Xplore Digital Library'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Цифровая библиотека IEEE Xplore',
+                                            'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
+                                        ],
+                                        'score' => 1
+                                    ], [
+                                        'en' => [
+                                            'name' => 'International Journal of Information and Communication Technology',
+                                            'description' => 'International Journal of Information and Communication Technology'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Международный журнал информационных и коммуникационных технологий',
+                                            'description' => 'Международный журнал информационных и коммуникационных технологий'
+                                        ],
+                                        'score' => 2
                                     ]
                                 ]
-                            ]
-                        ], [
-                            'en' => [
-                                'name' => 'Article language'
-                            ],
-                            'ru' => [
-                                'name' => 'Язык статьи'
-                            ],
-                            'type' => 'multiselect',
-                            'options' => [
-                                [
-                                    'en' => [
-                                        'name' => 'English',
-                                        'description' => 'English'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Англииский',
-                                        'description' => 'Англииский'
-                                    ]
-                                ], [
-                                    'en' => [
-                                        'name' => 'Russian',
-                                        'description' => 'Russian'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Русский',
-                                        'description' => 'Русский'
+                            ], [
+                                'type' => 'multiselect',
+                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
+                                'en' => [
+                                    'name' => 'Article language'
+                                ],
+                                'ru' => [
+                                    'name' => 'Язык статьи'
+                                ],
+                                'options' => [
+                                    [
+                                        'en' => [
+                                            'name' => 'English',
+                                            'description' => 'English'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Англииский',
+                                            'description' => 'Англииский'
+                                        ],
+                                    ], [
+                                        'en' => [
+                                            'name' => 'Russian',
+                                            'description' => 'Russian'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Русский',
+                                            'description' => 'Русский'
+                                        ],
                                     ]
                                 ]
+                            ], [
+                                'type' => 'file',
+                                'en' => [
+                                    'name' => 'Upload article text'
+                                ],
+                                'ru' => [
+                                    'name' => 'Загрузите текст статьи'
+                                ]
                             ]
-                        ], [
-                            'type' => 'file',
-                            'en' => [
-                                'name' => 'Upload article text'
-                            ],
-                            'ru' => [
-                                'name' => 'Загрузите текст статьи'
+                        ]
+                    ], [
+                        'en' => [
+                            'name' => 'Upload supporting files',
+                            'description' => 'Upload supporting files',
+                        ],
+                        'ru' => [
+                            'name' => 'Загрузите подтверждающие документы',
+                            'description' => 'Загрузите подтверждающие документы',  
+                        ],
+                        'fields' => [
+                            [
+                                'type' => 'file',
+                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
+                                'en' => [
+                                    'label' => 'Upload article text'
+                                ],
+                                'ru' => [
+                                    'label' => 'Загрузите текст статьи'
+                                ]
                             ]
                         ]
                     ]
                 ]
             ], [
+                'score' => 3,
+                'parameter_target' => 2,
                 'en' => [
                     'name' => 'Publications in 3 quartile international peer-reviewed scientific journals',
                     'description' => 'Publications in international peer-reviewed scientific journals included in the 3rd quartile according to Journal Citation Reports by Clarivate Analytics, or having a percentile index of at least 35 percentile in the Scopus database (Scopus) for at least one of the scientific fields, social sciences and humanities, in journals indexed in the Web of Science Core Collection database (Arts and Humanities Citation Index (Arts and Humanities City Index), Science Citation Index Expanded (Science City Expanded Index, Social Sciences Citation Index), by Clarivate Analytics and of type Article, Review or Article in Press'
@@ -589,96 +632,135 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль',
                     'description' => 'Публикации в международных рецензируемых научных журналах, входящих в 3 квартиль по данным Journal Citation Reports (Джоур-нал Ситэйшн Рэпортс) компании Clarivate Analytics (Кларивэйт Аналитикс), или имеющих в базе данных Scopus (Скопус) показатель процентиль не менее 35 хотя бы по одной из научных областей, в области социальных и гуманитарных наук, в журналах, индексируемых в базе данных Web of Science Core Collection (Уэп оф Сайнс Кор Калэкшн) (Arts and Humanities Citation Index (Артс энд Хюманитис Ситэйшн Индекс), Science Citation Index Expanded (Сайнс Ситэйшн Индекс Экспандэд), Social Sciences Citation Index (Сошл Сайнс Ситиэйшн Индекс)), компании Clarivate Analytics (Кларивэйт Аналитикс) и имеющие тип Article (Статья), Review (Обзор) или Article in Press (Статья в печати)'
                 ],
-                'target' => 2,
-                'score' => 3,
-                'form' => [
-                    'fields' => [
-                        [
-                            'type' => 'text',
-                            'en' => [
-                                'name' => 'Article title'
-                            ],
-                            'ru' => [
-                                'name' => 'Название статьи'
-                            ]
-                        ], [
-                            'type' => 'text',
-                            'en' => [
-                                'name' => 'Article abstract'
-                            ],
-                            'ru' => [
-                                'name' => 'Аннотация статьи'
-                            ]
-                        ], [
-                            'en' => [
-                                'name' => 'Publication journal'
-                            ],
-                            'ru' => [
-                                'name' => 'Журнал публикаций'
-                            ],
-                            'type' => 'select',
-                            'options' => [
-                                [
-                                    'en' => [
-                                        'name' => 'IEEE Xplore Digital Library',
-                                        'description' => 'IEEE Xplore Digital Library'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Цифровая библиотека IEEE Xplore',
-                                        'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
-                                    ]
-                                ], [
-                                    'en' => [
-                                        'name' => 'International Journal of Information and Communication Technology',
-                                        'description' => 'International Journal of Information and Communication Technology'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Международный журнал информационных и коммуникационных технологий',
-                                        'description' => 'Международный журнал информационных и коммуникационных технологий'
+                'forms' => [
+                    [
+                        'en' => [
+                            'name' => 'Fill general information',
+                            'description' => 'Fill general information',
+                        ],
+                        'ru' => [
+                            'name' => 'Заполните общую информацию',
+                            'description' => 'Заполните общую информацию',  
+                        ],
+                        'fields' => [
+                            [
+                                'type' => 'text',
+                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
+                                'score' => 1,
+                                'en' => [
+                                    'label' => 'Article title'
+                                ],
+                                'ru' => [
+                                    'label' => 'Название статьи'
+                                ]
+                            ], [
+                                'type' => 'text',
+                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
+                                'score' => 1,
+                                'en' => [
+                                    'label' => 'Article abstract'
+                                ],
+                                'ru' => [
+                                    'label' => 'Аннотация статьи'
+                                ]
+                            ], [
+                                'type' => 'select',
+                                'scoring_policy' => FormField::SCORING_POLICY_USE_OPTIONS,
+                                'en' => [
+                                    'label' => 'Publication journal'
+                                ],
+                                'ru' => [
+                                    'label' => 'Журнал публикаций'
+                                ],
+                                'options' => [
+                                    [
+                                        'en' => [
+                                            'name' => 'IEEE Xplore Digital Library',
+                                            'description' => 'IEEE Xplore Digital Library'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Цифровая библиотека IEEE Xplore',
+                                            'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
+                                        ],
+                                        'score' => 1
+                                    ], [
+                                        'en' => [
+                                            'name' => 'International Journal of Information and Communication Technology',
+                                            'description' => 'International Journal of Information and Communication Technology'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Международный журнал информационных и коммуникационных технологий',
+                                            'description' => 'Международный журнал информационных и коммуникационных технологий'
+                                        ],
+                                        'score' => 2
                                     ]
                                 ]
-                            ]
-                        ], [
-                            'en' => [
-                                'name' => 'Article language'
-                            ],
-                            'ru' => [
-                                'name' => 'Язык статьи'
-                            ],
-                            'type' => 'multiselect',
-                            'options' => [
-                                [
-                                    'en' => [
-                                        'name' => 'English',
-                                        'description' => 'English'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Английский',
-                                        'description' => 'Английский'
-                                    ]
-                                ], [
-                                    'en' => [
-                                        'name' => 'Russian',
-                                        'description' => 'Russian'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Русский',
-                                        'description' => 'Русский'
+                            ], [
+                                'type' => 'multiselect',
+                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
+                                'en' => [
+                                    'label' => 'Article language'
+                                ],
+                                'ru' => [
+                                    'label' => 'Язык статьи'
+                                ],
+                                'options' => [
+                                    [
+                                        'en' => [
+                                            'name' => 'English',
+                                            'description' => 'English'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Англииский',
+                                            'description' => 'Англииский'
+                                        ],
+                                    ], [
+                                        'en' => [
+                                            'name' => 'Russian',
+                                            'description' => 'Russian'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Русский',
+                                            'description' => 'Русский'
+                                        ],
                                     ]
                                 ]
+                            ], [
+                                'type' => 'file',
+                                'en' => [
+                                    'name' => 'Upload article text'
+                                ],
+                                'ru' => [
+                                    'name' => 'Загрузите текст статьи'
+                                ]
                             ]
-                        ], [
-                            'type' => 'file',
-                            'en' => [
-                                'name' => 'Upload article text'
-                            ],
-                            'ru' => [
-                                'name' => 'Загрузите текст статьи'
+                        ]
+                    ], [
+                        'en' => [
+                            'name' => 'Upload supporting files',
+                            'description' => 'Upload supporting files',
+                        ],
+                        'ru' => [
+                            'name' => 'Загрузите подтверждающие документы',
+                            'description' => 'Загрузите подтверждающие документы',  
+                        ],
+                        'fields' => [
+                            [
+                                'type' => 'file',
+                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
+                                'en' => [
+                                    'label' => 'Upload article text'
+                                ],
+                                'ru' => [
+                                    'label' => 'Загрузите текст статьи'
+                                ]
                             ]
                         ]
                     ]
                 ]
             ], [
+                'parameter_target' => 2,
+                'score' => 4,
                 'en' => [
                     'name' => 'Clarivate Analytics Journal Citation Reports or Scopus publications without quartile and percentile',
                     'description' => 'Clarivate Analytics Journal Citation Reports or Scopus publications without quartile and percentile'
@@ -686,10 +768,10 @@ class DatabaseSeeder extends Seeder
                 'ru' => [
                     'name' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля',
                     'description' => 'Публикации в изданиях, входящих в базу данных Journal Citation Reports  (Жорнал Цитэйшэн Репортс) компании Clarivate Analytics (Кларивэйт Аналитикс)  или Scopus без показателей квартиля и про-центиля'
-                ],
-                'target' => 2,
-                'score' => 4
+                ]
             ], [
+                'parameter_target' => 2,
+                'score' => 0,
                 'en' => [
                     'name' => 'Participation in funded research programs and projects funded: from the state budget (GF, PCF)',
                     'description' => 'Participation in funded research programs and projects funded: from the state budget (GF, PCF)'
@@ -698,59 +780,81 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)',
                     'description' => 'Участие в финансируемых научно-исследовательских Программах и проектах, финансируемых: из средств государственного бюджета (ГФ, ПЦФ)'
                 ],
-                'target' => 2,
-                'score' => 0,
-                'form' => [
-                    'fields' => [
-                        [
-                            'type' => 'select',
-                            'en' => [
-                                'name' => 'Article title'
-                            ],
-                            'ru' => [
-                                'name' => 'Название статьи'
-                            ],
-                            'options' => [
-                                [
-                                    'en' => [
-                                        'name' => 'Scientific supervisor of the PCF project',
-                                        'description' => 'Scientific supervisor of the PCF project'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Научный руководитель проекта ПЦФ',
-                                        'description' => 'Научный руководитель проекта ПЦФ'
-                                    ],
-                                    'score' => 100
-                                ], [
-                                    'en' => [
-                                        'name' => 'Scientific supervisor of the GF project',
-                                        'description' => 'Scientific supervisor of the GF project'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Научный руководитель проекта ГФ',
-                                        'description' => 'Научный руководитель проекта ГФ'
-                                    ],
-                                    'score' => 70
-                                ], [
-                                    'en' => [
-                                        'name' => 'Research Group Member',
-                                        'description' => 'Research Group Member'
-                                    ],
-                                    'ru' => [
-                                        'name' => 'Членисследовательской группы',
-                                        'description' => 'Членисследовательской группы'
-                                    ],
-                                    'score' => 25
+                'forms' => [
+                    [
+                        'en' => [
+                            'name' => 'Fill general information',
+                            'description' => 'Fill general information'
+                        ],
+                        'ru' => [
+                            'name' => 'Заполните общую информацию',
+                            'description' => 'Заполните общую информацию'
+                        ],
+                        'fields' => [
+                            [
+                                'type' => 'select',
+                                'scoring_policy' => FormField::SCORING_POLICY_USE_OPTIONS,
+                                'en' => [
+                                    'label' => 'Article title'
+                                ],
+                                'ru' => [
+                                    'label' => 'Название статьи'
+                                ],
+                                'options' => [
+                                    [
+                                        'en' => [
+                                            'name' => 'Scientific supervisor of the PCF project',
+                                            'description' => 'Scientific supervisor of the PCF project'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Научный руководитель проекта ПЦФ',
+                                            'description' => 'Научный руководитель проекта ПЦФ'
+                                        ],
+                                        'score' => 100
+                                    ], [
+                                        'en' => [
+                                            'name' => 'Scientific supervisor of the GF project',
+                                            'description' => 'Scientific supervisor of the GF project'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Научный руководитель проекта ГФ',
+                                            'description' => 'Научный руководитель проекта ГФ'
+                                        ],
+                                        'score' => 70
+                                    ], [
+                                        'en' => [
+                                            'name' => 'Research Group Member',
+                                            'description' => 'Research Group Member'
+                                        ],
+                                        'ru' => [
+                                            'name' => 'Членисследовательской группы',
+                                            'description' => 'Членисследовательской группы'
+                                        ],
+                                        'score' => 25
+                                    ]
                                 ]
                             ]
-                        ], [
-                            'en' => [
-                                'name' => 'A copy of the contract and staffing table'
-                            ],
-                            'ru' => [
-                                'name' => 'Копия договора и штатного расписания'
-                            ],
-                            'type' => 'file'
+                        ]
+                    ], [
+                        'en' => [
+                            'name' => 'Upload supporting files',
+                            'description' => 'Upload supporting files',
+                        ],
+                        'ru' => [
+                            'name' => 'Загрузите подтверждающие документы',
+                            'description' => 'Загрузите подтверждающие документы',  
+                        ],
+                        'fields' => [
+                            [
+                                'type' => 'file',
+                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
+                                'en' => [
+                                    'label' => 'A copy of the contract and staffing table'
+                                ],
+                                'ru' => [
+                                    'label' => 'Копия договора и штатного расписания'
+                                ]
+                            ]
                         ]
                     ]
                 ]
@@ -763,7 +867,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate ',
                     'description' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate'
                 ],
-                'target' => 2,
+                'parameter_target' => 2,
                 'score' => 5
             ], [
                 'en' => [
@@ -774,7 +878,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры',
                     'description' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры'
                 ],
-                'target' => 8,
+                'parameter_target' => 8,
                 'score' => 7
             ], [
                 'en' => [
@@ -785,18 +889,14 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям',
                     'description' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям'
                 ],
-                'target' => 8,
+                'parameter_target' => 8,
                 'score' => 5
             ]   
         ];
 
         foreach ($definitions as $definition) {
-            $form = new Form();
-            $form->save();
-
             $parameter = Parameter::create([
-                'form_id' => $form->getId(),
-                'parameter_target_id' => $definition['target']
+                'parameter_target_id' => $definition['parameter_target']
             ]);
 
             foreach ($locales as $locale) {
@@ -808,38 +908,139 @@ class DatabaseSeeder extends Seeder
                 $parameter->setScore($definition['score']);
             }
 
-            if (array_key_exists('form', $definition)) {
-
-                foreach ($definition['form']['fields'] as $field) {
-                    $formField = FormField::create([
-                        'form_id' => $parameter->form->getId(),
-                        'type' => $field['type']
-                    ]);
+            if (array_key_exists('forms', $definition)) {
+                foreach ($definition['forms'] as $definitionForm) {   
+                    $form = Form::create();
 
                     foreach ($locales as $locale) {
-                        $formField->setName($field[$locale]['name'], $locale);
+                        $form->setName($definitionForm[$locale]['name'], $locale);
+                        $form->setDescription($definitionForm[$locale]['description'], $locale);
                     }
 
-                    if ( in_array($formField->getType(), ['select', 'multiselect']) ) {
-                        foreach ($field['options'] as $option) {
-                            $formFieldOption = FormFieldOption::create([
-                                'form_field_id' => $formField->getId()
+                    if (array_key_exists('fields', $definition)) {
+                        foreach ($definitionForm['fields'] as $definitionFormField) {
+                            $formField = FormField::create([
+                                'form_id' => $form->getId(),
+                                'type' => $definitionFormField['type']
                             ]);
-                            foreach ($locales as $locale) {
-                                $formFieldOption->setName($option[$locale]['name'], $locale);
-                                $formFieldOption->setDescription($option[$locale]['description'], $locale);
+
+                            if (array_key_exists('scoring_policy', $definitionFormField)) {
+                                $formField->setScoringPolicy($definitionFormField['scoring_policy']);
                             }
-                            if (array_key_exists('score', $option))
-                                $formFieldOption->setScore($option['score']);
-                            $formFieldOption->save();
+
+                            if (array_key_exists('score', $definitionFormField)) {
+                                $formField->setScore($definitionFormField['score']);
+                            }
+
+                            foreach ($locales as $locale) {
+                                error_log('message');
+                                $formField->setLabel($definitionFormField[$locale]['label'], $locale);
+                            }
+
+                            if ( in_array($formField->getType(), [FormField::SELECT, FormField::MULTISELECT]) ) {
+                                foreach ($definitionFormField['options'] as $definitionFormFieldOption) {
+                                    $formFieldOption = FormFieldOption::create([
+                                        'form_field_id' => $formField->getId()
+                                    ]);
+
+                                    foreach ($locales as $locale) {
+                                        $formFieldOption->setName($definitionFormFieldOption[$locale]['name'], $locale);
+                                        $formFieldOption->setDescription($definitionFormFieldOption[$locale]['description'], $locale);
+                                    }
+
+                                    if (array_key_exists('score', $definitionFormFieldOption)) {
+                                        $formFieldOption->setScore($definitionFormFieldOption['score']);
+                                    }
+
+                                    $formFieldOption->save();
+                                }
+                            }
+                            $formField->save();
                         }
                     }
-
-                    $formField->save();
+                    $form->save();
+                    $parameter->addForm($form);
                 }
             }
 
             $parameter->save();
+        }
+    }
+
+    protected function seedVerificationStatus() {
+        $locales = ['en', 'ru'];
+    
+        $definitions = [
+            [
+                'en' => [
+                    'name' => 'Not Reviewed',
+                    'description' => 'Verification not reviewed.'
+                ],
+                'ru' => [
+                    'name' => 'Не Рассмотрено',
+                    'description' => 'Подтверждение еще не рассмотрено'
+                ],
+                'context' => 'n/r',
+                'color' => 'yellow'
+            ], [
+                'en' => [
+                    'name' => 'Not Accepted',
+                    'description' => 'Verification not accepted.'
+                ],
+                'ru' => [
+                    'name' => 'Отказано',
+                    'description' => 'Подтверждение отказано'
+                ],
+                'context' => 'n/a',
+                'color' => 'red'
+            ], [
+                'en' => [
+                    'name' => 'Accepted',
+                    'description' => 'Verification accepted.'
+                ],
+                'ru' => [
+                    'name' => 'Подтверждено',
+                    'description' => 'Подтверждение принято'
+                ],
+                'context' => 'a',
+                'color' => 'green'
+            ],  [
+                'en' => [
+                    'name' => 'Fix Require',
+                    'description' => 'Verification requires fixes.'
+                ],
+                'ru' => [
+                    'name' => 'Требуется исправление',
+                    'description' => 'Подтверждение требует исправление'
+                ],
+                'context' => 'f/r',
+                'color' => 'indigo'
+            ],  [
+                'en' => [
+                    'name' => 'Fixed',
+                    'description' => 'Verification fixed.'
+                ],
+                'ru' => [
+                    'name' => 'Исправлено',
+                    'description' => 'Подтверждение исправлено'
+                ],
+                'context' => 'f',
+                'color' => 'blue'
+            ],
+        ];
+
+        foreach ($definitions as $definition) {
+            $verificationStatus = VerificationStatus::create([
+                'context' => $definition['context'],
+                'color' => $definition['color']
+            ]);
+
+            foreach ($locales as $locale) {
+                $verificationStatus->setName($definition[$locale]['name'], $locale);
+                $verificationStatus->setDescription($definition[$locale]['description'], $locale);
+            }
+            
+            $verificationStatus->save();
         }
     }
 }

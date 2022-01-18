@@ -23,7 +23,7 @@ class FormFieldOptionSetting extends Model
         'setting_type'
     ];
 
-    public function option() {
+    public function formFieldOption() {
         return $this->belongsTo(FormFieldOption::class);
     }
 }

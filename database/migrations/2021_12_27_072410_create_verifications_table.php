@@ -27,7 +27,12 @@ class CreateVerificationsTable extends Migration
                   ->references('id')
                   ->on('submissions')
                   ->onDelete('cascade');
-            $table->enum('status', ['not considered', 'verified', 'requires changes', 'corrected', 'cancelled']);
+            $table->bigInteger('verification_status_id')
+                  ->unsigned();
+            $table->foreign('verification_status_id')
+                  ->references('id')
+                  ->on('verification_statuses')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

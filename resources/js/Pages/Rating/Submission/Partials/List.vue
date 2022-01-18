@@ -53,13 +53,13 @@
                                                             <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">
                                                                 <p>Подтвердили</p>
                                                                 <breeze-avatar-group :space="'-space-x-2'">
-                                                                    <breeze-avatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="verifier in item.verifiers" v-if="true" />
+                                                                    <breeze-avatar :width="'6'" :src="verification.verifier.user.profile_photo_path" v-for="verification in item.verifications" v-if="verification && verification.status && verification.status.context == 'a'" />
                                                                 </breeze-avatar-group>
                                                             </div>
                                                             <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">
                                                                 <p>Не просмотрено</p>
                                                                 <breeze-avatar-group :space="'-space-x-2'">
-                                                                    <breeze-avatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="verifier in item.verifiers" v-if="true" />
+                                                                    <breeze-avatar :width="'6'" :src="verification.verifier.user.profile_photo_path" v-for="verification in item.verifications" v-if="verification && verification.status && verification.status.context == 'n/r'" />
                                                                 </breeze-avatar-group>
                                                             </div>
                                                             <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">Заработано</div>
@@ -83,7 +83,7 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('wizard.submission.create', {'rating': rating.id})">
+            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
                 {{ $t('pages.management.rating.list.actions.createButton') }}
             </Link>
         </template>
@@ -100,10 +100,12 @@
     import BreezeAccordion from '@/Components/Accordion.vue'
     import BreezeAvatarGroup from '@/Components/AvatarGroup.vue'
     import BreezeAvatar from '@/Components/Avatar.vue'
+
     import ShowName from '../../Partials/ShowName.vue'
     import ShowDescription from '../../Partials/ShowDescription.vue'
     import ShowVerifiers from '../../Partials/ShowVerifiers.vue'
     import ShowDate from '../../Partials/ShowDate.vue'
+    
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {

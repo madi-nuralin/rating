@@ -4,11 +4,18 @@ namespace App\Models\Forms;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Helpers\SettingHelper;
+
+
+use App\Models\Helpers\HasId;
+use App\Models\Helpers\HasName;
+use App\Models\Helpers\HasDescription;
 
 class FormFieldOption extends Model
 {
-    use HasFactory, SettingHelper;
+    use HasFactory,
+        HasId,
+        HasName,
+        HasDescription;
 
     protected $table = 'form_field_options';
 
@@ -28,44 +35,6 @@ class FormFieldOption extends Model
 
     public function formField() {
     	return $this->belongsTo(FormField::class);
-    }
-
-    public function getId() {
-    	return $this->id;
-    }
-
-    public function getName($locale=null) {
-        return $this->getSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'name'
-        );
-    }
-
-    public function setName($name, $locale=null) {
-        $this->updateSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'name',
-            $name
-        );
-    }
-
-    public function getDescription($locale=null) {
-        return $this->getSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'description'
-        );
-    }
-
-    public function setDescription($name, $locale=null) {
-        $this->updateSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'description',
-            $name
-        );
     }
 
     public function getScore() {

@@ -4,19 +4,37 @@ namespace App\Models\Forms;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Helpers\SettingHelper;
+
+use App\Models\Helpers\HasId;
+use App\Models\Helpers\HasLabel;
+use App\Models\Helpers\HasDescription;
 
 class FormField extends Model
 {
-    use HasFactory, SettingHelper;
+    use HasFactory,
+        HasId,
+        HasLabel,
+        HasDescription;
 
     protected $table = 'form_fields';
 
     const TEXT = 'text';
     const TEXTAREA = 'textarea';
+    const EMAIL = 'email';
+    const URL = 'url';
     const SELECT = 'select';
     const MULTISELECT = 'multiselect';
     const FILE = 'file';
+    const MATH = 'math';
+    const TIME = 'time';
+    const DATE = 'date';
+    const DATETIME = 'math';
+    const DATETIME_LOCAL = 'datetime-local';
+
+    const SCORING_POLICY_DISABLED = 'scoring_policy_disabled';
+    const SCORING_POLICY_DEFAULT = 'scoring_policy_default';
+    const SCORING_POLICY_USE_OPTIONS = 'scoring_policy_use_options';
+    const SCORING_POLICY_USE_MATH = 'scoring_policy_use_math';
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +44,8 @@ class FormField extends Model
     protected $fillable = [
         'form_id',
         'type',
-        'formula'
+        'scoring_policy',
+        'score'
     ];
 
     public function settings() {
@@ -41,12 +60,8 @@ class FormField extends Model
     	return $this->hasMany(FormFieldOption::class);
     }
 
-    public function values() {
-    	return $this->hasMany(FormFieldValue::class);
-    }
-
-    public function getId() {
-    	return $this->id;
+    public function responces() {
+    	return $this->hasMany(FormFieldResponce::class);
     }
 
     public function getType() {
@@ -57,65 +72,54 @@ class FormField extends Model
     	$this->type = $type;
     }
 
-    public function getFormula() {
-        return $this->formula;
+    public function getScoringPolicy() {
+        return $this->scoring_policy;
     }
 
-    public function setFormula($formula) {
-        $this->formula = $formula;
+    public function setScoringPolicy($scoringPolicy) {
+        $this->scoring_policy = $scoringPolicy;
+    }
+
+    public function getScore() {
+        return $this->score();
+    }
+
+    public function setScore($score) {
+        $this->score = $score;
     }
 
     public function getForm() {
-    	return $this->form->toArray();
+    	return $this->form;
     }
 
     public function setForm($form) {
     	$this->form()->associate($form);
     }
 
-    public function getName($locale=null) {
-        return $this->getSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'name'
-        );
-    }
-
-    public function setName($name, $locale=null) {
-        $this->updateSettingValue(
-            isset($locale) ? $locale : app()->currentLocale(),
-            'string',
-            'name',
-            $name
-        );
-    }
-
     public function getOptions() {
-    	return $this->options->map(function($option) {
-    		return $option->toArray();
-    	});
+    	return $this->options;
     }
 
     public function setOptions($options) {
     	//
     }
 
-    public function getValues() {
-    	return $this->values->map(function($value) {
-    		return $value->toArray();
-    	});
+    public function getResponces() {
+    	return $this->responces;
     }
 
-    public function setValues($values) {
+    public function setResponces($responces) {
     	//
     }
 
     public function toArray() {
     	return [
             'id' => $this->getId(),
-            'name' => $this->getName(),
+            'label' => $this->getLabel(),
+            'description' => $this->getDescription(),
             'type' => $this->getType(),
-            'formula' => $this->getFormula(),
+            'scoring_policy' => $this->getScoringPolicy(),
+            'score' => $this->getScore(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

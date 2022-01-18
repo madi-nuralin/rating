@@ -18,7 +18,7 @@ class Verification extends Model
     protected $fillable = [
         'submission_id',
         'verifier_id',
-        'status'
+        'verification_status_id'
     ];
 
     public function submission() {
@@ -29,6 +29,10 @@ class Verification extends Model
     	return $this->belongsTo(Verifier::class);
     }
 
+    public function verificationStatus() {
+        return $this->belongsTo(VerificationStatus::class);
+    }
+
     public function setSubmission(Submission $submission) {
     	$this->submission()->associate($submission);
     }
@@ -37,12 +41,20 @@ class Verification extends Model
     	$this->verifier()->associate($verifier);
     }
 
+    public function setVerificationStatus(VerificationStatus $verificationStatus) {
+        $this->verificationStatus()->associate($verificationStatus);
+    }
+
     public function getSubmission() {
     	return $this->submission;
     }
 
     public function getVerifier() {
     	return $this->verifier;
+    }
+
+    public function getVerificationStatus() {
+        return $this->verificationStatus;
     }
 
     public function toArray() {

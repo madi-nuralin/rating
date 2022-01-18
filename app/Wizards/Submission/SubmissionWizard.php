@@ -17,6 +17,7 @@ use App\Wizards\Submission\Steps\SelectParameterStep;
 use App\Wizards\Submission\Steps\SelectParameterTargetStep;
 
 use App\Models\Rating;
+use App\Models\Submission;
 use App\Models\Parameter;
 use App\Models\ParameterTarget;
 
@@ -47,9 +48,15 @@ class SubmissionWizard extends AbstractWizard
 
     protected function onAfterComplete(ActionResult $result): Response | Responsable | Renderable
     {
-        session()->flash('flash.banner', ['']);
+        $submission = Submission::findOrFail($result->get('submission'));
+
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('submission.show', ['submission' => $submission->id])
+            ]
+        ]);
         session()->flash('flash.bannerStyle', 'success');
 
-        return Inertia::location(route('submission.index', ['submission' => $this->data('submission')]));
+        return Inertia::location(route('submission.index', ['rating' => $submission->rating->id]));
     }
 }

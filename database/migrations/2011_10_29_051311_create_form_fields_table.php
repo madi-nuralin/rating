@@ -21,9 +21,31 @@ class CreateFormFieldsTable extends Migration
                   ->references('id')
                   ->on('forms')
                   ->onDelete('cascade');
-            $table->string('type'); /* text, select, multiselect, file*/
-            $table->string('formula')
-                  ->nullable(true);
+            $table->enum('type', [
+                    'text',         // ['required', 'nullable', 'max:size', 'min:size']
+                    'textarea',     // ['required', 'nullable', 'max:size', 'min:size']
+                    'email',        // ['required', 'nullable', 'email']
+                    'url',          // ['required', 'nullable', 'url']
+                    'select',       // ['required', 'nullable', 'boolean', 'numeric', 'integer', 'string']
+                    'multiselect',  // ['required', 'nullable', 'array', 'min:size', 'max:size']
+                    'file',         // ['required', 'nullable', 'mimetypes:foo,bar', 'mimes:foo,bar', 'min:size', 'max:size']
+                    'math',         // ['required', 'nullable']
+                    'time',         // ['required', 'nullable', 'date', 'date_format', 'after_time']
+                    'date',         // ['required', 'nullable', 'date', 'date_format', 'after_time']
+                    'datetime',     // ['required', 'nullable', 'date', 'date_format', 'after_time']
+                    'datetime-local'// ['required', 'nullable', 'date', 'date_format', 'after_time']
+                ]);
+            $table->json('validation_rules')
+                  ->nullable();
+            $table->enum('scoring_policy', [
+                    'scoring_policy_disabled',
+                    'scoring_policy_default',
+                    'scoring_policy_use_options',
+                    'scoring_policy_use_math',
+                ])->default('scoring_policy_disabled');
+            $table->float('score', 8, 2)
+                  ->default(0);
+
             $table->timestamps();
         });
     }

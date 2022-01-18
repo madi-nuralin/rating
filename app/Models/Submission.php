@@ -41,6 +41,10 @@ class Submission extends Model
         return $this->hasMany(Verification::class);
     }
 
+    public function formFieldResponces() {
+        return $this->belongsToMany(FormFieldResponce::class);
+    }
+
     public function setUser(User $user) {
     	$this->user()->associate($user);
     }
@@ -54,7 +58,11 @@ class Submission extends Model
     }
 
     public function setSubmissionProlongations() {
-    	// TODO: 
+    	// 
+    }
+
+    public function setFormFieldResponces() {
+        //
     }
 
     public function getUser() {
@@ -70,7 +78,11 @@ class Submission extends Model
     }
 
     public function getSubmissionProlongations() {
-    	// TODO: 
+    	return $this->submissionProlongations;
+    }
+
+    public function getFormFieldResponces() {
+        return $this->formFieldResponces;
     }
 
     public function toArray() {

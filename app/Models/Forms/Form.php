@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Helpers\SettingHelper;
 
+use App\Models\Helpers\HasId;
+use App\Models\Helpers\HasName;
+use App\Models\Helpers\HasDescription;
+
 class Form extends Model
 {
-    use HasFactory, SettingHelper;
+    use HasFactory,
+        HasId,
+        HasName,
+        HasDescription;
 
     protected $table = 'forms';
 
@@ -24,14 +31,8 @@ class Form extends Model
     	return $this->hasMany(FormField::class);
     }
 
-    public function getId() {
-    	return $this->id;
-    }
-
     public function getFields() {
-    	return $this->fields->map(function($field) {
-    		return $field->toArray();
-    	});
+    	return $this->fields;
     }
 
     public function setFields($fields) {
@@ -41,6 +42,8 @@ class Form extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];
