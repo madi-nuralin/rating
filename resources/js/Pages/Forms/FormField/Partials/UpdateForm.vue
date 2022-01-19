@@ -1,28 +1,28 @@
 <template>
     <BreezeFormSection @submitted="updateFormField">
         <template #title>
-            {{ $t('pages.forms.fields.update.title') }}
+            {{ $t('pages.forms.formField.update.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.forms.fields.update.description') }}
+            {{ $t('pages.forms.formField.update.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.forms.fields.update.form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.forms.formField.update.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="type" :value="$t('pages.forms.fields.update.form.type')" />
+                <BreezeLabel for="type" :value="$t('pages.forms.formField.update.form.type')" />
                 <BreezeSelect id="type" class="mt-1 block w-full" :value="form.type" @input="form.type = $event" :options="options.types" :multiple="false" />
                 <BreezeInputError :message="form.errors.type" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4" v-if="form.type == 'text'">
-                <BreezeLabel for="formula" :value="$t('pages.forms.fields.create.form.formula')" />
+                <BreezeLabel for="formula" :value="$t('pages.forms.formField.create.form.formula')" />
                 <BreezeInput id="formula" type="text" class="mt-1 block w-full" v-model="form.formula" autofocus />
                 <BreezeInputError :message="form.errors.formula" class="mt-2" />
             </div>
@@ -88,10 +88,10 @@
         computed: {
             options() {
                 let types = [
-                    { value: 'text', name: this.$t('pages.forms.fields.types.text.name'), description: this.$t('pages.forms.fields.types.text.description') },
-                    { value: 'select', name: this.$t('pages.forms.fields.types.select.name'), description: this.$t('pages.forms.fields.types.select.description') },
-                    { value: 'multiselect', name: this.$t('pages.forms.fields.types.multiselect.name'), description: this.$t('pages.forms.fields.types.multiselect.description') },
-                    { value: 'file', name: this.$t('pages.forms.fields.types.file.name'), description: this.$t('pages.forms.fields.types.file.description') }
+                    { value: 'text', name: this.$t('pages.forms.formField.types.text.name'), description: this.$t('pages.forms.formField.types.text.description') },
+                    { value: 'select', name: this.$t('pages.forms.formField.types.select.name'), description: this.$t('pages.forms.formField.types.select.description') },
+                    { value: 'multiselect', name: this.$t('pages.forms.formField.types.multiselect.name'), description: this.$t('pages.forms.formField.types.multiselect.description') },
+                    { value: 'file', name: this.$t('pages.forms.formField.types.file.name'), description: this.$t('pages.forms.formField.types.file.description') }
                 ];
 
 

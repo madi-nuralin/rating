@@ -604,27 +604,33 @@ var messages = {
         }
       },
       forms: {
-        fields: {
+        form: {
+        },
+        formField: {
           head: {
             title: 'Form management'
           },
           header: 'Form management',
           create: {
-            title: 'Create a form',
-            description: 'Create a new form field by inserting name and type',
+            title: 'Create a field',
+            description: 'Enter the label, type, validation rules, and other form field parameters',
             form: {
-              name: 'Name',
-              type: 'Field type',
-              formula: 'Formula'
+              label: 'Label',
+              type: 'Type',
+              scoring_policy: 'Scoring Policy',
+              score: 'Score',
+              validation_rules: 'Validation Rules'
             }
           },
           update: {
             title: 'Update the form field',
-            description: 'Update the existing form field',
+            description: 'Update the label, type, validation rules, and other form field parameters',
             form: {
-              name: 'Name',
-              type: 'Field type',
-              formula: 'Formula'
+              label: 'Label',
+              type: 'Type',
+              scoring_policy: 'Scoring Policy',
+              score: 'Score',
+              validation_rules: 'Validation Rules'
             }
           },
           delete: {
@@ -653,26 +659,152 @@ var messages = {
               createButton: 'Create a new form filed'
             }
           },
-          types: {
+          type: {
             text: {
-              name: 'Text or string data',
+              name: 'Text',
               description: 'Text or string data'
             },
+            textarea: {
+              name: 'Textarea',
+              description: 'Text or paragraph'
+            },
+            email: {
+              name: 'Email',
+              description: 'Email address'
+            },
+            url: {
+              name: 'Url',
+              description: 'Url link'
+            },
             select: {
-              name: 'Select from list',
+              name: 'Select',
               description: 'Select from the list'
             },
             multiselect: {
-              name: 'Multiple selection from the list',
+              name: 'Multiselect',
               description: 'Multiple selection from the list'
             },
             file: {
-              name: 'Upload file',
+              name: 'File',
               description: 'Upload file'
             },
-            formula: {
-              name: 'Formula',
-              description: 'Formula input, a computable math expression'
+            time: {
+              name: 'Time',
+              description: 'Time h:m:s'
+            },
+            date: {
+              name: 'Date',
+              description: 'Date year/month/day'
+            },
+            datetime: {
+              name: 'Datetime',
+              description: 'Date and time year/month/day h:m:s'
+            },
+            datetime_local: {
+              name: 'Datetime Local',
+              description: 'Date and time with timezone year/month/day h:m:s ZZ'
+            },
+          },
+          scoring_policy: {
+            disabled: {
+              name: 'Disabled',
+              description: 'Scoring is disabled for this field by default'
+            },
+            default: {
+              name: 'Default',
+              description: 'Assign default score'
+            },
+            field_type: {
+              name: 'By Field Type',
+              description: 'Assign score by field type'
+            }
+          },
+          validation_rules: {
+            mimes: {
+              'doc': {
+                name: '.doc',
+                description: 'Microsoft Word 1993'
+              },
+              'docx': {
+                name: '.docx',
+                description: 'Microsoft Word 2007'
+              },
+              'rtf': {
+                name: '.rtf',
+                description: 'Rich Text Format'
+              },
+              'xls': {
+                name: '.xls',
+                description: 'Microsoft Excel 1993'
+              },
+              'xlsx': {
+                name: '.xlsx',
+                description: 'Microsoft Excel 2007'
+              },
+              'ppt': {
+                name: '.ppt',
+                description: 'Microsoft Power Point 1993'
+              },
+              'pptx': {
+                name: '.pptx',
+                description: 'Microsoft Power Point 2007'
+              },
+              'xml': {
+                name: '.xml',
+                description: 'eXtensible Markup Language'
+              },
+              'csv': {
+                name: '.csv',
+                description: 'Comma-Separated Values'
+              },
+              'pdf': {
+                name: '.pdf',
+                description: 'Portable Document Format'
+              },
+              'png': {
+                name: '.png',
+                description: 'Portable Network Graphics'
+              },
+              'jpg': {
+                name: '.jpg',
+                description: 'Joint Photographic Experts Group'
+              },
+              'jpeg': {
+                name: '.jpeg',
+                description: 'Joint Photographic Experts Group'
+              },
+              'gif': {
+                name: '.gif',
+                description: 'Graphics Interchange Format'
+              },
+              'mp3': {
+                name: '.mp3',
+                description: 'MPEG-1/2/2.5 Layer 3'
+              },
+              'wav': {
+                name: '.wav',
+                description: 'Waveform Audio File Format'
+              },
+              'wma': {
+                name: '.wma',
+                description: 'Windows Media Audio'
+              },
+              'aac': {
+                name: '.aac',
+                description: 'Advanced Audio Coding'
+              },
+              'mp4': {
+                name: '.mp4',
+                description: 'ISO Base Media File Format (MPEG-4 Part 12)'
+              },
+              'avi': {
+                name: '.avi',
+                description: 'Audio Video Interleave'
+              },
+              'mov': {
+                name: '.mov',
+                description: 'QuickTime multimedia file format; Metal oxide varistor'
+              }
             }
           },
           options: {
@@ -1397,27 +1529,33 @@ var messages = {
         }
       },
       forms: {
-        fields: {
+        form: {
+        },
+        formField: {
           head: {
             title: 'Создание и управление формами'
           },
           header: 'Создание и управление формами',
           create: {
-            title: 'Создать поле формы',
-            description: 'Создать новое поле формы',
+            title: 'Создание нового поля формы',
+            description: 'Введите метку, тип, правила проверки и другие параметры поля формы',
             form: {
-              name: 'Название',
-              type: 'Выберите тип поля',
-              formula: 'Введите формулу'
+              label: 'Метка',
+              type: 'Тип',
+              scoring_policy: 'Порядок подсчета баллов',
+              score: 'Балл',
+              validation_rules: 'Правила проверки'
             }
           },
           update: {
             title: 'Обновить поле формы',
-            description: 'Обновить поле формы',
+            description: 'Обновите метку, тип, правила проверки и другие параметры поля формы',
             form: {
-              name: 'Название',
-              type: 'Выберите тип поля',
-              formula: 'Формула'
+              label: 'Метка',
+              type: 'Тип',
+              scoring_policy: 'Порядок подсчета баллов',
+              score: 'Балл',
+              validation_rules: 'Правила проверки'
             }
           },
           delete: {
@@ -1446,26 +1584,152 @@ var messages = {
               createButton: 'Создать новое поле формы'
             }
           },
-          types: {
+          type: {
             text: {
-              name: 'Текстовые или строковые данные',
+              name: 'Text',
               description: 'Текстовые или строковые данные'
             },
+            textarea: {
+              name: 'Textarea',
+              description: 'Объемный текст или абзац'
+            },
+            email: {
+              name: 'Email',
+              description: 'Адрес электронной почты'
+            },
+            url: {
+              name: 'Url',
+              description: 'Электронный адрес'
+            },
             select: {
-              name: 'Выбрать из списка',
+              name: 'Select',
               description: 'Выбрать из списка'
             },
             multiselect: {
-              name: 'Множественный выбор из списка',
+              name: 'Multiselect',
               description: 'Множественный выбор из списка'
             },
             file: {
-              name: 'Загрузка файла',
+              name: 'File',
               description: 'Загрузка файла'
             },
-            formula: {
-              name: 'Формула',
-              description: 'Ввод формулы, вычисляемое математическое выражение'
+            time: {
+              name: 'Time',
+              description: 'Время ч:м:с'
+            },
+            date: {
+              name: 'Date',
+              description: 'Дата год/месяц/день'
+            },
+            datetime: {
+              name: 'Datetime',
+              description: 'Дата и время год/месяц/день ч:м:с'
+            },
+            datetime_local: {
+              name: 'Datetime Local',
+              description: 'Дата и время с учетом часового пояса год/месяц/день ч:м:с ZZ'
+            },
+          },
+          scoring_policy: {
+            disabled: {
+              name: 'Отключено',
+              description: 'Оценка для этого поля отключена по умолчанию.'
+            },
+            default: {
+              name: 'По умолчанию',
+              description: 'Присвоить оценку по умолчанию'
+            },
+            field_type: {
+              name: 'По типу поля',
+              description: 'Назначить оценку по типу поля'
+            }
+          },
+          validation_rules: {
+            mimes: {
+              'doc': {
+                name: '.doc',
+                description: 'Microsoft Word 1993'
+              },
+              'docx': {
+                name: '.docx',
+                description: 'Microsoft Word 2007'
+              },
+              'rtf': {
+                name: '.rtf',
+                description: 'Rich Text Format'
+              },
+              'xls': {
+                name: '.xls',
+                description: 'Microsoft Excel 1993'
+              },
+              'xlsx': {
+                name: '.xlsx',
+                description: 'Microsoft Excel 2007'
+              },
+              'ppt': {
+                name: '.ppt',
+                description: 'Microsoft Power Point 1993'
+              },
+              'pptx': {
+                name: '.pptx',
+                description: 'Microsoft Power Point 2007'
+              },
+              'xml': {
+                name: '.xml',
+                description: 'eXtensible Markup Language'
+              },
+              'csv': {
+                name: '.csv',
+                description: 'Comma-Separated Values'
+              },
+              'pdf': {
+                name: '.pdf',
+                description: 'Portable Document Format'
+              },
+              'png': {
+                name: '.png',
+                description: 'Portable Network Graphics'
+              },
+              'jpg': {
+                name: '.jpg',
+                description: 'Joint Photographic Experts Group'
+              },
+              'jpeg': {
+                name: '.jpeg',
+                description: 'Joint Photographic Experts Group'
+              },
+              'gif': {
+                name: '.gif',
+                description: 'Graphics Interchange Format'
+              },
+              'mp3': {
+                name: '.mp3',
+                description: 'MPEG-1/2/2.5 Layer 3'
+              },
+              'wav': {
+                name: '.wav',
+                description: 'Waveform Audio File Format'
+              },
+              'wma': {
+                name: '.wma',
+                description: 'Windows Media Audio'
+              },
+              'aac': {
+                name: '.aac',
+                description: 'Advanced Audio Coding'
+              },
+              'mp4': {
+                name: '.mp4',
+                description: 'ISO Base Media File Format (MPEG-4 Part 12)'
+              },
+              'avi': {
+                name: '.avi',
+                description: 'Audio Video Interleave'
+              },
+              'mov': {
+                name: '.mov',
+                description: 'QuickTime multimedia file format; Metal oxide varistor'
+              }
             }
           },
           options: {

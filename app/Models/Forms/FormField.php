@@ -82,7 +82,7 @@ class FormField extends Model
     }
 
     public function getScore() {
-        return $this->score();
+        return $this->score;
     }
 
     public function setScore($score) {

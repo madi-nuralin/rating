@@ -1,10 +1,10 @@
 <template>
-    <Head :title="$t('pages.forms.form.field.head.title')" />
+    <Head :title="$t('pages.forms.formField.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.forms.form.field.header') }}
+                {{ $t('pages.forms.formField.header') }}
             </h2>
         </template>
 

@@ -49,11 +49,14 @@ class FormFieldController extends Controller
         $input = $request->all();
 
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'type' => ['required'],
+            'label' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string'],
+            'scoring_policy' => ['required', 'string'],
+            'score' => ['numeric', 'nullable'],
+            'validation_rules' => ['array', 'nullable']
         ])->validateWithBag('createFormField');
 
-        if (isset($input['formula'])) {
+        /*if (isset($input['formula'])) {
 
             $parser = new StdMathParser();
 
@@ -64,22 +67,27 @@ class FormFieldController extends Controller
                     'formula' => $e->getMessage(),
                 ]);
             }
-        }
+        }*/
 
+        $form = Form::findOrFail($input['form']);
         $formField = FormField::create([
             'form_id' => $input['form'],
-            'type' => $input['type']
+            'type' => $input['type'],
+            'scoring_policy' => $input['scoring_policy'],
+            'score' => $input['score'] ?? 0,
+            'validation_rules' => json_encode($input['validation_rules'])
         ]);
-
-        $formField->setName($input['name']);
-
-        if (isset($input['formula'])) {
-            $formField->setFormula($input['formula']);
-        }
-
+        $formField->setLabel($input['label']);
         $formField->save();
 
-        return Inertia::location(route('form-field.show', ['form_field' => $formField->getId()]));
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('form.show', ['form' => $form->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('form.show', ['form' => $form->getId()]));
     }
 
     /**
@@ -124,11 +132,14 @@ class FormFieldController extends Controller
         $input = $request->all();
 
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'type' => ['required'],
+            'label' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string'],
+            'scoring_policy' => ['required', 'string'],
+            'score' => ['numeric', 'nullable'],
+            'validation_rules' => ['array', 'nullable']
         ])->validateWithBag('updateFormField');
 
-        if (isset($input['formula'])) {
+        /*if (isset($input['formula'])) {
 
             $parser = new StdMathParser();
             
@@ -139,16 +150,14 @@ class FormFieldController extends Controller
                     'formula' => $e->getMessage(),
                 ]);
             }
-        }
+        }*/
 
         $formField = FormField::findOrfail($id);
-        $formField->setName($input['name']);
+        $formField->setLabel($input['label']);
         $formField->setType($input['type']);
-
-        if (isset($input['formula'])) {
-            $formField->setFormula($input['formula']);
-        }
-
+        $formField->setScoringPolicy($input['scoring_policy']);
+        $formField->setScore($input['score']);
+        $formField->setValidationRules($input['validation_rules']);
         $formField->save();
 
         return $request->wantsJson()
@@ -167,6 +176,9 @@ class FormFieldController extends Controller
         $formField = FormField::findOrfail($id);
         $form = $formField->field;
         $formField->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('parameter.show', ['parameter' => $form->parameter->getId()]));
     }

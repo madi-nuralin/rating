@@ -1,16 +1,16 @@
 <template>
-    <Head :title="$t('pages.forms.fields.head.title')" />
+    <Head :title="$t('pages.forms.formField.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.forms.fields.header') }}
+                {{ $t('pages.forms.formField.header') }}
             </h2>
         </template>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <CreateForm :prop-form="$page.props.form"/>
+                <CreateForm :form="$page.props.form"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
