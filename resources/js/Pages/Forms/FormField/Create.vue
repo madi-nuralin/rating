@@ -19,7 +19,7 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import CreateForm from '@/Pages/Forms/Fields/Partials/CreateForm.vue'
+    import CreateForm from './Partials/CreateForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {

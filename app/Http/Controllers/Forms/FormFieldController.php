@@ -33,7 +33,7 @@ class FormFieldController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Forms/Fields/Create', [
+        return Inertia::render('Forms/FormField/Create', [
             'form' => Form::findOrfail(request()->input('form'))
         ]);
     }

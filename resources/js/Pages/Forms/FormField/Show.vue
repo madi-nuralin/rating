@@ -1,22 +1,24 @@
 <template>
-    <Head :title="$t('pages.management.parameters.head.title')" />
+    <Head :title="$t('pages.forms.form.field.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.parameters.header') }}
+                {{ $t('pages.forms.form.field.header') }}
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :parameter="$page.props.parameter" :parameter-targets="$page.props.targets"/>
+                <update-form :field="$page.props.field" />
                 <breeze-section-border />
 
-                <form-list :forms="$page.props.parameter.forms"/>
-                <breeze-section-border />
+                <!--template v-if="Array('select', 'multiselect').includes($page.props.field.type)">
+                    <options :field="$page.props.field"/>
+                    <breeze-section-border />
+                </template-->
 
-                <delete-form :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
+                <delete-form :field="$page.props.field" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -27,7 +29,7 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from './Partials/UpdateForm.vue'
     import DeleteForm from './Partials/DeleteForm.vue'
-    import FormList from '@/Pages/Forms/Form/Partials/List.vue'
+    //import Options from '@/Pages/Forms/Fields/Options/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -36,7 +38,7 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
-            FormList,
+            //Options,
             Head,
         },
     }

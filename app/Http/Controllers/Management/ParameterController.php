@@ -61,11 +61,7 @@ class ParameterController extends Controller
 
         $parameterTarget = ParameterTarget::findOrFail($input['target']);
 
-        $form = new Form();
-        $form->save();
-
         $parameter = Parameter::create([
-            'form_id' => $form->getId(),
             'parameter_target_id' => $parameterTarget->getId()
         ]);
 
@@ -90,18 +86,9 @@ class ParameterController extends Controller
         return Inertia::render('Management/Parameters/Show', [
             'parameter' => array_merge(
                 $parameter->toArray(), [
-                    'form' => array_merge(
-                        $parameter->form->toArray(), [
-                            'fields' => $parameter->form && 
-                                        $parameter->form
-                                                  ->fields ?
-                                        $parameter->form
-                                                  ->fields
-                                                  ->map(function($formField) {
-                                return $formField->toArray();
-                            }) : []
-                        ]
-                    ),
+                    'forms' => $parameter->forms ? $parameter->forms()->paginate(10)->through(function($form) {
+                        return $form->toArray();
+                    }) : [],
                     'target' => $parameter->parameterTarget->toArray()
                 ]
             ),

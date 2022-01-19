@@ -528,7 +528,7 @@ class DatabaseSeeder extends Seeder
                                 ]
                             ], [
                                 'type' => 'select',
-                                'scoring_policy' => FormField::SCORING_POLICY_USE_OPTIONS,
+                                'scoring_policy' => FormField::SCORING_POLICY_FIELD_TYPE,
                                 'en' => [
                                     'label' => 'Publication journal'
                                 ],
@@ -665,7 +665,7 @@ class DatabaseSeeder extends Seeder
                                 ]
                             ], [
                                 'type' => 'select',
-                                'scoring_policy' => FormField::SCORING_POLICY_USE_OPTIONS,
+                                'scoring_policy' => FormField::SCORING_POLICY_FIELD_TYPE,
                                 'en' => [
                                     'label' => 'Publication journal'
                                 ],
@@ -793,7 +793,7 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'select',
-                                'scoring_policy' => FormField::SCORING_POLICY_USE_OPTIONS,
+                                'scoring_policy' => FormField::SCORING_POLICY_FIELD_TYPE,
                                 'en' => [
                                     'label' => 'Article title'
                                 ],

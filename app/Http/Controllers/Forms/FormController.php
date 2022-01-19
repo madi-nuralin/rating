@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Forms;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
+
+use App\Models\Forms\Form;
 
 class FormController extends Controller
 {
@@ -24,7 +29,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Forms/Form/Create');
     }
 
     /**
@@ -35,7 +40,26 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+        ])->validateWithBag('createForm');
+
+        $form = Form::create();
+        $form->setName($input['name']);
+        $form->setDescription($input['description']);
+        $form->save();
+
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('form.show', ['form' => $form->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('form.show', ['form' => $form->getId()]));
     }
 
     /**
@@ -46,7 +70,17 @@ class FormController extends Controller
      */
     public function show($id)
     {
-        //
+        $form = Form::findOrFail($id);
+
+        return Inertia::render('Forms/Form/Show', [
+            'form' => array_merge(
+                $form->toArray(), [
+                    'fields' => $form->fields()->paginate(10)->through(function($field) {
+                        return $field->toArray();
+                    })
+                ]
+            )
+        ]);
     }
 
     /**
@@ -69,7 +103,21 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+        ])->validateWithBag('updateForm');
+
+        $form = Form::findOrfail($id);
+        $form->setName($input['name']);
+        $form->setDescription($input['description']);
+        $form->save();
+
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'form-updated');
     }
 
     /**
@@ -80,6 +128,11 @@ class FormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Form::findOrfail($id)->delete();
+        
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('form.show'));
     }
 }

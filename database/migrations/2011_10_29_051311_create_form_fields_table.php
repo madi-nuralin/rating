@@ -38,11 +38,10 @@ class CreateFormFieldsTable extends Migration
             $table->json('validation_rules')
                   ->nullable();
             $table->enum('scoring_policy', [
-                    'scoring_policy_disabled',
-                    'scoring_policy_default',
-                    'scoring_policy_use_options',
-                    'scoring_policy_use_math',
-                ])->default('scoring_policy_disabled');
+                    'disabled',
+                    'default',
+                    'field_type'
+                ])->default('disabled');
             $table->float('score', 8, 2)
                   ->default(0);
 

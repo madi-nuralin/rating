@@ -9,6 +9,8 @@ use App\Models\Helpers\HasId;
 use App\Models\Helpers\HasLabel;
 use App\Models\Helpers\HasDescription;
 
+use App\Enums\Forms\FormFieldType;
+
 class FormField extends Model
 {
     use HasFactory,
@@ -28,13 +30,12 @@ class FormField extends Model
     const MATH = 'math';
     const TIME = 'time';
     const DATE = 'date';
-    const DATETIME = 'math';
+    const DATETIME = 'datetime';
     const DATETIME_LOCAL = 'datetime-local';
 
-    const SCORING_POLICY_DISABLED = 'scoring_policy_disabled';
-    const SCORING_POLICY_DEFAULT = 'scoring_policy_default';
-    const SCORING_POLICY_USE_OPTIONS = 'scoring_policy_use_options';
-    const SCORING_POLICY_USE_MATH = 'scoring_policy_use_math';
+    const SCORING_POLICY_DISABLED = 'disabled';
+    const SCORING_POLICY_DEFAULT = 'default';
+    const SCORING_POLICY_FIELD_TYPE = 'field_type';
 
     /**
      * The attributes that are mass assignable.
