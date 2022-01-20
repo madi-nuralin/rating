@@ -1,6 +1,6 @@
 <template>
     <div>
-    	<ul>
+    	<ul class="space-y-4">
             <li v-for="(item, i) in items.data">
                 <slot name="item" :item="item" />
             </li>

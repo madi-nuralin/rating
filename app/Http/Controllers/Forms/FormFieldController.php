@@ -51,38 +51,27 @@ class FormFieldController extends Controller
         Validator::make($input, [
             'label' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string'],
-            'scoring_policy' => ['required', 'string'],
-            'score' => ['numeric', 'nullable'],
-            'validation_rules' => ['array', 'nullable']
+            'required' => ['required', 'boolean'],
+            'nullable' => ['nullable'],
+            'min_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
+            'max_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
+            'file_size' => ['nullable', 'numeric'],
+            'mimes' => ['array']
         ])->validateWithBag('createFormField');
-
-        /*if (isset($input['formula'])) {
-
-            $parser = new StdMathParser();
-
-            try {
-                $formula = $parser->parse($input['formula']);
-            } catch (\Exception $e) {
-                throw ValidationException::withMessages([
-                    'formula' => $e->getMessage(),
-                ]);
-            }
-        }*/
 
         $form = Form::findOrFail($input['form']);
         $formField = FormField::create([
             'form_id' => $input['form'],
             'type' => $input['type'],
-            'scoring_policy' => $input['scoring_policy'],
             'score' => $input['score'] ?? 0,
-            'validation_rules' => json_encode($input['validation_rules'])
+            'validation_rules' => json_encode($this->encodeValidationRules($input))
         ]);
         $formField->setLabel($input['label']);
         $formField->save();
 
         session()->flash('flash.banner', [
             'components.banner.resource.created', [
-                'href' => route('form.show', ['form' => $form->getId()])
+                'href' => route('form-field.show', ['form_field' => $formField->getId()])
             ]
         ]);
         session()->flash('flash.bannerStyle', 'success');
@@ -100,10 +89,12 @@ class FormFieldController extends Controller
     {
         $formField = FormField::findOrFail($id);
 
-        return Inertia::render('Forms/Fields/Show', [
+        return Inertia::render('Forms/FormField/Show', [
             'field' => array_merge(
                 $formField->toArray(), [
-                    'options' => $formField->getOptions(),
+                    'options' => $formField->options()->paginate(10)->through(function($option) {
+                        return $option->toArray();
+                    }),
                 ]
             )
         ]);
@@ -134,30 +125,18 @@ class FormFieldController extends Controller
         Validator::make($input, [
             'label' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string'],
-            'scoring_policy' => ['required', 'string'],
-            'score' => ['numeric', 'nullable'],
-            'validation_rules' => ['array', 'nullable']
+            'required' => ['required', 'boolean'],
+            'nullable' => ['nullable'],
+            'min_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
+            'max_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
+            'file_size' => ['nullable', 'numeric'],
+            'mimes' => ['nullable','array']
         ])->validateWithBag('updateFormField');
-
-        /*if (isset($input['formula'])) {
-
-            $parser = new StdMathParser();
-            
-            try {
-                $formula = $parser->parse($input['formula']);
-            } catch (\Exception $e) {
-                throw ValidationException::withMessages([
-                    'formula' => $e->getMessage(),
-                ]);
-            }
-        }*/
 
         $formField = FormField::findOrfail($id);
         $formField->setLabel($input['label']);
         $formField->setType($input['type']);
-        $formField->setScoringPolicy($input['scoring_policy']);
-        $formField->setScore($input['score']);
-        $formField->setValidationRules($input['validation_rules']);
+        $formField->setValidationRules(json_encode($this->encodeValidationRules($input)));
         $formField->save();
 
         return $request->wantsJson()
@@ -174,12 +153,44 @@ class FormFieldController extends Controller
     public function destroy($id)
     {
         $formField = FormField::findOrfail($id);
-        $form = $formField->field;
+        $form = $formField->form;
         $formField->delete();
 
         session()->flash('flash.banner', ['components.banner.resource.deleted']);
         session()->flash('flash.bannerStyle', 'success');
 
-        return Inertia::location(route('parameter.show', ['parameter' => $form->parameter->getId()]));
+        return Inertia::location(route('form.show', ['form' => $form->getId()]));
+    }
+
+    /**
+     * Encode validation rules
+     *
+     * @param $input
+     * @return array
+     */
+    protected function encodeValidationRules($input) {
+        $validationRules = array();
+
+        if ($input['required']) {
+            $validationRules['required'] = $input['required'];
+        }
+        if ($input['nullable']) {
+            $validationRules['nullable'] = $input['nullable'];
+        }
+
+        if (in_array($input['type'], array(FormField::TEXT, FormField::TEXTAREA))) {
+            $validationRules['min_size'] = $input['min_size'] ? $input['min_size'] : 0;
+            $validationRules['max_size'] = $input['max_size'] ? $input['max_size'] : 255;
+        }
+
+        if (in_array($input['type'], array(FormField::FILE))) {
+            $validationRules['file_size'] = $input['file_size'] ? $input['file_size'] : 100;
+
+            if ($input['mimes']) {
+                $validationRules['mimes'] = implode(",", $input['mimes']); 
+            }
+        }
+
+        return $validationRules;
     }
 }

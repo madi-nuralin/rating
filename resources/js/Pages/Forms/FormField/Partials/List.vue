@@ -1,18 +1,18 @@
 <template>
     <BreezeFormSection>
         <template #title>
-            {{ $t('Поля формы') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('Список полей текущей формы, создайте новые формы и поля для заполнения необходимых информации') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
             <div class="col-span-6">
                 <BreezeList :items="form.fields">
                     <template #item="{item}">
-                        <div class="flex justify-between mt-4">
+                        <div class="flex justify-between">
                             <div>
                                 <div>{{item.label}}</div>
                                 <div class="flex flex-col text-sm text-gray-400">
@@ -32,7 +32,7 @@
 
         <template #actions>
             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('form-field.create', {'form': form.id})">
-                {{ $t('pages.management.positions.list.actions.createButton') }}
+                {{ translate('actions.createButton') }}
             </Link>
         </template>
     </BreezeFormSection>
@@ -52,6 +52,6 @@
             Link,
         },
 
-        props: ['form'],
+        props: ['form', 'translate'],
     }
 </script>

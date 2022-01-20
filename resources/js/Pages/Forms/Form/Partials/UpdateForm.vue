@@ -1,22 +1,22 @@
 <template>
     <BreezeFormSection @submitted="updateForm">
         <template #title>
-            {{ $t('pages.forms.form.update.title') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.forms.form.update.description') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.forms.form.update.form.name')" />
+                <BreezeLabel for="name" :value="translate('form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="_form.name" autofocus />
                 <BreezeInputError :message="_form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.forms.form.create.form.description')" />
+                <BreezeLabel for="description" :value="translate('form.description')" />
                 <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="_form.description" />
                 <BreezeInputError :message="_form.errors.description" class="mt-2" />
             </div>
@@ -57,7 +57,7 @@
             BreezeSelect,
         },
 
-        props: ['form'],
+        props: ['form', 'translate'],
 
         data() {
             return {

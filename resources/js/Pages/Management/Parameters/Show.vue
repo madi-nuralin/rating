@@ -1,22 +1,24 @@
 <template>
-    <Head :title="$t('pages.management.parameters.head.title')" />
+    <Head :title="translate[0]('head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.parameters.header') }}
+                {{ translate[0]('header') }}
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :parameter="$page.props.parameter" :parameter-targets="$page.props.targets"/>
+                <update-form :parameter="$page.props.parameter" :parameter-targets="$page.props.targets" :translate="translate[1]" />
                 <breeze-section-border />
 
-                <form-list :forms="$page.props.parameter.forms"/>
+                <form-list :forms="$page.props.parameter.forms"
+                    :parameter="$page.props.parameter"
+                    :translate="translate[3]" class="mt-10 sm:mt-0"/>
                 <breeze-section-border />
 
-                <delete-form :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
+                <delete-form :parameter="$page.props.parameter" :translate="translate[2]" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -27,7 +29,7 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from './Partials/UpdateForm.vue'
     import DeleteForm from './Partials/DeleteForm.vue'
-    import FormList from '@/Pages/Forms/Form/Partials/List.vue'
+    import FormList from './Form/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -38,6 +40,27 @@
             DeleteForm,
             FormList,
             Head,
+        },
+
+        computed: {
+            translate() {
+                var $t = this.$t;
+
+                return [
+                    function (path) {
+                        return $t(`pages.management.parameters.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.management.parameters.update.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.management.parameters.delete.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.forms.form.list.${path}`);
+                    },
+                ]
+            }
         },
     }
 </script>

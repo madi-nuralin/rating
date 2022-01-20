@@ -1,30 +1,24 @@
 <template>
-    <BreezeFormSection @submitted="updateFormFieldOption">
+    <BreezeFormSection @submitted="createFormFieldOption">
         <template #title>
-            {{ $t('pages.forms.fields.options.update.title') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.forms.fields.options.update.description') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.forms.fields.options.update.form.name')" />
+                <BreezeLabel for="name" :value="translate('form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.forms.fields.options.update.form.description')" />
+                <BreezeLabel for="description" :value="translate('form.description')" />
                 <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="$t('pages.forms.fields.options.update.form.score')" />
-                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" />
-                <BreezeInputError :message="form.errors.score" class="mt-2" />
             </div>
         </template>
 
@@ -34,7 +28,7 @@
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Update
+                Create
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -61,24 +55,23 @@
             BreezeLabel,
         },
 
-        props: ['field', 'option'],
+        props: ['field', 'translate'],
 
         data() {
             return {
                 form: this.$inertia.form({
-                    name: this.option.name,
-                    description: this.option.description,
-                    score: this.option.score
+                    name: '',
+                    description: '',
                 })
             }
         },
 
         methods: {
-            updateFormFieldOption() {
-                this.form.put(route('form-field-option.update', {'id': this.option.id}), {
-                    errorBag: 'updateFormFieldOption',
+            createFormFieldOption() {
+                this.form.post(route('form-field-option.store', {'field': this.field.id} ), {
+                    errorBag: 'createFormFieldOption',
                     preserveScroll: true,
-                    //onSuccess: () => Inertia.reload({ only: ['parameters'] })
+                    //onSuccess: () => Inertia.reload({ only: ['options'] })
                 });
             },
         },

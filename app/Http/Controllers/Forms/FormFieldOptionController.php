@@ -31,7 +31,7 @@ class FormFieldOptionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Forms/Fields/Options/Create', [
+        return Inertia::render('Forms/FormFieldOption/Create', [
             'field' => FormField::findOrfail(request()->input('field'))
         ]);
     }
@@ -49,18 +49,24 @@ class FormFieldOptionController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'score' => ['nullable', 'numeric']
         ])->validateWithBag('createFormFieldOption');
 
+        $formField = FormField::findOrfail($input['field']);
         $formFieldOption = FormFieldOption::create([
-            'form_field_id' => $input['field']
+            'form_field_id' => $formField->getId()
         ]);
         $formFieldOption->setName($input['name']);
         $formFieldOption->setDescription($input['description']);
-        $formFieldOption->setScore($input['score']);
         $formFieldOption->save();
 
-        return Inertia::location(route('form-field-option.show', ['form_field_option' => $formFieldOption->getId()]));
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('form-field-option.show', ['form_field_option' => $formFieldOption->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('form-field.show', ['form_field' => $formField->getId()]));
     }
 
     /**
@@ -73,9 +79,8 @@ class FormFieldOptionController extends Controller
     {
         $formFieldOption = FormFieldOption::findOrFail($id);
 
-        return Inertia::render('Forms/Fields/Options/Show', [
+        return Inertia::render('Forms/FormFieldOption/Show', [
             'option' => $formFieldOption->toArray(),
-            'field' => $formFieldOption->getFormField()
         ]);
     }
 
@@ -104,13 +109,11 @@ class FormFieldOptionController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'score' => ['nullable', 'numeric']
         ])->validateWithBag('updateFormFieldOption');
 
         $formFieldOption = FormFieldOption::findOrfail($id);
         $formFieldOption->setName($input['name']);
         $formFieldOption->setDescription($input['description']);
-        $formFieldOption->setScore($input['score']);
         $formFieldOption->save();
 
         return $request->wantsJson()
@@ -127,8 +130,11 @@ class FormFieldOptionController extends Controller
     public function destroy($id)
     {
         $formFieldOption = FormFieldOption::findOrfail($id);
-        $formField = $formFieldOption->field;
+        $formField = $formFieldOption->formField;
         $formFieldOption->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('form-field.show', ['form_field' => $formField->getId()]));
     }

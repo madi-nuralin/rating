@@ -10,7 +10,7 @@
 
         <template #form>
             <div class="col-span-6">
-                <BreezeList :items="forms">
+                <BreezeList :items="field.options">
                     <template #item="{item}">
                         <div class="flex justify-between">
                             <div>
@@ -21,7 +21,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('form.show', {'id': item.id})">
+                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('form-field-option.show', {'id': item.id})">
                                 Update
                             </Link>
                         </div>
@@ -31,7 +31,7 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('form.create')">
+            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('form-field-option.create', {'field': field.id})">
                 {{ translate('actions.createButton') }}
             </Link>
         </template>
@@ -52,6 +52,6 @@
             Link,
         },
 
-        props: ['forms', 'translate'],
+        props: ['field', 'translate'],
     }
 </script>

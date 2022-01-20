@@ -1,11 +1,11 @@
 <template>
     <BreezeFormSection>
         <template #title>
-            {{ $t('pages.management.parameters.list.title') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.parameters.list.description') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
@@ -16,7 +16,7 @@
 
         <template #actions>
             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('parameter.create')">
-                {{ $t('pages.management.parameters.list.actions.createButton') }}
+                {{ translate('actions.createButton') }}
             </Link>
         </template>
     </BreezeFormSection>
@@ -36,7 +36,7 @@
             Link,
         },
 
-        props: ['parameters'],
+        props: ['parameters', 'translate'],
 
         computed: {
             items() {

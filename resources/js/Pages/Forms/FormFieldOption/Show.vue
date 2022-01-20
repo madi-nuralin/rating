@@ -1,19 +1,19 @@
 <template>
-    <Head :title="$t('pages.forms.fields.options.head.title')" />
+    <Head :title="translate[0]('head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.forms.fields.options.header') }}
+                {{ translate[0]('head.title') }}
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :option="$page.props.option" :field="$page.props.field"/>
+                <update-form :option="$page.props.option" :translate="translate[1]"/>
                 <breeze-section-border />
 
-                <delete-form :option="$page.props.option" class="mt-10 sm:mt-0"/>
+                <delete-form :option="$page.props.option" :translate="translate[2]" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -24,7 +24,6 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from './Partials/UpdateForm.vue'
     import DeleteForm from './Partials/DeleteForm.vue'
-    import ResourceList from './Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -33,8 +32,25 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
-            ResourceList,
             Head,
+        },
+
+        computed: {
+            translate() {
+                var $t = this.$t;
+
+                return [
+                    function (path) {
+                        return $t(`pages.forms.formFieldOption.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.forms.formFieldOption.update.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.forms.formFieldOption.delete.${path}`);
+                    },
+                ]
+            }
         },
     }
 </script>

@@ -361,20 +361,18 @@ var messages = {
             title: 'Create a new parameter',
             description: 'Create a new parameter to collaborate with others on projects.',
             form: {
-              name: 'Parameter name',
-              description: 'Parameter description',
-              category: 'Parameter category',
-              score: 'Score'
+              name: 'Name',
+              description: 'Description',
+              target: 'Target'
             }
           },
           update: {
             title: 'Update Parameter',
             description: 'The parameter\'s name and description information.',
             form: {
-              name: 'Parameter name',
-              description: 'Parameter description',
-              category: 'Parameter category',
-              score: 'Score'
+              name: 'Name',
+              description: 'Description',
+              target: 'Target'
             }
           },
           delete: {
@@ -605,6 +603,52 @@ var messages = {
       },
       forms: {
         form: {
+          head: {
+            title: 'Form management'
+          },
+          header: 'Form management',
+          create: {
+            title: 'Create a form',
+            description: 'Enter the name and description of the form',
+            form: {
+              name: 'Name',
+              description: 'Description'
+            }
+          },
+          update: {
+            title: 'Update the form',
+            description: 'Update the name and description of the form',
+            form: {
+              name: 'Name',
+              description: 'Description'
+            }
+          },
+          delete: {
+            title: 'Delete the form',
+            description: 'Permanently delete the form',
+            content: {
+              deleteInfo: 'Once a form is deleted, all of its resources and data will be permanently deleted. Before deleting this form, please download any data or information regarding this field that you wish to retain.',
+              deleteButton: 'Delete form',
+              modal: {
+                title: 'Delete a form',
+                content: 'Are you sure you want to delete this form? Once a is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Forms',
+            description: 'Create and manage forms',
+            form: {
+              listInfo: 'The list of created forms.'
+            },
+            actions: {
+              createButton: 'Create a new form'
+            }
+          },
         },
         formField: {
           head: {
@@ -650,7 +694,7 @@ var messages = {
             }
           },
           list: {
-            title: 'Form management',
+            title: 'Form fields',
             description: 'Create and manage form fields',
             form: {
               listInfo: 'The list of created form fields.'
@@ -704,20 +748,6 @@ var messages = {
               name: 'Datetime Local',
               description: 'Date and time with timezone year/month/day h:m:s ZZ'
             },
-          },
-          scoring_policy: {
-            disabled: {
-              name: 'Disabled',
-              description: 'Scoring is disabled for this field by default'
-            },
-            default: {
-              name: 'Default',
-              description: 'Assign default score'
-            },
-            field_type: {
-              name: 'By Field Type',
-              description: 'Assign score by field type'
-            }
           },
           validation_rules: {
             mimes: {
@@ -807,56 +837,7 @@ var messages = {
               }
             }
           },
-          options: {
-            head: {
-              title: 'Form management'
-            },
-            header: 'Form management',
-            create: {
-              title: 'Create an option',
-              description: 'Create a new form field option by inserting name and description',
-              form: {
-                name: 'Name',
-                description: 'Description',
-                score: 'Score'
-              }
-            },
-            update: {
-              title: 'Update the form field option',
-              description: 'Update the existing form field option',
-              form: {
-                name: 'Name',
-                description: 'Description',
-                score: 'Score'
-              }
-            },
-            delete: {
-              title: 'Delete the form field option',
-              description: 'Permanently delete the form field option',
-              content: {
-                deleteInfo: 'Once a form field option is deleted, all of its resources and data will be permanently deleted. Before deleting this field option, please download any data or information regarding this field option that you wish to retain.',
-                deleteButton: 'Delete form field option',
-                modal: {
-                  title: 'Delete a form field option',
-                  content: 'Are you sure you want to delete this form field option? Once a field option is deleted, all of its resources and data will be permanently deleted.',
-                  footer: {
-                    cancelButton: 'Cancel',
-                    deleteButton: 'Delete'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Form field options',
-              description: 'Create and manage form field options',
-              form: {
-                listInfo: 'The list of created form field options.'
-              },
-              actions: {
-                createButton: 'Create a new form filed option'
-              }
-            }
-          },
+          
           variables: {
             head: {
               title: 'Form management'
@@ -905,7 +886,55 @@ var messages = {
               }
             }
           }
-        }
+        },
+        formFieldOption: {
+          head: {
+            title: 'Form management'
+          },
+          header: 'Form management',
+          create: {
+            title: 'Create an option',
+            description: 'Create a new form field option by inserting name and description',
+            form: {
+              name: 'Name',
+              description: 'Description',
+            }
+          },
+          update: {
+            title: 'Update field option',
+            description: 'Update the existing form field option: modify name and description',
+            form: {
+              name: 'Name',
+              description: 'Description',
+            }
+          },
+          delete: {
+            title: 'Delete field option',
+            description: 'Permanently delete the form field option',
+            content: {
+              deleteInfo: 'Once a form field option is deleted, all of its resources and data will be permanently deleted. Before deleting this field option, please download any data or information regarding this field option that you wish to retain.',
+              deleteButton: 'Delete form field option',
+              modal: {
+                title: 'Delete a form field option',
+                content: 'Are you sure you want to delete this form field option? Once a field option is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Form field options',
+            description: 'Create and manage form field options',
+            form: {
+              listInfo: 'The list of created form field options.'
+            },
+            actions: {
+              createButton: 'Create a new form filed option'
+            }
+          }
+        },
       },
     },
     layouts: {
@@ -1289,20 +1318,18 @@ var messages = {
             title: 'Создать новую параметр оценки',
             description: 'Создайте новую параметр оценки, чтобы сотрудничать с другими над проектами.',
             form: {
-              name: 'Название параметра оценки',
-              description: 'Описание параметра оценки',
-              category: 'Выберите категорию параметра оценка',
-              score: 'Количество баллов'
+              name: 'Название',
+              description: 'Описание',
+              target: 'Направление деятельности'
             }
           },
           update: {
             title: 'Обновить параметр оценки',
             description: 'Информация о названии и описании параметра оценки.',
             form: {
-              name: 'Название параметра оценки',
-              description: 'Описание параметра оценки',
-              category: 'Выберите категорию параметра оценка',
-              score: 'Количество баллов'
+              name: 'Название',
+              description: 'Описание',
+              target: 'Направление деятельности'
             }
           },
           delete: {
@@ -1530,12 +1557,58 @@ var messages = {
       },
       forms: {
         form: {
+          head: {
+            title: 'Управление формами'
+          },
+          header: 'Управление формами',
+          create: {
+            title: 'Создать форму',
+            description: 'Введите название и описание формы',
+            form: {
+              name: 'Название',
+              description: 'Описание'
+            }
+          },
+          update: {
+            title: 'Обновить форму',
+            description: 'Обновите название и описание формы',
+            form: {
+              name: 'Название',
+              description: 'Описание'
+            }
+          },
+          delete: {
+            title: 'Удалить форму',
+            description: 'Удалить форму навсегда',
+            content: {
+              deleteInfo: 'После удаления формы все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой формы загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
+              deleteButton: 'Удалить форму',
+              modal: {
+                title: 'Удалить форму',
+                content: 'Вы уверены, что хотите удалить форму? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Формы',
+            description: 'Создание и управление формами',
+            form: {
+              listInfo: 'Список созданных полей формы.'
+            },
+            actions: {
+              createButton: 'Создать новое поле формы'
+            }
+          },
         },
         formField: {
           head: {
-            title: 'Создание и управление формами'
+            title: 'Управление формами'
           },
-          header: 'Создание и управление формами',
+          header: 'Управление формами',
           create: {
             title: 'Создание нового поля формы',
             description: 'Введите метку, тип, правила проверки и другие параметры поля формы',
@@ -1575,7 +1648,7 @@ var messages = {
             }
           },
           list: {
-            title: 'Управление формами',
+            title: 'Поля формы',
             description: 'Создание и управление полями форм',
             form: {
               listInfo: 'Список созданных полей формы.'
@@ -1732,61 +1805,12 @@ var messages = {
               }
             }
           },
-          options: {
-            head: {
-              title: 'Создание и управление формами'
-            },
-            header: 'Создание и управление формами',
-            create: {
-              title: 'Создать новый вариант выбора поля формы',
-              description: 'Создать новый вариант выбора поля формы',
-              form: {
-                name: 'Название',
-                description: 'Описание',
-                score: 'Количество баллов'
-              }
-            },
-            update: {
-              title: 'Обновить вариант выбора поля формы',
-              description: 'Обновить вариант выбора поля формы',
-              form: {
-                name: 'Название',
-                description: 'Описание',
-                score: 'Количество баллов'
-              }
-            },
-            delete: {
-              title: 'Удалить вариант выбора поля формы',
-              description: 'Удалить вариант выбора поля формы',
-              content: {
-                deleteInfo: 'После удаления варианта выбора поля формы все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого варианта выбора поля формы загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
-                deleteButton: 'Удалить вариант выбора поля формы',
-                modal: {
-                  title: 'Удалить вариант выбора поля формы',
-                  content: 'Вы уверены, что хотите удалить этого варианта выбора поля формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
-                  footer: {
-                    cancelButton: 'Отмена',
-                    deleteButton: 'Удалить'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Варианты выбора поля формы',
-              description: 'Создание и управление вариантами выбора поля формы',
-              form: {
-                listInfo: 'Список созданных вариантов выбора поля формы.'
-              },
-              actions: {
-                createButton: 'Создать новое вариант выбора поля формы'
-              }
-            }
-          },
+          
           variables: {
             head: {
-              title: 'Создание и управление формами'
+              title: 'Управление формами'
             },
-            header: 'Создание и управление формами',
+            header: 'Управление формами',
             create: {
               title: 'Создать новую переменную',
               description: 'Создать новую переменную формулы',
@@ -1830,7 +1854,55 @@ var messages = {
               }
             }
           }
-        }
+        },
+        formFieldOption: {
+          head: {
+            title: 'Создание и управление формами'
+          },
+          header: 'Создание и управление формами',
+          create: {
+            title: 'Создать вариант выбора',
+            description: 'Создать новый вариант выбора поля формы: введите название и описание',
+            form: {
+              name: 'Название',
+              description: 'Описание'
+            }
+          },
+          update: {
+            title: 'Обновить вариант выбора',
+            description: 'Обновить вариант выбора поля формы: введите название и описание',
+            form: {
+              name: 'Название',
+              description: 'Описание'
+            }
+          },
+          delete: {
+            title: 'Удалить вариант выбора',
+            description: 'Удалить вариант выбора поля формы',
+            content: {
+              deleteInfo: 'После удаления варианта выбора поля формы все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этого варианта выбора поля формы загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
+              deleteButton: 'Удалить вариант выбора поля формы',
+              modal: {
+                title: 'Удалить вариант выбора поля формы',
+                content: 'Вы уверены, что хотите удалить этого варианта выбора поля формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Параметры поля формы',
+            description: 'Создание и управление вариантами выбора поля формы',
+            form: {
+              listInfo: 'Список созданных вариантов выбора поля формы.'
+            },
+            actions: {
+              createButton: 'Создать новое вариант выбора поля формы'
+            }
+          }
+        },
       }
     },
     layouts: {

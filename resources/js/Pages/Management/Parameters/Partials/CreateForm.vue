@@ -1,34 +1,34 @@
 <template>
     <BreezeFormSection @submitted="createParameter">
         <template #title>
-            {{ $t('pages.management.parameters.create.title') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.parameters.create.description') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.management.parameters.create.form.name')" />
+                <BreezeLabel for="name" :value="translate('form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.management.parameters.create.form.description')" />
+                <BreezeLabel for="description" :value="translate('form.description')" />
                 <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="target" :value="$t('pages.management.departments.update.form.target')" />
+                <BreezeLabel for="target" :value="translate('form.target')" />
                 <BreezeSelect id="target" class="mt-1 block w-full" :value="form.target" @input="form.target = $event" :options="options.target" :multiple="false" />
                 <BreezeInputError :message="form.errors.target" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="$t('pages.management.parameters.create.form.score')" />
+                <BreezeLabel for="score" :value="translate('form.score')" />
                 <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" />
                 <BreezeInputError :message="form.errors.score" class="mt-2" />
             </div>
@@ -69,7 +69,7 @@
             BreezeSelect,
         },
 
-        props: ['parameterTargets'],
+        props: ['parameterTargets', 'translate'],
 
         data() {
             return {

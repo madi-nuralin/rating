@@ -1,16 +1,16 @@
 <template>
-    <Head :title="$t('pages.forms.form.head.title')" />
+    <Head :title="translate[0]('head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.forms.form.header') }}
+                {{ translate[0]('header') }}
             </h2>
         </template>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <create-form />
+                <create-form :translate="translate[1]" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -28,6 +28,21 @@
             BreezeSectionBorder,
             CreateForm,
             Head,
+        },
+
+        computed: {
+            translate() {
+                var $t = this.$t;
+
+                return [
+                    function (path) {
+                        return $t(`pages.forms.form.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.forms.form.create.${path}`);
+                    },
+                ]
+            }
         },
     }
 </script>

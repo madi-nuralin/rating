@@ -157,4 +157,50 @@ class ParameterController extends Controller
 
         return Inertia::location(route('parameter.index'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function formCreate()
+    {
+        return Inertia::render('Management/Parameters/Form/Create', [
+            'parameter' => Parameter::findOrfail(request()->input('parameter'))
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function formStore(Request $request)
+    {
+        $input = $request->all();
+
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+        ])->validateWithBag('createForm');
+
+        $parameter = Parameter::findOrfail($input['parameter']);
+        $form = Form::create();
+        $form->setName($input['name']);
+        $form->setDescription($input['description']);
+        $form->save();
+
+        $parameter->addForm($form);
+        $parameter->save();
+
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('form.show', ['form' => $form->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('parameter.show', ['parameter' => $parameter->getId()]));
+    }
 }

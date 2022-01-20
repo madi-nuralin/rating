@@ -508,8 +508,6 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'text',
-                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
-                                'score' => 1,
                                 'en' => [
                                     'label' => 'Article title'
                                 ],
@@ -518,8 +516,6 @@ class DatabaseSeeder extends Seeder
                                 ]
                             ], [
                                 'type' => 'text',
-                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
-                                'score' => 1,
                                 'en' => [
                                     'label' => 'Article abstract'
                                 ],
@@ -528,7 +524,6 @@ class DatabaseSeeder extends Seeder
                                 ]
                             ], [
                                 'type' => 'select',
-                                'scoring_policy' => FormField::SCORING_POLICY_FIELD_TYPE,
                                 'en' => [
                                     'label' => 'Publication journal'
                                 ],
@@ -544,8 +539,7 @@ class DatabaseSeeder extends Seeder
                                         'ru' => [
                                             'name' => 'Цифровая библиотека IEEE Xplore',
                                             'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
-                                        ],
-                                        'score' => 1
+                                        ]
                                     ], [
                                         'en' => [
                                             'name' => 'International Journal of Information and Communication Technology',
@@ -554,13 +548,11 @@ class DatabaseSeeder extends Seeder
                                         'ru' => [
                                             'name' => 'Международный журнал информационных и коммуникационных технологий',
                                             'description' => 'Международный журнал информационных и коммуникационных технологий'
-                                        ],
-                                        'score' => 2
+                                        ]
                                     ]
                                 ]
                             ], [
                                 'type' => 'multiselect',
-                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
                                 'en' => [
                                     'name' => 'Article language'
                                 ],
@@ -610,7 +602,6 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'file',
-                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
                                 'en' => [
                                     'label' => 'Upload article text'
                                 ],
@@ -645,8 +636,6 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'text',
-                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
-                                'score' => 1,
                                 'en' => [
                                     'label' => 'Article title'
                                 ],
@@ -655,8 +644,6 @@ class DatabaseSeeder extends Seeder
                                 ]
                             ], [
                                 'type' => 'text',
-                                'scoring_policy' => FormField::SCORING_POLICY_DEFAULT,
-                                'score' => 1,
                                 'en' => [
                                     'label' => 'Article abstract'
                                 ],
@@ -665,7 +652,6 @@ class DatabaseSeeder extends Seeder
                                 ]
                             ], [
                                 'type' => 'select',
-                                'scoring_policy' => FormField::SCORING_POLICY_FIELD_TYPE,
                                 'en' => [
                                     'label' => 'Publication journal'
                                 ],
@@ -682,7 +668,6 @@ class DatabaseSeeder extends Seeder
                                             'name' => 'Цифровая библиотека IEEE Xplore',
                                             'description' => 'Цифровая библиотека IEEE Xplore, исследовательская база данных для поиска и доступа к журнальным статьям'
                                         ],
-                                        'score' => 1
                                     ], [
                                         'en' => [
                                             'name' => 'International Journal of Information and Communication Technology',
@@ -692,12 +677,10 @@ class DatabaseSeeder extends Seeder
                                             'name' => 'Международный журнал информационных и коммуникационных технологий',
                                             'description' => 'Международный журнал информационных и коммуникационных технологий'
                                         ],
-                                        'score' => 2
                                     ]
                                 ]
                             ], [
                                 'type' => 'multiselect',
-                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
                                 'en' => [
                                     'label' => 'Article language'
                                 ],
@@ -747,7 +730,6 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'file',
-                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
                                 'en' => [
                                     'label' => 'Upload article text'
                                 ],
@@ -793,7 +775,6 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'select',
-                                'scoring_policy' => FormField::SCORING_POLICY_FIELD_TYPE,
                                 'en' => [
                                     'label' => 'Article title'
                                 ],
@@ -809,8 +790,7 @@ class DatabaseSeeder extends Seeder
                                         'ru' => [
                                             'name' => 'Научный руководитель проекта ПЦФ',
                                             'description' => 'Научный руководитель проекта ПЦФ'
-                                        ],
-                                        'score' => 100
+                                        ]
                                     ], [
                                         'en' => [
                                             'name' => 'Scientific supervisor of the GF project',
@@ -819,8 +799,7 @@ class DatabaseSeeder extends Seeder
                                         'ru' => [
                                             'name' => 'Научный руководитель проекта ГФ',
                                             'description' => 'Научный руководитель проекта ГФ'
-                                        ],
-                                        'score' => 70
+                                        ]
                                     ], [
                                         'en' => [
                                             'name' => 'Research Group Member',
@@ -829,8 +808,7 @@ class DatabaseSeeder extends Seeder
                                         'ru' => [
                                             'name' => 'Членисследовательской группы',
                                             'description' => 'Членисследовательской группы'
-                                        ],
-                                        'score' => 25
+                                        ]
                                     ]
                                 ]
                             ]
@@ -847,7 +825,6 @@ class DatabaseSeeder extends Seeder
                         'fields' => [
                             [
                                 'type' => 'file',
-                                'scoring_policy' => FormField::SCORING_POLICY_DISABLED,
                                 'en' => [
                                     'label' => 'A copy of the contract and staffing table'
                                 ],
@@ -867,8 +844,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate ',
                     'description' => 'Публикации в материалах международных научных конференций (Proceedings),  индексируе-мых в международной базе данных Scopus или Clarivate'
                 ],
-                'parameter_target' => 2,
-                'score' => 5
+                'parameter_target' => 2
             ], [
                 'en' => [
                     'name' => 'Basic education of the teaching staff of the department is 100% consistent with the profile of the department',
@@ -878,8 +854,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры',
                     'description' => 'Базовое образование ППС кафедры на 100% соответствует профилю кафедры'
                 ],
-                'parameter_target' => 8,
-                'score' => 7
+                'parameter_target' => 8
             ], [
                 'en' => [
                     'name' => 'The share of the teaching staff of the department with academic degrees and titles meets the established requirements',
@@ -889,8 +864,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям',
                     'description' => 'Доля ППС кафедры с учеными степенями и званиями отвечает установленным требованиям'
                 ],
-                'parameter_target' => 8,
-                'score' => 5
+                'parameter_target' => 8
             ]   
         ];
 
@@ -924,16 +898,7 @@ class DatabaseSeeder extends Seeder
                                 'type' => $definitionFormField['type']
                             ]);
 
-                            if (array_key_exists('scoring_policy', $definitionFormField)) {
-                                $formField->setScoringPolicy($definitionFormField['scoring_policy']);
-                            }
-
-                            if (array_key_exists('score', $definitionFormField)) {
-                                $formField->setScore($definitionFormField['score']);
-                            }
-
                             foreach ($locales as $locale) {
-                                error_log('message');
                                 $formField->setLabel($definitionFormField[$locale]['label'], $locale);
                             }
 
@@ -946,10 +911,6 @@ class DatabaseSeeder extends Seeder
                                     foreach ($locales as $locale) {
                                         $formFieldOption->setName($definitionFormFieldOption[$locale]['name'], $locale);
                                         $formFieldOption->setDescription($definitionFormFieldOption[$locale]['description'], $locale);
-                                    }
-
-                                    if (array_key_exists('score', $definitionFormFieldOption)) {
-                                        $formFieldOption->setScore($definitionFormFieldOption['score']);
                                     }
 
                                     $formFieldOption->save();

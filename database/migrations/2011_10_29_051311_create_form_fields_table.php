@@ -29,21 +29,14 @@ class CreateFormFieldsTable extends Migration
                     'select',       // ['required', 'nullable', 'boolean', 'numeric', 'integer', 'string']
                     'multiselect',  // ['required', 'nullable', 'array', 'min:size', 'max:size']
                     'file',         // ['required', 'nullable', 'mimetypes:foo,bar', 'mimes:foo,bar', 'min:size', 'max:size']
-                    'math',         // ['required', 'nullable']
                     'time',         // ['required', 'nullable', 'date', 'date_format', 'after_time']
                     'date',         // ['required', 'nullable', 'date', 'date_format', 'after_time']
                     'datetime',     // ['required', 'nullable', 'date', 'date_format', 'after_time']
                     'datetime-local'// ['required', 'nullable', 'date', 'date_format', 'after_time']
                 ]);
+            
             $table->json('validation_rules')
                   ->nullable();
-            $table->enum('scoring_policy', [
-                    'disabled',
-                    'default',
-                    'field_type'
-                ])->default('disabled');
-            $table->float('score', 8, 2)
-                  ->default(0);
 
             $table->timestamps();
         });

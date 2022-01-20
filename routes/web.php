@@ -29,7 +29,7 @@ use App\Http\Controllers\Profile\ProfilePhotoController;
 use App\Http\Controllers\Profile\CurrentUserController;
 use App\Http\Controllers\Profile\PasswordController;
 use App\Http\Controllers\Profile\UserProfileController;
-use App\Http\Controllers\Profile\OtherBrowserSessionsController;
+//use App\Http\Controllers\Profile\OtherBrowserSessionsController;
 
 use App\Http\Controllers\Management\PositionController;
 use App\Http\Controllers\Management\DepartmentController;
@@ -105,8 +105,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             ->name('user-profile-information.update');
         Route::delete('profile-photo', [ProfilePhotoController::class, 'destroy'])
             ->name('current-user-photo.destroy');
-        Route::delete('other-browser-sessions', [OtherBrowserSessionsController::class, 'destroy'])
-            ->name('other-browser-sessions.destroy');
+        /*Route::delete('other-browser-sessions', [OtherBrowserSessionsController::class, 'destroy'])
+            ->name('other-browser-sessions.destroy');*/
     });
 
     Route::group(['middleware' => 'manager'], function () {
@@ -126,14 +126,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('verifier', VerifierController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
 
-            Route::group(['prefix' => 'parameter-form'], function() {
-                Route::resource('form', FormController::class,
-                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-                Route::resource('form-field', FormFieldController::class,
-                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-                Route::resource('form-field-option', FormFieldOptionController::class,
-                    ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::group(['prefix' => 'parameter'], function() {
+                Route::get('form/create', [ParameterController::class, 'formCreate'])
+                    ->name('parameter-form.create');
+                Route::post('form', [ParameterController::class, 'formStore'])
+                    ->name('parameter-form.store');
+                Route::put('form/{form}', [ParameterController::class, 'formDelete'])
+                    ->name('parameter-form.delete');
             });
+
+            Route::resource('form', FormController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::resource('form-field', FormFieldController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::resource('form-field-option', FormFieldOptionController::class,
+                ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
         });
     });
 

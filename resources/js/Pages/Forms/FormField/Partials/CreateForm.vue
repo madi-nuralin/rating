@@ -1,22 +1,22 @@
 <template>
     <BreezeFormSection @submitted="createFormField">
         <template #title>
-            {{ $t('pages.forms.formField.create.title') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.forms.formField.create.description') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="label" :value="$t('pages.forms.formField.create.form.label')" />
+                <BreezeLabel for="label" :value="translate('form.label')" />
                 <BreezeInput id="label" type="text" class="mt-1 block w-full" v-model="_form.label" autofocus />
                 <BreezeInputError :message="_form.errors.label" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="type" :value="$t('pages.forms.formField.create.form.type')" />
+                <BreezeLabel for="type" :value="translate('form.type')" />
                 <BreezeSelect id="type" class="mt-1 block w-full" :value="_form.type" @input="_form.type = $event" :options="options.type" :multiple="false" />
                 <BreezeInputError :message="_form.errors.type" class="mt-2" />
             </div>
@@ -62,18 +62,6 @@
                     <BreezeInputError :message="_form.errors.file_size" class="mt-2" />
                 </div>
             </template>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="scoring_policy" :value="$t('pages.forms.formField.create.form.scoring_policy')" />
-                <BreezeSelect id="scoring_policy" class="mt-1 block w-full" :value="_form.scoring_policy" @input="_form.scoring_policy = $event" :options="options.scoring_policy" :multiple="false" />
-                <BreezeInputError :message="_form.errors.scoring_policy" class="mt-2" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="$t('pages.forms.formField.create.form.score')" />
-                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="_form.score" :disabled="_form.scoring_policy != 'default'" :class="{'opacity-25': _form.scoring_policy != 'default'}"/>
-                <BreezeInputError :message="_form.errors.score" class="mt-2" />
-            </div>
         </template>
 
         <template #actions>
@@ -117,21 +105,20 @@
             BreezeCheckbox,
         },
 
-        props: ['form'],
+        props: ['form', 'translate'],
 
         data() {
             return {
                 _form: this.$inertia.form({
                     label: '',
                     type: '',
-                    scoring_policy: '',
-                    score: '',
                     validation_rules: Array(),
                     required: false,
                     nullable: false,
                     min_size: 0,
                     max_size: 0,
                     file_size: 0,
+                    mimes: Array(),
                 }),
             }
         },
@@ -162,12 +149,6 @@
                     { value: 'datetime-local', name: this.$t('pages.forms.formField.type.datetime_local.name'), description: this.$t('pages.forms.formField.type.datetime_local.description') },
                 ];
 
-                let scoring_policy = [
-                    { value: 'disabled', name: this.$t('pages.forms.formField.scoring_policy.disabled.name'), description: this.$t('pages.forms.formField.scoring_policy.disabled.description')},
-                    { value: 'default', name: this.$t('pages.forms.formField.scoring_policy.default.name'), description: this.$t('pages.forms.formField.scoring_policy.default.description')},
-                    { value: 'field_type', name: this.$t('pages.forms.formField.scoring_policy.field_type.name'), description: this.$t('pages.forms.formField.scoring_policy.field_type.description')}
-                ];
-
                 let mimes = Array('doc', 'docx', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'xml', 'csv', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3', 'wav', 'wma', 'aac', 'mp4', 'avi', 'mov').map(function(mime) {
                     return {
                         value: mime,
@@ -178,7 +159,6 @@
 
                 return {
                     'type': type,
-                    'scoring_policy': scoring_policy,
                     'mimes': mimes
                 }
             }

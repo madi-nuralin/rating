@@ -33,10 +33,6 @@ class FormField extends Model
     const DATETIME = 'datetime';
     const DATETIME_LOCAL = 'datetime-local';
 
-    const SCORING_POLICY_DISABLED = 'disabled';
-    const SCORING_POLICY_DEFAULT = 'default';
-    const SCORING_POLICY_FIELD_TYPE = 'field_type';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -45,8 +41,6 @@ class FormField extends Model
     protected $fillable = [
         'form_id',
         'type',
-        'scoring_policy',
-        'score'
     ];
 
     public function settings() {
@@ -73,20 +67,13 @@ class FormField extends Model
     	$this->type = $type;
     }
 
-    public function getScoringPolicy() {
-        return $this->scoring_policy;
+    public function getValidationRules() {
+        return $this->validation_rules;
     }
 
-    public function setScoringPolicy($scoringPolicy) {
-        $this->scoring_policy = $scoringPolicy;
-    }
 
-    public function getScore() {
-        return $this->score;
-    }
-
-    public function setScore($score) {
-        $this->score = $score;
+    public function setValidationRules($validationRules) {
+        $this->validation_rules = $validationRules;
     }
 
     public function getForm() {
@@ -119,8 +106,7 @@ class FormField extends Model
             'label' => $this->getLabel(),
             'description' => $this->getDescription(),
             'type' => $this->getType(),
-            'scoring_policy' => $this->getScoringPolicy(),
-            'score' => $this->getScore(),
+            'validation_rules' => $this->getValidationRules(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
