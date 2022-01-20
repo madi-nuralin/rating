@@ -10,13 +10,14 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :rating="$page.props.rating" :parameters="$page.props.parameters" :users="$page.props.users" :translate="translate[1]"/>
+                <update-form 
+                    :verifier="$page.props.verifier"
+                    :targets="$page.props.targets"
+                    :users="$page.props.users"
+                    :translate="translate[1]" />
                 <breeze-section-border />
 
-                <verifier-list :rating="$page.props.rating" :translate="translate[3]" class="mt-10 sm:mt-0" />
-                <breeze-section-border />
-
-                <delete-form :rating="$page.props.rating" :translate="translate[2]" class="mt-10 sm:mt-0" />
+                <delete-form :verifier="$page.props.verifier" :translate="translate[2]" class="mt-10 sm:mt-0" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -27,7 +28,6 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from './Partials/UpdateForm.vue'
     import DeleteForm from './Partials/DeleteForm.vue'
-    import VerifierList from './Partials/Verifier/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -36,7 +36,6 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
-            VerifierList,
             Head,
         },
 
@@ -46,16 +45,13 @@
 
                 return [
                     function (path) {
-                        return $t(`pages.management.rating.${path}`);
+                        return $t(`pages.management.verifier.${path}`);
                     },
                     function (path) {
-                        return $t(`pages.management.rating.update.${path}`);
+                        return $t(`pages.management.verifier.update.${path}`);
                     },
                     function (path) {
-                        return $t(`pages.management.rating.delete.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.management.verifier.list.${path}`);
+                        return $t(`pages.management.verifier.delete.${path}`);
                     },
                 ]
             }

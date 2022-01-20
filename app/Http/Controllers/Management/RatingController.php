@@ -115,6 +115,14 @@ class RatingController extends Controller
                     }),
                     'users' => $rating->users->map(function($user) {
                         return $user->toArray();
+                    }),
+                    'verifiers' => $rating->verifiers()->paginate(10)->through(function($verifier) {
+                        return array_merge(
+                            $verifier->toArray(), [
+                                'user' => $verifier->user->toArray(),
+                                'target' => $verifier->parameterTarget->toArray()
+                            ]
+                        );
                     })
                 ]
             ),

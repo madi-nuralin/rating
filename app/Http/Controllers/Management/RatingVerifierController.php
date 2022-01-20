@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Models\Verifier;
 use App\Models\ParameterTarget;
 
-class VerifierController extends Controller
+class RatingVerifierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,17 +22,7 @@ class VerifierController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Verifier/Index', [
-            'verifiers' => Verifier::paginate(10)->through(function($verifier) {
-                return array_merge(
-                    $verifier->toArray(), [
-                        'user' => $verifier->user->toArray(),
-                        'target' => $verifier->parameterTarget->toArray(),
-                        'rating' => $verifier->rating->toArray()
-                    ]
-                );
-            }),
-        ]);
+        //
     }
 
     /**
@@ -42,10 +32,8 @@ class VerifierController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Verifier/Create', [
-            'ratings' => Rating::all()->map(function($rating) {
-                return $rating->toArray();
-            }),
+        return Inertia::render('Management/Rating/Partials/Verifier/Create', [
+            'rating' => Rating::findOrFail(request()->input('rating'))->toArray(),
             'targets' => ParameterTarget::all()->map(function($parameterTarget) {
                 return $parameterTarget->toArray();
             }),
@@ -70,7 +58,6 @@ class VerifierController extends Controller
         $input = $request->all();
 
         Validator::make($input, [
-            'rating' => ['required', 'numeric'],
             'target' => ['required', 'numeric'],
             'user' => ['required', 'numeric']
         ])->validateWithBag('createVerifier');
@@ -94,7 +81,7 @@ class VerifierController extends Controller
         ]);
         session()->flash('flash.bannerStyle', 'success');
 
-        return Inertia::location(route('verifier.index'));
+        return Inertia::location(route('rating.show', ['rating' => $rating->id]));
     }
 
     /**
@@ -107,17 +94,13 @@ class VerifierController extends Controller
     {
         $verifier = Verifier::findOrFail($id);
 
-        return Inertia::render('Management/Verifier/Show', [
+        return Inertia::render('Management/Rating/Partials/Verifier/Show', [
             'verifier' => array_merge(
                 $verifier->toArray(), [
                     'user' => $verifier->user->toArray(),
-                    'target' => $verifier->parameterTarget->toArray(),
-                    'rating' => $verifier->rating->toArray()
+                    'target' => $verifier->parameterTarget->toArray()
                 ]
             ),
-            'ratings' => Rating::all()->map(function($rating) {
-                return $rating->toArray();
-            }),
             'targets' => ParameterTarget::all()->map(function($parameterTarget) {
                 return $parameterTarget->toArray();
             }),
@@ -156,11 +139,9 @@ class VerifierController extends Controller
         Validator::make($input, [
             'target' => ['required', 'numeric'],
             'user' => ['required', 'numeric'],
-            'rating' => ['required', 'numeric'],
         ])->validateWithBag('updateVerifier');
 
         $verifier = Verifier::findOrFail($id);
-        $rating = Rating::findOrFail($input['rating']);
         $parameterTarget = ParameterTarget::findOrFail($input['target']);
         $user = User::findOrFail($input['user']);
 
@@ -170,7 +151,7 @@ class VerifierController extends Controller
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
-                    : back()->with('status', 'rating-updated');
+                    : back()->with('status', 'verifier-updated');
     }
 
     /**
@@ -181,11 +162,13 @@ class VerifierController extends Controller
      */
     public function destroy($id)
     {
-        Verifier::findOrFail($id)->delete();
+        $verifier = Verifier::findOrFail($id);
+        $rating = $verifier->rating;
+        $verifier->delete();
 
         session()->flash('flash.banner', ['components.banner.resource.deleted']);
         session()->flash('flash.bannerStyle', 'success');
 
-        return Inertia::location(route('verifier.index'));
+        return Inertia::location(route('rating.show', ['rating' => $rating->id]));
     }
 }
