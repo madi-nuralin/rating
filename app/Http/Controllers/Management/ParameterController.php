@@ -56,7 +56,6 @@ class ParameterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
             'target' => ['required', 'numeric'],
-            'score' => ['required', 'numeric'],
         ])->validateWithBag('createParameter');
 
         $parameterTarget = ParameterTarget::findOrFail($input['target']);
@@ -67,7 +66,6 @@ class ParameterController extends Controller
 
         $parameter->setName($input['name']);
         $parameter->setDescription($input['description']);
-        $parameter->setScore($input['score']);
         $parameter->save();
 
         return Inertia::location(route('parameter.show', ['parameter' => $parameter->getId()]));
@@ -124,7 +122,6 @@ class ParameterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
             'target' => ['required', 'numeric'],
-            'score' => ['required', 'numeric'],
         ])->validateWithBag('updateParameter');
 
         $parameter = Parameter::findOrFail($id);
@@ -132,8 +129,7 @@ class ParameterController extends Controller
         
         $parameter->setName($input['name']);    
         $parameter->setDescription($input['description']);
-        $parameter->setParameterTarget($parameterTarget);
-        $parameter->setScore($input['score']);
+        $parameter->setParameterTarget($input['target']);
 
         $parameter->save();
 

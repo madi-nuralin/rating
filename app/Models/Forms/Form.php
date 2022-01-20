@@ -19,6 +19,20 @@ class Form extends Model
 
     protected $table = 'forms';
 
+    const SCORING_DISABLED = 'disabled';
+    const SCORING_BY_CONSTANT = 'by_constant';
+    const SCORING_BY_MATH_EXPRESSION = 'by_math_expression';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'scoring',
+        'score',
+        'math_expression'
+    ];
+
     public function settings() {
     	return $this->hasMany(FormSetting::class);
     }
@@ -31,12 +45,36 @@ class Form extends Model
     	return $this->hasMany(FormField::class);
     }
 
-    public function getFields() {
-    	return $this->fields;
+    public function setScoring($scoring) {
+        $this->scoring = $scoring;
+    }
+
+    public function setScore($score) {
+        $this->score = $score;
+    }
+
+    public function setMathExpression($mathExpression) {
+        $this->math_expression = $mathExpression;
     }
 
     public function setFields($fields) {
-    	//
+        //
+    }
+
+    public function getScoring() {
+        return $this->scoring;
+    }
+
+    public function getScore() {
+        return $this->score;
+    }
+
+    public function getMathExpression() {
+        return $this->math_expression;
+    }
+
+    public function getFields() {
+    	return $this->fields;
     }
 
     public function toArray() {
@@ -44,6 +82,9 @@ class Form extends Model
     		'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'scoring' => $this->getScoring(),
+            'score' => $this->getScore(),
+            'math_expression' => $this->getMathExpression(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

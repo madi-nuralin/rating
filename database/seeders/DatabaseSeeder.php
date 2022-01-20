@@ -485,7 +485,6 @@ class DatabaseSeeder extends Seeder
 
         $definitions = [
             [
-                'score' => 4,
                 'parameter_target' => 2,
                 'en' => [
                     'name' => 'Publications in international peer-reviewed scientific journals in the 1st and 2nd quartile',
@@ -613,7 +612,6 @@ class DatabaseSeeder extends Seeder
                     ]
                 ]
             ], [
-                'score' => 3,
                 'parameter_target' => 2,
                 'en' => [
                     'name' => 'Publications in 3 quartile international peer-reviewed scientific journals',
@@ -742,7 +740,6 @@ class DatabaseSeeder extends Seeder
                 ]
             ], [
                 'parameter_target' => 2,
-                'score' => 4,
                 'en' => [
                     'name' => 'Clarivate Analytics Journal Citation Reports or Scopus publications without quartile and percentile',
                     'description' => 'Clarivate Analytics Journal Citation Reports or Scopus publications without quartile and percentile'
@@ -753,7 +750,6 @@ class DatabaseSeeder extends Seeder
                 ]
             ], [
                 'parameter_target' => 2,
-                'score' => 0,
                 'en' => [
                     'name' => 'Participation in funded research programs and projects funded: from the state budget (GF, PCF)',
                     'description' => 'Participation in funded research programs and projects funded: from the state budget (GF, PCF)'
@@ -876,10 +872,6 @@ class DatabaseSeeder extends Seeder
             foreach ($locales as $locale) {
                 $parameter->setName($definition[$locale]['name'], $locale);
                 $parameter->setDescription($definition[$locale]['description'], $locale);
-            }
-
-            if (array_key_exists('score', $definition)) {
-                $parameter->setScore($definition['score']);
             }
 
             if (array_key_exists('forms', $definition)) {

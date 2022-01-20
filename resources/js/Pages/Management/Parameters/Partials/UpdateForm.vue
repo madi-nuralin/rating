@@ -26,12 +26,6 @@
                 <BreezeSelect id="target" class="mt-1 block w-full" :value="form.target" @input="form.target = $event" :options="options.target" :multiple="false" />
                 <BreezeInputError :message="form.errors.target" class="mt-2" />
             </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="translate('form.score')" />
-                <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score" />
-                <BreezeInputError :message="form.errors.score" class="mt-2" />
-            </div>
         </template>
 
         <template #actions v-if="true">
@@ -76,7 +70,6 @@
                     name: this.parameter.name,
                     description: this.parameter.description,
                     target: this.parameter.target.id,
-                    score: this.parameter.score,
                 })
             }
         },

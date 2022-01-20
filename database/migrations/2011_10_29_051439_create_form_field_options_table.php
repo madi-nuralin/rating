@@ -21,6 +21,8 @@ class CreateFormFieldOptionsTable extends Migration
                   ->references('id')
                   ->on('form_fields')
                   ->onDelete('cascade');
+            $table->float('score', 8, 2)
+                  ->default(0);
             $table->timestamps();
         });
     }

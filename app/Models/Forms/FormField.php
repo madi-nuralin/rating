@@ -41,6 +41,7 @@ class FormField extends Model
     protected $fillable = [
         'form_id',
         'type',
+        'variable'
     ];
 
     public function settings() {

@@ -143,6 +143,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('form-field-option', FormFieldOptionController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
+            Route::put('form/{form}/scoring', [FormController::class, 'updateScoring'])
+                    ->name('form.updateScoring');
         });
     });
 

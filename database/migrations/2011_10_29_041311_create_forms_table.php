@@ -15,6 +15,12 @@ class CreateFormsTable extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
+            $table->enum('scoring', ['disabled', 'by_constant', 'by_math_expression'])
+                  ->default('disabled');
+            $table->float('score', 8, 2)
+                  ->default(0);
+            $table->string('math_expression')
+                  ->nullable();
             $table->timestamps();
         });
     }

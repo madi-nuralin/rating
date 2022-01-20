@@ -21,8 +21,6 @@ class CreateParametersTable extends Migration
                   ->references('id')
                   ->on('parameter_targets')
                   ->onDelete('cascade');
-            $table->float('score', 8, 2)
-                  ->default(0);
             $table->timestamps();
         });
     }

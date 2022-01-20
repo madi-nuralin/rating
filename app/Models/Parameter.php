@@ -21,8 +21,6 @@ class Parameter extends Model
      */
     protected $fillable = [
         'parameter_target_id',
-        'form_id',
-        'score',
     ];
 
     public function settings() {
@@ -49,20 +47,12 @@ class Parameter extends Model
         //
     }
 
-    public function setScore($score) {
-        $this->score = $score;
-    }
-
     public function getParameterTarget() {
     	return $this->parameterTarget;
     }
 
     public function getForms() {
         return $this->forms;
-    }
-
-    public function getScore() {
-        return $this->score;
     }
 
     public function addForm(Form $form) {
@@ -74,7 +64,6 @@ class Parameter extends Model
     		'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'score' => $this->getScore(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

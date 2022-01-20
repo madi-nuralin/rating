@@ -13,7 +13,10 @@
                 <update-form :form="$page.props.form" :translate="translate[1]"/>
                 <breeze-section-border />
 
-                <form-field-list :form="$page.props.form" :translate="translate[3]"/>
+                <form-field-list :form="$page.props.form" :translate="translate[4]"/>
+                <breeze-section-border />
+
+                <update-scoring-form :form="$page.props.form" :translate="translate[3]"/>
                 <breeze-section-border />
 
                 <delete-form :form="$page.props.form" :translate="translate[2]" class="mt-10 sm:mt-0"/>
@@ -25,6 +28,7 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
+    import UpdateScoringForm from './Partials/UpdateScoringForm.vue'
     import UpdateForm from './Partials/UpdateForm.vue'
     import DeleteForm from './Partials/DeleteForm.vue'
     import FormFieldList from '../FormField/Partials/List.vue'
@@ -34,6 +38,7 @@
         components: {
             BreezeAuthenticatedLayout,
             BreezeSectionBorder,
+            UpdateScoringForm,
             UpdateForm,
             DeleteForm,
             FormFieldList,
@@ -53,6 +58,9 @@
                     },
                     function (path) {
                         return $t(`pages.forms.form.delete.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.forms.form.updateScoring.${path}`);
                     },
                     function (path) {
                         return $t(`pages.forms.formField.list.${path}`);

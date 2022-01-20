@@ -38,6 +38,9 @@ class CreateFormFieldsTable extends Migration
             $table->json('validation_rules')
                   ->nullable();
 
+            $table->string('variable')
+                  ->nullable();
+
             $table->timestamps();
         });
     }

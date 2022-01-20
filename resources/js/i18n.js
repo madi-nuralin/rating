@@ -623,6 +623,29 @@ var messages = {
               description: 'Description'
             }
           },
+          updateScoring: {
+            title: 'Form scoring',
+            description: 'Update the form scoring policy',
+            form: {
+              scoring: 'Scoring',
+              score: 'Score',
+              math_expression: 'Math expression'
+            },
+            scoring: {
+              disabled: {
+                name: 'Disabled',
+                description: 'The scoring is disabled for the form by default'
+              },
+              by_constant: {
+                name: 'By Constant',
+                description: 'Calculate score by pre-entered constant value'
+              },
+              by_math_expression: {
+                name: 'By Math Expression',
+                description: 'Calculate score by math expression'
+              }
+            }
+          },
           delete: {
             title: 'Delete the form',
             description: 'Permanently delete the form',
@@ -1575,6 +1598,29 @@ var messages = {
             form: {
               name: 'Название',
               description: 'Описание'
+            }
+          },
+          updateScoring: {
+            title: 'Оценка формы',
+            description: 'Обновите политику оценки формы',
+            form: {
+              scoring: 'Подсчет баллов',
+              score: 'Балл',
+              math_expression: 'Математическое выражение'
+            },
+            scoring: {
+              disabled: {
+                name: 'Отключено',
+                description: 'По умолчанию оценка для формы отключен.'
+              },
+              by_constant: {
+                name: 'По постоянному значению',
+                description: 'Рассчитать балл по предварительно введенному постоянному значению'
+              },
+              by_math_expression: {
+                name: 'По математическому выражению',
+                description: 'Рассчитать балл по математическому выражению'
+              }
             }
           },
           delete: {

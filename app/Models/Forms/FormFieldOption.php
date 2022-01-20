@@ -25,7 +25,8 @@ class FormFieldOption extends Model
      * @var array
      */
     protected $fillable = [
-        'form_field_id'
+        'form_field_id',
+        'score'
     ];
 
     public function settings() {

@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
+use MathParser\StdMathParser;
+use MathParser\Interpreting\Evaluator;
+
 use App\Models\Forms\Form;
 
 class FormController extends Controller
@@ -134,5 +137,47 @@ class FormController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('form.show'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateScoring(Request $request, $id)
+    {
+        $input = $request->all();
+
+        Validator::make($input, [
+            'scoring' => ['required', 'string'],
+            'score' => ['nullable', 'numeric'],
+            'math_expression' => ['nullable', 'string']
+        ])->validateWithBag('updateScoringForm');
+
+        $form = Form::findOrfail($id);
+
+        switch ($input['scoring']) {
+            case Form::SCORING_DISABLED:
+                break;
+            case Form::SCORING_BY_CONSTANT:
+                $form->setScoring($input['scoring']);
+                $form->setScore($input['score']);
+                break;
+            case Form::SCORING_BY_MATH_EXPRESSION:
+                $form->setScoring($input['scoring']);
+                $form->setMathExpression($input['math_expression']);
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        $form->save();
+
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'form-scoring-updated');
     }
 }
