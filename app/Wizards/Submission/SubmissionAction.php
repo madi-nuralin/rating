@@ -31,29 +31,11 @@ class SubmissionAction extends WizardAction
     		'parameter_id' => $parameter->id
     	]);
 
-        $form = $parameter->activeForm;
-        if ($form) {
+        $submission->save();
+
+        if ($form = $parameter->activeForm) {
             foreach ($form->fields as $formField) {
-
-                switch ($formField->getType()) {
-                    case FormField::MULTISELECT:
-                        $values = $payload["field{$formField->id}"] ?? [];
-                        foreach ($values as $value) {
-                            $formFieldResponce = $formField->createResponce();
-                            $formFieldResponce->setValue($value);
-                        }
-                        break;
-                        
-                    case FormField::FILE:
-                        break;
-
-                    default:
-                        $value = $payload["field{$formField->id}"];
-                        $formFieldResponce = $formField->createResponce();
-                        error_log($formField->getLabel());
-                        $formFieldResponce->setValue($value);
-                        break;
-                }
+                $submission->createFormFieldResponce($formField, $payload["field{$formField->id}"]);
             }
         }
 

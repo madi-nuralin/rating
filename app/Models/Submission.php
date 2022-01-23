@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldResponce;
+
 class Submission extends Model
 {
     use HasFactory,
@@ -91,6 +94,25 @@ class Submission extends Model
 
     public function deleteFormFieldResponce(FormFieldResponce $formFieldResponce) {
         $this->formFieldResponces()->detach($formFieldResponce->id);
+    }
+
+    public function createFormFieldResponce(FormField $formField, $value) {
+        switch ($formField->getType()) {
+            case FormField::MULTISELECT:
+                $values = $value ?? [];
+                foreach ($values as $value) {
+                    $formFieldResponce = $formField->createResponce();
+                    $formFieldResponce->setValue($value);
+                    $this->addFormFieldResponce($formFieldResponce);
+                }
+                break;
+
+            default:
+                $formFieldResponce = $formField->createResponce();
+                $formFieldResponce->setValue($value);
+                $this->addFormFieldResponce($formFieldResponce);
+                break;
+        }
     }
 
     public function toArray() {

@@ -70,7 +70,7 @@ class FormField extends Model
     }
 
     public function getValidationRules() {
-        return json_decode($this->validation_rules);
+        return json_decode($this->validation_rules, true) ?? [];
     }
 
     public function setValidationRules($validationRules) {
