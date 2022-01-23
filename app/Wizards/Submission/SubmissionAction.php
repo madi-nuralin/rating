@@ -10,6 +10,10 @@ use App\Models\Submission;
 use App\Models\Verification;
 use App\Models\Parameter;
 use App\Models\ParameterTarget;
+use App\Models\Forms\Form;
+use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldOption;
+use App\Models\Forms\FormFieldResponce;
 
 use App\Models\VerificationStatus;
 
@@ -26,6 +30,32 @@ class SubmissionAction extends WizardAction
     		'rating_id' => $rating->id,
     		'parameter_id' => $parameter->id
     	]);
+
+        $form = $parameter->activeForm;
+        if ($form) {
+            foreach ($form->fields as $formField) {
+
+                switch ($formField->getType()) {
+                    case FormField::MULTISELECT:
+                        $values = $payload["field{$formField->id}"] ?? [];
+                        foreach ($values as $value) {
+                            $formFieldResponce = $formField->createResponce();
+                            $formFieldResponce->setValue($value);
+                        }
+                        break;
+                        
+                    case FormField::FILE:
+                        break;
+
+                    default:
+                        $value = $payload["field{$formField->id}"];
+                        $formFieldResponce = $formField->createResponce();
+                        error_log($formField->getLabel());
+                        $formFieldResponce->setValue($value);
+                        break;
+                }
+            }
+        }
 
     	$submission->save();
 

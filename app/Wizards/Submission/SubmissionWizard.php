@@ -15,6 +15,7 @@ use Inertia\Inertia;
 
 use App\Wizards\Submission\Steps\SelectParameterStep;
 use App\Wizards\Submission\Steps\SelectParameterTargetStep;
+use App\Wizards\Submission\Steps\FormFillingStep;
 
 use App\Models\Rating;
 use App\Models\Submission;
@@ -32,6 +33,7 @@ class SubmissionWizard extends AbstractWizard
     protected array $steps = [
         SelectParameterTargetStep::class,
         SelectParameterStep::class,
+        FormFillingStep::class,
     ];
 
     public static function middleware(): array

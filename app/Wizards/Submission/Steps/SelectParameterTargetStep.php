@@ -4,6 +4,7 @@ namespace App\Wizards\Submission\Steps;
 
 use Arcanist\Field;
 use Arcanist\WizardStep;
+use Arcanist\StepResult;
 use Illuminate\Http\Request;
 
 use App\Models\Rating;
@@ -15,6 +16,15 @@ class SelectParameterTargetStep extends WizardStep
     public string $title = 'Выбрать направление деятельности';
 
     public string $slug = 'select-parameter-target';
+
+    protected function handle(
+        Request $request,
+        array $payload
+    ): StepResult {
+        //$request['rating'] = $payload['rating'];
+
+        return $this->success($payload);
+    }
 
     public function viewData(Request $request): array
     {

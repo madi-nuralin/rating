@@ -4,6 +4,7 @@ namespace App\Wizards\Submission\Steps;
 
 use Arcanist\Field;
 use Arcanist\WizardStep;
+use Arcanist\StepResult;
 use Illuminate\Http\Request;
 
 use App\Models\Rating;
@@ -16,11 +17,17 @@ class SelectParameterStep extends WizardStep
 
     public string $slug = 'select-parameter';
 
+    protected function handle(
+        Request $request,
+        array $payload
+    ): StepResult {
+        $request['parameter'] = $payload['parameter'];
+
+        return $this->success($payload);
+    }
+
     public function viewData(Request $request): array
     {
-        //return $this->withFormData();
-        //$this->data(string $key, mixed $default = null)
-
         $rating = Rating::findOrFail($this->data('rating'));
         $parameterTarget = ParameterTarget::findOrFail($this->data('target'));
 

@@ -85,6 +85,14 @@ class Submission extends Model
         return $this->formFieldResponces;
     }
 
+    public function addFormFieldResponce(FormFieldResponce $formFieldResponce) {
+        $this->formFieldResponces()->attach($formFieldResponce->id);
+    }
+
+    public function deleteFormFieldResponce(FormFieldResponce $formFieldResponce) {
+        $this->formFieldResponces()->detach($formFieldResponce->id);
+    }
+
     public function toArray() {
     	return [
     		'id' => $this->getId(),

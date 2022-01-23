@@ -22,28 +22,50 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <label class="flex items-center">
-                    <BreezeCheckbox name="required" v-model:checked="_form.required" />
-                    <span class="ml-2 text-sm text-gray-600">Required</span>
-                </label>
+                <div class="grid grid-cols-3">
+                    <label class="flex items-center">
+                        <BreezeCheckbox name="required" v-model:checked="_form.required" />
+                        <span class="ml-2 text-sm text-gray-600">Required</span>
+                    </label>
+                    <label class="flex items-center">
+                        <BreezeCheckbox name="nullable" v-model:checked="_form.nullable" />
+                        <span class="ml-2 text-sm text-gray-600">Nullable</span>
+                    </label>
+                </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
-                <label class="flex items-center">
-                    <BreezeCheckbox name="nullable" v-model:checked="_form.nullable" />
-                    <span class="ml-2 text-sm text-gray-600">Nullable</span>
-                </label>
-            </div>
-
-            <template v-if="Array('text', 'textarea').includes(_form.type)">
+            <template v-if="Array('number').includes(_form.type)">
                 <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="min_size" :value="$t('Min Size')" />
+                    <BreezeLabel for="min_size" :value="$t('Min')" />
                     <BreezeInput id="min_size" type="text" class="mt-1 block w-full" v-model="_form.min_size"/>
                     <BreezeInputError :message="_form.errors.min_size" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="max_size" :value="$t('Max Size')" />
+                    <BreezeLabel for="max_size" :value="$t('Max')" />
+                    <BreezeInput id="max_size" type="text" class="mt-1 block w-full" v-model="_form.max_size"/>
+                    <BreezeInputError :message="_form.errors.max_size" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <div class="grid grid-cols-3">
+                        <label class="flex items-center">
+                            <BreezeCheckbox name="is_integer" v-model:checked="_form.is_integer" />
+                            <span class="ml-2 text-sm text-gray-600">Only integers</span>
+                        </label>
+                    </div>
+                </div>
+            </template>
+
+            <template v-if="Array('text', 'textarea').includes(_form.type)">
+                <div class="col-span-6 sm:col-span-4">
+                    <BreezeLabel for="min_size" :value="$t('Min Length')" />
+                    <BreezeInput id="min_size" type="text" class="mt-1 block w-full" v-model="_form.min_size"/>
+                    <BreezeInputError :message="_form.errors.min_size" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <BreezeLabel for="max_size" :value="$t('Max Length')" />
                     <BreezeInput id="max_size" type="text" class="mt-1 block w-full" v-model="_form.max_size"/>
                     <BreezeInputError :message="_form.errors.max_size" class="mt-2" />
                 </div>
@@ -118,14 +140,14 @@
                 _form: this.$inertia.form({
                     label: '',
                     type: '',
-                    validation_rules: Array(),
                     required: false,
                     nullable: false,
-                    min_size: 0,
-                    max_size: 0,
-                    file_size: 0,
-                    mimes: Array(),
-                    variable: null
+                    min_size: '',
+                    max_size: '',
+                    file_size: '',
+                    mimes: '',
+                    is_integer: false,
+                    variable: '',
                 }),
             }
         },
@@ -143,6 +165,7 @@
         computed: {
             options() {
                 let type = [
+                    { value: 'number', name: this.$t('pages.forms.formField.type.number.name'), description: this.$t('pages.forms.formField.type.number.description') },
                     { value: 'text', name: this.$t('pages.forms.formField.type.text.name'), description: this.$t('pages.forms.formField.type.text.description') },
                     { value: 'textarea', name: this.$t('pages.forms.formField.type.textarea.name'), description: this.$t('pages.forms.formField.type.textarea.description') },
                     { value: 'email', name: this.$t('pages.forms.formField.type.email.name'), description: this.$t('pages.forms.formField.type.email.description') },

@@ -48,12 +48,12 @@ class FormFieldController extends Controller
         Validator::make($input, [
             'label' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string'],
-            'required' => ['required', 'boolean'],
-            'nullable' => ['nullable'],
-            'min_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
-            'max_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
+            'required' => ['nullable', 'boolean'],
+            'nullable' => ['nullable', 'boolean'],
+            'min_size' => ['nullable', 'numeric'],
+            'max_size' => ['nullable', 'numeric'],
             'file_size' => ['nullable', 'numeric'],
-            'mimes' => ['array'],
+            'mimes' => ['nullable', 'array'],
             'variable' => ['nullable', 'string', 'alpha']
         ])->validateWithBag('createFormField');
 
@@ -62,9 +62,9 @@ class FormFieldController extends Controller
             'form_id' => $input['form'],
             'type' => $input['type'],
             'score' => $input['score'] ?? 0,
-            'validation_rules' => json_encode($this->encodeValidationRules($input)),
             'variable' => $input['variable']
         ]);
+        $formField->setValidationRules($this->encodeValidationRules($input));
         $formField->setLabel($input['label']);
         $formField->save();
 
@@ -124,10 +124,10 @@ class FormFieldController extends Controller
         Validator::make($input, [
             'label' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string'],
-            'required' => ['required', 'boolean'],
-            'nullable' => ['nullable'],
-            'min_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
-            'max_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
+            'required' => ['nullable', 'boolean'],
+            'nullable' => ['nullable', 'boolean'],
+            'min_size' => ['nullable', 'numeric'],
+            'max_size' => ['nullable', 'numeric'],
             'file_size' => ['nullable', 'numeric'],
             'mimes' => ['nullable','array'],
             'variable' => ['nullable', 'string', 'alpha']
@@ -136,7 +136,7 @@ class FormFieldController extends Controller
         $formField = FormField::findOrfail($id);
         $formField->setLabel($input['label']);
         $formField->setType($input['type']);
-        $formField->setValidationRules(json_encode($this->encodeValidationRules($input)));
+        $formField->setValidationRules($this->encodeValidationRules($input));
         $formField->setVariable($input['variable']);
         $formField->save();
 
@@ -172,24 +172,67 @@ class FormFieldController extends Controller
     protected function encodeValidationRules($input) {
         $validationRules = array();
 
-        if ($input['required']) {
+        if (array_key_exists('required', $input)) {
             $validationRules['required'] = $input['required'];
         }
-        if ($input['nullable']) {
+
+        if (array_key_exists('nullable', $input)) {
             $validationRules['nullable'] = $input['nullable'];
         }
 
-        if (in_array($input['type'], array(FormField::TEXT, FormField::TEXTAREA))) {
-            $validationRules['min_size'] = $input['min_size'] ? $input['min_size'] : 0;
-            $validationRules['max_size'] = $input['max_size'] ? $input['max_size'] : 255;
-        }
+        switch ($input['type']) {
+            case FormField::NUMBER:
+                if (isset($input['is_integer']))
+                    $validationRules['is_integer'] = true;
+                else 
+                    $validationRules['is_numeric'] = true;
 
-        if (in_array($input['type'], array(FormField::FILE))) {
-            $validationRules['file_size'] = $input['file_size'] ? $input['file_size'] : 100;
+                if (isset($input['min_size']))
+                    $validationRules['min_size'] = $input['min_size'];
+                if (isset($input['max_size']))
+                    $validationRules['max_size'] = $input['max_size'];
+                break;
 
-            if ($input['mimes']) {
-                $validationRules['mimes'] = implode(",", $input['mimes']); 
-            }
+            case FormField::TEXT:
+            case FormField::TEXTAREA:
+                $validationRules['is_string'] = true;
+
+                if (isset($input['min_size']))
+                    $validationRules['min_size'] = $input['min_size'] ? $input['min_size'] : 0;
+                if (isset($input['max_size']))
+                    $validationRules['max_size'] = $input['max_size'] ? $input['max_size'] : 255;
+                break;
+
+            case FormField::EMAIL:
+                $validationRules['email'] = implode(",", array('', ''));
+                break;
+
+            case FormField::URL:
+                $validationRules['url'] = true;
+                break;
+
+            case FormField::FILE:
+                $validationRules['file_size'] = $input['file_size'] ? $input['file_size'] : 100;
+                if (isset($input['mimes'])) {
+                    $validationRules['mimes'] = implode(",", $input['mimes']); 
+                }
+                break;
+
+            case FormField::TIME:
+                $validationRules['date_format'] = 'h:i';
+                break;
+
+            case FormField::DATE:
+                $validationRules['date_format'] = 'Y-m-d';
+                break;
+
+            case FormField::DATETIME:
+                $validationRules['date_format'] = 'Y-m-d\Th:i';
+                break;
+
+            default:
+                # code...
+                break;
         }
 
         return $validationRules;

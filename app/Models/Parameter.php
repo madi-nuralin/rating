@@ -21,6 +21,7 @@ class Parameter extends Model
      */
     protected $fillable = [
         'parameter_target_id',
+        'active_form_id'
     ];
 
     public function settings() {
@@ -43,8 +44,16 @@ class Parameter extends Model
     	$this->parameterTarget()->associate($parameterTarget);
     }
 
+    public function activeForm() {
+        return $this->belongsTo(Form::class);
+    }
+
     public function setForms(Form $form) {
         //
+    }
+
+    public function setActiveForm(Form $form) {
+        $this->activeForm()->associate($form);
     }
 
     public function getParameterTarget() {
@@ -55,8 +64,16 @@ class Parameter extends Model
         return $this->forms;
     }
 
+    public function getActiveForm() {
+        return $this->activeForm;
+    }
+
     public function addForm(Form $form) {
         $this->forms()->attach($form->id);
+    }
+
+    public function deleteForm(Form $form) {
+        $this->forms()->detach($form->id);
     }
 
     public function toArray() {

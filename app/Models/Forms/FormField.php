@@ -20,6 +20,7 @@ class FormField extends Model
 
     protected $table = 'form_fields';
 
+    const NUMBER = 'number';
     const TEXT = 'text';
     const TEXTAREA = 'textarea';
     const EMAIL = 'email';
@@ -69,11 +70,11 @@ class FormField extends Model
     }
 
     public function getValidationRules() {
-        return $this->validation_rules;
+        return json_decode($this->validation_rules);
     }
 
     public function setValidationRules($validationRules) {
-        $this->validation_rules = $validationRules;
+        $this->validation_rules = json_encode($validationRules);
     }
 
     public function setVariable($variable) {
@@ -106,6 +107,61 @@ class FormField extends Model
 
     public function setResponces($responces) {
     	//
+    }
+
+    public function createResponce() {
+        return FormFieldResponce::create([
+            'form_field_id' => $this->id
+        ]);
+    }
+
+    public function rules() {
+        $rules = [];
+        $validationRules = json_decode($this->validation_rules, true) ?? [];
+
+        // Boolean rules
+        foreach (array('required', 'nullable', 'is_integer', 'is_numeric', 'is_string') as $rule) {
+
+            if (array_key_exists($rule, $validationRules)) {
+                if ($validationRules[$rule]) {
+                    switch ($rule) {
+                        case 'is_integer':
+                        case 'is_numeric':
+                        case 'is_string':
+                            array_push($rules, substr($rule, 3)); # removing 'is_'
+                            break;
+                        
+                        default:
+                            array_push($rules, $rule);
+                            break;
+                    }
+                }
+            }
+        }
+
+        // Assignable rules
+        foreach (array('min_size', 'max_size', 'file_size', 'mimes', 'date_format', 'email', 'url') as $rule) {
+            if (array_key_exists($rule, $validationRules)) {
+                switch ($rule) {
+                    case 'min_size':
+                        array_push($rules, "min:{$validationRules[$rule]}");
+                        break;
+                    case 'max_size':
+                        array_push($rules, "max:{$validationRules[$rule]}");
+                        break;
+                    case 'file_size':
+                        array_push($rules, "max:{$validationRules[$rule]}");
+                        break;
+                    default:
+                        array_push($rules, $rule . ':' . $validationRules[$rule]);
+                        break;
+                }
+            }
+        }
+
+        //error_log(json_encode($rules));
+            
+        return $rules;
     }
 
     public function toArray() {

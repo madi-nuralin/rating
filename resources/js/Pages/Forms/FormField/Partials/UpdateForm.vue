@@ -22,28 +22,50 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <label class="flex items-center">
-                    <BreezeCheckbox name="required" v-model:checked="form.required" />
-                    <span class="ml-2 text-sm text-gray-600">Required</span>
-                </label>
+                <div class="grid grid-cols-3">
+                    <label class="flex items-center">
+                        <BreezeCheckbox name="required" v-model:checked="form.required" />
+                        <span class="ml-2 text-sm text-gray-600">Required</span>
+                    </label>
+                    <label class="flex items-center">
+                        <BreezeCheckbox name="nullable" v-model:checked="form.nullable" />
+                        <span class="ml-2 text-sm text-gray-600">Nullable</span>
+                    </label>
+                </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
-                <label class="flex items-center">
-                    <BreezeCheckbox name="nullable" v-model:checked="form.nullable" />
-                    <span class="ml-2 text-sm text-gray-600">Nullable</span>
-                </label>
-            </div>
-
-            <template v-if="Array('text', 'textarea').includes(form.type)">
+            <template v-if="Array('number').includes(form.type)">
                 <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="min_size" :value="$t('Min Size')" />
+                    <BreezeLabel for="min_size" :value="$t('Min')" />
                     <BreezeInput id="min_size" type="text" class="mt-1 block w-full" v-model="form.min_size"/>
                     <BreezeInputError :message="form.errors.min_size" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <BreezeLabel for="max_size" :value="$t('Max Size')" />
+                    <BreezeLabel for="max_size" :value="$t('Max')" />
+                    <BreezeInput id="max_size" type="text" class="mt-1 block w-full" v-model="form.max_size"/>
+                    <BreezeInputError :message="form.errors.max_size" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <div class="grid grid-cols-3">
+                        <label class="flex items-center">
+                            <BreezeCheckbox name="is_integer" v-model:checked="form.is_integer" />
+                            <span class="ml-2 text-sm text-gray-600">Only integers</span>
+                        </label>
+                    </div>
+                </div>
+            </template>
+
+            <template v-if="Array('text', 'textarea').includes(form.type)">
+                <div class="col-span-6 sm:col-span-4">
+                    <BreezeLabel for="min_size" :value="$t('Min Length')" />
+                    <BreezeInput id="min_size" type="text" class="mt-1 block w-full" v-model="form.min_size"/>
+                    <BreezeInputError :message="form.errors.min_size" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <BreezeLabel for="max_size" :value="$t('Max Length')" />
                     <BreezeInput id="max_size" type="text" class="mt-1 block w-full" v-model="form.max_size"/>
                     <BreezeInputError :message="form.errors.max_size" class="mt-2" />
                 </div>
@@ -114,12 +136,13 @@
                 form: this.$inertia.form({
                     label: this.field.label,
                     type: this.field.type,
-                    required: this.validation_rules ? this.validation_rules.required : false,
-                    nullable: this.validation_rules ? this.validation_rules.nullable : false,
-                    min_size: this.validation_rules ? this.validation_rules.min_size : 0,
-                    max_size: this.validation_rules ? this.validation_rules.max_size : 255,
-                    file_size: this.validation_rules ? this.validation_rules.file_size : 100,
-                    mimes: this.validation_rules ? this.validation_rules.mimes : '',
+                    required: this.getValidationRules('required'),
+                    nullable: this.getValidationRules('nullable'),
+                    min_size: this.getValidationRules('min_size'),
+                    max_size: this.getValidationRules('max_size'),
+                    file_size: this.getValidationRules('file_size'),
+                    mimes: this.getValidationRules('mimes'),
+                    is_integer: this.getValidationRules('is_integer'),
                     variable: this.field.variable,
                 })
             }
@@ -129,15 +152,21 @@
             updateFormField() {
                 this.form.put(route('form-field.update', {'id': this.field.id}), {
                     errorBag: 'updateFormField',
-                    preserveScroll: true,
-                    //onSuccess: () => Inertia.reload({ only: ['parameters'] })
+                    preserveScroll: true
                 });
             },
+
+            getValidationRules(rule) {
+                return this.field.validation_rules 
+                    ? this.field.validation_rules[rule]
+                    : null;
+            }
         },
 
         computed: {
             options() {
                 let type = [
+                    { value: 'number', name: this.$t('pages.forms.formField.type.number.name'), description: this.$t('pages.forms.formField.type.number.description') },
                     { value: 'text', name: this.$t('pages.forms.formField.type.text.name'), description: this.$t('pages.forms.formField.type.text.description') },
                     { value: 'textarea', name: this.$t('pages.forms.formField.type.textarea.name'), description: this.$t('pages.forms.formField.type.textarea.description') },
                     { value: 'email', name: this.$t('pages.forms.formField.type.email.name'), description: this.$t('pages.forms.formField.type.email.description') },

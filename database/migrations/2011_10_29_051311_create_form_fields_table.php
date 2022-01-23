@@ -22,6 +22,7 @@ class CreateFormFieldsTable extends Migration
                   ->on('forms')
                   ->onDelete('cascade');
             $table->enum('type', [
+                    'number',        // ['required', 'nullable', 'max:size', 'min:size', 'numeric', 'integer']
                     'text',         // ['required', 'nullable', 'max:size', 'min:size']
                     'textarea',     // ['required', 'nullable', 'max:size', 'min:size']
                     'email',        // ['required', 'nullable', 'email']

@@ -87,6 +87,7 @@ class ParameterController extends Controller
                     'forms' => $parameter->forms ? $parameter->forms()->paginate(10)->through(function($form) {
                         return $form->toArray();
                     }) : [],
+                    'active_form' => $parameter->activeForm ? $parameter->activeForm->toArray() : [],
                     'target' => $parameter->parameterTarget->toArray()
                 ]
             ),
@@ -122,15 +123,17 @@ class ParameterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
             'target' => ['required', 'numeric'],
+            'active_form' => ['numeric'],
         ])->validateWithBag('updateParameter');
 
         $parameter = Parameter::findOrFail($id);
         $parameterTarget = ParameterTarget::findOrFail($input['target']);
+        $form = Form::findOrfail($input['active_form']);
         
         $parameter->setName($input['name']);    
         $parameter->setDescription($input['description']);
-        $parameter->setParameterTarget($input['target']);
-
+        $parameter->setParameterTarget($parameterTarget);
+        $parameter->setActiveForm($form);
         $parameter->save();
 
         return $request->wantsJson()

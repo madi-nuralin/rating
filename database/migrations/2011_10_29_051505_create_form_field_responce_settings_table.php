@@ -27,7 +27,7 @@ class CreateFormFieldResponceSettingsTable extends Migration
                   ->nullable();
             $table->string('setting_name')
                   ->nullable();
-            $table->string('setting_responce', 2048)
+            $table->string('setting_value', 2048)
                   ->nullable();
             $table->timestamps();
         });
