@@ -42866,12 +42866,12 @@ var messages = {
             form: {
               name: 'Rating name',
               description: 'Rating description',
-              filling_started_at: 'Submission starts from',
-              filling_expired_at: 'Submission finish date',
-              verification_started_at: 'Verification starts from',
-              verification_expired_at: 'Verification finish date',
-              approvement_started_at: 'Approvement starts from',
-              approvement_expired_at: 'Approvement finish date'
+              submission_begin_time_at: 'Submission starts from',
+              submission_end_time_at: 'Submission finish date',
+              verification_begin_time_at: 'Verification starts from',
+              verification_end_time_at: 'Verification finish date',
+              approvement_begin_time_at: 'Approvement starts from',
+              approvement_end_time_at: 'Approvement finish date'
             }
           },
           update: {
@@ -43794,12 +43794,12 @@ var messages = {
             form: {
               name: 'Название рейтинга',
               description: 'Описание рейтинга',
-              filling_started_at: 'Подача начинается с',
-              filling_expired_at: 'Дата окончания подачи',
-              verification_started_at: 'Проверка начинается с',
-              verification_expired_at: 'Дата окончания проверки',
-              approvement_started_at: 'Утверждение начинается с',
-              approvement_expired_at: 'Дата окончания утверждения'
+              submission_begin_time_at: 'Подача начинается с',
+              submission_end_time_at: 'Дата окончания подачи',
+              verification_begin_time_at: 'Проверка начинается с',
+              verification_end_time_at: 'Дата окончания проверки',
+              approvement_begin_time_at: 'Утверждение начинается с',
+              approvement_end_time_at: 'Дата окончания утверждения'
             }
           },
           update: {

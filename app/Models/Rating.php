@@ -99,27 +99,27 @@ class Rating extends Model
     }
 
     public function getSubmissionBeginTimeAt() {
-    	return $this->submission_begin_time_at;
+    	return date('Y-m-d\Th:i:s', strtotime($this->submission_begin_time_at));
     }
 
     public function getSubmissionEndTimeAt() {
-    	return $this->submission_end_time_at;
+    	return date('Y-m-d\Th:i:s', strtotime($this->submission_end_time_at));
     }
 
     public function getVerificationBeginTimeAt() {
-    	return $this->verification_begin_time_at;
+    	return date('Y-m-d\Th:i:s', strtotime($this->verification_begin_time_at));
     }
 
     public function getVerificationEndTimeAt() {
-    	return $this->verification_end_time_at;
+    	return date('Y-m-d\Th:i:s', strtotime($this->verification_end_time_at));
     }
 
     public function getApprovementBeginTimeAt() {
-    	return $this->approvement_begin_time_at;
+    	return date('Y-m-d\Th:i:s', strtotime($this->approvement_begin_time_at));
     }
 
     public function getApprovementEndTimeAt() {
-    	return $this->approvement_end_time_at;
+    	return date('Y-m-d\Th:i:s', strtotime($this->approvement_end_time_at));
     }
 
     public function getParameters() {
