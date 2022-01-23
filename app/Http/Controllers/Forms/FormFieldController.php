@@ -53,7 +53,8 @@ class FormFieldController extends Controller
             'min_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
             'max_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
             'file_size' => ['nullable', 'numeric'],
-            'mimes' => ['array']
+            'mimes' => ['array'],
+            'variable' => ['nullable', 'string', 'alpha']
         ])->validateWithBag('createFormField');
 
         $form = Form::findOrFail($input['form']);
@@ -61,7 +62,8 @@ class FormFieldController extends Controller
             'form_id' => $input['form'],
             'type' => $input['type'],
             'score' => $input['score'] ?? 0,
-            'validation_rules' => json_encode($this->encodeValidationRules($input))
+            'validation_rules' => json_encode($this->encodeValidationRules($input)),
+            'variable' => $input['variable']
         ]);
         $formField->setLabel($input['label']);
         $formField->save();
@@ -127,13 +129,15 @@ class FormFieldController extends Controller
             'min_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
             'max_size' => ['nullable', 'numeric', 'min:0', 'max:2048'],
             'file_size' => ['nullable', 'numeric'],
-            'mimes' => ['nullable','array']
+            'mimes' => ['nullable','array'],
+            'variable' => ['nullable', 'string', 'alpha']
         ])->validateWithBag('updateFormField');
 
         $formField = FormField::findOrfail($id);
         $formField->setLabel($input['label']);
         $formField->setType($input['type']);
         $formField->setValidationRules(json_encode($this->encodeValidationRules($input)));
+        $formField->setVariable($input['variable']);
         $formField->save();
 
         return $request->wantsJson()

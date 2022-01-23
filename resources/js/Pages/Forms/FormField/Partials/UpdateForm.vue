@@ -62,6 +62,12 @@
                     <BreezeInputError :message="form.errors.file_size" class="mt-2" />
                 </div>
             </template>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="variable" :value="translate('form.variable')" />
+                <BreezeInput id="variable" type="text" class="mt-1 block w-full" v-model="form.variable" />
+                <BreezeInputError :message="form.errors.variable" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -114,6 +120,7 @@
                     max_size: this.validation_rules ? this.validation_rules.max_size : 255,
                     file_size: this.validation_rules ? this.validation_rules.file_size : 100,
                     mimes: this.validation_rules ? this.validation_rules.mimes : '',
+                    variable: this.field.variable,
                 })
             }
         },

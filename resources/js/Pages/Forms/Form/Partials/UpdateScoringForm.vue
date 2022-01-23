@@ -27,6 +27,17 @@
                     <BreezeInput id="math_expression" type="text" class="mt-1 block w-full" v-model="_form.math_expression" />
                     <BreezeInputError :message="_form.errors.math_expression" class="mt-2" />
                 </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <div class="text-sm text-gray-400">
+                        <span class="">{{ translate('form.variables') }}</span>
+                        <ul class="list-disc list-inside mt-2">
+                            <li v-for="field in form.fields.data">
+                                {{ field.label }} - {{ field.variable }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </template>
         </template>
 

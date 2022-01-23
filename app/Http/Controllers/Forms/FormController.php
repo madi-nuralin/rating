@@ -167,7 +167,13 @@ class FormController extends Controller
                 break;
             case Form::SCORING_BY_MATH_EXPRESSION:
                 $form->setScoring($input['scoring']);
-                $form->setMathExpression($input['math_expression']);
+                try {
+                    $form->setMathExpression($input['math_expression']);
+                } catch (\Exception $e) {
+                     throw ValidationException::withMessages([
+                        'math_expression' => $e->getMessage(),
+                    ]);
+                }
                 break;
             default:
                 # code...

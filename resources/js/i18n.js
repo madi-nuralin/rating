@@ -629,7 +629,8 @@ var messages = {
             form: {
               scoring: 'Scoring',
               score: 'Score',
-              math_expression: 'Math expression'
+              math_expression: 'Math expression',
+              variables: 'The list of variables which could be used in math expression. Note: To declare a new variable visit form field update page.'
             },
             scoring: {
               disabled: {
@@ -684,8 +685,7 @@ var messages = {
             form: {
               label: 'Label',
               type: 'Type',
-              scoring_policy: 'Scoring Policy',
-              score: 'Score',
+              variable: 'Variable',
               validation_rules: 'Validation Rules'
             }
           },
@@ -695,8 +695,7 @@ var messages = {
             form: {
               label: 'Label',
               type: 'Type',
-              scoring_policy: 'Scoring Policy',
-              score: 'Score',
+              variable: 'Variable',
               validation_rules: 'Validation Rules'
             }
           },
@@ -860,55 +859,6 @@ var messages = {
               }
             }
           },
-          
-          variables: {
-            head: {
-              title: 'Form management'
-            },
-            header: 'Form management',
-            create: {
-              title: 'Create a variable',
-              description: 'Create a new form field variable by inserting name and description',
-              form: {
-                name: 'Name',
-                description: 'Description'
-              }
-            },
-            update: {
-              title: 'Update the form field variable',
-              description: 'Update the existing form field variable',
-              form: {
-                name: 'Name',
-                description: 'Description'
-              }
-            },
-            delete: {
-              title: 'Delete the form field variable',
-              description: 'Permanently delete the form field variable',
-              content: {
-                deleteInfo: 'Once a form field variable is deleted, all of its resources and data will be permanently deleted. Before deleting this field option, please download any data or information regarding this field option that you wish to retain.',
-                deleteButton: 'Delete form field variable',
-                modal: {
-                  title: 'Delete a form field variable',
-                  content: 'Are you sure you want to delete this form field variable? Once a field variable is deleted, all of its resources and data will be permanently deleted.',
-                  footer: {
-                    cancelButton: 'Cancel',
-                    deleteButton: 'Delete'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Form field variables',
-              description: 'Create and manage form field variables',
-              form: {
-                listInfo: 'The list of created form field variables.'
-              },
-              actions: {
-                createButton: 'Create a new form filed variable'
-              }
-            }
-          }
         },
         formFieldOption: {
           head: {
@@ -921,6 +871,7 @@ var messages = {
             form: {
               name: 'Name',
               description: 'Description',
+              score: 'Score'
             }
           },
           update: {
@@ -929,6 +880,7 @@ var messages = {
             form: {
               name: 'Name',
               description: 'Description',
+              score: 'Score'
             }
           },
           delete: {
@@ -1606,7 +1558,8 @@ var messages = {
             form: {
               scoring: 'Подсчет баллов',
               score: 'Балл',
-              math_expression: 'Математическое выражение'
+              math_expression: 'Математическое выражение',
+              variables: 'Список переменных, которые можно использовать в математическом выражении. Примечание: Чтобы объявить новую переменную, посетите страницу обновления поля формы.'
             },
             scoring: {
               disabled: {
@@ -1661,8 +1614,7 @@ var messages = {
             form: {
               label: 'Метка',
               type: 'Тип',
-              scoring_policy: 'Порядок подсчета баллов',
-              score: 'Балл',
+              variable: 'Переменная',
               validation_rules: 'Правила проверки'
             }
           },
@@ -1672,8 +1624,7 @@ var messages = {
             form: {
               label: 'Метка',
               type: 'Тип',
-              scoring_policy: 'Порядок подсчета баллов',
-              score: 'Балл',
+              variable: 'Переменная',
               validation_rules: 'Правила проверки'
             }
           },
@@ -1850,55 +1801,6 @@ var messages = {
                 description: 'QuickTime multimedia file format; Metal oxide varistor'
               }
             }
-          },
-          
-          variables: {
-            head: {
-              title: 'Управление формами'
-            },
-            header: 'Управление формами',
-            create: {
-              title: 'Создать новую переменную',
-              description: 'Создать новую переменную формулы',
-              form: {
-                name: 'Название',
-                description: 'Описание'
-              }
-            },
-            update: {
-              title: 'Обновить переменную формулы',
-              description: 'Обновить переменную формулы поля формы',
-              form: {
-                name: 'Название',
-                description: 'Описание'
-              }
-            },
-            delete: {
-              title: 'Удалить переменную формулы',
-              description: 'Удалить переменную формулы поля формы',
-              content: {
-                deleteInfo: 'После удаления переменной все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой переменной загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
-                deleteButton: 'Удалить переменную формулы',
-                modal: {
-                  title: 'Удалить переменную формулы',
-                  content: 'Вы уверены, что хотите удалить эпеременную формулы поля формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
-                  footer: {
-                    cancelButton: 'Отмена',
-                    deleteButton: 'Удалить'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Переменные формулы поля формы',
-              description: 'Создание и управление переменными формулы поля формы',
-              form: {
-                listInfo: 'Список переменных формулы поля формы.'
-              },
-              actions: {
-                createButton: 'Добавить'
-              }
-            }
           }
         },
         formFieldOption: {
@@ -1911,7 +1813,8 @@ var messages = {
             description: 'Создать новый вариант выбора поля формы: введите название и описание',
             form: {
               name: 'Название',
-              description: 'Описание'
+              description: 'Описание',
+              score: 'Балл'
             }
           },
           update: {
@@ -1919,7 +1822,8 @@ var messages = {
             description: 'Обновить вариант выбора поля формы: введите название и описание',
             form: {
               name: 'Название',
-              description: 'Описание'
+              description: 'Описание',
+              score: 'Балл'
             }
           },
           delete: {

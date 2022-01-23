@@ -49,6 +49,7 @@ class FormFieldOptionController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
+            'score' => ['nullable', 'numeric']
         ])->validateWithBag('createFormFieldOption');
 
         $formField = FormField::findOrfail($input['field']);
@@ -57,6 +58,7 @@ class FormFieldOptionController extends Controller
         ]);
         $formFieldOption->setName($input['name']);
         $formFieldOption->setDescription($input['description']);
+        $formFieldOption->setScore($input['score']);
         $formFieldOption->save();
 
         session()->flash('flash.banner', [
@@ -109,11 +111,13 @@ class FormFieldOptionController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
+            'score' => ['nullable', 'numeric']
         ])->validateWithBag('updateFormFieldOption');
 
         $formFieldOption = FormFieldOption::findOrfail($id);
         $formFieldOption->setName($input['name']);
         $formFieldOption->setDescription($input['description']);
+        $formFieldOption->setScore($input['score']);
         $formFieldOption->save();
 
         return $request->wantsJson()

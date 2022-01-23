@@ -24151,7 +24151,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         name: '',
-        description: ''
+        description: '',
+        score: 0.0
       })
     };
   },
@@ -24293,7 +24294,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         name: this.option.name,
-        description: this.option.description
+        description: this.option.description,
+        score: this.option.score
       })
     };
   },
@@ -24458,7 +24460,8 @@ __webpack_require__.r(__webpack_exports__);
         min_size: 0,
         max_size: 0,
         file_size: 0,
-        mimes: Array()
+        mimes: Array(),
+        variable: null
       })
     };
   },
@@ -24674,7 +24677,8 @@ __webpack_require__.r(__webpack_exports__);
         min_size: this.validation_rules ? this.validation_rules.min_size : 0,
         max_size: this.validation_rules ? this.validation_rules.max_size : 255,
         file_size: this.validation_rules ? this.validation_rules.file_size : 100,
-        mimes: this.validation_rules ? this.validation_rules.mimes : ''
+        mimes: this.validation_rules ? this.validation_rules.mimes : '',
+        variable: this.field.variable
       })
     };
   },
@@ -32085,10 +32089,13 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_3 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -32158,6 +32165,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: $props.translate('form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.form.score = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.score,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
       , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32166,7 +32193,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_4];
         }),
         _: 1
         /* STABLE */
@@ -32180,7 +32207,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
@@ -32443,10 +32470,13 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_3 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -32516,6 +32546,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "score",
+        value: $props.translate('form.score')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "score",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.score,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.form.score = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.score,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
       , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32524,7 +32574,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [_hoisted_4];
         }),
         _: 1
         /* STABLE */
@@ -32538,7 +32588,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */
@@ -32735,10 +32785,13 @@ var _hoisted_11 = {
 var _hoisted_12 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_13 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -32918,7 +32971,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["message"])])], 64
       /* STABLE_FRAGMENT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "variable",
+        value: $props.translate('form.variable')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "variable",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data._form.variable,
+        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+          return $data._form.variable = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data._form.errors.variable,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeActionMessage, {
@@ -32926,7 +32999,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_13];
+          return [_hoisted_14];
         }),
         _: 1
         /* STABLE */
@@ -32940,7 +33013,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data._form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_14];
+          return [_hoisted_15];
         }),
         _: 1
         /* STABLE */
@@ -33241,10 +33314,13 @@ var _hoisted_11 = {
 var _hoisted_12 = {
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_13 = {
+  "class": "col-span-6 sm:col-span-4"
+};
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -33424,7 +33500,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["message"])])], 64
       /* STABLE_FRAGMENT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "variable",
+        value: $props.translate('form.variable')
+      }, null, 8
+      /* PROPS */
+      , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "variable",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.variable,
+        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+          return $data.form.variable = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInputError, {
+        message: $data.form.errors.variable,
+        "class": "mt-2"
+      }, null, 8
+      /* PROPS */
+      , ["message"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeActionMessage, {
@@ -33432,7 +33528,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_13];
+          return [_hoisted_14];
         }),
         _: 1
         /* STABLE */
@@ -33446,7 +33542,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_14];
+          return [_hoisted_15];
         }),
         _: 1
         /* STABLE */
@@ -34107,13 +34203,24 @@ var _hoisted_2 = {
   "class": "col-span-6 sm:col-span-4"
 };
 var _hoisted_3 = {
-  key: 1,
   "class": "col-span-6 sm:col-span-4"
 };
+var _hoisted_4 = {
+  "class": "col-span-6 sm:col-span-4"
+};
+var _hoisted_5 = {
+  "class": "text-sm text-gray-400"
+};
+var _hoisted_6 = {
+  "class": ""
+};
+var _hoisted_7 = {
+  "class": "list-disc list-inside mt-2"
+};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Update ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
@@ -34185,7 +34292,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
-      , ["message"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data._form.scoring == 'by_math_expression' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["message"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data._form.scoring == 'by_math_expression' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        key: 1
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "math_expression",
         value: $props.translate('form.math_expression')
       }, null, 8
@@ -34205,7 +34314,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mt-2"
       }, null, 8
       /* PROPS */
-      , ["message"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('form.variables')), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.form.fields.data, function (field) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.label) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(field.variable), 1
+        /* TEXT */
+        );
+      }), 256
+      /* UNKEYED_FRAGMENT */
+      ))])])])], 64
+      /* STABLE_FRAGMENT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeActionMessage, {
@@ -34213,7 +34332,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mr-3"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4];
+          return [_hoisted_8];
         }),
         _: 1
         /* STABLE */
@@ -34227,7 +34346,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data._form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_5];
+          return [_hoisted_9];
         }),
         _: 1
         /* STABLE */
@@ -43132,7 +43251,8 @@ var messages = {
             form: {
               scoring: 'Scoring',
               score: 'Score',
-              math_expression: 'Math expression'
+              math_expression: 'Math expression',
+              variables: 'The list of variables which could be used in math expression. Note: To declare a new variable visit form field update page.'
             },
             scoring: {
               disabled: {
@@ -43187,8 +43307,7 @@ var messages = {
             form: {
               label: 'Label',
               type: 'Type',
-              scoring_policy: 'Scoring Policy',
-              score: 'Score',
+              variable: 'Variable',
               validation_rules: 'Validation Rules'
             }
           },
@@ -43198,8 +43317,7 @@ var messages = {
             form: {
               label: 'Label',
               type: 'Type',
-              scoring_policy: 'Scoring Policy',
-              score: 'Score',
+              variable: 'Variable',
               validation_rules: 'Validation Rules'
             }
           },
@@ -43362,54 +43480,6 @@ var messages = {
                 description: 'QuickTime multimedia file format; Metal oxide varistor'
               }
             }
-          },
-          variables: {
-            head: {
-              title: 'Form management'
-            },
-            header: 'Form management',
-            create: {
-              title: 'Create a variable',
-              description: 'Create a new form field variable by inserting name and description',
-              form: {
-                name: 'Name',
-                description: 'Description'
-              }
-            },
-            update: {
-              title: 'Update the form field variable',
-              description: 'Update the existing form field variable',
-              form: {
-                name: 'Name',
-                description: 'Description'
-              }
-            },
-            "delete": {
-              title: 'Delete the form field variable',
-              description: 'Permanently delete the form field variable',
-              content: {
-                deleteInfo: 'Once a form field variable is deleted, all of its resources and data will be permanently deleted. Before deleting this field option, please download any data or information regarding this field option that you wish to retain.',
-                deleteButton: 'Delete form field variable',
-                modal: {
-                  title: 'Delete a form field variable',
-                  content: 'Are you sure you want to delete this form field variable? Once a field variable is deleted, all of its resources and data will be permanently deleted.',
-                  footer: {
-                    cancelButton: 'Cancel',
-                    deleteButton: 'Delete'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Form field variables',
-              description: 'Create and manage form field variables',
-              form: {
-                listInfo: 'The list of created form field variables.'
-              },
-              actions: {
-                createButton: 'Create a new form filed variable'
-              }
-            }
           }
         },
         formFieldOption: {
@@ -43422,7 +43492,8 @@ var messages = {
             description: 'Create a new form field option by inserting name and description',
             form: {
               name: 'Name',
-              description: 'Description'
+              description: 'Description',
+              score: 'Score'
             }
           },
           update: {
@@ -43430,7 +43501,8 @@ var messages = {
             description: 'Update the existing form field option: modify name and description',
             form: {
               name: 'Name',
-              description: 'Description'
+              description: 'Description',
+              score: 'Score'
             }
           },
           "delete": {
@@ -44102,7 +44174,8 @@ var messages = {
             form: {
               scoring: 'Подсчет баллов',
               score: 'Балл',
-              math_expression: 'Математическое выражение'
+              math_expression: 'Математическое выражение',
+              variables: 'Список переменных, которые можно использовать в математическом выражении. Примечание: Чтобы объявить новую переменную, посетите страницу обновления поля формы.'
             },
             scoring: {
               disabled: {
@@ -44157,8 +44230,7 @@ var messages = {
             form: {
               label: 'Метка',
               type: 'Тип',
-              scoring_policy: 'Порядок подсчета баллов',
-              score: 'Балл',
+              variable: 'Переменная',
               validation_rules: 'Правила проверки'
             }
           },
@@ -44168,8 +44240,7 @@ var messages = {
             form: {
               label: 'Метка',
               type: 'Тип',
-              scoring_policy: 'Порядок подсчета баллов',
-              score: 'Балл',
+              variable: 'Переменная',
               validation_rules: 'Правила проверки'
             }
           },
@@ -44346,54 +44417,6 @@ var messages = {
                 description: 'QuickTime multimedia file format; Metal oxide varistor'
               }
             }
-          },
-          variables: {
-            head: {
-              title: 'Управление формами'
-            },
-            header: 'Управление формами',
-            create: {
-              title: 'Создать новую переменную',
-              description: 'Создать новую переменную формулы',
-              form: {
-                name: 'Название',
-                description: 'Описание'
-              }
-            },
-            update: {
-              title: 'Обновить переменную формулы',
-              description: 'Обновить переменную формулы поля формы',
-              form: {
-                name: 'Название',
-                description: 'Описание'
-              }
-            },
-            "delete": {
-              title: 'Удалить переменную формулы',
-              description: 'Удалить переменную формулы поля формы',
-              content: {
-                deleteInfo: 'После удаления переменной все его ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой переменной загрузите любые данные или информацию об этом поле, которые вы хотите сохранить.',
-                deleteButton: 'Удалить переменную формулы',
-                modal: {
-                  title: 'Удалить переменную формулы',
-                  content: 'Вы уверены, что хотите удалить эпеременную формулы поля формы? После удаления поля все его ресурсы и данные будут удалены без возможности восстановления.',
-                  footer: {
-                    cancelButton: 'Отмена',
-                    deleteButton: 'Удалить'
-                  }
-                }
-              }
-            },
-            list: {
-              title: 'Переменные формулы поля формы',
-              description: 'Создание и управление переменными формулы поля формы',
-              form: {
-                listInfo: 'Список переменных формулы поля формы.'
-              },
-              actions: {
-                createButton: 'Добавить'
-              }
-            }
           }
         },
         formFieldOption: {
@@ -44406,7 +44429,8 @@ var messages = {
             description: 'Создать новый вариант выбора поля формы: введите название и описание',
             form: {
               name: 'Название',
-              description: 'Описание'
+              description: 'Описание',
+              score: 'Балл'
             }
           },
           update: {
@@ -44414,7 +44438,8 @@ var messages = {
             description: 'Обновить вариант выбора поля формы: введите название и описание',
             form: {
               name: 'Название',
-              description: 'Описание'
+              description: 'Описание',
+              score: 'Балл'
             }
           },
           "delete": {

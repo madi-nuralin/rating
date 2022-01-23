@@ -37,6 +37,14 @@ class FormFieldOption extends Model
     	return $this->belongsTo(FormField::class);
     }
 
+    public function setScore($score) {
+        $this->score = $score;
+    }
+
+    public function getScore() {
+        return $this->score;
+    }
+
     public function getFormField() {
     	return $this->formField;
     }
@@ -50,6 +58,7 @@ class FormFieldOption extends Model
     		'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'score' => $this->getScore(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

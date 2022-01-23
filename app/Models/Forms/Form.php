@@ -4,7 +4,9 @@ namespace App\Models\Forms;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Helpers\SettingHelper;
+
+use MathParser\StdMathParser;
+use MathParser\Interpreting\Evaluator;
 
 use App\Models\Helpers\HasId;
 use App\Models\Helpers\HasName;
@@ -54,6 +56,19 @@ class Form extends Model
     }
 
     public function setMathExpression($mathExpression) {
+        $parser = new StdMathParser();
+        $evaluator = new Evaluator();
+
+        $expression = $parser->parse($mathExpression);
+
+        $variables = [];
+        foreach ($this->fields()->whereNotNull('variable')->get() as $field) {
+            $variables[$field->getVariable()] = rand();
+        }
+
+        $evaluator->setVariables($variables);
+        $value = $expression->accept($evaluator);
+
         $this->math_expression = $mathExpression;
     }
 

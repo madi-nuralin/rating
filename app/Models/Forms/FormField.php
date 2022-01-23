@@ -72,9 +72,16 @@ class FormField extends Model
         return $this->validation_rules;
     }
 
-
     public function setValidationRules($validationRules) {
         $this->validation_rules = $validationRules;
+    }
+
+    public function setVariable($variable) {
+        $this->variable = $variable;
+    }
+
+    public function getVariable() {
+        return $this->variable;
     }
 
     public function getForm() {
@@ -108,6 +115,7 @@ class FormField extends Model
             'description' => $this->getDescription(),
             'type' => $this->getType(),
             'validation_rules' => $this->getValidationRules(),
+            'variable' => $this->getVariable(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
