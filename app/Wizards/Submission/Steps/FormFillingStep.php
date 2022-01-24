@@ -5,11 +5,14 @@ namespace App\Wizards\Submission\Steps;
 use Arcanist\Field;
 use Arcanist\WizardStep;
 use Arcanist\StepResult;
+
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 use App\Models\Rating;
 use App\Models\Parameter;
 use App\Models\ParameterTarget;
+use App\Models\Forms\FormField;
 
 class FormFillingStep extends WizardStep
 {
@@ -53,8 +56,16 @@ class FormFillingStep extends WizardStep
         $form = $parameter->activeForm;
 
         return $form && $form->fields ? $form->fields->map(function($field) {
-            return Field::make("field{$field->id}")
+            if ($field->getType() == FormField::FILE) {
+                return Field::make("field{$field->id}")
+                        ->rules($field->rules())
+                        ->transform(function (UploadedFile $file) {
+                            return $file->store('form-files', 'public');
+                        });
+            } else {
+                return Field::make("field{$field->id}")
                         ->rules($field->rules());
+            }
         })->toArray() : [];
     }
 }

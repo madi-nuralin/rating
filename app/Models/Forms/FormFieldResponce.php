@@ -1,21 +1,19 @@
 <?php
 
 namespace App\Models\Forms;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Helpers\SettingHelper;
 
 use App\Models\Helpers\HasId;
 use App\Models\Helpers\HasValue;
-use App\Models\Helpers\HasFile;
 
 class FormFieldResponce extends Model
 {
     use HasFactory,
         HasId,
-        HasValue,
-        HasFile;
+        HasValue;
     use SettingHelper;
 
     protected $table = 'form_field_responces';
@@ -70,7 +68,7 @@ class FormFieldResponce extends Model
                 break;
 
             case FormField::FILE:
-                $this->setFile($value, 'form-files');
+                $this->setSetting('value', $value, null);
                 break;
 
             case FormField::TIME:
@@ -95,17 +93,15 @@ class FormFieldResponce extends Model
             case FormField::DATETIME:
             case FormField::DATETIME_LOCAL:
             case FormField::SELECT:
+            case FormField::MULTISELECT:
                 return $this->getSetting('value', null);
             
             case FormField::TEXT:
             case FormField::TEXTAREA:
                 return $this->getSetting('value', isset($locale) ? $locale : app()->currentLocale());
 
-            case FormField::MULTISELECT:
-                return null;
-
             case FormField::FILE:
-                return null;
+                return Storage::url($this->getSetting('value', null));
 
             default:
                 return null;

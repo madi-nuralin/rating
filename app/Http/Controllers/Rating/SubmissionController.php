@@ -129,14 +129,38 @@ class SubmissionController extends Controller
     public function show($id)
     {
         $submission = Submission::findOrFail($id);
+        $parameter = $submission->parameter;
+        $form = $parameter->activeForm;
 
         return Inertia::render('Rating/Submission/Show', [
             'submission' => array_merge(
                 $submission->toArray(), [
                     'rating' => $submission->toArray(),
                     'parameter' => array_merge(
-                        $submission->parameter->toArray(), [
-                            'target' => $submission->parameter->parameterTarget->toArray()
+                        $parameter->toArray(), [
+                            'target' => $parameter->parameterTarget->toArray(),
+                            'form' => $form ?
+                                array_merge(
+                                    $form->toArray(), [
+                                        'fields' => $form->fields ?
+                                                    $form->fields->map(function($field) use ($submission) {
+                                            return array_merge(
+                                                $field->toArray(), [
+                                                    'options' => $field->options ?
+                                                                 $field->options->map(function($option) use ($submission) {
+                                                        return $option->toArray();
+                                                    }) : [],
+                                                    'responce' => $submission->formFieldResponces()
+                                                                             ->where('form_field_id', $field->id)
+                                                                             ->first() ?
+                                                                  $submission->formFieldResponces()
+                                                                             ->where('form_field_id', $field->id)
+                                                                             ->first()->toArray() : []
+                                                ]
+                                            );
+                                        }) : []
+                                    ]
+                                ) : []
                         ]
                     )
                 ]
@@ -164,7 +188,34 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $submission = Submission::findOrFail($id);
+        $parameter = $submission->parameter;
+        $form = $parameter->activeForm;
+
+        if ($form) {
+            $rules = [];
+
+            foreach ($form->fields as $formField) {
+                $rules["field{$formField->id}"] = $formField->rules();
+            }
+
+            Validator::make($input, $rules)->validateWithBag('updateSubmission');
+
+            foreach ($form->fields as $formField) {
+                $formFieldResponce = $submission->formFieldResponces()
+                                                ->where('form_field_id', $formField->id)
+                                                ->first();
+                                                
+                $formFieldResponce->setValue($input["field{$formField->id}"]);
+            }
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'submission-updated');
+
     }
 
     /**

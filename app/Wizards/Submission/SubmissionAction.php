@@ -4,6 +4,7 @@ namespace App\Wizards\Submission;
 
 use Arcanist\Action\WizardAction;
 use Arcanist\Action\ActionResult;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Rating;
 use App\Models\Submission;

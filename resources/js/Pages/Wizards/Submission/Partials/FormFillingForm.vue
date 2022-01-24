@@ -67,7 +67,7 @@
                 <BreezeFile v-else-if="field.type == 'file'"
                     :id="FIELD[field.id]"
                     :value="_form[FIELD[field.id]]"
-                    @input="_form[FIELD[field.id]] = $event"
+                    @input="_form[FIELD[field.id]] = $event;"
                     class="mt-1 block w-full" />
 
                 <BreezeInput v-else-if="field.type == 'time'"
@@ -164,6 +164,7 @@
         methods: {
             selectFormFilling() {
                 this._form.post(this.url, {
+                    _method: 'put',
                     errorBag: 'selectFormFilling',
                     preserveScroll: true,
                     //onSuccess: () => Inertia.reload({ only: ['positions'] })
