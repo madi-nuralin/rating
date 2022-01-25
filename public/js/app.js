@@ -23091,7 +23091,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     value: {},
-    route: {},
+    destroy: {},
     download: {
       type: Boolean,
       "default": true
@@ -23131,9 +23131,10 @@ __webpack_require__.r(__webpack_exports__);
     deleteFile: function deleteFile() {
       var _this2 = this;
 
-      this.$inertia["delete"](route, {
+      this.$inertia["delete"](this.destroy, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
+          /*this.uploaded = null;*/
           _this2.filePreview = null;
 
           _this2.clearFileInput();
@@ -23144,6 +23145,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.$refs.file.value) {
         this.$refs.file.value = null;
       }
+
+      this.$emit('input', '');
     }
   }
 });
@@ -30068,7 +30071,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), !$data.uploaded ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_secondary, {
+  ), !$props.value ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_secondary, {
     "class": "mt-2 mr-2",
     type: "button",
     onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.selectNewFile, ["prevent"])
@@ -42313,6 +42316,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["id", "value", "onInput", "options"])) : field.type == 'file' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeFile, {
           key: 7,
           id: $setup.FIELD[field.id],
+          destroy: _ctx.route('submission-file.destroy', {
+            'submission': $props.submission.id,
+            'form_field': field.id
+          }),
           value: $data._form[$setup.FIELD[field.id]],
           onInput: function onInput($event) {
             $data._form[$setup.FIELD[field.id]] = $event;
@@ -42320,7 +42327,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "mt-1 block w-full"
         }, null, 8
         /* PROPS */
-        , ["id", "value", "onInput"])) : field.type == 'time' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
+        , ["id", "destroy", "value", "onInput"])) : field.type == 'time' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeInput, {
           key: 8,
           id: $setup.FIELD[field.id],
           type: "time",

@@ -63,8 +63,11 @@ class FormFieldResponce extends Model
                 break;
 
             case FormField::SELECT:
-            case FormField::MULTISELECT:
                 $this->setSetting('value', (integer)$value, null);
+                break;
+
+            case FormField::MULTISELECT:
+                $this->setSetting('value', $value, null, true);
                 break;
 
             case FormField::FILE:
@@ -93,8 +96,10 @@ class FormFieldResponce extends Model
             case FormField::DATETIME:
             case FormField::DATETIME_LOCAL:
             case FormField::SELECT:
-            case FormField::MULTISELECT:
                 return $this->getSetting('value', null);
+
+            case FormField::MULTISELECT:
+                return $this->getSetting('value', null, true);
             
             case FormField::TEXT:
             case FormField::TEXTAREA:

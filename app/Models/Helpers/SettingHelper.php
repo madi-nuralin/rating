@@ -27,22 +27,29 @@ trait SettingHelper {
         return $model;
     }
 
-    public function setSetting($settingName, $settingValue, $settingLocale=null)
+    public function setSetting($settingName, $settingValue, $settingLocale=null, $json=false)
     {
         $match = [
             'setting_locale' => $settingLocale,
             'setting_name' => $settingName
         ];
 
-        $replace = [
-            'setting_type' => gettype($settingValue),
-            'setting_value' => $settingValue
-        ];
+        if (! $json) {
+            $replace = [
+                'setting_type' => gettype($settingValue),
+                'setting_value' => $settingValue
+            ];
+        } else {
+            $replace = [
+                'setting_type' => gettype($settingValue),
+                'setting_json' => json_encode($settingValue, true)
+            ];
+        }
 
         $this->settings()->updateOrCreate($match, $replace)->save();
     }
 
-    public function getSetting($settingName, $settingLocale=null)
+    public function getSetting($settingName, $settingLocale=null, $json=false)
     {
         $match = [
             ['setting_locale', '=', $settingLocale]
@@ -51,10 +58,17 @@ trait SettingHelper {
         $setting = $this->settings()->where($match)->firstWhere('setting_name', $settingName);
 
         if (! is_null($setting) ) {
-            $obj = $setting->setting_value;
-            settype($obj, $setting->setting_type);
-            
-            return $obj;
+            if (! $json) {
+                $obj = $setting->setting_value;
+                settype($obj, $setting->setting_type);
+                
+                return $obj;
+            } else {
+                $obj = json_decode($setting->setting_json, true);
+                settype($obj, gettype(json_decode($setting->setting_json, true)));
+                
+                return $obj;
+            }
         }
 
         return null;

@@ -67,6 +67,7 @@
 
                 <BreezeFile v-else-if="field.type == 'file'"
                     :id="FIELD[field.id]"
+                    :destroy="route('submission-file.destroy', {'submission':submission.id, 'form_field': field.id})"
                     :value="_form[FIELD[field.id]]"
                     @input="_form[FIELD[field.id]] = $event;"
                     class="mt-1 block w-full" />

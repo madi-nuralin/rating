@@ -219,7 +219,7 @@ class FormFieldController extends Controller
                 break;
 
             case FormField::TIME:
-                $validationRules['date_format'] = 'h:i';
+                $validationRules['date_format'] = 'H:i';
                 break;
 
             case FormField::DATE:
@@ -227,7 +227,7 @@ class FormFieldController extends Controller
                 break;
 
             case FormField::DATETIME:
-                $validationRules['date_format'] = 'Y-m-d\Th:i';
+                $validationRules['date_format'] = 'Y-m-d\TH:i';
                 break;
 
             default:

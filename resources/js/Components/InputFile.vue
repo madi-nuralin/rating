@@ -1,7 +1,7 @@
 <template>
 	<input type="file" class="hidden" ref="file" @change="updateFilePreview">
 
-	<div class="max-w-xl" v-if="! uploaded">
+	<div class="max-w-xl" v-if="! value">
         <breeze-button-secondary class="mt-2 mr-2" type="button" @click.prevent="selectNewFile">
             Upload A New File
         </breeze-button-secondary>
@@ -38,7 +38,7 @@
 
 		props: {
             value: {},
-            route: {},
+            destroy: {},
             download: {
                 type: Boolean,
                 default: true
@@ -78,9 +78,10 @@
             },
 
             deleteFile() {
-                this.$inertia.delete(route, {
+                this.$inertia.delete(this.destroy, {
                     preserveScroll: true,
                     onSuccess: () => {
+                        /*this.uploaded = null;*/
                         this.filePreview = null;
                         this.clearFileInput();
                     },
@@ -91,6 +92,8 @@
                 if (this.$refs.file.value) {
                     this.$refs.file.value = null;
                 }
+
+                this.$emit('input', '');
             },
 		}
 	}

@@ -13,6 +13,9 @@ use App\Models\Submission;
 use App\Models\ParameterTarget;
 use App\Models\Verifier;
 use App\Models\Verification;
+use App\Models\Forms\Form;
+use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldResponce;
 
 class SubmissionController extends Controller
 {
@@ -207,8 +210,12 @@ class SubmissionController extends Controller
                 $formFieldResponce = $submission->formFieldResponces()
                                                 ->where('form_field_id', $formField->id)
                                                 ->first();
-                                                
-                $formFieldResponce->setValue($input["field{$formField->id}"]);
+                    
+                if (is_null($formFieldResponce)) {
+                    $submission->createFormFieldResponce($formField, $input["field{$formField->id}"] ?? '');
+                } else {                          
+                    $formFieldResponce->setValue($input["field{$formField->id}"] ?? '');
+                }
             }
         }
 
@@ -235,5 +242,26 @@ class SubmissionController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return Inertia::location(route('submission.index', ['rating' => $rating->id]));
+    }
+
+    public function destroyFile() {
+        $input = request()->all();
+
+        if (isset($input['submission']) && isset($input['form_field'])) {
+            $submission = Submission::findOrFail($input['submission']);
+            $formField = FormField::findOrFail($input['form_field']);
+
+            $formFieldResponce = $submission->formFieldResponces()
+                                            ->where('form_field_id', $formField->id)
+                                            ->first();
+
+            if (is_null($formFieldResponce)) {
+                $submission->createFormFieldResponce($formField, null);
+            } else {                          
+                $formFieldResponce->setValue(null);
+            }
+        }
+
+        return /*redirect()->route('submission.show', ['submission' => $submission->id]);*/back(303)->with('status', 'file-deleted');
     }
 }

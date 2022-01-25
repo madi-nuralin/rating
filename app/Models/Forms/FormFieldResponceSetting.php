@@ -20,7 +20,8 @@ class FormFieldResponceSetting extends Model
         'setting_locale',
         'setting_name',
         'setting_value',
-        'setting_type'
+        'setting_type',
+        'setting_json'
     ];
 
     public function formFieldResponce() {

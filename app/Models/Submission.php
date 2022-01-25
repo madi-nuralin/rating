@@ -97,22 +97,13 @@ class Submission extends Model
     }
 
     public function createFormFieldResponce(FormField $formField, $value) {
-        switch ($formField->getType()) {
-            case FormField::MULTISELECT:
-                $values = $value ?? [];
-                foreach ($values as $value) {
-                    $formFieldResponce = $formField->createResponce();
-                    $formFieldResponce->setValue($value);
-                    $this->addFormFieldResponce($formFieldResponce);
-                }
-                break;
+        $formFieldResponce = $formField->createResponce();
+        $formFieldResponce->setValue($value);
+        $formFieldResponce->save();
+        $this->addFormFieldResponce($formFieldResponce);
+        $this->save();
 
-            default:
-                $formFieldResponce = $formField->createResponce();
-                $formFieldResponce->setValue($value);
-                $this->addFormFieldResponce($formFieldResponce);
-                break;
-        }
+        return $formFieldResponce;
     }
 
     public function toArray() {
