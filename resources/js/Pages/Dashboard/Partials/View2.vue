@@ -10,10 +10,10 @@
             <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="p-6">
                     <div v-if="content('verifier')">
-                        <span>
+                        <span class="font-mono mb-3">
                             {{ translate('active') }}
                         </span>
-                        <ul class="list-disc list-inside">
+                        <ul class="list-disc list-inside font-mono">
                             <li v-for="element in ratings">
                                 <Link class="text-gray-700 tracking-wide hover:underline" :href="route('submission.index', {'rating': element.id})">
                                     {{element.name}}

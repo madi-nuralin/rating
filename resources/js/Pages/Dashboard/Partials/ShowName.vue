@@ -1,7 +1,7 @@
 <template>
 	<BreezeAccordion>
 		<template #trigger>
-	        Название
+	        {{ $t('pages.dashboard.partials.showName.trigger') }}
 	    </template>
 
 	    <template #content>

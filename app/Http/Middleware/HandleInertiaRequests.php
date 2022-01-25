@@ -43,6 +43,7 @@ class HandleInertiaRequests extends Middleware
                         ])
                     : $request->user(),
             ],
+            'locales' => config('app.locales'),
             'locale' => app()->currentLocale(),
             'flash' => [
                 'banner' => session()->get('flash.banner'),

@@ -1,7 +1,7 @@
 <template>
 	<BreezeAccordion>
 		<template #trigger>
-	        Дата
+	        {{ $t('pages.dashboard.partials.showDate.trigger') }}
 	    </template>
 
 	    <template #content>

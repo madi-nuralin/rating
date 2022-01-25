@@ -136,11 +136,9 @@
                                             {{ $t('layouts.authenticated.triggers.locale') }}
                                         </div>
 
-                                        <BreezeDropdownLink :href="route('locale', {locale:'ru'})" v-on:click="setLocale('ru')">
-                                            {{ $t('layouts.authenticated.links.locales.ru') }}
-                                        </BreezeDropdownLink>
-                                        <BreezeDropdownLink :href="route('locale', {locale:'en'})" v-on:click="setLocale('en')">
-                                            {{ $t('layouts.authenticated.links.locales.en') }}
+                                        <BreezeDropdownLink :href="route('locale', {'locale': locale})" v-on:click="setLocale(locale)"
+                                            v-for="locale in $page.props.locales">
+                                            {{ $t(`layouts.authenticated.links.locales.${locale}`) }}
                                         </BreezeDropdownLink>
                                     </template>
                                 </BreezeDropdown>
@@ -230,11 +228,9 @@
                                 {{ $t('layouts.authenticated.triggers.locale') }}
                             </div>
 
-                            <BreezeResponsiveNavLink :href="route('locale', {locale:'en'})" v-on:click="setLocale('en')">
-                                {{ $t('layouts.authenticated.links.locales.en') }}
-                            </BreezeResponsiveNavLink>
-                            <BreezeResponsiveNavLink :href="route('locale', {locale:'ru'})" v-on:click="setLocale('ru')">
-                                {{ $t('layouts.authenticated.links.locales.ru') }}
+                            <BreezeResponsiveNavLink :href="route('locale', {'locale': locale})" v-on:click="setLocale(locale)"
+                                            v-for="locale in $page.props.locales">
+                                {{ $t(`layouts.authenticated.links.locales.${locale}`) }}
                             </BreezeResponsiveNavLink>
                         </div>
                     </div>

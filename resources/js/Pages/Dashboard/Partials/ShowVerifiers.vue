@@ -1,7 +1,7 @@
 <template>
 	<BreezeAccordion>
 		<template #trigger>
-	        Подтверждающие
+	        {{ $t('pages.dashboard.partials.showVerifiers.trigger') }}
 	    </template>
 
 	    <template #content>

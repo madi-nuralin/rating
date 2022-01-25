@@ -477,6 +477,18 @@ var messages = {
             active: 'Active',
             inaccessibleСontent: '!! Inaccessible content, due to you are not allowed to view'
           },
+          showDate: {
+            trigger: 'Date'
+          },
+          showName: {
+            trigger: 'Title'
+          },
+          showDescription: {
+            trigger: 'Description'
+          },
+          showVerifiers: {
+            trigger: 'List of Verifiers'
+          }
         },
         submission: {
           head: {
@@ -1326,6 +1338,18 @@ var messages = {
             active: 'Активные',
             inaccessibleСontent: '!! Недоступный контент, вам не назначено соответсвующий роль в системе'
           },
+          showDate: {
+            trigger: 'Дата'
+          },
+          showName: {
+            trigger: 'Название'
+          },
+          showDescription: {
+            trigger: 'Описание'
+          },
+          showVerifiers: {
+            trigger: 'Список подтверждающих'
+          }
         },
         submission: {
           head: {
