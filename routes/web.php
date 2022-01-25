@@ -43,9 +43,9 @@ use App\Http\Controllers\Forms\FormController;
 use App\Http\Controllers\Forms\FormFieldController;
 use App\Http\Controllers\Forms\FormFieldOptionController;
 
-use App\Http\Controllers\Rating\SubmissionController;
-use App\Http\Controllers\Rating\VerificationController;
-use App\Http\Controllers\Rating\ApprovementController;
+use App\Http\Controllers\Dashboard\SubmissionController;
+use App\Http\Controllers\Dashboard\VerificationController;
+use App\Http\Controllers\Dashboard\ApprovementController;
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -54,36 +54,15 @@ Route::get('locale/{locale}', function ($locale) {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::get('rating-submission', function () {
-        return Inertia::render('Submission', [
-            'ratings' => auth()->user()->ratings->map(function($rating) {
-                return $rating->toArray();
-            })
-        ]);
-    })->name('rating-submission');
-
-    Route::get('rating-verification', function () {
-        return Inertia::render('Verification', [
-            'ratings' => auth()->user()->ratings->map(function($rating) {
-                return $rating->toArray();
-            })
-        ]);
-    })->name('rating-verification')->middleware('verifier');
-
-    Route::get('rating-approvement', function () {
-        return Inertia::render('Approvement', [
-            'ratings' => auth()->user()->ratings->map(function($rating) {
-                return $rating->toArray();
-            })
-        ]);
-    })->name('rating-approvement')->middleware('approver');
-
     Route::get('dashboard', function () {
-        return redirect('rating-submission');
-        //Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'ratings' => auth()->user()->ratings->map(function($rating) {
+                return $rating->toArray();
+            })
+        ]);
     })->name('dashboard');
 
-    Route::group(['prefix' => 'rating'], function() {
+    Route::group(['prefix' => 'dashboard'], function() {
         Route::resource('submission', SubmissionController::class,
             ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
         Route::resource('verification', VerificationController::class,

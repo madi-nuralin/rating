@@ -67,7 +67,7 @@ class FormFieldResponce extends Model
                 break;
 
             case FormField::MULTISELECT:
-                $this->setSetting('value', $value, null, true);
+                $this->setSetting('value', array_map('intval', $value), null, true);
                 break;
 
             case FormField::FILE:

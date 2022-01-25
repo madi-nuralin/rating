@@ -455,150 +455,67 @@ var messages = {
         }
       },
       dashboard: {
-        tabs: {
-          assignments: 'My ratings',
-          assignment: {
-            description: 'An instance of rating is assigned by the system managers. Here you can add your performed activities for confirmation'
+        head: {
+          title: 'Dashboard'
+        },
+        header: 'Dashboard',
+        partials: {
+          view1: {
+            title: 'My Rating',
+            description: 'List of assessment ratings assigned to me, including active and past ratings',
+            active: 'Active'
           },
-          confirmations: 'Employees rating',
-          confirmation: {
-            description: 'Check and confirm the effective activity of employees. This role was assigned to you by the system manager'
-          }
+          view2: {
+            title: 'Verification',
+            description: 'List of ratings assigned to you for review and confirmation, including active and past ratings',
+            active: 'Active',
+            inaccessibleСontent: '!! Inaccessible content, due to you are not allowed to view'
+          },
+          view3: {
+            title: 'Approvement',
+            description: 'List of ratings assigned to you for approval, including active and past ratings',
+            active: 'Active',
+            inaccessibleСontent: '!! Inaccessible content, due to you are not allowed to view'
+          },
         },
-        user: {
-          employement: 'Your employement information',
-          roles: 'Your roles'
-        },
-        description: 'A Staff Performance Rating (SPA) application provides an employee to see his overall ratings(self as well as supervisor\'s). SPA allows system managers\' to create and manage staff rating instances with configurable performance parameters.',
-        empty: 'No items found',
-        assignments: {
+        submission: {
           head: {
-            title: 'My ratings'
+            title: 'My rating'
           },
-          header: 'My ratings',
-          list: {
-            title: 'My assignments',
-            description: 'The list of assignments',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            }
-          },
-          information: {
-            title: 'General information',
-            description: 'Position rating information',
-            rating: 'Rating',
-            user: 'User',
-            date: 'Valid date',
-            employement: {
-              department: 'Department',
-              position: 'Position'
-            },
-            score: 'Score'
-          }
-        },
-        confirmations: {
-          head: {
-            title: 'Staff rating confirmation'
-          },
-          header: 'Staff rating confirmation',
-          list: {
-            title: 'Staff rating confirmation',
-            description: 'The list of assignments for confirmation',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            }
-          },
-          information: {
-            title: 'Confirmation of rating',
-            description: 'List of committee members authorized to confirm this rating',
-            status: {
-              not_viewed: 'Not viewed',
-              denied: 'Denied',
-              confirmed: 'Confirmed'
-            }
-          },
-          update: {
-            title: 'Your decision',
-            description: 'Decide whether to approve or reject the user\'s current rating',
-            content: {
-              info: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              status: {
-                not_viewed: 'Not viewed',
-                denied: 'Denied',
-                confirmed: 'Confirmed'
-              },
-              changeDecisionButton: 'Change decision',
-              denyButton: 'Deny',
-              confirmButton: 'Confirm',
-              modal: {
-                title: {
-                  deny: 'Deny',
-                  confirm: 'Confirm'
-                },
-                content: {
-                  deny: 'Are you sure to deny user\'s assignment?',
-                  confirm: 'Are you sure to confirm user\'s assignment?'
-                },
-                footer: {
-                  cancelButton: 'Cancel',
-                  denyButton: 'Deny',
-                  confirmButton: 'Confirm'
-                }
-              }
-            }
-          }
-        },
-        activities: {
-          head: {
-            title: 'Add new activity'
-          },
-          header: 'Add new activity',
+          header: 'My rating',
           create: {
-            title: 'Add new rating activity',
-            description: 'Add new rating activity by selecting rating parameter',
-            form: {
-              parameter: 'Select rating parameter',
-            },
-            actions: {
-              message: 'For this parameter you will receive {pts} points'
-            }
+            //
           },
           update: {
-            title: 'Update activity',
-            description: 'Update rating activity details.',
+            title: 'Submission',
+            description: 'Assessment sheet submission and it\'s details. You are allowed to update the form until submission date is not expires.',
             form: {
-              parameter: 'Rating parameter',
-              score: 'Amount of score which you received for this submission:'
+              //
             }
-          },
-          show: {
-            title: 'User activity',
-            description: 'Show rating activity details.',
-            form: {
-              parameter: 'Rating parameter',
-              score: 'Amount of score which user earned for this activity:'
-            }
-          },
-          list: {
-            title: 'Activity list',
-            description: 'The list of submitted activities.'
           },
           delete: {
-            title: 'Delete activity',
-            description: 'Permanently delete this activity.',
+            title: 'Delete the submission',
+            description: 'Permanently delete the submission',
             content: {
-              deleteInfo: 'After deleting an activity all its resources and data will be permanently deleted. Before deleting this activity, download any data or information about this account that you want to keep.',
-              deleteButton: 'Delete activity',
+              deleteInfo: 'Once a submission is deleted, all of its resources and data will be permanently deleted. Before deleting this submission, please download any data or information regarding this field that you wish to retain.',
+              deleteButton: 'Delete submission',
               modal: {
-                title: 'Delete activity',
-                content: 'Are you sure you want to delete this rating activity? After deletion, all of its resources and data will be permanently deleted.',
+                title: 'Delete a submission',
+                content: 'Are you sure you want to delete this submission? Once a is deleted, all of its resources and data will be permanently deleted.',
                 footer: {
                   cancelButton: 'Cancel',
-                  deleteButton: 'Delete activity'
+                  deleteButton: 'Delete'
                 }
               }
             }
-          }
+          },
+          list: {
+            title: 'Assessment sheet',
+            description: 'Complete the assessment sheet before the end of the current rating deadline with submissions',
+            form: {
+              //
+            }
+          },
         }
       },
       forms: {
@@ -1387,147 +1304,67 @@ var messages = {
         }
       },
       dashboard: {
-        tabs: {
-          assignments: 'Мой рейтинг',
-          assignment: {
-            description: 'Экземпляр оценки назначается системными менеджерами. Здесь вы можете добавить свои выполненные действия для подтверждения'
+        head: {
+          title: 'Панель управления'
+        },
+        header: 'Панель управления',
+        partials: {
+          view1: {
+            title: 'Мой Рейтинг',
+            description: 'Список рейтингов оценивания, включая активные и прошедшие рейтинги',
+            active: 'Активные'
           },
-          confirmations: 'Рейтинг персонала',
-          confirmation: {
-            description: 'Проверяйте и выполните подтверждение эффективной деятельности сотрудников. Данная роль вам была присвоена менеджером системы'
-          }
+          view2: {
+            title: 'Проверка и подтверждение',
+            description: 'Список рейтингов назначенные вам для проверки и подтверждения, включая активные и прошедшие рейтинги',
+            active: 'Активные',
+            inaccessibleСontent: '!! Недоступный контент, вам не назначено соответсвующий роль в системе'
+          },
+          view3: {
+            title: 'Утверждение',
+            description: 'Список рейтингов назначенные вам для утверждения, включая активные и прошедшие рейтинги',
+            active: 'Активные',
+            inaccessibleСontent: '!! Недоступный контент, вам не назначено соответсвующий роль в системе'
+          },
         },
-        user: {
-          employement: 'Информация о вашей занятости',
-          roles: 'Ваши роли'
-        },
-        description: 'Приложение для оценки эффективности работы персонала (SPA), которое позволяет сотруднику видеть свои общие оценки (как собственные, так и руководителя). SPA позволяет системным менеджерам создавать экземпляры оценки персонала и управлять ими с настраиваемыми параметрами производительности.',
-        empty: 'Не найдено элементов',
-        assignments: {
+        submission: {
           head: {
             title: 'Мой рейтинг'
           },
           header: 'Мой рейтинг',
-          list: {
-            title: 'Список оценивании назначенные мне',
-            description: 'Список оценивании для расчета эффективной деятельности сотрудника',
-            form: {
-              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            }
-          },
-          information: {
-            title: 'Информация о пользователе',
-            description: 'Подробная информация о пользователе: отдел, должность',
-            rating: 'Оценивание',
-            user: 'Пользователь',
-            date: 'Время действия текущего оцнивания',
-            employement: {
-              department: 'Отдел',
-              position: 'Должность'
-            },
-            score: 'Текущий балл'
-          }
-        },
-        confirmations: {
-          head: {
-            title: 'Подтверждение оценки деятельности пользователя'
-          },
-          header: 'Подтверждение оценки деятельности пользователя',
-          list: {
-            title: 'Список деятельности сотрудника для подтверждения',
-            description: 'Список деятельности сотрудника для подтверждения. Подтвердите действия и заработанные баллы сотрудника за текущий период',
-            form: {
-              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            }
-          },
-          information: {
-            title: 'Подтверждение текущего оценивания',
-            description: 'Список сотрудников подтверждающие данное оценивание',
-            status: {
-              not_viewed: 'Не просмотрено',
-              denied: 'Отказано',
-              confirmed: 'Подтверждено'
-            }
-          },
-          update: {
-            title: 'Ваше решение',
-            description: 'Примите решение подтвердить или отклонить текущее оценивание пользователя',
-            content: {
-              info: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              status: {
-                not_viewed: 'Не просмотрено',
-                denied: 'Отказано',
-                confirmed: 'Подтверждено'
-              },
-              changeDecisionButton: 'Изменить решение',
-              denyButton: 'Отказать',
-              confirmButton: 'Подтвердить',
-              modal: {
-                title: {
-                  deny: 'Отказать',
-                  confirm: 'Подтвердить'
-                },
-                content: {
-                  deny: 'Вы уверены, что отклоняете оценивание?',
-                  confirm: 'Вы уверены, что подтверждаете правильность данного оценивания?'
-                },
-                footer: {
-                  cancelButton: 'Отмена',
-                  denyButton: 'Отказать',
-                  confirmButton: 'Подтвердить'
-                }
-              }
-            }
-          }
-        },
-        activities: {
-          head: {
-            title: 'Мои действия'
-          },
-          header: 'Мои действия',
           create: {
-            title: 'Добавить новое действи оценки',
-            description: 'Добавить новое действи оценки. Выберите соответсвующий параметр и заполните форму',
-            form: {
-              parameter: 'Выберите параметр оценивания',
-            },
+            //
           },
           update: {
-            title: 'Обновить действие',
-            description: 'Обновить действие.',
+            title: 'Действие для оценки',
+            description: 'Представление оценочного листа и его детали. Вам разрешено обновлять форму до тех пор, пока дата отправки не истечет.',
             form: {
-              parameter: 'Выберите параметр оценивания',
-              score: 'Количество баллов, которое вы заработали за текущее действие:'
+              //
             }
-          },
-          show: {
-            title: 'Действие пользователя',
-            description: 'Показать подробные сведения об оценке.',
-            form: {
-              parameter: 'Параметр оценки',
-              score: 'Количество баллов, которые пользователь заработал за это действие:'
-            }
-          },
-          list: {
-            title: 'Список действий',
-            description: 'Список представленных действии.'
           },
           delete: {
             title: 'Удалить действие',
-            description: 'Удалить действие без возможности восстановления.',
+            description: 'Навсегда удалить действие',
             content: {
-              deleteInfo: 'После удаления действия все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой учетной записи загрузите любые данные или информацию об этой учетной записи, которые вы хотите сохранить.',
-              deleteButton: 'Удалить действие',
+              deleteInfo: 'После удаления представления все его ресурсы и данные будут безвозвратно удалены. Перед удалением этой отправки загрузите любые данные или информацию, касающиеся этого поля, которые вы хотите сохранить.',
+              deleteButton: 'Удалить отправку',
               modal: {
-                title: 'Удалить действие',
-                content: 'Вы уверены, что хотите удалить эту учетную запись? После удаления учетной записи все ее ресурсы и данные будут удалены без возможности восстановления.',
+                title: 'Удалить отправку',
+                content: 'Вы уверены, что хотите удалить это представление? После удаления все его ресурсы и данные будут безвозвратно удалены.',
                 footer: {
                   cancelButton: 'Отмена',
-                  deleteButton: 'Удалить действие'
+                  deleteButton: 'Удалить'
                 }
               }
             }
-          }
+          },
+          list: {
+            title: 'Лист оценки',
+            description: 'Заполните оценочный лист до окончания текущего срока рейтинга с материалами',
+            form: {
+              //
+            }
+          },
         }
       },
       forms: {

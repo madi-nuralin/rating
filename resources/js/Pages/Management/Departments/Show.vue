@@ -13,7 +13,7 @@
                 <UpdateForm :department="$page.props.department" :positions="$page.props.positions" :departments="$page.props.departments"/>
                 <BreezeSectionBorder />
 
-                <DeleteForm :department="$page.props.department" class="mt-10 sm:mt-0"/>
+                <DeleteForm :department="$page.props.department" class="mt-10 sm:mt-0" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>

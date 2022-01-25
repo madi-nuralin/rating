@@ -120,7 +120,7 @@ class FormField extends Model
         $validationRules = json_decode($this->validation_rules, true) ?? [];
 
         // Boolean rules
-        foreach (array('required', 'nullable', 'is_integer', 'is_numeric', 'is_string') as $rule) {
+        foreach (array('required', 'nullable', 'file', 'is_integer', 'is_numeric', 'is_string') as $rule) {
 
             if (array_key_exists($rule, $validationRules)) {
                 if ($validationRules[$rule]) {

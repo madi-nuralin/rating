@@ -3,32 +3,36 @@
         <template #aside>
             <div>
                 <h3 class="text-lg font-medium text-gray-900">
-                   Лист оценки
+                    {{ translate('title') }}
                 </h3>
 
                 <p class="mt-1 text-sm text-gray-600">
-                    Заполняйте лист оценки до завершения установленного срока текущего рейтинга
+                    {{ translate('description') }}
                 </p>
             </div>
 
-            <hr class="my-6" />
-            <show-name :rating="rating" />
-            <hr class="my-6" />
-            <show-description :rating="rating" />
-            <hr class="my-6" />
-            <show-verifiers :rating="rating" />
-            <hr class="my-6" />
-            <show-date :rating="rating" />
+            <div>
+                <hr class="my-6" />
+                <show-name :rating="rating" />
 
+                <hr class="my-6" />
+                <show-description :rating="rating" />
+
+                <hr class="my-6" />
+                <show-verifiers :rating="rating" />
+
+                <hr class="my-6" />
+                <show-date :rating="rating" />
+            </div>
         </template>
 
         <template #form>
             <div class="col-span-6">
                 <div v-for="(target, i) in rating.targets">
-                    <BreezeAccordion >
+                    <BreezeAccordion>
 
                         <template #trigger>
-                            {{target.name}}
+                            {{ target.name }}
                         </template>
 
                         <template #content>
@@ -126,7 +130,7 @@
             Link,
         },
 
-        props: ['rating'],
+        props: ['rating', 'translate'],
 
         data() {
             return {

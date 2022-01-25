@@ -1,6 +1,6 @@
 <template>
 	<div class="relative">
-		<button class="inline-flex w-full items-center justify-between py-2 font-semibold text-xs text-gray-700 uppercase tracking-widest hover:text-gray-500 focus:outline-none active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition" @click="collapse = ! collapse; $emit('collapsed', collapse)">
+		<button class="inline-flex w-full items-center justify-between py-2 font-semibold text-xs text-gray-700 uppercase tracking-widest hover:text-gray-500 focus:outline-none active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition" @click="collapse = ! collapse; $emit('collapsed', collapse)" :class="[triggerClass]">
 			<h3 class="text-gray-900 text-left">
 		        <slot name="trigger"></slot>
 		    </h3>
@@ -26,6 +26,9 @@ export default {
 	props: {
 		collapse: {
 			default: true
+		},
+		triggerClass: {
+			type: String
 		}
 	}
 }

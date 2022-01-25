@@ -1,11 +1,11 @@
 <template>
     <BreezeFormSection @submitted="updateSubmission">
         <template #title>
-            {{ $t('pages.management.rating.update.title') }}
+            {{ translate('title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.rating.update.description') }}
+            {{ translate('description') }}
         </template>
 
         <template #form>
@@ -130,7 +130,7 @@
             BreezeFile,
         },
 
-        props: ['submission'],
+        props: ['submission', 'translate'],
 
         setup(props) {
             const INIT = [];

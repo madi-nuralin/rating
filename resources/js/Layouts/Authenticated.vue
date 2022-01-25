@@ -18,11 +18,8 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <!--BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     {{ $t('layouts.authenticated.links.dashboard') }}
-                                </BreezeNavLink-->
-                                <BreezeNavLink :href="route('rating-submission')" :active="route().current('rating-submission')">
-                                    {{ $t('pages.dashboard.tabs.assignments') }}
                                 </BreezeNavLink>
                             </div>
                         </div>
@@ -166,11 +163,8 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <!--BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ $t('layouts.authenticated.links.dashboard') }}
-                        </BreezeResponsiveNavLink-->
-                        <BreezeResponsiveNavLink :href="route('rating-submission')" :active="route().current('rating-submission')">
-                            {{ $t('pages.dashboard.tabs.assignments') }}
                         </BreezeResponsiveNavLink>
                     </div>
 

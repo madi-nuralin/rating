@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Rating;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class SubmissionController extends Controller
         $rating = Rating::findOrFail(request()->input('rating'));
         $user = auth()->user();
 
-        return Inertia::render('Rating/Submission/Index', [
+        return Inertia::render('Dashboard/Submission/Index', [
             'rating' => array_merge(
                 $rating->toArray(), [
                     'targets' => collect(ParameterTarget::whereHas(
@@ -96,7 +96,7 @@ class SubmissionController extends Controller
         /*$rating = Rating::findOrFail(request()->input('rating'));
         $user = auth()->user();
 
-        return Inertia::render('Rating/Submission/Create', [
+        return Inertia::render('Dashboard/Submission/Create', [
             'rating' => array_merge(
                 $rating->toArray(), [
                     'targets' => collect(ParameterTarget::whereHas(
@@ -135,7 +135,7 @@ class SubmissionController extends Controller
         $parameter = $submission->parameter;
         $form = $parameter->activeForm;
 
-        return Inertia::render('Rating/Submission/Show', [
+        return Inertia::render('Dashboard/Submission/Show', [
             'submission' => array_merge(
                 $submission->toArray(), [
                     'rating' => $submission->toArray(),

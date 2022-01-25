@@ -212,6 +212,7 @@ class FormFieldController extends Controller
                 break;
 
             case FormField::FILE:
+                $validationRules['file'] = true;
                 $validationRules['file_size'] = $input['file_size'] ? $input['file_size'] : 100;
                 if (isset($input['mimes'])) {
                     $validationRules['mimes'] = implode(",", $input['mimes']); 
