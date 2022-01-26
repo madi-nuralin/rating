@@ -9,10 +9,10 @@
 		<template #content>
 		    <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
 		        <div class="p-6">
-		            <span class="font-mono mb-3">
+		            <breeze-badge :color="'green'">
 		                {{ translate('active') }}
-		            </span>
-		            <ul class="list-disc list-inside font-mono">
+		            </breeze-badge>
+		            <ul class="list-disc list-inside font-mono mt-2">
 		                <li v-for="element in ratings">
 		                    <Link class="text-gray-700 tracking-wide hover:underline" :href="route('submission.index', {'rating': element.id})">
 		                        {{element.name}}
@@ -27,10 +27,12 @@
 
 <script>
 	import BreezeAccordion from '@/Components/Accordion.vue'
+	import BreezeBadge from '@/Components/Badge.vue'
 	import { Link } from '@inertiajs/inertia-vue3';
 	export default {
 		components: {
 			BreezeAccordion,
+			BreezeBadge,
         	Link,
 		},
 

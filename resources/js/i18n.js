@@ -482,7 +482,9 @@ var messages = {
             trigger: 'Date',
             begins: 'Begins: ',
             finishes: 'Finishes: ',
-            finished: 'Finished: '
+            finished: 'Finished: ',
+            submission: 'Completing the assessment sheet',
+            verification: 'Assessment sheet verification'
           },
           showName: {
             trigger: 'Title'
@@ -532,6 +534,11 @@ var messages = {
               score: '{score} pts.'
             }
           },
+          partials: {
+            showVerifications: {
+              trigger: 'List of verifications'
+            }
+          }
         }
       },
       forms: {
@@ -1346,7 +1353,9 @@ var messages = {
             trigger: 'Дата',
             begins: 'Начинается: ',
             finishes: 'Завершается: ',
-            finished: 'Завершено: '
+            finished: 'Завершено: ',
+            submission: 'Заполнение листа оценки',
+            verification: 'Подтверждение листа оценки'
           },
           showName: {
             trigger: 'Название'
@@ -1396,6 +1405,11 @@ var messages = {
               score: '{score} баллов'
             }
           },
+          partials: {
+            showVerifications: {
+              trigger: 'Список подтверждений'
+            }
+          }
         }
       },
       forms: {

@@ -14,6 +14,9 @@
             <div>
                 <hr class="my-6" />
                 <ShowScoringBoard :form="submission.parameter.form" :score="submission.score" :status="'scored'"/>
+
+                <hr class="my-6" />
+                <ShowVerifications :submission="submission" />
             </div>
         </template>
 
@@ -126,6 +129,7 @@
     import BreezeLabel from '@/Components/Label'
     import BreezeFile from '@/Components/InputFile'
     import ShowScoringBoard from './ShowScoringBoard.vue'
+    import ShowVerifications from './ShowVerifications.vue'
 
     export default {
         components: {
@@ -139,6 +143,7 @@
             BreezeLabel,
             BreezeFile,
             ShowScoringBoard,
+            ShowVerifications
         },
 
         props: ['submission', 'translate'],

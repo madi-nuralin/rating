@@ -143,6 +143,7 @@ class SubmissionController extends Controller
         $submission = Submission::findOrFail($id);
         $parameter = $submission->parameter;
         $form = $parameter->activeForm;
+        $verifications = $submission->verifications;
 
         return Inertia::render('Dashboard/Submission/Show', [
             'submission' => array_merge(
@@ -174,7 +175,19 @@ class SubmissionController extends Controller
                                     ]
                                 ) : []
                         ]
-                    )
+                    ),
+                    'verifications' => $verifications ? $verifications->map(function($verification) {
+                        return array_merge(
+                            $verification->toArray(), [
+                                'verifier' => array_merge(
+                                    $verification->verifier->toArray(), [
+                                        'user' => $verification->verifier->user->toArray()
+                                    ]
+                                ),
+                                'verification_status' => $verification->verificationStatus->toArray()
+                            ]
+                        );
+                    }) : []
                 ]
             )
         ]);
