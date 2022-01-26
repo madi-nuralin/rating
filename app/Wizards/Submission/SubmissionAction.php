@@ -38,6 +38,7 @@ class SubmissionAction extends WizardAction
             foreach ($form->fields as $formField) {
                 $submission->createFormFieldResponce($formField, $payload["field{$formField->id}"]);
             }
+            $submission->updateScoreByFormFieldResponces();
         }
 
     	$submission->save();

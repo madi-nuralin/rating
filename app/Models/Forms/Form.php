@@ -59,6 +59,12 @@ class Form extends Model
         $parser = new StdMathParser();
         $evaluator = new Evaluator();
 
+        if (is_null($mathExpression)) {
+            throw new \Exception("Expression could not be empty", 1);
+            
+            return;
+        }
+
         $expression = $parser->parse($mathExpression);
 
         $variables = [];

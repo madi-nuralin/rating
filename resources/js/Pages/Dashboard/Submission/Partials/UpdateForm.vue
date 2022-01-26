@@ -13,7 +13,7 @@
 
             <div>
                 <hr class="my-6" />
-                <ShowScoringBoard :form="submission.parameter.form" :status="'scored'"/>
+                <ShowScoringBoard :form="submission.parameter.form" :score="submission.score" :status="'scored'"/>
             </div>
         </template>
 

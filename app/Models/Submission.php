@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use MathParser\StdMathParser;
+use MathParser\Interpreting\Evaluator;
+
+use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldOption;
 use App\Models\Forms\FormFieldResponce;
 
 class Submission extends Model
@@ -113,6 +118,64 @@ class Submission extends Model
         $this->save();
 
         return $formFieldResponce;
+    }
+
+    public function updateScoreByFormFieldResponces() {
+        $form = $this->parameter->activeForm;
+
+        if (! $form) {
+            return;
+        }
+
+        switch ($form->getScoring()) {
+            case Form::SCORING_DISABLED:
+                # code...
+                break;
+
+            case Form::SCORING_BY_CONSTANT:
+                $this->setScore($form->getScore());
+                break;
+
+            case Form::SCORING_BY_MATH_EXPRESSION:
+                $parser = new StdMathParser();
+                $evaluator = new Evaluator();
+                
+                if (is_null($form->getMathExpression())) {
+                    $this->setScore(0);
+                    return;
+                }
+
+                $expression = $parser->parse($form->getMathExpression());
+                $variables = [];
+
+                foreach ($this->formFieldResponces as $formFieldResponce) {
+                    $formField = $formFieldResponce->formField;
+
+                    if (!is_null($formField->getVariable())) {
+                        if ($formField->getType() == FormField::NUMBER) {
+                            $variables[$formField->getVariable()] = $formFieldResponce->getValue();
+                        } else if ($formField->getType() == FormField::SELECT) {
+                            $formFieldOption = FormFieldOption::find($formFieldResponce->getValue());
+                            if (! $formFieldOption) {
+                                continue;
+                            }
+                            $variables[$formField->getVariable()] = $formFieldOption->getScore();
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+
+                $evaluator->setVariables($variables);
+                $value = $expression->accept($evaluator);
+
+                $this->setScore($value);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     }
 
     public function toArray() {

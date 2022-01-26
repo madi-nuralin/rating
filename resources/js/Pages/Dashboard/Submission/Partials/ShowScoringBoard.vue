@@ -26,13 +26,18 @@
                         К этой форме не было задано функция оценивания
                     </p>
                     <p v-else-if="form.scoring == 'by_score'">
-                        Вам начислено <span class="bg-white rounded-md px-1">5 баллов</span> по заранее заданному значению формы
+                        Вам начислено <span class="bg-white rounded-md px-1">{{score}} баллов</span> по заранее заданному значению формы
                     </p>
                     <p v-else-if="form.scoring == 'by_math_expression'">
-                        Вам начислено <span class="bg-white rounded-md px-1">5 баллов</span> по формуле <span class="bg-white rounded-md px-1">{{ form.math_expression }}</span>, где:
+                        Вам начислено <span class="bg-white rounded-md px-1">{{score}} баллов</span> по формуле <span class="bg-white rounded-md px-1">{{ form.math_expression }}</span>, где:
                         <ul class="list-disc list-inside mt-2">
                             <li v-for="field in form.fields">
                                 {{ field.label }} - {{ field.variable }}
+                                 <ul class="ml-5 list-disc list-inside" v-if="field.type == 'select'">
+                                    <li v-for="option in field.options">
+                                        {{ option.name }} - {{ option.score }}
+                                    </li>
+                                 </ul>
                             </li>
                         </ul>
                     </p>
@@ -51,18 +56,21 @@
 			status: {
 				type: String,
 				default: 'undefined'
-			}
+			},
+            score: {
+                default: 0
+            }
 		},
 
 		computed: {
 			color() {
-				return this.status == 'undefined'
+				return 'red';/*this.status == 'undefined'
 					? 'orange'
 					: this.status == 'cancelled'
 					? 'red'
 					: this.status == 'scored'
 					? 'emerald'
-					: 'orange';
+					: 'orange';*/
 			}
 		}
 	}

@@ -226,6 +226,9 @@ class SubmissionController extends Controller
                     $formFieldResponce->setValue($input["field{$formField->id}"] ?? '');
                 }
             }
+
+            $submission->updateScoreByFormFieldResponces();
+            $submission->save();
         }
 
         return $request->wantsJson()
