@@ -22,6 +22,7 @@ class Submission extends Model
         'user_id',
         'rating_id',
         'parameter_id',
+        'score'
     ];
 
     public function user() {
@@ -48,6 +49,10 @@ class Submission extends Model
         return $this->belongsToMany(FormFieldResponce::class);
     }
 
+    public function setScore($score) {
+        $this->score = $score;
+    }
+
     public function setUser(User $user) {
     	$this->user()->associate($user);
     }
@@ -66,6 +71,10 @@ class Submission extends Model
 
     public function setFormFieldResponces() {
         //
+    }
+
+    public function getScore(): float {
+        return $this->score;
     }
 
     public function getUser() {
@@ -109,6 +118,7 @@ class Submission extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
+            'score' => $this->getScore(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

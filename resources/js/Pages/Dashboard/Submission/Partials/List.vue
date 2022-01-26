@@ -68,7 +68,7 @@
                                         Update
                                     </Link>
                                     <p class="ml-2 text-sm">
-                                        0.00 баллов
+                                        {{ translate('form.score', {'score': parseFloat(submission.score).toFixed(2) }) }}
                                     </p>
                                 </div>
                             </div>

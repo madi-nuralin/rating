@@ -38,8 +38,8 @@
                     function (path) { // [0]
                         return $t(`pages.dashboard.submission.${path}`);
                     },
-                    function (path) { // [1]
-                        return $t(`pages.dashboard.submission.list.${path}`);
+                    function (path, ...args) { // [1]
+                        return $t(`pages.dashboard.submission.list.${path}`, ...args);
                     },
                 ]
             }

@@ -5,9 +5,6 @@
 	    </template>
 
 	    <template #content>
-	    	<!--BreezeAvatarGroup :space="'space-x-2'">
-                <BreezeAvatar :src="verifier.user.profile_photo_path" v-for="(verifier, i) in rating.verifiers"/>
-            </BreezeAvatarGroup-->
             <ul role="list" class="divide-y divide-gray-200">
 				<template v-for="(verifier, i) in rating.verifiers">
 				<!-- Remove top/bottom padding when first/last child -->

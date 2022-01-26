@@ -11,8 +11,10 @@
                 </p>
             </div>
 
-            <hr class="my-6" />
-            <ShowSteps />
+            <div>
+                <hr class="my-6" />
+                <ShowSteps />
+            </div>
         </template>
 
         <template #form>
@@ -90,6 +92,10 @@
 
                 <BreezeInputError :message="_form.errors[FIELD[field.id]]" class="mt-2" />
             </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <ShowScoringBoard :form="form" :status="'undefined'" />
+            </div>
         </template>
 
         <template #actions>
@@ -115,6 +121,7 @@
     import BreezeSelect from '@/Components/Select.vue' 
     import BreezeFile from '@/Components/InputFile.vue'
     import ShowSteps from './ShowSteps.vue'
+    import ShowScoringBoard from '@/Pages/Dashboard/Submission/Partials/ShowScoringBoard.vue'
     import { Inertia } from '@inertiajs/inertia'
     import { ref, reactive } from 'vue'
 
@@ -132,6 +139,7 @@
             BreezeSelect,
             BreezeFile,
             ShowSteps,
+            ShowScoringBoard
         },
 
         props: ['form'],

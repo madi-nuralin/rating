@@ -1,11 +1,20 @@
 <template>
-    <BreezeFormSection @submitted="updateSubmission">
-        <template #title>
-            {{ translate('title') }}
-        </template>
+    <BreezeFormSection :has-title="false" @submitted="updateSubmission">
+        <template #aside>
+            <div>
+                <h3 class="text-lg font-medium text-gray-900">
+                   {{ translate('title') }}
+                </h3>
 
-        <template #description>
-            {{ translate('description') }}
+                <p class="mt-1 text-sm text-gray-600">
+                    {{ translate('description') }}
+                </p>
+            </div>
+
+            <div>
+                <hr class="my-6" />
+                <ShowScoringBoard :form="submission.parameter.form" :status="'scored'"/>
+            </div>
         </template>
 
         <template #form>
@@ -116,6 +125,7 @@
     import BreezeSelect from '@/Components/Select'
     import BreezeLabel from '@/Components/Label'
     import BreezeFile from '@/Components/InputFile'
+    import ShowScoringBoard from './ShowScoringBoard.vue'
 
     export default {
         components: {
@@ -128,6 +138,7 @@
             BreezeSelect,
             BreezeLabel,
             BreezeFile,
+            ShowScoringBoard,
         },
 
         props: ['submission', 'translate'],

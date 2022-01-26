@@ -33,6 +33,8 @@ class CreateSubmissionsTable extends Migration
                   ->references('id')
                   ->on('parameters')
                   ->onDelete('cascade');
+            $table->float('score', 8, 2)
+                  ->default(0);
             $table->timestamps();
         });
     }

@@ -17,7 +17,8 @@ const datetimeFormats = {
       weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
     }
   }
-}
+};
+
 
 var messages = {
   en: {
@@ -528,7 +529,7 @@ var messages = {
             title: 'Assessment sheet',
             description: 'Complete the assessment sheet before the end of the current rating deadline with submissions',
             form: {
-              //
+              score: '{score} pts.'
             }
           },
         }
@@ -1392,7 +1393,7 @@ var messages = {
             title: 'Лист оценки',
             description: 'Заполните оценочный лист до окончания текущего срока рейтинга с материалами',
             form: {
-              //
+              score: '{score} баллов'
             }
           },
         }
