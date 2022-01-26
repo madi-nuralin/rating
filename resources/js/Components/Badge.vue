@@ -1,5 +1,5 @@
 <template>
-    <div class="px-3 h-6 rounded-full text-xs font-semibold flex items-center"
+    <div class="px-3 h-6 rounded-md text-xs font-thin inline-flex items-center font-medium text-sm text-slate-500 font-mono dark:text-slate-400"
     :class="`bg-${color}-100 text-${color}-700`">
         <span class="w-2 h-2 rounded-full mr-1" :class="`bg-${color}-400`"></span>
         <span>

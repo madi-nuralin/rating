@@ -45,6 +45,7 @@ class SubmissionAction extends WizardAction
     	$verifiers = $rating->verifiers()->where('parameter_target_id', $parameterTarget->id)->get();
 
     	foreach ($verifiers as $verifier) {
+            error_log($verifier->id);  
     		Verification::create([
     			'verifier_id' => $verifier->id,
     			'submission_id' => $submission->id,

@@ -13,6 +13,7 @@ use App\Models\Submission;
 use App\Models\ParameterTarget;
 use App\Models\Verifier;
 use App\Models\Verification;
+use App\Models\VerificationStatus;
 use App\Models\Forms\Form;
 use App\Models\Forms\FormField;
 use App\Models\Forms\FormFieldResponce;
@@ -38,25 +39,33 @@ class SubmissionController extends Controller
                         })->get())->map(function($parameterTarget) use ($rating, $user) {
                             return array_merge(
                                 $parameterTarget->toArray(), [
-                                    'submissions' => Submission::where([
+                                    'submissions' => collect(Submission::where([
                                         'rating_id' => $rating->id,
                                         'user_id' => $user->id
-                                    ])->whereIn('parameter_id', $parameterTarget->parameters()->pluck('parameters.id'))->paginate()->through(function($submission) {
+                                    ])->whereIn('parameter_id', $parameterTarget->parameters()->pluck('parameters.id'))->get())->map(function($submission) {
                                         return array_merge(
                                             $submission->toArray(), [
                                                 'parameter' => $submission->parameter->toArray(),
-                                                'verifications' => $submission->verifications->map(function($verification) {
+                                                'verification_statuses' => VerificationStatus::all()->map(function($verificationStatus) use ($submission) {
                                                     return array_merge(
-                                                        $verification->toArray(), [
-                                                            'verifier' => array_merge(
-                                                                $verification->verifier->toArray(), [
-                                                                    'user' => $verification->verifier->user->toArray()
-                                                                ]
-                                                            ),
-                                                            'status' => $verification->verificationStatus->toArray()
+                                                        $verificationStatus->toArray(), [
+                                                            'verifications' => collect(
+                                                                $submission->verifications()
+                                                                           ->where('verification_status_id', $verificationStatus->id)
+                                                                           ->get())->map(function($verification) {
+                                                                return array_merge(
+                                                                    $verification->toArray(), [
+                                                                        'verifier' => array_merge(
+                                                                            $verification->verifier->toArray(), [
+                                                                                'user' => $verification->verifier->user->toArray()
+                                                                            ]
+                                                                        ),
+                                                                    ]
+                                                                );
+                                                            })
                                                         ]
                                                     );
-                                                }),
+                                                })
                                             ]
                                         );
                                     }),

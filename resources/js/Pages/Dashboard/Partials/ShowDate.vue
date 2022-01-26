@@ -8,14 +8,8 @@
 	    	<div class="grid gap-3" >
 	    		<div v-for="(item, i) in items">
 		    		<div>
-						<span class="font-medium text-sm text-gray-500 font-mono mb-3 dark:text-gray-400">
-							{{ item.title }}
-						</span>
-						<ul class="list-disc list-inside text-normal text-sm text-gray-900 dark:text-gray-200">
-							<li>{{ item.beginTime }}</li>
-							<li>{{ item.endTime }}</li>
-                            <li>{{ calculateTime(item.beginTime, item.endTime) }}</li>
-						</ul>
+						<p class="text-sm font-medium text-gray-900">{{ item.title }}</p>
+                        <p class="text-sm text-gray-500 truncate">{{ calculateTime(item.beginTime, item.endTime) }}</p>
 					</div>
 
 					<div class="my-1">
@@ -62,7 +56,18 @@
     		},
 
     		calculateTime(b, e) {
-    			var currentTime = this.currentTime
+                var currentTime = this.currentTime
+                var $d = this.$d, $t = this.$t;
+
+                return b > currentTime
+                    ? $t('pages.dashboard.partials.showDate.begins') + $d(b, 'long')
+                    : e < currentTime
+                    ? $t('pages.dashboard.partials.showDate.finished') + $d(e, 'long')
+                    : b <= currentTime && e >= currentTime
+                    ? $t('pages.dashboard.partials.showDate.finishes') + $d(e, 'long')
+                    : '';
+
+    			/*var currentTime = this.currentTime
     			var deltaTime = this.deltaTime
 
     			return e > currentTime && b < currentTime 
@@ -71,7 +76,8 @@
     				? deltaTime( b - currentTime ) + ' до начала'
     				: e < currentTime
     				? deltaTime( currentTime - e ) + ' прошло'
-    				: ''
+    				: ''*/
+
     		}
     	},
 

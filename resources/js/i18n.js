@@ -478,7 +478,10 @@ var messages = {
             inaccessibleСontent: '!! Inaccessible content, due to you are not allowed to view'
           },
           showDate: {
-            trigger: 'Date'
+            trigger: 'Date',
+            begins: 'Begins: ',
+            finishes: 'Finishes: ',
+            finished: 'Finished: '
           },
           showName: {
             trigger: 'Title'
@@ -1339,7 +1342,10 @@ var messages = {
             inaccessibleСontent: '!! Недоступный контент, вам не назначено соответсвующий роль в системе'
           },
           showDate: {
-            trigger: 'Дата'
+            trigger: 'Дата',
+            begins: 'Начинается: ',
+            finishes: 'Завершается: ',
+            finished: 'Завершено: '
           },
           showName: {
             trigger: 'Название'

@@ -926,25 +926,25 @@ class DatabaseSeeder extends Seeder
         $definitions = [
             [
                 'en' => [
-                    'name' => 'Not Reviewed',
+                    'name' => 'Not reviewed',
                     'description' => 'Verification not reviewed.'
                 ],
                 'ru' => [
-                    'name' => 'Не Рассмотрено',
+                    'name' => 'Не рассмотрено',
                     'description' => 'Подтверждение еще не рассмотрено'
                 ],
-                'context' => 'n/r',
+                'context' => 'not_reviewed',
                 'color' => 'yellow'
             ], [
                 'en' => [
-                    'name' => 'Not Accepted',
+                    'name' => 'Not accepted',
                     'description' => 'Verification not accepted.'
                 ],
                 'ru' => [
                     'name' => 'Отказано',
                     'description' => 'Подтверждение отказано'
                 ],
-                'context' => 'n/a',
+                'context' => 'not_accepted',
                 'color' => 'red'
             ], [
                 'en' => [
@@ -955,18 +955,18 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Подтверждено',
                     'description' => 'Подтверждение принято'
                 ],
-                'context' => 'a',
+                'context' => 'accepted',
                 'color' => 'green'
             ],  [
                 'en' => [
-                    'name' => 'Fix Require',
+                    'name' => 'Fix require',
                     'description' => 'Verification requires fixes.'
                 ],
                 'ru' => [
                     'name' => 'Требуется исправление',
                     'description' => 'Подтверждение требует исправление'
                 ],
-                'context' => 'f/r',
+                'context' => 'fix_require',
                 'color' => 'indigo'
             ],  [
                 'en' => [
@@ -977,7 +977,7 @@ class DatabaseSeeder extends Seeder
                     'name' => 'Исправлено',
                     'description' => 'Подтверждение исправлено'
                 ],
-                'context' => 'f',
+                'context' => 'fixed',
                 'color' => 'blue'
             ],
         ];

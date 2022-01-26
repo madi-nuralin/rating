@@ -30,52 +30,46 @@
             <div class="col-span-6">
                 <div v-for="(target, i) in rating.targets">
                     <BreezeAccordion>
-
                         <template #trigger>
                             {{ target.name }}
                         </template>
 
                         <template #content>
-                            <div class="relative grid grid-cols-4 gap-1 w-full">
-                                <!--div class="col-span-1">
-                                    <div>Подтверждающие</div>
-                                    <BreezeAvatarGroup :space="'-space-x-2'">
-                                        <BreezeAvatar :width="'6'" :src="verifier.user.profile_photo_path" v-for="(verifier, j) in target.verifiers" />
-                                    </BreezeAvatarGroup>
-                                </div-->
-                                <div class="col-span-4" v-if="Object.keys(target.submissions).length > 0">
-                                    <BreezeList :items="target.submissions">
-                                        <template #item="{item}">
-                                            <div class="flex flex-between mt-4">
-                                                <div>
-                                                    <div>{{item.parameter.name}}</div>
-                                                    <div class="flex flex-col text-sm text-gray-400">
-                                                        <h4 class="line-clamp-3">
-                                                            {{item.parameter.description}}
-                                                        </h4>
-                                                        <div class="md:grid md:grid-cols-3 text-gray-700">
-                                                            <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">
-                                                                <p>Подтвердили</p>
-                                                                <breeze-avatar-group :space="'-space-x-2'">
-                                                                    <breeze-avatar :width="'6'" :src="verification.verifier.user.profile_photo_path" v-for="verification in item.verifications" v-if="verification && verification.status && verification.status.context == 'a'" />
-                                                                </breeze-avatar-group>
-                                                            </div>
-                                                            <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">
-                                                                <p>Не просмотрено</p>
-                                                                <breeze-avatar-group :space="'-space-x-2'">
-                                                                    <breeze-avatar :width="'6'" :src="verification.verifier.user.profile_photo_path" v-for="verification in item.verifications" v-if="verification && verification.status && verification.status.context == 'n/r'" />
-                                                                </breeze-avatar-group>
-                                                            </div>
-                                                            <div class="md:flex md:space-x-2 grid grid-cols-2 mt-2">Заработано</div>
-                                                        </div>
+                            <div class="flex flex-between mt-4" 
+                                v-for="submission in target.submissions"
+                                v-if="Object.keys(target.submissions).length > 0">
+                                <div>
+                                    <h3>{{submission.parameter.name}}</h3>
+                                    <div class="flex flex-col text-sm text-gray-400">
+                                        <p class="line-clamp-3">
+                                            {{submission.parameter.description}}
+                                        </p>
+
+                                        <div class="grid grid-cols-6 gap-2 mt-2">
+                                            <template v-for="status in submission.verification_statuses"> 
+                                                <template v-if="Object.keys(status.verifications).length > 0">
+                                                    <div class="col-span-3 sm:col-span-4 space-x-2">
+                                                        <span class="underline" v-for="verification in status.verifications">
+                                                            {{ verification.verifier.user.name }}
+                                                        </span>
                                                     </div>
-                                                </div>
-                                                <Link class="ml-2 text-sm text-gray-400 underline" :href="route('submission.show', {'id': item.id})">
-                                                    Update
-                                                </Link>
-                                            </div>
-                                        </template>
-                                    </BreezeList>
+                                                    <div class="col-span-3 sm:col-span-2">
+                                                        <breeze-badge :color="status.color" :class="''">
+                                                            {{ status.name }}
+                                                        </breeze-badge>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Link class="ml-2 text-sm text-gray-400 underline" :href="route('submission.show', {'id': submission.id})">
+                                        Update
+                                    </Link>
+                                    <p class="ml-2 text-sm">
+                                        0.00 баллов
+                                    </p>
                                 </div>
                             </div>
                         </template>
@@ -87,7 +81,7 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
+            <Link class="inline-flex submissions-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
                 {{ $t('pages.management.rating.list.actions.createButton') }}
             </Link>
         </template>
@@ -102,8 +96,6 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import BreezeSectionTitle from '@/Components/SectionTitle.vue'
     import BreezeAccordion from '@/Components/Accordion.vue'
-    import BreezeAvatarGroup from '@/Components/AvatarGroup.vue'
-    import BreezeAvatar from '@/Components/Avatar.vue'
 
     import ShowName from '../../Partials/ShowName.vue'
     import ShowDescription from '../../Partials/ShowDescription.vue'
@@ -121,8 +113,6 @@
             BreezeSectionBorder,
             BreezeSectionTitle,
             BreezeAccordion,
-            BreezeAvatarGroup,
-            BreezeAvatar,
             ShowName,
             ShowDescription,
             ShowVerifiers,

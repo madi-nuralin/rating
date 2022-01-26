@@ -26,6 +26,10 @@ class VerificationStatus extends Model
     	return $this->hasMany(VerificationStatusSetting::class);
     }
 
+    public function verifications() {
+        return $this->hasMany(Verification::class);
+    }
+
     public function getContext() {
         return $this->context;
     }

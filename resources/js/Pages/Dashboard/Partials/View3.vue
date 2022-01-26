@@ -1,7 +1,7 @@
 <template>
-    <BreezeAccordion :triggerClass="'px-6 sm:px-0'">
+    <BreezeAccordion :triggerClass="'px-4 sm:px-0'">
         <template #trigger>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight normal-case">
                 {{ translate('title') }}
             </h2>
         </template>
