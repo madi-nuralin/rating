@@ -9,22 +9,23 @@
         <template #content>
             <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="p-6">
-                    <div v-if="content('verifier')">
-                        <span class="font-mono mb-3">
-                            {{ translate('active') }}
-                        </span>
-                        <ul class="list-disc list-inside font-mono">
-                            <li v-for="element in ratings">
-                                <Link class="text-gray-700 tracking-wide hover:underline" :href="route('submission.index', {'rating': element.id})">
-                                    {{element.name}}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="text-red-400" v-else>
-                        {{ translate('inaccessibleСontent') }}
-                    </p>
-
+                    <ul class="list-disc list-inside">
+                        <li v-for="element in elements">
+                            <span>{{ element.year }}</span>
+                            <ul class="list-disc list-inside ml-5">
+                                <li v-for="rating in element.ratings">
+                                    <span>{{rating.name}}</span>
+                                    <ul class="list-disc list-inside ml-10">
+                                        <li v-for="user in rating.users">
+                                            <Link class="text-indigo-700 tracking-wide underline" :href="route('verification.index', {'verifier': rating.verifier.id, 'rating': rating.id, 'user': user.id})">
+                                                {{user.name}}
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </template>
@@ -32,15 +33,17 @@
 </template>
 
 <script>
+    import BreezeBadge from '@/Components/Badge.vue'
     import BreezeAccordion from '@/Components/Accordion.vue'
     import { Link } from '@inertiajs/inertia-vue3';
     export default {
         components: {
             BreezeAccordion,
+            BreezeBadge,
             Link,
         },
 
-        props: ['ratings', 'translate'],
+        props: ['elements', 'translate'],
 /*
 <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.9 56" aria-hidden="true" height="56" width="56">
     <path d="m31.9 27.99a1 1 0 0 1 -1-1v-4.1a1 1 0 1 1 2 0v4.1a1 1 0 0 1 -1 1z" fill="#2088ff"></path>
@@ -54,18 +57,5 @@
     </g>
 </svg>
 */
-        methods: {
-            content(context) {
-                var roles = this.$page.props.auth.user.roles;
-                if (roles) {
-                    for (var i=0; i < roles.length; ++i) {
-                        if (roles[i].context == context) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-        }
     }
 </script>

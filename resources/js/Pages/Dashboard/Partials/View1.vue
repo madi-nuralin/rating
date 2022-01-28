@@ -9,14 +9,19 @@
 		<template #content>
 		    <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
 		        <div class="p-6">
-		            <breeze-badge :color="'green'">
+		            <!--breeze-badge :color="'green'">
 		                {{ translate('active') }}
-		            </breeze-badge>
-		            <ul class="list-disc list-inside font-mono mt-2">
-		                <li v-for="element in ratings">
-		                    <Link class="text-gray-700 tracking-wide hover:underline" :href="route('submission.index', {'rating': element.id})">
-		                        {{element.name}}
-		                    </Link>
+		            </breeze-badge-->
+		            <ul class="list-disc list-inside mt-2">
+		                <li v-for="element in elements">
+		                	<span>{{ element.year }}</span>
+		                	<ul class="list-disc list-inside ml-5">
+		                		<li v-for="rating in element.ratings">
+				                    <Link class="text-indigo-700 tracking-wide underline" :href="route('submission.index', {'rating': rating.id})">
+				                        {{rating.name}}
+				                    </Link>
+			                	</li>
+		                	</ul>
 		                </li>
 		            </ul>
 		        </div>
@@ -36,7 +41,7 @@
         	Link,
 		},
 
-		props: ['ratings', 'translate']
+		props: ['elements', 'translate']
 /*
 <svg class="" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M4 13C4 11.3431 5.34315 10 7 10H14C14.5523 10 15 10.4477 15 11C15 11.5523 14.5523 12 14 12H7C6.44772 12 6 12.4477 6 13V47C6 47.5523 6.44771 48 7 48H14C14.5523 48 15 48.4477 15 49C15 49.5523 14.5523 50 14 50H7C5.34315 50 4 48.6569 4 47V13Z" fill="#79B8FF"></path>

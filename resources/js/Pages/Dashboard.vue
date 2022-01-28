@@ -10,13 +10,17 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <view1 :ratings="$page.props.ratings" :translate="translate[1]"/>
+                <view1 :elements="$page.props.user_years" :translate="translate[1]"/>
                 <breeze-section-border />
 
-                <view2 :translate="translate[2]" class="mt-10 sm:mt-0" />
-                <breeze-section-border />
+                <template v-if="content('verifier')">
+                    <view2 :elements="$page.props.verifier_years" :translate="translate[2]" class="mt-10 sm:mt-0" />
+                    <breeze-section-border />
+                </template>
 
-                <view3 :translate="translate[3]" class="mt-10 sm:mt-0" />
+                <template v-if="content('approver')">
+                    <view3 :translate="translate[3]" class="mt-10 sm:mt-0" />
+                </template>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -38,6 +42,20 @@ export default {
         View2,
         View3,
         Head,
+    },
+
+    methods: {
+        content(context) {
+            var roles = this.$page.props.auth.user.roles;
+            if (roles) {
+                for (var i=0; i < roles.length; ++i) {
+                    if (roles[i].context == context) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     },
 
     computed: {

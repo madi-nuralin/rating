@@ -9,7 +9,7 @@
         <template #content>
             <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="p-6">
-                    <div v-if="content('approver')">
+                    <div>
                         <span class="font-mono mb-3">
                             {{ translate('active') }}
                         </span>
@@ -21,9 +21,6 @@
                             </li>
                         </ul>
                     </div>
-                    <p class="text-red-400" v-else>
-                        {{ translate('inaccessibleСontent') }}
-                    </p>
                 </div>
             </div>
         </template>

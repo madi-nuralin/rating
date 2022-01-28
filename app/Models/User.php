@@ -65,6 +65,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Rating::class);
     }
 
+    public function verifiers() {
+        return $this->hasMany(Verifier::class);
+    }
+
     public function assignments() {
         return $this->hasMany(Assignment::class);
     }
