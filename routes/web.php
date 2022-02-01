@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                     ->from('rating_user')
                     ->where('user_id', $user->id);
                 })   
-            ->whereDate('submission_end_time_at', '<', now())
+            //->whereDate('submission_end_time_at', '<', now())
             ->select(DB::raw('YEAR(submission_end_time_at) as year'))
             ->groupBy('year')
             ->get()
@@ -74,7 +74,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         $verifierYears =
             DB::table('ratings')
-            ->whereDate('submission_end_time_at', '<', now())
+            //->whereDate('submission_end_time_at', '<', now())
             ->select(DB::raw('YEAR(submission_end_time_at) as year'))
             ->groupBy('year')
             ->get()
