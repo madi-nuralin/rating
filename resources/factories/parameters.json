@@ -1,0 +1,997 @@
+[
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Conducting a webinar at the republican level",
+            "description":"Conducting a webinar at the republican level"
+        },
+        "ru":{
+            "name":"Проведение вебинара на республиканском уровне",
+            "description":"Проведение вебинара на республиканском уровне"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"20*n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of webinars"
+                        },
+                        "ru":{
+                            "label":"Количество вебинаров"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate/Letter"
+                        },
+                        "ru":{
+                            "label":"Сертификат/письмо"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Mentoring courses on the Coursera platform",
+            "description":"Mentoring courses on the Coursera platform"
+        },
+        "ru":{
+            "name":"Менторство курсов на платформе Coursera",
+            "description":"Менторство курсов на платформе Coursera"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"10*n+0.1*m",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of disciplines"
+                        },
+                        "ru":{
+                            "label":"Количество дисциплин"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Number of students"
+                        },
+                        "ru":{
+                            "label":"Количество дисциплин"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"m"
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate/Letter"
+                        },
+                        "ru":{
+                            "label":"Сертификат/письмо"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Development of new educational programs with positive expertise of the CBP&AM MES RK",
+            "description":"Development of new educational programs with positive expertise of the CBP&AM MES RK"
+        },
+        "ru":{
+            "name":"Разработка новых образовательных программ с положительной экспертизой ЦБПиАМ МОН РК",
+            "description":"Разработка новых образовательных программ с положительной экспертизой ЦБПиАМ МОН РК"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"100/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Passport of the OP with the indication of the developers"
+                        },
+                        "ru":{
+                            "label":"Паспорт ОП с указанием разработчиков"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Updating educational programs (at least 25% of content)",
+            "description":"Updating educational programs (at least 25% of content)"
+        },
+        "ru":{
+            "name":"Обновление образовательных программ (не менее 25% контента)",
+            "description":"Обновление образовательных программ (не менее 25% контента)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"50/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Passport of the OP with the indication of the developers"
+                        },
+                        "ru":{
+                            "label":"Паспорт ОП с указанием разработчиков"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Implementation of new technologies for assessing students' knowledge (suggestions and recommendations for assessing students' knowledge)",
+            "description":"Implementation of new technologies for assessing students' knowledge (suggestions and recommendations for assessing students' knowledge)"
+        },
+        "ru":{
+            "name":"Внедрение новых технологий для оценивания знаний обучающихся (предложения и рекомендации для оценивания знаний обучающихся)",
+            "description":"Внедрение новых технологий для оценивания знаний обучающихся (предложения и рекомендации для оценивания знаний обучающихся)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"30/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Extract from the protocol of the UMS"
+                        },
+                        "ru":{
+                            "label":"Выписка из протокола УМС"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Preparing an online course on MOOC technology",
+            "description":"Preparing an online course on MOOC technology"
+        },
+        "ru":{
+            "name":"Подготовка онлайн курса по технологии МООК",
+            "description":"Подготовка онлайн курса по технологии МООК"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"300/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Link to video course"
+                        },
+                        "ru":{
+                            "label":"Ссылка на видео курс"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Syllabus"
+                        },
+                        "ru":{
+                            "label":"Cиллабус"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Commission transfer-acceptance certificate"
+                        },
+                        "ru":{
+                            "label":"Акт приема-передачи комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Course content update on MOOC technology (minimum 20%)",
+            "description":"Course content update on MOOC technology (minimum 20%)"
+        },
+        "ru":{
+            "name":"Обновление контента курса по технологии МООК (минимум 20%)",
+            "description":"Обновление контента курса по технологии МООК (минимум 20%)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"30/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Link to video course"
+                        },
+                        "ru":{
+                            "label":"Ссылка на видео курс"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Syllabus"
+                        },
+                        "ru":{
+                            "label":"Cиллабус"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Commission transfer-acceptance certificate"
+                        },
+                        "ru":{
+                            "label":"Акт приема-передачи комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Publication of a textbook with the stamp of the Ministry of Education and Science of the Republic of Kazakhstan for EPs in need of educational publications (for the reporting period)",
+            "description":"Publication of a textbook with the stamp of the Ministry of Education and Science of the Republic of Kazakhstan for EPs in need of educational publications (for the reporting period)"
+        },
+        "ru":{
+            "name":"Издание учебника с грифом МОН РК по ОП, испытывающим потребность в учебных изданиях (за отчетный период)",
+            "description":"Издание учебника с грифом МОН РК по ОП, испытывающим потребность в учебных изданиях (за отчетный период)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"100/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Textbook output"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебника"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"150/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Textbook output"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебника"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Publication of a textbook with the stamp of the Ministry of Education and Science of the Republic of Kazakhstan for EPs in need of educational publications (for the reporting period)",
+            "description":"Publication of a textbook with the stamp of the Ministry of Education and Science of the Republic of Kazakhstan for EPs in need of educational publications (for the reporting period)"
+        },
+        "ru":{
+            "name":"Издание учебного пособия с грифом МОН РК по ОП, испытывающим потребность в учебных изданиях (за отчетный период)",
+            "description":"Издание учебного пособия с грифом МОН РК по ОП, испытывающим потребность в учебных изданиях (за отчетный период)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"50/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Tutorial Imprint"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебного пособия"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"100/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Tutorial Imprint"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебного пособия"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Edition of textbooks, uch. manuals recommended by UMO RUMS for EPs in need of educational publications (for the reporting period)",
+            "description":"Edition of textbooks, uch. manuals recommended by UMO RUMS for EPs in need of educational publications (for the reporting period)"
+        },
+        "ru":{
+            "name":"Издание учебников, уч. пособий, рекомендованных УМО РУМС по ОП, испытывающим потребность в учебных изданиях (за отчетный период)",
+            "description":"Издание учебников, уч. пособий, рекомендованных УМО РУМС по ОП, испытывающим потребность в учебных изданиях (за отчетный период)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"30/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Output data of textbooks, account. benefits"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебников, уч. пособий"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Edition of textbooks, uch. manuals with the IITU stamp for EPs in need of educational publications (for the reporting period)",
+            "description":"Edition of textbooks, uch. manuals with the IITU stamp for EPs in need of educational publications (for the reporting period)"
+        },
+        "ru":{
+            "name":"Издание учебников, уч. пособий с грифом МУИТ по ОП, испытывающим потребность в учебных изданиях (за отчетный период)",
+            "description":"Издание учебников, уч. пособий с грифом МУИТ по ОП, испытывающим потребность в учебных изданиях (за отчетный период)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"20/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Output data of textbooks, account. benefits"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебников, уч. пособий"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Extract from the protocol of UMC JSC MUIT"
+                        },
+                        "ru":{
+                            "label":"Выписка протокола УМС АО МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":1,
+        "en":{
+            "name":"Publication of methodological guidelines with the stamp of IITU for EPs in need of educational publications (for the reporting period)",
+            "description":"Publication of methodological guidelines with the stamp of IITU for EPs in need of educational publications (for the reporting period)"
+        },
+        "ru":{
+            "name":"Издание методических указаний с грифом МУИТ по ОП, испытывающим потребность в учебных изданиях (за отчетный период)",
+            "description":"Издание методических указаний с грифом МУИТ по ОП, испытывающим потребность в учебных изданиях (за отчетный период)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"10/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-authors"
+                        },
+                        "ru":{
+                            "label":"Количество соавторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Output data of textbooks, account. benefits"
+                        },
+                        "ru":{
+                            "label":"Выходные данные учебников, уч. пособий"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Extract from the protocol of UMC JSC MUIT"
+                        },
+                        "ru":{
+                            "label":"Выписка протокола УМС АО МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Certificate from the IITU library"
+                        },
+                        "ru":{
+                            "label":"Справка с библиотеки МУИТ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,doc,docx"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

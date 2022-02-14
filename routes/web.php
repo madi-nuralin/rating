@@ -55,68 +55,32 @@ Route::get('locale/{locale}', function ($locale) {
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('dashboard', function () {
+        return redirect()->route('dashboard-user');
+    })->name('dashboard');
 
+    Route::get('dashboard/user', function () {
         $user = auth()->user();
 
-        $userYears = 
-            DB::table('ratings')
-            ->whereIn('id', function($q) use ($user) {
-                return $q->select('rating_id')
-                    ->from('rating_user')
-                    ->where('user_id', $user->id);
-                })   
-            //->whereDate('submission_end_time_at', '<', now())
-            ->select(DB::raw('YEAR(submission_end_time_at) as year'))
-            ->groupBy('year')
-            ->get()
-            ->pluck('year');
-
-
-        $verifierYears =
-            DB::table('ratings')
-            //->whereDate('submission_end_time_at', '<', now())
-            ->select(DB::raw('YEAR(submission_end_time_at) as year'))
-            ->groupBy('year')
-            ->get()
-            ->pluck('year');
-
-        return Inertia::render('Dashboard', [
-            'user_years' => $userYears->map(function($year) use ($user) {
+        return Inertia::render('Dashboard/User', [
+            'ratings' => $user->ratings->map(function($rating) {
                 return array_merge(
-                    ['year' => $year], [
-                        'ratings' => collect(
-                            $user->ratings()
-                                ->whereIn('rating_id', function($q) use ($year) {
-                                    return $q->select('id')
-                                        ->from('ratings')
-                                        ->where(DB::raw('YEAR(submission_end_time_at)'), $year);
-                                })->get()
-                        )->map(function($rating) {
-                            return $rating->toArray();
-                        })
+                    $rating->toArray(), [
+                        'verifiers' => $rating->verifiers ? $rating->verifiers->map(function($verifier) {
+                            return array_merge(
+                                $verifier->toArray(), [
+                                    'user' => $verifier->user->toArray()
+                                ]
+                            );
+                        }) : []
                     ]
                 );
             }),
-            'verifier_years' => $verifierYears->map(function($year) use ($user) {
-                return array_merge(
-                    ['year' => $year], [
-                        'ratings' => collect(
-                            $user->verifiers ? $user->verifiers->map(function($verifier) {
-                                return array_merge(
-                                    $verifier->rating->toArray(), [
-                                        'verifier' => $verifier->toArray(),
-                                        'users' => $verifier->rating->users->map(function($user) {
-                                            return $user->toArray();
-                                        })
-                                    ]
-                                );
-                            }): []
-                        )
-                    ]
-                );
-            })
+            'statistics' => [
+                'total' => count($user->ratings),
+                'active' => count($user->ratings)
+            ]
         ]);
-    })->name('dashboard');
+    })->name('dashboard-user');
 
     Route::group(['prefix' => 'dashboard'], function() {
         Route::resource('submission', SubmissionController::class,
