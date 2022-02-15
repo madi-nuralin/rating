@@ -535,7 +535,7 @@ class DatabaseSeeder extends Seeder
                                     ]);
 
                                     if (array_key_exists('score', $definitionFormFieldOption)) {
-                                        $formField->setScore($definitionFormFieldOption['score']);
+                                        $formFieldOption->setScore($definitionFormFieldOption['score']);
                                     }
 
                                     foreach ($locales as $locale) {
