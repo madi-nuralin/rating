@@ -35,7 +35,7 @@
                         </template>
 
                         <template #content>
-                            <div class="flex flex-between mt-4" 
+                            <div class="flex justify-between mt-4" 
                                 v-for="submission in target.submissions"
                                 v-if="Object.keys(target.submissions).length > 0">
                                 <div>

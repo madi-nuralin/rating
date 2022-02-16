@@ -18,8 +18,14 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <!--BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     {{ $t('layouts.authenticated.links.dashboard') }}
+                                </BreezeNavLink-->
+                                <BreezeNavLink :href="route('dashboard-user')" :active="route().current('dashboard-user')">
+                                    {{ $t('layouts.authenticated.links.dashboardUser') }}
+                                </BreezeNavLink>
+                                <BreezeNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')" v-if="content('verifier')">
+                                    {{ $t('layouts.authenticated.links.dashboardVerifier') }}
                                 </BreezeNavLink>
                             </div>
                         </div>
@@ -50,7 +56,7 @@
 
                             <!-- Management Dropdown -->
                             <div class="ml-3 relative" v-if="content('manager')">
-                                <BreezeDropdown align="right" width="48">
+                                <BreezeDropdown align="right" width="80">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -161,8 +167,14 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <!--BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ $t('layouts.authenticated.links.dashboard') }}
+                        </BreezeResponsiveNavLink-->
+                        <BreezeResponsiveNavLink :href="route('dashboard-user')" :active="route().current('dashboard-user')">
+                            {{ $t('layouts.authenticated.links.dashboardUser') }}
+                        </BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')">
+                            {{ $t('layouts.authenticated.links.dashboardVerifier') }}
                         </BreezeResponsiveNavLink>
                     </div>
 

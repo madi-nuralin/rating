@@ -82,6 +82,30 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         ]);
     })->name('dashboard-user');
 
+    Route::get('dashboard/verifier', function () {
+
+        $verifier = array();
+
+        if (auth()->user()->verifiers) {
+            $verifier = auth()->user()->verifiers->first();
+        }
+
+        return Inertia::render('Dashboard/Verifier', [
+            'ratings' => auth()->user()->verifiers ? auth()->user()->verifiers->map(function($verifier) {
+                return $verifier->rating->toArray();
+            }) : [],
+            'rating' => $verifier ? array_merge(
+                $verifier->rating->toArray(), [
+                    'verifier' => $verifier->toArray(),
+                    'users' => $verifier->rating->users()->paginate(10)->through(function($user) {
+                        return $user->toArray();
+                    })
+                ]
+            ) : []
+        ]);
+
+    })->name('dashboard-verifier')->middleware('verifier');
+
     Route::group(['prefix' => 'dashboard'], function() {
         Route::resource('submission', SubmissionController::class,
             ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);

@@ -27,7 +27,7 @@
         </div>
         
         <div class="flex justify-center items-center mt-2">
-            <BreezePagination :links="items.links" />
+            <!--BreezePagination :links="items.links" /-->
         </div>
     </div>
 </template>

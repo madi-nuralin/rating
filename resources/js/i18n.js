@@ -461,23 +461,6 @@ var messages = {
         },
         header: 'Dashboard',
         partials: {
-          view1: {
-            title: 'My Rating',
-            description: 'List of assessment ratings assigned to me, including active and past ratings',
-            active: 'Active'
-          },
-          view2: {
-            title: 'Verification',
-            description: 'List of ratings assigned to you for review and confirmation, including active and past ratings',
-            active: 'Active',
-            inaccessibleСontent: '!! Inaccessible content, due to you are not allowed to view'
-          },
-          view3: {
-            title: 'Approvement',
-            description: 'List of ratings assigned to you for approval, including active and past ratings',
-            active: 'Active',
-            inaccessibleСontent: '!! Inaccessible content, due to you are not allowed to view'
-          },
           showDate: {
             trigger: 'Date',
             begins: 'Begins: ',
@@ -496,11 +479,31 @@ var messages = {
             trigger: 'List of Verifiers'
           }
         },
-        submission: {
+        user: {
           head: {
             title: 'My rating'
           },
           header: 'My rating',
+          content: {
+            title: 'List of ratings',
+            statistics: {
+              total: 'Total',
+              active: 'Active',
+              completed: 'Completed'
+            }
+          }
+        },
+        verifier: {
+          head: {
+            title: 'Verification'
+          },
+          header: 'Verification'
+        },
+        submission: {
+          head: {
+            title: 'Assessment sheet'
+          },
+          header: 'Assessment sheet',
           create: {
             //
           },
@@ -868,6 +871,8 @@ var messages = {
         links: {
           authentication: 'Authentication',
           dashboard: 'Dashboard',
+          dashboardUser: 'My rating',
+          dashboardVerifier: 'Verification',
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
@@ -1332,23 +1337,6 @@ var messages = {
         },
         header: 'Панель управления',
         partials: {
-          view1: {
-            title: 'Мой Рейтинг',
-            description: 'Список рейтингов оценивания, включая активные и прошедшие рейтинги',
-            active: 'Активные'
-          },
-          view2: {
-            title: 'Проверка и подтверждение',
-            description: 'Список рейтингов назначенные вам для проверки и подтверждения, включая активные и прошедшие рейтинги',
-            active: 'Активные',
-            inaccessibleСontent: '!! Недоступный контент, вам не назначено соответсвующий роль в системе'
-          },
-          view3: {
-            title: 'Утверждение',
-            description: 'Список рейтингов назначенные вам для утверждения, включая активные и прошедшие рейтинги',
-            active: 'Активные',
-            inaccessibleСontent: '!! Недоступный контент, вам не назначено соответсвующий роль в системе'
-          },
           showDate: {
             trigger: 'Дата',
             begins: 'Начинается: ',
@@ -1367,11 +1355,31 @@ var messages = {
             trigger: 'Список подтверждающих'
           }
         },
-        submission: {
+        user: {
           head: {
             title: 'Мой рейтинг'
           },
           header: 'Мой рейтинг',
+          content: {
+            title: 'Список рейтингов',
+            statistics: {
+              total: 'Все',
+              active: 'Активные',
+              completed: 'Завершено'
+            }
+          }
+        },
+        verifier: {
+          head: {
+            title: 'Подтверждение'
+          },
+          header: 'Подтверждение'
+        },
+        submission: {
+          head: {
+            title: 'Лист оценки'
+          },
+          header: 'Лист оценки',
           create: {
             //
           },
@@ -1753,6 +1761,8 @@ var messages = {
         links: {
           authentication: 'Аутентификация',
           dashboard: 'Панель управления',
+          dashboardUser: 'Мой рейтинг',
+          dashboardVerifier: 'Подтверждение',
           positions: 'Должности',
           departments: 'Отделы',
           users: 'Пользователи',
