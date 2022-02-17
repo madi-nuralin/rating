@@ -58,53 +58,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return redirect()->route('dashboard-user');
     })->name('dashboard');
 
-    Route::get('dashboard/user', function () {
-        $user = auth()->user();
+    Route::get('dashboard/user', [\App\Http\Controllers\Dashboard\UserController::class, 'get'])
+        ->name('dashboard-user');
 
-        return Inertia::render('Dashboard/User', [
-            'ratings' => $user->ratings->map(function($rating) {
-                return array_merge(
-                    $rating->toArray(), [
-                        'verifiers' => $rating->verifiers ? $rating->verifiers->map(function($verifier) {
-                            return array_merge(
-                                $verifier->toArray(), [
-                                    'user' => $verifier->user->toArray()
-                                ]
-                            );
-                        }) : []
-                    ]
-                );
-            }),
-            'statistics' => [
-                'total' => count($user->ratings),
-                'active' => count($user->ratings)
-            ]
-        ]);
-    })->name('dashboard-user');
-
-    Route::get('dashboard/verifier', function () {
-
-        $verifier = array();
-
-        if (auth()->user()->verifiers) {
-            $verifier = auth()->user()->verifiers->first();
-        }
-
-        return Inertia::render('Dashboard/Verifier', [
-            'ratings' => auth()->user()->verifiers ? auth()->user()->verifiers->map(function($verifier) {
-                return $verifier->rating->toArray();
-            }) : [],
-            'rating' => $verifier ? array_merge(
-                $verifier->rating->toArray(), [
-                    'verifier' => $verifier->toArray(),
-                    'users' => $verifier->rating->users()->paginate(10)->through(function($user) {
-                        return $user->toArray();
-                    })
-                ]
-            ) : []
-        ]);
-
-    })->name('dashboard-verifier')->middleware('verifier');
+    Route::get('dashboard/verifier', [\App\Http\Controllers\Dashboard\VerifierController::class, 'get'])
+        ->name('dashboard-verifier')
+        ->middleware('verifier');
 
     Route::group(['prefix' => 'dashboard'], function() {
         Route::resource('submission', SubmissionController::class,
