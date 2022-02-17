@@ -35,7 +35,11 @@ class VerifierController extends Controller
                         return $user->toArray();
                     })
                 ]
-            ) : []
+            ) : [],
+            'statistics' => [
+                'total' => $verifier ? count($verifier->rating->users) : 0,
+                'last' => $verifier ? count($verifier->rating->users) : 0
+            ]
         ]);
     }
 

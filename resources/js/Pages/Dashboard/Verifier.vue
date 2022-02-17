@@ -21,11 +21,11 @@
 				            </div>
 				            <div class="col-span-8 sm:col-span-2">
 				            	<p class="text-sm text-gray-800">All participants</p>
-				            	<h3 class="text-lg">25</h3>
+				            	<h3 class="text-lg">{{ $page.props.statistics.total }}</h3>
 				            </div>
 				            <div class="col-span-8 sm:col-span-2">
 				                <p class="text-sm text-gray-800">Last</p>
-				            	<h3 class="text-lg">12</h3>
+				            	<h3 class="text-lg">{{ $page.props.statistics.last }}</h3>
 				            </div>
 				        </div>
 
@@ -44,7 +44,7 @@
 					            </tr>
 					          </thead>
 					          <tbody class="bg-white divide-y divide-gray-200">
-					            <tr class="flex flex-col md:table-row" v-for="user in $page.props.verifier.users.data">
+					            <tr class="flex flex-col md:table-row" v-for="user in $page.props.verifier.users.data" v-if="$page.props.verifier && $page.props.verifier.users">
 					              <td class="px-6 py-4 whitespace-nowrap">
 					                <div class="flex items-center">
 					                  <div class="flex-shrink-0 h-10 w-10">
@@ -74,7 +74,7 @@
 					        </table>
 
 					        <div class="flex justify-center items-center my-2">
-					            <breeze-pagination :links="$page.props.verifier.users.links" />
+					            <breeze-pagination :links="$page.props.verifier.users.links" v-if = "$page.props.verifier && $page.props.verifier.users"/>
 					        </div>
 					        <!-- /Table -->
 					    </div>
