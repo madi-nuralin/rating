@@ -33,6 +33,10 @@ class Verifier extends Model
     	return $this->belongsTo(ParameterTarget::class);
     }
 
+    public function verifications() {
+        return $this->hasMany(Verification::class);
+    }
+
     public function setUser(User $user) {
     	$this->user()->associate($user);
     }

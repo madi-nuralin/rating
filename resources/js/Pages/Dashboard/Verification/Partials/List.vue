@@ -38,7 +38,7 @@
                         </template>
 
                         <template #content>
-                            <div class="flex flex-between mt-4" 
+                            <div class="flex justify-between mt-4" 
                                 v-for="verification in target.verifications"
                                 v-if="Object.keys(target.verifications).length > 0">
                                 <div>
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <Link class="ml-2 text-sm text-gray-400 underline" :href="route('verification.show', {'id': verification.submission.id})">
+                                    <Link class="ml-2 text-sm text-gray-400 underline" :href="route('verification.show', {'id': verification.id})">
                                         Update
                                     </Link>
                                     <p class="ml-2 text-sm">

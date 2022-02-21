@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -28,7 +29,22 @@ class UserController extends Controller
             }),
             'statistics' => [
                 'total' => count($user->ratings),
-                'active' => count($user->ratings)
+                'submitting' => count(
+                    collect(
+                        $user->ratings()->where([
+                            ['submission_begin_time_at', '<=', DB::raw('current_timestamp()')],
+                            ['submission_end_time_at', '>', DB::raw('current_timestamp()')]
+                        ])->get()
+                    )
+                ),
+                'verifying' => count(
+                    collect(
+                        $user->ratings()->where([
+                            ['verification_begin_time_at', '<=', DB::raw('current_timestamp()')],
+                            ['verification_end_time_at', '>', DB::raw('current_timestamp()')]
+                        ])->get()
+                    )
+                )
             ]
         ]);
     }

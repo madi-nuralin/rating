@@ -31,8 +31,44 @@ class VerifierController extends Controller
             'verifier' => $verifier ? array_merge(
                 $verifier->toArray(), [
                     'rating' => $verifier->rating->toArray(),
-                    'users' => $verifier->rating->users()->paginate(10)->through(function($user) {
-                        return $user->toArray();
+                    'users' => $verifier->rating->users()->paginate(10)->through(function($user) use ($verifier) {
+                        return array_merge(
+                            $user->toArray(), [
+                                'employements' => $user->employements ? collect($user->employements()->whereNull('terminated_at')->get())->map(function($employement) {
+                                    return array_merge(
+                                        $employement->toArray(), [
+                                            'department' => $employement->department->toArray(),
+                                            'position' => $employement->position->toArray()
+                                        ]
+                                    );
+                                }) : [],
+                                'statistics' => [
+                                    'total' => count(
+                                        collect(
+                                            $verifier->verifications()
+                                                ->whereHas('submission', function($q) use ($user) {
+                                                    $q->where('user_id', $user->id);
+                                                })
+                                            ->get()
+                                        )
+                                    ),
+                                    'completed' => count(
+                                        collect(
+                                            $verifier->verifications()
+                                                ->whereHas('submission', function($q) use ($user) {
+                                                    $q->where('user_id', $user->id);
+                                                })
+                                                ->whereHas('verificationStatus', function($q) {
+                                                    $q->where('context', 'accepted')
+                                                        ->orWhere('context', 'fixed')
+                                                        ->orWhere('context', 'not_accepted');
+                                                })
+                                            ->get()
+                                        )
+                                    )
+                                ]
+                            ]
+                        );
                     })
                 ]
             ) : [],

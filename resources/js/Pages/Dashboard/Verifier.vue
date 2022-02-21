@@ -35,9 +35,8 @@
 					          <thead class="bg-gray-50">
 					            <tr class="flex flex-col md:table-row">
 					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
 					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
 					              <th scope="col" class="relative px-6 py-3">
 					                <span class="sr-only">Edit</span>
 					              </th>
@@ -57,15 +56,22 @@
 					                </div>
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
-					                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-					                <div class="text-sm text-gray-500">Optimization</div>
+					              	<div v-for="employement in user.employements" v-if="Object.keys(user.employements).length > 0">
+						                <div class="text-sm text-gray-900">{{ employement.position.name }}</div>
+						                <div class="text-sm text-gray-500">{{ employement.department.name }}</div>
+						            </div>
+						            <div class="text-sm text-gray-500" v-else>
+						            	Employement information is empty
+						            </div>
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
-					                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
+					              	<div class="flex items-center space-x-2">
+					                	<breeze-progress :color="'indigo'" :rounded="false" :percentage="user.statistics.completed/user.statistics.total * 100" />
+					                	<p class="text-sm text-gray-500">{{ user.statistics.completed}} / {{user.statistics.total }}</p>
+					                </div>
 					              </td>
-					              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
 					              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-					                <Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-indigo-600 hover:text-indigo-900">Visit</Link>
+					                <Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-indigo-600 hover:text-indigo-900 underline">Check</Link>
 					              </td>
 					            </tr>
 
@@ -96,6 +102,7 @@ import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import BreezeSelect from '@/Components/Select.vue'
 import BreezeAvatar from '@/Components/Avatar.vue'
+import BreezeProgress from '@/Components/Progress.vue'
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 export default {
@@ -110,6 +117,7 @@ export default {
         BreezeAvatar,
         BreezeLabel,
         BreezeSelect,
+        BreezeProgress,
         Link,
         Head,
     },

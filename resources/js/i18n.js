@@ -488,8 +488,8 @@ var messages = {
             title: 'List of ratings',
             statistics: {
               total: 'Total',
-              active: 'Active',
-              completed: 'Completed'
+              submitting: 'Active',
+              verifying: 'Verifying'
             }
           }
         },
@@ -540,6 +540,46 @@ var messages = {
           partials: {
             showVerifications: {
               trigger: 'List of verifications'
+            }
+          }
+        },
+        verification: {
+          head: {
+            title: 'Checking the evaluation sheet'
+          },
+          header: 'Checking the evaluation sheet',
+          create: {
+            //
+          },
+          update: {
+            title: 'Entry Confirmation',
+            description: 'You have been given access to review and approve the employee\'s evaluation sheet. Go through the records to confirm the assessment.',
+            form: {
+              //
+            },
+            actions: {
+              modal: {
+                title: 'Your decision',
+                footer: {
+                  cancelButton: 'Cancel',
+                  updateButton: 'Save'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Evaluation sheet',
+            description: 'Fill out the evaluation sheet before the end of the current rating period with materials',
+            form: {
+              score: '{score} points'
+            }
+          },
+          partials: {
+            showVerifications: {
+              trigger: 'List of confirmations'
+            },
+            showStatus: {
+              trigger: 'Your decision'
             }
           }
         }
@@ -1363,9 +1403,9 @@ var messages = {
           content: {
             title: 'Список рейтингов',
             statistics: {
-              total: 'Все',
-              active: 'Активные',
-              completed: 'Завершено'
+              total: 'Всего',
+              submitting: 'Активные',
+              verifying: 'На проверке'
             }
           }
         },
@@ -1416,6 +1456,46 @@ var messages = {
           partials: {
             showVerifications: {
               trigger: 'Список подтверждений'
+            }
+          }
+        },
+        verification: {
+          head: {
+            title: 'Проверка листа оценки'
+          },
+          header: 'Проверка листа оценки',
+          create: {
+            //
+          },
+          update: {
+            title: 'Подтверждение записи',
+            description: 'Вам предаставлено доступ для проверки и подтверждения листа оценки сотрудника. Переходите по записям для подтверждения оценки.',
+            form: {
+              //
+            },
+            actions: {
+              modal: {
+                title: 'Ваше решение',
+                footer: {
+                  cancelButton: 'Отмена',
+                  updateButton: 'Сохранить'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Лист оценки',
+            description: 'Заполните оценочный лист до окончания текущего срока рейтинга с материалами',
+            form: {
+              score: '{score} баллов'
+            }
+          },
+          partials: {
+            showVerifications: {
+              trigger: 'Список подтверждений'
+            },
+            showStatus: {
+              trigger: 'Ваше решение'
             }
           }
         }

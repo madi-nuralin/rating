@@ -43,14 +43,17 @@ class VerificationController extends Controller
                         })->get())->map(function($parameterTarget) use ($rating, $user, $verifier) {
                         return array_merge(
                             $parameterTarget->toArray(), [
-                                'verifications' => collect(Verification::where([
-                                    ['verifier_id', '=', $verifier->id]
-                                ])->get())->map(function($verifier) use ($rating, $user, $parameterTarget) {
+                                'verifications' => collect(
+                                    Verification::where([
+                                        ['verifier_id', '=', $verifier->id]
+                                    ])->whereHas('submission', function($q) use ($user) {
+                                        $q->where('user_id', $user->id);
+                                    })->get())->map(function($verification) use ($rating, $parameterTarget) {
 
-                                    $submission = $verifier->submission;
+                                    $submission = $verification->submission;
 
                                     return array_merge(
-                                        $verifier->toArray(), [//
+                                        $verification->toArray(), [//
                                             'submission' => array_merge(
                                                 $submission->toArray(), [
                                                     'parameter' => $submission->parameter->toArray(),
@@ -75,7 +78,8 @@ class VerificationController extends Controller
                                                         );
                                                     })
                                                 ]
-                                            )
+                                            ),
+                                            'verification_status' => $verification->verificationStatus->toArray()
                                         ]//
                                     );
                                 })
@@ -124,7 +128,66 @@ class VerificationController extends Controller
      */
     public function show($id)
     {
-        //
+        $verification = Verification::findOrFail($id);
+        $submission = $verification->submission;
+        $parameter = $submission->parameter;
+        $form = $parameter->activeForm;
+        $verifications = $submission->verifications;
+
+        return Inertia::render('Dashboard/Verification/Show', [
+            'verification' => array_merge(
+                $verification->toArray(), [
+                    'submission' => array_merge(
+                        $submission->toArray(), [
+                            'rating' => $submission->toArray(),
+                            'parameter' => array_merge(
+                                $parameter->toArray(), [
+                                    'target' => $parameter->parameterTarget->toArray(),
+                                    'form' => $form ?
+                                        array_merge(
+                                            $form->toArray(), [
+                                                'fields' => $form->fields ?
+                                                            $form->fields->map(function($field) use ($submission) {
+                                                    return array_merge(
+                                                        $field->toArray(), [
+                                                            'options' => $field->options ?
+                                                                         $field->options->map(function($option) use ($submission) {
+                                                                return $option->toArray();
+                                                            }) : [],
+                                                            'responce' => $submission->formFieldResponces()
+                                                                                     ->where('form_field_id', $field->id)
+                                                                                     ->first() ?
+                                                                          $submission->formFieldResponces()
+                                                                                     ->where('form_field_id', $field->id)
+                                                                                     ->first()->toArray() : []
+                                                        ]
+                                                    );
+                                                }) : []
+                                            ]
+                                        ) : []
+                                ]
+                            ),
+                            'verifications' => $verifications ? $verifications->map(function($verification) {
+                                return array_merge(
+                                    $verification->toArray(), [
+                                        'verifier' => array_merge(
+                                            $verification->verifier->toArray(), [
+                                                'user' => $verification->verifier->user->toArray()
+                                            ]
+                                        ),
+                                        'verification_status' => $verification->verificationStatus->toArray()
+                                    ]
+                                );
+                            }) : []
+                        ]
+                    ),
+                    'verification_status' => $verification->verificationStatus->toArray()
+                ]
+            ),
+            'verification_statuses' => VerificationStatus::all()->map(function($verificationStatus) {
+                return $verificationStatus->toArray();
+            })
+        ]);
     }
 
     /**
@@ -147,7 +210,20 @@ class VerificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        Validator::make($input, [
+            'verification_status' => ['required', 'numeric']
+        ])->validateWithBag('updateVerification');
+
+        $verificationStatus = VerificationStatus::findOrFail($input['verification_status']);
+        $verification = Verification::findOrFail($id);
+        $verification->setVerificationStatus($verificationStatus);
+        $verification->save();
+
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'verification-updated');
     }
 
     /**

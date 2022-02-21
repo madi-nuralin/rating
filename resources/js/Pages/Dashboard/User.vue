@@ -11,38 +11,9 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <section class="px-0 _md:px-6 _py-6">
-                   <div class="bg-blue-600 text-white shadow-md _border-blue-700 px-3 py-6 md:py-3 mx-6 md:mx-0 mb-6 last:mb-0 border rounded-lg transition-colors duration-150">
-                      <div class="justify-between items-center block md:flex">
-                         <div class="flex shrink-0 grow-0 items-center justify-center mb-6 md:mb-0">
-                            <div class="flex flex-col md:flex-row items-center">
-                               <span class="inline-flex justify-center items-center w-10 md:w-5 h-10 md:h-5 md:mr-2">
-                                  <svg viewBox="0 0 24 24" width="24" height="24" class="inline-block">
-                                     <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"></path>
-                                  </svg>
-                               </span>
-                               <span class="text-center md:text-left"> Read manual on <a href="." class="underline" target="_blank">GitHub</a></span>
-                            </div>
-                         </div>
-                         <div class="flex shrink-0 grow-0 items-center justify-center">
-                            <a class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-1 bg-white text-black border-gray-300 hover:bg-gray-50" href="https://github.com/justboil/admin-one-vue-tailwind" target="_blank" disabled="false">
-                               <span class="inline-flex justify-center items-center w-6 h-6">
-                                  <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                     <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"></path>
-                                  </svg>
-                               </span>
-                               <span class="px-1">GitHub</span>
-                            </a>
-                         </div>
-                      </div>
-                   </div>
 
                    <section class="px-6 sm:px-0 mb-6 flex items-center justify-between">
                       <div class="flex items-center justify-start">
-                         <span class="inline-flex justify-center items-center w-6 h-6 mr-3">
-                            <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                               <path fill="currentColor" d="M11,2V22C5.9,21.5 2,17.2 2,12C2,6.8 5.9,2.5 11,2M13,2V11H22C21.5,6.2 17.8,2.5 13,2M13,13V22C17.7,21.5 21.5,17.8 22,13H13Z"></path>
-                            </svg>
-                         </span>
                          <h1 class="text-2xl">{{ translate[0]('content.title') }}</h1>
                       </div>
                       <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-1 bg-white text-black border-gray-300 hover:bg-gray-50" type="button">
@@ -56,31 +27,9 @@
                    </section>
 
                    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
-                      <div class="md:rounded border-gray-100 dark:bg-gray-900/70 bg-white border dark:border-gray-800">
+                      <div class="shadow md:rounded-lg border-gray-100 dark:bg-gray-900/70 bg-white border dark:border-gray-800">
                          <!---->
                          <div class="p-6">
-                            <div class="justify-between items-center flex mb-3">
-                               <div class="flex shrink-0 grow-0 items-center justify-center">
-                                  <div class="inline-flex items-center last:mr-0 capitalize border py-0.5 px-2 text-xs rounded-lg mr-1.5 bg-emerald-600 text-white border-emerald-700">
-                                     <span class="inline-flex justify-center items-center w-4 h-4 mr-2">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                           <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"></path>
-                                        </svg>
-                                     </span>
-                                     <span>12%</span>
-                                  </div>
-                               </div>
-                               <div class="flex shrink-0 grow-0 items-center justify-center">
-                                  <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-1 bg-gray-100 text-black border-gray-200 dark:border-gray-400 hover:bg-gray-200" type="button" icon-w="w-4" icon-h="h-4">
-                                     <span class="inline-flex justify-center items-center w-6 h-6">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                           <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path>
-                                        </svg>
-                                     </span>
-                                     <!---->
-                                  </button>
-                               </div>
-                            </div>
                             <div class="justify-between items-center flex">
                                <div class="flex shrink-0 grow-0 items-center justify-center">
                                   <div>
@@ -100,37 +49,15 @@
                             </div>
                          </div>
                       </div>
-                      <div class="md:rounded border-gray-100 dark:bg-gray-900/70 bg-white border dark:border-gray-800">
+                      <div class="shadow md:rounded-lg border-gray-100 dark:bg-gray-900/70 bg-white border dark:border-gray-800">
                          <!---->
                          <div class="p-6">
-                            <div class="justify-between items-center flex mb-3">
-                               <div class="flex shrink-0 grow-0 items-center justify-center">
-                                  <div class="inline-flex items-center last:mr-0 capitalize border py-0.5 px-2 text-xs rounded-lg mr-1.5 bg-red-600 text-white border-red-700">
-                                     <span class="inline-flex justify-center items-center w-4 h-4 mr-2">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                           <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path>
-                                        </svg>
-                                     </span>
-                                     <span>12%</span>
-                                  </div>
-                               </div>
-                               <div class="flex shrink-0 grow-0 items-center justify-center">
-                                  <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-1 bg-gray-100 text-black border-gray-200 dark:border-gray-400 hover:bg-gray-200" type="button" icon-w="w-4" icon-h="h-4">
-                                     <span class="inline-flex justify-center items-center w-6 h-6">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                           <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path>
-                                        </svg>
-                                     </span>
-                                     <!---->
-                                  </button>
-                               </div>
-                            </div>
                             <div class="justify-between items-center flex">
                                <div class="flex shrink-0 grow-0 items-center justify-center">
                                   <div>
-                                     <h3 class="text-lg leading-tight text-gray-500 dark:text-gray-400">{{ translate[0]('content.statistics.active') }}</h3>
+                                     <h3 class="text-lg leading-tight text-gray-500 dark:text-gray-400">{{ translate[0]('content.statistics.submitting') }}</h3>
                                      <h1 class="text-3xl leading-tight font-semibold">
-                                        <div>{{ $page.props.statistics.active }}</div>
+                                        <div>{{ $page.props.statistics.submitting }}</div>
                                      </h1>
                                   </div>
                                </div>
@@ -144,37 +71,15 @@
                             </div>
                          </div>
                       </div>
-                      <div class="md:rounded border-gray-100 dark:bg-gray-900/70 bg-white border dark:border-gray-800">
+                      <div class="shadow md:rounded-lg border-gray-100 dark:bg-gray-900/70 bg-white border dark:border-gray-800">
                          <!---->
                          <div class="p-6">
-                            <div class="justify-between items-center flex mb-3">
-                               <div class="flex shrink-0 grow-0 items-center justify-center">
-                                  <div class="inline-flex items-center last:mr-0 capitalize border py-0.5 px-2 text-xs rounded-lg mr-1.5 bg-yellow-600 text-white border-yellow-700">
-                                     <span class="inline-flex justify-center items-center w-4 h-4 mr-2">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                           <path fill="currentColor" d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z"></path>
-                                        </svg>
-                                     </span>
-                                     <span>Overflow</span>
-                                  </div>
-                               </div>
-                               <div class="flex shrink-0 grow-0 items-center justify-center">
-                                  <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-1 bg-gray-100 text-black border-gray-200 dark:border-gray-400 hover:bg-gray-200" type="button" icon-w="w-4" icon-h="h-4">
-                                     <span class="inline-flex justify-center items-center w-6 h-6">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
-                                           <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path>
-                                        </svg>
-                                     </span>
-                                     <!---->
-                                  </button>
-                               </div>
-                            </div>
                             <div class="justify-between items-center flex">
                                <div class="flex shrink-0 grow-0 items-center justify-center">
                                   <div>
-                                     <h3 class="text-lg leading-tight text-gray-500 dark:text-gray-400">{{ translate[0]('content.statistics.completed') }}</h3>
+                                     <h3 class="text-lg leading-tight text-gray-500 dark:text-gray-400">{{ translate[0]('content.statistics.verifying') }}</h3>
                                      <h1 class="text-3xl leading-tight font-semibold">
-                                        <div>256%</div>
+                                        <div>{{ $page.props.statistics.verifying }}</div>
                                      </h1>
                                   </div>
                                </div>
