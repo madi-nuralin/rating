@@ -220,7 +220,7 @@
             BreezeFile,
             ShowScoringBoard,
             //ShowVerifications
-            ShowStatus
+            ShowStatus,
         },
 
         props: ['verification', 'verificationStatuses', 'translate'],

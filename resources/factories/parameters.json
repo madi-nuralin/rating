@@ -6714,5 +6714,2508 @@
                 ]
             }
         ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Informative post on social networks with an active link to the IITU website - www.iitu.edu.kz or Instagram page @iitu_kz",
+            "description":"Informative post on social networks with an active link to the IITU website - www.iitu.edu.kz or Instagram page @iitu_kz"
+        },
+        "ru":{
+            "name":"Информативный пост в социальных сетях с активной ссылкой на сайт МУИТ – www.iitu.edu.kz или Instagram страницу @iitu_kz",
+            "description":"Информативный пост в социальных сетях с активной ссылкой на сайт МУИТ – www.iitu.edu.kz или Instagram страницу @iitu_kz"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":30,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link, coordinated with the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Ссылка, согласованные с департаментом маркетинга и PR"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material, coordinated with the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Копия материала, coordinated with the marketing and PR department"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":0.2,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link, coordinated with the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Ссылка, согласованные с департаментом маркетинга и PR"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material, coordinated with the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Копия материала, согласованные с департаментом маркетинга и PR"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Speeches of foreign partners, graduates, students about IITU in the media and online resources",
+            "description":"Speeches of foreign partners, graduates, students about IITU in the media and online resources"
+        },
+        "ru":{
+            "name":"Выступления зарубежных партнеров, выпускников, студентов о МУИТ в СМИ и интернет-ресурсах",
+            "description":"Выступления зарубежных партнеров, выпускников, студентов о МУИТ в СМИ и интернет-ресурсах"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":2,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link"
+                        },
+                        "ru":{
+                            "label":"Ссылка"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material"
+                        },
+                        "ru":{
+                            "label":"Копия материала"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Speeches of foreign partners, graduates, students about IITU on the website and accounts of the university",
+            "description":"Speeches of foreign partners, graduates, students about IITU on the website and accounts of the university"
+        },
+        "ru":{
+            "name":"Выступления зарубежных партнеров, выпускников, студентов о МУИТ на сайте и аккаунтах университета",
+            "description":"Выступления зарубежных партнеров, выпускников, студентов о МУИТ на сайте и аккаунтах университета"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":1,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link"
+                        },
+                        "ru":{
+                            "label":"Ссылка"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material"
+                        },
+                        "ru":{
+                            "label":"Копия материала"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Speeches of foreign partners, graduates, students about IITU - a post on social networks with an active link to the IITU website - www.iitu.edu.kz",
+            "description":"Speeches of foreign partners, graduates, students about IITU - a post on social networks with an active link to the IITU website - www.iitu.edu.kz"
+        },
+        "ru":{
+            "name":"Выступления зарубежных партнеров, выпускников, студентов о МУИТ - пост в социальных сетях с активной ссылкой на сайт МУИТ – www.iitu.edu.kz",
+            "description":"Выступления зарубежных партнеров, выпускников, студентов о МУИТ - пост в социальных сетях с активной ссылкой на сайт МУИТ – www.iitu.edu.kz"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":2,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link"
+                        },
+                        "ru":{
+                            "label":"Ссылка"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material"
+                        },
+                        "ru":{
+                            "label":"Копия материала"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Published news on the university website - university level",
+            "description":"Published news on the university website - university level"
+        },
+        "ru":{
+            "name":"Опубликованные новости на сайте университета - университетского уровня",
+            "description":"Опубликованные новости на сайте университета - университетского уровня"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":2,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link"
+                        },
+                        "ru":{
+                            "label":"Ссылка"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material"
+                        },
+                        "ru":{
+                            "label":"Копия материала"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Published news on the website of the university - departmental level",
+            "description":"Published news on the website of the university - departmental level"
+        },
+        "ru":{
+            "name":"Опубликованные новости на сайте университета - кафедрального уровня",
+            "description":"Опубликованные новости на сайте университета - кафедрального уровня"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":2,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link"
+                        },
+                        "ru":{
+                            "label":"Ссылка"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material"
+                        },
+                        "ru":{
+                            "label":"Копия материала"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Content Manager of the Department of Web Resources of the University",
+            "description":"Content Manager of the Department of Web Resources of the University"
+        },
+        "ru":{
+            "name":"Контент-менеджер кафедры веб ресурсов университета",
+            "description":"Контент-менеджер кафедры веб ресурсов университета"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":10,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Help from the marketing and PR department with a content manager report"
+                        },
+                        "ru":{
+                            "label":"Справка от департамента маркетинга и PR с отчетом контент-менеджера"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Participation in the preparation and conduct of extracurricular activities",
+            "description":"Participation in the preparation and conduct of extracurricular activities"
+        },
+        "ru":{
+            "name":"Участие в подготовке и проведении внеучебных мероприятий",
+            "description":"Участие в подготовке и проведении внеучебных мероприятий"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"s",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Role in activities"
+                        },
+                        "ru":{
+                            "label":"Роль в мероприятий"
+                        },
+                        "type":"select",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true
+                        },
+                        "variable":"s",
+                        "options":[
+                            {
+                                "en":{
+                                    "name":"Responsible person",
+                                    "description":"Responsible person"
+                                },
+                                "ru":{
+                                    "name":"Ответственное лицо",
+                                    "description":"Ответственное лицо"
+                                },
+                                "score":3
+                            },
+                            {
+                                "en":{
+                                    "name":"Participant",
+                                    "description":"Participant"
+                                },
+                                "ru":{
+                                    "name":"Участник",
+                                    "description":"Участник"
+                                },
+                                "score":1
+                            }
+                        ]
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of the order / order of the management"
+                        },
+                        "ru":{
+                            "label":"Копия приказа/распоряжения руководства"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Edition of the university student magazine \"Mag`n`IT\"",
+            "description":"Edition of the university student magazine \"Mag`n`IT\""
+        },
+        "ru":{
+            "name":"Издание университетского студенческого журнала «Маg`n`IT»",
+            "description":"Издание университетского студенческого журнала «Маg`n`IT»"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":50,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Placement on the site, printed version for the library and university"
+                        },
+                        "ru":{
+                            "label":"Размещение на сайте, печатная версия для библиотеки и университета"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"TV stories of students about the university under the guidance of a teacher",
+            "description":"TV stories of students about the university under the guidance of a teacher"
+        },
+        "ru":{
+            "name":"ТВ сюжеты студентов об университете под руководством преподавателя",
+            "description":"ТВ сюжеты студентов об университете под руководством преподавателя"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":10,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link to the story in youtube and on the website of the faculty, in personal social networks"
+                        },
+                        "ru":{
+                            "label":"Ссылка на сюжет в youtube и на сайте факультета, в личных социальных сетях"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":4,
+        "en":{
+            "name":"Publication of materials of students, made under the guidance of a teacher, in the media, social networks with a link to the official page of the university in Instagram @iitu_kz, department",
+            "description":"Publication of materials of students, made under the guidance of a teacher, in the media, social networks with a link to the official page of the university in Instagram @iitu_kz, department"
+        },
+        "ru":{
+            "name":"Публикация материалов студентов, выполненных под руководством преподавателя, в СМИ, социальных сетях со ссылкой на официальную страницу университета в Instagram @iitu_kz, кафедры",
+            "description":"Публикация материалов студентов, выполненных под руководством преподавателя, в СМИ, социальных сетях со ссылкой на официальную страницу университета в Instagram @iitu_kz, кафедры"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":10,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Link, coordinated with the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Ссылка, согласованные с Департаментом маркетинга и PR"
+                        },
+                        "type":"url",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "url":true
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of material, coordinated with the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Копия материала, согласованные с Департаментом маркетинга и PR"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Obtained the academic title of professor",
+            "description":"Obtained the academic title of professor"
+        },
+        "ru":{
+            "name":"Получено ученое звание профессора",
+            "description":"Получено ученое звание профессора"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":150,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Аттестат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Received the academic title of Associate Professor (Associate Professor)",
+            "description":"Received the academic title of Associate Professor (Associate Professor)"
+        },
+        "ru":{
+            "name":"Получено ученое звание ассоциированного профессора (доцента)",
+            "description":"Получено ученое звание ассоциированного профессора (доцента)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":100,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Аттестат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Received a title in the field of sports, arts",
+            "description":"Received a title in the field of sports, arts"
+        },
+        "ru":{
+            "name":"Получено звание в области спорта, искусства",
+            "description":"Получено звание в области спорта, искусства"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":50,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Аттестат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"The state grant \"The best teacher of the university\" was won",
+            "description":"The state grant \"The best teacher of the university\" was won"
+        },
+        "ru":{
+            "name":"Выигран государственный грант «Лучший преподаватель вуза»",
+            "description":"Выигран государственный грант «Лучший преподаватель вуза»"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":50,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Passing a scientific internship or advanced training abroad offline",
+            "description":"Passing a scientific internship or advanced training abroad offline"
+        },
+        "ru":{
+            "name":"Прохождение научной стажировки или повышение квалификации за рубежом оффлайн",
+            "description":"Прохождение научной стажировки или повышение квалификации за рубежом оффлайн"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":30,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":40,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Advanced training in the taught disciplines, including on the basis of MOOCs (at least 72 academic hours)",
+            "description":"Advanced training in the taught disciplines, including on the basis of MOOCs (at least 72 academic hours)"
+        },
+        "ru":{
+            "name":"Повышение квалификации по преподаваемым дисциплинам, в том числе на базе МООК (не менее 72 академических часа)",
+            "description":"Повышение квалификации по преподаваемым дисциплинам, в том числе на базе МООК (не менее 72 академических часа)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":5,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Advanced training based on the international platform Coursera (объем курса не менее 5 кредитов)",
+            "description":"Advanced training based on the international platform Coursera (объем курса не менее 5 кредитов)"
+        },
+        "ru":{
+            "name":"Повышение квалификации на базе международной платформы Coursera (объем курса не менее 5 кредитов)",
+            "description":"Повышение квалификации на базе международной платформы Coursera (объем курса не менее 5 кредитов)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":5,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":7,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Teaching courses for external students",
+            "description":"Teaching courses for external students"
+        },
+        "ru":{
+            "name":"Преподавание курсов для внешних слушателей ",
+            "description":"Преподавание курсов для внешних слушателей "
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"20/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-developers"
+                        },
+                        "ru":{
+                            "label":"Количество соразработчиков"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Help from the SMART Learning Center"
+                        },
+                        "ru":{
+                            "label":"Справка от центра SMART-обучения"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Obtaining and updating qualification certificates from vendors",
+            "description":"Obtaining and updating qualification certificates from vendors"
+        },
+        "ru":{
+            "name":"Получение и обновление квалификационных сертификатов от вендоров",
+            "description":"Получение и обновление квалификационных сертификатов от вендоров"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":10,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":30,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Certificate (copy)"
+                        },
+                        "ru":{
+                            "label":"Сертификат (копия)"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":5,
+        "en":{
+            "name":"Continuous scientific and pedagogical experience at JSC IITU (За каждые 2 учебных года)",
+            "description":"Continuous scientific and pedagogical experience at JSC IITU (За каждые 2 учебных года)"
+        },
+        "ru":{
+            "name":"Непрерывный научно-педагогический стаж в АО МУИТ (За каждые 2 учебных года)",
+            "description":"Непрерывный научно-педагогический стаж в АО МУИТ (За каждые 2 учебных года)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"floor(n/2)",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Experience (year)"
+                        },
+                        "ru":{
+                            "label":"Стаж (год)"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Help from DUPiD"
+                        },
+                        "ru":{
+                            "label":"Справка от ДУПиД"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Possession of a valid English language proficiency certificate (IELTS, TOEFL, Duolingo)",
+            "description":"Possession of a valid English language proficiency certificate (IELTS, TOEFL, Duolingo)"
+        },
+        "ru":{
+            "name":"Наличие действующего сертификата о владении английским языком (IELTS, TOEFL, Duolingo)",
+            "description":"Наличие действующего сертификата о владении английским языком (IELTS, TOEFL, Duolingo)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"s",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"IELTS scores"
+                        },
+                        "ru":{
+                            "label":"Баллы IELTS"
+                        },
+                        "type":"select",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true
+                        },
+                        "variable":"s",
+                        "options":[
+                            {
+                                "en":{
+                                    "name":"IELTS 6.5 and above",
+                                    "description":"IELTS 6.5 and above (according to the IELTS correspondence table)"
+                                },
+                                "ru":{
+                                    "name":"IETLS 6.5 и более",
+                                    "description":"IETLS 6.5 и более (согласно таблице соответствия IETLS)"
+                                },
+                                "score":10
+                            },
+                            {
+                                "en":{
+                                    "name":"IETLS 6.0",
+                                    "description":"IETLS 6.0 (according to the IELTS correspondence table)"
+                                },
+                                "ru":{
+                                    "name":"IETLS 6.0",
+                                    "description":"IETLS 6.0 (согласно таблице соответствия IETLS)"
+                                },
+                                "score":8
+                            }
+                        ]
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of certificate"
+                        },
+                        "ru":{
+                            "label":"Копия сертификата"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Development of an educational program included in the QS Subject rating in the areas of training",
+            "description":"Development of an educational program included in the QS Subject rating in the areas of training"
+        },
+        "ru":{
+            "name":"Разработка образовательной программы, вошедшей в рейтинг QS Subject по направлениям подготовки",
+            "description":"Разработка образовательной программы, вошедшей в рейтинг QS Subject по направлениям подготовки"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"10/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-developers"
+                        },
+                        "ru":{
+                            "label":"Количество соразработчиков"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Screenshot from topuniversities.com showing the place in the QS ranking"
+                        },
+                        "ru":{
+                            "label":"Скрин с сайта topuniversities.com с указанием места в рейтинге QS "
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"A copy of the passport of the OP indicating the developer"
+                        },
+                        "ru":{
+                            "label":"Копия паспорта ОП с указанием разработчика "
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"100/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-developers"
+                        },
+                        "ru":{
+                            "label":"Количество соразработчиков"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Screenshot from topuniversities.com showing the place in the QS ranking"
+                        },
+                        "ru":{
+                            "label":"Скрин с сайта topuniversities.com с указанием места в рейтинге QS "
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"A copy of the passport of the OP indicating the developer"
+                        },
+                        "ru":{
+                            "label":"Копия паспорта ОП с указанием разработчика "
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Course for foreign students within the framework of summer (winter) schools (на англ. яз.)",
+            "description":"Course for foreign students within the framework of summer (winter) schools (на англ. яз.)"
+        },
+        "ru":{
+            "name":"Курс для иностранных слушателей в рамках летних (зимних) школ (на англ. яз.)",
+            "description":"Курс для иностранных слушателей в рамках летних (зимних) школ (на англ. яз.)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":5,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Copy of approved syllabus"
+                        },
+                        "ru":{
+                            "label":"Копия утвержденного силлабуса"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":20,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Copy of approved syllabus"
+                        },
+                        "ru":{
+                            "label":"Копия утвержденного силлабуса"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Database of provided academic experts by specialties - foreign",
+            "description":"Database of provided academic experts by specialties - foreign"
+        },
+        "ru":{
+            "name":"База данных предоставленных академических экспертов по специальностям - зарубежные",
+            "description":"База данных предоставленных академических экспертов по специальностям - зарубежные"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":3,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Confirmation screen about passing the questionnaire from an expert"
+                        },
+                        "ru":{
+                            "label":"Подтверждающий скрин о прохождении опросника от эксперта"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"n*5",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of experts"
+                        },
+                        "ru":{
+                            "label":"Количество экспертов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Confirmation screen about passing the questionnaire from an expert"
+                        },
+                        "ru":{
+                            "label":"Подтверждающий скрин о прохождении опросника от эксперта"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Database of provided academic experts by specialties - CIS countries",
+            "description":"Database of provided academic experts by specialties - CIS countries"
+        },
+        "ru":{
+            "name":"База данных предоставленных академических экспертов по специальностям - страны СНГ",
+            "description":"База данных предоставленных академических экспертов по специальностям - страны СНГ"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":2,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Confirmation screen about passing the questionnaire from an expert"
+                        },
+                        "ru":{
+                            "label":"Подтверждающий скрин о прохождении опросника от эксперта"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"n*3",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of experts"
+                        },
+                        "ru":{
+                            "label":"Количество экспертов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Confirmation screen about passing the questionnaire from an expert"
+                        },
+                        "ru":{
+                            "label":"Подтверждающий скрин о прохождении опросника от эксперта"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Database of provided academic experts by specialties - Kazakh",
+            "description":"Database of provided academic experts by specialties - Kazakh"
+        },
+        "ru":{
+            "name":"База данных предоставленных академических экспертов по специальностям - казахстанские",
+            "description":"База данных предоставленных академических экспертов по специальностям - казахстанские"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":1,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Confirmation screen about passing the questionnaire from an expert"
+                        },
+                        "ru":{
+                            "label":"Подтверждающий скрин о прохождении опросника от эксперта"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"n*2",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of experts"
+                        },
+                        "ru":{
+                            "label":"Количество экспертов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Confirmation screen about passing the questionnaire from an expert"
+                        },
+                        "ru":{
+                            "label":"Подтверждающий скрин о прохождении опросника от эксперта"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Position of the educational program in the QS ranking by areas (directions)",
+            "description":"Position of the educational program in the QS ranking by areas (directions)"
+        },
+        "ru":{
+            "name":"Позиция образовательной программы в рейтинге QS по областям (направлениям)",
+            "description":"Позиция образовательной программы в рейтинге QS по областям (направлениям)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"s",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Position"
+                        },
+                        "ru":{
+                            "label":"Позиция"
+                        },
+                        "type":"select",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true
+                        },
+                        "variable":"s",
+                        "options":[
+                            {
+                                "en":{
+                                    "name":"800 or more",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"800 и более",
+                                    "description":""
+                                },
+                                "score":5
+                            },
+                            {
+                                "en":{
+                                    "name":"700 – 799",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"700 – 799",
+                                    "description":""
+                                },
+                                "score":10
+                            },
+                            {
+                                "en":{
+                                    "name":"600 – 699",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"600 – 699",
+                                    "description":""
+                                },
+                                "score":15
+                            },
+                            {
+                                "en":{
+                                    "name":"500 – 599",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"500 – 599",
+                                    "description":""
+                                },
+                                "score":20
+                            },
+                            {
+                                "en":{
+                                    "name":"400 – 499",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"400 – 499",
+                                    "description":""
+                                },
+                                "score":25
+                            }
+                        ]
+                    },
+                    {
+                        "en":{
+                            "label":"Screenshot from topuniversities.com showing the place in the QS ranking"
+                        },
+                        "ru":{
+                            "label":"Скрин с сайта topuniversities.com с указанием места в рейтинге QS "
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"A copy of the passport of the OP indicating the developer"
+                        },
+                        "ru":{
+                            "label":"Копия паспорта ОП с указанием разработчика"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"s/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of co-developers"
+                        },
+                        "ru":{
+                            "label":"Количество соразработчиков"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":1
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Position"
+                        },
+                        "ru":{
+                            "label":"Позиция"
+                        },
+                        "type":"select",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true
+                        },
+                        "variable":"s",
+                        "options":[
+                            {
+                                "en":{
+                                    "name":"800 or more",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"800 и более",
+                                    "description":""
+                                },
+                                "score":20
+                            },
+                            {
+                                "en":{
+                                    "name":"700 – 799",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"700 – 799",
+                                    "description":""
+                                },
+                                "score":40
+                            },
+                            {
+                                "en":{
+                                    "name":"600 – 699",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"600 – 699",
+                                    "description":""
+                                },
+                                "score":60
+                            },
+                            {
+                                "en":{
+                                    "name":"500 – 599",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"500 – 599",
+                                    "description":""
+                                },
+                                "score":80
+                            },
+                            {
+                                "en":{
+                                    "name":"400 – 499",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"400 – 499",
+                                    "description":""
+                                },
+                                "score":100
+                            }
+                        ]
+                    },
+                    {
+                        "en":{
+                            "label":"Screenshot from topuniversities.com showing the place in the QS ranking"
+                        },
+                        "ru":{
+                            "label":"Скрин с сайта topuniversities.com с указанием места в рейтинге QS "
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf,jpg,jpeg"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"A copy of the passport of the OP indicating the developer"
+                        },
+                        "ru":{
+                            "label":"Копия паспорта ОП с указанием разработчика"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Participation in international projects (under the Erasmus + program, etc.)",
+            "description":"Participation in international projects (under the Erasmus + program, etc.)"
+        },
+        "ru":{
+            "name":"Участие в международных проектах (по программе Erasmus+ и др.)",
+            "description":"Участие в международных проектах (по программе Erasmus+ и др.)"
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"s",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Role in the project"
+                        },
+                        "ru":{
+                            "label":"Роль в проекте"
+                        },
+                        "type":"select",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true
+                        },
+                        "variable":"s",
+                        "options":[
+                            {
+                                "en":{
+                                    "name":"Project coordinator",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"Координатор проекта",
+                                    "description":""
+                                },
+                                "score":75
+                            },
+                            {
+                                "en":{
+                                    "name":"Project participant",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"Участник проекта",
+                                    "description":""
+                                },
+                                "score":25
+                            }
+                        ]
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of the contract"
+                        },
+                        "ru":{
+                            "label":"Копия договора"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    },
+                    {
+                        "en":{
+                            "label":"Copy of staffing"
+                        },
+                        "ru":{
+                            "label":"Копия штатного расписания"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":6,
+        "en":{
+            "name":"Foreign applicants",
+            "description":""
+        },
+        "ru":{
+            "name":"Иностранные абитуриенты",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"50*n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of attracted students"
+                        },
+                        "ru":{
+                            "label":"Количество привлеченных студентов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Help with DMSiAM"
+                        },
+                        "ru":{
+                            "label":"Справка с ДМСиАМ"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":7,
+        "en":{
+            "name":"Organization and holding of subject Olympiads",
+            "description":""
+        },
+        "ru":{
+            "name":"Организация и проведение предметных олимпиад",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"20/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of organizers"
+                        },
+                        "ru":{
+                            "label":"Количество организаторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Help from the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Справка с департамента маркетинга и PR"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":7,
+        "en":{
+            "name":"Preparation of exam questions for entrance exams (including creative ones)",
+            "description":""
+        },
+        "ru":{
+            "name":"Подготовка экзаменационных вопросов для вступительных экзаменов (творческие в том числе)",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"20/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of organizers"
+                        },
+                        "ru":{
+                            "label":"Количество организаторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Help from the admissions office"
+                        },
+                        "ru":{
+                            "label":"Справка с приемной комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":7,
+        "en":{
+            "name":"Participation in the appeal and examination commission for the admission of applicants",
+            "description":""
+        },
+        "ru":{
+            "name":"Участие в апелляционной и экзаменационной комиссии по приему абитуриентов",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"20/n",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Number of organizers"
+                        },
+                        "ru":{
+                            "label":"Количество организаторов"
+                        },
+                        "type":"number",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "is_integer":true,
+                            "min_size":0
+                        },
+                        "variable":"n"
+                    },
+                    {
+                        "en":{
+                            "label":"Help from the admissions office"
+                        },
+                        "ru":{
+                            "label":"Справка с приемной комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":7,
+        "en":{
+            "name":"Participation in the work of the selection committee",
+            "description":""
+        },
+        "ru":{
+            "name":"Участие в работе приемной комиссии",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_constant",
+                "score":5,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Help from the admissions office"
+                        },
+                        "ru":{
+                            "label":"Справка с приемной комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            },
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":10,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Help from the admissions office"
+                        },
+                        "ru":{
+                            "label":"Справка с приемной комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":7,
+        "en":{
+            "name":"Participation in the preparation and holding of the \"Doors Open Day\"",
+            "description":""
+        },
+        "ru":{
+            "name":"Участие в подготовке и проведении «День открытых дверей»",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2021",
+                    "description":"Form 2021 version"
+                },
+                "ru":{
+                    "name":"Форма 2021",
+                    "description":"Форма версии 2021 года"
+                },
+                "scoring":"by_math_expression",
+                "math_expression":"s",
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Role"
+                        },
+                        "ru":{
+                            "label":"Роль"
+                        },
+                        "type":"select",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true
+                        },
+                        "variable":"s",
+                        "options":[
+                            {
+                                "en":{
+                                    "name":"Responsible person",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"Ответственное лицо",
+                                    "description":""
+                                },
+                                "score":3
+                            },
+                            {
+                                "en":{
+                                    "name":"Participant",
+                                    "description":""
+                                },
+                                "ru":{
+                                    "name":"Участник",
+                                    "description":""
+                                },
+                                "score":1
+                            }
+                        ]
+                    },
+                    {
+                        "en":{
+                            "label":"Help from the marketing and PR department"
+                        },
+                        "ru":{
+                            "label":"Справка с департамента маркетинга и PR"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "parameter_target":7,
+        "en":{
+            "name":"Organization/administration of exams in English and informatics",
+            "description":""
+        },
+        "ru":{
+            "name":"Организация/прием экзаменов по английскому языку и информатике",
+            "description":""
+        },
+        "forms":[
+            {
+                "en":{
+                    "name":"Form 2022",
+                    "description":"Form 2022 version"
+                },
+                "ru":{
+                    "name":"Форма 2022",
+                    "description":"Форма версии 2022 года"
+                },
+                "scoring":"by_constant",
+                "score":5,
+                "fields":[
+                    {
+                        "en":{
+                            "label":"Help from the admissions office"
+                        },
+                        "ru":{
+                            "label":"Справка с приемной комиссии"
+                        },
+                        "type":"file",
+                        "validation_rules":{
+                            "nullable":false,
+                            "required":true,
+                            "file_size":102400,
+                            "mimes":"pdf"
+                        }
+                    }
+                ]
+            }
+        ]
     }
 ]

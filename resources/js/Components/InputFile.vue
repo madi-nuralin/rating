@@ -1,7 +1,7 @@
 <template>
 	<input type="file" class="hidden" ref="file" @change="updateFilePreview">
 
-	<div class="max-w-xl" v-if="! value">
+	<div class="max-w-xl" v-if="! uploaded">
         <breeze-button-secondary class="mt-2 mr-2" type="button" @click.prevent="selectNewFile">
             Upload A New File
         </breeze-button-secondary>
