@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use DB;
 
 use App\Models\Rating;
 use App\Models\User;
@@ -86,10 +87,31 @@ class VerificationController extends Controller
                             ]
                         );
                     }),
-                    'verifiers' => collect(Verifier::where('rating_id', $rating->id)->get())->map(function($verifier) {
+                    'verifiers' => collect(
+                        DB::table('verifiers')
+                            ->selectRaw('user_id')
+                            ->where('rating_id', $rating->id)
+                            ->groupBy('user_id')
+                            ->get()
+                            ->pluck('user_id')
+                    )->map(function($id) use ($rating) {
+                        $user = User::findOrFail($id);
+
                         return array_merge(
-                            $verifier->toArray(), [
-                                'user' => $verifier->user->toArray()
+                            $user->toArray(), [
+                                'parameter_targets' => collect(
+                                    DB::table('verifiers')
+                                        ->selectRaw('parameter_target_id')
+                                        ->where('rating_id', $rating->id)
+                                        ->where('user_id', $user->id)
+                                        ->groupBy('parameter_target_id')
+                                        ->get()
+                                        ->pluck('parameter_target_id')
+                                )->map(function($id) {
+                                    $parameterTarget = ParameterTarget::findOrFail($id);
+
+                                    return $parameterTarget->toArray();
+                                })
                             ]
                         );
                     }),

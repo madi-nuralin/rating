@@ -462,7 +462,7 @@ var messages = {
         header: 'Dashboard',
         partials: {
           showDate: {
-            trigger: 'Date',
+            trigger: 'Deadlines',
             begins: 'Begins: ',
             finishes: 'Finishes: ',
             finished: 'Finished: ',
@@ -1399,7 +1399,7 @@ var messages = {
         header: 'Панель управления',
         partials: {
           showDate: {
-            trigger: 'Дата',
+            trigger: 'Сроки выполнения',
             begins: 'Начинается: ',
             finishes: 'Завершается: ',
             finished: 'Завершено: ',
