@@ -936,6 +936,12 @@ var messages = {
           updated: 'Record updated successfully!',
           deleted: 'Record deleted successfully!'
         }
+      },
+      fileInput: {
+        uploadFileButton: 'Upload a new file',
+        downloadFileButton: 'Download file',
+        removeFileButton: 'Remove file',
+        noFileChosenMessage: 'No file chosen'
       }
     }
   },
@@ -1866,6 +1872,12 @@ var messages = {
           updated: 'Запись успешно обновлена!',
           deleted: 'Запись успешно удалена!'
         }
+      },
+      fileInput: {
+        uploadFileButton: 'Загрузить файл',
+        downloadFileButton: 'Скачать файл',
+        removeFileButton: 'Удалить файл',
+        noFileChosenMessage: 'Файл не выбран'
       }
     }
   }

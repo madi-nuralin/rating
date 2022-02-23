@@ -285,6 +285,8 @@ class SubmissionController extends Controller
             } else {                          
                 $formFieldResponce->setValue(null);
             }
+
+            //$formFieldResponce->delete();
         }
 
         return /*redirect()->route('submission.show', ['submission' => $submission->id]);*/back(303)->with('status', 'file-deleted');

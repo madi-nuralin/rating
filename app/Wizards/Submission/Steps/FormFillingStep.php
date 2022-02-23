@@ -60,7 +60,7 @@ class FormFillingStep extends WizardStep
                 return Field::make("field{$field->id}")
                         ->rules($field->rules())
                         ->transform(function (UploadedFile $file) {
-                            return $file->store('form-files', 'public');
+                            return $file->storeAs('form-files', $file->getClientOriginalName(), 'public');
                         });
             } else {
                 return Field::make("field{$field->id}")

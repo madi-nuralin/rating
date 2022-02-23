@@ -1,24 +1,28 @@
 <template>
-	<input type="file" class="hidden" ref="file" @change="updateFilePreview">
+    <div class="relative">
+    	<input type="file" class="hidden" ref="file" @change="updateFilePreview">
 
-	<div class="max-w-xl" v-if="! uploaded">
-        <breeze-button-secondary class="mt-2 mr-2" type="button" @click.prevent="selectNewFile">
-            Upload A New File
-        </breeze-button-secondary>
+        <div class="max-w-xl flex items-center space-x-2">
+            <template v-if="! uploaded">
+                <breeze-button-secondary type="button" @click.prevent="selectNewFile">
+                    {{ $t('components.fileInput.uploadFileButton') }}
+                </breeze-button-secondary>
 
-        <span class="text-gray-600 text-sm overflow-ellipsis overflow-hidden">
-            {{ filePreview ? filePreview : "No file chosen" }}
-        </span>
-    </div>
+                <div class="text-gray-600 text-sm overflow-ellipsis overflow-hidden">
+                    {{ filePreview ? filePreview : $t('components.fileInput.noFileChosenMessage') }}
+                </div>
+            </template>
 
-    <div class="max-w-xl" v-else>
-        <a :href="value" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mr-2" :download="download">
-            Download file
-        </a>
+            <template v-else>
+                <a :href="value" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mr-2">
+                    {{ $t('components.fileInput.downloadFileButton') }}
+                </a>
 
-        <breeze-button-danger class="mt-2 mr-2" type="button" @click.prevent="deleteFile" v-if="! readonly">
-            Remove File
-        </breeze-button-danger>
+                <breeze-button-secondary type="button" @click.prevent="deleteFile" v-if="! readonly">
+                    {{ $t('components.fileInput.removeFileButton') }}
+                </breeze-button-secondary>
+            </template>
+        </div>
     </div>
 </template>
 
@@ -81,7 +85,7 @@
                 this.$inertia.delete(this.destroy, {
                     preserveScroll: true,
                     onSuccess: () => {
-                        /*this.uploaded = null;*/
+                        /**/this.uploaded = null;/**/
                         this.filePreview = null;
                         this.clearFileInput();
                     },

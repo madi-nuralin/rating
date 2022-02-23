@@ -27,6 +27,13 @@ class CreateParameterRatingTable extends Migration
                   ->references('id')
                   ->on('ratings')
                   ->onDelete('cascade');
+            $table->bigInteger('form_id')
+                  ->unsigned()
+                  ->nullable();           // should be removed
+            $table->foreign('form_id')
+                  ->references('id')
+                  ->on('forms')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

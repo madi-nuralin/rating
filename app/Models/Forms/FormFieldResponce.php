@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Helpers\SettingHelper;
+use Illuminate\Http\UploadedFile;
 
 use App\Models\Helpers\HasId;
 use App\Models\Helpers\HasValue;
@@ -71,6 +72,10 @@ class FormFieldResponce extends Model
                 break;
 
             case FormField::FILE:
+                if ($value instanceof UploadedFile) {
+                    $value = $value->storeAs('form-files', $value->getClientOriginalName(), 'public');
+                }
+                
                 $this->setSetting('value', $value, null);
                 break;
 
@@ -106,6 +111,10 @@ class FormFieldResponce extends Model
                 return $this->getSetting('value', isset($locale) ? $locale : app()->currentLocale());
 
             case FormField::FILE:
+                if (is_null($this->getSetting('value', null))) {
+                    return null;
+                }
+                
                 return Storage::url($this->getSetting('value', null));
 
             default:

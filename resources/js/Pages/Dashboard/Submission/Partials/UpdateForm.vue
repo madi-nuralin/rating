@@ -152,6 +152,8 @@
             const INIT = [];
             const FIELD = [];
 
+            INIT['_method'] = 'PUT';
+
             if (props.submission.parameter.form) {
                 for (const field of props.submission.parameter.form.fields) {
                     FIELD[field.id] = `field${field.id}`;
@@ -173,7 +175,7 @@
 
         methods: {
             updateSubmission() {
-                this._form.put(route('submission.update', {'id': this.submission.id}), {
+                this._form.post(route('submission.update', {'id': this.submission.id}), {
                     errorBag: 'updateSubmission',
                     preserveScroll: true
                 });
