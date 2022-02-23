@@ -20,6 +20,13 @@ module.exports = {
                 emerald: colors.emerald,
                 orange: colors.orange,
                 sky: colors.sky
+            },
+            listStyleType: {
+                none: 'none',
+                disc: 'disc',
+                decimal: 'decimal',
+                square: 'square',
+                roman: 'upper-roman',
             }
         },
     },

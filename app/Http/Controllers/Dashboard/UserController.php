@@ -14,7 +14,7 @@ class UserController extends Controller
         $user = auth()->user();
 
         return Inertia::render('Dashboard/User', [
-            'ratings' => $user->ratings->map(function($rating) {
+            'ratings' => $user->ratings->map(function($rating) use ($user) {
                 return array_merge(
                     $rating->toArray(), [
                         'verifiers' => $rating->verifiers ? $rating->verifiers->map(function($verifier) {
@@ -23,7 +23,14 @@ class UserController extends Controller
                                     'user' => $verifier->user->toArray()
                                 ]
                             );
-                        }) : []
+                        }) : [],
+                        'statistics' => [
+                            'submissions' => count(
+                                collect(
+                                    $rating->submissions()->where('user_id', $user->id)->get()
+                                )
+                            )
+                        ]
                     ]
                 );
             }),

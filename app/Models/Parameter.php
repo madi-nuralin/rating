@@ -36,6 +36,10 @@ class Parameter extends Model
         return $this->belongsToMany(Rating::class);
     }
 
+    public function submissions() {
+        return $this->hasMany(Submission::class);
+    }
+
     public function forms() {
         return $this->belongsToMany(Form::class);
     }

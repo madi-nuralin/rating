@@ -534,7 +534,22 @@ var messages = {
             title: 'Assessment sheet',
             description: 'Complete the assessment sheet before the end of the current rating deadline with submissions',
             form: {
+              responceLink: 'View responce',
+              scoreLink: 'Score',
               score: '{score} pts.'
+            },
+            actions: {
+              createButton: 'Submit new responce',
+              modal: {
+                title: 'Submission is not available',
+                content: [
+                  'Submission is not available due to it is early to submit responces',
+                  'Submission is not available due to submission time has expired',
+                ],
+                footer: {
+                  closeButton: 'Close'
+                }
+              }
             }
           },
           partials: {
@@ -1456,7 +1471,22 @@ var messages = {
             title: 'Лист оценки',
             description: 'Заполните оценочный лист до окончания текущего срока рейтинга с материалами',
             form: {
+              responceLink: 'Ответ',
+              scoreLink: 'Баллы',
               score: '{score} баллов'
+            },
+            actions: {
+              createButton: 'Отправить новый ответ',
+              modal: {
+                title: 'Отправка ответов невозможно',
+                content: [
+                  'Отправка ответов невозможноно, так как время для отправки ответов еще не началось',
+                  'Отправка ответов невозможноно, так как время для отправки ответов просрочилась',
+                ],
+                footer: {
+                  closeButton: 'Закрыть'
+                }
+              }
             }
           },
           partials: {

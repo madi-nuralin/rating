@@ -39,27 +39,38 @@ class SubmissionController extends Controller
                         })->get())->map(function($parameterTarget) use ($rating, $user) {
                             return array_merge(
                                 $parameterTarget->toArray(), [
-                                    'submissions' => collect(Submission::where([
-                                        'rating_id' => $rating->id,
-                                        'user_id' => $user->id
-                                    ])->whereIn('parameter_id', $parameterTarget->parameters()->pluck('parameters.id'))->get())->map(function($submission) {
+                                    'parameters' => collect($parameterTarget->parameters()->whereHas(
+                                        'submissions', function($q) use ($rating, $user) {
+                                            $q->where('rating_id', $rating->id)->where('user_id', $user->id);
+                                        }
+                                    )->get())->map(function($parameter) use ($rating, $user) {
                                         return array_merge(
-                                            $submission->toArray(), [
-                                                'parameter' => $submission->parameter->toArray(),
-                                                'verification_statuses' => VerificationStatus::all()->map(function($verificationStatus) use ($submission) {
+                                            $parameter->toArray(), [
+                                                'submissions' => collect(
+                                                    $user->submissions()->where([
+                                                        'rating_id' => $rating->id,
+                                                        'parameter_id' => $parameter->id   
+                                                    ])->get()
+                                                )->map(function($submission) {
                                                     return array_merge(
-                                                        $verificationStatus->toArray(), [
-                                                            'verifications' => collect(
-                                                                $submission->verifications()
-                                                                           ->where('verification_status_id', $verificationStatus->id)
-                                                                           ->get())->map(function($verification) {
+                                                        $submission->toArray(), [
+                                                            'verification_statuses' => VerificationStatus::all()->map(function($verificationStatus) use ($submission) {
                                                                 return array_merge(
-                                                                    $verification->toArray(), [
-                                                                        'verifier' => array_merge(
-                                                                            $verification->verifier->toArray(), [
-                                                                                'user' => $verification->verifier->user->toArray()
-                                                                            ]
-                                                                        ),
+                                                                    $verificationStatus->toArray(), [
+                                                                        'verifications' => collect(
+                                                                            $submission->verifications()
+                                                                                       ->where('verification_status_id', $verificationStatus->id)
+                                                                                       ->get())->map(function($verification) {
+                                                                            return array_merge(
+                                                                                $verification->toArray(), [
+                                                                                    'verifier' => array_merge(
+                                                                                        $verification->verifier->toArray(), [
+                                                                                            'user' => $verification->verifier->user->toArray()
+                                                                                        ]
+                                                                                    ),
+                                                                                ]
+                                                                            );
+                                                                        })
                                                                     ]
                                                                 );
                                                             })

@@ -42,6 +42,10 @@ class Rating extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function submissions() {
+        return $this->hasMany(Submission::class);
+    }
+
     public function setSubmissionBeginTimeAt($timeAt) {
     	$this->submission_begin_time_at = $timeAt;
     }
