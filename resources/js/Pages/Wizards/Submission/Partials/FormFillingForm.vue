@@ -1,20 +1,10 @@
 <template>
     <BreezeFormSection @submitted="selectFormFilling" :has-title="false">
         <template #aside>
-            <div>
-                <h3 class="text-lg font-medium text-gray-900">
-                   Добавить действие
-                </h3>
+            <ShowTitle/>
 
-                <p class="mt-1 text-sm text-gray-600">
-                    Заполнение листа оценки, добавить действие
-                </p>
-            </div>
-
-            <div>
-                <hr class="my-6" />
-                <ShowSteps />
-            </div>
+            <hr class="my-6" />
+            <ShowSteps />
         </template>
 
         <template #form>
@@ -104,7 +94,7 @@
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': _form.processing }" :disabled="_form.processing">
-                Create
+                {{ $t('pages.wizards.submission.steps.formFillingStep.actions.saveButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -121,6 +111,7 @@
     import BreezeSelect from '@/Components/Select.vue' 
     import BreezeFile from '@/Components/InputFile.vue'
     import ShowSteps from './ShowSteps.vue'
+    import ShowTitle from './ShowTitle.vue'
     import ShowScoringBoard from '@/Pages/Dashboard/Submission/Partials/ShowScoringBoard.vue'
     import { Inertia } from '@inertiajs/inertia'
     import { ref, reactive } from 'vue'
@@ -139,6 +130,7 @@
             BreezeSelect,
             BreezeFile,
             ShowSteps,
+            ShowTitle,
             ShowScoringBoard
         },
 

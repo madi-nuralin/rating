@@ -16,7 +16,7 @@ use App\Models\Forms\FormField;
 
 class FormFillingStep extends WizardStep
 {
-    public string $title = 'Заполните форму';
+    public string $title = 'pages.wizards.submission.steps.formFillingStep.title';
 
     public string $slug = 'form-filling';
 
@@ -25,8 +25,9 @@ class FormFillingStep extends WizardStep
         //return $this->withFormData();
         //$this->data(string $key, mixed $default = null)
 
+        $rating = Rating::findOrFail($this->data('rating'));
         $parameter = Parameter::findOrFail($this->data('parameter'));
-        $form = $parameter->activeForm;
+        $form = $rating->parameterForm($parameter);
 
         return [
             'form' => $form ? array_merge(
@@ -51,9 +52,12 @@ class FormFillingStep extends WizardStep
             $parameter = Parameter::findOrFail(request()->input('parameter'));
         } else if ($this->data('parameter')) {
             $parameter = Parameter::findOrFail($this->data('parameter'));
+        } else {
+            $parameter = Parameter::findOrFail(null);
         }
 
-        $form = $parameter->activeForm;
+        $rating = Rating::findOrFail($this->data('rating'));
+        $form = $rating->parameterForm($parameter);
 
         return $form && $form->fields ? $form->fields->map(function($field) {
             if ($field->getType() == FormField::FILE) {

@@ -1,10 +1,10 @@
 <template>
-    <Head :title="'Заполнение листа оценки'" />
+    <Head :title="$t('pages.wizards.submission.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Заполнение листа оценки
+                {{ $t('pages.wizards.submission.header') }}
             </h2>
         </template>
 

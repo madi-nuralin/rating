@@ -176,13 +176,14 @@ class SubmissionController extends Controller
     {
         $submission = Submission::findOrFail($id);
         $parameter = $submission->parameter;
-        $form = $parameter->activeForm;
+        $rating = $submission->rating;
+        $form = $rating->parameterForm($parameter);
         $verifications = $submission->verifications;
 
         return Inertia::render('Dashboard/Submission/Show', [
             'submission' => array_merge(
                 $submission->toArray(), [
-                    'rating' => $submission->toArray(),
+                    'rating' => $submission->rating->toArray(),
                     'parameter' => array_merge(
                         $parameter->toArray(), [
                             'target' => $parameter->parameterTarget->toArray(),
@@ -251,7 +252,8 @@ class SubmissionController extends Controller
 
         $submission = Submission::findOrFail($id);
         $parameter = $submission->parameter;
-        $form = $parameter->activeForm;
+        $rating = $submission->rating;
+        $form = $rating->parameterForm($parameter);
 
         if ($form) {
             $rules = [];

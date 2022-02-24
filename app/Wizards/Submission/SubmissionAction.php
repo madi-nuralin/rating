@@ -24,7 +24,7 @@ class SubmissionAction extends WizardAction
     {
     	$rating = Rating::findOrFail($payload['rating']);
     	$parameter = Parameter::findOrFail($payload['parameter']);
-    	$parameterTarget = ParameterTarget::findOrFail($payload['target']);
+    	$parameterTarget = ParameterTarget::findOrFail($payload['parameter_target']);
 
     	$submission = Submission::create([
     		'user_id' => auth()->user()->id,
@@ -34,7 +34,7 @@ class SubmissionAction extends WizardAction
 
         $submission->save();
 
-        if ($form = $parameter->activeForm) {
+        if ($form = $rating->parameterForm($parameter)) {
             foreach ($form->fields as $formField) {
                 $submission->createFormFieldResponce($formField, $payload["field{$formField->id}"]);
             }
@@ -46,7 +46,6 @@ class SubmissionAction extends WizardAction
     	$verifiers = $rating->verifiers()->where('parameter_target_id', $parameterTarget->id)->get();
 
     	foreach ($verifiers as $verifier) {
-            error_log($verifier->id);  
     		Verification::create([
     			'verifier_id' => $verifier->id,
     			'submission_id' => $submission->id,

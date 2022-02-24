@@ -303,7 +303,57 @@ var messages = {
             actions: {
               createButton: 'Create New'
             }
-          }
+          },
+          parameter: {
+            head: {
+              title: 'Rating management: Parameters'
+            },
+            header: 'Rating management: Parameters',
+            create: {
+              title: 'Add a new parameter',
+              description: 'Create a new parameter configuration for this rating.',
+              form: {
+                parameter_target: 'Target',
+                parameter: 'Parameter',
+                form: 'Form'
+              }
+            },
+            update: {
+              title: 'Update rating parameter',
+              description: 'Update a parameter configuration for this rating.',
+              form: {
+                parameter_target: 'Target',
+                parameter: 'Parameter',
+                form: 'Form'
+              }
+            },
+            delete: {
+              title: 'Delete Rating Parameter',
+              description: 'Permanently delete this parameter from rating.',
+              content: {
+                deleteInfo: 'Once a parameter is deleted, all of its resources and data will be permanently deleted. Before deleting this rating, please download any data or information regarding this rating that you wish to retain.',
+                deleteButton: 'Delete Parameter',
+                modal: {
+                  title: 'Delete Parameter',
+                  content: 'Are you sure you want to delete this parameter? Once a parameter is deleted, all of its resources and data will be permanently deleted.',
+                  footer: {
+                    cancelButton: 'Cancel',
+                    deleteButton: 'Delete Parameter'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Rating parameters list',
+              description: 'The parameters of this rating which are registered.',
+              form: {
+                //
+              },
+              actions: {
+                createButton: 'Add New'
+              }
+            },
+          },
         },
         verifier: {
           head: {
@@ -909,6 +959,51 @@ var messages = {
           }
         },
       },
+      wizards: {
+        submission: {
+          head: {
+            title: 'Responce submission'
+          },
+          header: 'Responce submission',
+          showTitle: {
+            title: 'Responce submission',
+            description: 'Select the target and evaluation parameter, fill out the form. At the end of your responce, information about the rating of this answer will be provided.',
+          },
+          showSteps: {
+            trigger: 'Execution steps',
+            step: 'Step {number}'
+          },
+          steps: {
+            selectParameterTargetStep: {
+              title: 'Select Target',
+              form: {
+                parameter_target: 'Target'
+              },
+              actions: {
+                nextStepButton: 'Next'
+              }
+            },
+            selectParameterStep: {
+              title: 'Select Parameter',
+              form: {
+                parameter: 'Parameter'
+              },
+              actions: {
+                nextStepButton: 'Next'
+              }
+            },
+            formFillingStep: {
+              title: 'Fill the form',
+              form: {
+                //
+              },
+              actions: {
+                saveButton: 'Save'
+              }
+            }
+          }
+        }
+      }
     },
     layouts: {
       authenticated: {
@@ -1239,6 +1334,56 @@ var messages = {
             },
             actions: {
               createButton: 'Создайте новый'
+            }
+          },
+          parameter: {
+            head: {
+              title: 'Управление параметрами оценки рейтнга'
+            },
+            header: 'Управление параметрами оценки рейтнга',
+            create: {
+              title: 'Добавить новый параметр',
+              description: 'Создайте новую конфигурацию параметра оценки для этого рейтинга.',
+              form: {
+                parameter_target: 'Направление деятельности',
+                parameter: 'Параметр',
+                form: 'Форма'
+              }
+            },
+            update: {
+              title: 'Обновить параметр оцнивания',
+              description: 'Обновить конфигурацию параметра для этого рейтинга.',
+              form: {
+                parameter_target: 'Направление деятельности',
+                parameter: 'Параметр',
+                form: 'Форма'
+              }
+            },
+            list: {
+              title: 'Параметры',
+              description: 'Зарегистрированные параметры данного оценивания.',
+              form: {
+                //
+              },
+              actions: {
+                createButton: 'Добавить'
+              }
+            },
+            delete: {
+              title: 'Удалить параметр оценки',
+              description: 'Удалить параметр оценки.',
+              content: {
+                deleteInfo: 'После удаления параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой экземпляр оценки персонала, пожалуйста, загрузите любые данные или информацию относительно этой экземпляр оценки персонала, которые вы хотите сохранить.',
+                deleteButton: 'Удалить параметр оценки',
+                modal: {
+                  title: 'Удалить параметр оценки',
+                  content: 'Вы уверены, что хотите удалить параметр оценки? После удаления экземпляра оценки персонала все ее ресурсы и данные будут удалены без возможности восстановления.',
+                  footer: {
+                    cancelButton: 'Отмена',
+                    deleteButton: 'Удалить параметр оценки'
+                  }
+                }
+              }
             }
           }
         },
@@ -1859,6 +2004,51 @@ var messages = {
             }
           }
         },
+      },
+      wizards: {
+        submission: {
+          head: {
+            title: 'Отправка ответа'
+          },
+          header: 'Отправка ответа',
+          showTitle: {
+            title: 'Отправка ответа',
+            description: 'Выберите направление и параметр оценки, заполните форму. В конце отправки вам будет предаставлено информация об оценке данного ответа',
+          },
+          showSteps: {
+            trigger: 'Шаги выполнения',
+            step: 'Шаг {number}'
+          },
+          steps: {
+            selectParameterTargetStep: {
+              title: 'Выберите направление',
+              form: {
+                parameter_target: 'Направление'
+              },
+              actions: {
+                nextStepButton: 'Далее'
+              }
+            },
+            selectParameterStep: {
+              title: 'Выберите параметр оценки',
+              form: {
+                parameter: 'Параметр'
+              },
+              actions: {
+                nextStepButton: 'Далее'
+              }
+            },
+            formFillingStep: {
+              title: 'Заполните форму',
+              form: {
+                //
+              },
+              actions: {
+                saveButton: 'Сохранить'
+              }
+            }
+          }
+        }
       }
     },
     layouts: {

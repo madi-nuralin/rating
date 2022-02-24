@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use DB;
+use App\Models\Forms\Form;
+
 class Rating extends Model
 {
     use HasFactory,
@@ -35,7 +38,26 @@ class Rating extends Model
     }
 
     public function parameters() {
-        return $this->belongsToMany(Parameter::class);
+        return $this->belongsToMany(Parameter::class)->withPivot('form_id');
+    }
+
+    public function parameterTargets() {
+        $parameterTargets = collect(
+            DB::table('parameters')
+                ->select('parameter_target_id')
+                ->whereIn('id', $this->parameters()->pluck('parameters.id'))
+                ->groupBy('parameter_target_id')
+                ->get()
+                ->pluck('parameter_target_id')
+        );
+
+        if (is_null($parameterTargets)) {
+            return null;
+        }
+
+        return $parameterTargets->map(function($parameterTarget) {
+            return ParameterTarget::find($parameterTarget);
+        });
     }
 
     public function users() {
@@ -44,6 +66,15 @@ class Rating extends Model
 
     public function submissions() {
         return $this->hasMany(Submission::class);
+    }
+
+    public function parameterForm($parameter) {
+        return Form::find(
+            $this->parameters()
+                 ->firstWhere('parameter_id', $parameter->id)
+                 ->pivot
+                 ->form_id
+        );
     }
 
     public function setSubmissionBeginTimeAt($timeAt) {
@@ -83,6 +114,34 @@ class Rating extends Model
                 array_diff($parameters, $this->parameters()->pluck('parameters.id')->toArray()));
         } else {
             $this->parameters()->attach($parameters);
+        }
+    }
+
+    public function addParameter(Parameter $parameter) {
+        if ($this->parameters()) {
+            $this->parameters()->detach(
+                array($parameter->id)
+            );
+        }
+
+        $this->parameters()->attach($parameter->id);
+    }
+
+    public function addParameterWithForm(Parameter $parameter, Form $form) {
+        if ($this->parameters()) {
+            $this->parameters()->detach(
+                array($parameter->id)
+            );
+        }
+
+        $this->parameters()->attach(array($parameter->id => array('form_id' => $form->id)));
+    }
+
+    public function deleteParameter(Parameter $parameter) {
+        if ($this->parameters()) {
+            $this->parameters()->detach(
+                array($parameter->id)
+            );
         }
     }
 

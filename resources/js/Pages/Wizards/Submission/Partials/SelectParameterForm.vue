@@ -1,23 +1,15 @@
 <template>
     <BreezeFormSection @submitted="selectParameter" :has-title="false">
         <template #aside>
-            <div>
-                <h3 class="text-lg font-medium text-gray-900">
-                   Добавить действие
-                </h3>
-
-                <p class="mt-1 text-sm text-gray-600">
-                    Заполнение листа оценки, добавить действие
-                </p>
-            </div>
+            <ShowTitle/>
 
             <hr class="my-6" />
-            <ShowSteps />
+            <ShowSteps/>
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <breeze-label for="parameter" value="Parameter" />
+                <breeze-label for="parameter" :value="$t('pages.wizards.submission.steps.selectParameterStep.form.parameter')" />
                 <breeze-input-error :message="form.errors.parameter" class="mt-2" />
 
                 <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer">
@@ -62,7 +54,7 @@
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Create
+                {{ $t('pages.wizards.submission.steps.selectParameterStep.actions.nextStepButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -77,9 +69,9 @@
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
     import ShowSteps from './ShowSteps.vue'
+    import ShowTitle from './ShowTitle.vue'
     import Wizard from "@/Mixins/Wizard";
     import { Inertia } from '@inertiajs/inertia'
-    import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 
     export default {
         components: {
@@ -91,7 +83,7 @@
             BreezeTextarea,
             BreezeLabel,
             ShowSteps,
-            BreezeResponsiveNavLink
+            ShowTitle,
         },
 
         props: ['parameters'],

@@ -13,7 +13,7 @@ use App\Models\ParameterTarget;
 
 class SelectParameterStep extends WizardStep
 {
-    public string $title = 'Выбрать параметр';
+    public string $title = 'pages.wizards.submission.steps.selectParameterStep.title';
 
     public string $slug = 'select-parameter';
 
@@ -29,14 +29,18 @@ class SelectParameterStep extends WizardStep
     public function viewData(Request $request): array
     {
         $rating = Rating::findOrFail($this->data('rating'));
-        $parameterTarget = ParameterTarget::findOrFail($this->data('target'));
+        $parameterTarget = ParameterTarget::findOrFail($this->data('parameter_target'));
 
         if (! auth()->user()->ratings->contains($rating) ) {
             return redirect(404);
         }
 
         return [
-            'parameters' => collect($rating->parameters()->where('parameter_target_id', $parameterTarget->id)->get())->map(function($parameter) {
+            'parameters' => collect(
+                $rating->parameters()
+                       ->where('parameter_target_id', $parameterTarget->id)
+                       ->get()
+            )->map(function($parameter) {
                 return $parameter->toArray();
             })
         ];

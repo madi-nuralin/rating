@@ -35,15 +35,70 @@ class VerificationController extends Controller
         $verifier = Verifier::findOrFail($input['verifier']);
         $user = User::findOrFail($input['user']);
 
+        error_log('message');
+        error_log(json_encode($rating->parameterTargets()));
+
         return Inertia::render('Dashboard/Verification/Index', [
             'rating' => array_merge(
                 $rating->toArray(), [
-                    'targets' => collect(ParameterTarget::whereHas(
-                        'parameters', function($q) use ($rating, $verifier) {
-                            $q->whereIn('id', $rating->parameters()->pluck('parameters.id'));
-                        })->get())->map(function($parameterTarget) use ($rating, $user, $verifier) {
+                    'targets' => collect(
+                        $rating->parameterTargets()
+                               ->where('id', $verifier->parameterTarget->id)
+                    )->map(function($parameterTarget) use ($rating, $user, $verifier) {
                         return array_merge(
                             $parameterTarget->toArray(), [
+                                'parameters' => collect(
+                                    $parameterTarget->parameters()
+                                                    ->whereHas(
+                                        'submissions', function($q) use ($rating, $user, $verifier) {
+                                            $q->where('rating_id', $rating->id)
+                                              ->where('user_id', $user->id);
+                                        }
+                                    )->get()
+                                )->map(function($parameter) use ($rating, $user, $verifier) {
+                                    return array_merge(
+                                        $parameter->toArray(), [
+                                            'submissions' => collect(
+                                                $user->submissions()->where([
+                                                    'rating_id' => $rating->id,
+                                                    'parameter_id' => $parameter->id   
+                                                ])->get()
+                                            )->map(function($submission) use ($verifier) {
+
+                                                $verification = Verification::firstWhere([
+                                                    'verifier_id' => $verifier->id,
+                                                    'submission_id' => $submission->id
+                                                ]);
+
+                                                return array_merge(
+                                                    $submission->toArray(), [
+                                                        'verification' => $verification ? $verification->toArray() : [],
+                                                        'verification_statuses' => VerificationStatus::all()->map(function($verificationStatus) use ($submission) {
+                                                            return array_merge(
+                                                                $verificationStatus->toArray(), [
+                                                                    'verifications' => collect(
+                                                                        $submission->verifications()
+                                                                                   ->where('verification_status_id', $verificationStatus->id)
+                                                                                   ->get())->map(function($verification) {
+                                                                        return array_merge(
+                                                                            $verification->toArray(), [
+                                                                                'verifier' => array_merge(
+                                                                                    $verification->verifier->toArray(), [
+                                                                                        'user' => $verification->verifier->user->toArray()
+                                                                                    ]
+                                                                                ),
+                                                                            ]
+                                                                        );
+                                                                    })
+                                                                ]
+                                                            );
+                                                        })
+                                                    ]
+                                                );
+                                            })
+                                        ]
+                                    );
+                                }),
                                 'verifications' => collect(
                                     Verification::where([
                                         ['verifier_id', '=', $verifier->id]
@@ -153,7 +208,8 @@ class VerificationController extends Controller
         $verification = Verification::findOrFail($id);
         $submission = $verification->submission;
         $parameter = $submission->parameter;
-        $form = $parameter->activeForm;
+        $rating = $submission->rating;
+        $form = $rating->parameterForm($parameter);
         $verifications = $submission->verifications;
 
         return Inertia::render('Dashboard/Verification/Show', [

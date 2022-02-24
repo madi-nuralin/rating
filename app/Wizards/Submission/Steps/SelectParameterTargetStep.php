@@ -13,7 +13,7 @@ use App\Models\ParameterTarget;
 
 class SelectParameterTargetStep extends WizardStep
 {
-    public string $title = 'Выбрать направление деятельности';
+    public string $title = 'pages.wizards.submission.steps.selectParameterTargetStep.title';
 
     public string $slug = 'select-parameter-target';
 
@@ -35,13 +35,13 @@ class SelectParameterTargetStep extends WizardStep
         if (array_key_exists('rating', $input)) {
             $rating = Rating::findOrFail($input['rating']);
         } else {
-            $rating =  Rating::findOrFail($this->data('rating'));
-        } 
+            $rating = Rating::findOrFail($this->data('rating'));
+        }
 
         return [
             'rating' => array_merge(
                 $rating->toArray(), [
-                    'targets' => collect(ParameterTarget::whereHas(
+                    'parameter_targets' => collect(ParameterTarget::whereHas(
                         'parameters', function($q) use ($rating) {
                             $q->whereIn('id', $rating->parameters()->pluck('parameters.id'));
                         })->get())->map(function($parameterTarget) use ($rating, $user) {
@@ -56,7 +56,7 @@ class SelectParameterTargetStep extends WizardStep
     public function fields(): array
     {
         return [
-            Field::make('target')
+            Field::make('parameter_target')
                ->rules(['required', 'numeric']),
             Field::make('rating')
                ->rules(['required', 'numeric']),

@@ -41,9 +41,6 @@ class RatingController extends Controller
     public function create()
     {
         return Inertia::render('Management/Rating/Create', [
-            'parameters' => Parameter::all()->map(function($parameter) {
-                return $parameter->toArray();
-            }),
             'users' => User::all()->map(function($user) {
                 return $user->toArray();
             })
@@ -69,7 +66,6 @@ class RatingController extends Controller
             'verification_end_time_at' => ['required', 'date'],
             'approvement_begin_time_at' => ['required', 'date'],
             'approvement_end_time_at' => ['required', 'date'],
-            'parameters' => ['array'],
             'users' => ['array']
         ])->validateWithBag('createRating');
 
@@ -82,7 +78,6 @@ class RatingController extends Controller
         $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
         $rating->setApprovementBeginTimeAt($input['approvement_begin_time_at']);
         $rating->setApprovementEndTimeAt($input['approvement_end_time_at']);
-        $rating->setParameters($input['parameters']);
         $rating->setUsers($input['users']);
 
         $rating->save();
@@ -110,9 +105,13 @@ class RatingController extends Controller
         return Inertia::render('Management/Rating/Show', [
             'rating' => array_merge(
                 $rating->toArray(), [
-                    'parameters' => $rating->parameters->map(function($parameter) {
-                        return $parameter->toArray();
-                    }),
+                    'parameters' => $rating->parameters ? $rating->parameters()->paginate(10)->through(function($parameter) {
+                        return array_merge(
+                            $parameter->toArray(), [
+                                'parameter_target' => $parameter->parameterTarget->toArray()
+                            ]
+                        );
+                    }) : [],
                     'users' => $rating->users->map(function($user) {
                         return $user->toArray();
                     }),
@@ -126,9 +125,6 @@ class RatingController extends Controller
                     })
                 ]
             ),
-            'parameters' => Parameter::all()->map(function($parameter) {
-                return $parameter->toArray();
-            }),
             'users' => User::all()->map(function($user) {
                 return $user->toArray();
             })
@@ -166,7 +162,6 @@ class RatingController extends Controller
             'verification_end_time_at' => ['required', 'date'],
             'approvement_begin_time_at' => ['required', 'date'],
             'approvement_end_time_at' => ['required', 'date'],
-            'parameters' => ['array'],
             'users' => ['array']
         ])->validateWithBag('updateRating');
 
@@ -180,7 +175,6 @@ class RatingController extends Controller
         $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
         $rating->setApprovementBeginTimeAt($input['approvement_begin_time_at']);
         $rating->setApprovementEndTimeAt($input['approvement_end_time_at']);
-        $rating->setParameters($input['parameters']);
         $rating->setUsers($input['users']);
 
         $rating->save();
