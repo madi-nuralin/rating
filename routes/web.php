@@ -21,6 +21,13 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'appName' => config('app.name', 'Application'),
+        'organization' => [
+            'name' => env('ORGANIZATION_NAME', 'Organization name'),
+            'email' => env('ORGANIZATION_EMAIL', 'Email'),
+            'address' => env('ORGANIZATION_ADDRESS', 'Address'),
+            'url' => env('ORGANIZATION_URL', '.')
+        ]
     ]);
 });
 

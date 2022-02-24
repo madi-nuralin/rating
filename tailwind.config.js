@@ -26,7 +26,7 @@ module.exports = {
                 disc: 'disc',
                 decimal: 'decimal',
                 square: 'square',
-                roman: 'upper-roman',
+                roman: 'upper-roman'
             }
         },
     },

@@ -1003,6 +1003,23 @@ var messages = {
             }
           }
         }
+      },
+      welcome: {
+        organization: {
+          title: 'Organization'
+        },
+        statistics: {
+          title: 'Statistics',
+          description: 'The system collects statistics based on the analysis of the performance of employees. The configuration of this module is detailed in the user manual.'
+        },
+        userManual: {
+          title: 'User manual',
+          description: 'Evaluation of the activities of employees of the organization is carried out on the basis of an analysis of the results of their activities for the assessment period in accordance with the list of assessed parameters. The results of the assessment of the work of employees are drawn up in the form of summary tables of the "Evaluation Sheet" and submitted to the commission with all supporting documents. For more details follow the link.'
+        },
+        aboutSystem: {
+          title: 'About system',
+          description: 'The system determines the procedure, timing and methodology for performance evaluation employees of the organization and regulates the issues of determining allowances for salary of a staff member.'
+        }
       }
     },
     layouts: {
@@ -2048,6 +2065,23 @@ var messages = {
               }
             }
           }
+        }
+      },
+      welcome: {
+        organization: {
+          title: 'Организация'
+        },
+        statistics: {
+          title: 'Статистика',
+          description: 'Система собирает статистику на основании анализа результатов деятельности сотрудников. Настройка данного  модуля подробнее указано в руководстве пользователя.'
+        },
+        userManual: {
+          title: 'Руководство пользователя',
+          description: 'Оценка деятельности сотрудников организации осуществляется на основании анализа результатов их деятельности за период оценки в соответствии с перечнем оцениваемых параметров. Результаты оценки труда сотрудников оформляются в виде сводных таблиц «Листа оценки» и со всеми подтверждающими документами сдаются в комиссию. Подробнее перейдите по ссылке.'
+        },
+        aboutSystem: {
+          title: 'О системе',
+          description: 'Система определяет порядок, сроки и методику проведения оценки деятельности сотрудников организации и регулирует вопросы определения надбавок к должностному окладу штатного сотрудника.'
         }
       }
     },
