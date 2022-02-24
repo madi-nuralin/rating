@@ -1005,6 +1005,9 @@ var messages = {
         }
       },
       welcome: {
+        head: {
+          title: 'Welcome'
+        },
         organization: {
           title: 'Organization'
         },
@@ -2068,6 +2071,9 @@ var messages = {
         }
       },
       welcome: {
+        head: {
+          title: 'Добро пожаловать'
+        },
         organization: {
           title: 'Организация'
         },
