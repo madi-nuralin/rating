@@ -24340,8 +24340,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else if (this.type == 'verification') {
         if (submission.verification && submission.verification.id) {
-          return route('submission.show', {
-            'id': submission.id
+          return route('verification.show', {
+            'id': submission.verification.id
           });
         }
       }

@@ -35,9 +35,6 @@ class VerificationController extends Controller
         $verifier = Verifier::findOrFail($input['verifier']);
         $user = User::findOrFail($input['user']);
 
-        error_log('message');
-        error_log(json_encode($rating->parameterTargets()));
-
         return Inertia::render('Dashboard/Verification/Index', [
             'rating' => array_merge(
                 $rating->toArray(), [
