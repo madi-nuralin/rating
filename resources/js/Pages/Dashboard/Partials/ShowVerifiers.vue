@@ -13,7 +13,7 @@
 					<div class="ml-3 overflow-hidden w-full">
 						<p class="text-sm font-medium text-gray-900">{{ verifier.name }}</p>
 						<p class="text-sm text-gray-500 truncate">{{ verifier.email }}</p>
-						<ul role="list" class="">
+						<ul role="list" class="text-sm">
 							<li v-for="target in verifier.parameter_targets">
 								{{ target.name }}
 							</li>

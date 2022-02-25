@@ -72,7 +72,12 @@ class VerificationController extends Controller
 
                                                 return array_merge(
                                                     $submission->toArray(), [
-                                                        'verification' => $verification ? $verification->toArray() : [],
+                                                        'verification' => $verification ? 
+                                                            array_merge(
+                                                                $verification->toArray(), [
+                                                                    'status' => $verification->verificationStatus->toArray()
+                                                                ]
+                                                            ) : [],
                                                         'verification_statuses' => VerificationStatus::all()->map(function($verificationStatus) use ($submission) {
                                                             return array_merge(
                                                                 $verificationStatus->toArray(), [

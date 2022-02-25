@@ -14,39 +14,63 @@
 	                            {{ parameter.name }}
 	                        </span>
 
-	                        <ul class="list-decimal list-inside ml-4 text-gray-500" v-if="Object.keys(parameter.submissions).length > 0">
-	                            <li v-for="(submission, i) in parameter.submissions">
-	                                <Link class="underline hover:font-semibold" :href="route('verification.show', {'id': submission.verification.id})" v-if="submission.verification && submission.verification.id && type == 'verification'">
-	                                    {{ $t('pages.dashboard.submission.list.form.responceLink') }}
-	                                </Link>
+                        	<div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer" v-if="Object.keys(parameter.submissions).length > 0">
+			                    <Link
+			                    	type="button"
+			                    	class="relative px-4 py-3 inline-block w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200"
+			                        :class="{
+			                        	'border-t border-gray-200 rounded-t-none': i > 0,
+			                        	'rounded-b-none': i != Object.keys(parameter.submissions).length - 1
+			                        }"
+			                        :href="getRoute(submission)"
+			                        v-for="(submission, i) in parameter.submissions">
 
-	                                <Link class="underline hover:font-semibold" :href="route('submission.show', {'id': submission.id})" v-if="type == 'submission'">
-	                                    {{ $t('pages.dashboard.submission.list.form.responceLink') }}
-	                                </Link>
+			                        <div>
 
-	                                <div class="ml-4 grid grid-cols-2 md:grid-cols-3">
-	                                    <div class="md:col-span-1 font-semibold">
-	                                        {{ $t('pages.dashboard.submission.list.form.scoreLink') }}
-	                                    </div>
-	                                    <div class="md:col-span-2">
-	                                        {{ $t('pages.dashboard.submission.list.form.score', {'score': parseFloat(submission.score).toFixed(2) }) }}
-	                                    </div>
+			                            <div class="flex items-center">
+			                                <div class="text-sm text-gray-600 text-left" v-if="type == 'verification'">
+			                                    <span>{{ translate('form.verificationStatus') }}</span>
+			                                    <span :class="`text-${submission.verification.status.color}-600`" v-if="submission.verification.status">
+			                                    	{{ submission.verification.status.name }}
+			                                    </span>
+			                                </div>
 
-	                                    <template v-for="status in submission.verification_statuses">
-	                                        <template v-if="Object.keys(status.verifications).length > 0">
-	                                            <div class="md:col-span-1 font-semibold" :class="`text-${status.color}-600`">
-	                                                {{ status.name }}
-	                                            </div>
-	                                            <div class="md:col-span-2 space-x-2">
-	                                                <span class="underline" v-for="verification in status.verifications">
-	                                                    {{ verification.verifier.user.name }}
-	                                                </span>
-	                                            </div>
-	                                        </template>
-	                                    </template>
-	                                </div>
-	                            </li>
-	                        </ul>
+			                                <!--svg
+			                                    class="ml-2 h-5 w-5 text-green-400"
+			                                    fill="none"
+			                                    stroke-linecap="round"
+			                                    stroke-linejoin="round"
+			                                    stroke-width="2"
+			                                    stroke="currentColor"
+			                                    viewBox="0 0 24 24">
+			                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+			                                </svg-->
+			                            </div>
+
+			                            <!-- Description -->
+			                            <div class="mt-2 text-xs text-gray-600 text-left">
+			                            	<div class="grid grid-cols-2">
+			                            		<p>{{ translate('form.updatedAt') }}</p>
+			                                    <p>{{ new Date(submission.updated_at) }}</p>
+			                            		<p>{{ translate('form.scoreLabel') }}</p>
+			                                    <p>{{ translate('form.score', {'score': parseFloat(submission.score).toFixed(2) }) }}
+			                                    </p>
+			                                    <template v-for="status in submission.verification_statuses">
+			                                    	<p :class="`text-${status.color}-600`">
+		                                                {{ status.name }}
+		                                            </p>
+		                                            <p class="space-x-2">
+		                                                <span class="underline" v-for="verification in status.verifications" v-if="Object.keys(status.verifications).length > 0">
+		                                                    {{ verification.verifier.user.name }}
+		                                                </span>
+		                                                <span v-else>0</span>
+		                                            </p>
+			                                    </template>
+			                            	</div>
+			                            </div>
+			                        </div>
+			                    </Link>
+			                </div>
 	                    </li>
 	                </ul>
 	            </template>
@@ -80,6 +104,24 @@
         	},
         	type: {
         		required: true
+        	}
+        },
+
+        methods: {
+        	getRoute(submission) {
+        		if (this.type == 'submission') {
+        			return route('submission.show', {'id': submission.id});
+        		} else if (this.type == 'verification') {
+        			if (submission.verification && submission.verification.id) {
+        				return route('submission.show', {'id': submission.id});
+        			}
+        		}
+
+        		return null;
+        	},
+
+        	translate(path, ...args) {
+        		return this.$t(`pages.dashboard.submission.list.${path}`, ...args);
         	}
         },
     }

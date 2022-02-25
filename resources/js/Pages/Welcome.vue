@@ -61,7 +61,7 @@
                                         <polyline points="22,6 12,13 2,6"></polyline>
                                     </svg>
 
-                                    <a href="info@iitu.edu.kz" class="ml-1 underline">
+                                    <a :href="organization.url" class="ml-1 underline">
                                         {{ organization.email }}
                                     </a>
                                 </div>

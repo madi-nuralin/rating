@@ -584,8 +584,9 @@ var messages = {
             title: 'Assessment sheet',
             description: 'Complete the assessment sheet before the end of the current rating deadline with submissions',
             form: {
-              responceLink: 'View responce',
-              scoreLink: 'Score',
+              updatedAt: 'Last modified',
+              verificationStatus: 'Your decision: ',
+              scoreLabel: 'Score',
               score: '{score} pts.'
             },
             actions: {
@@ -1636,8 +1637,9 @@ var messages = {
             title: 'Лист оценки',
             description: 'Заполните оценочный лист до окончания текущего срока рейтинга с материалами',
             form: {
-              responceLink: 'Ответ',
-              scoreLink: 'Баллы',
+              updatedAt: 'Последнее изменение',
+              verificationStatus: 'Ваше решение: ',
+              scoreLabel: 'Баллы',
               score: '{score} баллов'
             },
             actions: {
