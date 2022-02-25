@@ -36136,7 +36136,20 @@ var _hoisted_33 = {
   "class": "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Check");
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  "class": "h-8 w-8 sm:h-6 sm:w-6",
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  "stroke-width": "2",
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M7 17l9.2-9.2M17 17V7H7"
+})], -1
+/* HOISTED */
+);
 
 var _hoisted_35 = {
   "class": "flex justify-center items-center my-2"
@@ -36221,7 +36234,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             'rating': _ctx.$page.props.verifier.rating.id,
             'user': user.id
           }),
-          "class": "text-indigo-600 hover:text-indigo-900 underline"
+          "class": "text-gray-400 hover:text-blue-500 underline hover:scale-110"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [_hoisted_34];

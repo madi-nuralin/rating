@@ -71,7 +71,10 @@
 					                </div>
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-					                <Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-indigo-600 hover:text-indigo-900 underline">Check</Link>
+					                <Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                                    </Link>
 					              </td>
 					            </tr>
 
