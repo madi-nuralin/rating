@@ -536,6 +536,21 @@ var messages = {
           header: 'My rating',
           content: {
             title: 'List of ratings',
+            rating: {
+              description: 'Description',
+              submission_begin_at: 'Begins',
+              submission_end_at: 'Completion',
+              verification_begin_at: 'Checking begins',
+              verification_end_at: 'Checking completion',
+              verifiers: 'Verifiers',
+              emptyVerifiers: 'No members',
+              status: 'Status',
+              statuses: {
+                submission: 'Submission',
+                verification: 'Verification',
+                completed: 'Completed'
+              }
+            },
             statistics: {
               total: 'Total',
               submitting: 'Active',
@@ -1589,6 +1604,22 @@ var messages = {
           header: 'Мой рейтинг',
           content: {
             title: 'Список рейтингов',
+            rating: {
+              name: 'Название',
+              description: 'Описание',
+              submission_begin_at: 'Начало',
+              submission_end_at: 'Завершение',
+              verification_begin_at: 'Начало проверки',
+              verification_end_at: 'Завершение проверки',
+              verifiers: 'Подтверждающие',
+              emptyVerifiers: 'Нет участников',
+              status: 'Статус',
+              statuses: {
+                submission: 'Отправка',
+                verification: 'На проверке',
+                completed: 'Завершено'
+              }
+            },
             statistics: {
               total: 'Всего',
               submitting: 'Активные',

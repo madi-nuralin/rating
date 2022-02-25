@@ -2,7 +2,7 @@
     <div class="relative">
     	<input type="file" class="hidden" ref="file" @change="updateFilePreview">
 
-        <div class="max-w-xl flex items-center space-x-2">
+        <div class="max-w-xl flex items-center space-x-4">
             <template v-if="! uploaded">
                 <breeze-button-secondary type="button" @click.prevent="selectNewFile">
                     {{ $t('components.fileInput.uploadFileButton') }}
@@ -14,13 +14,13 @@
             </template>
 
             <template v-else>
-                <a :href="value" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mr-2" target="_blank" rel="noopener noreferrer">
+                <a :href="value" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition" target="_blank" rel="noopener noreferrer">
                     {{ $t('components.fileInput.downloadFileButton') }}
                 </a>
 
-                <breeze-button-secondary type="button" @click.prevent="deleteFile" v-if="! readonly">
+                <button class="text-red-500 text-sm hover:underline" type="button" @click.prevent="deleteFile" v-if="! readonly">
                     {{ $t('components.fileInput.removeFileButton') }}
-                </breeze-button-secondary>
+                </button>
             </template>
         </div>
     </div>

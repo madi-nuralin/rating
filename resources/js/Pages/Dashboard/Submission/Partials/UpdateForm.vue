@@ -175,6 +175,7 @@
 
         methods: {
             updateSubmission() {
+                console.log(this._form);
                 this._form.post(route('submission.update', {'id': this.submission.id}), {
                     errorBag: 'updateSubmission',
                     preserveScroll: true
