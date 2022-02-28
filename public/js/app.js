@@ -45989,7 +45989,7 @@ var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_9 = {
-  "class": "text-slate-900 font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-gray-400"
+  "class": "text-slate-900 font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white"
 };
 var _hoisted_10 = {
   "class": "mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg"
