@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Verification extends Model
 {
     use HasFactory,
-    	Helpers\HasId;
+    	Helpers\HasId,
+        Helpers\HasMessage;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,10 @@ class Verification extends Model
         'verifier_id',
         'verification_status_id'
     ];
+
+    public function settings() {
+        return $this->hasMany(VerificationSetting::class);
+    }
 
     public function submission() {
     	return $this->belongsTo(Submission::class);
@@ -60,6 +65,7 @@ class Verification extends Model
     public function toArray() {
     	return [
     		'id' => $this->getId(),
+            'message' => $this->getMessage(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

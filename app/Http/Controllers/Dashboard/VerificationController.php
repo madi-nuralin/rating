@@ -9,6 +9,8 @@ use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use DB;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\Rating;
 use App\Models\User;
 use App\Models\Submission;
@@ -299,6 +301,12 @@ class VerificationController extends Controller
         $verificationStatus = VerificationStatus::findOrFail($input['verification_status']);
         $verification = Verification::findOrFail($id);
         $verification->setVerificationStatus($verificationStatus);
+        $verification->setMessage($input['message']);
+        
+        if ($verificationStatus->getContext() == 'fixed') {
+            Submission::updateHelper($request, $id, 'updateVerification');
+        }
+
         $verification->save();
 
         return $request->wantsJson()

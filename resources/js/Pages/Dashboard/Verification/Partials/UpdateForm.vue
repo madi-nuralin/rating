@@ -115,7 +115,7 @@
             </BreezeActionMessage>
 
             <BreezeButton type="button" @click="confirmVerification">
-                Make decision
+                {{ translate('actions.makeOrChangeDecisionButton') }}
             </BreezeButton>
 
              <!-- Confirmation Modal -->
@@ -127,7 +127,7 @@
                 <template #content>
                 	<div class="grid grid-cols-6 gap-6 text-left">
 	                    <div class="col-span-6 sm:col-span-4">
-			                <breeze-label for="verification_status" value="Verification decision" />
+			                <breeze-label for="verification_status" :value="translate('actions.modal.content.verification_status')" />
 			                <breeze-input-error :message="_form.errors.verification_status" class="mt-2" />
 
 			                <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer">
@@ -141,7 +141,7 @@
 			                            <div class="flex items-center">
 			                                <div class="text-sm text-gray-600 text-left"
 			                                    :class="{'font-semibold': _form.verification_status == verification_status.id}">
-			                                    {{ verification_status.name }}
+			                                    {{ verification_status.verb }}
 			                                </div>
 
 			                                <svg v-if="_form.verification_status == verification_status.id"
@@ -157,18 +157,17 @@
 			                            </div>
 
 			                            <!-- Description -->
-			                            <div class="mt-2 text-xs text-gray-600 text-left">
-			                                {{ verification_status.description }}
-			                            </div>
+			                            <!--div class="mt-2 text-xs text-gray-600 text-left">
+			                            </div-->
 			                        </div>
 			                    </button>
 			                </div>
 			            </div>
 
 			            <div class="col-span-6 sm:col-span-4">
-			                <breeze-label for="message" value="Message" />
-			                <breeze-textarea id="message" class="mt-1 block w-full" />
-			                <!--breeze-input-error :message="_form.errors.verification_status" class="mt-2" /-->
+			                <breeze-label for="message" :value="translate('actions.modal.content.message')" />
+			                <breeze-textarea id="message" v-model="_form.message" class="mt-1 block w-full" />
+			                <breeze-input-error :message="_form.errors.message" class="mt-2" />
 			            </div>
 			        </div>
                 </template>
@@ -230,6 +229,7 @@
             const FIELD = [];
 
             INIT['verification_status'] = '';
+            INIT['message'] = '';
 
             if (props.verification.submission.parameter.form) {
                 for (const field of props.verification.submission.parameter.form.fields) {

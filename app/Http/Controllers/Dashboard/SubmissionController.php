@@ -250,35 +250,7 @@ class SubmissionController extends Controller
     {
         $input = $request->all();
 
-        $submission = Submission::findOrFail($id);
-        $parameter = $submission->parameter;
-        $rating = $submission->rating;
-        $form = $rating->parameterForm($parameter);
-
-        if ($form) {
-            $rules = [];
-
-            foreach ($form->fields as $formField) {
-                $rules["field{$formField->id}"] = $formField->rules();
-            }
-
-            Validator::make($input, $rules)->validateWithBag('updateSubmission');
-
-            foreach ($form->fields as $formField) {
-                $formFieldResponce = $submission->formFieldResponces()
-                                                ->where('form_field_id', $formField->id)
-                                                ->first();
-                    
-                if (is_null($formFieldResponce)) {
-                    $submission->createFormFieldResponce($formField, $input["field{$formField->id}"] ?? '');
-                } else {                          
-                    $formFieldResponce->setValue($input["field{$formField->id}"] ?? '');
-                }
-            }
-
-            $submission->updateScoreByFormFieldResponces();
-            $submission->save();
-        }
+        Submission::updateHelper($request, $id, 'updateSubmission');
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)

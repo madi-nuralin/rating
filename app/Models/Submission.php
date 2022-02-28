@@ -5,6 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
+
 use MathParser\StdMathParser;
 use MathParser\Interpreting\Evaluator;
 
@@ -175,6 +180,55 @@ class Submission extends Model
             default:
                 # code...
                 break;
+        }
+    }
+
+    public static function updateHelper(Request $request, $id, $validateWithBag)
+    {
+        $input = $request->all();
+
+        $submission = Submission::findOrFail($id);
+        $parameter = $submission->parameter;
+        $rating = $submission->rating;
+        $form = $rating->parameterForm($parameter);
+
+        if ($form) {
+            $rules = [];
+
+            foreach ($form->fields as $formField) {
+                if ($formField->getType() == FormField::FILE) {
+
+                    $formFieldResponce = $submission->formFieldResponces()
+                                                    ->where('form_field_id', $formField->id)
+                                                    ->first();
+
+                    if (! is_null($formFieldResponce)) {
+                        if (! is_null($formFieldResponce->getValue())) {
+                            if ($input["field{$formField->id}"] == $formFieldResponce->getValue()) {
+                                continue;
+                            }
+                        }
+                    }
+                }
+                $rules["field{$formField->id}"] = $formField->rules();
+            }
+
+            Validator::make($input, $rules)->validateWithBag($validateWithBag);
+
+            foreach ($form->fields as $formField) {
+                $formFieldResponce = $submission->formFieldResponces()
+                                                ->where('form_field_id', $formField->id)
+                                                ->first();
+                    
+                if (is_null($formFieldResponce)) {
+                    $submission->createFormFieldResponce($formField, $input["field{$formField->id}"] ?? '');
+                } else {                          
+                    $formFieldResponce->setValue($input["field{$formField->id}"] ?? '');
+                }
+            }
+
+            $submission->updateScoreByFormFieldResponces();
+            $submission->save();
         }
     }
 

@@ -1,0 +1,68 @@
+[
+    {
+        "en" : {
+            "name" : "Not reviewed",
+            "description" : "The responce not reviewed.",
+            "verb": "Mark as not reviewed"
+        },
+        "ru" : {
+            "name" : "Не рассмотрено",
+            "description" : "Ответ еще не рассмотрено",
+            "verb": "Отметить не расмотренным"
+        },
+        "context" : "not_reviewed",
+        "color" : "yellow"
+    }, {
+        "en" : {
+            "name" : "Rejected",
+            "description" : "Reject answer.",
+            "verb": "Reject answer."
+        },
+        "ru" : {
+            "name" : "Отказано",
+            "description" : "Ответ отклонен.",
+            "verb": "Отклонить ответ."
+        },
+        "context" : "rejected",
+        "color" : "red"
+    }, {
+        "en" : {
+            "name" : "Accepted",
+            "description" : "Responce is accepted.",
+            "verb": "Accept and confirm the correct answer."
+        },
+        "ru" : {
+            "name" : "Подтверждено",
+            "description" : "Ответ принят.",
+            "verb": "Принять и подтвердить правильность ответа."
+        },
+        "context" : "accepted",
+        "color" : "green"
+    },  {
+        "en" : {
+            "name" : "Fix require",
+            "description" : "Request fixes.",
+            "verb": "Request fixes."
+        },
+        "ru" : {
+            "name" : "Требуется исправление",
+            "description" : "Подтверждение требует исправление",
+            "verb": "Запросить исправления."
+        },
+        "context" : "fix_require",
+        "color" : "indigo"
+    },  {
+        "en" : {
+            "name" : "Fixed",
+            "description" : "Verification fixed.",
+            "verb": "Accept and acknowledge the answer with your corrections."
+        },
+        "ru" : {
+            "name" : "Принято с исправлениями",
+            "description" : "Принято с исправлениями",
+            "verb": "Принять и подтвердить ответ с вашими исправлениями."
+        },
+        "context" : "fixed",
+        "color" : "blue"
+    }
+]

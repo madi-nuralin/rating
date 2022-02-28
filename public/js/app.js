@@ -25130,6 +25130,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var INIT = [];
     var FIELD = [];
     INIT['verification_status'] = '';
+    INIT['message'] = '';
 
     if (props.verification.submission.parameter.form) {
       var _iterator = _createForOfIteratorHelper(props.verification.submission.parameter.form.fields),
@@ -33760,7 +33761,7 @@ var _hoisted_4 = {
   "class": "text-sm text-gray-600 text-left"
 };
 var _hoisted_5 = {
-  "class": "mt-2 text-xs text-gray-600 text-left"
+  "class": "mt-2 text-sm text-gray-600 text-left"
 };
 var _hoisted_6 = {
   "class": "grid grid-cols-2"
@@ -34540,19 +34541,22 @@ var _hoisted_1 = {
   "class": "divide-y divide-gray-200"
 };
 var _hoisted_2 = {
-  "class": "flex items-center py-4 first:pt-0 last:pb-0"
+  "class": "space-y-2 py-4 first:pt-0 last:pb-0"
 };
 var _hoisted_3 = {
-  "class": "ml-3 overflow-hidden w-full"
+  "class": "flex items-center"
 };
 var _hoisted_4 = {
-  "class": "text-sm font-medium text-gray-900"
+  "class": "ml-3 overflow-hidden w-full"
 };
 var _hoisted_5 = {
-  "class": "text-sm text-gray-500 truncate"
+  "class": "text-sm font-medium text-gray-900"
 };
 var _hoisted_6 = {
   "class": "text-sm text-gray-500 truncate"
+};
+var _hoisted_7 = {
+  "class": "grid gap-2 grid-cols-2 text-sm text-gray-500"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breeze_avatar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-avatar");
@@ -34569,16 +34573,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.submission.verifications, function (verification, i) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Remove top/bottom padding when first/last child "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_avatar, {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Remove top/bottom padding when first/last child "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_avatar, {
           src: verification.verifier.user.profile_photo_path,
           width: '8'
         }, null, 8
         /* PROPS */
-        , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification.verifier.user.name), 1
+        , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification.verifier.user.name), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification.verifier.user.email), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification.verifier.user.email), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_badge, {
+        )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.verification.update.actions.modal.content.verification_status')), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_badge, {
           color: verification.verification_status.color
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -34591,7 +34597,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["color"])])])])], 64
+        , ["color"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.verification.update.actions.modal.content.message')), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification.message), 1
+        /* TEXT */
+        )])])], 64
         /* STABLE_FRAGMENT */
         );
       }), 256
@@ -35481,6 +35491,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "grid gap-2 grid-cols-2 text-sm text-gray-500"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breeze_badge = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-badge");
 
@@ -35493,7 +35506,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )];
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_badge, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.verification.update.actions.modal.content.verification_status')), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_badge, {
         color: $props.verification.verification_status.color
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -35506,7 +35521,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["color"])];
+      , ["color"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('pages.dashboard.verification.update.actions.modal.content.message')), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.verification.message), 1
+      /* TEXT */
+      )])];
     }),
     _: 1
     /* STABLE */
@@ -35560,22 +35579,20 @@ var _hoisted_7 = {
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Saved. ");
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Make decision ");
-
-var _hoisted_10 = {
+var _hoisted_9 = {
   "class": "grid grid-cols-6 gap-6 text-left"
 };
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "col-span-6 sm:col-span-4"
 };
-var _hoisted_12 = {
+var _hoisted_11 = {
   "class": "relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer"
 };
-var _hoisted_13 = ["onClick"];
-var _hoisted_14 = {
+var _hoisted_12 = ["onClick"];
+var _hoisted_13 = {
   "class": "flex items-center"
 };
-var _hoisted_15 = {
+var _hoisted_14 = {
   key: 0,
   "class": "ml-2 h-5 w-5 text-green-400",
   fill: "none",
@@ -35586,17 +35603,14 @@ var _hoisted_15 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_17 = [_hoisted_16];
-var _hoisted_18 = {
-  "class": "mt-2 text-xs text-gray-600 text-left"
-};
-var _hoisted_19 = {
+var _hoisted_16 = [_hoisted_15];
+var _hoisted_17 = {
   "class": "col-span-6 sm:col-span-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -35826,7 +35840,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: $options.confirmVerification
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('actions.makeOrChangeDecisionButton')), 1
+          /* TEXT */
+          )];
         }),
         _: 1
         /* STABLE */
@@ -35835,7 +35851,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Confirmation Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_modal_confirmation, {
         show: $data.confirmingVerification,
-        onClose: _cache[1] || (_cache[1] = function ($event) {
+        onClose: _cache[2] || (_cache[2] = function ($event) {
           return $data.confirmingVerification = false;
         })
       }, {
@@ -35845,15 +35861,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           )];
         }),
         content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
             "for": "verification_status",
-            value: "Verification decision"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input_error, {
+            value: $props.translate('actions.modal.content.verification_status')
+          }, null, 8
+          /* PROPS */
+          , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input_error, {
             message: $data._form.errors.verification_status,
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.verificationStatuses, function (verification_status, i) {
+          , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.verificationStatuses, function (verification_status, i) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
               type: "button",
               "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
@@ -35868,32 +35886,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
                 'opacity-50': $data._form.verification_status && $data._form.verification_status != verification_status.id
               })
-            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
               "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm text-gray-600 text-left", {
                 'font-semibold': $data._form.verification_status == verification_status.id
               }])
-            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification_status.name), 3
+            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification_status.verb), 3
             /* TEXT, CLASS */
-            ), $data._form.verification_status == verification_status.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(verification_status.description), 1
-            /* TEXT */
-            )], 2
+            ), $data._form.verification_status == verification_status.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_14, _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("div class=\"mt-2 text-xs text-gray-600 text-left\">\n\t\t\t                            </div")], 2
             /* CLASS */
             )], 10
             /* CLASS, PROPS */
-            , _hoisted_13);
+            , _hoisted_12);
           }), 128
           /* KEYED_FRAGMENT */
-          ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
+          ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
             "for": "message",
-            value: "Message"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_textarea, {
+            value: $props.translate('actions.modal.content.message')
+          }, null, 8
+          /* PROPS */
+          , ["value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_textarea, {
             id: "message",
+            modelValue: $data._form.message,
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+              return $data._form.message = $event;
+            }),
             "class": "mt-1 block w-full"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("breeze-input-error :message=\"_form.errors.verification_status\" class=\"mt-2\" /")])])];
+          }, null, 8
+          /* PROPS */
+          , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input_error, {
+            message: $data._form.errors.message,
+            "class": "mt-2"
+          }, null, 8
+          /* PROPS */
+          , ["message"])])])];
         }),
         footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_secondary, {
-            onClick: _cache[0] || (_cache[0] = function ($event) {
+            onClick: _cache[1] || (_cache[1] = function ($event) {
               return $data.confirmingVerification = false;
             })
           }, {
@@ -47970,13 +47999,18 @@ var messages = {
           create: {//
           },
           update: {
-            title: 'Entry Confirmation',
+            title: 'Responce Confirmation',
             description: 'You have been given access to review and approve the employee\'s evaluation sheet. Go through the records to confirm the assessment.',
             form: {//
             },
             actions: {
+              makeOrChangeDecisionButton: 'Make or change decision',
               modal: {
                 title: 'Your decision',
+                content: {
+                  verification_status: 'Decision',
+                  message: 'Accompanying message'
+                },
                 footer: {
                   cancelButton: 'Cancel',
                   updateButton: 'Save'
@@ -48969,19 +49003,19 @@ var messages = {
           create: {//
           },
           update: {
-            title: 'Действие для оценки',
+            title: 'Детали ответа',
             description: 'Представление оценочного листа и его детали. Вам разрешено обновлять форму до тех пор, пока дата отправки не истечет.',
             form: {//
             }
           },
           "delete": {
-            title: 'Удалить действие',
-            description: 'Навсегда удалить действие',
+            title: 'Удалить ответ',
+            description: 'Навсегда удалить ответ',
             content: {
               deleteInfo: 'После удаления представления все его ресурсы и данные будут безвозвратно удалены. Перед удалением этой отправки загрузите любые данные или информацию, касающиеся этого поля, которые вы хотите сохранить.',
-              deleteButton: 'Удалить отправку',
+              deleteButton: 'Удалить ответ',
               modal: {
-                title: 'Удалить отправку',
+                title: 'Удалить ответ',
                 content: 'Вы уверены, что хотите удалить это представление? После удаления все его ресурсы и данные будут безвозвратно удалены.',
                 footer: {
                   cancelButton: 'Отмена',
@@ -49024,13 +49058,18 @@ var messages = {
           create: {//
           },
           update: {
-            title: 'Подтверждение записи',
+            title: 'Проверка и подтверждение ответа',
             description: 'Вам предаставлено доступ для проверки и подтверждения листа оценки сотрудника. Переходите по записям для подтверждения оценки.',
             form: {//
             },
             actions: {
+              makeOrChangeDecisionButton: 'Принять или изменить решение',
               modal: {
                 title: 'Ваше решение',
+                content: {
+                  verification_status: 'Решение',
+                  message: 'Сопроводительное письмо'
+                },
                 footer: {
                   cancelButton: 'Отмена',
                   updateButton: 'Сохранить'

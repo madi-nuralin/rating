@@ -10,7 +10,8 @@ class VerificationStatus extends Model
     use HasFactory,
         Helpers\HasId,
         Helpers\HasName,
-        Helpers\HasDescription;
+        Helpers\HasDescription,
+        Helpers\HasVerb;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +52,7 @@ class VerificationStatus extends Model
     		'id' => $this->getId(),
             'context' => $this->getContext(),
             'color' => $this->getColor(),
+            'verb' => $this->getVerb(),
     		'name' => $this->getName(),
             'description' => $this->getDescription(),
     		'created_at' => $this->created_at,

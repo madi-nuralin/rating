@@ -633,14 +633,19 @@ var messages = {
             //
           },
           update: {
-            title: 'Entry Confirmation',
+            title: 'Responce Confirmation',
             description: 'You have been given access to review and approve the employee\'s evaluation sheet. Go through the records to confirm the assessment.',
             form: {
               //
             },
             actions: {
+              makeOrChangeDecisionButton: 'Make or change decision',
               modal: {
                 title: 'Your decision',
+                content: {
+                  verification_status: 'Decision',
+                  message: 'Accompanying message'
+                },
                 footer: {
                   cancelButton: 'Cancel',
                   updateButton: 'Save'
@@ -1642,20 +1647,20 @@ var messages = {
             //
           },
           update: {
-            title: 'Действие для оценки',
+            title: 'Детали ответа',
             description: 'Представление оценочного листа и его детали. Вам разрешено обновлять форму до тех пор, пока дата отправки не истечет.',
             form: {
               //
             }
           },
           delete: {
-            title: 'Удалить действие',
-            description: 'Навсегда удалить действие',
+            title: 'Удалить ответ',
+            description: 'Навсегда удалить ответ',
             content: {
               deleteInfo: 'После удаления представления все его ресурсы и данные будут безвозвратно удалены. Перед удалением этой отправки загрузите любые данные или информацию, касающиеся этого поля, которые вы хотите сохранить.',
-              deleteButton: 'Удалить отправку',
+              deleteButton: 'Удалить ответ',
               modal: {
-                title: 'Удалить отправку',
+                title: 'Удалить ответ',
                 content: 'Вы уверены, что хотите удалить это представление? После удаления все его ресурсы и данные будут безвозвратно удалены.',
                 footer: {
                   cancelButton: 'Отмена',
@@ -1702,14 +1707,19 @@ var messages = {
             //
           },
           update: {
-            title: 'Подтверждение записи',
+            title: 'Проверка и подтверждение ответа',
             description: 'Вам предаставлено доступ для проверки и подтверждения листа оценки сотрудника. Переходите по записям для подтверждения оценки.',
             form: {
               //
             },
             actions: {
+              makeOrChangeDecisionButton: 'Принять или изменить решение',
               modal: {
                 title: 'Ваше решение',
+                content: {
+                  verification_status: 'Решение',
+                  message: 'Сопроводительное письмо'
+                },
                 footer: {
                   cancelButton: 'Отмена',
                   updateButton: 'Сохранить'

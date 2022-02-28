@@ -74,6 +74,8 @@ class FormFieldResponce extends Model
             case FormField::FILE:
                 if ($value instanceof UploadedFile) {
                     $value = $value->storeAs('form-files', $value->getClientOriginalName(), 'public');
+                } else if ($value == $this->getValue()) {
+                    break;
                 }
                 
                 $this->setSetting('value', $value, null);

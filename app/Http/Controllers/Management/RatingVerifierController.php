@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use App\Models\Rating;
 use App\Models\User;
 use App\Models\Verifier;
+use App\Models\Verification;
+use App\Models\VerificationStatus;
 use App\Models\ParameterTarget;
 
 class RatingVerifierController extends Controller
@@ -73,6 +75,14 @@ class RatingVerifierController extends Controller
         ]);
 
         $verifier->save();
+
+        foreach ($rating->submissions as $submission) {
+            Verification::create([
+                'verifier_id' => $verifier->id,
+                'submission_id' => $submission->id,
+                'verification_status_id' => VerificationStatus::firstWhere('context', 'not_reviewed')->id
+            ])->save();
+        }
 
         session()->flash('flash.banner', [
             'components.banner.resource.created', [

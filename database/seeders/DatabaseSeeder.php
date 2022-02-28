@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         //$this->seedAssessment();
         $this->seedParameterTarget();
         $this->seedParameter();
-        $this->seedVerificationStatus();
+        $this->seedVerificationStatuses();
     }
 
     protected function seedRole() {
@@ -574,67 +574,14 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    protected function seedVerificationStatus() {
+    protected function seedVerificationStatuses() {
         $locales = ['en', 'ru'];
     
-        $definitions = [
-            [
-                'en' => [
-                    'name' => 'Not reviewed',
-                    'description' => 'Verification not reviewed.'
-                ],
-                'ru' => [
-                    'name' => 'Не рассмотрено',
-                    'description' => 'Подтверждение еще не рассмотрено'
-                ],
-                'context' => 'not_reviewed',
-                'color' => 'yellow'
-            ], [
-                'en' => [
-                    'name' => 'Not accepted',
-                    'description' => 'Verification not accepted.'
-                ],
-                'ru' => [
-                    'name' => 'Отказано',
-                    'description' => 'Подтверждение отказано'
-                ],
-                'context' => 'not_accepted',
-                'color' => 'red'
-            ], [
-                'en' => [
-                    'name' => 'Accepted',
-                    'description' => 'Verification accepted.'
-                ],
-                'ru' => [
-                    'name' => 'Подтверждено',
-                    'description' => 'Подтверждение принято'
-                ],
-                'context' => 'accepted',
-                'color' => 'green'
-            ],  [
-                'en' => [
-                    'name' => 'Fix require',
-                    'description' => 'Verification requires fixes.'
-                ],
-                'ru' => [
-                    'name' => 'Требуется исправление',
-                    'description' => 'Подтверждение требует исправление'
-                ],
-                'context' => 'fix_require',
-                'color' => 'indigo'
-            ],  [
-                'en' => [
-                    'name' => 'Fixed',
-                    'description' => 'Verification fixed.'
-                ],
-                'ru' => [
-                    'name' => 'Исправлено',
-                    'description' => 'Подтверждение исправлено'
-                ],
-                'context' => 'fixed',
-                'color' => 'blue'
-            ],
-        ];
+        $definitions = json_decode(
+            file_get_contents(
+                resource_path("factories/verification_statuses.json")
+            ), true
+        );
 
         foreach ($definitions as $definition) {
             $verificationStatus = VerificationStatus::create([
@@ -645,6 +592,7 @@ class DatabaseSeeder extends Seeder
             foreach ($locales as $locale) {
                 $verificationStatus->setName($definition[$locale]['name'], $locale);
                 $verificationStatus->setDescription($definition[$locale]['description'], $locale);
+                $verificationStatus->setVerb($definition[$locale]['verb'], $locale);
             }
             
             $verificationStatus->save();

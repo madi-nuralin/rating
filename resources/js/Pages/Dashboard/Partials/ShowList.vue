@@ -48,7 +48,7 @@
 			                            </div>
 
 			                            <!-- Description -->
-			                            <div class="mt-2 text-xs text-gray-600 text-left">
+			                            <div class="mt-2 text-sm text-gray-600 text-left">
 			                            	<div class="grid grid-cols-2">
 			                            		<p>{{ translate('form.updatedAt') }}</p>
 			                                    <p>{{ new Date(submission.updated_at) }}</p>

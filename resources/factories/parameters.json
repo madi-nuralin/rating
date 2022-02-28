@@ -101,7 +101,7 @@
                             "label":"Number of students"
                         },
                         "ru":{
-                            "label":"Количество дисциплин"
+                            "label":"Количество студентов"
                         },
                         "type":"number",
                         "validation_rules":{
