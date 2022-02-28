@@ -36,7 +36,7 @@ class ParameterController extends Controller
     public function create()
     {
         return Inertia::render('Management/Parameters/Create', [
-            'targets' => ParameterTarget::all()->map(function($parameterTarget) {
+            'parameter_targets' => ParameterTarget::all()->map(function($parameterTarget) {
                 return $parameterTarget->toArray();
             }),
         ]);
@@ -55,10 +55,10 @@ class ParameterController extends Controller
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
-            'target' => ['required', 'numeric'],
+            'parameter_target' => ['required', 'numeric'],
         ])->validateWithBag('createParameter');
 
-        $parameterTarget = ParameterTarget::findOrFail($input['target']);
+        $parameterTarget = ParameterTarget::findOrFail($input['parameter_target']);
 
         $parameter = Parameter::create([
             'parameter_target_id' => $parameterTarget->getId()
@@ -87,11 +87,10 @@ class ParameterController extends Controller
                     'forms' => $parameter->forms ? $parameter->forms()->paginate(10)->through(function($form) {
                         return $form->toArray();
                     }) : [],
-                    'active_form' => $parameter->activeForm ? $parameter->activeForm->toArray() : [],
-                    'target' => $parameter->parameterTarget->toArray()
+                    'parameter_target' => $parameter->parameterTarget->toArray()
                 ]
             ),
-            'targets' => ParameterTarget::all()->map(function($parameterTarget) {
+            'parameter_targets' => ParameterTarget::all()->map(function($parameterTarget) {
                 return $parameterTarget->toArray();
             })
         ]);
@@ -122,18 +121,15 @@ class ParameterController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2048'],
-            'target' => ['required', 'numeric'],
-            'active_form' => ['numeric'],
+            'parameter_target' => ['required', 'numeric']
         ])->validateWithBag('updateParameter');
 
         $parameter = Parameter::findOrFail($id);
-        $parameterTarget = ParameterTarget::findOrFail($input['target']);
-        $form = Form::findOrfail($input['active_form']);
+        $parameterTarget = ParameterTarget::findOrFail($input['parameter_target']);
         
         $parameter->setName($input['name']);    
         $parameter->setDescription($input['description']);
         $parameter->setParameterTarget($parameterTarget);
-        $parameter->setActiveForm($form);
         $parameter->save();
 
         return $request->wantsJson()

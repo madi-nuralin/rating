@@ -1,0 +1,82 @@
+[
+   {
+      "en":{
+         "name":"Media communications and history of Kazakhstan",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра Медиакоммуникации и Истории Казахстана",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Computer Engineering and Information Security",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра Компьютерная инженерия и информационная безопасность",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Mathematical Computer Modeling",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра Математическое компьютерное моделирование",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Economics and business",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра Экономика и бизнес",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Radio Engineering, Electronics and Telecommunications",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра Радиотехника, электроника и телекоммуникации",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Department of Languages",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра языков",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Military Training Department",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Военная кафедра",
+         "description":"Кафедра"
+      }
+   },
+   {
+      "en":{
+         "name":"Information Systems",
+         "description":"Deparment"
+      },
+      "ru":{
+         "name":"Кафедра Информационные системы",
+         "description":"Кафедра"
+      }
+   }
+]

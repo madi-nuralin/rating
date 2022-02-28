@@ -22,9 +22,9 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="target" :value="translate('form.target')" />
-                <BreezeSelect id="target" class="mt-1 block w-full" :value="form.target" @input="form.target = $event" :options="options.target" :multiple="false" />
-                <BreezeInputError :message="form.errors.target" class="mt-2" />
+                <BreezeLabel for="parameter_target" :value="translate('form.parameter_target')" />
+                <BreezeSelect id="parameter_target" class="mt-1 block w-full" :value="form.parameter_target" @input="form.parameter_target = $event" :options="options.parameter_target" :multiple="false" />
+                <BreezeInputError :message="form.errors.parameter_target" class="mt-2" />
             </div>
         </template>
 
@@ -90,8 +90,12 @@
                 let parameterTargets = this.parameterTargets;
 
                 return {
-                    target: parameterTargets ? parameterTargets.map(function(parameterTarget) {
-                        return { value: parameterTarget.id, name: parameterTarget.name, description: parameterTarget.description };
+                    parameter_target: parameterTargets ? parameterTargets.map(function(parameterTarget) {
+                        return {
+                            'value': parameterTarget.id,
+                            'name': parameterTarget.name,
+                            'description': parameterTarget.description
+                        };
                     }) : null
                 }
             },

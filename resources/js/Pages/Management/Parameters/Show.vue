@@ -10,7 +10,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :parameter="$page.props.parameter" :parameter-targets="$page.props.targets" :translate="translate[1]" />
+                <update-form :parameter="$page.props.parameter" :parameter-targets="$page.props.parameter_targets" :translate="translate[1]" />
                 <breeze-section-border />
 
                 <form-list :forms="$page.props.parameter.forms"

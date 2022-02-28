@@ -313,7 +313,7 @@ var messages = {
               title: 'Add a new parameter',
               description: 'Create a new parameter configuration for this rating.',
               form: {
-                parameter_target: 'Target',
+                target: 'Target',
                 parameter: 'Parameter',
                 form: 'Form'
               }
@@ -322,7 +322,7 @@ var messages = {
               title: 'Update rating parameter',
               description: 'Update a parameter configuration for this rating.',
               form: {
-                parameter_target: 'Target',
+                target: 'Target',
                 parameter: 'Parameter',
                 form: 'Form'
               }
@@ -414,7 +414,7 @@ var messages = {
             form: {
               name: 'Name',
               description: 'Description',
-              target: 'Target'
+              parameter_target: 'Target'
             }
           },
           update: {
@@ -423,7 +423,7 @@ var messages = {
             form: {
               name: 'Name',
               description: 'Description',
-              target: 'Target'
+              parameter_target: 'Target'
             }
           },
           delete: {
@@ -1487,7 +1487,7 @@ var messages = {
             form: {
               name: 'Название',
               description: 'Описание',
-              target: 'Направление деятельности'
+              parameter_target: 'Направление деятельности'
             }
           },
           update: {
@@ -1496,7 +1496,7 @@ var messages = {
             form: {
               name: 'Название',
               description: 'Описание',
-              target: 'Направление деятельности'
+              parameter_target: 'Направление деятельности'
             }
           },
           delete: {

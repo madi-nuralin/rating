@@ -1,0 +1,122 @@
+[
+   {
+      "en":{
+         "name":"Educational-methodical work",
+         "description":"Methodical work is a set of activities aimed at providing the educational process with educational and methodological documentation, conducting classroom and other types of classes with students at a high theoretical and scientific level, improving the pedagogical skills of teachers."
+      },
+      "ru":{
+         "name":"Учебно-методическая работа",
+         "description":"Методическая работа представляет собой комплекс мероприятий, направленных на обеспечение учебного процесса учебно-методической документацией, проведение аудиторных и других видов занятий со студентами на высоком теоретическом и научном уровне, повышение педагогического мастерства преподавателей."
+      }
+   },
+   {
+      "en":{
+         "name":"Research work",
+         "description":"The research activity of a teacher is a conscious, independent and responsibly carried out practical activity aimed at increasing pedagogical professionalism."
+      },
+      "ru":{
+         "name":"Научно-исследовательскя работа",
+         "description":"Исследовательская деятельность педагога – это осознанная, самостоятельная и ответственно осуществляемая практическая деятельность, направленная на повышение педагогического профессионализма."
+      }
+   },
+   {
+      "en":{
+         "name":"Social educational work",
+         "description":"Social work in an inextricable connection with educational work involves the organization of interaction with students, including with their socially unprotected parameterTarget, in order to identify their social and living conditions, emerging difficulties, to introduce expedient changes and transformations in their life."
+      },
+      "ru":{
+         "name":"Социально-воспитательная работа",
+         "description":"Социальная работа в неразрывной связи с воспитательной работой предполагает организацию взаимодействия со студентами, в том числе и с социально незащищённой их категорией, с целью выявления их социально-бытовых условий, возникающих трудностей, привнесения целесообразных изменений и преобразований в их жизнедеятельность."
+      }
+   },
+   {
+      "en":{
+         "name":"Expert-analytical, social-activities, mass media",
+         "description":"Expert-analytical, social-activities, mass media"
+      },
+      "ru":{
+         "name":"Экспертно-аналитическая, общественная-деятельность, СМИ",
+         "description":"Экспертно-аналитическая, общественная-деятельность, СМИ"
+      }
+   },
+   {
+      "en":{
+         "name":"Qualification",
+         "description":"Qualification"
+      },
+      "ru":{
+         "name":"Квалификация",
+         "description":"Квалификация"
+      }
+   },
+   {
+      "en":{
+         "name":"International activity",
+         "description":"International activity"
+      },
+      "ru":{
+         "name":"Международная деятельность",
+         "description":"Международная деятельность"
+      }
+   },
+   {
+      "en":{
+         "name":"Recruiting applicants. Activities for the recruitment of a contingent of students",
+         "description":"Recruiting applicants. Activities for the recruitment of a contingent of students"
+      },
+      "ru":{
+         "name":"Рекрутинг абитуриентов. Деятельность по набору контингента обучающихся",
+         "description":"Рекрутинг абитуриентов. Деятельность по набору контингента обучающихся"
+      }
+   },
+   {
+      "en":{
+         "name":"The qualification composition of the teaching staff of the department",
+         "description":"The qualification composition of the teaching staff of the department"
+      },
+      "ru":{
+         "name":"Квалификационный состав ППС кафедры",
+         "description":"Квалификационный состав ППС кафедры."
+      }
+   },
+   {
+      "en":{
+         "name":"Organization of study work",
+         "description":"Organization of study work"
+      },
+      "ru":{
+         "name":"Организация учебой работы",
+         "description":"Организация учебой работы."
+      }
+   },
+   {
+      "en":{
+         "name":"Organization of research work at the department",
+         "description":"Organization of research work at the department"
+      },
+      "ru":{
+         "name":"Организация НИР на кафедре",
+         "description":"Организация НИР на кафедре."
+      }
+   },
+   {
+      "en":{
+         "name":"Organizational, educational, career guidance image work",
+         "description":"Organizational, educational, career guidance image work"
+      },
+      "ru":{
+         "name":"Организационно-воспитательная, профоориентационная имиджевая работа",
+         "description":"Организационно-воспитательная, профоориентационная имиджевая работа."
+      }
+   },
+   {
+      "en":{
+         "name":"Social educational, career guidance image work",
+         "description":"Social educational, career guidance image workю"
+      },
+      "ru":{
+         "name":"Социально-воспитательная, профоориентационная имиджевая работа",
+         "description":"Социально-воспитательная, профоориентационная имиджевая работа."
+      }
+   }
+]

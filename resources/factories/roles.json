@@ -1,0 +1,35 @@
+[
+   {
+      "en":{
+         "name":"Website Administrator",
+         "description":"A website administrator is responsible for a website's code, design and content."
+      },
+      "ru":{
+         "name":"Администратор сайта",
+         "description":"Администратор веб-сайта ответсвенен за код, дизайн и содержание веб-сайта."
+      },
+      "context":"admin"
+   },
+   {
+      "en":{
+         "name":"Website Manager",
+         "description":"The website manager is responsible for setting up the website, configuring system settings, and managing user ratings, user accounts."
+      },
+      "ru":{
+         "name":"Управляющий веб-сайта",
+         "description":"Менеджер веб-сайта отвечает за настройку веб-сайта, настройку параметров системы и управление оцениванием пользователей, учетными записями пользователей."
+      },
+      "context":"manager"
+   },
+   {
+      "en":{
+         "name":"Verifier",
+         "description":"Verifying and confirming person of the assessment or rating offset of employees."
+      },
+      "ru":{
+         "name":"Подтверждающий",
+         "description":"Проверяющее и подтверждающее лицо оценки или рейтингового зачета сотрудников."
+      },
+      "context":"verifier"
+   }
+]

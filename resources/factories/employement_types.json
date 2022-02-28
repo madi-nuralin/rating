@@ -1,0 +1,32 @@
+[
+   {
+      "en":{
+         "name":"Staffed",
+         "description":"Staff members are those persons who have a certain professional training in a certain field and have entered into an agreement with the organization."
+      },
+      "ru":{
+         "name":"Штатный",
+         "description":"Штатные сотрудники - это те лица, которые имеют определенную профессиональную подготовку в определенной области и заключили с организацией договор."
+      }
+   },
+   {
+      "en":{
+         "name":"Internal part-time",
+         "description":"Part-time work is the performance by an employee of additional and regularly paid work in his free time from the main type of activity."
+      },
+      "ru":{
+         "name":"Внутренний совместитель",
+         "description": "Совместительство — это форма вторичной занятости, при которой в свободное от основной работы время человеком выполняется другая регулярная оплачиваемая работа."
+      }
+   },
+   {
+      "en":{
+         "name":"Side job",
+         "description":"Part-time employment is a form of secondary employment, in which a person performs other regular paid work in his spare time from his main job."
+      },
+      "ru":{
+         "name":"Совместитель со стороны",
+         "description":"Совместительство — это форма вторичной занятости, при которой в свободное от основной работы время человеком выполняется другая регулярная оплачиваемая работа."
+      }
+   }
+]

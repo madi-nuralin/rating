@@ -21,13 +21,6 @@ class CreateParametersTable extends Migration
                   ->references('id')
                   ->on('parameter_targets')
                   ->onDelete('cascade');
-            $table->bigInteger('active_form_id')
-                  ->nullable()
-                  ->unsigned();
-            $table->foreign('active_form_id')
-                  ->references('id')
-                  ->on('forms')
-                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
