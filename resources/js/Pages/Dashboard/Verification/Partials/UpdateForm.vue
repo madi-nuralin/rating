@@ -16,7 +16,7 @@
                 <ShowStatus :verification="verification" />
 
                 <hr class="my-6" />
-                <ShowScoringBoard :form="verification.submission.parameter.form" :score="verification.submission.score" :status="'scored'"/>
+                <ShowScoringBoard :form="verification.submission.parameter.form" :score="verification.submission.score" :view="'third_party'" :verifications="verification.submission.verifications"/>
 
                 <!--hr class="my-6" />
                 <ShowVerifications :submission="submission" /-->

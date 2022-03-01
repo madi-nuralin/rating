@@ -104,6 +104,20 @@
                                 </BreezeDropdown>
                             </div>
 
+                            <div class="ml-3 relative">
+                                <button class="inline-flex dark:hidden" @click="setTheme('dark')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gray-600">
+                                        <circle cx="12" cy="12" r="5"/>
+                                        <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+                                    </svg>
+                                </button>
+                                <button class="hidden dark:inline-flex" @click="setTheme('light')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <BreezeDropdown align="right" width="48">
@@ -294,6 +308,32 @@ export default {
         setLocale(locale) {
             this.$root.$i18n.locale = locale;
             this.$store.commit('setAppLocale', locale);
+        },
+
+        setTheme(theme) {
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            var localeStorage = this.localStorage;
+
+            // Whenever the user explicitly chooses light mode
+            if (theme === 'light') {
+                localStorage.theme = 'light'
+            }
+
+            // Whenever the user explicitly chooses dark mode
+            else if (theme === 'dark') {
+                localStorage.theme = 'dark'
+            }
+
+            // Whenever the user explicitly chooses to respect the OS preference
+            else {
+                localStorage.removeItem('theme')
+            }
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.documentElement.classList.add('dark')
+            } else {
+              document.documentElement.classList.remove('dark')
+            }
         },
 
         content(context) {

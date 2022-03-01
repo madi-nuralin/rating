@@ -84,7 +84,7 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <ShowScoringBoard :form="form" :status="'undefined'" />
+                <ShowScoringBoard :form="form" :view="'first_party'" :show-score="false"/>
             </div>
         </template>
 

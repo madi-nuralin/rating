@@ -61,9 +61,9 @@ class RatingController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'submission_begin_time_at' => ['required', 'date'],
-            'submission_end_time_at' => ['required', 'date'],
-            'verification_begin_time_at' => ['required', 'date'],
-            'verification_end_time_at' => ['required', 'date'],
+            'submission_end_time_at' => ['required', 'date', 'after:submission_begin_time_at'],
+            'verification_begin_time_at' => ['required', 'date', 'after:submission_end_time_at'],
+            'verification_end_time_at' => ['required', 'date', 'after:verification_begin_time_at'],
             'users' => ['array']
         ])->validateWithBag('createRating');
 
@@ -153,9 +153,9 @@ class RatingController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'submission_begin_time_at' => ['required', 'date'],
-            'submission_end_time_at' => ['required', 'date'],
-            'verification_begin_time_at' => ['required', 'date'],
-            'verification_end_time_at' => ['required', 'date'],
+            'submission_end_time_at' => ['required', 'date', 'after:submission_begin_time_at'],
+            'verification_begin_time_at' => ['required', 'date', 'after:submission_end_time_at'],
+            'verification_end_time_at' => ['required', 'date', 'after:verification_begin_time_at'],
             'users' => ['array']
         ])->validateWithBag('updateRating');
 

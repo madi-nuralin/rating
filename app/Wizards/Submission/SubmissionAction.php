@@ -49,7 +49,7 @@ class SubmissionAction extends WizardAction
     		Verification::create([
     			'verifier_id' => $verifier->id,
     			'submission_id' => $submission->id,
-    			'verification_status_id' => VerificationStatus::firstWhere('context', 'not_reviewed')->id
+    			'verification_status_id' => VerificationStatus::firstWhere('context', 'unreviewed')->id
     		])->save();
     	}
 

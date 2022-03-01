@@ -621,6 +621,36 @@ var messages = {
           partials: {
             showVerifications: {
               trigger: 'List of verifications'
+            },
+            showScoringBoard: {
+              title: 'Grade',
+              unreviewed: {
+                first_party: 'Your responce is not verified yet. You might be assigned <span class="bg-white rounded-md px-1">{score}</span> pts.',
+                third_party: 'User responce is not verified yet. User might earn <span class="bg-white rounded-md px-1">{score}</span> pts.'
+              },
+              rejected: {
+                first_party: 'Your responce is rejected by one of verifiers.',
+                third_party: 'User responce is rejected by one of verifiers.'
+              },
+              fix_require: {
+                first_party: 'One of verifiers required a fix, then your current score <span class="bg-white rounded-md px-1">{score}</span> might be changed.',
+                third_party: 'One of verifiers required a fix, then user\'s score <span class="bg-white rounded-md px-1">{score}</span> might be changed.'
+              },
+              fixed_and_accepted: {
+                first_party: 'You have earned <span class="bg-white rounded-md px-1">{score}</span> pts. with сonsidering verifier fixes.',
+                third_party: 'User has earned <span class="bg-white rounded-md px-1">{score}</span> pts. with considering verifier fixes.'
+              },
+              accepted: {
+                first_party: 'You have earned <span class="bg-white rounded-md px-1">{score}</span> pts.',
+                third_party: 'User has earned <span class="bg-white rounded-md px-1">{score}</span> pts.'
+              },
+              form: {
+                scoring: {
+                  disabled: 'This form has not been assigned an evaluation function',
+                  by_constant: 'Score is assigned according to a predefined form value',
+                  by_math_expression: 'The score is calculated according to the formula  <span class="bg-white rounded-md px-1">{math_expression}</span>, where:'
+                }
+              }
             }
           }
         },
@@ -1695,6 +1725,36 @@ var messages = {
           partials: {
             showVerifications: {
               trigger: 'Список подтверждений'
+            },
+            showScoringBoard: {
+              title: 'Оценка',
+              unreviewed: {
+                first_party: 'Ваш ответ еще не подтвержден, текущая оценка <span class="bg-white rounded-md px-1">{score}</span> баллов.',
+                third_party: 'Ответ пользователя еще не подтвержден, текущая оценка пользователя <span class="bg-white rounded-md px-1">{score}</span> баллов.'
+              },
+              rejected: {
+                first_party: 'Ваш ответ отклонен одним из подтверждающим.',
+                third_party: 'Ответ пользователя отклонен одним из подтверждающим.'
+              },
+              fix_require: {
+                first_party: 'Один из подтверждающих запросил исправления ответа, ваша текущая оценка <span class="bg-white rounded-md px-1">{score}</span> баллов.',
+                third_party: 'Один из подтверждающих запросил исправления ответа, текущая оценка пользователя <span class="bg-white rounded-md px-1">{score}</span> баллов.'
+              },
+              fixed_and_accepted: {
+                first_party: 'Вы заработали <span class="bg-white rounded-md px-1">{score}</span> баллов с учетом исправлений подтверждающего.',
+                third_party: 'Пользователь заработал <span class="bg-white rounded-md px-1">{score}</span> баллов с учетом исправлений подтверждающего.'
+              },
+              accepted: {
+                first_party: 'Вы заработали <span class="bg-white rounded-md px-1">{score}</span> баллов.',
+                third_party: 'Пользователь заработал <span class="bg-white rounded-md px-1">{score}</span> баллов.'
+              },
+              form: {
+                scoring: {
+                  disabled: 'На эту форму не назначена функция оценки',
+                  by_constant: 'Оценка присваивается в соответствии с предопределенным значением формы',
+                  by_math_expression: 'Баллы рассчитывается по формуле <span class="bg-white rounded-md px-1">{math_expression}</span>, где:'
+                }
+              }
             }
           }
         },

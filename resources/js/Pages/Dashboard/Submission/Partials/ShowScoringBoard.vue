@@ -15,32 +15,29 @@
 
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-lg">
-                    Оценка
+                    {{ $t('pages.dashboard.submission.partials.showScoringBoard.title') }}
                 </h3>
 
                 <div class="mt-2 text-left">
-                	<p v-if="status == 'cancelled'">
-                		Вам отказано присвоение баллов за данный ответ
-                	</p>
-                    <p v-else-if="form.scoring == 'disabled'">
-                        К этой форме не было задано функция оценивания
-                    </p>
-                    <p v-else-if="form.scoring == 'by_score'">
-                        Вам начислено <span class="bg-white rounded-md px-1">{{score}} баллов</span> по заранее заданному значению формы
-                    </p>
-                    <p v-else-if="form.scoring == 'by_math_expression'">
-                        Вам начислено <span class="bg-white rounded-md px-1">{{score}} баллов</span> по формуле <span class="bg-white rounded-md px-1">{{ form.math_expression }}</span>, где:
-                        <ul class="list-disc list-inside mt-2">
-                            <li v-for="field in form.fields">
-                                {{ field.label }} - {{ field.variable }}
-                                 <ul class="ml-5 list-disc list-inside" v-if="field.type == 'select'">
-                                    <li v-for="option in field.options">
-                                        {{ option.name }} - {{ option.score }}
-                                    </li>
-                                 </ul>
-                            </li>
-                        </ul>
-                    </p>
+                    <div>
+                        <p v-html="$t(`pages.dashboard.submission.partials.showScoringBoard.${status}.${view}`, {'score': score})" v-if="showScore"/>
+                    </div>
+
+                    <div>
+                        <p v-html="$t(`pages.dashboard.submission.partials.showScoringBoard.form.scoring.${form.scoring}`, {'math_expression': form.math_expression})"/>
+                        <p v-if="form.scoring == 'by_math_expression'">
+                            <ul class="list-disc list-inside mt-2">
+                                <li v-for="field in form.fields">
+                                    {{ field.label }} - {{ field.variable }}
+                                     <ul class="ml-5 list-disc list-inside" v-if="field.type == 'select'">
+                                        <li v-for="option in field.options">
+                                            {{ option.name }} - {{ option.score }}
+                                        </li>
+                                     </ul>
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,12 +48,17 @@
 	export default {
 		props: {
 			form: {
-				//
+				type: Object
 			},
-			status: {
-				type: String,
-				default: 'undefined'
-			},
+            verifications: {
+                type: Object
+            },
+            view: {
+                type: String
+            },
+            showScore: {
+                default: true
+            },
             score: {
                 default: 0
             }
@@ -64,14 +66,50 @@
 
 		computed: {
 			color() {
-				return 'red';/*this.status == 'undefined'
-					? 'orange'
-					: this.status == 'cancelled'
-					? 'red'
-					: this.status == 'scored'
-					? 'emerald'
-					: 'orange';*/
-			}
+				return 'red';
+			},
+            status() {
+                if (!this.showScore) {
+                    return '';
+                }
+
+                var
+                    n = 0,
+                    unreviewed = 0,
+                    rejected = 0,
+                    accepted = 0,
+                    fixRequire = 0,
+                    fixedAndAccepted = 0;
+
+                for (const verification of this.verifications) {
+                    switch (verification.verification_status.context) {
+                        case 'unreviewed':
+                            unreviewed++;
+                            break;
+                        case 'rejected':
+                            rejected++;
+                            break;
+                        case 'accepted':
+                            accepted++;
+                            break;
+                        case 'fix-require':
+                            fixRequire++;
+                            break;
+                        case 'fixed-and-accepted':
+                            fixedAndAccepted++;
+                            break;
+                        default:
+                            break;
+                    }
+                    n++;
+                }
+
+                return rejected > 0 ? 'rejected'
+                    : accepted == n ? 'accepted'
+                    : accepted + fixedAndAccepted == n && fixedAndAccepted > 0 ? 'fixed_and_accepted'
+                    : fixRequire > 0 ? 'fix_require'
+                    : 'unreviewed';
+            }
 		}
 	}
 </script>

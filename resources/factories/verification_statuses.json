@@ -1,7 +1,7 @@
 [
     {
         "en" : {
-            "name" : "Not reviewed",
+            "name" : "Unreviewed",
             "description" : "The responce not reviewed.",
             "verb": "Mark as not reviewed"
         },
@@ -10,7 +10,7 @@
             "description" : "Ответ еще не рассмотрено",
             "verb": "Отметить не расмотренным"
         },
-        "context" : "not_reviewed",
+        "context" : "unreviewed",
         "color" : "yellow"
     }, {
         "en" : {
@@ -49,7 +49,7 @@
             "description" : "Подтверждение требует исправление",
             "verb": "Запросить исправления."
         },
-        "context" : "fix_require",
+        "context" : "fix-require",
         "color" : "indigo"
     },  {
         "en" : {
@@ -62,7 +62,7 @@
             "description" : "Принято с исправлениями",
             "verb": "Принять и подтвердить ответ с вашими исправлениями."
         },
-        "context" : "fixed",
+        "context" : "fixed-and-accepted",
         "color" : "blue"
     }
 ]
