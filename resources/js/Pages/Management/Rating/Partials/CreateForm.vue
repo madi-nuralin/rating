@@ -50,18 +50,6 @@
                 <BreezeInput id="verification_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_end_time_at" />
                 <BreezeInputError :message="form.errors.verification_end_time_at" class="mt-2" />
             </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="approvement_begin_time_at" :value="$t('pages.management.rating.create.form.approvement_begin_time_at')" />
-                <BreezeInput id="approvement_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.approvement_begin_time_at" />
-                <BreezeInputError :message="form.errors.approvement_begin_time_at" class="mt-2" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="approvement_end_time_at" :value="$t('pages.management.rating.create.form.approvement_end_time_at')" />
-                <BreezeInput id="approvement_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.approvement_end_time_at" />
-                <BreezeInputError :message="form.errors.approvement_end_time_at" class="mt-2" />
-            </div>
         </template>
 
         <template #actions>
@@ -110,8 +98,6 @@
                     submission_end_time_at: '',
                     verification_begin_time_at: '',
                     verification_end_time_at: '',
-                    approvement_begin_time_at: '',
-                    approvement_end_time_at: '',
                     users: ''
                 }),
             }

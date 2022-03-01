@@ -25,8 +25,6 @@ class Rating extends Model
         'submission_end_time_at',
         'verification_begin_time_at',
         'verification_end_time_at',
-        'approvement_begin_time_at',
-        'approvement_end_time_at',
     ];
 
     public function settings() {
@@ -91,14 +89,6 @@ class Rating extends Model
 
     public function setVerificationEndTimeAt($timeAt) {
     	$this->verification_end_time_at = $timeAt;
-    }
-
-    public function setApprovementBeginTimeAt($timeAt) {
-    	$this->approvement_begin_time_at = $timeAt;
-    }
-
-    public function setApprovementEndTimeAt($timeAt) {
-    	$this->approvement_end_time_at = $timeAt;
     }
 
     public function setParameters($parameters) {
@@ -177,14 +167,6 @@ class Rating extends Model
     	return date('Y-m-d\Th:i:s', strtotime($this->verification_end_time_at));
     }
 
-    public function getApprovementBeginTimeAt() {
-    	return date('Y-m-d\Th:i:s', strtotime($this->approvement_begin_time_at));
-    }
-
-    public function getApprovementEndTimeAt() {
-    	return date('Y-m-d\Th:i:s', strtotime($this->approvement_end_time_at));
-    }
-
     public function getParameters() {
         return $this->parameters;
     }
@@ -202,8 +184,6 @@ class Rating extends Model
     		'submission_end_time_at' => $this->getSubmissionEndTimeAt(),
     		'verification_begin_time_at' => $this->getVerificationBeginTimeAt(),
     		'verification_end_time_at' => $this->getVerificationEndTimeAt(),
-    		'approvement_begin_time_at' => $this->getApprovementBeginTimeAt(),
-    		'approvement_end_time_at' => $this->getApprovementEndTimeAt(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

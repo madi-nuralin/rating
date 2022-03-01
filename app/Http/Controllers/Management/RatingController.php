@@ -64,8 +64,6 @@ class RatingController extends Controller
             'submission_end_time_at' => ['required', 'date'],
             'verification_begin_time_at' => ['required', 'date'],
             'verification_end_time_at' => ['required', 'date'],
-            'approvement_begin_time_at' => ['required', 'date'],
-            'approvement_end_time_at' => ['required', 'date'],
             'users' => ['array']
         ])->validateWithBag('createRating');
 
@@ -76,8 +74,6 @@ class RatingController extends Controller
         $rating->setSubmissionEndTimeAt($input['submission_end_time_at']);
         $rating->setVerificationBeginTimeAt($input['verification_begin_time_at']);
         $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
-        $rating->setApprovementBeginTimeAt($input['approvement_begin_time_at']);
-        $rating->setApprovementEndTimeAt($input['approvement_end_time_at']);
         $rating->setUsers($input['users']);
 
         $rating->save();
@@ -160,8 +156,6 @@ class RatingController extends Controller
             'submission_end_time_at' => ['required', 'date'],
             'verification_begin_time_at' => ['required', 'date'],
             'verification_end_time_at' => ['required', 'date'],
-            'approvement_begin_time_at' => ['required', 'date'],
-            'approvement_end_time_at' => ['required', 'date'],
             'users' => ['array']
         ])->validateWithBag('updateRating');
 
@@ -173,8 +167,6 @@ class RatingController extends Controller
         $rating->setSubmissionEndTimeAt($input['submission_end_time_at']);
         $rating->setVerificationBeginTimeAt($input['verification_begin_time_at']);
         $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
-        $rating->setApprovementBeginTimeAt($input['approvement_begin_time_at']);
-        $rating->setApprovementEndTimeAt($input['approvement_end_time_at']);
         $rating->setUsers($input['users']);
 
         $rating->save();
