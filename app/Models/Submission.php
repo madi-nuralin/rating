@@ -125,9 +125,7 @@ class Submission extends Model
         return $formFieldResponce;
     }
 
-    public function updateScoreByFormFieldResponces() {
-        $form = $this->parameter->activeForm;
-
+    public function updateScoreByFormFieldResponces(Form $form) {
         if (! $form) {
             return;
         }
@@ -227,7 +225,7 @@ class Submission extends Model
                 }
             }
 
-            $submission->updateScoreByFormFieldResponces();
+            $submission->updateScoreByFormFieldResponces($form);
             $submission->save();
         }
     }
