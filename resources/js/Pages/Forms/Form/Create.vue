@@ -3,9 +3,7 @@
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ translate[0]('header') }}
-            </h2>
+            {{ translate[0]('header') }}
         </template>
 
         <div>

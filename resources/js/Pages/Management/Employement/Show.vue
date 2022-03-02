@@ -3,9 +3,7 @@
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.employement.header') }}
-            </h2>
+            {{ $t('pages.management.employement.header') }}
         </template>
 
         <div class="py-12">

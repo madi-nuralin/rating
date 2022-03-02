@@ -1,11 +1,10 @@
 <template>
+
     <Head :title="$t('pages.profile.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.profile.header')}}
-            </h2>
+            {{ $t('pages.profile.header') }}
         </template>
 
         <div class="py-12">

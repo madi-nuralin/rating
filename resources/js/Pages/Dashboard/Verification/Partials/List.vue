@@ -2,29 +2,29 @@
     <BreezeFormSection :has-title="false">
         <template #aside>
             <div>
-                <h3 class="text-lg font-medium text-gray-900">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                     {{ translate('title') }}
                 </h3>
 
-                <p class="mt-1 text-sm text-gray-600">
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-500">
                     {{ translate('description') }}
                 </p>
             </div>
 
             <div>
-                <hr class="my-6" />
+                <BreezeSectionBorder class="block" />
                 <show-user :rating="rating" />
 
-                <hr class="my-6" />
+                <BreezeSectionBorder class="block" />
                 <show-name :rating="rating" />
 
-                <hr class="my-6" />
+                <BreezeSectionBorder class="block" />
                 <show-description :rating="rating" />
 
-                <hr class="my-6" />
+                <BreezeSectionBorder class="block" />
                 <show-verifiers :rating="rating" />
 
-                <hr class="my-6" />
+                <BreezeSectionBorder class="block" />
                 <show-date :rating="rating" />
             </div>
         </template>

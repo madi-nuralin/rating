@@ -8,7 +8,7 @@
 
 	            <template #content>
 
-	                <ul class="list-roman list-inside" v-if="Object.keys(target.parameters).length > 0">
+	                <ul class="list-roman list-inside space-y-4" v-if="Object.keys(target.parameters).length > 0">
 	                    <li v-for="parameter in target.parameters">
 	                        <span>    
 	                            {{ parameter.name }}

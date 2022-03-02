@@ -19,7 +19,8 @@ module.exports = {
                 teal: colors.teal,
                 emerald: colors.emerald,
                 orange: colors.orange,
-                sky: colors.sky
+                sky: colors.sky,
+                slate: colors.slate
             },
             listStyleType: {
                 none: 'none',
@@ -34,6 +35,7 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            display: ['dark']
         },
     },
 

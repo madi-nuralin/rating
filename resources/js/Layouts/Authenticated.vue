@@ -3,8 +3,8 @@
         
         <BreezeBanner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            <nav class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -59,7 +59,7 @@
                                 <BreezeDropdown align="right" width="80">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 dark:text-gray-400 dark:hover:text-gray-300">
                                                 {{ $t('layouts.authenticated.triggers.management') }}
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -88,7 +88,7 @@
                                         </BreezeDropdownLink>
 
                                         <!-- Manage ratings-->
-                                        <div class="border-t border-gray-100"></div>
+                                        <div class="border-t border-gray-100 dark:border-gray-600"></div>
 
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ $t('layouts.authenticated.linkGroups.manageRating') }}
@@ -104,18 +104,37 @@
                                 </BreezeDropdown>
                             </div>
 
+                            <!-- Theme -->
                             <div class="ml-3 relative">
-                                <button class="inline-flex dark:hidden" @click="setTheme('dark')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gray-600">
-                                        <circle cx="12" cy="12" r="5"/>
-                                        <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
-                                    </svg>
-                                </button>
-                                <button class="hidden dark:inline-flex" @click="setTheme('light')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                    </svg>
-                                </button>
+                                <span class="inline-flex items-center rounded-md">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 dark:hidden" @click="setTheme('dark')">
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="w-6 h-6">
+                                            <circle cx="12" cy="12" r="5"/>
+                                            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 hidden dark:inline-flex dark:text-indigo-400"  @click="setTheme('light')">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="w-6 h-6">>
+                                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                        </svg>
+                                    </button>
+                                </span>
                             </div>
 
                             <!-- Settings Dropdown -->
@@ -123,7 +142,7 @@
                                 <BreezeDropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 dark:text-gray-400 dark:hover:text-gray-300">
                                                 <img :src="$page.props.auth.user.profile_photo_path" class="block rounded-full w-9 h-9 hover:shadow">
                                                 <span class="ml-2">{{ $page.props.auth.user.name }}</span>
 
@@ -149,7 +168,7 @@
                                             {{ $t('layouts.authenticated.links.logout') }}
                                         </BreezeDropdownLink>
 
-                                        <div class="border-t border-gray-100"></div>
+                                        <div class="border-t border-gray-100 dark:border-gray-600"></div>
 
                                         <!-- Locale -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
@@ -168,7 +187,7 @@
 
                         <!-- Hamburger -->
                         <div class="-mr-2 flex items-center sm:hidden">
-                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out dark:hover:bg-gray-900">
                                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                                     <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -187,20 +206,20 @@
                         <BreezeResponsiveNavLink :href="route('dashboard-user')" :active="route().current('dashboard-user')">
                             {{ $t('layouts.authenticated.links.dashboardUser') }}
                         </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')">
+                        <BreezeResponsiveNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')" v-if="content('verifier')">
                             {{ $t('layouts.authenticated.links.dashboardVerifier') }}
                         </BreezeResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
+                    <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                         <div class="flex items-center px-4">
                             <div class="flex-shrink-0 mr-3" >
                                 <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_path" :alt="$page.props.auth.user.name" />
                             </div>
 
                             <div>
-                                <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
+                                <div class="font-medium text-base text-gray-800 dark:text-gray-100">{{ $page.props.auth.user.name }}</div>
                                 <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
                             </div>
                         </div>
@@ -215,7 +234,7 @@
 
                             <!-- Responsive Management -->
                             <template v-if="content('manager')">
-                                <div class="border-t border-gray-200"></div>
+                                <div class="border-t border-gray-200 dark:border-gray-600"></div>
                                 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ $t('layouts.authenticated.triggers.management') }}
@@ -234,7 +253,7 @@
                                     {{ $t('layouts.authenticated.links.employements') }}
                                 </BreezeResponsiveNavLink>
 
-                                <div class="border-t border-gray-200"></div>
+                                <div class="border-t border-gray-200 dark:border-gray-600"></div>
                                 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ $t('layouts.authenticated.linkGroups.manageRating') }}
@@ -247,7 +266,7 @@
                                 </BreezeResponsiveNavLink>
                             </template>
 
-                            <div class="border-t border-gray-200"></div>
+                            <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
                             <!-- Responsive Locale -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
@@ -264,9 +283,11 @@
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
+            <header class="bg-white shadow dark:bg-gray-800" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
+                        <slot name="header" />
+                    </h2>
                 </div>
             </header>
 
@@ -311,29 +332,7 @@ export default {
         },
 
         setTheme(theme) {
-            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-            var localeStorage = this.localStorage;
-
-            // Whenever the user explicitly chooses light mode
-            if (theme === 'light') {
-                localStorage.theme = 'light'
-            }
-
-            // Whenever the user explicitly chooses dark mode
-            else if (theme === 'dark') {
-                localStorage.theme = 'dark'
-            }
-
-            // Whenever the user explicitly chooses to respect the OS preference
-            else {
-                localStorage.removeItem('theme')
-            }
-
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-              document.documentElement.classList.add('dark')
-            } else {
-              document.documentElement.classList.remove('dark')
-            }
+            this.$store.commit('setAppTheme', theme);
         },
 
         content(context) {

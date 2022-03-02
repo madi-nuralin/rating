@@ -3,9 +3,7 @@
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $t('pages.management.rating.header') }}
-            </h2>
+            {{ $t('pages.management.rating.header') }}
         </template>
 
         <div>
