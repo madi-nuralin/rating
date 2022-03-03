@@ -6,7 +6,7 @@
                 </slot>
             </div>
 
-            <div class="mt-4 overflow-y-auto" :class="maxHeightClass">
+            <div class="mt-4 overflow-y-auto" :class="[maxHeightClass, contentClass]">
                 <slot name="content">
                 </slot>
             </div>
@@ -38,6 +38,9 @@
             },
             maxHeight: {
                 default: '2xl'
+            },
+            contentClass: {
+                type: String
             },
             closeable: {
                 default: true

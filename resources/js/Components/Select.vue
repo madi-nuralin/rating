@@ -70,7 +70,7 @@
             </svg>
         </div>
 
-        <BreezeModalDialog :show="open" :max-height="'96'" @close="closeModal">
+        <BreezeModalDialog :show="open" :max-height="'96'" :content-class="'-mx-6'" @close="closeModal">
             <template #title>
             </template>
 
