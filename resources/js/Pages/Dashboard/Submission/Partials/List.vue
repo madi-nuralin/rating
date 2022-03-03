@@ -12,16 +12,16 @@
             </div>
 
             <div>
-                <BreezeSectionBorder class="block" />
+                <BreezeSectionBorder :display="'block'" />
                 <show-name :rating="rating" />
 
-                <BreezeSectionBorder class="block" />
+                <BreezeSectionBorder :display="'block'" />
                 <show-description :rating="rating" />
 
-                <BreezeSectionBorder class="block" />
+                <BreezeSectionBorder :display="'block'" />
                 <show-verifiers :rating="rating" />
 
-                <BreezeSectionBorder class="block" />
+                <BreezeSectionBorder :display="'block'" />
                 <show-date :rating="rating" />
             </div>
         </template>

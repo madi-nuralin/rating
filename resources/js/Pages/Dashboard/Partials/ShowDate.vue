@@ -25,8 +25,8 @@
                             </svg>
                         </div>
                         <div class="ml-3 overflow-hidden w-full">
-                            <p class="text-sm font-medium text-gray-900">{{ item.title }}</p>
-                            <p class="text-sm text-gray-500 truncate">{{ calculateTime(item.beginTime, item.endTime) }}</p>
+                            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ item.title }}</p>
+                            <p class="text-sm truncate">{{ calculateTime(item.beginTime, item.endTime) }}</p>
                             <p class="text-sm w-full mt-1">
                                 <breeze-progress :color="'indigo'" :rounded="false" :percentage="percentage(currentTime - item.beginTime, item.endTime - item.beginTime)" />
                             </p>

@@ -1669,9 +1669,9 @@ var messages = {
         },
         verifier: {
           head: {
-            title: 'Подтверждение'
+            title: 'Проверка и подтверждение'
           },
-          header: 'Подтверждение'
+          header: 'Проверка и подтверждение'
         },
         submission: {
           head: {
@@ -2216,7 +2216,7 @@ var messages = {
           authentication: 'Аутентификация',
           dashboard: 'Панель управления',
           dashboardUser: 'Мой рейтинг',
-          dashboardVerifier: 'Подтверждение',
+          dashboardVerifier: 'Проверка и подтверждение',
           positions: 'Должности',
           departments: 'Отделы',
           users: 'Пользователи',

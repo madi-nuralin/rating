@@ -2,11 +2,11 @@
     <BreezeFormSection :has-title="false" @submitted="updateSubmission">
         <template #aside>
             <div>
-                <h3 class="text-lg font-medium text-gray-900">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                    {{ translate('title') }}
                 </h3>
 
-                <p class="mt-1 text-sm text-gray-600">
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-500">
                     {{ translate('description') }}
                 </p>
             </div>

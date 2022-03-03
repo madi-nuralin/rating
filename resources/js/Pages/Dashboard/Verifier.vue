@@ -8,8 +8,8 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            	<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
+            	<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-800">
+                    <div class="p-6 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-800">
 
                     	<div class="grid gap-6 grid-cols-8 pb-6">
 					      	<div class="col-span-8 sm:col-span-4">
@@ -40,7 +40,7 @@
 					              </th>
 					            </tr>
 					          </thead>
-					          <tbody class="bg-white divide-y divide-gray-200">
+					          <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800">
 					            <tr class="flex flex-col md:table-row" v-for="user in $page.props.verifier.users.data" v-if="$page.props.verifier && $page.props.verifier.users">
 					              <td class="px-6 py-4 whitespace-nowrap">
 					                <div class="flex items-center">

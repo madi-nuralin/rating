@@ -11,8 +11,8 @@
 				<li class="flex items-center py-4 first:pt-0 last:pb-0">
 					<breeze-avatar :src="verifier.profile_photo_path" :width="'8'"/>
 					<div class="ml-3 overflow-hidden w-full">
-						<p class="text-sm font-medium text-gray-900">{{ verifier.name }}</p>
-						<p class="text-sm text-gray-500 truncate">{{ verifier.email }}</p>
+						<p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ verifier.name }}</p>
+						<p class="text-sm truncate">{{ verifier.email }}</p>
 						<ul role="list" class="text-sm">
 							<li v-for="target in verifier.parameter_targets">
 								{{ target.name }}
