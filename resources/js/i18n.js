@@ -137,7 +137,7 @@ var messages = {
               email: 'User email',
               firstname: 'Firstname',
               lastname: 'Lastname',
-              employements: 'Employement Information'
+              roles: 'Roles'
             }
           },
           update: {
@@ -148,7 +148,7 @@ var messages = {
               email: 'User email',
               firstname: 'Firstname',
               lastname: 'Lastname',
-              employements: 'Employement Information'
+              roles: 'Roles'
             }
           },
           delete: {
@@ -1123,6 +1123,11 @@ var messages = {
         downloadFileButton: 'Download file',
         removeFileButton: 'Remove file',
         noFileChosenMessage: 'No file chosen'
+      },
+      select: {
+        selectTitle: 'Select',
+        multipleSelectTitle: 'Multiple select',
+        closeButton: 'Close'
       }
     }
   },
@@ -1242,7 +1247,7 @@ var messages = {
               email: 'Электронная почта пользователя',
               firstname: 'Имя',
               lastname: 'Фамилия',
-              employements: 'Информация о занятости'
+              roles: 'Роли'
             }
           },
           update: {
@@ -1253,7 +1258,7 @@ var messages = {
               email: 'Электронная почта пользователя',
               firstname: 'Имя',
               lastname: 'Фамилия',
-              employements: 'Информация о занятости'
+              roles: 'Роли'
             }
           },
           delete: {
@@ -2241,6 +2246,11 @@ var messages = {
         downloadFileButton: 'Скачать файл',
         removeFileButton: 'Удалить файл',
         noFileChosenMessage: 'Файл не выбран'
+      },
+      select: {
+        selectTitle: 'Выбрать',
+        multipleSelectTitle: 'Выбрать несколько',
+        closeButton: 'Закрыть'
       }
     }
   }

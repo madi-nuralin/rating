@@ -23371,8 +23371,8 @@ __webpack_require__.r(__webpack_exports__);
     maxWidth: {
       "default": '2xl'
     },
-    maxHeight: {
-      "default": '2xl'
+    contentClass: {
+      type: String
     },
     closeable: {
       "default": true
@@ -23381,18 +23381,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     close: function close() {
       this.$emit('close');
-    }
-  },
-  computed: {
-    maxHeightClass: function maxHeightClass() {
-      return {
-        '96': 'max-h-96',
-        'sm': 'max-h-sm',
-        'md': 'max-h-md',
-        'lg': 'max-h-lg',
-        'xl': 'max-h-xl',
-        '2xl': 'max-h-2xl'
-      }[this.maxHeight];
     }
   }
 });
@@ -23577,7 +23565,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     type: {
       type: String,
-      "default": 'dropdown' // ['dropdown', 'modal', 'expanded']
+      "default": 'modal' // ['dropdown', 'modal', 'expanded']
 
     }
   },
@@ -23654,7 +23642,7 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal() {
       this.open = false;
     },
-    onClick: function onClick(newValue) {
+    onSelect: function onSelect(newValue) {
       if (this.multiple) {
         var modelValue = this.value ? this.value.slice() : null;
 
@@ -23691,7 +23679,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$emit('input', this.modelValue);
       }
     },
-    isClicked: function isClicked(newValue) {
+    isSelected: function isSelected(newValue) {
       return this.multiple ? this.value && this.value.includes(newValue) : this.modelValue && this.modelValue == newValue;
     }
   }
@@ -31764,7 +31752,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "title")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-4 overflow-y-auto", $options.maxHeightClass])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-4 overflow-y-auto", $props.contentClass])
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "content")], 2
       /* CLASS */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "footer")])];
@@ -32079,7 +32067,7 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_12 = {
-  "class": "relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer dark:border-gray-600"
+  "class": "relative z-0 mt-1 border border-gray-200 cursor-pointer dark:border-gray-600"
 };
 var _hoisted_13 = ["onClick"];
 var _hoisted_14 = {
@@ -32106,18 +32094,15 @@ var _hoisted_17 = [_hoisted_16];
 var _hoisted_18 = {
   "class": "mt-2 text-xs text-gray-600 text-left dark:text-gray-400"
 };
-
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Close ");
-
-var _hoisted_20 = {
+var _hoisted_19 = {
   key: 2,
   "class": "relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer dark:border-gray-600"
 };
-var _hoisted_21 = ["onClick"];
-var _hoisted_22 = {
+var _hoisted_20 = ["onClick"];
+var _hoisted_21 = {
   "class": "flex items-center"
 };
-var _hoisted_23 = {
+var _hoisted_22 = {
   key: 0,
   "class": "ml-2 h-5 w-5 text-green-400",
   fill: "none",
@@ -32128,14 +32113,14 @@ var _hoisted_23 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_25 = [_hoisted_24];
-var _hoisted_26 = {
+var _hoisted_24 = [_hoisted_23];
+var _hoisted_25 = {
   "class": "mt-2 text-xs text-gray-600 text-left dark:text-gray-400"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -32187,18 +32172,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: i,
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-700", {
-            'opacity-50': !$options.isClicked(option.value),
+            'opacity-50': !$options.isSelected(option.value),
             'border-b': i != Object.keys($props.options).length - 1
           }]),
           onClick: function onClick($event) {
-            return $options.onClick(option.value);
+            return $options.onSelect(option.value);
           }
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
         /* TEXT */
         )]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
-          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex-none ml-2 h-5 w-5", $options.isClicked(option.value) ? 'text-green-400' : 'text-gray-400']),
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex-none ml-2 h-5 w-5", $options.isSelected(option.value) ? 'text-green-400' : 'text-gray-400']),
           fill: "none",
           "stroke-linecap": "round",
           "stroke-linejoin": "round",
@@ -32239,35 +32224,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_10), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeModalDialog, {
     show: $setup.open,
-    "max-height": '96',
+    "content-class": 'max-h-96 -mx-5',
     onClose: $options.closeModal
   }, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.multiple ? _ctx.$t('components.select.multipleSelectTitle') : _ctx.$t('components.select.selectTitle')), 1
+      /* TEXT */
+      )];
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           type: "button",
-          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
-            'border-t border-gray-200 rounded-t-none dark:border-gray-600': i > 0,
-            'rounded-b-none': i != Object.keys($props.options).length - 1
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
+            'border-t border-gray-200 dark:border-gray-600': i > 0
           }]),
           onClick: function onClick($event) {
-            return $options.onClick(option.value);
+            return $options.onSelect(option.value);
           },
           key: option.value
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-            'opacity-50': option && !$options.isClicked(option.value)
+            'opacity-50': option && !$options.isSelected(option.value)
           })
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm text-gray-600 text-left dark:border-gray-600 dark:text-gray-100", {
-            'font-semibold': $options.isClicked(option.value)
+            'font-semibold': $options.isSelected(option.value)
           }])
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 3
         /* TEXT, CLASS */
-        ), $options.isClicked(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
+        ), $options.isSelected(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
         /* TEXT */
         )], 2
         /* CLASS */
@@ -32286,7 +32272,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_19];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('components.select.closeButton')), 1
+          /* TEXT */
+          )];
         }),
         _: 1
         /* STABLE */
@@ -32300,7 +32288,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["show", "onClose"])], 64
   /* STABLE_FRAGMENT */
-  )) : $options.displayType == 'expanded' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
+  )) : $options.displayType == 'expanded' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
       type: "button",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
@@ -32308,26 +32296,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         'rounded-b-none': i != Object.keys($props.options).length - 1
       }]),
       onClick: function onClick($event) {
-        return $options.onClick(option.value);
+        return $options.onSelect(option.value);
       },
       key: option.value
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-        'opacity-50': option && !$options.isClicked(option.value)
+        'opacity-50': option && !$options.isSelected(option.value)
       })
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm text-gray-600 text-left dark:border-gray-600 dark:text-gray-100", {
-        'font-semibold': $options.isClicked(option.value)
+        'font-semibold': $options.isSelected(option.value)
       }])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 3
     /* TEXT, CLASS */
-    ), $options.isClicked(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_23, _hoisted_25)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
+    ), $options.isSelected(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_22, _hoisted_24)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
     /* TEXT */
     )], 2
     /* CLASS */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_21);
+    , _hoisted_20);
   }), 128
   /* KEYED_FRAGMENT */
   ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
@@ -47599,7 +47587,7 @@ var messages = {
               email: 'User email',
               firstname: 'Firstname',
               lastname: 'Lastname',
-              employements: 'Employement Information'
+              roles: 'Roles'
             }
           },
           update: {
@@ -47610,7 +47598,7 @@ var messages = {
               email: 'User email',
               firstname: 'Firstname',
               lastname: 'Lastname',
-              employements: 'Employement Information'
+              roles: 'Roles'
             }
           },
           "delete": {
@@ -48571,6 +48559,11 @@ var messages = {
         downloadFileButton: 'Download file',
         removeFileButton: 'Remove file',
         noFileChosenMessage: 'No file chosen'
+      },
+      select: {
+        selectTitle: 'Select',
+        multipleSelectTitle: 'Multiple select',
+        closeButton: 'Close'
       }
     }
   },
@@ -48689,7 +48682,7 @@ var messages = {
               email: 'Электронная почта пользователя',
               firstname: 'Имя',
               lastname: 'Фамилия',
-              employements: 'Информация о занятости'
+              roles: 'Роли'
             }
           },
           update: {
@@ -48700,7 +48693,7 @@ var messages = {
               email: 'Электронная почта пользователя',
               firstname: 'Имя',
               lastname: 'Фамилия',
-              employements: 'Информация о занятости'
+              roles: 'Роли'
             }
           },
           "delete": {
@@ -49674,6 +49667,11 @@ var messages = {
         downloadFileButton: 'Скачать файл',
         removeFileButton: 'Удалить файл',
         noFileChosenMessage: 'Файл не выбран'
+      },
+      select: {
+        selectTitle: 'Выбрать',
+        multipleSelectTitle: 'Выбрать несколько',
+        closeButton: 'Закрыть'
       }
     }
   }

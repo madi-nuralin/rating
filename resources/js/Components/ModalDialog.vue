@@ -6,7 +6,7 @@
                 </slot>
             </div>
 
-            <div class="mt-4 overflow-y-auto" :class="[maxHeightClass, contentClass]">
+            <div class="mt-4 overflow-y-auto" :class="contentClass">
                 <slot name="content">
                 </slot>
             </div>
@@ -36,9 +36,6 @@
             maxWidth: {
                 default: '2xl'
             },
-            maxHeight: {
-                default: '2xl'
-            },
             contentClass: {
                 type: String
             },
@@ -52,18 +49,5 @@
                 this.$emit('close')
             },
         },
-
-        computed: {
-            maxHeightClass() {
-                return {
-                    '96': 'max-h-96',
-                    'sm': 'max-h-sm',
-                    'md': 'max-h-md',
-                    'lg': 'max-h-lg',
-                    'xl': 'max-h-xl',
-                    '2xl': 'max-h-2xl',
-                }[this.maxHeight]
-            }
-        }
     }
 </script>
