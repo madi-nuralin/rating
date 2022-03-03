@@ -70,7 +70,7 @@
             <!-- Role -->
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="roles" :value="$t('pages.management.users.update.form.roles')" />
-                <BreezeSelect id="roles" class="mt-1 block w-full" :value="form.roles" @input="form.roles = $event" :options="options.roles"/>
+                <BreezeSelect id="roles" :type="'expanded'" class="mt-1 block w-full" :value="form.roles" @input="form.roles = $event" :options="options.roles"/>
                 <BreezeInputError :message="form.errors.roles" class="mt-2" />
             </div>
         </template>
