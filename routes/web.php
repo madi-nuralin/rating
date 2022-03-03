@@ -54,6 +54,8 @@ use App\Http\Controllers\Forms\FormFieldOptionController;
 use App\Http\Controllers\Dashboard\SubmissionController;
 use App\Http\Controllers\Dashboard\VerificationController;
 
+use App\Http\Controllers\OAuth\SocialiteController;
+
 Route::get('locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
