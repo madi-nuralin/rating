@@ -18,23 +18,23 @@
 				                </form>
 				            </div>
 				            <div class="col-span-8 sm:col-span-2">
-				            	<p class="text-sm text-gray-800">All participants</p>
-				            	<h3 class="text-lg">{{ $page.props.statistics.total }}</h3>
+				            	<p class="text-sm text-gray-800 dark:text-gray-400">{{ translate[0]('table.header.allParticipants') }}</p>
+				            	<h3 class="text-lg dark:text-gray-100">{{ $page.props.statistics.total }}</h3>
 				            </div>
 				            <div class="col-span-8 sm:col-span-2">
-				                <p class="text-sm text-gray-800">Last</p>
-				            	<h3 class="text-lg">{{ $page.props.statistics.last }}</h3>
+				                <p class="text-sm text-gray-800 dark:text-gray-400">{{ translate[0]('table.header.last') }}</p>
+				            	<h3 class="text-lg dark:text-gray-100">{{ $page.props.statistics.last }}</h3>
 				            </div>
 				        </div>
 
                         <!-- Table -->
                         <div class="-mx-6">
 	                        <table class="min-w-full divide-y divide-gray-200">
-					          <thead class="bg-gray-50">
+					          <thead class="bg-gray-50 dark:bg-gray-700">
 					            <tr class="flex flex-col md:table-row">
-					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
-					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.user') }}</th>
+					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.position') }}</th>
+					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.progress') }}</th>
 					              <th scope="col" class="relative px-6 py-3">
 					                <span class="sr-only">Edit</span>
 					              </th>
@@ -48,7 +48,7 @@
 					                    <img class="h-10 w-10 rounded-full" :src="user.profile_photo_path" alt="">
 					                  </div>
 					                  <div class="ml-4">
-					                    <div class="text-sm font-medium text-gray-900">{{ user.name }}</div>
+					                    <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ user.name }}</div>
 					                    <div class="text-sm text-gray-500">{{ user.email }}</div>
 					                  </div>
 					                </div>
@@ -59,7 +59,7 @@
 						                <div class="text-sm text-gray-500">{{ employement.department.name }}</div>
 						            </div>
 						            <div class="text-sm text-gray-500" v-else>
-						            	Employement information is empty
+						            	{{ translate[0]('table.employementInfoNotFound') }}
 						            </div>
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
@@ -70,8 +70,7 @@
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 					                <Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                                        {{ translate[0]('table.view') }}
                                     </Link>
 					              </td>
 					            </tr>
