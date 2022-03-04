@@ -31323,7 +31323,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = ["value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
-    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white",
+    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-500 dark:text-white",
     value: $props.modelValue,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
@@ -31456,7 +31456,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "block font-medium text-sm text-gray-700 dark:text-gray-500"
+  "class": "block font-medium text-sm text-gray-700 dark:text-gray-400"
 };
 var _hoisted_2 = {
   key: 0
@@ -32088,9 +32088,12 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_9 = [_hoisted_8];
-var _hoisted_10 = ["id", "value", "disabled"];
+var _hoisted_10 = {
+  key: 1
+};
+var _hoisted_11 = ["id", "value", "disabled"];
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "h-4 w-4 absolute top-1/2 transform -translate-y-1/2 right-3 dark:text-gray-100",
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 20 20",
@@ -32103,14 +32106,14 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_13 = {
   "class": "relative z-0 mt-1 border border-gray-200 cursor-pointer dark:border-gray-600"
 };
-var _hoisted_13 = ["onClick"];
-var _hoisted_14 = {
+var _hoisted_14 = ["onClick"];
+var _hoisted_15 = {
   "class": "flex items-center"
 };
-var _hoisted_15 = {
+var _hoisted_16 = {
   key: 0,
   "class": "ml-2 h-5 w-5 text-green-400",
   fill: "none",
@@ -32121,25 +32124,25 @@ var _hoisted_15 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_17 = [_hoisted_16];
-var _hoisted_18 = {
+var _hoisted_18 = [_hoisted_17];
+var _hoisted_19 = {
   "class": "mt-2 text-xs text-gray-600 text-left dark:text-gray-400"
 };
-var _hoisted_19 = {
+var _hoisted_20 = {
   key: 2,
   "class": "relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer dark:border-gray-600"
 };
-var _hoisted_20 = ["onClick"];
-var _hoisted_21 = {
+var _hoisted_21 = ["onClick"];
+var _hoisted_22 = {
   "class": "flex items-center"
 };
-var _hoisted_22 = {
+var _hoisted_23 = {
   key: 0,
   "class": "ml-2 h-5 w-5 text-green-400",
   fill: "none",
@@ -32150,14 +32153,14 @@ var _hoisted_22 = {
   viewBox: "0 0 24 24"
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_24 = [_hoisted_23];
-var _hoisted_25 = {
+var _hoisted_25 = [_hoisted_24];
+var _hoisted_26 = {
   "class": "mt-2 text-xs text-gray-600 text-left dark:text-gray-400"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -32174,7 +32177,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: $props.id,
     type: "text",
     value: $data.displayValue,
-    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white",
+    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white",
     readonly: "readonly",
     disabled: $props.disabled
   }, null, 8
@@ -32243,9 +32246,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])) : $options.displayType == 'modal' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 1
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  })])) : $options.displayType == 'modal' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $setup.open = !$props.disabled ? !$setup.open : false;
     }),
@@ -32254,12 +32255,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: $props.id,
     type: "text",
     value: $data.displayValue,
-    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white",
+    "class": "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white",
     readonly: "readonly",
     disabled: $props.disabled
   }, null, 8
   /* PROPS */
-  , _hoisted_10), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeModalDialog, {
+  , _hoisted_11), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeModalDialog, {
     show: $setup.open,
     "content-class": 'max-h-96 -mx-5',
     onClose: $options.closeModal
@@ -32270,7 +32271,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )];
     }),
     content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           type: "button",
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
@@ -32284,19 +32285,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
             'opacity-50': option && !$options.isSelected(option.value)
           })
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm text-gray-600 text-left dark:border-gray-600 dark:text-gray-100", {
             'font-semibold': $options.isSelected(option.value)
           }])
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 3
         /* TEXT, CLASS */
-        ), $options.isSelected(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
+        ), $options.isSelected(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
         /* TEXT */
         )], 2
         /* CLASS */
         )], 10
         /* CLASS, PROPS */
-        , _hoisted_13);
+        , _hoisted_14);
       }), 128
       /* KEYED_FRAGMENT */
       ))])];
@@ -32323,9 +32324,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["show", "onClose"])], 64
-  /* STABLE_FRAGMENT */
-  )) : $options.displayType == 'expanded' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
+  , ["show", "onClose"])])) : $options.displayType == 'expanded' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.options, function (option, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
       type: "button",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200", {
@@ -32340,19 +32339,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
         'opacity-50': option && !$options.isSelected(option.value)
       })
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm text-gray-600 text-left dark:border-gray-600 dark:text-gray-100", {
         'font-semibold': $options.isSelected(option.value)
       }])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 3
     /* TEXT, CLASS */
-    ), $options.isSelected(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_22, _hoisted_24)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
+    ), $options.isSelected(option.value) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_23, _hoisted_25)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.description), 1
     /* TEXT */
     )], 2
     /* CLASS */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_20);
+    , _hoisted_21);
   }), 128
   /* KEYED_FRAGMENT */
   ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);

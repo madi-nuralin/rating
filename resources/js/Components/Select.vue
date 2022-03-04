@@ -2,7 +2,7 @@
     <div class="relative" v-if="displayType == 'dropdown'">
         <div @click="open = ! disabled ? ! open : false" class="relative">
 
-            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white" readonly="readonly" :disabled="disabled" />
+            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white" readonly="readonly" :disabled="disabled" />
 
             <svg
                 class="h-4 w-4 absolute top-1/2 transform -translate-y-1/2 right-3 dark:text-gray-100"
@@ -55,10 +55,10 @@
         </transition>
     </div>
 
-    <template v-else-if="displayType == 'modal'">
+    <div v-else-if="displayType == 'modal'">
         <div @click="open = ! disabled ? ! open : false" class="relative">
 
-            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white" readonly="readonly" :disabled="disabled" />
+            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white" readonly="readonly" :disabled="disabled" />
 
             <svg
                 class="h-4 w-4 absolute top-1/2 transform -translate-y-1/2 right-3 dark:text-gray-100"
@@ -123,7 +123,7 @@
                 </BreezeButtonSecondary>
             </template>
         </BreezeModalDialog>
-    </template>
+    </div>
 
 
     <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer dark:border-gray-600" v-else-if="displayType == 'expanded'">
