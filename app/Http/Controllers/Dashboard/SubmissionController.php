@@ -136,23 +136,20 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        /*$rating = Rating::findOrFail(request()->input('rating'));
-        $user = auth()->user();
+        $rating = Rating::findOrFail(request()->input('rating'));
 
-        return Inertia::render('Dashboard/Submission/Create', [
-            'rating' => array_merge(
-                $rating->toArray(), [
-                    'targets' => collect(ParameterTarget::whereHas(
-                        'parameters', function($q) use ($rating) {
-                            $q->whereIn('id', $rating->parameters()->pluck('parameters.id'));
-                        })->get())->map(function($parameterTarget) use ($rating, $user) {
-                            return $parameterTarget->toArray();
-                        }
-                    )
-                ]
-            )
+        if (strtotime($rating->submission_begin_time_at) > time()) {
+            session()->flash('flash.banner', ['pages.dashboard.submission.list.banner[0]']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        }
 
-        ]);*/
+        if (strtotime($rating->submission_end_time_at) < time()) {
+            session()->flash('flash.banner', ['pages.dashboard.submission.list.banner[1]']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        }
+
         return Inertia::location(route('wizard.submission.create', ['rating' => request()->input('rating')]));    }
 
     /**

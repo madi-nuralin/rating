@@ -24652,8 +24652,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Partials_ShowList_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Partials/ShowList.vue */ "./resources/js/Pages/Dashboard/Partials/ShowList.vue");
 /* harmony import */ var _Partials_ShowDate_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../Partials/ShowDate.vue */ "./resources/js/Pages/Dashboard/Partials/ShowDate.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Mixins_Time__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/Mixins/Time */ "./resources/js/Mixins/Time.js");
-
 
 
 
@@ -24673,7 +24671,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     BreezeButtonSecondary: _Components_ButtonSecondary_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    BreezeModalConfirmation: _Components_ModalConfirmation_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     BreezeFormSection: _Components_FormSection_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     BreezeList: _Components_ListScoped_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     BreezeBadge: _Components_Badge_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -24688,23 +24685,10 @@ __webpack_require__.r(__webpack_exports__);
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_14__.Link
   },
   props: ['rating', 'translate'],
-  mixins: [_Mixins_Time__WEBPACK_IMPORTED_MODULE_15__["default"]],
   data: function data() {
     return {
       opening: false
     };
-  },
-  methods: {
-    open: function open() {
-      this.opening = true;
-    }
-  },
-  computed: {
-    isAllowed: function isAllowed() {
-      var b = this.ratingTime(this.rating, 'submission', 'begin'),
-          e = this.ratingTime(this.rating, 'submission', 'end');
-      return b <= this.currentTime && e > this.currentTime;
-    }
   }
 });
 
@@ -34734,12 +34718,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
-  var _component_breeze_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-button");
-
-  var _component_breeze_button_secondary = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-button-secondary");
-
-  var _component_breeze_modal_confirmation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-modal-confirmation");
-
   var _component_BreezeFormSection = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeFormSection");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeFormSection, {
@@ -34785,8 +34763,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       , ["rating"])])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [$options.isAllowed ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
-        key: 0,
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         "class": "inline-flex submissions-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
         href: _ctx.route('submission.create', {
           'rating': $props.rating.id
@@ -34802,71 +34779,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        key: 1
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
-        onClick: $options.open
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('actions.createButton')), 1
-          /* TEXT */
-          )];
-        }),
-        _: 1
-        /* STABLE */
-
-      }, 8
-      /* PROPS */
-      , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Confirmation Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_modal_confirmation, {
-        show: $data.opening,
-        onClose: _cache[1] || (_cache[1] = function ($event) {
-          return $data.opening = false;
-        })
-      }, {
-        title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('actions.modal.title')), 1
-          /* TEXT */
-          )];
-        }),
-        content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_ctx.ratingTime($props.rating, 'submission', 'begin') > _ctx.currentTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            key: 0
-          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('actions.modal.content[0]')), 1
-          /* TEXT */
-          )], 2112
-          /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-          )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.ratingTime($props.rating, 'submission', 'begin') < _ctx.currentTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            key: 1
-          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('actions.modal.content[1]')), 1
-          /* TEXT */
-          )], 2112
-          /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-          )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
-        }),
-        footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_secondary, {
-            onClick: _cache[0] || (_cache[0] = function ($event) {
-              return $data.opening = false;
-            })
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.translate('actions.modal.footer.closeButton')), 1
-              /* TEXT */
-              )];
-            }),
-            _: 1
-            /* STABLE */
-
-          })];
-        }),
-        _: 1
-        /* STABLE */
-
-      }, 8
-      /* PROPS */
-      , ["show"])], 64
-      /* STABLE_FRAGMENT */
-      ))];
+      , ["href"])];
     }),
     _: 1
     /* STABLE */
@@ -47253,50 +47166,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/Mixins/Time.js":
-/*!*************************************!*\
-  !*** ./resources/js/Mixins/Time.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  methods: {
-    ratingTime: function ratingTime(rating, component, type) {
-      if (component == 'submission') {
-        if (type == 'begin') {
-          return new Date(rating.submission_begin_time_at);
-        } else if (type == 'end') {
-          return new Date(rating.submission_end_time_at);
-        } else {
-          return new Date();
-        }
-      } else if (component == 'verification') {
-        if (type == 'begin') {
-          return new Date(rating.verification_begin_time_at);
-        } else if (type == 'end') {
-          return new Date(rating.verification_end_time_at);
-        } else {
-          return new Date();
-        }
-      } else {
-        return new Date();
-      }
-    }
-  },
-  computed: {
-    currentTime: function currentTime() {
-      return new Date();
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/Mixins/Wizard.js":
 /*!***************************************!*\
   !*** ./resources/js/Mixins/Wizard.js ***!
@@ -48059,7 +47928,8 @@ var messages = {
             title: 'Submission',
             description: 'Assessment sheet submission and it\'s details. You are allowed to update the form until submission date is not expires.',
             form: {//
-            }
+            },
+            banner: 'You cannot save changes due to assessment time is over'
           },
           "delete": {
             title: 'Delete the submission',
@@ -48088,13 +47958,7 @@ var messages = {
             },
             actions: {
               createButton: 'Submit new responce',
-              modal: {
-                title: 'Submission is not available',
-                content: ['Submission is not available due to it is early to submit responces', 'Submission is not available due to submission time has expired'],
-                footer: {
-                  closeButton: 'Close'
-                }
-              }
+              banner: ['Submission is not available due to it is early to submit responces', 'Submission is not available due to submission time has expired']
             }
           },
           partials: {
@@ -49166,7 +49030,8 @@ var messages = {
             title: 'Детали ответа',
             description: 'Представление оценочного листа и его детали. Вам разрешено обновлять форму до тех пор, пока дата отправки не истечет.',
             form: {//
-            }
+            },
+            banner: 'Вы не можете обновить ответ так как время оценивания истекло!'
           },
           "delete": {
             title: 'Удалить ответ',
@@ -49194,15 +49059,9 @@ var messages = {
               score: '{score} баллов'
             },
             actions: {
-              createButton: 'Отправить новый ответ',
-              modal: {
-                title: 'Отправка ответов невозможно',
-                content: ['Отправка ответов невозможноно, так как время для отправки ответов еще не началось', 'Отправка ответов невозможноно, так как время для отправки ответов просрочилась'],
-                footer: {
-                  closeButton: 'Закрыть'
-                }
-              }
-            }
+              createButton: 'Отправить новый ответ'
+            },
+            banner: ['Отправка ответов невозможноно, так как время для отправки ответов еще не началось', 'Отправка ответов невозможноно, так как время для отправки ответов просрочилась']
           },
           partials: {
             showVerifications: {

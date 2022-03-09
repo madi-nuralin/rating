@@ -33,37 +33,9 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex submissions-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})" v-if="isAllowed">
+            <Link class="inline-flex submissions-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
                 {{ translate('actions.createButton') }}
             </Link>
-            
-            <template v-else>
-                <breeze-button @click="open">
-                    {{ translate('actions.createButton') }}
-                </breeze-button>
-
-                <!-- Confirmation Modal -->
-                <breeze-modal-confirmation :show="opening" @close="opening = false">
-                    <template #title>
-                        {{ translate('actions.modal.title') }}
-                    </template>
-
-                    <template #content>
-                        <template v-if="ratingTime(rating, 'submission', 'begin') > currentTime">
-                            {{ translate('actions.modal.content[0]') }}
-                        </template>
-                        <template v-if="ratingTime(rating, 'submission', 'begin') < currentTime">
-                            {{ translate('actions.modal.content[1]') }}
-                        </template>
-                    </template>
-
-                    <template #footer>
-                        <breeze-button-secondary @click="opening = false">
-                            {{ translate('actions.modal.footer.closeButton') }}
-                        </breeze-button-secondary>
-                    </template>
-                </breeze-modal-confirmation>
-            </template>
         </template>
     </BreezeFormSection>
 </template>
@@ -87,13 +59,10 @@
     
     import { Link } from '@inertiajs/inertia-vue3';
 
-    import MixinTime from "@/Mixins/Time";
-
     export default {
         components: {
             BreezeButton,
             BreezeButtonSecondary,
-            BreezeModalConfirmation,
             BreezeFormSection,
             BreezeList,
             BreezeBadge,
@@ -110,28 +79,10 @@
 
         props: ['rating', 'translate'],
 
-        mixins: [MixinTime],
-
         data() {
             return {
                 opening: false,
             }
         },
-
-        methods: {
-            open() {
-                this.opening = true
-            },
-        },
-
-        computed: {
-            isAllowed() {
-                var 
-                    b = this.ratingTime(this.rating, 'submission', 'begin'),
-                    e = this.ratingTime(this.rating, 'submission', 'end');
-
-                return b <= this.currentTime && e > this.currentTime;
-            }
-        }
     }
 </script>

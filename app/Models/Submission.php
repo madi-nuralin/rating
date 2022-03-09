@@ -190,6 +190,12 @@ class Submission extends Model
         $rating = $submission->rating;
         $form = $rating->parameterForm($parameter);
 
+        if (strtotime($rating->verification_end_time_at) < time()) {
+            session()->flash('flash.banner', ['pages.dashboard.submission.update.banner']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return;
+        }
+
         if ($form) {
             $rules = [];
 

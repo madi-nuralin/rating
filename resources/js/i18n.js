@@ -590,7 +590,8 @@ var messages = {
             description: 'Assessment sheet submission and it\'s details. You are allowed to update the form until submission date is not expires.',
             form: {
               //
-            }
+            },
+            banner: 'You cannot save changes due to assessment time is over'
           },
           delete: {
             title: 'Delete the submission',
@@ -619,16 +620,10 @@ var messages = {
             },
             actions: {
               createButton: 'Submit new responce',
-              modal: {
-                title: 'Submission is not available',
-                content: [
-                  'Submission is not available due to it is early to submit responces',
-                  'Submission is not available due to submission time has expired',
-                ],
-                footer: {
-                  closeButton: 'Close'
-                }
-              }
+              banner: [
+                'Submission is not available due to it is early to submit responces',
+                'Submission is not available due to submission time has expired'
+              ],
             }
           },
           partials: {
@@ -1712,7 +1707,8 @@ var messages = {
             description: 'Представление оценочного листа и его детали. Вам разрешено обновлять форму до тех пор, пока дата отправки не истечет.',
             form: {
               //
-            }
+            },
+            banner: 'Вы не можете обновить ответ так как время оценивания истекло!'
           },
           delete: {
             title: 'Удалить ответ',
@@ -1740,18 +1736,12 @@ var messages = {
               score: '{score} баллов'
             },
             actions: {
-              createButton: 'Отправить новый ответ',
-              modal: {
-                title: 'Отправка ответов невозможно',
-                content: [
-                  'Отправка ответов невозможноно, так как время для отправки ответов еще не началось',
-                  'Отправка ответов невозможноно, так как время для отправки ответов просрочилась',
-                ],
-                footer: {
-                  closeButton: 'Закрыть'
-                }
-              }
-            }
+              createButton: 'Отправить новый ответ'
+            },
+            banner: [
+              'Отправка ответов невозможноно, так как время для отправки ответов еще не началось',
+              'Отправка ответов невозможноно, так как время для отправки ответов просрочилась'
+            ]
           },
           partials: {
             showVerifications: {
