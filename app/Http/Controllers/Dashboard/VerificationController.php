@@ -40,6 +40,26 @@ class VerificationController extends Controller
         return Inertia::render('Dashboard/Verification/Index', [
             'rating' => array_merge(
                 $rating->toArray(), [
+                    'statistics' => [
+                        'score' => Submission::whereHas(
+                            'verifications', function($q) {
+                                $q->where([
+                                    ['verification_status_id', '!=', 2] // rejected
+                                ]);
+                            }
+                        )
+                        ->where([
+                            'user_id' => $user->id,
+                            'rating_id' => $rating->id
+                        ])
+                        ->sum('score'),
+                        'total' => count(
+                            Submission::where([
+                                'user_id' => $user->id,
+                                'rating_id' => $rating->id
+                            ])->get()
+                        )
+                    ],
                     'targets' => collect(
                         $rating->parameterTargets()
                                ->where('id', $verifier->parameterTarget->id)

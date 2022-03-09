@@ -30,9 +30,11 @@
 			                            <div class="flex items-center">
 			                                <div class="text-sm text-gray-600 text-left dark:text-gray-100" v-if="type == 'verification'">
 			                                    <span>{{ translate('form.verificationStatus') }}</span>
-			                                    <span :class="`text-${submission.verification.status.color}-600`" v-if="submission.verification.status">
-			                                    	{{ submission.verification.status.name }}
-			                                    </span>
+			                                    <span>	
+			                                    	<breeze-badge :color="submission.verification.status.color">
+		                                                {{ submission.verification.status.name }}
+		                                            </breeze-badge>
+		                                        </span>
 			                                </div>
 
 			                                <!--svg
@@ -57,9 +59,11 @@
 			                                    </p>
 			                                    <template v-for="status in submission.verification_statuses">
 			                                    	<template v-if="Object.keys(status.verifications).length > 0">
-				                                    	<p :class="`text-${status.color}-600`">
-			                                                {{ status.name }}
-			                                            </p>
+					                                    <p>	
+					                                    	<breeze-badge :color="status.color">
+				                                                {{ status.name }}
+				                                            </breeze-badge>
+				                                        </p>
 			                                            <p class="space-x-2">
 			                                                <span class="underline" v-for="verification in status.verifications">
 			                                                    {{ verification.verifier.user.name }}

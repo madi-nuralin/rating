@@ -527,6 +527,14 @@ var messages = {
           },
           showVerifiers: {
             trigger: 'List of Verifiers'
+          },
+          showStatistics: {
+            trigger: 'Overview',
+            score: 'Total score (excluding rejected answers)',
+            total: 'All submissions'
+          },
+          showUser: {
+            trigger: 'Assessed employee'
           }
         },
         user: {
@@ -1643,6 +1651,14 @@ var messages = {
           },
           showVerifiers: {
             trigger: 'Список подтверждающих'
+          },
+          showStatistics: {
+            trigger: 'Обзор',
+            score: 'Суммарный балл (без учета отклоненных ответов)',
+            total: 'Всего отправленных ответов'
+          },
+          showUser: {
+            trigger: 'Оцениваемый сотрудник'
           }
         },
         user: {

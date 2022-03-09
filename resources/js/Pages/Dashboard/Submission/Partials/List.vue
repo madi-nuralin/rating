@@ -19,6 +19,9 @@
                 <show-description :rating="rating" />
 
                 <BreezeSectionBorder :display="'block'" />
+                <show-statistics :rating="rating" />
+
+                <BreezeSectionBorder :display="'block'" />
                 <show-verifiers :rating="rating" />
 
                 <BreezeSectionBorder :display="'block'" />
@@ -56,6 +59,7 @@
     import ShowVerifiers from '../../Partials/ShowVerifiers.vue'
     import ShowList from '../../Partials/ShowList.vue'
     import ShowDate from '../../Partials/ShowDate.vue'
+    import ShowStatistics from '../../Partials/ShowStatistics.vue'
     
     import { Link } from '@inertiajs/inertia-vue3';
 
@@ -74,6 +78,7 @@
             ShowVerifiers,
             ShowList,
             ShowDate,
+            ShowStatistics,
             Link,
         },
 

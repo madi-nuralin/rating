@@ -8,7 +8,7 @@
     		<div class="flex items-center py-4 first:pt-0 last:pb-0">
 				<breeze-avatar :src="rating.user.profile_photo_path" :width="'8'"/>
 				<div class="ml-3 overflow-hidden w-full">
-					<p class="text-sm font-medium text-gray-900">{{ rating.user.name }}</p>
+					<p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ rating.user.name }}</p>
 					<p class="text-sm text-gray-500 truncate">{{ rating.user.email }}</p>
 				</div>
 			</div>
