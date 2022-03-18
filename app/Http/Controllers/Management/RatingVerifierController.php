@@ -77,11 +77,13 @@ class RatingVerifierController extends Controller
         $verifier->save();
 
         foreach ($rating->submissions as $submission) {
-            Verification::create([
-                'verifier_id' => $verifier->id,
-                'submission_id' => $submission->id,
-                'verification_status_id' => VerificationStatus::firstWhere('context', 'unreviewed')->id
-            ])->save();
+            if ($submission->parameter->parameterTarget == $parameterTarget) {
+                Verification::create([
+                    'verifier_id' => $verifier->id,
+                    'submission_id' => $submission->id,
+                    'verification_status_id' => VerificationStatus::firstWhere('context', 'unreviewed')->id
+                ])->save();
+            }
         }
 
         session()->flash('flash.banner', [
