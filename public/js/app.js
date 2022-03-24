@@ -23082,18 +23082,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
-/* harmony import */ var _Components_ButtonSecondary__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/ButtonSecondary */ "./resources/js/Components/ButtonSecondary.vue");
-/* harmony import */ var _Components_ButtonDanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ButtonDanger */ "./resources/js/Components/ButtonDanger.vue");
+/* harmony import */ var _Components_ModalConfirmation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/ModalConfirmation */ "./resources/js/Components/ModalConfirmation.vue");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
+/* harmony import */ var _Components_ButtonSecondary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ButtonSecondary */ "./resources/js/Components/ButtonSecondary.vue");
+/* harmony import */ var _Components_ButtonDanger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/ButtonDanger */ "./resources/js/Components/ButtonDanger.vue");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   emits: ['input'],
   components: {
-    BreezeButton: _Components_Button__WEBPACK_IMPORTED_MODULE_0__["default"],
-    BreezeButtonSecondary: _Components_ButtonSecondary__WEBPACK_IMPORTED_MODULE_1__["default"],
-    BreezeButtonDanger: _Components_ButtonDanger__WEBPACK_IMPORTED_MODULE_2__["default"]
+    BreezeModalConfirmation: _Components_ModalConfirmation__WEBPACK_IMPORTED_MODULE_0__["default"],
+    BreezeButton: _Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
+    BreezeButtonSecondary: _Components_ButtonSecondary__WEBPACK_IMPORTED_MODULE_2__["default"],
+    BreezeButtonDanger: _Components_ButtonDanger__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
     value: {},
@@ -23109,6 +23112,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      confirmingDeletion: false,
       filePreview: null,
       uploaded: this.value
     };
@@ -23144,6 +23148,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.uploaded = null;
           /**/
 
+          _this2.confirmingDeletion = false;
           _this2.filePreview = null;
 
           _this2.clearFileInput();
@@ -31400,6 +31405,10 @@ var _hoisted_4 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breeze_button_secondary = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-button-secondary");
 
+  var _component_breeze_button_danger = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-button-danger");
+
+  var _component_breeze_modal_confirmation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-modal-confirmation");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     "class": "hidden",
@@ -31442,12 +31451,63 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     "class": "text-red-500 text-sm hover:underline",
     type: "button",
-    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.deleteFile && $options.deleteFile.apply($options, arguments);
-    }, ["prevent"]))
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $data.confirmingDeletion = true;
+    })
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('components.fileInput.removeFileButton')), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_modal_confirmation, {
+    show: $data.confirmingDeletion,
+    onClose: _cache[3] || (_cache[3] = function ($event) {
+      return $data.confirmingDeletion = false;
+    })
+  }, {
+    title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('components.fileInput.modal.title')), 1
+      /* TEXT */
+      )];
+    }),
+    content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('components.fileInput.modal.content')), 1
+      /* TEXT */
+      )];
+    }),
+    footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_secondary, {
+        onClick: _cache[2] || (_cache[2] = function ($event) {
+          return $data.confirmingDeletion = false;
+        })
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('components.fileInput.modal.footer.cancelButton')), 1
+          /* TEXT */
+          )];
+        }),
+        _: 1
+        /* STABLE */
+
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button_danger, {
+        "class": "ml-2",
+        onClick: $options.deleteFile
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" :class=\"{ 'opacity-25': form.processing }\" :disabled=\"form.processing\" "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('components.fileInput.modal.footer.deleteButton')), 1
+          /* TEXT */
+          )];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["onClick"])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["show"])], 64
   /* STABLE_FRAGMENT */
   ))])]);
 }
@@ -48281,6 +48341,10 @@ var messages = {
             }
           },
           type: {
+            number: {
+              name: 'Number',
+              description: 'Numeric data'
+            },
             text: {
               name: 'Text',
               description: 'Text or string data'
@@ -48577,7 +48641,15 @@ var messages = {
         uploadFileButton: 'Upload a new file',
         downloadFileButton: 'Download file',
         removeFileButton: 'Remove file',
-        noFileChosenMessage: 'No file chosen'
+        noFileChosenMessage: 'No file chosen',
+        modal: {
+          title: 'Are you sure to delete this file',
+          content: 'After deletion, the file will be destroyed without the possibility of recovery.',
+          footer: {
+            cancelButton: 'Cancel',
+            deleteButton: 'Delete'
+          }
+        }
       },
       select: {
         selectTitle: 'Select',
@@ -49391,6 +49463,10 @@ var messages = {
             }
           },
           type: {
+            number: {
+              name: 'Number',
+              description: 'Числовые данные'
+            },
             text: {
               name: 'Text',
               description: 'Текстовые или строковые данные'
@@ -49701,7 +49777,15 @@ var messages = {
         uploadFileButton: 'Загрузить файл',
         downloadFileButton: 'Скачать файл',
         removeFileButton: 'Удалить файл',
-        noFileChosenMessage: 'Файл не выбран'
+        noFileChosenMessage: 'Файл не выбран',
+        modal: {
+          title: 'Вы уверены, что хотите удалить этот файл?',
+          content: 'После удаления файл будет уничтожен без возможности восстановления.',
+          footer: {
+            cancelButton: 'Отмена',
+            deleteButton: 'Удалить'
+          }
+        }
       },
       select: {
         selectTitle: 'Выбрать',

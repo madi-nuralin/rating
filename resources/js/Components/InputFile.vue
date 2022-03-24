@@ -18,15 +18,37 @@
                     {{ $t('components.fileInput.downloadFileButton') }}
                 </a>
 
-                <button class="text-red-500 text-sm hover:underline" type="button" @click.prevent="deleteFile" v-if="! readonly">
+                <button class="text-red-500 text-sm hover:underline" type="button" @click="confirmingDeletion = true" v-if="! readonly">
                     {{ $t('components.fileInput.removeFileButton') }}
                 </button>
+
+                <breeze-modal-confirmation :show="confirmingDeletion" @close="confirmingDeletion = false">
+                    <template #title>
+                        {{ $t('components.fileInput.modal.title') }}
+                    </template>
+
+                    <template #content>
+                        {{ $t('components.fileInput.modal.content') }}
+                    </template>
+
+                    <template #footer>
+                        <breeze-button-secondary @click="confirmingDeletion = false">
+                            {{ $t('components.fileInput.modal.footer.cancelButton') }}
+                        </breeze-button-secondary>
+
+                        <breeze-button-danger class="ml-2" @click="deleteFile">
+                            <!-- :class="{ 'opacity-25': form.processing }" :disabled="form.processing" -->
+                            {{ $t('components.fileInput.modal.footer.deleteButton') }}
+                        </breeze-button-danger>
+                    </template>
+                </breeze-modal-confirmation>
             </template>
         </div>
     </div>
 </template>
 
 <script>
+    import BreezeModalConfirmation from '@/Components/ModalConfirmation'
     import BreezeButton from '@/Components/Button'
     import BreezeButtonSecondary from '@/Components/ButtonSecondary'
     import BreezeButtonDanger from '@/Components/ButtonDanger'
@@ -35,6 +57,7 @@
         emits: ['input'],
 
 		components: {
+            BreezeModalConfirmation,
             BreezeButton,
             BreezeButtonSecondary,
             BreezeButtonDanger
@@ -55,6 +78,7 @@
 
 		data() {
 			return {
+                confirmingDeletion: false,
 				filePreview: null,
                 uploaded: this.value
 			}
@@ -86,6 +110,7 @@
                     preserveScroll: true,
                     onSuccess: () => {
                         /**/this.uploaded = null;/**/
+                        this.confirmingDeletion = false;
                         this.filePreview = null;
                         this.clearFileInput();
                     },

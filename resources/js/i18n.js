@@ -841,6 +841,10 @@ var messages = {
             }
           },
           type: {
+            number: {
+              name: 'Number',
+              description: 'Numeric data'
+            },
             text: {
               name: 'Text',
               description: 'Text or string data'
@@ -1138,7 +1142,15 @@ var messages = {
         uploadFileButton: 'Upload a new file',
         downloadFileButton: 'Download file',
         removeFileButton: 'Remove file',
-        noFileChosenMessage: 'No file chosen'
+        noFileChosenMessage: 'No file chosen',
+        modal: {
+          title: 'Are you sure to delete this file',
+          content: 'After deletion, the file will be destroyed without the possibility of recovery.',
+          footer: {
+            cancelButton: 'Cancel',
+            deleteButton: 'Delete'
+          }
+        }
       },
       select: {
         selectTitle: 'Select',
@@ -1966,6 +1978,10 @@ var messages = {
             }
           },
           type: {
+            number: {
+              name: 'Number',
+              description: 'Числовые данные'
+            },
             text: {
               name: 'Text',
               description: 'Текстовые или строковые данные'
@@ -2277,7 +2293,15 @@ var messages = {
         uploadFileButton: 'Загрузить файл',
         downloadFileButton: 'Скачать файл',
         removeFileButton: 'Удалить файл',
-        noFileChosenMessage: 'Файл не выбран'
+        noFileChosenMessage: 'Файл не выбран',
+        modal: {
+          title: 'Вы уверены, что хотите удалить этот файл?',
+          content: 'После удаления файл будет уничтожен без возможности восстановления.',
+          footer: {
+            cancelButton: 'Отмена',
+            deleteButton: 'Удалить'
+          }
+        }
       },
       select: {
         selectTitle: 'Выбрать',
