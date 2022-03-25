@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SubmissionProlongation extends Model
 {
     use HasFactory,
-    	Helpers\HasId;
+    	Helpers\HasId,
+        Helpers\BelongsToRating;
 
     /**
      * The attributes that are mass assignable.
@@ -19,18 +20,6 @@ class SubmissionProlongation extends Model
     	'rating_id'
         'prolongated_at',
     ];
-
-    public function rating() {
-    	return $this->belongsTo(Rating::class);
-    }
-
-    public function setRating(Rating $rating) {
-    	$this->rating()->associate($rating);
-    }
-
-    public function getRating() {
-    	return $this->rating;
-    }
 
     public function toArray() {
     	return [

@@ -9,7 +9,10 @@ class Verification extends Model
 {
     use HasFactory,
     	Helpers\HasId,
-        Helpers\HasMessage;
+        Helpers\HasMessage,
+        Helpers\BelongsToVerifier,
+        Helpers\BelongsToVerificationStatus,
+        Helpers\BelongsToSubmission;
 
     /**
      * The attributes that are mass assignable.
@@ -24,42 +27,6 @@ class Verification extends Model
 
     public function settings() {
         return $this->hasMany(VerificationSetting::class);
-    }
-
-    public function submission() {
-    	return $this->belongsTo(Submission::class);
-    }
-
-    public function verifier() {
-    	return $this->belongsTo(Verifier::class);
-    }
-
-    public function verificationStatus() {
-        return $this->belongsTo(VerificationStatus::class);
-    }
-
-    public function setSubmission(Submission $submission) {
-    	$this->submission()->associate($submission);
-    }
-
-    public function setVerifier(Verifier $verifier) {
-    	$this->verifier()->associate($verifier);
-    }
-
-    public function setVerificationStatus(VerificationStatus $verificationStatus) {
-        $this->verificationStatus()->associate($verificationStatus);
-    }
-
-    public function getSubmission() {
-    	return $this->submission;
-    }
-
-    public function getVerifier() {
-    	return $this->verifier;
-    }
-
-    public function getVerificationStatus() {
-        return $this->verificationStatus;
     }
 
     public function toArray() {

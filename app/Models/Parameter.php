@@ -12,7 +12,11 @@ class Parameter extends Model
     use HasFactory,
     	Helpers\HasId,
         Helpers\HasName,
-        Helpers\HasDescription;
+        Helpers\HasDescription,
+        Helpers\HasManySubmission,
+        Helpers\BelongsToParameterTarget,
+        Helpers\BelongsToManyRating,
+        Helpers\BelongsToManyForm;
 
     /**
      * The attributes that are mass assignable.
@@ -25,46 +29,6 @@ class Parameter extends Model
 
     public function settings() {
         return $this->hasMany(ParameterSetting::class);
-    }
-
-    public function parameterTarget() {
-    	return $this->belongsTo(ParameterTarget::class);
-    }
-
-    public function ratings() {
-        return $this->belongsToMany(Rating::class);
-    }
-
-    public function submissions() {
-        return $this->hasMany(Submission::class);
-    }
-
-    public function forms() {
-        return $this->belongsToMany(Form::class);
-    }
-
-    public function setParameterTarget(ParameterTarget $parameterTarget) {
-    	$this->parameterTarget()->associate($parameterTarget);
-    }
-
-    public function setForms(Form $form) {
-        //
-    }
-
-    public function getParameterTarget() {
-    	return $this->parameterTarget;
-    }
-
-    public function getForms() {
-        return $this->forms;
-    }
-
-    public function addForm(Form $form) {
-        $this->forms()->attach($form->id);
-    }
-
-    public function deleteForm(Form $form) {
-        $this->forms()->detach($form->id);
     }
 
     public function toArray() {

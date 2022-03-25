@@ -10,20 +10,11 @@ class Position extends Model
     use HasFactory,
         Helpers\HasId,
         Helpers\HasName,
-        Helpers\HasDescription;
+        Helpers\HasDescription,
+        Helpers\BelongsToManyDepartment;
 
     public function settings() {
         return $this->hasMany(PositionSetting::class);
-    }
-
-    public function departments() {
-        return $this->belongsToMany(Department::class);
-    }
-
-    public function getDepartments() {
-        return $this->departments->map(function($department) {
-            return $department->toArray();
-        });
     }
 
     public function toArray() {

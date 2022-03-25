@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Employement extends Model
 {
     use HasFactory,
-        Helpers\HasId;
+        Helpers\HasId,
+        Helpers\BelongsToEmployementType,
+        Helpers\BelongsToDepartment,
+        Helpers\BelongsToPosition,
+        Helpers\BelongsToUser;
 
     /**
      * The attributes that are mass assignable.
@@ -24,60 +28,13 @@ class Employement extends Model
         'terminated_at'
     ];
 
-    public function employementType() {
-        return $this->belongsTo(EmployementType::class);
-    }
 
-    public function department() {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function position() {
-        return $this->belongsTo(Position::class);
-    }
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function setEmployementType(EmployementType $employementType) {
-        $this->employementType()->associate($employementType);
-    }
-
-    public function setDepartment(Department $department) {
-        $this->department()->associate($department);
-    }
-
-    public function setPosition(Position $position) {
-        $this->position()->associate($position);
-    }
-
-    public function setUser(User $user) {
-        $this->user()->associate($user);
-    }
-
-    public function setAppointedAt(/*DateTime*/ $appointedAt) {
+    public function setAppointedAt($appointedAt) {
         $this->appointed_at = $appointedAt;
     }
 
-    public function setTerminatedAt(/*DateTime*/ $terminatedAt) {
+    public function setTerminatedAt($terminatedAt) {
         $this->terminated_at = $terminatedAt;
-    }
-
-    public function getEmployementType() {
-        return $this->employementType;
-    }
-
-    public function getDepartment() {
-        return $this->department;
-    }
-
-    public function getPosition() {
-        return $this->position;
-    }
-
-    public function getUser() {
-        return $this->user;
     }
 
     public function getAppointedAt() {

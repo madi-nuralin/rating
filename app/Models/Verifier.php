@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Verifier extends Model
 {
     use HasFactory,
-    	Helpers\HasId;
+    	Helpers\HasId,
+        Helpers\HasManyVerification,
+        Helpers\BelongsToUser,
+        Helpers\BelongsToRating,
+        Helpers\BelongsToParameterTarget;
 
     /**
      * The attributes that are mass assignable.
@@ -20,46 +24,6 @@ class Verifier extends Model
         'rating_id',
         'parameter_target_id',
     ];
-
-    public function user() {
-    	return $this->belongsTo(User::class);
-    }
-
-    public function rating() {
-    	return $this->belongsTo(Rating::class);
-    }
-
-    public function parameterTarget() {
-    	return $this->belongsTo(ParameterTarget::class);
-    }
-
-    public function verifications() {
-        return $this->hasMany(Verification::class);
-    }
-
-    public function setUser(User $user) {
-    	$this->user()->associate($user);
-    }
-
-    public function setRating(Rating $rating) {
-    	$this->rating()->associate($rating);
-    }
-
-    public function setParameterTarget(ParameterTarget $parameterTarget) {
-    	$this->parameterTarget()->associate($parameterTarget);
-    }
-
-    public function getUser() {
-    	return $this->user;
-    }
-
-    public function getRating() {
-    	return $this->rating;
-    }
-
-    public function getParameterTarget() {
-    	return $this->parameterTarget;
-    }
 
     public function toArray() {
     	return [

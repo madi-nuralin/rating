@@ -11,7 +11,8 @@ class VerificationStatus extends Model
         Helpers\HasId,
         Helpers\HasName,
         Helpers\HasDescription,
-        Helpers\HasVerb;
+        Helpers\HasVerb,
+        Helpers\HasManyVerification;
 
     /**
      * The attributes that are mass assignable.
@@ -25,10 +26,6 @@ class VerificationStatus extends Model
 
     public function settings() {
     	return $this->hasMany(VerificationStatusSetting::class);
-    }
-
-    public function verifications() {
-        return $this->hasMany(Verification::class);
     }
 
     public function getContext() {

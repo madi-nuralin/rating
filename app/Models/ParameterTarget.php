@@ -10,14 +10,11 @@ class ParameterTarget extends Model
     use HasFactory,
     	Helpers\HasId,
     	Helpers\HasName,
-    	Helpers\HasDescription;
+    	Helpers\HasDescription,
+        Helpers\HasManyParameter;
 
     public function settings() {
     	return $this->hasMany(ParameterTargetSetting::class);
-    }
-
-    public function parameters() {
-        return $this->hasMany(Parameter::class);
     }
 
     public function toArray() {

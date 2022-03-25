@@ -16,6 +16,11 @@ class User extends Authenticatable
         Helpers\HasId,
         Helpers\HasFirstname,
         Helpers\HasLastname,
+        Helpers\BelongsToManyRole,
+        Helpers\BelongsToManyRating,
+        Helpers\HasManyEmployement,
+        Helpers\HasManySubmission,
+        Helpers\HasManyVerifier,
         Helpers\FileHelper;
 
     /**
@@ -51,26 +56,6 @@ class User extends Authenticatable
 
     public function settings() {
         return $this->hasMany(UserSetting::class);
-    }
-
-    public function roles() {
-        return $this->belongsToMany(Role::class);
-    }
-
-    public function employements() {
-        return $this->hasMany(Employement::class);
-    }
-
-    public function ratings() {
-        return $this->belongsToMany(Rating::class);
-    }
-
-    public function verifiers() {
-        return $this->hasMany(Verifier::class);
-    }
-
-    public function submissions() {
-        return $this->hasMany(Submission::class);
     }
 
     public function getName() {
@@ -114,58 +99,6 @@ class User extends Authenticatable
             $this->profile_photo_path,
             'profile_photo_path'
         );
-    }
-
-    public function getRoles() {
-        return $this->roles->map(function($role) {
-            return $role->toArray();
-        });
-    }
-
-    public function setRoles($roles) {
-        if ($this->roles()) {
-            $this->roles()->detach();
-        }
-        if (count($roles) > 0) {
-            $this->roles()->attach($roles);
-        }
-        foreach ($this->roles as $role) {
-            if ($role->getContext() == 'confirmer') {
-                if ($this->confirmer === null) {
-                    $this->setConfirmer(new Confirmer());
-                }
-            }
-        }
-    }
-
-    public function getEmployements() {
-        return $this->employements->map(function($employement) {
-            return $employement->toArray();
-        });
-    }
-
-    public function setEmployements($employements) {
-        if (is_null($employements) || empty($employements)) {
-            $this->employements()->detach();
-            return;
-        }
-
-        if ($this->employements()) {
-            $this->employements()->detach(
-                array_diff($this->employements()->pluck('employements.id')->toArray(), $employements));
-            $this->employements()->attach(
-                array_diff($employements, $this->employements()->pluck('employements.id')->toArray()));
-        } else {
-            $this->employements()->attach($employements);
-        }
-    }
-
-    public function getAssignments() {
-        return $this->assignments->toArray();
-    }
-
-    public function setAssignments($assignments) {
-        //
     }
 
     public function toArray() {

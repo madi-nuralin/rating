@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -167,19 +168,6 @@ class UserController extends Controller
         }
         if (isset($input['employements'])) {
             $user->setEmployements($input['employements']);
-            /*foreach (Assessment::all() as $assessment) {
-                foreach ($assessment->employements as $employement) {
-                    foreach ($employement->users as $user) {
-                        $assignment = Assignment::create([
-                            'assessment_id' => $assessment->getId(),
-                            'employement_id' => $employement->getId(),
-                            'user_id' => $user->getId(),
-                            'score' => 0
-                        ]);
-                        $assignment->save();
-                    }
-                }
-            }*/
         }
         if (isset($input['roles'])) {
             $user->setRoles($input['roles']);
@@ -245,5 +233,15 @@ class UserController extends Controller
         ])->save();
 
         $user->sendEmailVerificationNotification();
+    }
+
+    public function auth($id)
+    {
+        $user = User::findOrFail($id);
+
+        auth()->logout();
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }

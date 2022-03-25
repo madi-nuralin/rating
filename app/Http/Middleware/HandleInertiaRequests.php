@@ -39,7 +39,9 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user()
                     ? array_merge(
                         $request->user()->toArray(), [
-                            'roles' => $request->user()->getRoles()
+                            'roles' => $request->user()->roles->map(function($role) {
+                                return $role->toArray();
+                            })
                         ])
                     : $request->user(),
             ],

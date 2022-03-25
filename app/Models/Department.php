@@ -10,7 +10,8 @@ class Department extends Model
     use HasFactory,
         Helpers\HasId,
         Helpers\HasName,
-        Helpers\HasDescription;
+        Helpers\HasDescription,
+        Helpers\BelongsToManyPosition;
 
     /**
      * The attributes that are mass assignable.
@@ -25,38 +26,12 @@ class Department extends Model
         return $this->hasMany(DepartmentSetting::class);
     }
 
-    public function positions() {
-        return $this->belongsToMany(Position::class);
-    }
-
     public function getParent() {
         return $this->parent;
     }
 
     public function setParent($parent) {
         $this->parent = $parent;
-    }
-
-    public function getPositions() {
-        return $this->positions ? $this->positions->map(function($position) {
-            return $position->toArray();
-        }) : null;
-    }
-
-    public function setPositions($positions) {
-        if (is_null($positions) || empty($positions)) {
-            $this->positions()->detach();
-            return;
-        }
-
-        if ($this->positions()) {
-            $this->positions()->detach(
-                array_diff($this->positions()->pluck('positions.id')->toArray(), $positions));
-            $this->positions()->attach(
-                array_diff($positions, $this->positions()->pluck('positions.id')->toArray()));
-        } else {
-            $this->positions()->attach($positions);
-        }
     }
 
     public function toArray() {

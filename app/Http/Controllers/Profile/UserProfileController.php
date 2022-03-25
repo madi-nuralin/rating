@@ -27,15 +27,19 @@ class UserProfileController extends Controller
         return Inertia::render('Profile/Show', [
             'user' => array_merge(
                 auth()->user()->toArray(), [
-                    'employements' => auth()->user()->getEmployements(),
-                    'roles' => auth()->user()->getRoles()
+                    'employements' => auth()->user()->employements->map(function($employement) {
+                        return $employement->toArray();
+                    }),
+                    'roles' => auth()->user()->roles->map(function($role) {
+                        return $role->toArray();
+                    })
                 ]
             ),
             'employements' => Employement::all()->map(function($employement) {
                 return array_merge(
                     $employement->toArray(),[
-                        'department' => $employement->getDepartment(),
-                        'position' => $employement->getPosition(),
+                        'department' => $employement->department->toArray(),
+                        'position' => $employement->position->toArray(),
                     ]
                 );
             }),

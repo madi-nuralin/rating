@@ -13,7 +13,8 @@ class Rating extends Model
     use HasFactory,
     	Helpers\HasId,
     	Helpers\HasName,
-    	Helpers\HasDescription;
+    	Helpers\HasDescription,
+        Helpers\BelongsToManyUser;
 
     /**
      * The attributes that are mass assignable.
@@ -56,10 +57,6 @@ class Rating extends Model
         return $parameterTargets->map(function($parameterTarget) {
             return ParameterTarget::find($parameterTarget);
         });
-    }
-
-    public function users() {
-        return $this->belongsToMany(User::class);
     }
 
     public function submissions() {
@@ -135,22 +132,6 @@ class Rating extends Model
         }
     }
 
-    public function setUsers($users) {
-        if (is_null($users) || empty($users)) {
-            $this->users()->detach();
-            return;
-        }
-
-        if ($this->users()) {
-            $this->users()->detach(
-                array_diff($this->users()->pluck('users.id')->toArray(), $users));
-            $this->users()->attach(
-                array_diff($users, $this->users()->pluck('users.id')->toArray()));
-        } else {
-            $this->users()->attach($users);
-        }
-    }
-
     public function getSubmissionBeginTimeAt() {
     	return date('Y-m-d\Th:i:s', strtotime($this->submission_begin_time_at));
     }
@@ -169,10 +150,6 @@ class Rating extends Model
 
     public function getParameters() {
         return $this->parameters;
-    }
-
-    public function getUsers() {
-        return $this->users;
     }
 
     public function toArray() {

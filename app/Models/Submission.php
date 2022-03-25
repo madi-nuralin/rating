@@ -21,7 +21,11 @@ use App\Models\Forms\FormFieldResponce;
 class Submission extends Model
 {
     use HasFactory,
-    	Helpers\HasId;
+    	Helpers\HasId,
+        Helpers\HasManyVerification,
+        Helpers\BelongsToUser,
+        Helpers\BelongsToRating,
+        Helpers\BelongsToParameter;
 
     /**
      * The attributes that are mass assignable.
@@ -35,24 +39,8 @@ class Submission extends Model
         'score'
     ];
 
-    public function user() {
-    	return $this->belongsTo(User::class);
-    }
-
-    public function rating() {
-    	return $this->belongsTo(Rating::class);
-    }
-
-    public function parameter() {
-    	return $this->belongsTo(Parameter::class);
-    }
-
     public function submissionProlongations() {
     	return $this->hasMany(SubmissionProlongation::class);
-    }
-
-    public function verifications() {
-        return $this->hasMany(Verification::class);
     }
 
     public function formFieldResponces() {
@@ -61,18 +49,6 @@ class Submission extends Model
 
     public function setScore($score) {
         $this->score = $score;
-    }
-
-    public function setUser(User $user) {
-    	$this->user()->associate($user);
-    }
-
-    public function setRating(Rating $rating) {
-    	$this->rating()->associate($rating);
-    }
-
-    public function setParameter(Parameter $parameter) {
-    	$this->parameter->associate($parameter);
     }
 
     public function setSubmissionProlongations() {
@@ -85,18 +61,6 @@ class Submission extends Model
 
     public function getScore(): float {
         return $this->score;
-    }
-
-    public function getUser() {
-    	return $this->user;
-    }
-
-    public function getRating() {
-    	return $this->rating;
-    }
-
-    public function getParameter() {
-    	return $this->parameter;
     }
 
     public function getSubmissionProlongations() {
