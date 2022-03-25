@@ -23,12 +23,12 @@ trait BelongsToManyForm
 
     public function addForms($forms)
     {
-    	if (is_null($forms) || is_empty($forms)) {
+    	if (is_null($forms) || empty($forms)) {
             return;
         }
 
     	$this->forms()->attach(
-    		array_diff($forms, $this->forms()->pluck('forms.id'))
+    		array_diff($forms, $this->forms()->pluck('forms.id')->toArray())
     	);	
     }
 

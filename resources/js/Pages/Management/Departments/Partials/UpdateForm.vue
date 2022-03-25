@@ -22,6 +22,18 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="abbreviation" :value="$t('pages.management.departments.update.form.abbreviation')" />
+                <BreezeInput id="abbreviation" type="text" class="mt-1 block w-full" v-model="form.abbreviation" />
+                <BreezeInputError :message="form.errors.abbreviation" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="department_type" :value="$t('pages.management.departments.update.form.department_type')" />
+                <BreezeSelect id="department_type" class="mt-1 block w-full" :value="form.department_type" @input="form.department_type = $event" :options="options.department_type" :multiple="false" :type="'expanded'" />
+                <BreezeInputError :message="form.errors.department_type" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="positions" :value="$t('pages.management.departments.update.form.positions')" />
                 <BreezeSelect id="positions" class="mt-1 block w-full" :value="form.positions" @input="form.positions = $event" :options="options.positions"/>
                 <BreezeInputError :message="form.errors.positions" class="mt-2" />
@@ -68,15 +80,19 @@
             BreezeLabel,
         },
 
-        props: ['department', 'departments', 'positions'],
+        props: ['department', 'departments', 'departmentTypes', 'positions'],
 
         data() {
             return {
                 form: this.$inertia.form({
                     name: this.department.name,
-                    parent: this.department.parent,
                     description: this.department.description,
-                    positions: this.get().department.positions,
+                    abbreviation: this.department.abbreviation,
+                    parent: this.department.parent,
+                    department_type: this.department.department_type.id,
+                    positions: this.department.positions ? this.department.positions.map(function(position) {
+                        return position.id;
+                    }) : null
                 }),
             }
         },
@@ -88,30 +104,35 @@
                     preserveScroll: true
                 });
             },
-            get() {
-                let department = this.department;
-
-                return {
-                    department: {
-                        positions: department.positions ? department.positions.map(function(position) {
-                            return position.id;
-                        }) : null
-                    }
-                }
-            }
         },
 
         computed: {
             options() {
                 let departments = this.departments;
                 let positions = this.positions;
+                let departmentTypes = this.departmentTypes;
 
                 return {
+                    department_type: departmentTypes ? departmentTypes.map(function($departmentType) {
+                        return {
+                            'value': $departmentType.id,
+                            'name': $departmentType.name,
+                            'description': $departmentType.description
+                        };
+                    }) : null,
                     departments: departments ? departments.map(function(department) {
-                        return { value: department.id, name: department.name, description: department.description };
+                        return {
+                            'value': department.id,
+                            'name': department.name,
+                            'description': department.description
+                        };
                     }) : null,
                     positions: positions ? positions.map(function(position) {
-                        return { value: position.id, name: position.name, description: position.description };
+                        return {
+                            'value': position.id,
+                            'name': position.name,
+                            'description': position.description
+                        };
                     }) : null
                 }
             },

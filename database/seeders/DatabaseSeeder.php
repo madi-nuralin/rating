@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Position;
 use App\Models\Department;
+use App\Models\DepartmentType;
 use App\Models\EmployementType;
 use App\Models\Rating;
 use App\Models\Parameter;
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         $this->seedRoles();
         $this->seedPositions();
+        $this->seedDepartmentTypes();
         $this->seedDepartments();
         $this->seedEmployementTypes();
         $this->seedParameterTargets();
@@ -66,6 +68,31 @@ class DatabaseSeeder extends Seeder
         error_log("Seeded:  roles");
     }
 
+    protected function seedDepartmentTypes() {
+        error_log("Seeding: department_types");
+
+        $locales = ['en', 'ru'];
+
+        $definitions = json_decode(
+            file_get_contents(
+                resource_path("factories/department_types.json")
+            ), true
+        );
+
+        foreach ($definitions as $definition) {
+            $departmentType = DepartmentType::create();
+
+            foreach ($locales as $locale) {
+                $departmentType->setName($definition[$locale]['name'], $locale);
+                $departmentType->setDescription($definition[$locale]['description'], $locale);
+            }
+
+            $departmentType->save();
+        }
+
+        error_log("Seeded:  department_types");
+    }
+
     protected function seedDepartments() {
         error_log("Seeding: departments");
 
@@ -78,11 +105,14 @@ class DatabaseSeeder extends Seeder
         );
 
         foreach ($definitions as $definition) {
-            $department = Department::create();
+            $department = Department::create([
+                'department_type_id' => $definition['department_type_id']
+            ]);
 
             foreach ($locales as $locale) {
                 $department->setName($definition[$locale]['name'], $locale);
                 $department->setDescription($definition[$locale]['description'], $locale);
+                $department->setAbbreviation($definition[$locale]['abbreviation'], $locale);
             }
             
             $department->save();

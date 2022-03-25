@@ -45,7 +45,7 @@
                         return {
                             id: department.id,
                             name: department.name,
-                            description: department.description
+                            description: department.department_type.name
                         }
                     }),
                     'links': this.departments.links

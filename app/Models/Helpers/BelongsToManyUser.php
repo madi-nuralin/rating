@@ -23,12 +23,12 @@ trait BelongsToManyUser
 
     public function addUsers($users)
     {
-    	if (is_null($users) || is_empty($users)) {
+    	if (is_null($users) || empty($users)) {
             return;
         }
 
     	$this->users()->attach(
-    		array_diff($users, $this->users()->pluck('users.id'))
+    		array_diff($users, $this->users()->pluck('users.id')->toArray())
     	);	
     }
 

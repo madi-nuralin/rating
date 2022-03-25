@@ -1,0 +1,42 @@
+[
+   {
+      "en":{
+         "name":"Cafedra",
+         "description":"The main structural unit of the faculty in a higher educational institution, which trains listeners, students and cadets within a certain specialization."
+      },
+      "ru":{
+         "name":"Кафедра",
+         "description":"Основная структурная единица факультета в высшем учебном заведении, осуществляющая подготовку слушателей, студентов и курсантов в рамках определённой специализации."
+      }
+   },
+   {
+      "en":{
+         "name":"Faculty",
+         "description":"An educational, scientific and administrative structural unit of a higher educational institution that trains students and graduate students in one or more related specialties, improves the skills of specialists, and also manages the research activities of the departments that it unites."
+      },
+      "ru":{
+         "name":"Факультет",
+         "description": "Учебно-научное и административное структурное подразделение высшего учебного заведения, осуществляющее подготовку студентов и аспирантов по одной или нескольким родственным специальностям, повышение квалификации специалистов, а также руководство научно-исследовательской деятельностью кафедр, которые он объединяет."
+      }
+   },
+   {
+      "en":{
+         "name":"Department",
+         "description":"An independent structural unit of the organization, may include departments and / or departments and reports directly to the president, senior vice president, vice president or director of the direction of the organization."
+      },
+      "ru":{
+         "name":"Департамент",
+         "description":"Самостоятельная структурная единица организации, может включать в себя отделы и/или управления и подчиняется непосредственно президенту, старшему вице президенту, вице президенту или директору направления организации."
+      }
+   },
+   {
+      "en":{
+         "name":"Division",
+         "description":"Structural unit in civil or military organizations and departments of some formations."
+      },
+      "ru":{
+         "name":"Отдел",
+         "description":"Структурное подразделение в гражданских или военных организациях и управлениях некоторых формирований."
+      }
+   }
+]

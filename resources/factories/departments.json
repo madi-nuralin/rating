@@ -1,82 +1,106 @@
 [
    {
+      "department_type_id":1,
       "en":{
          "name":"Media communications and history of Kazakhstan",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра Медиакоммуникации и Истории Казахстана",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Computer Engineering and Information Security",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра Компьютерная инженерия и информационная безопасность",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Mathematical Computer Modeling",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра Математическое компьютерное моделирование",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Economics and business",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра Экономика и бизнес",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Radio Engineering, Electronics and Telecommunications",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра Радиотехника, электроника и телекоммуникации",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Department of Languages",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра языков",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Military Training Department",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Военная кафедра",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    },
    {
+      "department_type_id":1,
       "en":{
          "name":"Information Systems",
-         "description":"Deparment"
+         "description":"",
+         "abbreviation":""
       },
       "ru":{
          "name":"Кафедра Информационные системы",
-         "description":"Кафедра"
+         "description":"",
+         "abbreviation":""
       }
    }
 ]

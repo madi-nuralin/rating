@@ -23,12 +23,12 @@ trait BelongsToManyRole
 
     public function addRoles($roles)
     {
-    	if (is_null($roles) || is_empty($roles)) {
+    	if (is_null($roles) || empty($roles)) {
             return;
         }
 
     	$this->roles()->attach(
-    		array_diff($roles, $this->roles()->pluck('roles.id'))
+    		array_diff($roles, $this->roles()->pluck('roles.id')->toArray())
     	);	
     }
 

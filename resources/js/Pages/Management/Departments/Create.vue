@@ -8,7 +8,10 @@
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <CreateForm />
+                <CreateForm 
+                    :positions="$page.props.positions"
+                    :departments="$page.props.departments"
+                    :department-types="$page.props.department_types"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>

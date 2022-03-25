@@ -11,6 +11,8 @@ class Department extends Model
         Helpers\HasId,
         Helpers\HasName,
         Helpers\HasDescription,
+        Helpers\HasAbbreviation,
+        Helpers\BelongsToDepartmentType,
         Helpers\BelongsToManyPosition;
 
     /**
@@ -19,7 +21,8 @@ class Department extends Model
      * @var string[]
      */
     protected $fillable = [
-        'parent',
+        'department_type_id',
+        'parent_id',
     ];
 
     public function settings() {
@@ -27,19 +30,19 @@ class Department extends Model
     }
 
     public function getParent() {
-        return $this->parent;
+        return $this->parent_id;
     }
 
     public function setParent($parent) {
-        $this->parent = $parent;
+        $this->parent_id = $parent;
     }
 
     public function toArray() {
         return [
             'id' => $this->getId(),
-            'parent' => $this->getParent(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'abbreviation' => $this->getAbbreviation(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

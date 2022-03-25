@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
+use App\Models\DepartmentType;
 use App\Models\Department;
 use App\Models\Position;
 
@@ -22,7 +23,11 @@ class DepartmentController extends Controller
     {
         return Inertia::render('Management/Departments/Index', [
             'departments' => Department::paginate(10)->through(function($department) {
-                return $department->toArray();
+                return array_merge(
+                    $department->toArray(), [
+                        'department_type' => $department->departmentType->toArray()
+                    ]
+                );
             }),
         ]);
     }
@@ -34,7 +39,17 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Departments/Create');
+        return Inertia::render('Management/Departments/Create', [
+            'positions' => Position::all()->map(function($position) {
+                return $position->toArray();
+            }),
+            'departments' => Department::all()->map(function($department) {
+                return $department->toArray();
+            }),
+            'department_types' => DepartmentType::all()->map(function($departmentType) {
+                return $departmentType->toArray();
+            })
+        ]);
     }
 
     /**
@@ -49,12 +64,37 @@ class DepartmentController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:2048'],
+            'abbreviation' => ['nullable', 'string', 'max:255'],
+            'department_type' => ['required', 'numeric'],
+            'parent' => ['nullable', 'numeric'],
+            'positions' => ['nullable', 'array']
         ])->validateWithBag('createDepartment');
 
-        $department = Department::create();
+        $departmentType = DepartmentType::findOrFail($input['department_type']);
+        $department = Department::create([
+            'department_type_id' => $departmentType->id
+        ]);
+
         $department->setName($input['name']);
         $department->setDescription($input['description']);
+        $department->setAbbreviation($input['abbreviation']);
+
+        if (isset($input['parent'])) {
+            if ($department->getParent() != $input['parent']) {
+                if ($department->getId() == $input['parent']) {
+                    throw ValidationException::withMessages([
+                        'parent' => 'Cannot assign current department as its parent itself.',
+                    ]);
+                }
+                $department->setParent($input['parent']);
+            }
+        }
+
+        if (isset($input['positions'])) {
+            $department->setPositions($input['positions']);
+        }
+
         $department->save();
 
         session()->flash('flash.banner', [
@@ -78,17 +118,24 @@ class DepartmentController extends Controller
         $department = Department::findOrFail($id);
 
         return Inertia::render('Management/Departments/Show', [
-            'department' => array_merge($department->toArray(), [
-                'positions' => $department->positions->map(function($position) {
-                    return $position->toArray();
-                })
-            ]),
+            'department' => array_merge(
+                $department->toArray(), [
+                    'department_type' => $department->departmentType->toArray(),
+                    'parent' => $department->parent_id,
+                    'positions' => $department->positions->map(function($position) {
+                        return $position->toArray();
+                    })
+                ]
+            ),
             'positions' => Position::all()->map(function($position) {
                 return $position->toArray();
             }),
             'departments' => Department::all()->map(function($department) {
                 return $department->toArray();
             }),
+            'department_types' => DepartmentType::all()->map(function($departmentType) {
+                return $departmentType->toArray();
+            })
         ]);
     }
 
@@ -116,18 +163,20 @@ class DepartmentController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:2048'],
+            'abbreviation' => ['nullable', 'string', 'max:255'],
+            'department_type' => ['required', 'numeric'],
+            'parent' => ['nullable', 'numeric'],
+            'positions' => ['nullable', 'array']
         ])->validateWithBag('updateDepartment');
 
         $department = Department::findOrFail($id);
+        $departmentType = DepartmentType::findOrFail($input['department_type']);
 
-        if ($department->getName() != $input['name']) {
-            $department->setName($input['name']);
-        }
-
-        if ($department->getDescription() != $input['description']) {
-            $department->setDescription($input['description']);
-        }
+        $department->setName($input['name']);
+        $department->setDescription($input['description']);
+        $department->setAbbreviation($input['abbreviation']);
+        $department->setDepartmentType($departmentType);
 
         if (isset($input['parent'])) {
             if ($department->getParent() != $input['parent']) {

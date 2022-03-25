@@ -8,7 +8,11 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <UpdateForm :department="$page.props.department" :positions="$page.props.positions" :departments="$page.props.departments"/>
+                <UpdateForm
+                    :department="$page.props.department"
+                    :positions="$page.props.positions"
+                    :departments="$page.props.departments"
+                    :department-types="$page.props.department_types"/>
                 <BreezeSectionBorder />
 
                 <DeleteForm :department="$page.props.department" class="mt-10 sm:mt-0" />

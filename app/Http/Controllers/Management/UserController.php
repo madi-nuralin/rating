@@ -108,15 +108,24 @@ class UserController extends Controller
         return Inertia::render('Management/Users/Show', [
             'user' => array_merge(
                 $user->toArray(), [
-                    'employements' => $user->getEmployements(),
-                    'roles' => $user->getRoles()
+                    'employements' => $user->employements ? $user->employements->map(function($employement) {
+                        return array_merge(
+                            $employement->toArray(), [
+                                'department' => $employement->department->toArray(),
+                                'position' => $employement->position->toArray()
+                            ]
+                        );
+                    }) : array(),
+                    'roles' => $user->roles ? $user->roles->map(function($role) {
+                        return $role->toArray();
+                    }) : array()
                 ]
             ),
             'employements' => Employement::all()->map(function($employement) {
                 return array_merge(
                     $employement->toArray(), [
-                        'department' => $employement->getDepartment(),
-                        'position' => $employement->getPosition(),
+                        'department' => $employement->department->toArray(),
+                        'position' => $employement->position->toArray(),
                     ]
                 );
             }),

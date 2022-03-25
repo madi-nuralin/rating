@@ -81,20 +81,26 @@ var messages = {
           header: 'Departments management',
           create: {
             title: 'Create a new department',
-            description: 'Create a new department to collaborate with others on projects.',
+            description: 'Enter department information, including title, description, and other options.',
             form: {
-              name: 'Department name',
-              description: 'Department description'
+              name: 'Name',
+              description: 'Description',
+              abbreviation: 'Abbreviation',
+              department_type: 'Type',
+              parent: 'Parent department',
+              positions: 'Positions'
             }
           },
           update: {
-            title: 'Update Department',
-            description: 'The department\'s name and description information.',
+            title: 'Department Information',
+            description: 'Update the department information, including the name, description, and other settings.',
             form: {
-              name: 'Department name',
-              description: 'Department description',
+              name: 'Name',
+              description: 'Description',
+              abbreviation: 'Abbreviation',
+              department_type: 'Type',
               parent: 'Parent department',
-              positions: 'Department positions'
+              positions: 'Positions'
             }
           },
           delete: {
@@ -1218,21 +1224,27 @@ var messages = {
           },
           header: 'Управление отделами',
           create: {
-            title: 'Создать новый отедел',
-            description: 'Создайте новый отеделами, чтобы сотрудничать с другими над проектами.',
+            title: 'Создать новый отдел',
+            description: 'Введите информацию отдела, включая название, описание и другие параметры.',
             form: {
-              name: 'Название отдела',
-              description: 'Описание отедела'
+              name: 'Название',
+              description: 'Описание',
+              abbreviation: 'Сокращение',
+              department_type: 'Тип',
+              parent: 'Родительский отдел',
+              positions: 'Должности'
             }
           },
           update: {
-            title: 'Обновить отдела',
-            description: 'Информация о названии и описании отеделении.',
+            title: 'Информация отдела',
+            description: 'Обновите информацию отдела, включая название, описание и другие параметры.',
             form: {
-              name: 'Название отдела',
-              description: 'Описание отдела',
+              name: 'Название',
+              description: 'Описание',
+              abbreviation: 'Сокращение',
+              department_type: 'Тип',
               parent: 'Родительский отдел',
-              positions: 'Должности отдела'
+              positions: 'Должности'
             }
           },
           delete: {
@@ -1252,8 +1264,8 @@ var messages = {
             }
           },
           list: {
-            title: 'Список отеделении',
-            description: 'Список отеделении, которые зарегистрированы.',
+            title: 'Список отделов',
+            description: 'Список отделов, которые зарегистрированы.',
             form: {
               listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
             },

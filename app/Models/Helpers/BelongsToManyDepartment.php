@@ -23,12 +23,12 @@ trait BelongsToManyDepartment
 
     public function addDepartments($departments)
     {
-    	if (is_null($departments) || is_empty($departments)) {
+    	if (is_null($departments) || empty($departments)) {
             return;
         }
 
     	$this->departments()->attach(
-    		array_diff($departments, $this->departments()->pluck('departments.id'))
+    		array_diff($departments, $this->departments()->pluck('departments.id')->toArray())
     	);	
     }
 

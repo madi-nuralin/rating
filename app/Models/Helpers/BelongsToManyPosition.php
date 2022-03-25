@@ -23,12 +23,12 @@ trait BelongsToManyPosition
 
     public function addPositions($positions)
     {
-    	if (is_null($positions) || is_empty($positions)) {
+    	if (is_null($positions) || empty($positions)) {
             return;
         }
 
     	$this->positions()->attach(
-    		array_diff($positions, $this->positions()->pluck('positions.id'))
+    		array_diff($positions, $this->positions()->pluck('positions.id')->toArray())
     	);	
     }
 

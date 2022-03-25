@@ -23,12 +23,12 @@ trait BelongsToManyRating
 
     public function addRatings($ratings)
     {
-    	if (is_null($ratings) || is_empty($ratings)) {
+    	if (is_null($ratings) || empty($ratings)) {
             return;
         }
 
     	$this->ratings()->attach(
-    		array_diff($ratings, $this->ratings()->pluck('ratings.id'))
+    		array_diff($ratings, $this->ratings()->pluck('ratings.id')->toArray())
     	);	
     }
 
