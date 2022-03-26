@@ -10,7 +10,20 @@
 
         <template #form>
             <div class="col-span-6">
-                <breeze-list :name="'department'" :items="items" />
+                <BreezeList :items="departments">
+                    <template #item="{item}">
+                        <div>
+                            <Link class="hover:underline" :href="route('department.show', {'id': item.id})">
+                                {{ item.name }}
+                            </Link>
+                            <div class="grid grid-cols-3 text-sm text-gray-400">
+                                <p class="line-clamp-1">{{ item.department_type.name }}</p>
+                                <p class="line-clamp-1">{{ item.abbreviation }}</p>
+                                <p class="line-clamp-1">{{ item.description }}</p>
+                            </div>
+                        </div>
+                    </template>
+                </BreezeList>
             </div>
         </template>
 
@@ -25,7 +38,7 @@
 <script>
     import BreezeButton from '@/Components/Button.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
-    import BreezeList from '@/Components/List.vue'
+    import BreezeList from '@/Components/ListScoped.vue'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -37,20 +50,5 @@
         },
 
         props: ['departments'],
-
-        computed: {
-            items() {
-                return {
-                    'data': this.departments.data.map(function(department) {
-                        return {
-                            id: department.id,
-                            name: department.name,
-                            description: department.department_type.name
-                        }
-                    }),
-                    'links': this.departments.links
-                };
-            }
-        },
     }
 </script>
