@@ -41,7 +41,7 @@
 <script>
     import BreezeButton from '@/Components/Button.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
-    import BreezeList from '@/Components/ListScoped.vue'
+    import BreezeList from '@/Components/List.vue'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {

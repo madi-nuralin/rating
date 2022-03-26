@@ -46,7 +46,6 @@
 <script>
     import BreezeButton from '@/Components/Button.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
-    import BreezeList from '@/Components/ListScoped.vue'
     import BreezeBadge from '@/Components/Badge.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import BreezeSectionTitle from '@/Components/SectionTitle.vue'
@@ -66,7 +65,6 @@
         components: {
             BreezeButton,
             BreezeFormSection,
-            BreezeList,
             BreezeBadge,
             BreezeSectionBorder,
             BreezeSectionTitle,

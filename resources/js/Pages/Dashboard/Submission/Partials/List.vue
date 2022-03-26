@@ -48,7 +48,6 @@
     import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
     import BreezeModalConfirmation from '@/Components/ModalConfirmation.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
-    import BreezeList from '@/Components/ListScoped.vue'
     import BreezeBadge from '@/Components/Badge.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import BreezeSectionTitle from '@/Components/SectionTitle.vue'
@@ -68,7 +67,6 @@
             BreezeButton,
             BreezeButtonSecondary,
             BreezeFormSection,
-            BreezeList,
             BreezeBadge,
             BreezeSectionBorder,
             BreezeSectionTitle,

@@ -10,7 +10,20 @@
 
         <template #form>
             <div class="col-span-6">
-                <breeze-list :name="'position'" :items="items" />
+                <BreezeList :items="positions">
+                    <template #item="{item}">
+                        <div>
+                            <Link class="hover:underline" :href="route('position.show', {'id': item.id})">
+                                {{ item.name }}
+                            </Link>
+                            <div class="text-sm text-gray-400">
+                                <p class="line-clamp-1">
+                                    {{ item.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                </BreezeList>
             </div>
         </template>
 
@@ -36,21 +49,6 @@
             Link,
         },
 
-        props: ['positions'],
-
-        computed: {
-            items() {
-                return {
-                    'data': this.positions.data.map(function(position) {
-                        return {
-                            id: position.id,
-                            name: position.name,
-                            description: position.description
-                        }
-                    }),
-                    'links': this.positions.links
-                };
-            }
-        },
+        props: ['positions']
     }
 </script>

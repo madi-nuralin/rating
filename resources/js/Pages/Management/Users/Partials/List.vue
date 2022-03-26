@@ -10,7 +10,23 @@
 
         <template #form>
             <div class="col-span-6">
-                <breeze-list :name="'user'" :items="items" />
+                <BreezeList :items="users">
+                    <template #item="{item}">
+                        <div class="flex space-x-2">
+                            <img class="w-8 h-8 rounded-full" :src="item.profile_photo_path" :alt="item.name">
+                            <div>
+                                <Link class="hover:underline" :href="route('user.show', {'id': item.id})">
+                                    {{ item.name }}
+                                </Link>
+                                <div class="text-sm text-gray-400">
+                                    <p class="line-clamp-1">
+                                        {{ item.email }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </BreezeList>
             </div>
         </template>
 
@@ -36,22 +52,6 @@
             Link,
         },
 
-        props: ['users'],
-
-        computed: {
-            items() {
-                return {
-                    'data': this.users.data.map(function(user) {
-                        return {
-                            id: user.id,
-                            name: user.name,
-                            description: user.email,
-                            avatar: user.profile_photo_path
-                        }
-                    }),
-                    'links': this.users.links
-                }
-            }
-        }
+        props: ['users']
     }
 </script>

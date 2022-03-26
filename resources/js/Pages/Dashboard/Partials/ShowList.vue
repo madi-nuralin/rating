@@ -88,7 +88,7 @@
 
 <script>
     import BreezeButton from '@/Components/Button.vue'
-    import BreezeList from '@/Components/ListScoped.vue'
+    import BreezeList from '@/Components/List.vue'
     import BreezeBadge from '@/Components/Badge.vue'
     import BreezeAccordion from '@/Components/Accordion.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'

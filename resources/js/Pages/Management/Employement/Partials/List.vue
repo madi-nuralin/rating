@@ -10,7 +10,18 @@
 
         <template #form>
             <div class="col-span-6">
-                <breeze-list :name="'employement'" :items="items" />
+                <BreezeList :items="employements">
+                    <template #item="{item}">
+                        <div>
+                            <Link class="hover:underline" :href="route('employement.show', {'id': item.id})">
+                                {{ `${item.user.name} - ${item.position.name}` }}
+                            </Link>
+                            <div class="text-sm text-gray-400">
+                                <p class="line-clamp-1">{{ item.department.name }}</p>
+                            </div>
+                        </div>
+                    </template>
+                </BreezeList>
             </div>
         </template>
 
@@ -37,20 +48,5 @@
         },
 
         props: ['employements'],
-
-        computed: {
-            items() {
-                return {
-                    'data': this.employements.data.map(function(employement) {
-                        return {
-                            id: employement.id,
-                            name: `${employement.user.name} - ${employement.position.name}`,
-                            description: `${employement.department.name}`
-                        }
-                    }),
-                    'links': this.employements.links
-                };
-            }
-        },
     }
 </script>

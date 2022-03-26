@@ -12,18 +12,15 @@
             <div class="col-span-6">
                 <BreezeList :items="forms">
                     <template #item="{item}">
-                        <div class="flex justify-between">
-                            <div>
-                                <div>{{item.name}}</div>
-                                <div class="flex flex-col text-sm text-gray-400">
-                                    <p class="line-clamp-3">
-                                        {{item.description}}
-                                    </p>
-                                </div>
-                            </div>
-                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('form.show', {'id': item.id})">
-                                Update
+                        <div>
+                            <Link class="hover:underline" :href="route('form.show', {'id': item.id})">
+                                {{ item.name }}
                             </Link>
+                            <div class="text-sm text-gray-400">
+                                <p class="line-clamp-1">
+                                    {{ item.description }}
+                                </p>
+                            </div>
                         </div>
                     </template>
                 </BreezeList>
@@ -41,7 +38,7 @@
 <script>
     import BreezeButton from '@/Components/Button.vue'
     import BreezeFormSection from '@/Components/FormSection.vue'
-    import BreezeList from '@/Components/ListScoped.vue'
+    import BreezeList from '@/Components/List.vue'
     import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
