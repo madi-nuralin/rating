@@ -47,7 +47,7 @@
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="email" :value="$t('pages.profile.updateProfileInformation.form.email')" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
+                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" :disabled="true"/>
                 <BreezeInputError :message="form.errors.email" class="mt-2" />
             </div>
 
