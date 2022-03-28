@@ -126,12 +126,12 @@
     </div>
 
 
-    <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer dark:border-gray-600" v-else-if="displayType == 'expanded'">
+    <div class="relative z-0 mt-1 border border-gray-300 shadow-sm rounded-lg cursor-pointer dark:border-gray-600" v-else-if="displayType == 'expanded'">
         <button 
             type="button"
             class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200"
             :class="{
-                'border-t border-gray-200 rounded-t-none dark:border-gray-600': i > 0,
+                'border-t border-gray-300 rounded-t-none dark:border-gray-600': i > 0,
                 'rounded-b-none': i != Object.keys(options).length - 1
             }"
             @click="onSelect(option.value)"
