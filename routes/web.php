@@ -109,8 +109,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('user', UserController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
-                Route::get('user/{id}/loginas', [UserController::class, 'auth'])
-                    ->name('user.loginas');
+                Route::get('user/{id}/login-as', [UserController::class, 'loginAs'])
+                    ->name('user.login-as');
             Route::resource('role', RoleController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::resource('employement', EmployementController::class,

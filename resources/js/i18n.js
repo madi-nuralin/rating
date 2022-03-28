@@ -194,6 +194,22 @@ var messages = {
             actions: {
               createButton: 'Add'
             }
+          },
+          loginAs: {
+            title: 'Login as user',
+            description: 'You will be logged in as the current user when completing operations',
+            content: {
+              info: 'Your current session will be terminated, in the meantime save your changes. This functionality is available to you at the moment, since you have been assigned the role of manager',
+              loginAsButton: 'Login as this user',
+              modal: {
+                title: 'Are you sure to log in as this user?',
+                content: 'Your current session will be terminated, in the meantime save your changes.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  continueButton: 'Continue'
+                }
+              }
+            }
           }
         },
         role: {
@@ -1411,6 +1427,22 @@ var messages = {
             description: 'Здесь вы можете найти информацию о пользователях. Перейдите по ссылке имени пользователя для просмотра подробной информации, а также для внесения изменений.',
             actions: {
               createButton: 'Добавить'
+            }
+          },
+          loginAs: {
+            title: 'Войти в систему под именем текущего пользователя',
+            description: 'При завершений операций вы зайдете в систему под именем текущего пользователя',
+            content: {
+              info: 'Ваш текущий сеанс будет завершен, тем временем сохраните измененные данные. Данный функционал доступен вам на текущий момент, поскольку вам присвоено роль управляющего',
+              loginAsButton: 'Войти под именем пользователя',
+              modal: {
+                title: 'Вы действительно хотите зайти в систему под именем данного пользователя?',
+                content: 'Ваш текущий сеанс будет завершен, тем временем сохраните измененные данные.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  continueButton: 'Продолжить'
+                }
+              }
             }
           }
         },

@@ -233,7 +233,7 @@ class UserController extends Controller
         $user->sendEmailVerificationNotification();
     }
 
-    public function auth($id)
+    public function loginAs($id)
     {
         $user = User::findOrFail($id);
 

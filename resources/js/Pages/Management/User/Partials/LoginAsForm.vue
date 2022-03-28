@@ -1,41 +1,41 @@
 <template>
     <breeze-action-section>
         <template #title>
-            Login As
+            {{ $t('pages.management.user.loginAs.title') }}
         </template>
 
         <template #description>
-            Log in as this user.
+            {{ $t('pages.management.user.loginAs.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
+                {{ $t('pages.management.user.loginAs.content.info') }}
             </div>
 
             <div class="flex items-center mt-5">
-                <breeze-button @click="confirmLogout">
-                    Log in as
+                <breeze-button @click="confirmLoginAs">
+                    {{ $t('pages.management.user.loginAs.content.loginAsButton') }}
                 </breeze-button>
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
-            <breeze-modal-dialog :show="confirmingLogout" @close="closeModal">
+            <breeze-modal-dialog :show="confirmingLoginAs" @close="closeModal">
                 <template #title>
-                    Log Out Other Browser Sessions
+                    {{ $t('pages.management.user.loginAs.content.modal.title') }}
                 </template>
 
                 <template #content>
-                    Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
+                    {{ $t('pages.management.user.loginAs.content.modal.content') }}
                 </template>
 
                 <template #footer>
                     <breeze-secondary-button @click="closeModal">
-                        Cancel
+                        {{ $t('pages.management.user.loginAs.content.modal.footer.cancelButton') }}
                     </breeze-secondary-button>
 
-                    <Link class="ml-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('user.loginas', {'id': user.id})">
-                        Login
+                    <Link class="ml-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('user.login-as', {'id': user.id})">
+                        {{ $t('pages.management.user.loginAs.content.modal.footer.continueButton') }}
                     </Link>
                 </template>
             </breeze-modal-dialog>
@@ -68,15 +68,15 @@
         },
         data() {
             return {
-                confirmingLogout: false,
+                confirmingLoginAs: false,
                 form: this.$inertia.form({
                     password: '',
                 })
             }
         },
         methods: {
-            confirmLogout() {
-                this.confirmingLogout = true;
+            confirmLoginAs() {
+                this.confirmingLoginAs = true;
             },
             logoutOtherBrowserSessions() {
                 this.form.get(route('other-browser-sessions.destroy'), {
@@ -87,7 +87,7 @@
                 })
             },
             closeModal() {
-                this.confirmingLogout = false
+                this.confirmingLoginAs = false
                 this.form.reset()
             },
         },
