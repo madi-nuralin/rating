@@ -83,6 +83,9 @@
                                         <BreezeDropdownLink :href="route('user.index')">
                                             {{ $t('layouts.authenticated.links.users') }}
                                         </BreezeDropdownLink>
+                                        <BreezeDropdownLink :href="route('role.index')">
+                                            {{ $t('layouts.authenticated.links.roles') }}
+                                        </BreezeDropdownLink>
                                         <BreezeDropdownLink :href="route('employement.index')">
                                             {{ $t('layouts.authenticated.links.employements') }}
                                         </BreezeDropdownLink>
@@ -222,6 +225,9 @@
                                 </BreezeResponsiveNavLink>
                                 <BreezeResponsiveNavLink :href="route('user.index')">
                                     {{ $t('layouts.authenticated.links.users') }}
+                                </BreezeResponsiveNavLink>
+                                <BreezeResponsiveNavLink :href="route('role.index')">
+                                    {{ $t('layouts.authenticated.links.roles') }}
                                 </BreezeResponsiveNavLink>
                                 <BreezeResponsiveNavLink :href="route('employement.index')">
                                     {{ $t('layouts.authenticated.links.employements') }}

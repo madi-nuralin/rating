@@ -196,6 +196,62 @@ var messages = {
             }
           }
         },
+        role: {
+          head: {
+            title: 'Managing Roles'
+          },
+          header: 'Managing Roles',
+          create: {
+            title: 'New role',
+            description: 'Enter role information, including title, description, and other options.',
+            form: {
+              name: 'Name',
+              description: 'Description',
+              context: 'Context',
+              users: 'Users'
+            },
+            actions: {
+              createButton: 'Create'
+            }
+          },
+          update: {
+            title: 'Role Information',
+            description: 'Update the role information, including the name, description, and other settings.',
+            form: {
+              name: 'Name',
+              description: 'Description',
+              context: 'Context',
+              users: 'Users'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
+            }
+          },
+          delete: {
+            title: 'Delete Role',
+            description: 'Permanently delete this role.',
+            content: {
+              deleteInfo: 'Once a role is deleted, all of its resources and data will be permanently deleted. Before deleting this role, please download any data or information regarding this position that you wish to retain.',
+              deleteButton: 'Delete Role',
+              modal: {
+                title: 'Delete Role',
+                content: 'Are you sure you want to delete this role? Once a role is deleted, all of its resources and data will be permanently deleted.',
+                footer: {
+                  cancelButton: 'Cancel',
+                  deleteButton: 'Delete Role'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'List of positions',
+            description: 'Here you can find information about positions. Click on the position name link to view detailed information and to make changes.',
+            actions: {
+              createButton: 'Add'
+            }
+          }
+        },
         employement: {
           head: {
             title: 'Managing Employements'
@@ -1140,6 +1196,7 @@ var messages = {
           positions: 'Positions',
           departments: 'Departments',
           users: 'Users',
+          roles: 'Roles',
           employements: 'Employements',
           ratings: 'Rating',
           parameters: 'Parameters',
@@ -1352,6 +1409,62 @@ var messages = {
           list: {
             title: 'Список пользователей',
             description: 'Здесь вы можете найти информацию о пользователях. Перейдите по ссылке имени пользователя для просмотра подробной информации, а также для внесения изменений.',
+            actions: {
+              createButton: 'Добавить'
+            }
+          }
+        },
+        role: {
+          head: {
+            title: 'Управление ролями'
+          },
+          header: 'Управление ролями',
+          create: {
+            title: 'Новый роль',
+            description: 'Введите информацию роля, включая название, описание и другие параметры.',
+            form: {
+              name: 'Название',
+              description: 'Описание',
+              context: 'Контекст',
+              users: 'Пользователи'
+            },
+            actions: {
+              createButton: 'Создать'
+            }
+          },
+          update: {
+            title: 'Информация роли',
+            description: 'Обновите информацию роли, включая название, описание и другие параметры.',
+            form: {
+              name: 'Название',
+              description: 'Описание',
+              context: 'Контекст',
+              users: 'Пользователи'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
+            }
+          },
+          delete: {
+            title: 'Удалить роль',
+            description: 'Удалить эту роль навсегда.',
+            content: {
+              deleteInfo: 'После удаления позиции все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой роли, пожалуйста, загрузите любые данные или информацию относительно этой позиции, которые вы хотите сохранить.',
+              deleteButton: 'Удалить роль',
+              modal: {
+                title: 'Удалить роль',
+                content: 'Вы уверены, что хотите удалить эту роль? После удаления роли все ее ресурсы и данные будут удалены без возможности восстановления.',
+                footer: {
+                  cancelButton: 'Отмена',
+                  deleteButton: 'Удалить роль'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Список ролей',
+            description: 'Здесь вы можете найти информацию о ролях. Перейдите по ссылке названия роли для просмотра подробной информации, а также для внесения изменений.',
             actions: {
               createButton: 'Добавить'
             }
@@ -2314,6 +2427,7 @@ var messages = {
           positions: 'Должности',
           departments: 'Отделы',
           users: 'Пользователи',
+          roles: 'Роли',
           employements: 'Трудоустройство',
           ratings: 'Оценивание',
           parameters: 'Параметры',
