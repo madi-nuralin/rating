@@ -1,43 +1,43 @@
 <template>
     <breeze-action-section>
         <template #title>
-            {{ $t('pages.management.users.delete.title') }}
+            {{ $t('pages.management.user.delete.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.users.delete.description') }}
+            {{ $t('pages.management.user.delete.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                {{ $t('pages.management.users.delete.content.deleteInfo') }}
+                {{ $t('pages.management.user.delete.content.deleteInfo') }}
             </div>
 
             <div class="mt-5">
                 <breeze-button-danger @click="confirmUserDeletion">
-                    {{ $t('pages.management.users.delete.content.deleteButton') }}
+                    {{ $t('pages.management.user.delete.content.deleteButton') }}
                 </breeze-button-danger>
             </div>
 
             <!-- Confirmation Modal -->
             <breeze-modal-confirmation :show="confirmingUserDeletion" @close="confirmingUserDeletion = false">
                 <template #title>
-                    {{ $t('pages.management.users.delete.content.modal.title') }}
+                    {{ $t('pages.management.user.delete.content.modal.title') }}
                 </template>
 
                 <template #content>
-                    {{ $t('pages.management.users.delete.content.modal.content') }}
+                    {{ $t('pages.management.user.delete.content.modal.content') }}
                 </template>
 
                 <template #footer>
                     <breeze-input-error :message="form.errors.user" class="mt-2" />
                     
                     <breeze-button-secondary @click="confirmingUserDeletion = false">
-                        {{ $t('pages.management.users.delete.content.modal.footer.cancelButton') }}
+                        {{ $t('pages.management.user.delete.content.modal.footer.cancelButton') }}
                     </breeze-button-secondary>
 
                     <breeze-button-danger class="ml-2" @click="deleteUser" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        {{ $t('pages.management.users.delete.content.modal.footer.deleteButton') }}
+                        {{ $t('pages.management.user.delete.content.modal.footer.deleteButton') }}
                     </breeze-button-danger>
                 </template>
             </breeze-modal-confirmation>

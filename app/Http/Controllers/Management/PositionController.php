@@ -19,7 +19,7 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Positions/Index', [
+        return Inertia::render('Management/Position/Index', [
             'positions' => Position::paginate(10)->through(function($position) {
                 return $position->toArray();
             }),
@@ -33,7 +33,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Positions/Create');
+        return Inertia::render('Management/Position/Create');
     }
 
     /**
@@ -48,7 +48,7 @@ class PositionController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:2048'],
         ])->validateWithBag('createPosition');
 
         $position = Position::create();
@@ -74,7 +74,7 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('Management/Positions/Show', [
+        return Inertia::render('Management/Position/Show', [
             'position' => Position::findOrFail($id)->toArray(),
         ]);
     }
@@ -103,19 +103,13 @@ class PositionController extends Controller
 
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:2048'],
         ])->validateWithBag('updatePosition');
 
         $position = Position::findOrFail($id);
         
-        if ($position->getName() != $input['name']) {
-            $position->setName($input['name']);    
-        }
-
-        if ($position->getDescription() != $input['description']) {
-            $position->setDescription($input['description']);
-        }
-
+        $position->setName($input['name']);
+        $position->setDescription($input['description']);
         $position->save();
 
         return $request->wantsJson()

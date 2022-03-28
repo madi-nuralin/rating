@@ -6,8 +6,8 @@
             {{ $t('pages.management.employement.header') }}
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <ResourceList :employements="$page.props.employements"/>
             </div>
         </div>
@@ -17,7 +17,7 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import ResourceList from '@/Pages/Management/Employement/Partials/List.vue'
+    import ResourceList from './Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {

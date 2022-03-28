@@ -21,7 +21,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Departments/Index', [
+        return Inertia::render('Management/Department/Index', [
             'departments' => Department::paginate(10)->through(function($department) {
                 return array_merge(
                     $department->toArray(), [
@@ -39,7 +39,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Departments/Create', [
+        return Inertia::render('Management/Department/Create', [
             'positions' => Position::all()->map(function($position) {
                 return $position->toArray();
             }),
@@ -117,7 +117,7 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
 
-        return Inertia::render('Management/Departments/Show', [
+        return Inertia::render('Management/Department/Show', [
             'department' => array_merge(
                 $department->toArray(), [
                     'department_type' => $department->departmentType->toArray(),

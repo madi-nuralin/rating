@@ -1,13 +1,13 @@
 <template>
-    <Head :title="$t('pages.management.users.head.title')" />
+    <Head :title="$t('pages.management.position.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ $t('pages.management.users.header') }}
+            {{ $t('pages.management.position.header') }}
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <CreateForm />
             </div>
         </div>
@@ -17,8 +17,9 @@
 <script>
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-    import CreateForm from '@/Pages/Management/Users/Partials/CreateForm.vue'
+    import CreateForm from './Partials/CreateForm.vue'
     import { Head } from '@inertiajs/inertia-vue3';
+
     export default {
         components: {
             BreezeAuthenticatedLayout,

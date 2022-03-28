@@ -1,34 +1,30 @@
 <template>
     <BreezeFormSection @submitted="createPosition">
         <template #title>
-            {{ $t('pages.management.positions.create.title') }}
+            {{ $t('pages.management.position.create.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.positions.create.description') }}
+            {{ $t('pages.management.position.create.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.management.positions.create.form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.management.position.create.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.management.positions.create.form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
+                <BreezeLabel for="description" :value="$t('pages.management.position.create.form.description')" />
+                <BreezeTextarea id="description" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
         </template>
 
         <template #actions>
-            <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </BreezeActionMessage>
-
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Create
+                {{ $t('pages.management.position.create.actions.createButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -69,7 +65,6 @@
                 this.form.post(route('position.store'), {
                     errorBag: 'createPosition',
                     preserveScroll: true,
-                    //onSuccess: () => Inertia.reload({ only: ['positions'] })
                 });
             },
         },

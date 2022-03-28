@@ -51,6 +51,7 @@ class EmployementController extends Controller
             'departments' => Department::all()->map(function($department) {
                 return array_merge(
                     $department->toArray(), [
+                        'department_type' => $department->departmentType->toArray(),
                         'positions' => $department->positions->map(function($position) {
                             return $position->toArray();
                         })
@@ -133,6 +134,7 @@ class EmployementController extends Controller
             'departments' => Department::all()->map(function($department) {
                 return array_merge(
                     $department->toArray(), [
+                        'department_type' => $department->departmentType->toArray(),
                         'positions' => $department->positions->map(function($position) {
                             return $position->toArray();
                         })

@@ -1,106 +1,101 @@
 <template>
-    <BreezeFormSection @submitted="updateDepartment">
+    <BreezeFormSection @submitted="createDepartment">
         <template #title>
-            {{ $t('pages.management.departments.update.title') }}
+            {{ $t('pages.management.department.create.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.departments.update.description') }}
+            {{ $t('pages.management.department.create.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.management.departments.update.form.name')" />
-                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" />
+                <BreezeLabel for="name" :value="$t('pages.management.department.create.form.name')" />
+                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.management.departments.update.form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
+                <BreezeLabel for="description" :value="$t('pages.management.department.create.form.description')" />
+                <BreezeTextarea id="description" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="abbreviation" :value="$t('pages.management.departments.update.form.abbreviation')" />
+                <BreezeLabel for="abbreviation" :value="$t('pages.management.department.create.form.abbreviation')" />
                 <BreezeInput id="abbreviation" type="text" class="mt-1 block w-full" v-model="form.abbreviation" />
                 <BreezeInputError :message="form.errors.abbreviation" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="department_type" :value="$t('pages.management.departments.update.form.department_type')" />
+                <BreezeLabel for="department_type" :value="$t('pages.management.department.create.form.department_type')" />
                 <BreezeSelect id="department_type" class="mt-1 block w-full" :value="form.department_type" @input="form.department_type = $event" :options="options.department_type" :multiple="false" :type="'expanded'" />
                 <BreezeInputError :message="form.errors.department_type" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="positions" :value="$t('pages.management.departments.update.form.positions')" />
+                <BreezeLabel for="positions" :value="$t('pages.management.department.create.form.positions')" />
                 <BreezeSelect id="positions" class="mt-1 block w-full" :value="form.positions" @input="form.positions = $event" :options="options.positions"/>
                 <BreezeInputError :message="form.errors.positions" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="parent" :value="$t('pages.management.departments.update.form.parent')" />
+                <BreezeLabel for="parent" :value="$t('pages.management.department.create.form.parent')" />
                 <BreezeSelect id="parent" class="mt-1 block w-full" :value="form.parent" @input="form.parent = $event" :options="options.departments" :multiple="false"/>
                 <BreezeInputError :message="form.errors.parent" class="mt-2" />
             </div>
         </template>
 
-        <template #actions v-if="true">
-            <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </BreezeActionMessage>
-
+        <template #actions>
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('pages.management.department.create.actions.createButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
 </template>
 
 <script>
-    import BreezeActionMessage from '@/Components/ActionMessage'
-    import BreezeButton from '@/Components/Button'
-    import BreezeFormSection from '@/Components/FormSection'
-    import BreezeInput from '@/Components/Input'
-    import BreezeInputError from '@/Components/InputError'
-    import BreezeTextarea from '@/Components/Textarea'
+    import BreezeButton from '@/Components/Button.vue'
+    import BreezeActionMessage from '@/Components/ActionMessage.vue'
+    import BreezeFormSection from '@/Components/FormSection.vue'
+    import BreezeInput from '@/Components/Input.vue'
+    import BreezeInputError from '@/Components/InputError.vue'
+    import BreezeTextarea from '@/Components/Textarea.vue'
+    import BreezeLabel from '@/Components/Label.vue'
     import BreezeSelect from '@/Components/Select'
-    import BreezeLabel from '@/Components/Label'
+    import { Inertia } from '@inertiajs/inertia'
 
     export default {
         components: {
-            BreezeActionMessage,
             BreezeButton,
+            BreezeActionMessage,
             BreezeFormSection,
             BreezeInput,
             BreezeInputError,
             BreezeTextarea,
-            BreezeSelect,
             BreezeLabel,
+            BreezeSelect,
         },
 
-        props: ['department', 'departments', 'departmentTypes', 'positions'],
+        props: ['departments', 'departmentTypes', 'positions'],
 
         data() {
             return {
                 form: this.$inertia.form({
-                    name: this.department.name,
-                    description: this.department.description,
-                    abbreviation: this.department.abbreviation,
-                    parent: this.department.parent,
-                    department_type: this.department.department_type.id,
-                    positions: this.department.positions ? this.department.positions.map(function(position) {
-                        return position.id;
-                    }) : null
-                }),
+                    name: '',
+                    description: '',
+                    abbreviation: '',
+                    parent: '',
+                    department_type: '',
+                    positions: ''
+                })
             }
         },
 
         methods: {
-            updateDepartment() {
-                this.form.put(route( 'department.update', {'id': this.department.id} ), {
-                    errorBag: 'updateDepartment',
+            createDepartment() {
+                this.form.post(route('department.store'), {
+                    errorBag: 'createDepartment',
                     preserveScroll: true
                 });
             },

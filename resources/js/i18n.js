@@ -26,25 +26,32 @@ var messages = {
       administration: {
       },
       management: {
-        positions: {
+        position: {
           head: {
-            title: 'Positions management'
+            title: 'Managing Positions'
           },
-          header: 'Positions management',
+          header: 'Managing Positions',
           create: {
-            title: 'Create a new position',
-            description: 'Create a new position to collaborate with others on projects.',
+            title: 'New position',
+            description: 'Enter position information, including title, description, and other options.',
             form: {
-              name: 'Position name',
-              description: 'Position description'
+              name: 'Name',
+              description: 'Description'
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
-            title: 'Update Position',
-            description: 'The position\'s name and description information.',
+            title: 'Position Information',
+            description: 'Update the position information, including the name, description, and other settings.',
             form: {
-              name: 'Position name',
-              description: 'Position description'
+              name: 'Name',
+              description: 'Description'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           delete: {
@@ -64,23 +71,20 @@ var messages = {
             }
           },
           list: {
-            title: 'Positions list',
-            description: 'The positions list which are registered.',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            },
+            title: 'List of positions',
+            description: 'Here you can find information about positions. Click on the position name link to view detailed information and to make changes.',
             actions: {
-              createButton: 'Create New'
+              createButton: 'Add'
             }
           }
         },
-        departments: {
+        department: {
           head: {
-            title: 'Departments management'
+            title: 'Managing Departments'
           },
-          header: 'Departments management',
+          header: 'Managing Departments',
           create: {
-            title: 'Create a new department',
+            title: 'New department',
             description: 'Enter department information, including title, description, and other options.',
             form: {
               name: 'Name',
@@ -89,6 +93,9 @@ var messages = {
               department_type: 'Type',
               parent: 'Parent department',
               positions: 'Positions'
+            },
+            actions: {
+              saveButton: 'Create'
             }
           },
           update: {
@@ -101,6 +108,10 @@ var messages = {
               department_type: 'Type',
               parent: 'Parent department',
               positions: 'Positions'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           delete: {
@@ -120,41 +131,45 @@ var messages = {
             }
           },
           list: {
-            title: 'Departments list',
-            description: 'The departments list which are registered.',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            },
+            title: 'List of departments',
+            description: 'Here you can find information about departments. Click on the department name link to view detailed information and to make changes.',
             actions: {
-              createButton: 'Create New'
+              createButton: 'Add'
             }
           }
         },
-        users: {
+        user: {
           head: {
-            title: 'Users management'
+            title: 'Managing Users'
           },
-          header: 'Users management',
+          header: 'Managing Users',
           create: {
-            title: 'Create a new user',
-            description: 'Create a new user to collaborate with others on projects.',
+            title: 'New user',
+            description: 'Enter user information, including name, email, and other options.',
             form: {
-              name: 'User name',
-              email: 'User email',
+              name: 'Name',
+              email: 'Email',
               firstname: 'Firstname',
               lastname: 'Lastname',
               roles: 'Roles'
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
-            title: 'Update User',
-            description: 'The user\'s name and description information.',
+            title: 'User Information',
+            description: 'Update the user information, including the name, email, and other settings.',
             form: {
-              name: 'User name',
-              email: 'User email',
+              name: 'Name',
+              email: 'Email',
               firstname: 'Firstname',
               lastname: 'Lastname',
               roles: 'Roles'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           delete: {
@@ -174,43 +189,47 @@ var messages = {
             }
           },
           list: {
-            title: 'Users list',
-            description: 'The users list which are registered.',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            },
+            title: 'List of users',
+            description: 'Here you can find information about users. Click on the user name link to view detailed information and to make changes.',
             actions: {
-              createButton: 'Create New'
+              createButton: 'Add'
             }
           }
         },
         employement: {
           head: {
-            title: 'Employements management'
+            title: 'Managing Employements'
           },
-          header: 'Employements management',
+          header: 'Managing Employements',
           create: {
-            title: 'Create a new user employement information',
-            description: 'Create a new employement to collaborate with others on projects.',
+            title: 'New employer',
+            description: 'Enter employement information, including user, position, and other options.',
             form: {
-              employement_type: 'Employement Type',
-              department: 'Select Department',
-              position: 'Select Position',
-              department: 'Select User',
+              employement_type: 'Type',
+              department: 'Department',
+              position: 'Position',
+              department: 'User',
               appointed_at: 'Appointed at',
               terminated_at: 'Terminated at',
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
-            title: 'Update Employement Information',
-            description: 'The user employement information details.',
+            title: 'Employement Information',
+            description: 'Update the employement information, including the user, position, and other settings.',
             form: {
-              employement_type: 'Employement Type',
+              employement_type: 'Type',
               department: 'Department',
               position: 'Position',
               user: 'User',
               appointed_at: 'Appointed at',
               terminated_at: 'Terminated at',
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           delete: {
@@ -230,12 +249,10 @@ var messages = {
             }
           },
           list: {
-            title: 'Users employement information',
-            description: 'The employement list which are registered.',
-            form: {
-            },
+            title: 'List of employements',
+            description: 'Here you can find information about user employements. Click on the name link to view detailed information and to make changes.',
             actions: {
-              createButton: 'Create New'
+              createButton: 'Add'
             }
           }
         },
@@ -1170,25 +1187,32 @@ var messages = {
       administration: {
       },
       management: {
-        positions: {
+        position: {
           head: {
             title: 'Управление должностями'
           },
           header: 'Управление должностями',
           create: {
-            title: 'Создать новую должность',
-            description: 'Создайте новую должность, чтобы сотрудничать с другими над проектами.',
+            title: 'Новая должность',
+            description: 'Введите информацию должности, включая название, описание и другие параметры.',
             form: {
-              name: 'Название должности',
-              description: 'Описание должности'
+              name: 'Название',
+              description: 'Описание'
+            },
+            actions: {
+              createButton: 'Создать'
             }
           },
           update: {
-            title: 'Обновить должность',
-            description: 'Информация о названии и описании должности.',
+            title: 'Информация должности',
+            description: 'Обновите информацию должности, включая название, описание и другие параметры.',
             form: {
-              name: 'Название должности',
-              description: 'Описание должности'
+              name: 'Название',
+              description: 'Описание'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Создать'
             }
           },
           delete: {
@@ -1209,30 +1233,30 @@ var messages = {
           },
           list: {
             title: 'Список должностей',
-            description: 'Список позиций, которые зарегистрированы.',
-            form: {
-              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            },
+            description: 'Здесь вы можете найти информацию о должностях. Перейдите по ссылке названия должности для просмотра подробной информации, а также для внесения изменений.',
             actions: {
-              createButton: 'Создайте новый'
+              createButton: 'Добавить'
             }
           }
         },
-        departments: {
+        department: {
           head: {
             title: 'Управление отделами'
           },
           header: 'Управление отделами',
           create: {
-            title: 'Создать новый отдел',
+            title: 'Новый отдел',
             description: 'Введите информацию отдела, включая название, описание и другие параметры.',
             form: {
               name: 'Название',
               description: 'Описание',
-              abbreviation: 'Сокращение',
+              abbreviation: 'Сокращенное название',
               department_type: 'Тип',
               parent: 'Родительский отдел',
               positions: 'Должности'
+            },
+            actions: {
+              createButton: 'Создать'
             }
           },
           update: {
@@ -1241,21 +1265,25 @@ var messages = {
             form: {
               name: 'Название',
               description: 'Описание',
-              abbreviation: 'Сокращение',
+              abbreviation: 'Сокращенное название',
               department_type: 'Тип',
               parent: 'Родительский отдел',
               positions: 'Должности'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             }
           },
           delete: {
             title: 'Удалить отдел',
             description: 'Удалить этот отдел навсегда.',
             content: {
-              deleteInfo: 'После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой отеделении, пожалуйста, загрузите любые данные или информацию относительно этой отеделении, которые вы хотите сохранить.',
+              deleteInfo: 'После удаления отдела все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением отдела, пожалуйста, загрузите любые данные или информацию относительно этой отеделении, которые вы хотите сохранить.',
               deleteButton: 'Удалить отдел',
               modal: {
                 title: 'Удалить отдел',
-                content: 'Вы уверены, что хотите удалить этот отдел? После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления.',
+                content: 'Вы уверены, что хотите удалить этот отдел? После удаления отдела все ее ресурсы и данные будут удалены без возможности восстановления.',
                 footer: {
                   cancelButton: 'Отмена',
                   deleteButton: 'Удалить отдел'
@@ -1265,51 +1293,55 @@ var messages = {
           },
           list: {
             title: 'Список отделов',
-            description: 'Список отделов, которые зарегистрированы.',
-            form: {
-              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            },
+            description: 'Здесь вы можете найти информацию об отделах. Перейдите по ссылке названия отдела для просмотра подробной информации, а также для внесения изменений.',
             actions: {
-              createButton: 'Создайте новый'
+              createButton: 'Добавить'
             }
           }
         },
-        users: {
+        user: {
           head: {
             title: 'Управление пользователями'
           },
           header: 'Управление пользователями',
           create: {
-            title: 'Добавить нового пользователя',
-            description: 'Добавить нового пользователя, чтобы сотрудничать с другими над проектами.',
+            title: 'Новый пользователь',
+            description: 'Введите данные пользователя, включая имя, электронную почту и другие параметры.',
             form: {
               name: 'Имя пользователя',
-              email: 'Электронная почта пользователя',
+              email: 'Электронная почта',
               firstname: 'Имя',
               lastname: 'Фамилия',
               roles: 'Роли'
+            },
+            actions: {
+              createButton: 'Создать'
             }
           },
           update: {
-            title: 'Обновить пользователя',
-            description: 'Информация о названии и описании отеделении.',
+            title: 'Информация пользователя',
+            description: 'Обновите информацию пользователя, включая имя, электронную почту и другие параметры.',
             form: {
               name: 'Имя пользователя',
-              email: 'Электронная почта пользователя',
+              email: 'Электронная почта',
               firstname: 'Имя',
               lastname: 'Фамилия',
               roles: 'Роли'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             }
           },
           delete: {
             title: 'Удалить пользователя',
-            description: 'Удалить эту пользователя навсегда.',
+            description: 'Удалить этого пользователя навсегда.',
             content: {
-              deleteInfo: 'После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой отеделении, пожалуйста, загрузите любые данные или информацию относительно этой отеделении, которые вы хотите сохранить.',
+              deleteInfo: 'После удаления пользователя все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением данного пользователя, пожалуйста, загрузите любые данные или информацию относительно этого пользователя, которые вы хотите сохранить.',
               deleteButton: 'Удалить пользователя',
               modal: {
                 title: 'Удалить пользователя',
-                content: 'Вы уверены, что хотите удалить эту пользователя? После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления.',
+                content: 'Вы уверены, что хотите удалить этого пользователя? После удаления отеделении все ее ресурсы и данные будут удалены без возможности восстановления.',
                 footer: {
                   cancelButton: 'Отмена',
                   deleteButton: 'Удалить пользователя'
@@ -1319,12 +1351,9 @@ var messages = {
           },
           list: {
             title: 'Список пользователей',
-            description: 'Список пользователей, которые зарегистрированы.',
-            form: {
-              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            },
+            description: 'Здесь вы можете найти информацию о пользователях. Перейдите по ссылке имени пользователя для просмотра подробной информации, а также для внесения изменений.',
             actions: {
-              createButton: 'Создайте новый'
+              createButton: 'Добавить'
             }
           }
         },
@@ -1334,19 +1363,22 @@ var messages = {
           },
           header: 'Управление трудоустройством пользователей',
           create: {
-            title: 'Создать информацию о занятости пользователя',
-            description: 'Создайте новую работу, чтобы сотрудничать с другими над проектами.',
+            title: 'Новая позиция',
+            description: 'Введите данные пользователя и занимаемой должности, включая имя, электронную отдел и другие параметры.',
             form: {
               employement_type: 'Вид трудоустройства',
-              department: 'Выберите отдел',
-              position: 'Выбрать позицию',
-              department: 'Выбрать пользователя',
+              department: 'Отдел',
+              position: 'Должность',
+              department: 'Пользователь',
               appointed_at: 'Назначен в',
               terminated_at: 'Прекращено в',
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
-            title: 'Обновить информацию о занятости',
+            title: 'Информация о занятости',
             description: 'Сведения о занятости пользователя.',
             form: {
               employement_type: 'Вид трудоустройства',
@@ -1355,13 +1387,17 @@ var messages = {
               user: 'Пользователь',
               appointed_at: 'Назначен в',
               terminated_at: 'Прекращено в',
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             }
           },
           delete: {
-            title: 'Обновить информацию о занятости',
-            description: 'Удалить эту информацию о занятости без возможности восстановления.',
+            title: 'Удалить информацию о занятости',
+            description: 'Удалить информацию о занятости без возможности восстановления.',
             content: {
-              deleteInfo: 'После удаления информации о занятости все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой информации о занятости, пожалуйста, загрузите любые данные или информацию об этой должности, которые вы хотите сохранить.',
+              deleteInfo: 'После удаления информации о занятости все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением информации, пожалуйста, загрузите любые данные или информацию об этой должности, которые вы хотите сохранить.',
               deleteButton: 'Удалить информацию о занятости',
               modal: {
                 title: 'Удалить информацию о занятости',
@@ -1374,12 +1410,10 @@ var messages = {
             }
           },
           list: {
-            title: 'Users employement information',
-            description: 'The employement list which are registered.',
-            form: {
-            },
+            title: 'Трудоустройство пользователей',
+            description: 'Здесь вы можете найти информацию о занятости пользователей. Нажмите на ссылку имени, чтобы просмотреть подробности и внести изменения.',
             actions: {
-              createButton: 'Create New'
+              createButton: 'Добавить'
             }
           }
         },

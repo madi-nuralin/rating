@@ -1,9 +1,9 @@
 <template>
-    <Head :title="$t('pages.management.users.head.title')" />
+    <Head :title="$t('pages.management.user.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ $t('pages.management.users.header') }}
+            {{ $t('pages.management.user.header') }}
         </template>
 
         <div class="py-12">

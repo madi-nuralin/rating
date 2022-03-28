@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Rule;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
 use Inertia\Inertia;
 use DB;
 
@@ -28,7 +29,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Users/Index', [
+        return Inertia::render('Management/User/Index', [
             'users' => User::paginate(10)->through(function($user) {
                 return $user->toArray();
             }),
@@ -42,7 +43,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Users/Create');
+        return Inertia::render('Management/User/Create', [
+            'roles' => Role::all()->map(function($role) {
+                return $role->toArray();
+            })
+        ]);
     }
 
     /**
@@ -60,27 +65,19 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'firstname' => ['nullable', 'string', 'max:255'],
             'lastname' => ['nullable', 'string', 'max:255'],
-            'password' => ['required', Rules\Password::defaults()],
+            'roles' => ['nullable', 'array'],
         ])->validateWithBag('createUser');
 
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make(Str::random(8)),
         ]);
 
-        if (isset($input['firstname'])) {
-            $user->setFirstname($input['firstname']);
-        }
-        if (isset($input['lastname'])) {
-            $user->setLastname($input['lastname']);
-        }
-        /*$request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);*/
+        $user->setFirstname($input['firstname']);
+        $user->setLastname($input['lastname']);
+        $user->setRoles($input['roles']);
 
         $user->save();
 
@@ -105,7 +102,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return Inertia::render('Management/Users/Show', [
+        return Inertia::render('Management/User/Show', [
             'user' => array_merge(
                 $user->toArray(), [
                     'employements' => $user->employements ? $user->employements->map(function($employement) {
@@ -164,23 +161,15 @@ class UserController extends Controller
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
             'firstname' => ['nullable', 'string', 'max:255'],
             'lastname' => ['nullable', 'string', 'max:255'],
+            'roles' => ['nullable', 'array'],
         ])->validateWithBag('updateUser');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
-        if (isset($input['firstname'])) {
-            $user->setFirstname($input['firstname']);
-        }
-        if (isset($input['lastname'])) {
-            $user->setLastname($input['lastname']);
-        }
-        if (isset($input['employements'])) {
-            $user->setEmployements($input['employements']);
-        }
-        if (isset($input['roles'])) {
-            $user->setRoles($input['roles']);
-        }
+        $user->setFirstname($input['firstname']);
+        $user->setLastname($input['lastname']);
+        $user->setRoles($input['roles']);
 
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {

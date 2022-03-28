@@ -47,12 +47,8 @@
         </template>
 
         <template #actions>
-            <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </BreezeActionMessage>
-
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Create
+                {{ $t('pages.management.employement.create.actions.createButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -102,7 +98,6 @@
                 this.form.post(route('employement.store'), {
                     errorBag: 'createEmployement',
                     preserveScroll: true,
-                    //onSuccess: () => Inertia.reload({ only: ['employements'] })
                 });
             },
 
@@ -123,30 +118,30 @@
                 return {
                     'employement_type': this.employementTypes ? this.employementTypes.map(function(employementType) {
                         return {
-                            value: employementType.id,
-                            name: employementType.name,
-                            description: employementType.description,
+                            'value': employementType.id,
+                            'name': employementType.name,
+                            'description': employementType.description,
                         };
                     }) : null,
                     'department': this.departments ? this.departments.map(function(department) {
                         return {
-                            value: department.id,
-                            name: department.name,
-                            description: department.description,
+                            'value': department.id,
+                            'name': department.name,
+                            'description': department.department_type.name,
                         };
                     }) : null,
                     'position': this.department && this.department.positions ? this.department.positions.map(function(position) {
                         return {
-                            value: position.id,
-                            name: position.name,
-                            description: position.description,
+                            'value': position.id,
+                            'name': position.name,
+                            'description': position.description,
                         };
                     }) : null,
                     'user': this.users ? this.users.map(function(user) {
                         return {
-                            value: user.id,
-                            name: user.name,
-                            description: user.email,
+                            'value': user.id,
+                            'name': user.name,
+                            'description': user.email,
                         };
                     }) : null,
                 };

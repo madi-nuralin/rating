@@ -1,11 +1,11 @@
 <template>
     <BreezeFormSection @submitted="updateUser">
         <template #title>
-            {{ $t('pages.management.users.update.title') }}
+            {{ $t('pages.management.user.update.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.users.update.description') }}
+            {{ $t('pages.management.user.update.description') }}
         </template>
 
         <template #form>
@@ -41,35 +41,35 @@
 
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.management.users.update.form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.management.user.update.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="email" :value="$t('pages.management.users.update.form.email')" />
+                <BreezeLabel for="email" :value="$t('pages.management.user.update.form.email')" />
                 <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                 <BreezeInputError :message="form.errors.email" class="mt-2" />
             </div>
 
             <!-- Firstname -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="firstname" :value="$t('pages.management.users.update.form.firstname')" />
+                <BreezeLabel for="firstname" :value="$t('pages.management.user.update.form.firstname')" />
                 <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" />
                 <BreezeInputError :message="form.errors.firstname" class="mt-2" />
             </div>
 
             <!-- Lastname -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="lastname" :value="$t('pages.management.users.update.form.lastname')" />
+                <BreezeLabel for="lastname" :value="$t('pages.management.user.update.form.lastname')" />
                 <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" />
                 <BreezeInputError :message="form.errors.lastname" class="mt-2" />
             </div>
 
             <!-- Role -->
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="roles" :value="$t('pages.management.users.update.form.roles')" />
+                <BreezeLabel for="roles" :value="$t('pages.management.user.update.form.roles')" />
                 <BreezeSelect id="roles" :type="'expanded'" class="mt-1 block w-full" :value="form.roles" @input="form.roles = $event" :options="options.roles"/>
                 <BreezeInputError :message="form.errors.roles" class="mt-2" />
             </div>
@@ -77,11 +77,11 @@
 
         <template #actions>
             <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                {{ $t('pages.management.user.update.actions.savedMessage') }}
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('pages.management.user.update.actions.saveButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -179,18 +179,15 @@
 
         computed: {
             options() {
-                let roles;
-
-                roles = this.roles ?
-                this.roles.map(function(role) {
-                    return {
-                        value: role.id,
-                        name: role.name,
-                        description: role.description,
-                    };
-                }, {$t: this.$t}) : null;
-
-                return {'roles': roles};
+                return {
+                    'roles': this.roles ? this.roles.map(function(role) {
+                        return {
+                            'value': role.id,
+                            'name': role.name,
+                            'description': role.description,
+                        };
+                    }) : null
+                };
             }
         }
     }
