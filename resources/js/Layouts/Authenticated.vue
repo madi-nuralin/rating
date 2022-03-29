@@ -22,10 +22,48 @@
                                     {{ $t('layouts.authenticated.links.dashboard') }}
                                 </BreezeNavLink-->
                                 <BreezeNavLink :href="route('dashboard-user')" :active="route().current('dashboard-user')">
-                                    {{ $t('layouts.authenticated.links.dashboardUser') }}
+                                    <div class="flex flex-col items-center">
+                                        <div>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="20"
+                                                height="20"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/>
+                                                <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            {{ $t('layouts.authenticated.links.dashboardUser') }}
+                                        </div>
+                                    </div>
                                 </BreezeNavLink>
                                 <BreezeNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')" v-if="content('verifier')">
-                                    {{ $t('layouts.authenticated.links.dashboardVerifier') }}
+                                    <div class="flex flex-col items-center">
+                                        <div>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="20"
+                                                height="20"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            {{ $t('layouts.authenticated.links.dashboardVerifier') }}
+                                        </div>
+                                    </div>
                                 </BreezeNavLink>
                             </div>
                         </div>

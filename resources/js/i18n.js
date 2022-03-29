@@ -1212,7 +1212,7 @@ var messages = {
         links: {
           authentication: 'Authentication',
           dashboard: 'Dashboard',
-          dashboardUser: 'My rating',
+          dashboardUser: 'Home',
           dashboardVerifier: 'Verification',
           positions: 'Positions',
           departments: 'Departments',
@@ -2463,8 +2463,8 @@ var messages = {
         links: {
           authentication: 'Аутентификация',
           dashboard: 'Панель управления',
-          dashboardUser: 'Мой рейтинг',
-          dashboardVerifier: 'Проверка и подтверждение',
+          dashboardUser: 'Главная',
+          dashboardVerifier: 'Проверка',
           positions: 'Должности',
           departments: 'Отделы',
           users: 'Пользователи',
