@@ -1,17 +1,21 @@
 <template>
-    <Head :title="$t('pages.forms.formFieldOption.head.title')" />
+    <Head :title="$t('pages.management.parameter.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ $t('pages.forms.formFieldOption.head.title') }}
+            {{ $t('pages.management.parameter.header') }}
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :option="$page.props.option"/>
+                <update-form :parameter="$page.props.parameter" :parameter-targets="$page.props.parameter_targets" />
                 <breeze-section-border />
 
-                <delete-form :option="$page.props.option" class="mt-10 sm:mt-0"/>
+                <form-list :forms="$page.props.parameter.forms"
+                    :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
+                <breeze-section-border />
+
+                <delete-form :parameter="$page.props.parameter" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -22,6 +26,7 @@
     import BreezeSectionBorder from '@/Components/SectionBorder.vue'
     import UpdateForm from './Partials/UpdateForm.vue'
     import DeleteForm from './Partials/DeleteForm.vue'
+    import FormList from './Form/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -30,6 +35,7 @@
             BreezeSectionBorder,
             UpdateForm,
             DeleteForm,
+            FormList,
             Head,
         },
     }

@@ -1,9 +1,9 @@
 <template>
-    <Head :title="translate[0]('head.title')" />
+    <Head :title="$t('pages.forms.formFieldOption.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ translate[0]('header') }}
+            {{ $t('pages.forms.formFieldOption.header') }}
         </template>
 
         <div>

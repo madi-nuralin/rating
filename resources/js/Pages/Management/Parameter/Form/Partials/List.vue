@@ -1,11 +1,11 @@
 <template>
     <BreezeFormSection>
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.forms.form.list.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.forms.form.list.description') }}
         </template>
 
         <template #form>
@@ -29,7 +29,7 @@
 
         <template #actions>
             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('parameter-form.create', {'parameter': parameter.id})">
-                {{ translate('actions.createButton') }}
+                {{ $t('pages.forms.form.list.actions.createButton') }}
             </Link>
         </template>
     </BreezeFormSection>
@@ -49,6 +49,6 @@
             Link,
         },
 
-        props: ['forms', 'translate', 'parameter'],
+        props: ['forms', 'parameter'],
     }
 </script>

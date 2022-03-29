@@ -1,34 +1,30 @@
 <template>
     <BreezeFormSection @submitted="createForm">
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.forms.form.create.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.forms.form.create.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="translate('form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.forms.form.create.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="translate('form.description')" />
+                <BreezeLabel for="description" :value="$t('pages.forms.form.create.form.description')" />
                 <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
         </template>
 
         <template #actions>
-            <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </BreezeActionMessage>
-
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Create
+                {{ $t('pages.forms.form.create.actions.createButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -61,7 +57,7 @@
             BreezeSelect,
         },
 
-        props: ['translate', 'parameter'],
+        props: ['parameter'],
 
         data() {
             return {
@@ -77,7 +73,6 @@
                 this.form.post(route('parameter-form.store', {'parameter': this.parameter.id}), {
                     errorBag: 'createForm',
                     preserveScroll: true,
-                    //onSuccess: () => Inertia.reload({ only: ['parameters'] })
                 });
             },
         },

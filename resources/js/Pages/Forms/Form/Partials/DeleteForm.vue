@@ -1,41 +1,41 @@
 <template>
     <breeze-action-section>
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.forms.form.delete.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.forms.form.delete.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                {{ translate('content.deleteInfo') }}
+                {{ $t('pages.forms.form.delete.content.deleteInfo') }}
             </div>
 
             <div class="mt-5">
                 <breeze-button-danger @click="confirmFormDeletion">
-                    {{ translate('content.deleteButton') }}
+                    {{ $t('pages.forms.form.delete.content.deleteButton') }}
                 </breeze-button-danger>
             </div>
 
             <!-- Confirmation Modal -->
             <breeze-modal-confirmation :show="confirmingFormDeletion" @close="confirmingFormDeletion = false">
                 <template #title>
-                    {{ translate('content.modal.title') }}
+                    {{ $t('pages.forms.form.delete.content.modal.title') }}
                 </template>
 
                 <template #content>
-                    {{ translate('content.modal.content') }}
+                    {{ $t('pages.forms.form.delete.content.modal.content') }}
                 </template>
 
                 <template #footer>
                     <breeze-button-secondary @click="confirmingFormDeletion = false">
-                        {{ translate('content.modal.footer.cancelButton') }}
+                        {{ $t('pages.forms.form.delete.content.modal.footer.cancelButton') }}
                     </breeze-button-secondary>
 
                     <breeze-button-danger class="ml-2" @click="deleteForm" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        {{ translate('content.modal.footer.deleteButton') }}
+                        {{ $t('pages.forms.form.delete.content.modal.footer.deleteButton') }}
                     </breeze-button-danger>
                 </template>
             </breeze-modal-confirmation>
@@ -50,7 +50,7 @@
     import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
 
     export default {
-        props: ['form', 'translate'],
+        props: ['form'],
 
         components: {
             BreezeActionSection,

@@ -21,7 +21,7 @@ class ParameterController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Management/Parameters/Index', [
+        return Inertia::render('Management/Parameter/Index', [
             'parameters' => Parameter::paginate(10)->through(function($parameter) {
                 return array_merge(
                     $parameter->toArray(), [
@@ -39,7 +39,7 @@ class ParameterController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Management/Parameters/Create', [
+        return Inertia::render('Management/Parameter/Create', [
             'parameter_targets' => ParameterTarget::all()->map(function($parameterTarget) {
                 return $parameterTarget->toArray();
             }),
@@ -85,12 +85,12 @@ class ParameterController extends Controller
     {
         $parameter = Parameter::findOrFail($id);
 
-        return Inertia::render('Management/Parameters/Show', [
+        return Inertia::render('Management/Parameter/Show', [
             'parameter' => array_merge(
                 $parameter->toArray(), [
                     'forms' => $parameter->forms ? $parameter->forms()->paginate(10)->through(function($form) {
                         return $form->toArray();
-                    }) : [],
+                    }) : array(),
                     'parameter_target' => $parameter->parameterTarget->toArray()
                 ]
             ),
@@ -164,7 +164,7 @@ class ParameterController extends Controller
      */
     public function formCreate()
     {
-        return Inertia::render('Management/Parameters/Form/Create', [
+        return Inertia::render('Management/Parameter/Form/Create', [
             'parameter' => Parameter::findOrfail(request()->input('parameter'))
         ]);
     }
@@ -181,7 +181,7 @@ class ParameterController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:2048'],
         ])->validateWithBag('createForm');
 
         $parameter = Parameter::findOrfail($input['parameter']);

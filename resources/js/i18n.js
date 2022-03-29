@@ -498,27 +498,34 @@ var messages = {
             }
           },
         },
-        parameters: {
+        parameter: {
           head: {
-            title: 'Parameters management'
+            title: 'Managing Parameters'
           },
-          header: 'Parameters management',
+          header: 'Managing Parameters',
           create: {
-            title: 'Create a new parameter',
-            description: 'Create a new parameter to collaborate with others on projects.',
+            title: 'New parameter',
+            description: 'Enter parameter information, including title, description, and other options.',
             form: {
               name: 'Name',
               description: 'Description',
               parameter_target: 'Target'
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
-            title: 'Update Parameter',
-            description: 'The parameter\'s name and description information.',
+            title: 'Parameter Information',
+            description: 'Update the parameter information, including the title, description, and other settings.',
             form: {
               name: 'Name',
               description: 'Description',
               parameter_target: 'Target'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           delete: {
@@ -538,13 +545,10 @@ var messages = {
             }
           },
           list: {
-            title: 'Parameters list',
-            description: 'The parameters list which are registered.',
-            form: {
-              listInfo: 'The list of resources which are registered. Use link button to view and edit each item'
-            },
+            title: 'List of parameters',
+            description: 'Here you can find information about parameters. Click on the name link to view detailed information and to make changes.',
             actions: {
-              createButton: 'Create New'
+              createButton: 'Add'
             }
           }
         }    
@@ -823,6 +827,9 @@ var messages = {
             form: {
               name: 'Name',
               description: 'Description'
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
@@ -831,6 +838,10 @@ var messages = {
             form: {
               name: 'Name',
               description: 'Description'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           updateScoring: {
@@ -841,6 +852,10 @@ var messages = {
               score: 'Score',
               math_expression: 'Math expression',
               variables: 'The list of variables which could be used in math expression. Note: To declare a new variable visit form field update page.'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             },
             scoring: {
               disabled: {
@@ -880,7 +895,7 @@ var messages = {
               listInfo: 'The list of created forms.'
             },
             actions: {
-              createButton: 'Create a new form'
+              createButton: 'Create'
             }
           },
         },
@@ -897,6 +912,9 @@ var messages = {
               type: 'Type',
               variable: 'Variable',
               validation_rules: 'Validation Rules'
+            },
+            actions: {
+              createButton: 'Create'
             }
           },
           update: {
@@ -907,6 +925,10 @@ var messages = {
               type: 'Type',
               variable: 'Variable',
               validation_rules: 'Validation Rules'
+            },
+            actions: {
+              savedMessage: 'Saved.',
+              saveButton: 'Save'
             }
           },
           delete: {
@@ -928,11 +950,8 @@ var messages = {
           list: {
             title: 'Form fields',
             description: 'Create and manage form fields',
-            form: {
-              listInfo: 'The list of created form fields.'
-            },
             actions: {
-              createButton: 'Create a new form filed'
+              createButton: 'Create'
             }
           },
           type: {
@@ -1730,38 +1749,45 @@ var messages = {
             }
           }
         },
-        parameters: {
+        parameter: {
           head: {
             title: 'Управление параметрами оценки'
           },
           header: 'Управление параметрами оценки',
           create: {
-            title: 'Создать новую параметр оценки',
-            description: 'Создайте новую параметр оценки, чтобы сотрудничать с другими над проектами.',
+            title: 'Новый параметр',
+            description: 'Введите данные параметра, включая название, описание и другие параметры.',
             form: {
               name: 'Название',
               description: 'Описание',
               parameter_target: 'Направление деятельности'
+            },
+            actions: {
+              createButton: 'Создать'
             }
           },
           update: {
-            title: 'Обновить параметр оценки',
-            description: 'Информация о названии и описании параметра оценки.',
+            title: 'Информация параметра',
+            description: 'Обновите информацию параметра, включая название, описание и другие данные.',
             form: {
               name: 'Название',
               description: 'Описание',
               parameter_target: 'Направление деятельности'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             }
           },
           delete: {
             title: 'Удалить параметр оценки',
-            description: 'Удалить эту параметр оценки навсегда.',
+            description: 'Удалить текущий параметр оценки навсегда.',
             content: {
-              deleteInfo: 'После удаления параметров оценки все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением этой параметров оценки, пожалуйста, загрузите любые данные или информацию относительно этой параметров оценки, которые вы хотите сохранить.',
+              deleteInfo: 'После удаления параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления. Перед удалением параметра, пожалуйста, загрузите любые данные или информацию относительно данного параметра, которые вы хотите сохранить.',
               deleteButton: 'Удалить параметр оценки',
               modal: {
                 title: 'Удалить параметр оценки',
-                content: 'Вы уверены, что хотите удалить эту параметр оценки? После удаления параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления.',
+                content: 'Вы уверены, что хотите удалить этот параметр? После удаления параметра оценки все ее ресурсы и данные будут удалены без возможности восстановления.',
                 footer: {
                   cancelButton: 'Отмена',
                   deleteButton: 'Удалить параметр оценки'
@@ -1771,12 +1797,9 @@ var messages = {
           },
           list: {
             title: 'Список параметров оценки',
-            description: 'Список параметров оценки, которые зарегистрированы.',
-            form: {
-              listInfo: 'Список ресурсов, которые зарегистрированы. Используйте кнопку ссылки для просмотра и редактирования каждого элемента'
-            },
+            description: 'Здесь вы можете найти информацию о параметрах оценки. Перейдите по ссылке названия параметра для просмотра подробной информации, а также для внесения изменений.',
             actions: {
-              createButton: 'Создайте новый'
+              createButton: 'Добавить'
             }
           }
         }
@@ -2056,6 +2079,9 @@ var messages = {
             form: {
               name: 'Название',
               description: 'Описание'
+            },
+            actions: {
+              createButton: 'Создать'
             }
           },
           update: {
@@ -2064,6 +2090,10 @@ var messages = {
             form: {
               name: 'Название',
               description: 'Описание'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             }
           },
           updateScoring: {
@@ -2074,6 +2104,10 @@ var messages = {
               score: 'Балл',
               math_expression: 'Математическое выражение',
               variables: 'Список переменных, которые можно использовать в математическом выражении. Примечание: Чтобы объявить новую переменную, посетите страницу обновления поля формы.'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             },
             scoring: {
               disabled: {
@@ -2109,11 +2143,8 @@ var messages = {
           list: {
             title: 'Формы',
             description: 'Создание и управление формами',
-            form: {
-              listInfo: 'Список созданных полей формы.'
-            },
             actions: {
-              createButton: 'Создать новое поле формы'
+              createButton: 'Добавить'
             }
           },
         },
@@ -2130,6 +2161,9 @@ var messages = {
               type: 'Тип',
               variable: 'Переменная',
               validation_rules: 'Правила проверки'
+            },
+            actions: {
+              createButton: 'Создать'
             }
           },
           update: {
@@ -2140,6 +2174,10 @@ var messages = {
               type: 'Тип',
               variable: 'Переменная',
               validation_rules: 'Правила проверки'
+            },
+            actions: {
+              savedMessage: 'Сохранено.',
+              saveButton: 'Сохранить'
             }
           },
           delete: {
@@ -2161,11 +2199,8 @@ var messages = {
           list: {
             title: 'Поля формы',
             description: 'Создание и управление полями форм',
-            form: {
-              listInfo: 'Список созданных полей формы.'
-            },
             actions: {
-              createButton: 'Создать новое поле формы'
+              createButton: 'Добавить'
             }
           },
           type: {

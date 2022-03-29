@@ -1,22 +1,22 @@
 <template>
-    <Head :title="translate[0]('head.title')" />
+    <Head :title="$t('pages.forms.formField.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ translate[0]('header') }}
+            {{ $t('pages.forms.formField.header') }}
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :field="$page.props.field" :translate="translate[1]"/>
+                <update-form :field="$page.props.field"/>
                 <breeze-section-border />
 
                 <template v-if="Array('select', 'multiselect').includes($page.props.field.type)">
-                    <form-field-option-list :field="$page.props.field" class="mt-10 sm:mt-0" :translate="translate[3]" />
+                    <form-field-option-list :field="$page.props.field" class="mt-10 sm:mt-0" />
                     <breeze-section-border />
                 </template>
 
-                <delete-form :field="$page.props.field" :translate="translate[2]" class="mt-10 sm:mt-0" />
+                <delete-form :field="$page.props.field" class="mt-10 sm:mt-0" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -38,27 +38,6 @@
             DeleteForm,
             FormFieldOptionList,
             Head,
-        },
-
-        computed: {
-            translate() {
-                var $t = this.$t;
-
-                return [
-                    function (path) {
-                        return $t(`pages.forms.formField.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.formField.update.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.formField.delete.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.formFieldOption.list.${path}`);
-                    },
-                ]
-            }
         },
     }
 </script>

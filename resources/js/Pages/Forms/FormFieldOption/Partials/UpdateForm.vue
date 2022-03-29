@@ -1,28 +1,28 @@
 <template>
     <BreezeFormSection @submitted="updateFormFieldOption">
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.forms.formFieldOption.update.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.forms.formFieldOption.update.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="translate('form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.forms.formFieldOption.update.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="translate('form.description')" />
+                <BreezeLabel for="description" :value="$t('pages.forms.formFieldOption.update.form.description')" />
                 <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="score" :value="translate('form.score')" />
+                <BreezeLabel for="score" :value="$t('pages.forms.formFieldOption.update.form.score')" />
                 <BreezeInput id="score" type="text" class="mt-1 block w-full" v-model="form.score"/>
                 <BreezeInputError :message="form.errors.score" class="mt-2" />
             </div>
@@ -61,7 +61,7 @@
             BreezeLabel,
         },
 
-        props: ['option', 'translate'],
+        props: ['option'],
 
         data() {
             return {

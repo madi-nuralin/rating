@@ -1,28 +1,28 @@
 <template>
     <BreezeFormSection @submitted="updateParameter">
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.management.parameter.update.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.management.parameter.update.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="translate('form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.management.parameter.update.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="translate('form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
+                <BreezeLabel for="description" :value="$t('pages.management.parameter.update.form.description')" />
+                <BreezeTextarea id="description" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="parameter_target" :value="translate('form.parameter_target')" />
+                <BreezeLabel for="parameter_target" :value="$t('pages.management.parameter.update.form.parameter_target')" />
                 <BreezeSelect id="parameter_target" class="mt-1 block w-full" :value="form.parameter_target" @input="form.parameter_target = $event" :options="options.parameter_target" :multiple="false" />
                 <BreezeInputError :message="form.errors.parameter_target" class="mt-2" />
             </div>
@@ -30,11 +30,11 @@
 
         <template #actions v-if="true">
             <BreezeActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                {{ $t('pages.management.parameter.update.actions.savedMessage') }}
             </BreezeActionMessage>
 
             <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('pages.management.parameter.update.actions.saveButton') }}
             </BreezeButton>
         </template>
     </BreezeFormSection>
@@ -62,7 +62,7 @@
             BreezeSelect,
         },
 
-        props: ['parameter', 'parameterTargets', 'translate'],
+        props: ['parameter', 'parameterTargets'],
 
         data() {
             return {
@@ -85,11 +85,8 @@
 
         computed: {
             options() {
-                let parameterTargets = this.parameterTargets;
-                let forms = this.parameter.forms;
-
                 return {
-                    'parameter_target': parameterTargets ? parameterTargets.map(function(parameterTarget) {
+                    'parameter_target': this.parameterTargets ? this.parameterTargets.map(function(parameterTarget) {
                         return {
                             value: parameterTarget.id,
                             name: parameterTarget.name,

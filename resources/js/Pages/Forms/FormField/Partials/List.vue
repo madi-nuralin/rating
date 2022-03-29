@@ -1,11 +1,11 @@
 <template>
     <BreezeFormSection>
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.forms.formField.list.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.forms.formField.list.description') }}
         </template>
 
         <template #form>
@@ -14,16 +14,15 @@
                     <template #item="{item}">
                         <div class="flex justify-between">
                             <div>
-                                <div>{{item.label}}</div>
+                                <Link class="hover:underline" :href="route('form-field.show', {'id': item.id})">
+                                    {{ item.label }}
+                                </Link>
                                 <div class="flex flex-col text-sm text-gray-400">
                                     <p class="line-clamp-3">
-                                        {{item.type}}
+                                        {{ item.type }}
                                     </p>
                                 </div>
                             </div>
-                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('form-field.show', {'id': item.id})">
-                                Update
-                            </Link>
                         </div>
                     </template>
                 </BreezeList>
@@ -32,7 +31,7 @@
 
         <template #actions>
             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('form-field.create', {'form': form.id})">
-                {{ translate('actions.createButton') }}
+                {{ $t('pages.forms.formField.list.actions.createButton') }}
             </Link>
         </template>
     </BreezeFormSection>
@@ -52,6 +51,6 @@
             Link,
         },
 
-        props: ['form', 'translate'],
+        props: ['form'],
     }
 </script>

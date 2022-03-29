@@ -1,23 +1,23 @@
 <template>
-    <Head :title="translate[0]('head.title')" />
+    <Head :title="$t('pages.forms.form.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ translate[0]('header') }}
+            {{ $t('pages.forms.form.header') }}
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :form="$page.props.form" :translate="translate[1]" class="mt-10 sm:mt-0"/>
+                <update-form :form="$page.props.form" class="mt-10 sm:mt-0"/>
                 <breeze-section-border />
 
-                <form-field-list :form="$page.props.form" :translate="translate[4]" class="mt-10 sm:mt-0"/>
+                <form-field-list :form="$page.props.form" class="mt-10 sm:mt-0"/>
                 <breeze-section-border />
 
-                <update-scoring-form :form="$page.props.form" :translate="translate[3]" class="mt-10 sm:mt-0"/>
+                <update-scoring-form :form="$page.props.form" class="mt-10 sm:mt-0"/>
                 <breeze-section-border />
 
-                <delete-form :form="$page.props.form" :translate="translate[2]" class="mt-10 sm:mt-0"/>
+                <delete-form :form="$page.props.form" class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -41,30 +41,6 @@
             DeleteForm,
             FormFieldList,
             Head,
-        },
-
-        computed: {
-            translate() {
-                var $t = this.$t;
-
-                return [
-                    function (path) {
-                        return $t(`pages.forms.form.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.form.update.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.form.delete.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.form.updateScoring.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.forms.formField.list.${path}`);
-                    },
-                ]
-            }
         },
     }
 </script>

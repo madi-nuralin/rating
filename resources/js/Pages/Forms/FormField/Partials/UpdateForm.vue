@@ -1,22 +1,22 @@
 <template>
     <BreezeFormSection @submitted="updateFormField">
         <template #title>
-            {{ translate('title') }}
+            {{ $t('pages.forms.formField.update.title') }}
         </template>
 
         <template #description>
-            {{ translate('description') }}
+            {{ $t('pages.forms.formField.update.description') }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="label" :value="translate('form.label')" />
+                <BreezeLabel for="label" :value="$t('pages.forms.formField.update.form.label')" />
                 <BreezeInput id="label" type="text" class="mt-1 block w-full" v-model="form.label" autofocus />
                 <BreezeInputError :message="form.errors.label" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="type" :value="translate('form.type')" />
+                <BreezeLabel for="type" :value="$t('pages.forms.formField.update.form.type')" />
                 <BreezeSelect id="type" class="mt-1 block w-full" :value="form.type" @input="form.type = $event" :options="options.type" :multiple="false" />
                 <BreezeInputError :message="form.errors.type" class="mt-2" />
             </div>
@@ -86,7 +86,7 @@
             </template>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="variable" :value="translate('form.variable')" />
+                <BreezeLabel for="variable" :value="$t('pages.forms.formField.update.form.variable')" />
                 <BreezeInput id="variable" type="text" class="mt-1 block w-full" v-model="form.variable" />
                 <BreezeInputError :message="form.errors.variable" class="mt-2" />
             </div>
@@ -129,7 +129,7 @@
             BreezeCheckbox,
         },
 
-        props: ['field', 'translate'],
+        props: ['field'],
 
         data() {
             return {

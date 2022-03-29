@@ -1,14 +1,14 @@
 <template>
-    <Head :title="translate[0]('head.title')" />
+    <Head :title="$t('pages.management.parameter.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ translate[0]('header') }}
+            {{ $t('pages.management.parameter.header') }}
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <ResourceList :parameters="$page.props.parameters" :translate="translate[1]"/>
+                <ResourceList :parameters="$page.props.parameters"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -26,21 +26,6 @@
             BreezeSectionBorder,
             ResourceList,
             Head,
-        },
-
-        computed: {
-            translate() {
-                var $t = this.$t;
-
-                return [
-                    function (path) {
-                        return $t(`pages.management.parameters.${path}`);
-                    },
-                    function (path) {
-                        return $t(`pages.management.parameters.list.${path}`);
-                    },
-                ]
-            }
         },
     }
 </script>
