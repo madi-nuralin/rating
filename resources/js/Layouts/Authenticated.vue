@@ -21,7 +21,7 @@
                                 <!--BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     {{ $t('layouts.authenticated.links.dashboard') }}
                                 </BreezeNavLink-->
-                                <BreezeNavLink :href="route('dashboard-user')" :active="route().current('dashboard-user')">
+                                <BreezeNavLink :href="route('feed')" :active="route().current('feed')">
                                     <div class="flex flex-col items-center">
                                         <div>
                                             <svg 
@@ -31,7 +31,7 @@
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
-                                                stroke-width="2"
+                                                stroke-width="1"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/>
@@ -53,7 +53,7 @@
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
-                                                stroke-width="2"
+                                                stroke-width="1"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -218,7 +218,7 @@
                         <!--BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ $t('layouts.authenticated.links.dashboard') }}
                         </BreezeResponsiveNavLink-->
-                        <BreezeResponsiveNavLink :href="route('dashboard-user')" :active="route().current('dashboard-user')">
+                        <BreezeResponsiveNavLink :href="route('feed')" :active="route().current('feed')">
                             {{ $t('layouts.authenticated.links.dashboardUser') }}
                         </BreezeResponsiveNavLink>
                         <BreezeResponsiveNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')" v-if="content('verifier')">

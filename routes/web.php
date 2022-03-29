@@ -65,11 +65,11 @@ Route::get('locale/{locale}', function ($locale) {
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('dashboard', function () {
-        return redirect()->route('dashboard-user');
+        return redirect()->route('feed');
     })->name('dashboard');
 
-    Route::get('dashboard/user', [\App\Http\Controllers\Dashboard\UserController::class, 'get'])
-        ->name('dashboard-user');
+    Route::get('dashboard/feed', [\App\Http\Controllers\Dashboard\FeedController::class, 'index'])
+        ->name('feed');
 
     Route::get('dashboard/verifier', [\App\Http\Controllers\Dashboard\VerifierController::class, 'get'])
         ->name('dashboard-verifier')
