@@ -10,45 +10,45 @@
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="name" :value="$t('pages.management.rating.create.form.name')" />
+                <BreezeLabel for="name" :value="$t('pages.management.rating.update.form.name')" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
                 <BreezeInputError :message="form.errors.name" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="description" :value="$t('pages.management.rating.create.form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
+                <BreezeLabel for="description" :value="$t('pages.management.rating.update.form.description')" />
+                <BreezeTextarea id="description" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="users" :value="$t('pages.management.rating.create.form.users')" />
+                <BreezeLabel for="users" :value="$t('pages.management.rating.update.form.users')" />
                 <BreezeSelect id="users" class="mt-1 block w-full" :value="form.users" @input="form.users = $event" :options="options.users" :multiple="true" />
                 <BreezeInputError :message="form.errors.users" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="submission_begin_time_at" :value="$t('pages.management.rating.create.form.submission_begin_time_at')" />
-                <BreezeInput id="submission_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.submission_begin_time_at" />
-                <BreezeInputError :message="form.errors.submission_begin_time_at" class="mt-2" />
+                <BreezeLabel for="time1" :value="$t('pages.management.rating.update.form.time1')" />
+                <BreezeInput id="time1" type="datetime-local" class="mt-1 block w-full" v-model="form.time1" />
+                <BreezeInputError :message="form.errors.time1" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="submission_end_time_at" :value="$t('pages.management.rating.create.form.submission_end_time_at')" />
-                <BreezeInput id="submission_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.submission_end_time_at" />
-                <BreezeInputError :message="form.errors.submission_end_time_at" class="mt-2" />
+                <BreezeLabel for="time2" :value="$t('pages.management.rating.update.form.time2')" />
+                <BreezeInput id="time2" type="datetime-local" class="mt-1 block w-full" v-model="form.time2" />
+                <BreezeInputError :message="form.errors.time2" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="verification_begin_time_at" :value="$t('pages.management.rating.create.form.verification_begin_time_at')" />
-                <BreezeInput id="verification_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_begin_time_at" />
-                <BreezeInputError :message="form.errors.verification_begin_time_at" class="mt-2" />
+                <BreezeLabel for="time3" :value="$t('pages.management.rating.update.form.time3')" />
+                <BreezeInput id="time3" type="datetime-local" class="mt-1 block w-full" v-model="form.time3" />
+                <BreezeInputError :message="form.errors.time3" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="verification_end_time_at" :value="$t('pages.management.rating.create.form.verification_end_time_at')" />
-                <BreezeInput id="verification_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_end_time_at" />
-                <BreezeInputError :message="form.errors.verification_end_time_at" class="mt-2" />
+                <BreezeLabel for="time4" :value="$t('pages.management.rating.update.form.time4')" />
+                <BreezeInput id="time4" type="datetime-local" class="mt-1 block w-full" v-model="form.time4" />
+                <BreezeInputError :message="form.errors.time4" class="mt-2" />
             </div>
         </template>
 
@@ -93,13 +93,13 @@
                 form: this.$inertia.form({
                     name: this.rating.name,
                     description: this.rating.description,
-                    submission_begin_time_at: this.rating.submission_begin_time_at,
-                    submission_end_time_at: this.rating.submission_end_time_at,
-                    verification_begin_time_at: this.rating.verification_begin_time_at,
-                    verification_end_time_at: this.rating.verification_end_time_at,
-                    users: this.rating.users.map(function(user) {
+                    time1: this.rating.time1,
+                    time2: this.rating.time2,
+                    time3: this.rating.time3,
+                    time4: this.rating.time4,
+                    users: this.rating.users ? this.rating.users.map(function(user) {
                         return user.id;
-                    }),
+                    }) : null,
                 })
             }
         },

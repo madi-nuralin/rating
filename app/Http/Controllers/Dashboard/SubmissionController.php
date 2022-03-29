@@ -158,13 +158,13 @@ class SubmissionController extends Controller
     {
         $rating = Rating::findOrFail(request()->input('rating'));
 
-        if (strtotime($rating->submission_begin_time_at) > time()) {
+        if (strtotime($rating->getTime1()) > time()) {
             session()->flash('flash.banner', ['pages.dashboard.submission.list.banner[0]']);
             session()->flash('flash.bannerStyle', 'danger');
             return back();
         }
 
-        if (strtotime($rating->submission_end_time_at) < time()) {
+        if (strtotime($rating->getTime2()) < time()) {
             session()->flash('flash.banner', ['pages.dashboard.submission.list.banner[1]']);
             session()->flash('flash.bannerStyle', 'danger');
             return back();

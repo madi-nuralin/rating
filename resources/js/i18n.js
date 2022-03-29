@@ -330,47 +330,33 @@ var messages = {
         },
         rating: {
           head: {
-            title: 'Rating management'
+            title: 'Managing Ratings'
           },
-          header: 'Rating management',
+          header: 'Managing Ratings',
           create: {
-            title: 'Create a new rating',
+            title: 'New rating',
             description: 'Create a new rating to collaborate with others on projects.',
             form: {
-              name: 'Rating name',
-              description: 'Rating description',
-              submission_begin_time_at: 'Submission starts from',
-              submission_end_time_at: 'Submission finish date',
-              verification_begin_time_at: 'Verification starts from',
-              verification_end_time_at: 'Verification finish date',
-              approvement_begin_time_at: 'Approvement starts from',
-              approvement_end_time_at: 'Approvement finish date',
+              name: 'Name',
+              description: 'Description',
+              users: 'Users',
+              time1: 'Submission begins',
+              time2: 'Submission ends',
+              time3: 'Verification begins',
+              time4: 'Verification ends'
             }
           },
           update: {
-            title: 'Update Rating',
+            title: 'Rating Information',
             description: 'The rating\'s name and description information.',
             form: {
-              name: 'Rating name',
-              description: 'Rating description',
-              employements: 'Select department positions for rating',
-              employement: {
-                option: { 
-                  description: 'The position of {department} department'
-                }
-              },
-              verifiers: 'Select verifiers for rating',
-              verifier: {
-                option: { 
-                  description: ''
-                }
-              },
-              parameters: 'Select rating parameters',
-              parameter: {
-                option: { 
-                  description: ''
-                }
-              }
+              name: 'Name',
+              description: 'Description',
+              users: 'Users',
+              time1: 'Submission begins',
+              time2: 'Submission ends',
+              time3: 'Verification begins',
+              time4: 'Verification ends'
             }
           },
           delete: {
@@ -1587,41 +1573,29 @@ var messages = {
           },
           header: 'Управление оценкой персонала',
           create: {
-            title: 'Создать новую экземпляр оценки персонала',
+            title: 'Новый экземпляр оценки персонала',
             description: 'Создайте новую экземпляр оценки персонала, чтобы сотрудничать с другими над проектами.',
             form: {
-              name: 'Название рейтинга',
-              description: 'Описание рейтинга',
-              submission_begin_time_at: 'Подача начинается с',
-              submission_end_time_at: 'Дата окончания подачи',
-              verification_begin_time_at: 'Проверка начинается с',
-              verification_end_time_at: 'Дата окончания проверки',
-              approvement_begin_time_at: 'Утверждение начинается с',
-              approvement_end_time_at: 'Дата окончания утверждения',
+              name: 'Название',
+              description: 'Описание',
+              users: 'Пользователи',
+              time1: 'Начало отправки ответов',
+              time2: 'Завершение отправки ответов',
+              time3: 'Начало проверки',
+              time4: 'Завершение проверки'
             }
           },
           update: {
             title: 'Обновить экземпляр оценки персонала',
             description: 'Информация о названии и описании экземпляра оценки персонала.',
             form: {
-              name: 'Название экземпляра оценки персонала',
-              description: 'Описание экземпляра оценки персонала',
-              validFrom: 'Доступно периода с',
-              validTo: 'Доступно до периода',
-              employements: 'Выберите должности отдела для оценки',
-              employement: {
-                option: {
-                  description: 'Должность отдела: {department}'
-                }
-              },
-              verifiers: 'Выберите сотрудников подтверждающие данное оценивание',
-              verifier: {
-                option: {}
-              },
-              parameters: 'Выберите параметры оценивания',
-              parameter: {
-                option: {}
-              }
+              name: 'Название',
+              description: 'Описание',
+              users: 'Пользователи',
+              time1: 'Начало отправки ответов',
+              time2: 'Завершение отправки ответов',
+              time3: 'Начало проверки',
+              time4: 'Завершение проверки'
             }
           },
           delete: {

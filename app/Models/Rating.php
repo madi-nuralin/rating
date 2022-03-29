@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use DB;
+
 use App\Models\Forms\Form;
 
 class Rating extends Model
@@ -14,7 +14,10 @@ class Rating extends Model
     	Helpers\HasId,
     	Helpers\HasName,
     	Helpers\HasDescription,
-        Helpers\BelongsToManyUser;
+        Helpers\HasManyVerifier,
+        Helpers\HasManySubmission,
+        Helpers\BelongsToManyUser,
+        Helpers\BelongsToManyParameterWithForm;
 
     /**
      * The attributes that are mass assignable.
@@ -22,22 +25,16 @@ class Rating extends Model
      * @var string[]
      */
     protected $fillable = [
-        'submission_begin_time_at',
-        'submission_end_time_at',
-        'verification_begin_time_at',
-        'verification_end_time_at',
+        'time1',
+        'time2',
+        'time3',
+        'time4',
     ];
+
+    protected const HTML_DATE_FORMAT = 'Y-m-d\Th:i:s';
 
     public function settings() {
     	return $this->hasMany(RatingSetting::class);
-    }
-
-    public function verifiers() {
-        return $this->hasMany(Verifier::class);
-    }
-
-    public function parameters() {
-        return $this->belongsToMany(Parameter::class)->withPivot('form_id');
     }
 
     public function parameterTargets() {
@@ -59,97 +56,36 @@ class Rating extends Model
         });
     }
 
-    public function submissions() {
-        return $this->hasMany(Submission::class);
+    public function setTime1($time1) {
+    	$this->time1 = $time1;
     }
 
-    public function parameterForm($parameter) {
-        return Form::find(
-            $this->parameters()
-                 ->firstWhere('parameter_id', $parameter->id)
-                 ->pivot
-                 ->form_id
-        );
+    public function setTime2($time2) {
+    	$this->time2 = $time2;
     }
 
-    public function setSubmissionBeginTimeAt($timeAt) {
-    	$this->submission_begin_time_at = $timeAt;
+    public function setTime3($time3) {
+    	$this->time3 = $time3;
     }
 
-    public function setSubmissionEndTimeAt($timeAt) {
-    	$this->submission_end_time_at = $timeAt;
+    public function setTime4($time4) {
+    	$this->time4 = $time4;
     }
 
-    public function setVerificationBeginTimeAt($timeAt) {
-    	$this->verification_begin_time_at = $timeAt;
+    public function getTime1() {
+    	return date(Rating::HTML_DATE_FORMAT, strtotime($this->time1));
     }
 
-    public function setVerificationEndTimeAt($timeAt) {
-    	$this->verification_end_time_at = $timeAt;
+    public function getTime2() {
+    	return date(Rating::HTML_DATE_FORMAT, strtotime($this->time2));
     }
 
-    public function setParameters($parameters) {
-        if (is_null($parameters) || empty($parameters)) {
-            $this->parameters()->detach();
-            return;
-        }
-
-        if ($this->parameters()) {
-            $this->parameters()->detach(
-                array_diff($this->parameters()->pluck('parameters.id')->toArray(), $parameters));
-            $this->parameters()->attach(
-                array_diff($parameters, $this->parameters()->pluck('parameters.id')->toArray()));
-        } else {
-            $this->parameters()->attach($parameters);
-        }
+    public function getTime3() {
+    	return date(Rating::HTML_DATE_FORMAT, strtotime($this->time3));
     }
 
-    public function addParameter(Parameter $parameter) {
-        if ($this->parameters()) {
-            $this->parameters()->detach(
-                array($parameter->id)
-            );
-        }
-
-        $this->parameters()->attach($parameter->id);
-    }
-
-    public function addParameterWithForm(Parameter $parameter, Form $form) {
-        if ($this->parameters()) {
-            $this->parameters()->detach(
-                array($parameter->id)
-            );
-        }
-
-        $this->parameters()->attach(array($parameter->id => array('form_id' => $form->id)));
-    }
-
-    public function deleteParameter(Parameter $parameter) {
-        if ($this->parameters()) {
-            $this->parameters()->detach(
-                array($parameter->id)
-            );
-        }
-    }
-
-    public function getSubmissionBeginTimeAt() {
-    	return date('Y-m-d\Th:i:s', strtotime($this->submission_begin_time_at));
-    }
-
-    public function getSubmissionEndTimeAt() {
-    	return date('Y-m-d\Th:i:s', strtotime($this->submission_end_time_at));
-    }
-
-    public function getVerificationBeginTimeAt() {
-    	return date('Y-m-d\Th:i:s', strtotime($this->verification_begin_time_at));
-    }
-
-    public function getVerificationEndTimeAt() {
-    	return date('Y-m-d\Th:i:s', strtotime($this->verification_end_time_at));
-    }
-
-    public function getParameters() {
-        return $this->parameters;
+    public function getTime4() {
+    	return date(Rating::HTML_DATE_FORMAT, strtotime($this->time4));
     }
 
     public function toArray() {
@@ -157,10 +93,10 @@ class Rating extends Model
     		'id' => $this->getId(),
     		'name' => $this->getName(),
     		'description' => $this->getDescription(),
-    		'submission_begin_time_at' => $this->getSubmissionBeginTimeAt(),
-    		'submission_end_time_at' => $this->getSubmissionEndTimeAt(),
-    		'verification_begin_time_at' => $this->getVerificationBeginTimeAt(),
-    		'verification_end_time_at' => $this->getVerificationEndTimeAt(),
+    		'time1' => $this->getTime1(),
+    		'time2' => $this->getTime2(),
+    		'time3' => $this->getTime3(),
+    		'time4' => $this->getTime4(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

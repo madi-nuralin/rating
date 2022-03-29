@@ -39,16 +39,16 @@ class UserController extends Controller
                 'submitting' => count(
                     collect(
                         $user->ratings()->where([
-                            ['submission_begin_time_at', '<=', DB::raw('current_timestamp()')],
-                            ['submission_end_time_at', '>', DB::raw('current_timestamp()')]
+                            ['time1', '<=', DB::raw('current_timestamp()')],
+                            ['time2', '>', DB::raw('current_timestamp()')]
                         ])->get()
                     )
                 ),
                 'verifying' => count(
                     collect(
                         $user->ratings()->where([
-                            ['verification_begin_time_at', '<=', DB::raw('current_timestamp()')],
-                            ['verification_end_time_at', '>', DB::raw('current_timestamp()')]
+                            ['time3', '<=', DB::raw('current_timestamp()')],
+                            ['time4', '>', DB::raw('current_timestamp()')]
                         ])->get()
                     )
                 )

@@ -15,10 +15,10 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('submission_begin_time_at')->nullable();
-            $table->timestamp('submission_end_time_at')->nullable();
-            $table->timestamp('verification_begin_time_at')->nullable();
-            $table->timestamp('verification_end_time_at')->nullable();
+            $table->timestamp('time1')->nullable();
+            $table->timestamp('time2')->nullable();
+            $table->timestamp('time3')->nullable();
+            $table->timestamp('time4')->nullable();
             $table->timestamps();
         });
     }

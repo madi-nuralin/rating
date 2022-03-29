@@ -17,7 +17,7 @@
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="description" :value="$t('pages.management.rating.create.form.description')" />
-                <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" />
+                <BreezeTextarea id="description" class="mt-1 block w-full" v-model="form.description" />
                 <BreezeInputError :message="form.errors.description" class="mt-2" />
             </div>
 
@@ -28,27 +28,27 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="submission_begin_time_at" :value="$t('pages.management.rating.create.form.submission_begin_time_at')" />
-                <BreezeInput id="submission_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.submission_begin_time_at" />
-                <BreezeInputError :message="form.errors.submission_begin_time_at" class="mt-2" />
+                <BreezeLabel for="time1" :value="$t('pages.management.rating.create.form.time1')" />
+                <BreezeInput id="time1" type="datetime-local" class="mt-1 block w-full" v-model="form.time1" />
+                <BreezeInputError :message="form.errors.time1" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="submission_end_time_at" :value="$t('pages.management.rating.create.form.submission_end_time_at')" />
-                <BreezeInput id="submission_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.submission_end_time_at" />
-                <BreezeInputError :message="form.errors.submission_end_time_at" class="mt-2" />
+                <BreezeLabel for="time2" :value="$t('pages.management.rating.create.form.time2')" />
+                <BreezeInput id="time2" type="datetime-local" class="mt-1 block w-full" v-model="form.time2" />
+                <BreezeInputError :message="form.errors.time2" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="verification_begin_time_at" :value="$t('pages.management.rating.create.form.verification_begin_time_at')" />
-                <BreezeInput id="verification_begin_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_begin_time_at" />
-                <BreezeInputError :message="form.errors.verification_begin_time_at" class="mt-2" />
+                <BreezeLabel for="time3" :value="$t('pages.management.rating.create.form.time3')" />
+                <BreezeInput id="time3" type="datetime-local" class="mt-1 block w-full" v-model="form.time3" />
+                <BreezeInputError :message="form.errors.time3" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="verification_end_time_at" :value="$t('pages.management.rating.create.form.verification_end_time_at')" />
-                <BreezeInput id="verification_end_time_at" type="datetime-local" class="mt-1 block w-full" v-model="form.verification_end_time_at" />
-                <BreezeInputError :message="form.errors.verification_end_time_at" class="mt-2" />
+                <BreezeLabel for="time4" :value="$t('pages.management.rating.create.form.time4')" />
+                <BreezeInput id="time4" type="datetime-local" class="mt-1 block w-full" v-model="form.time4" />
+                <BreezeInputError :message="form.errors.time4" class="mt-2" />
             </div>
         </template>
 
@@ -94,10 +94,10 @@
                 form: this.$inertia.form({
                     name: '',
                     description: '',
-                    submission_begin_time_at: '',
-                    submission_end_time_at: '',
-                    verification_begin_time_at: '',
-                    verification_end_time_at: '',
+                    time1: '',
+                    time2: '',
+                    time3: '',
+                    time4: '',
                     users: ''
                 }),
             }

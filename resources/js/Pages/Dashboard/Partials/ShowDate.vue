@@ -99,20 +99,20 @@
     	},
 
     	computed: {
-    		submissionBeginTime() {
-    			return new Date(this.rating.submission_begin_time_at)
+    		time1() {
+    			return new Date(this.rating.time1)
     		},
 
-    		submissionEndTime() {
-    			return new Date(this.rating.submission_end_time_at)
+    		time2() {
+    			return new Date(this.rating.time2)
     		},
 
-    		verificationBeginTime() {
-    			return new Date(this.rating.verification_begin_time_at)
+    		time3() {
+    			return new Date(this.rating.time3)
     		},
 
-    		verificationEndTime() {
-    			return new Date(this.rating.verification_end_time_at)
+    		time4() {
+    			return new Date(this.rating.time4)
     		},
 
     		currentTime() {
@@ -121,8 +121,8 @@
 
     		items() {
     			return [
-    				{title: this.$t('pages.dashboard.partials.showDate.submission'), color: 'green', beginTime: this.submissionBeginTime, endTime: this.submissionEndTime},
-    				{title: this.$t('pages.dashboard.partials.showDate.verification'), color: 'red', beginTime: this.verificationBeginTime, endTime: this.verificationEndTime}
+    				{title: this.$t('pages.dashboard.partials.showDate.submission'), color: 'green', beginTime: this.time1, endTime: this.time2},
+    				{title: this.$t('pages.dashboard.partials.showDate.verification'), color: 'red', beginTime: this.time3, endTime: this.time4}
     			]
     		}
     	}

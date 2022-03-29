@@ -59,21 +59,21 @@ class RatingController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
-            'submission_begin_time_at' => ['required', 'date'],
-            'submission_end_time_at' => ['required', 'date', 'after:submission_begin_time_at'],
-            'verification_begin_time_at' => ['required', 'date', 'after:submission_end_time_at'],
-            'verification_end_time_at' => ['required', 'date', 'after:verification_begin_time_at'],
-            'users' => ['array']
+            'description' => ['required', 'string', 'max:2048'],
+            'time1' => ['required', 'date'],
+            'time2' => ['required', 'date', 'after:time1'],
+            'time3' => ['required', 'date', 'after:time2'],
+            'time4' => ['required', 'date', 'after:time3'],
+            'users' => ['nullable', 'array']
         ])->validateWithBag('createRating');
 
         $rating = Rating::create();
         $rating->setName($input['name']);
         $rating->setDescription($input['description']);
-        $rating->setSubmissionBeginTimeAt($input['submission_begin_time_at']);
-        $rating->setSubmissionEndTimeAt($input['submission_end_time_at']);
-        $rating->setVerificationBeginTimeAt($input['verification_begin_time_at']);
-        $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
+        $rating->setTime1($input['time1']);
+        $rating->setTime2($input['time2']);
+        $rating->setTime3($input['time3']);
+        $rating->setTime4($input['time4']);
         $rating->setUsers($input['users']);
 
         $rating->save();
@@ -107,7 +107,7 @@ class RatingController extends Controller
                                 'parameter_target' => $parameter->parameterTarget->toArray()
                             ]
                         );
-                    }) : [],
+                    }) : array(),
                     'users' => $rating->users->map(function($user) {
                         return $user->toArray();
                     }),
@@ -152,21 +152,21 @@ class RatingController extends Controller
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
-            'submission_begin_time_at' => ['required', 'date'],
-            'submission_end_time_at' => ['required', 'date', 'after:submission_begin_time_at'],
-            'verification_begin_time_at' => ['required', 'date', 'after:submission_end_time_at'],
-            'verification_end_time_at' => ['required', 'date', 'after:verification_begin_time_at'],
-            'users' => ['array']
+            'time1' => ['required', 'date'],
+            'time2' => ['required', 'date', 'after:time1'],
+            'time3' => ['required', 'date', 'after:time2'],
+            'time4' => ['required', 'date', 'after:time3'],
+            'users' => ['nullable', 'array']
         ])->validateWithBag('updateRating');
 
         $rating = Rating::findOrFail($id);
         
         $rating->setName($input['name']);
         $rating->setDescription($input['description']);
-        $rating->setSubmissionBeginTimeAt($input['submission_begin_time_at']);
-        $rating->setSubmissionEndTimeAt($input['submission_end_time_at']);
-        $rating->setVerificationBeginTimeAt($input['verification_begin_time_at']);
-        $rating->setVerificationEndTimeAt($input['verification_end_time_at']);
+        $rating->setTime1($input['time1']);
+        $rating->setTime2($input['time2']);
+        $rating->setTime3($input['time3']);
+        $rating->setTime4($input['time4']);
         $rating->setUsers($input['users']);
 
         $rating->save();
