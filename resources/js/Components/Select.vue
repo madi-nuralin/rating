@@ -2,7 +2,7 @@
     <div class="relative" v-if="displayType == 'dropdown'">
         <div @click="open = ! disabled ? ! open : false" class="relative">
 
-            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white" readonly="readonly" :disabled="disabled" />
+            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white" readonly="readonly" :disabled="disabled" :placeholder="placeholder" />
 
             <svg
                 class="h-4 w-4 absolute top-1/2 transform -translate-y-1/2 right-3 dark:text-gray-100"
@@ -58,7 +58,7 @@
     <div v-else-if="displayType == 'modal'">
         <div @click="open = ! disabled ? ! open : false" class="relative">
 
-            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white" readonly="readonly" :disabled="disabled" />
+            <input :id="id" type="text" :value="displayValue" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full cursor-pointer pr-9 disabled:opacity-50 dark:bg-gray-800 dark:border-gray-500 dark:text-white" readonly="readonly" :disabled="disabled" :placeholder="placeholder"/>
 
             <svg
                 class="h-4 w-4 absolute top-1/2 transform -translate-y-1/2 right-3 dark:text-gray-100"
@@ -222,6 +222,10 @@ export default {
             type: String,
             default: 'modal'
             // ['dropdown', 'modal', 'expanded']
+        },
+        placeholder: {
+            type: String,
+            default: ''
         }
     },
 

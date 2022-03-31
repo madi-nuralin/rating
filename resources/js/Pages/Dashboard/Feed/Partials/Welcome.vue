@@ -22,7 +22,7 @@
             </div>
 
             <div class="mt-8 text-2xl">
-                Welcome to your application!
+                {{ $t('pages.dashboard.feed.content.gettingStarted') }}
             </div>
 
             <div class="mt-6 text-gray-500">
@@ -54,7 +54,7 @@
                     <div class="grid gap-6 grid-cols-12 w-full">
                         <div class="col-span-12 sm:col-span-6">
                             <form @submit.prevent="$emit('submitted')">
-                                <jet-select id="rating" class="mt-1 block w-full" :value="form.rating" @input="submit" :options="options.rating" :multiple="false" />
+                                <jet-select id="rating" class="mt-1 block w-full" :value="form.rating" @input="submit" :options="options.rating" :multiple="false" :placeholder="$t('pages.dashboard.feed.content.placeholderMyRatings')"/>
                             </form>
                         </div>
                         <div class="col-span-12 sm:col-span-2">

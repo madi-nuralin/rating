@@ -632,7 +632,9 @@ var messages = {
               total: 'Total',
               submitting: 'In progress',
               verifying: 'Verifying'
-            }
+            },
+            gettingStarted: 'Getting started',
+            placeholderMyRatings: 'List of my ratings'
           }
         },
         verifier: {
@@ -1855,7 +1857,9 @@ var messages = {
               total: 'Всего',
               submitting: 'Выполняется',
               verifying: 'На проверке'
-            }
+            },
+            gettingStarted: 'Приступая к работе',
+            placeholderMyRatings: 'Мои рейтинги'
           }
         },
         verifier: {
