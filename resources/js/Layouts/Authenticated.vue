@@ -158,7 +158,7 @@
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 dark:text-gray-400 dark:hover:text-gray-300">
-                                                <img :src="$page.props.auth.user.profile_photo_path" class="block rounded-full w-9 h-9 hover:shadow">
+                                                <img :src="$page.props.auth.user.profile_photo_path" class="object-cover rounded-full w-9 h-9 hover:shadow">
                                                 <span class="ml-2">{{ $page.props.auth.user.name }}</span>
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

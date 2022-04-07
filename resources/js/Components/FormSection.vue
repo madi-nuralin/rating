@@ -10,7 +10,7 @@
         </BreezeSectionTitle>
 
         <div class="md:col-span-1 flex justify-between" v-else>
-            <div class="px-4 sm:px-0 w-full">
+            <div class="px-4 sm:px-0 w-full text-gray-600 dark:text-gray-500">
                 <slot name="aside"></slot>
             </div>
         </div>

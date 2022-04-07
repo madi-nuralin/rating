@@ -1,10 +1,10 @@
 <template>
-	<BreezeAccordion>
-		<template #trigger>
+	<Show>
+		<template #title>
 	        {{ $t('pages.dashboard.verification.partials.showStatus.trigger') }}
 	    </template>
 
-	    <template #content>
+	    <template #description>
 	    	<div class="grid gap-2 grid-cols-2 text-sm text-gray-500">
 	    		<p>{{ $t('pages.dashboard.verification.update.actions.modal.content.verification_status') }}</p>
 	    		<p>
@@ -16,16 +16,16 @@
 				<p>{{ verification.message }}</p>
 	    	</div>
 		</template>
-	</BreezeAccordion>
+	</Show>
 </template>
 
 <script>
-	import BreezeAccordion from '@/Components/Accordion.vue'
+	import Show from '../../Partials/Show.vue'
 	import BreezeBadge from '@/Components/Badge.vue'
 
     export default {
     	components: {
-    		BreezeAccordion,
+    		Show,
     		BreezeBadge
     	},
 

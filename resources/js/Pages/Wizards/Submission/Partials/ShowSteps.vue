@@ -1,10 +1,10 @@
 <template>
-	<BreezeAccordion>
-		<template #trigger>
+	<Show>
+		<template #title>
 	        {{ $t('pages.wizards.submission.showSteps.trigger') }}
 	    </template>
 
-	    <template #content>
+	    <template #description>
 	    	<ul class="list-inside text-normal text-gray-900 dark:text-gray-200">
 				<li v-for="(step, i) in this.$page.props.arcanist.wizard.steps">
 					<BreezeResponsiveNavLink :href="step.url" :active="this.url == step.url || (i == 0 && step.url == null)" :class="step.isComplete ? 'border-l-4 border-indigo-400' : 'border-l-4 border-gray-200'">
@@ -20,18 +20,18 @@
 				</li>
 			</ul>
 	    </template>
-	</BreezeAccordion>
+	</Show>
 </template>
 
 <script>
 	import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
-	import BreezeAccordion from '@/Components/Accordion.vue'
+	import Show from '@/Pages/Dashboard/Partials/Show.vue'
 	import Wizard from "@/Mixins/Wizard";
 
     export default {
     	components: {
     		BreezeResponsiveNavLink,
-    		BreezeAccordion,
+    		Show,
     	},
 
     	mixins: [Wizard]

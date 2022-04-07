@@ -1,21 +1,21 @@
 <template>
-	<BreezeAccordion>
-		<template #trigger>
-	        {{ $t('pages.dashboard.partials.showName.trigger') }}
-	    </template>
+	<Show>
+		<template #title>
+			{{ $t('pages.dashboard.partials.showName.trigger') }}
+		</template>
 
-	    <template #content>
-	    	<p class="text-sm">{{rating.name}}</p>
-	    </template>
-	</BreezeAccordion>
+		<template #description>
+			{{ rating.name }}
+		</template>
+	</Show>
 </template>
 
 <script>
-	import BreezeAccordion from '@/Components/Accordion.vue'
+	import Show from './Show.vue'
 
     export default {
     	components: {
-    		BreezeAccordion
+    		Show
     	},
 
     	props: ['rating']

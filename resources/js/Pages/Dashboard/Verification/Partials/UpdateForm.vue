@@ -12,10 +12,10 @@
             </div>
 
             <div>
-            	<hr class="my-6" />
+            	<breeze-section-border :display="'block'" />
                 <ShowStatus :verification="verification" />
 
-                <hr class="my-6" />
+                <breeze-section-border :display="'block'" />
                 <ShowScoringBoard :form="verification.submission.parameter.form" :score="verification.submission.score" :view="'third_party'" :verifications="verification.submission.verifications"/>
 
                 <!--hr class="my-6" />
@@ -188,6 +188,7 @@
 
 <script>
     import BreezeActionMessage from '@/Components/ActionMessage'
+    import BreezeSectionBorder from '@/Components/SectionBorder'
     import BreezeModalConfirmation from '@/Components/ModalConfirmation'
     import BreezeButton from '@/Components/Button'
     import BreezeButtonDanger from '@/Components/ButtonDanger.vue'
@@ -206,6 +207,7 @@
     export default {
         components: {
             BreezeActionMessage,
+            BreezeSectionBorder,
             BreezeModalConfirmation,
             BreezeButton,
             BreezeButtonSecondary,

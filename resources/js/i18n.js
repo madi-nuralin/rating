@@ -706,6 +706,7 @@ var messages = {
             }
           },
           partials: {
+            empty: 'Empty',
             showVerifications: {
               trigger: 'List of verifications'
             },
@@ -1931,8 +1932,9 @@ var messages = {
             ]
           },
           partials: {
+            empty: 'Пусто',
             showVerifications: {
-              trigger: 'Список подтверждений'
+              trigger: 'Статус проверки'
             },
             showScoringBoard: {
               title: 'Оценка',

@@ -1,5 +1,70 @@
 <template>
-	<div>
+	<BreezeAccordion :items="rating.targets">
+		<template #trigger="{item}">
+			{{ item.name }}
+		</template>
+		<template #content="{item}">
+			<ul class="list-inside space-y-4 dark:text-gray-100"
+				v-if="Object.keys(item.parameters).length > 0">
+                <li v-for="parameter in item.parameters">
+                    <span>    
+                        {{ parameter.name }}
+                    </span>
+                    <div class="relative z-0 mt-1 border border-gray-300 _rounded-lg cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
+	                    <Link
+	                    	type="button"
+	                    	class="relative px-4 py-2 inline-block w-full _rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200"
+	                        :class="{
+	                        	'border-t border-gray-300 rounded-t-none dark:border-gray-700': i > 0,
+	                        	'rounded-b-none': i != Object.keys(parameter.submissions).length - 1
+	                        }"
+	                        :href="getRoute(submission)"
+	                        v-for="(submission, i) in parameter.submissions">
+
+	                        <div>
+
+	                            <div class="flex items-center">
+	                                <div class="text-sm text-gray-600 text-left dark:text-gray-100" v-if="type == 'verification'">
+	                                    <span>{{ translate('form.verificationStatus') }}</span>
+	                                    <span>	
+	                                    	<breeze-badge :color="submission.verification.status.color">
+                                                {{ submission.verification.status.name }}
+                                            </breeze-badge>
+                                        </span>
+	                                </div>
+
+	                            </div>
+
+	                            <div class="mt-2 text-sm text-gray-600 text-left dark:text-gray-100">
+	                            	<div class="grid grid-cols-1">
+	                                    <p>{{ new Date(submission.updated_at) }}</p>
+	                                    <p>{{ translate('form.score', {'score': parseFloat(submission.score).toFixed(2) }) }}
+	                                    </p>
+	                                    <template v-for="status in submission.verification_statuses">
+	                                    	<div class="flex space-x-2" v-if="Object.keys(status.verifications).length > 0">
+	                                            <p class="space-x-2">
+	                                                <span class="underline" v-for="verification in status.verifications">
+	                                                    {{ verification.verifier.user.name }}
+	                                                </span>
+	                                            </p>
+	                                            <p>	
+			                                    	<breeze-badge :color="status.color">
+		                                                {{ status.name }}
+		                                            </breeze-badge>
+		                                        </p>
+	                                        </div>
+	                                    </template>
+	                            	</div>
+	                            </div>
+	                        </div>
+	                    </Link>
+	                </div>
+                </li>
+            </ul>
+		</template>
+	</BreezeAccordion>
+
+	<!--div>
 		<div v-for="(target, i) in rating.targets">
 	        <BreezeAccordion>
 	            <template #trigger>
@@ -8,11 +73,33 @@
 
 	            <template #content>
 
-	                <ul class="list-roman list-inside space-y-4 dark:text-gray-100" v-if="Object.keys(target.parameters).length > 0">
+	                <ul class="_list-roman list-inside space-y-4 dark:text-gray-100" v-if="Object.keys(target.parameters).length > 0">
 	                    <li v-for="parameter in target.parameters">
 	                        <span>    
 	                            {{ parameter.name }}
 	                        </span>
+
+	                        <div class="relative z-0 mt-1 border border-gray-200 rounded cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
+			                    <Link
+			                    	type="button"
+			                    	class="relative px-4 py-3 inline-block w-full rounded focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200"
+			                        :class="{
+			                        	'border-t border-gray-200 rounded-t-none dark:border-gray-700': i > 0,
+			                        	'rounded-b-none': i != Object.keys(parameter.submissions).length - 1
+			                        }"
+			                        :href="getRoute(submission)"
+			                        v-for="(submission, i) in parameter.submissions">
+			                        <div class="grid gap-6 grid-cols-4 text-xs mt-1" >
+			                        	<p>{{ new Date(submission.updated_at) }}</p>
+			                        	<p>{{ translate('form.score', {'score': parseFloat(submission.score).toFixed(2) }) }}</p>
+			                        	<p>Madi</p>
+			                        	<p>
+			                        		<div class="mt-3 ml-3 flex items-center font-semibold text-indigo-700"><div>Посмотреть ответ (45 баллов)</div><div class="ml-1 text-indigo-500"><svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></div></div>
+			                        	</p>
+		                        	</div>
+			                    </Link>
+
+			                </div>
 
                         	<div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
 			                    <Link
@@ -37,19 +124,8 @@
 		                                        </span>
 			                                </div>
 
-			                                <!--svg
-			                                    class="ml-2 h-5 w-5 text-green-400"
-			                                    fill="none"
-			                                    stroke-linecap="round"
-			                                    stroke-linejoin="round"
-			                                    stroke-width="2"
-			                                    stroke="currentColor"
-			                                    viewBox="0 0 24 24">
-			                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-			                                </svg-->
 			                            </div>
 
-			                            <!-- Description -->
 			                            <div class="mt-2 text-sm text-gray-600 text-left dark:text-gray-100">
 			                            	<div class="grid grid-cols-2">
 			                            		<p>{{ translate('form.updatedAt') }}</p>
@@ -83,7 +159,7 @@
 
 	        <BreezeSectionBorder :display="'block'"/>
 	    </div>
-	</div>
+	</div-->
 </template>
 
 <script>
@@ -102,6 +178,7 @@
             BreezeBadge,
             BreezeAccordion,
             BreezeSectionBorder,
+            BreezeAccordion,
             Link,
         },
 

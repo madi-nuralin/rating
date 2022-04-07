@@ -1,14 +1,14 @@
 <template>
-    <Head :title="translate[0]('head.title')" />
+    <Head :title="$t('pages.dashboard.submission.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ translate[0]('header') }}
+            {{ $t('pages.dashboard.submission.header') }}
         </template>
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <resource-list :rating="$page.props.rating" :translate="translate[1]"/>
+                <resource-list :rating="$page.props.rating"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -26,21 +26,6 @@
             BreezeSectionBorder,
             ResourceList,
             Head,
-        },
-
-        computed: {
-            translate() {
-                var $t = this.$t;
-
-                return [
-                    function (path) { // [0]
-                        return $t(`pages.dashboard.submission.${path}`);
-                    },
-                    function (path, ...args) { // [1]
-                        return $t(`pages.dashboard.submission.list.${path}`, ...args);
-                    },
-                ]
-            }
         },
     }
 </script>

@@ -3,7 +3,7 @@
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200 dark:bg-gray-700 dark:bg-gray-800 dark:text-gray-100">
             <div class="flex space-x-6">    
                 <div>
-                    <img class="block h-12 w-12 rounded-full w-auto" :src="$page.props.auth.user.profile_photo_path"/>
+                    <img class="flex-none object-cover h-12 w-12 rounded-full" :src="$page.props.auth.user.profile_photo_path"/>
                 </div>
 
                 <div>

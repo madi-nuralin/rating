@@ -14,7 +14,7 @@
             </template>
 
             <template v-else>
-                <a :href="value" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition" target="_blank" rel="noopener noreferrer">
+                <a :href="value" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition dark:bg-gray-600 dark:border-gray-600 dark:text-white" target="_blank" rel="noopener noreferrer">
                     {{ $t('components.fileInput.downloadFileButton') }}
                 </a>
 

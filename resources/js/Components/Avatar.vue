@@ -1,8 +1,8 @@
 <template>
-	<img class="inline-block rounded-full ring-2 ring-white" :class="[widthClass, hoverClass]" :src="src" :alt="alt" v-if="! status">
+	<img class="inline-block object-cover rounded-full ring-1 ring-gray-300 dark:ring-gray-600" :class="[widthClass, hoverClass]" :src="src" :alt="alt" v-if="! status">
 
 	<div class="relative inline-block" v-else>
-		<img class="inline-block rounded-full ring-2 ring-white" :class="[widthClass, hoverClass]" :src="src" :alt="alt">
+		<img class="inline-block object-cover rounded-full ring-1 ring-gray-300 dark:ring-gray-600" :class="[widthClass, hoverClass]" :src="src" :alt="alt">
 		<span class="absolute bottom-0 right-0 inline-block w-3 h-3 bg-green-600 border-2 border-white rounded-full" :class="[statusClass]" />
 	</div>
 </template>

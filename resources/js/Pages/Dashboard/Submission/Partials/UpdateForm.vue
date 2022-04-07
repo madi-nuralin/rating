@@ -3,19 +3,19 @@
         <template #aside>
             <div>
                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                   {{ translate('title') }}
+                   {{ $t('pages.dashboard.submission.update.title') }}
                 </h3>
 
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-500">
-                    {{ translate('description') }}
+                    {{ $t('pages.dashboard.submission.update.description') }}
                 </p>
             </div>
 
             <div>
-                <hr class="my-6" />
+                <breeze-section-border :display="'block'" />
                 <ShowScoringBoard :form="submission.parameter.form" :score="submission.score" :view="'first_party'" :verifications="submission.verifications" />
 
-                <hr class="my-6" />
+                <breeze-section-border :display="'block'" />
                 <ShowVerifications :submission="submission" />
             </div>
         </template>
@@ -120,6 +120,7 @@
 
 <script>
     import BreezeActionMessage from '@/Components/ActionMessage'
+    import BreezeSectionBorder from '@/Components/SectionBorder'
     import BreezeButton from '@/Components/Button'
     import BreezeFormSection from '@/Components/FormSection'
     import BreezeInput from '@/Components/Input'
@@ -134,6 +135,7 @@
     export default {
         components: {
             BreezeActionMessage,
+            BreezeSectionBorder,
             BreezeButton,
             BreezeFormSection,
             BreezeInput,

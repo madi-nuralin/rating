@@ -1,17 +1,17 @@
 <template>
-    <Head :title="translate[0]('head.title')" />
+    <Head :title="$t('pages.dashboard.submission.head.title')" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            {{ translate[0]('header') }}
+            {{ $t('pages.dashboard.submission.header') }}
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <update-form :submission="$page.props.submission" :translate="translate[1]" />
+                <update-form :submission="$page.props.submission"/>
                 <breeze-section-border />
 
-                <delete-form :submission="$page.props.submission" :translate="translate[2]" class="mt-10 sm:mt-0" />
+                <delete-form :submission="$page.props.submission" class="mt-10 sm:mt-0" />
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -31,24 +31,6 @@
             UpdateForm,
             DeleteForm,
             Head,
-        },
-
-        computed: {
-            translate() {
-                var $t = this.$t;
-
-                return [
-                    function (path) { // [0]
-                        return $t(`pages.dashboard.submission.${path}`);
-                    },
-                    function (path) { // [1]
-                        return $t(`pages.dashboard.submission.update.${path}`);
-                    },
-                    function (path) { // [2]
-                        return $t(`pages.dashboard.submission.delete.${path}`);
-                    },
-                ]
-            }
         },
     }
 </script>
