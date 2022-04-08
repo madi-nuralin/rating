@@ -3,14 +3,17 @@
 		<template #trigger="{item}">
 			{{ item.name }}
 		</template>
+
 		<template #content="{item}">
-			<ul class="list-inside space-y-4 dark:text-gray-100"
+			<ul class="list-inside dark:text-gray-100 border-l border-r border-gray-300 dark:border-gray-600 -my-3"
 				v-if="Object.keys(item.parameters).length > 0">
-                <li v-for="parameter in item.parameters">
-                    <span>    
-                        {{ parameter.name }}
-                    </span>
-                    <div class="relative z-0 mt-1 border border-gray-300 _rounded-lg cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
+                <li v-for="(parameter, k) in item.parameters">
+                	<div class="border-b border-gray-300 dark:border-gray-600" :class="{'border-t': k > 0}">
+	                    <div class="ml-4">    
+	                        {{ parameter.name }}
+	                    </div>
+	                </div>
+                    <div class="relative z-0 mx-4 border-l border-r border-gray-300 cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
 	                    <Link
 	                    	type="button"
 	                    	class="relative px-4 py-2 inline-block w-full _rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200"
@@ -22,9 +25,8 @@
 	                        v-for="(submission, i) in parameter.submissions">
 
 	                        <div>
-
-	                            <div class="flex items-center">
-	                                <div class="text-sm text-gray-600 text-left dark:text-gray-100" v-if="type == 'verification'">
+	                            <div class="flex items-center" v-if="type == 'verification'">
+	                                <div class="text-sm text-gray-600 text-left dark:text-gray-100">
 	                                    <span>{{ translate('form.verificationStatus') }}</span>
 	                                    <span>	
 	                                    	<breeze-badge :color="submission.verification.status.color">
@@ -32,10 +34,9 @@
                                             </breeze-badge>
                                         </span>
 	                                </div>
-
 	                            </div>
 
-	                            <div class="mt-2 text-sm text-gray-600 text-left dark:text-gray-100">
+	                            <div class="text-sm text-gray-600 text-left dark:text-gray-100">
 	                            	<div class="grid grid-cols-1">
 	                                    <p>{{ new Date(submission.updated_at) }}</p>
 	                                    <p>{{ translate('form.score', {'score': parseFloat(submission.score).toFixed(2) }) }}
