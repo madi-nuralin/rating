@@ -13,7 +13,7 @@
 	                        {{ parameter.name }}
 	                    </div>
 	                </div>
-                    <div class="relative z-0 mx-4 border-l border-r border-gray-300 cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
+                    <div class="relative z-0 _mx-4 _border-l _border-r border-gray-300 cursor-pointer dark:border-gray-700" v-if="Object.keys(parameter.submissions).length > 0">
 	                    <Link
 	                    	type="button"
 	                    	class="relative px-4 py-2 inline-block w-full _rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200"

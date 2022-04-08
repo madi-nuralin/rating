@@ -88,6 +88,25 @@ class Rating extends Model
     	return date(Rating::HTML_DATE_FORMAT, strtotime($this->time4));
     }
 
+    public function getUserSubmissionScore(User $user, $verificationStatuses = null /*array of ids'*/) {
+        $submissions = $this->submissions()->where([
+            'user' => $user->id
+        ]);
+
+        if (is_null($verificationStatuses)) {
+            $submissions->sum('score');
+        } else {
+            $sum = 0;
+            foreach ($submissions as $submission) {
+                foreach ($submission->verifications as $verification) {
+                    if (in_array($verification->verification_status_id, $verificationStatuses)) {
+                        
+                    }
+                }
+            }
+        }
+    }
+
     public function toArray() {
     	return [
     		'id' => $this->getId(),

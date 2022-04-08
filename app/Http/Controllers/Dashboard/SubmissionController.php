@@ -38,16 +38,19 @@ class SubmissionController extends Controller
                     'statistics' => [
                         'score' => Submission::whereHas(
                             'verifications', function($q) {
-                                $q->where([
-                                    ['verification_status_id', '!=', 2] // rejected
-                                ]);
+                                $q->where(
+                                    'verification_status_id', '!=', 1
+                                )->where(
+                                    'verification_status_id', '!=', 2
+                                )->where(
+                                    'verification_status_id', '!=', 4
+                                );
                             }
-                        )
-                        ->where([
+                        )->where([
                             'user_id' => $user->id,
                             'rating_id' => $rating->id
-                        ])
-                        ->sum('score'),
+                        ])->sum('score'),
+
                         'total' => count(
                             Submission::where([
                                 'user_id' => $user->id,
