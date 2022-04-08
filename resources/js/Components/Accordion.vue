@@ -45,7 +45,7 @@
         data() {
             return {
                 collapse: this.items ? this.items.map(function(item) {
-                    return false;
+                    return true;
                 }) : null
             };
         },
