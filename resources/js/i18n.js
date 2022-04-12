@@ -596,6 +596,7 @@ var messages = {
         },
         header: 'Dashboard',
         partials: {
+          empty: 'Empty',
           showDate: {
             trigger: 'Deadlines',
             begins: 'Begins: ',
@@ -611,7 +612,7 @@ var messages = {
             trigger: 'Description'
           },
           showVerifiers: {
-            trigger: 'List of Verifiers'
+            trigger: 'List of verifiers'
           },
           showStatistics: {
             trigger: 'Overview',
@@ -706,7 +707,6 @@ var messages = {
             }
           },
           partials: {
-            empty: 'Empty',
             showVerifications: {
               trigger: 'List of verifications'
             },
@@ -1180,6 +1180,11 @@ var messages = {
         aboutSystem: {
           title: 'About system',
           description: 'The system determines the procedure, timing and methodology for performance evaluation employees of the organization and regulates the issues of determining allowances for salary of a staff member.'
+        }
+      },
+      userManual: {
+        head: {
+          title: 'User manual'
         }
       }
     },
@@ -1822,6 +1827,7 @@ var messages = {
         },
         header: 'Панель управления',
         partials: {
+          empty: 'Пусто',
           showDate: {
             trigger: 'Сроки выполнения',
             begins: 'Начинается: ',
@@ -1932,7 +1938,6 @@ var messages = {
             ]
           },
           partials: {
-            empty: 'Пусто',
             showVerifications: {
               trigger: 'Статус проверки'
             },
@@ -2417,6 +2422,11 @@ var messages = {
         aboutSystem: {
           title: 'О системе',
           description: 'Система определяет порядок, сроки и методику проведения оценки деятельности сотрудников организации и регулирует вопросы определения надбавок к должностному окладу штатного сотрудника.'
+        }
+      },
+      userManual: {
+        head: {
+          title: 'Руководство пользователя'
         }
       }
     },

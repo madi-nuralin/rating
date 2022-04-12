@@ -50,7 +50,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -124,7 +124,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -182,7 +182,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -240,7 +240,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -298,7 +298,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -370,7 +370,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -385,7 +385,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -457,7 +457,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -472,7 +472,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -530,7 +530,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -545,7 +545,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -590,7 +590,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -605,7 +605,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -663,7 +663,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -678,7 +678,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -723,7 +723,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -738,7 +738,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -796,7 +796,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -811,7 +811,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -869,7 +869,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -884,7 +884,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -899,7 +899,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -957,7 +957,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -972,7 +972,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     },
                     {
@@ -987,7 +987,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -1029,7 +1029,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -1071,7 +1071,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -1113,7 +1113,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -1155,7 +1155,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1197,7 +1197,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1255,7 +1255,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1313,7 +1313,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1371,7 +1371,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1429,7 +1429,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1487,7 +1487,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1572,7 +1572,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1644,7 +1644,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1729,7 +1729,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1801,7 +1801,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1886,7 +1886,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -1971,7 +1971,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2056,7 +2056,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2128,7 +2128,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2213,7 +2213,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2285,7 +2285,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2370,7 +2370,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2442,7 +2442,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2527,7 +2527,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2599,7 +2599,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2657,7 +2657,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -2716,7 +2716,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -2788,7 +2788,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -2847,7 +2847,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -2919,7 +2919,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -2934,7 +2934,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -2979,7 +2979,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -2994,7 +2994,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3079,7 +3079,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3151,7 +3151,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3209,7 +3209,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3254,7 +3254,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3312,7 +3312,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3357,7 +3357,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3415,7 +3415,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3506,7 +3506,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -3521,7 +3521,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3599,7 +3599,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -3614,7 +3614,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3694,7 +3694,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -3709,7 +3709,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3776,7 +3776,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -3791,7 +3791,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3871,7 +3871,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -3886,7 +3886,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -3953,7 +3953,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -3968,7 +3968,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4048,7 +4048,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4115,7 +4115,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4173,7 +4173,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4231,7 +4231,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4289,7 +4289,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4334,7 +4334,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4376,7 +4376,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4421,7 +4421,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4463,7 +4463,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4508,7 +4508,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4566,7 +4566,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -4581,7 +4581,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4626,7 +4626,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -4641,7 +4641,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4699,7 +4699,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -4714,7 +4714,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4759,7 +4759,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -4774,7 +4774,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4832,7 +4832,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -4847,7 +4847,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4892,7 +4892,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -4907,7 +4907,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4949,7 +4949,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -4978,7 +4978,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5020,7 +5020,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5049,7 +5049,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5091,7 +5091,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5133,7 +5133,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5175,7 +5175,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5217,7 +5217,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5297,7 +5297,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5364,7 +5364,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5444,7 +5444,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -5511,7 +5511,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -5613,7 +5613,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -5628,7 +5628,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5717,7 +5717,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -5732,7 +5732,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5823,7 +5823,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -5838,7 +5838,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5927,7 +5927,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -5942,7 +5942,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -5998,7 +5998,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6054,7 +6054,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6161,7 +6161,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -6176,7 +6176,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6218,7 +6218,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6260,7 +6260,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6302,7 +6302,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6344,7 +6344,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6386,7 +6386,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6428,7 +6428,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -6470,7 +6470,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -6512,7 +6512,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,doc,docx"
+                            "mimes":["pdf","doc","docx"]
                         }
                     }
                 ]
@@ -6603,7 +6603,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6708,7 +6708,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6764,7 +6764,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6807,7 +6807,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6863,7 +6863,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6919,7 +6919,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -6975,7 +6975,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7031,7 +7031,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7087,7 +7087,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7129,7 +7129,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7209,7 +7209,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7251,7 +7251,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7348,7 +7348,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7390,7 +7390,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7432,7 +7432,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7474,7 +7474,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7516,7 +7516,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7558,7 +7558,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7587,7 +7587,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7629,7 +7629,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7671,7 +7671,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7700,7 +7700,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7758,7 +7758,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7800,7 +7800,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7829,7 +7829,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7887,7 +7887,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -7967,7 +7967,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8025,7 +8025,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -8040,7 +8040,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8085,7 +8085,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -8100,7 +8100,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8142,7 +8142,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8171,7 +8171,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8213,7 +8213,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     }
                 ]
@@ -8258,7 +8258,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     }
                 ]
@@ -8300,7 +8300,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     }
                 ]
@@ -8345,7 +8345,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     }
                 ]
@@ -8387,7 +8387,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     }
                 ]
@@ -8432,7 +8432,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     }
                 ]
@@ -8545,7 +8545,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     },
                     {
@@ -8560,7 +8560,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8676,7 +8676,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf,jpg,jpeg"
+                            "mimes":["pdf","jpg","jpeg"]
                         }
                     },
                     {
@@ -8691,7 +8691,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8771,7 +8771,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     },
                     {
@@ -8786,7 +8786,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8844,7 +8844,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8902,7 +8902,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -8960,7 +8960,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -9018,7 +9018,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -9060,7 +9060,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -9089,7 +9089,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -9169,7 +9169,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]
@@ -9211,7 +9211,7 @@
                             "nullable":false,
                             "required":true,
                             "file_size":102400,
-                            "mimes":"pdf"
+                            "mimes":["pdf"]
                         }
                     }
                 ]

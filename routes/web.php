@@ -31,6 +31,13 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('user-manual', function () {
+    return Inertia::render('UserManual', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+})->name('user-manual');
+
 use App\Http\Controllers\Profile\ProfileInformationController;
 use App\Http\Controllers\Profile\ProfilePhotoController;
 use App\Http\Controllers\Profile\CurrentUserController;
