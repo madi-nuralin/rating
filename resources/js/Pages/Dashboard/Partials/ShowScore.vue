@@ -5,7 +5,7 @@
 	    </template>
 
 	    <template #description>
-	    	{{ rating.statistics.score }}
+	    	{{ parseFloat(rating.statistics.score).toFixed(2) }}
 	    </template>
 	</Show>
 </template>

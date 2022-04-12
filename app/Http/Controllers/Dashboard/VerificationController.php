@@ -41,22 +41,7 @@ class VerificationController extends Controller
             'rating' => array_merge(
                 $rating->toArray(), [
                     'statistics' => [
-                        'score' => Submission::whereHas(
-                            'verifications', function($q) {
-                                $q->where(
-                                    'verification_status_id', '!=', 1
-                                );
-                            }
-                        )->whereHas(
-                            'verifications', function($q) {
-                                $q->where(
-                                    'verification_status_id', '!=', 2
-                                );
-                            }
-                        )->where([
-                            'user_id' => $user->id,
-                            'rating_id' => $rating->id
-                        ])->sum('score'),
+                        'score' => $rating->getUserScore($user, array(3,5)),
 
                         'total' => count(
                             Submission::where([
