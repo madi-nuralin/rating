@@ -44,7 +44,7 @@
 
         data() {
             return {
-                collapse: this.items ? this.items.map(function(item) {
+                collapse: this.items ? Array(this.items).map(function(item) {
                     return true;
                 }) : null
             };
