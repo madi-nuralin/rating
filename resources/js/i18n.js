@@ -597,6 +597,7 @@ var messages = {
         header: 'Dashboard',
         partials: {
           empty: 'Empty',
+          noReply: 'You didn\'t send any replies',
           showDate: {
             trigger: 'Deadlines',
             begins: 'Begins: ',
@@ -1828,6 +1829,7 @@ var messages = {
         header: 'Панель управления',
         partials: {
           empty: 'Пусто',
+          noReply: 'Вы не отправили ответов',
           showDate: {
             trigger: 'Сроки выполнения',
             begins: 'Начинается: ',

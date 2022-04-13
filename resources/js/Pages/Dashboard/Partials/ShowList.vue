@@ -69,6 +69,10 @@
 	                </div>
                 </li>
             </ul>
+
+            <p class="text-xs text-gray-600 dark:text-gray-500" v-else>
+            	{{ $t('pages.dashboard.partials.noReply') }}
+            </p>
 		</template>
 	</BreezeAccordion>
 </template>
