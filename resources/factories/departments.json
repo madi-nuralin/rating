@@ -7,7 +7,7 @@
          "abbreviation":""
       },
       "ru":{
-         "name":"Кафедра Медиакоммуникации и Истории Казахстана",
+         "name":"Кафедра \"Медиакоммуникации и Истории Казахстана\"",
          "description":"",
          "abbreviation":""
       }
@@ -93,14 +93,14 @@
    {
       "department_type_id":1,
       "en":{
-         "name":"Information Systems",
+         "name":"Cathedra \"Information Systems\"",
          "description":"",
-         "abbreviation":""
+         "abbreviation":"Cathedra \"IS\""
       },
       "ru":{
-         "name":"Кафедра Информационные системы",
+         "name":"Кафедра \"Информационные системы\"",
          "description":"",
-         "abbreviation":""
+         "abbreviation":"Кафедра \"ИC\""
       }
    }
 ]

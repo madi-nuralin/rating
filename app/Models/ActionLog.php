@@ -9,6 +9,7 @@ class ActionLog extends Model
 {
     use HasFactory,
         Helpers\HasId,
+        Helpers\HasName,
         Helpers\BelongsToUser;
 
     const ACTION_CREATE = 'create';
@@ -47,9 +48,12 @@ class ActionLog extends Model
     public function toArray() {
     	return [
     		'id' => $this->id,
+    		//'table_alias' => $this->getTableAlias(),
     		'table_name' => $this->getTableName(),
     		'table_primary_key_id' => $this->getTablePrimaryKeyId(),
     		'action' => $this->getAction(),
+    		//'old_value' => $this->getOldValue(),
+    		//'new_value' => $this->getNewValue(),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

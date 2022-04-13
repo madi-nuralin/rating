@@ -33,12 +33,21 @@ class RatingParameterController extends Controller
      */
     public function create($rating)
     {
+        $rating = Rating::findOrFail($rating);
         return Inertia::render('Management/Rating/Partials/Parameter/Create', [
-            'rating' => Rating::findOrFail($rating)->toArray(),
-            'parameter_targets' => ParameterTarget::all()->map(function($parameterTarget) {
+            'rating' => $rating->toArray(),
+            'parameter_targets' => ParameterTarget::all()->map(function($parameterTarget) use ($rating) {
                 return array_merge(
                     $parameterTarget->toArray(), [
-                        'parameters' => $parameterTarget->parameters ? $parameterTarget->parameters->map(function($parameter) {
+                        'parameters' => $parameterTarget->parameters ? 
+                            collect(
+                                $parameterTarget->parameters()
+                                    ->whereNotIn(
+                                        'id', $rating->parameters 
+                                        ? $rating->parameters()->pluck('parameters.id')->toArray()
+                                        : array()
+                                    )->get()
+                            )->map(function($parameter) {
                             return array_merge(
                                 $parameter->toArray(), [
                                     'parameter_target' => $parameter->parameterTarget->toArray(),
