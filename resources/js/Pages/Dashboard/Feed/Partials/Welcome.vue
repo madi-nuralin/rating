@@ -30,7 +30,7 @@
                     {{ $t('pages.welcome.userManual.description') }}
                 </div>
 
-                <Link href="">
+                <Link :href="route('user-manual')">
                     <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                         <div>{{ $t('pages.welcome.userManual.title') }}</div>
 

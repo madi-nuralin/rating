@@ -597,7 +597,12 @@ var messages = {
         header: 'Dashboard',
         partials: {
           empty: 'Empty',
-          noReply: 'You didn\'t send any replies',
+          submission: {
+            noReply: 'You didn\'t send any replies'
+          },
+          verification: {
+            noReply: 'The user has not sent any responses'
+          },
           showDate: {
             trigger: 'Deadlines',
             begins: 'Begins: ',
@@ -1829,7 +1834,12 @@ var messages = {
         header: 'Панель управления',
         partials: {
           empty: 'Пусто',
-          noReply: 'Вы не отправили ответов',
+          submission: {
+            noReply: 'Вы не отправили ответов'
+          },
+          verification: {
+            noReply: 'Сотрудник не отправил ответов'
+          },
           showDate: {
             trigger: 'Сроки выполнения',
             begins: 'Начинается: ',
@@ -1849,7 +1859,7 @@ var messages = {
           },
           showStatistics: {
             trigger: 'Обзор',
-            score: 'Суммарный балл (без учета отклоненных ответов)',
+            score: 'Суммарный балл (без учета отклоненных и не расмотренных ответов)',
             total: 'Всего отправленных ответов'
           },
           showUser: {

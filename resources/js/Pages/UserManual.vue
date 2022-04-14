@@ -20,19 +20,13 @@
 
         <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex items-center pt-8 justify-start sm:space-x-8 space-y-2 sm:space-y-0">
-                <p class="text-slate-900 font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-left dark:text-white">
+                <p class="text-slate-900 font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight text-left dark:text-white">
                     {{ $t('pages.userManual.head.title') }}
                 </p>
             </div>
 
             <div class="mt-8 text-gray-600 dark:text-gray-400 overflow-hidden">
-                <!--div class="grid grid-cols-1 md:grid-cols-2">
-                </div-->
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p>
-                Why do we use it?
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                </p>
+                {{ $t('pages.welcome.userManual.description') }}
             </div>
 
         </div>

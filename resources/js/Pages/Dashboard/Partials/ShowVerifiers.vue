@@ -55,11 +55,23 @@
 						</div>
 					</div>
 
-					<ul role="list" class="text-sm mt-4">
-						<li v-for="target in activeVerifier.parameter_targets">
-							{{ target.name }}
-						</li>
-					</ul>
+					<div class="mt-4 text-sm" v-if="Object.keys(activeVerifier.employements).length > 0">
+						<span class="text-sm text-slate-500 mb-3 dark:text-slate-400">Занимаемые должности</span>
+						<ul role="list" class="list-disc list-inside">
+							<li v-for="employement in activeVerifier.employements">
+								{{ `${employement.position.name}, ${employement.department.name}` }}
+							</li>
+						</ul>
+					</div>
+
+					<div class="mt-4 text-sm" v-if="Object.keys(activeVerifier.parameter_targets).length > 0">
+						<span class="text-sm text-slate-500 mb-3 dark:text-slate-400">Направление деятельности</span>
+						<ul role="list" class="list-disc list-inside">
+							<li v-for="target in activeVerifier.parameter_targets">
+								{{ target.name }}
+							</li>
+						</ul>
+					</div>
 				</template>
 				<template #footer>
 					<breeze-button-secondary type="button" @click="open = false">

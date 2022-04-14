@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use DB;
 
 class VerifierController extends Controller
 {
@@ -24,7 +25,8 @@ class VerifierController extends Controller
             'verifiers' => auth()->user()->verifiers ? auth()->user()->verifiers->map(function($verifier) {
                 return array_merge(
                     $verifier->toArray(), [
-                        'rating' => $verifier->rating->toArray()
+                        'rating' => $verifier->rating->toArray(),
+                        'parameter_target' => $verifier->parameterTarget->toArray()
                     ]
                 );
             }) : [],
@@ -34,14 +36,14 @@ class VerifierController extends Controller
                     'users' => $verifier->rating->users()->paginate(10)->through(function($user) use ($verifier) {
                         return array_merge(
                             $user->toArray(), [
-                                'employements' => $user->employements ? collect($user->employements()->whereNull('terminated_at')->get())->map(function($employement) {
+                                'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {
                                     return array_merge(
                                         $employement->toArray(), [
                                             'department' => $employement->department->toArray(),
-                                            'position' => $employement->position->toArray()
+                                            'position' => $employement->position->toArray(),
                                         ]
                                     );
-                                }) : [],
+                                }) : array(),
                                 'statistics' => [
                                     'total' => count(
                                         collect(

@@ -71,7 +71,7 @@
             </ul>
 
             <p class="text-xs italic text-gray-600 dark:text-gray-500" v-else>
-            	{{ $t('pages.dashboard.partials.noReply') }}
+            	{{ $t(`pages.dashboard.partials.${type}.noReply`) }}
             </p>
 		</template>
 	</BreezeAccordion>

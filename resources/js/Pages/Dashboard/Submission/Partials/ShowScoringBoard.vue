@@ -27,14 +27,16 @@
                         <p v-html="$t(`pages.dashboard.submission.partials.showScoringBoard.form.scoring.${form.scoring}`, {'math_expression': form.math_expression})"/>
                         <p v-if="form.scoring == 'by_math_expression'">
                             <ul class="list-disc list-inside mt-2">
-                                <li v-for="field in form.fields">
-                                    {{ field.label }} - {{ field.variable }}
-                                     <ul class="ml-5 list-disc list-inside" v-if="field.type == 'select'">
-                                        <li v-for="option in field.options">
-                                            {{ option.name }} - {{ option.score }}
-                                        </li>
-                                     </ul>
-                                </li>
+                                <template v-for="field in form.fields">
+                                    <li v-if="field.variable">
+                                        <span>{{ field.label }}</span> - <span class="rounded-md bg-white px-1">{{ field.variable }}</span>
+                                         <ul class="ml-5 list-disc list-inside" v-if="field.type == 'select'">
+                                            <li v-for="option in field.options">
+                                                <span>{{ option.name }}</span> - <span class="rounded-md bg-white px-1">{{ option.score }}</span>
+                                            </li>
+                                         </ul>
+                                    </li>
+                                </template>
                             </ul>
                         </p>
                     </div>

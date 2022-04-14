@@ -157,7 +157,7 @@ export default {
     				return {
     					'value': verifier.id,
     					'name': verifier.rating.name,
-    					'description': verifier.rating.description
+    					'description': verifier.parameter_target.name
     				};
     			}) : Array()
     		};

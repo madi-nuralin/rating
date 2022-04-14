@@ -130,7 +130,15 @@ class SubmissionController extends Controller
                                     $parameterTarget = ParameterTarget::findOrFail($id);
 
                                     return $parameterTarget->toArray();
-                                })
+                                }),
+                                'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {
+                                    return array_merge(
+                                        $employement->toArray(), [
+                                            'department' => $employement->department->toArray(),
+                                            'position' => $employement->position->toArray(),
+                                        ]
+                                    );
+                                }) : array()
                             ]
                         );
                     })
