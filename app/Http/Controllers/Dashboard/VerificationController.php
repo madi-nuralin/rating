@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use DB;
 
@@ -237,6 +238,7 @@ class VerificationController extends Controller
         return Inertia::render('Dashboard/Verification/Show', [
             'verification' => array_merge(
                 $verification->toArray(), [
+                    'readonly' => strtotime($rating->getTime4()) < time(),
                     'submission' => array_merge(
                         $submission->toArray(), [
                             'rating' => $submission->toArray(),
@@ -318,6 +320,13 @@ class VerificationController extends Controller
 
         $verificationStatus = VerificationStatus::findOrFail($input['verification_status']);
         $verification = Verification::findOrFail($id);
+
+        if (strtotime($verification->submission->rating->getTime4()) < time()) {
+            session()->flash('flash.banner', ['pages.dashboard.submission.update.banner']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return Redirect::back();
+        }
+        
         $verification->setVerificationStatus($verificationStatus);
         $verification->setMessage($input['message']);
         

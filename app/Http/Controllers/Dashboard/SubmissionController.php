@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use DB;
 
@@ -198,6 +199,7 @@ class SubmissionController extends Controller
         return Inertia::render('Dashboard/Submission/Show', [
             'submission' => array_merge(
                 $submission->toArray(), [
+                    'readonly' => strtotime($rating->getTime2()) < time(),
                     'rating' => $submission->rating->toArray(),
                     'parameter' => array_merge(
                         $parameter->toArray(), [
@@ -265,12 +267,18 @@ class SubmissionController extends Controller
     {
         $input = $request->all();
 
-        Submission::updateHelper($request, $id, 'updateSubmission');
+        if (strtotime(Submission::findOrFail($id)->rating->getTime2()) < time()) {
+            session()->flash('flash.banner', ['pages.dashboard.submission.update.banner']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return Redirect::back();
+        } else {
 
-        return $request->wantsJson()
+            Submission::updateHelper($request, $id, 'updateSubmission');
+
+            return $request->wantsJson()
                     ? new JsonResponse('', 200)
                     : back()->with('status', 'submission-updated');
-
+        }
     }
 
     /**

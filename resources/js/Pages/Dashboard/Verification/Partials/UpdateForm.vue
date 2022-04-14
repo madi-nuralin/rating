@@ -39,30 +39,35 @@
                     :id="FIELD[field.id]"
                     type="text"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeInput v-else-if="field.type == 'text'"
                     :id="FIELD[field.id]"
                     type="text"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeTextarea v-else-if="field.type == 'textarea'"
                     :id="FIELD[field.id]"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeInput v-else-if="field.type == 'email'"
                     :id="FIELD[field.id]"
                     type="email"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeInput v-else-if="field.type == 'url'"
                     :id="FIELD[field.id]"
                     type="url"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeSelect v-else-if="field.type == 'select'"
                     :id="FIELD[field.id]"
@@ -70,7 +75,8 @@
                     :value="_form[FIELD[field.id]]"
                     @input="_form[FIELD[field.id]] = $event"
                     :options="options[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeSelect v-else-if="field.type == 'multiselect'"
                     :id="FIELD[field.id]"
@@ -78,32 +84,37 @@
                     :value="_form[FIELD[field.id]]"
                     @input="_form[FIELD[field.id]] = $event"
                     :options="options[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeFile v-else-if="field.type == 'file'"
                     :id="FIELD[field.id]"
                     :destroy="route('submission-file.destroy', {'submission':verification.submission.id, 'form_field': field.id})"
                     :value="_form[FIELD[field.id]]"
                     @input="_form[FIELD[field.id]] = $event;"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :readonly="verification.readonly" />
 
                 <BreezeInput v-else-if="field.type == 'time'"
                     :id="FIELD[field.id]"
                     type="time"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeInput v-else-if="field.type == 'date'"
                     :id="FIELD[field.id]"
                     type="date"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeInput v-else-if="field.type == 'datetime'"
                     :id="FIELD[field.id]"
                     type="datetime-local"
                     v-model="_form[FIELD[field.id]]"
-                    class="mt-1 block w-full" />
+                    class="mt-1 block w-full"
+                    :disabled="verification.readonly" />
 
                 <BreezeInputError :message="_form.errors[FIELD[field.id]]" class="mt-2" />
             </div>
