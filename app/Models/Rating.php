@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
 use DB;
 
 use App\Models\Forms\Form;
@@ -31,7 +32,8 @@ class Rating extends Model
         'time4',
     ];
 
-    protected const HTML_DATE_FORMAT = 'Y-m-d\Th:i:s';
+    protected const HTML_DATE_FORMAT = 'Y-m-d\TH:i';
+    protected const MYSQL_DATE_FORMAT = 'Y-m-d H:i:s';
 
     public function settings() {
     	return $this->hasMany(RatingSetting::class);
@@ -57,19 +59,27 @@ class Rating extends Model
     }
 
     public function setTime1($time1) {
-    	$this->time1 = $time1;
+    	$this->time1 = DateTime::createFromFormat(
+            Rating::HTML_DATE_FORMAT, $time1
+        )->format(Rating::MYSQL_DATE_FORMAT);
     }
 
     public function setTime2($time2) {
-    	$this->time2 = $time2;
+    	$this->time2 = DateTime::createFromFormat(
+            Rating::HTML_DATE_FORMAT, $time2
+        )->format(Rating::MYSQL_DATE_FORMAT);
     }
 
     public function setTime3($time3) {
-    	$this->time3 = $time3;
+    	$this->time3 = DateTime::createFromFormat(
+            Rating::HTML_DATE_FORMAT, $time3
+        )->format(Rating::MYSQL_DATE_FORMAT);
     }
 
     public function setTime4($time4) {
-    	$this->time4 = $time4;
+    	$this->time4 = DateTime::createFromFormat(
+            Rating::HTML_DATE_FORMAT, $time4
+        )->format(Rating::MYSQL_DATE_FORMAT);
     }
 
     public function getTime1() {
