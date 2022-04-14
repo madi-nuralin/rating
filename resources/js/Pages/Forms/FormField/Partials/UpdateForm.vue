@@ -141,7 +141,7 @@
                     min_size: this.getValidationRules('min_size'),
                     max_size: this.getValidationRules('max_size'),
                     file_size: this.getValidationRules('file_size'),
-                    mimes: this.getValidationRules('mimes'),
+                    mimes: this.getValidationRules('mimes').split(","),
                     is_integer: this.getValidationRules('is_integer'),
                     variable: this.field.variable,
                 })

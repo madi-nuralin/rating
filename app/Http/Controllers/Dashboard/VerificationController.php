@@ -322,7 +322,7 @@ class VerificationController extends Controller
         $verification->setMessage($input['message']);
         
         if ($verificationStatus->getContext() == 'fixed-and-accepted') {
-            Submission::updateHelper($request, $id, 'updateVerification');
+            Submission::updateHelper($request, $verification->submission->getId(), 'updateVerification');
         }
 
         $verification->save();
