@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full bg-gray-200 h-1 relative overflow-hidden"
-		:class="[{'rounded-full': rounded}, { indeterminate: indeterminate}]">
+		:class="[{'rounded-full': rounded}, { indeterminate: indeterminate}]" v-if="type == 'line'">
 		<div class="h-full progressbar"
 			:class="[`bg-${color}-500`, {'absolute top-0': indeterminate}, {'rounded-full': rounded}]"
 			:style="{width: `${percentage}%`}"
@@ -12,6 +12,9 @@
 				<slot></slot>
 			</span>
 		</div>
+	</div>
+
+	<div v-else-if="type == 'circle'">
 	</div>
 </template>
 
@@ -32,7 +35,15 @@
 				type: Boolean,
 				default: true
 			},
-			indeterminate: Boolean
+			indeterminate: Boolean,
+			type: {
+				type: String,
+				default: 'line'
+			}
+		},
+
+		components: {
+			//
 		}
 	};
 </script>
