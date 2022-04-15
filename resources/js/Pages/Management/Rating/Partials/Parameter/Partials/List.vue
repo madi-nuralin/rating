@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <Link class="ml-2 text-sm text-gray-400 underline" :href="route('rating.parameter.show', {'parameter': item.id, 'rating': rating.id})">
-                                Update
+                                {{ $t('generic.updateButton') }}
                             </Link>
                         </div>
                     </template>

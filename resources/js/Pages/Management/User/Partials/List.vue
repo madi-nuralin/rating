@@ -12,18 +12,23 @@
             <div class="col-span-6">
                 <BreezeList :items="users">
                     <template #item="{item}">
-                        <div class="flex space-x-2">
-                            <img class="w-8 h-8 rounded-full" :src="item.profile_photo_path" :alt="item.name">
-                            <div>
-                                <Link class="hover:underline" :href="route('user.show', {'id': item.id})">
-                                    {{ item.name }}
-                                </Link>
-                                <div class="text-sm text-gray-400">
-                                    <p class="line-clamp-1">
-                                        {{ item.email }}
-                                    </p>
+                        <div class="flex justify-between">
+                            <div class="flex items-center space-x-2">
+                                <img class="w-8 h-8 rounded-full" :src="item.profile_photo_path" :alt="item.name">
+                                <div>
+                                    <div>
+                                        {{ item.name }}
+                                    </div>
+                                    <div class="text-sm text-gray-400">
+                                        <p class="line-clamp-1">
+                                            {{ item.email }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('user.show', {'id': item.id})">
+                                {{ $t('generic.updateButton') }}
+                            </Link>
                         </div>
                     </template>
                 </BreezeList>

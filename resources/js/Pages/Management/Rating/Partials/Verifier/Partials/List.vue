@@ -21,8 +21,8 @@
                                     </p>
                                 </div>
                             </div>
-                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('verifier.show', {'id': item.id})">
-                                Update
+                            <Link class="ml-2 flex-none text-sm text-gray-400 underline" :href="route('verifier.show', {'id': item.id})">
+                                {{ $t('generic.updateButton') }}
                             </Link>
                         </div>
                     </template>

@@ -12,13 +12,18 @@
             <div class="col-span-6">
                 <BreezeList :items="employements">
                     <template #item="{item}">
-                        <div>
-                            <Link class="hover:underline" :href="route('employement.show', {'id': item.id})">
-                                {{ `${item.user.name} - ${item.position.name}` }}
-                            </Link>
-                            <div class="text-sm text-gray-400">
-                                <p class="line-clamp-1">{{ item.department.name }}</p>
+                        <div class="flex justify-between">
+                            <div>
+                                <div>{{ `${item.user.name} - ${item.position.name}` }}</div>
+                                <div class="flex flex-col text-sm text-gray-400">
+                                    <p class="line-clamp-3">
+                                        {{ item.department.name }}
+                                    </p>
+                                </div>
                             </div>
+                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('employement.show', {'id': item.id})">
+                                {{ $t('generic.updateButton') }}
+                            </Link>
                         </div>
                     </template>
                 </BreezeList>

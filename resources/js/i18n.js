@@ -1256,6 +1256,9 @@ var messages = {
         multipleSelectTitle: 'Multiple select',
         closeButton: 'Close'
       }
+    },
+    generic: {
+      updateButton: 'Update'
     }
   },
   ru: {
@@ -2504,6 +2507,9 @@ var messages = {
         multipleSelectTitle: 'Выбрать несколько',
         closeButton: 'Закрыть'
       }
+    },
+    generic: {
+      updateButton: 'Обновить'
     }
   }
 };

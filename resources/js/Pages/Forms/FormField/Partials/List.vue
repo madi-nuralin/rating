@@ -14,15 +14,16 @@
                     <template #item="{item}">
                         <div class="flex justify-between">
                             <div>
-                                <Link class="hover:underline" :href="route('form-field.show', {'id': item.id})">
-                                    {{ item.label }}
-                                </Link>
+                                <div>{{ item.label }}</div>
                                 <div class="flex flex-col text-sm text-gray-400">
                                     <p class="line-clamp-3">
                                         {{ item.type }}
                                     </p>
                                 </div>
                             </div>
+                            <Link class="ml-2 text-sm text-gray-400 underline" :href="route('form-field.show', {'id': item.id})">
+                                {{ $t('generic.updateButton') }}
+                            </Link>
                         </div>
                     </template>
                 </BreezeList>
