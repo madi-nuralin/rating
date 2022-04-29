@@ -26,6 +26,8 @@ class CreateRatingUserTable extends Migration
                   ->references('id')
                   ->on('ratings')
                   ->onDelete('cascade');
+            $table->boolean('is_approved')
+                  ->default(false);
             $table->timestamps();
         });
     }

@@ -32,6 +32,8 @@ class SubmissionController extends Controller
     {
         $rating = Rating::findOrFail(request()->input('rating'));
         $user = auth()->user();
+        $rating->approveUser($user);
+        $rating->save();
 
         return Inertia::render('Dashboard/Submission/Index', [
             'rating' => array_merge(
@@ -46,6 +48,7 @@ class SubmissionController extends Controller
                             ])->get()
                         )
                     ],
+                    'is_approved' => $rating->userIsApproved($user),
                     'targets' => collect(ParameterTarget::whereHas(
                         'parameters', function($q) use ($rating) {
                             $q->whereIn('id', $rating->parameters()->pluck('parameters.id'));

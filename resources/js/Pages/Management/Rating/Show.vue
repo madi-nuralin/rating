@@ -17,6 +17,9 @@
                 <verifier-list :rating="$page.props.rating" :translate="translate[4]" class="mt-10 sm:mt-0" />
                 <breeze-section-border />
 
+                <approver-list :rating="$page.props.rating" :translate="translate[4]" class="mt-10 sm:mt-0" />
+                <breeze-section-border />
+
                 <delete-form :rating="$page.props.rating" :translate="translate[2]" class="mt-10 sm:mt-0" />
             </div>
         </div>
@@ -30,6 +33,7 @@
     import DeleteForm from './Partials/DeleteForm.vue'
     import ParameterList from './Partials/Parameter/Partials/List.vue'
     import VerifierList from './Partials/Verifier/Partials/List.vue'
+    import ApproverList from './Partials/Approver/Partials/List.vue'
     import { Head } from '@inertiajs/inertia-vue3';
 
     export default {
@@ -40,6 +44,7 @@
             DeleteForm,
             ParameterList,
             VerifierList,
+            ApproverList,
             Head,
         },
 

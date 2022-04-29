@@ -17,7 +17,7 @@ class User extends Authenticatable
         Helpers\HasFirstname,
         Helpers\HasLastname,
         Helpers\BelongsToManyRole,
-        Helpers\BelongsToManyRating,
+        Helpers\BelongsToManyRatingWithIsApproved,
         Helpers\HasManyEmployement,
         Helpers\HasManySubmission,
         Helpers\HasManyVerifier,
