@@ -21,6 +21,7 @@ class User extends Authenticatable
         Helpers\HasManyEmployement,
         Helpers\HasManySubmission,
         Helpers\HasManyVerifier,
+        Helpers\HasManyApprover,
         Helpers\FileHelper;
 
     /**

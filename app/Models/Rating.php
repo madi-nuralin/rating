@@ -17,6 +17,7 @@ class Rating extends Model
     	Helpers\HasDescription,
         Helpers\HasManyVerifier,
         Helpers\HasManySubmission,
+        Helpers\HasManyApprover,
         Helpers\BelongsToManyUserWithIsApproved,
         Helpers\BelongsToManyParameterWithForm;
 

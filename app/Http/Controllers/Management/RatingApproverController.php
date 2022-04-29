@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Rating;
+use App\Models\User;
+use App\Models\Department;
+
 class RatingApproverController extends Controller
 {
     /**
@@ -24,7 +28,22 @@ class RatingApproverController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Management/Rating/Partials/Approver/Create', [
+            'rating' => Rating::findOrFail(request()->input('rating'))->toArray(),
+            'departments' => Department::all()->map(function($department) {
+                return $department->toArray();
+            }),
+            'users' => User::all()->map(function($user) {
+                return $user->toArray();
+            }),
+            /*collect(User::whereHas(
+                'roles', function($q) {
+                    $q->where('context', 'verifier');
+                })->get())->map(function($user) {
+                    return $user->toArray();
+                }
+            )*/
+        ]);
     }
 
     /**

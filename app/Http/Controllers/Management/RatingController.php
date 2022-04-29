@@ -118,6 +118,15 @@ class RatingController extends Controller
                                 'target' => $verifier->parameterTarget->toArray()
                             ]
                         );
+                    }),
+                    'approvers' => $rating->approvers()->paginate(10)->through(function($approver) {
+                        return array_merge(
+                            $approver->toArray(), [
+                                'user' => $approver->user->toArray(),
+                                'department' => $approver->department->toArray(),
+                                //'rating' => $approver->rating->toArray()
+                            ]
+                        );
                     })
                 ]
             ),
