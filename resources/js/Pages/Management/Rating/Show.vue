@@ -17,7 +17,7 @@
                 <verifier-list :rating="$page.props.rating" :translate="translate[4]" class="mt-10 sm:mt-0" />
                 <breeze-section-border />
 
-                <approver-list :rating="$page.props.rating" :translate="translate[4]" class="mt-10 sm:mt-0" />
+                <approver-list :rating="$page.props.rating" :translate="translate[5]" class="mt-10 sm:mt-0" />
                 <breeze-section-border />
 
                 <delete-form :rating="$page.props.rating" :translate="translate[2]" class="mt-10 sm:mt-0" />
@@ -67,6 +67,9 @@
                     },
                     function (path) {
                         return $t(`pages.management.verifier.list.${path}`);
+                    },
+                    function (path) {
+                        return $t(`pages.management.rating.approver.list.${path}`);
                     },
                 ]
             }

@@ -53,6 +53,7 @@ use App\Http\Controllers\Management\EmployementController;
 use App\Http\Controllers\Management\RatingController;
 use App\Http\Controllers\Management\RatingVerifierController;
 use App\Http\Controllers\Management\RatingParameterController;
+use App\Http\Controllers\Management\RatingApproverController;
 use App\Http\Controllers\Management\ParameterController;
 
 use App\Http\Controllers\Forms\FormController;
@@ -128,6 +129,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('verifier', RatingVerifierController::class,
                     ['only' => ['create', 'store', 'show', 'update', 'destroy']]);
                 Route::resource('{rating}/parameter', RatingParameterController::class, [
+                        'as' => 'rating',
+                        'only' => ['create', 'store', 'show', 'update', 'destroy']
+                    ]
+                );
+                Route::resource('{rating}/approver', RatingApproverController::class, [
                         'as' => 'rating',
                         'only' => ['create', 'store', 'show', 'update', 'destroy']
                     ]

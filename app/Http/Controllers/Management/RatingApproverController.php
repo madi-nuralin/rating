@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 use App\Models\Rating;
 use App\Models\User;
@@ -26,10 +29,12 @@ class RatingApproverController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($rating)
     {
+        $rating = Rating::findOrFail($rating);
+
         return Inertia::render('Management/Rating/Partials/Approver/Create', [
-            'rating' => Rating::findOrFail(request()->input('rating'))->toArray(),
+            'rating' => $rating->toArray(),
             'departments' => Department::all()->map(function($department) {
                 return $department->toArray();
             }),

@@ -435,6 +435,54 @@ var messages = {
               }
             },
           },
+          approver: {
+            head: {
+              title: 'Rating management: Approvers'
+            },
+            header: 'Rating management: Approvers',
+            create: {
+              title: 'Add a new approver',
+              description: 'Create a new  approvement configuration for this rating.',
+              form: {
+                departments: 'Departments',
+                user: 'User'
+              }
+            },
+            update: {
+              title: 'Update a approver',
+              description: 'Update a approvement configuration for this rating.',
+              form: {
+                departments: 'Departments',
+                user: 'User'
+              }
+            },
+            delete: {
+              title: 'Delete Approver',
+              description: 'Permanently delete this approver.',
+              content: {
+                deleteInfo: 'Once a approver is deleted, all of its resources and data will be permanently deleted. Before deleting this rating, please download any data or information regarding this rating that you wish to retain.',
+                deleteButton: 'Delete Approver',
+                modal: {
+                  title: 'Delete Approver',
+                  content: 'Are you sure you want to delete this approver? Once a verifer is deleted, all of its resources and data will be permanently deleted.',
+                  footer: {
+                    cancelButton: 'Cancel',
+                    deleteButton: 'Delete Approver'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Rating approvers list',
+              description: 'The approvers of this rating which are registered.',
+              form: {
+                //
+              },
+              actions: {
+                createButton: 'Create New'
+              }
+            },
+          }
         },
         verifier: {
           head: {
@@ -1627,9 +1675,9 @@ var messages = {
           },
           parameter: {
             head: {
-              title: 'Управление параметрами оценки рейтнга'
+              title: 'Настройка параметров'
             },
-            header: 'Управление параметрами оценки рейтнга',
+            header: 'Настройка параметров',
             create: {
               title: 'Добавить новый параметр',
               description: 'Создайте новую конфигурацию параметра оценки для этого рейтинга.',
@@ -1649,7 +1697,7 @@ var messages = {
               }
             },
             list: {
-              title: 'Параметры оценки',
+              title: 'Настройка параметров',
               description: 'Список параметров оценивания. Настройка параметров оценивания задается формой заполнения.',
               form: {
                 //
@@ -1674,13 +1722,61 @@ var messages = {
                 }
               }
             }
+          },
+          approver: {
+            head: {
+              title: 'Настройка утверждения'
+            },
+            header: 'Настройка утверждения',
+            create: {
+              title: 'Add a new approver',
+              description: 'Create a new  approvement configuration for this rating.',
+              form: {
+                departments: 'Отделы',
+                user: 'Пользователь'
+              }
+            },
+            update: {
+              title: 'Update a approver',
+              description: 'Update a approvement configuration for this rating.',
+              form: {
+                departments: 'Отделы',
+                user: 'Пользователь'
+              }
+            },
+            delete: {
+              title: 'Удалить утверждающего',
+              description: 'Permanently delete this approver.',
+              content: {
+                deleteInfo: 'Once a approver is deleted, all of its resources and data will be permanently deleted. Before deleting this rating, please download any data or information regarding this rating that you wish to retain.',
+                deleteButton: 'Delete Approver',
+                modal: {
+                  title: 'Delete Approver',
+                  content: 'Are you sure you want to delete this approver? Once a verifer is deleted, all of its resources and data will be permanently deleted.',
+                  footer: {
+                    cancelButton: 'Cancel',
+                    deleteButton: 'Delete Approver'
+                  }
+                }
+              }
+            },
+            list: {
+              title: 'Настройка утверждения',
+              description: 'Список утверждающих данное оценивание. Утверждающие прикрепляются к определенному направлению деятельности оценивания.',
+              form: {
+                //
+              },
+              actions: {
+                createButton: 'Добавить'
+              }
+            }
           }
         },
         verifier: {
           head: {
-            title: 'Управление подтверждением рейтнга'
+            title: 'Настройка подтверждения'
           },
-          header: 'Управление подтверждением рейтнга',
+          header: 'Настройка подтверждения',
           create: {
             title: 'Добавить нового подтверждающего',
             description: 'Создайте новую конфигурацию подтверждения для этого рейтинга.',
@@ -1698,7 +1794,7 @@ var messages = {
             }
           },
           list: {
-            title: 'Список подтверждающих',
+            title: 'Настройка подтверждения',
             description: 'Список подтверждающих данное оценивание. Подтверждающие прикрепляются к определенному направлению деятельности оценивания.',
             form: {
               //
