@@ -33,6 +33,7 @@ class CreateVerifiersTable extends Migration
                   ->references('id')
                   ->on('parameter_targets')
                   ->onDelete('cascade');
+            $table->unique(array('user_id', 'rating_id', 'parameter_target_id'));
             $table->timestamps();
         });
     }

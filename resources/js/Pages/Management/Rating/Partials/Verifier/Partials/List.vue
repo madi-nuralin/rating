@@ -14,14 +14,14 @@
                     <template #item="{item}">
                         <div class="flex justify-between">
                             <div>
-                                <div>{{ `${item.user.name} - ${item.user.email}` }}</div>
+                                <div>{{ item.user.name }}</div>
                                 <div class="flex flex-col text-sm text-gray-400">
                                     <p class="line-clamp-3">
-                                        {{ `${item.target.name}` }}
+                                        {{ item.target.name }}
                                     </p>
                                 </div>
                             </div>
-                            <Link class="ml-2 flex-none text-sm text-gray-400 underline" :href="route('verifier.show', {'id': item.id})">
+                            <Link class="ml-2 flex-none text-sm text-gray-400 underline" :href="route('rating.verifier.show', {'verifier': item.id, 'rating': rating.id})">
                                 {{ $t('generic.updateButton') }}
                             </Link>
                         </div>
@@ -31,7 +31,7 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('verifier.create', {'rating': rating.id})">
+            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('rating.verifier.create', {'rating': rating.id})">
                 {{ translate('actions.createButton') }}
             </Link>
         </template>

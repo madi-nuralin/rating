@@ -66,7 +66,7 @@
                         return $t(`pages.management.rating.parameter.list.${path}`);
                     },
                     function (path) {
-                        return $t(`pages.management.verifier.list.${path}`);
+                        return $t(`pages.management.rating.verifier.list.${path}`);
                     },
                     function (path) {
                         return $t(`pages.management.rating.approver.list.${path}`);

@@ -11,13 +11,13 @@
         <template #form>
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="target" :value="translate('form.target')" />
-                <BreezeSelect id="target" class="mt-1 block w-full" :value="form.target" @input="form.target = $event" :options="options.target" :multiple="false" />
+                <BreezeSelect id="target" class="mt-1 block w-full" :value="form.target" @input="form.target = $event" :options="options.target" :multiple="false" :disabled="true"/>
                 <BreezeInputError :message="form.errors.target" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <BreezeLabel for="user" :value="translate('form.user')" />
-                <BreezeSelect id="user" class="mt-1 block w-full" :value="form.user" @input="form.user = $event" :options="options.user" :multiple="false" />
+                <BreezeSelect id="user" class="mt-1 block w-full" :value="form.user" @input="form.user = $event" :options="options.user" :multiple="false" :disabled="true"/>
                 <BreezeInputError :message="form.errors.user" class="mt-2" />
             </div>
         </template>
@@ -69,7 +69,7 @@
 
         methods: {
             updateVerifier() {
-                this.form.put(route('verifier.update', {'id': this.verifier.id}), {
+                this.form.put(route('rating.verifier.update', {'rating': this.verifier.rating.id, 'verifier': this.verifier.id}), {
                     errorBag: 'updateVerifier',
                     preserveScroll: true
                 });

@@ -126,8 +126,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('rating', RatingController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
             Route::group(['prefix' => 'rating'], function() {
-                Route::resource('verifier', RatingVerifierController::class,
-                    ['only' => ['create', 'store', 'show', 'update', 'destroy']]);
+                Route::resource('{rating}/verifier', RatingVerifierController::class, [
+                        'as' => 'rating',
+                        'only' => ['create', 'store', 'show', 'update', 'destroy']
+                    ]
+                );
                 Route::resource('{rating}/parameter', RatingParameterController::class, [
                         'as' => 'rating',
                         'only' => ['create', 'store', 'show', 'update', 'destroy']

@@ -10,9 +10,9 @@
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="departments" :value="translate('form.departments')" />
-                <BreezeSelect id="departments" class="mt-1 block w-full" :value="_form.departments" @input="_form.departments = $event;" :options="options.departments" :multiple="true" />
-                <BreezeInputError :message="_form.errors.departments" class="mt-2" />
+                <BreezeLabel for="department" :value="translate('form.departments')" />
+                <BreezeSelect id="department" class="mt-1 block w-full" :value="_form.department" @input="_form.department = $event;" :options="options.department" :multiple="false" />
+                <BreezeInputError :message="_form.errors.department" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -81,7 +81,7 @@
         computed: {
             options() {
                 return {
-                    'departments': this.departments ? this.departments.map(function(department) {
+                    'department': this.departments ? this.departments.map(function(department) {
                         return {
                             'value': department.id,
                             'name': department.name,

@@ -33,6 +33,7 @@ class CreateApproversTable extends Migration
                   ->references('id')
                   ->on('departments')
                   ->onDelete('cascade');
+            $table->unique(array('user_id', 'rating_id', 'department_id'));
             $table->timestamps();
         });
     }

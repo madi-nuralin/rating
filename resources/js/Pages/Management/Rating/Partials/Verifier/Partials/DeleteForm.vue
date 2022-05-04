@@ -1,41 +1,41 @@
 <template>
     <breeze-action-section>
         <template #title>
-            {{ $t('pages.management.verifier.delete.title') }}
+            {{ $t('pages.management.rating.verifier.delete.title') }}
         </template>
 
         <template #description>
-            {{ $t('pages.management.verifier.delete.description') }}
+            {{ $t('pages.management.rating.verifier.delete.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                {{ $t('pages.management.verifier.delete.content.deleteInfo') }}
+                {{ $t('pages.management.rating.verifier.delete.content.deleteInfo') }}
             </div>
 
             <div class="mt-5">
                 <breeze-button-danger @click="confirmVerifierDeletion">
-                    {{ $t('pages.management.verifier.delete.content.deleteButton') }}
+                    {{ $t('pages.management.rating.verifier.delete.content.deleteButton') }}
                 </breeze-button-danger>
             </div>
 
             <!-- Confirmation Modal -->
             <breeze-modal-confirmation :show="confirmingVerifierDeletion" @close="confirmingVerifierDeletion = false">
                 <template #title>
-                    {{ $t('pages.management.verifier.delete.content.modal.title') }}
+                    {{ $t('pages.management.rating.verifier.delete.content.modal.title') }}
                 </template>
 
                 <template #content>
-                    {{ $t('pages.management.verifier.delete.content.modal.content') }}
+                    {{ $t('pages.management.rating.verifier.delete.content.modal.content') }}
                 </template>
 
                 <template #footer>
                     <breeze-button-secondary @click="confirmingVerifierDeletion = false">
-                        {{ $t('pages.management.verifier.delete.content.modal.footer.cancelButton') }}
+                        {{ $t('pages.management.rating.verifier.delete.content.modal.footer.cancelButton') }}
                     </breeze-button-secondary>
 
                     <breeze-button-danger class="ml-2" @click="deleteVerifier" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        {{ $t('pages.management.verifier.delete.content.modal.footer.deleteButton') }}
+                        {{ $t('pages.management.rating.verifier.delete.content.modal.footer.deleteButton') }}
                     </breeze-button-danger>
                 </template>
             </breeze-modal-confirmation>
@@ -74,7 +74,7 @@
             },
 
             deleteVerifier() {
-                this.form.delete(route('verifier.destroy', {'id': this.verifier.id}), {
+                this.form.delete(route('rating.verifier.destroy', {'rating': this.verifier.rating.id, 'verifier': this.verifier.id}), {
                     errorBag: 'deleteVerifier'
                 });
             },

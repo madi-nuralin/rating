@@ -69,7 +69,7 @@
 
         methods: {
             createVerifier() {
-                this.form.post(route('verifier.store', {'rating': this.rating.id}), {
+                this.form.post(route('rating.verifier.store', {'rating': this.rating.id}), {
                     errorBag: 'createVerifier',
                     preserveScroll: true,
                     //onSuccess: () => Inertia.reload({ only: ['positions'] })

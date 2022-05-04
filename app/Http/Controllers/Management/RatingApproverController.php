@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
+use App\Models\Approver;
 use App\Models\Rating;
 use App\Models\User;
 use App\Models\Department;
@@ -57,9 +58,43 @@ class RatingApproverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $rating)
     {
-        //
+        $input = $request->all();
+
+        Validator::make($input, [
+            'user' => ['required', 'numeric'],
+            'department' => ['required', 'numeric']
+        ])->validateWithBag('createRatingApprover');
+
+        $rating = Rating::findOrFail($rating);
+        $user = User::findOrFail($input['user']);
+        $department = Department::findOrFail($input['department']);
+
+        $approver = Approver::where([
+            'rating_id' => $rating->id,
+            'user_id' => $user->id,
+            'department_id' => $department->id
+        ])->get()->first();
+
+        if (is_null($approver)) {
+            $approver = Approver::create([
+                'rating_id' => $rating->id,
+                'user_id' => $user->id,
+                'department_id' => $department->id
+            ]);
+        }
+
+        $approver->save();
+
+        session()->flash('flash.banner', [
+            'components.banner.resource.created', [
+                'href' => route('rating.approver.show', ['rating' => $rating->id, 'approver' => $approver->getId()])
+            ]
+        ]);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('rating.show', ['rating' => $rating->id]));
     }
 
     /**
@@ -68,9 +103,25 @@ class RatingApproverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($rating, $approver)
     {
-        //
+        $approver = Approver::findOrFail($approver);
+
+        return Inertia::render('Management/Rating/Partials/Approver/Show', [
+            'approver' => array_merge(
+                $approver->toArray(), [
+                    'user' => $approver->user->toArray(),
+                    'department' => $approver->department->toArray(),
+                    'rating' => $approver->rating->toArray()
+                ]
+            ),
+            'departments' => Department::all()->map(function($department) {
+                return $department->toArray();
+            }),
+            'users' => User::all()->map(function($user) {
+                return $user->toArray();
+            }),
+        ]);
     }
 
     /**
@@ -91,9 +142,11 @@ class RatingApproverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $rating, $approver)
     {
-        //
+        return $request->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'verifier-updated');
     }
 
     /**
@@ -102,8 +155,15 @@ class RatingApproverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rating, $approver)
     {
-        //
+        $approver = Approver::findOrFail($approver);
+        $rating = $approver->rating;
+        $approver->delete();
+
+        session()->flash('flash.banner', ['components.banner.resource.deleted']);
+        session()->flash('flash.bannerStyle', 'success');
+
+        return Inertia::location(route('rating.show', ['rating' => $rating->id]));
     }
 }

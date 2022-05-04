@@ -43,13 +43,13 @@
 
                 return [
                     function (path) {
-                        return $t(`pages.management.verifier.${path}`);
+                        return $t(`pages.management.rating.verifier.${path}`);
                     },
                     function (path) {
-                        return $t(`pages.management.verifier.update.${path}`);
+                        return $t(`pages.management.rating.verifier.update.${path}`);
                     },
                     function (path) {
-                        return $t(`pages.management.verifier.delete.${path}`);
+                        return $t(`pages.management.rating.verifier.delete.${path}`);
                     },
                 ]
             }

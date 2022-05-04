@@ -38,10 +38,10 @@
 
                 return [
                     function (path) {
-                        return $t(`pages.management.verifier.${path}`);
+                        return $t(`pages.management.rating.verifier.${path}`);
                     },
                     function (path) {
-                        return $t(`pages.management.verifier.create.${path}`);
+                        return $t(`pages.management.rating.verifier.create.${path}`);
                     },
                 ]
             }

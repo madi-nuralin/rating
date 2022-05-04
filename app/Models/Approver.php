@@ -13,6 +13,17 @@ class Approver extends Model
     	Helpers\BelongsToUser,
     	Helpers\BelongsToDepartment;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'department_id',
+        'user_id',
+        'rating_id'
+    ];
+
     public function toArray()
     {
     	return [

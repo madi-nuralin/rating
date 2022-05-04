@@ -32,10 +32,12 @@ class RatingVerifierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($rating)
     {
+        $rating = Rating::findOrFail($rating);
+
         return Inertia::render('Management/Rating/Partials/Verifier/Create', [
-            'rating' => Rating::findOrFail(request()->input('rating'))->toArray(),
+            'rating' => $rating->toArray(),
             'targets' => ParameterTarget::all()->map(function($parameterTarget) {
                 return $parameterTarget->toArray();
             }),
@@ -55,7 +57,7 @@ class RatingVerifierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $rating)
     {
         $input = $request->all();
 
@@ -64,15 +66,23 @@ class RatingVerifierController extends Controller
             'user' => ['required', 'numeric']
         ])->validateWithBag('createVerifier');
 
-        $rating = Rating::findOrFail($input['rating']);
+        $rating = Rating::findOrFail($rating);
         $parameterTarget = ParameterTarget::findOrFail($input['target']);
         $user = User::findOrFail($input['user']);
 
-        $verifier = Verifier::create([
-            'user_id' => $user->getId(),
+        $verifier = Verifier::where([
+            'user_id' => $user->id,
             'parameter_target_id' => $parameterTarget->getId(),
-            'rating_id' => $rating->getId()
-        ]);
+            'rating_id' => $rating->id
+        ])->get()->first();
+
+        if (is_null($verifier)) {
+            $verifier = Verifier::create([
+                'user_id' => $user->getId(),
+                'parameter_target_id' => $parameterTarget->getId(),
+                'rating_id' => $rating->getId()
+            ]);
+        }
 
         $verifier->save();
 
@@ -88,7 +98,7 @@ class RatingVerifierController extends Controller
 
         session()->flash('flash.banner', [
             'components.banner.resource.created', [
-                'href' => route('verifier.show', ['verifier' => $verifier->getId()])
+                'href' => route('rating.verifier.show', ['rating' => $rating->id,'verifier' => $verifier->getId()])
             ]
         ]);
         session()->flash('flash.bannerStyle', 'success');
@@ -102,15 +112,16 @@ class RatingVerifierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($rating, $verifier)
     {
-        $verifier = Verifier::findOrFail($id);
+        $verifier = Verifier::findOrFail($verifier);
 
         return Inertia::render('Management/Rating/Partials/Verifier/Show', [
             'verifier' => array_merge(
                 $verifier->toArray(), [
                     'user' => $verifier->user->toArray(),
-                    'target' => $verifier->parameterTarget->toArray()
+                    'target' => $verifier->parameterTarget->toArray(),
+                    'rating' => $verifier->rating->toArray()
                 ]
             ),
             'targets' => ParameterTarget::all()->map(function($parameterTarget) {
@@ -144,22 +155,22 @@ class RatingVerifierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $rating, $verifier)
     {
         $input = $request->all();
 
-        Validator::make($input, [
+        /*Validator::make($input, [
             'target' => ['required', 'numeric'],
             'user' => ['required', 'numeric'],
         ])->validateWithBag('updateVerifier');
 
-        $verifier = Verifier::findOrFail($id);
+        $verifier = Verifier::findOrFail($verifier);
         $parameterTarget = ParameterTarget::findOrFail($input['target']);
         $user = User::findOrFail($input['user']);
 
         $verifier->setParameterTarget($parameterTarget);
         $verifier->setUser($user);
-        $verifier->save();
+        $verifier->save();*/
 
         return $request->wantsJson()
                     ? new JsonResponse('', 200)
@@ -172,9 +183,9 @@ class RatingVerifierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rating, $verifier)
     {
-        $verifier = Verifier::findOrFail($id);
+        $verifier = Verifier::findOrFail($verifier);
         $rating = $verifier->rating;
         $verifier->delete();
 
