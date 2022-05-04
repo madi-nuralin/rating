@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use DB;
 
+use App\Models\User;
+
 class ApproverController extends Controller
 {
     /**
@@ -23,7 +25,7 @@ class ApproverController extends Controller
                 $approver = auth()->user()->approvers->first();
             }
         } else {
-            $verifier = \App\Models\Approver::findOrFail($approver);
+            $approver = \App\Models\Approver::findOrFail($approver);
         }
 
         return Inertia::render('Dashboard/Approver', [
@@ -38,18 +40,16 @@ class ApproverController extends Controller
             'approver' => $approver ? array_merge(
                 $approver->toArray(), [
                     'rating' => $approver->rating->toArray(),
-                    'users' => collect(
-                        User::whereHas(
-                            'employements', function($q) use ($approver) {
-                                $q->whereIn(
-                                    'department_id',
-                                    $approver->department->employements
-                                    ? $approver->department->getEmployements(NULL, DB::raw('CURDATE()'))->pluck('departments.id')->toArray()
-                                    : array()
-                                );
-                            }
-                        )->get()
-                    )->map(function($user) {
+                    'users' => User::whereHas(
+                        'employements', function($q) use ($approver) {
+                            $q->whereIn(
+                                'department_id',
+                                $approver->department->employements
+                                ? $approver->department->getEmployements(NULL, DB::raw('CURDATE()'))->pluck('departments.id')->toArray()
+                                : array()
+                            );
+                        }
+                    )->paginate(10)->through(function($user) {
                         return array_merge(
                             $user->toArray(), [
                                 'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {
@@ -65,10 +65,10 @@ class ApproverController extends Controller
                     })
                 ]
             ) : [],
-            /*'statistics' => [
-                'total' => $verifier ? count($verifier->rating->users) : 0,
-                'last' => $verifier ? count($verifier->rating->users) : 0
-            ]*/
+            'statistics' => [
+                'total' => $approver ? count($approver->rating->users) : 0,
+                'last' => $approver ? count($approver->rating->users) : 0
+            ]
         ]);
     }
 
