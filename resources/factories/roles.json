@@ -31,5 +31,16 @@
          "description":"Проверяющее и подтверждающее лицо оценки или рейтингового зачета сотрудников."
       },
       "context":"verifier"
+   },
+   {
+      "en":{
+         "name":"Approver",
+         "description":"Approving and confirming person of the assessment or rating offset of employees."
+      },
+      "ru":{
+         "name":"Утверждающий",
+         "description":"Утверждающее лицо оценки или рейтингового зачета сотрудников."
+      },
+      "context":"approver"
    }
 ]

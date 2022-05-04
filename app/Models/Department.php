@@ -12,6 +12,7 @@ class Department extends Model
         Helpers\HasName,
         Helpers\HasDescription,
         Helpers\HasAbbreviation,
+        Helpers\HasManyEmployement,
         Helpers\BelongsToDepartmentType,
         Helpers\BelongsToManyPosition;
 

@@ -83,6 +83,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         ->name('dashboard-verifier')
         ->middleware('verifier');
 
+    Route::get('dashboard/approver', [\App\Http\Controllers\Dashboard\ApproverController::class, 'index'])
+        ->name('dashboard-approver')
+        ->middleware('approver');
+
     Route::group(['prefix' => 'dashboard'], function() {
         Route::resource('submission', SubmissionController::class,
             ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
