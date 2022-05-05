@@ -63,10 +63,10 @@
 						            </div>
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
-					              	<div class="flex items-center space-x-2">
+					              	<!--div class="flex items-center space-x-2">
 					                	<breeze-progress :color="'indigo'" :rounded="false" :percentage="user.statistics.completed/user.statistics.total * 100" />
 					                	<p class="text-sm text-gray-500">{{ user.statistics.completed}} / {{user.statistics.total }}</p>
-					                </div>
+					                </div-->
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 					                <Link :href="route('verification.index', {'approver': $page.props.approver.id, 'rating': $page.props.approver.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">

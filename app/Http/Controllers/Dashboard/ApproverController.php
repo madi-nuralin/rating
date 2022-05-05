@@ -36,7 +36,7 @@ class ApproverController extends Controller
                         'department' => $approver->department->toArray()
                     ]
                 );
-            }) : [],
+            }) : array(),
             'approver' => $approver ? array_merge(
                 $approver->toArray(), [
                     'rating' => $approver->rating->toArray(),
@@ -45,7 +45,7 @@ class ApproverController extends Controller
                             $q->whereIn(
                                 'department_id',
                                 $approver->department->employements
-                                ? $approver->department->getEmployements(NULL, DB::raw('CURDATE()'))->pluck('departments.id')->toArray()
+                                ? $approver->department->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {return $employement->id;})
                                 : array()
                             );
                         }

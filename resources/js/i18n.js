@@ -711,6 +711,25 @@ var messages = {
             view: 'View'
           }
         },
+        approver: {
+          head: {
+            title: 'Approvement'
+          },
+          header: 'Approvement',
+          table: {
+            header: {
+              allParticipants: 'All participants',
+              last: 'Last'
+            },
+            thead: {
+              user: 'User',
+              position: 'Position',
+              progress: 'Progress'
+            },
+            employementInfoNotFound: 'Employment information not found',
+            view: 'View'
+          }
+        },
         submission: {
           head: {
             title: 'Assessment sheet'
@@ -1986,6 +2005,25 @@ var messages = {
             title: 'Проверка и подтверждение'
           },
           header: 'Проверка и подтверждение',
+          table: {
+            header: {
+              allParticipants: 'Все участники',
+              last: 'Всего осталось'
+            },
+            thead: {
+              user: 'Сотрудник',
+              position: 'Занимаемая должность',
+              progress: 'Прогресс'
+            },
+            employementInfoNotFound: 'Информация о занятости не найдено',
+            view: 'Посмотреть'
+          }
+        },
+        approver: {
+          head: {
+            title: 'Утверждение'
+          },
+          header: 'Утверждение',
           table: {
             header: {
               allParticipants: 'Все участники',
