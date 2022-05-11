@@ -1,20 +1,32 @@
 const datetimeFormats = {
   'en': {
+    hours: {
+      hour: '2-digit', minute: '2-digit', hour12: true
+    },
+    day: {
+      month: 'short', day: 'numeric'
+    },
     short: {
       year: 'numeric', month: 'short', day: 'numeric'
     },
     long: {
       year: 'numeric', month: 'short', day: 'numeric',
-      weekday: 'short', hour: 'numeric', minute: 'numeric'
+      hour: 'numeric', minute: 'numeric'
     }
   },
   'ru': {
+    hours: {
+      hour: '2-digit', minute: '2-digit', hour12: true
+    },
+    day: {
+      month: 'short', day: 'numeric'
+    },
     short: {
       year: 'numeric', month: 'short', day: 'numeric'
     },
     long: {
       year: 'numeric', month: 'short', day: 'numeric',
-      weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
+      hour: 'numeric', minute: 'numeric', hour12: true
     }
   }
 };
@@ -656,11 +668,16 @@ var messages = {
             begins: 'Begins: ',
             finishes: 'Finishes: ',
             finished: 'Finished: ',
-            submission: 'Completing the assessment sheet',
+            submission: 'Sending applications',
+            approvement: 'Rating approvement',
             verification: 'Assessment sheet verification'
           },
           showName: {
             trigger: 'Title'
+          },
+          showApprovement: {
+            trigger: 'Approvement status',
+            status: 'i'
           },
           showDescription: {
             trigger: 'Description'
@@ -1964,11 +1981,19 @@ var messages = {
             begins: 'Начинается: ',
             finishes: 'Завершается: ',
             finished: 'Завершено: ',
-            submission: 'Заполнение листа оценки',
-            verification: 'Подтверждение листа оценки'
+            submission: 'Отправка заявок',
+            approvement: 'Утверждение рейтинга',
+            verification: 'Подтверждение рейтинга'
           },
           showName: {
             trigger: 'Название'
+          },
+          showApprovement: {
+            trigger: 'Статус утверждения',
+            status: [
+              'Не утверждено',
+              'Утверждено',
+            ]
           },
           showDescription: {
             trigger: 'Описание'
@@ -2165,6 +2190,46 @@ var messages = {
             },
             showStatus: {
               trigger: 'Ваше решение'
+            }
+          }
+        },
+        approvement: {
+          head: {
+            title: 'Проверка листа оценки'
+          },
+          header: 'Проверка листа оценки',
+          create: {
+            //
+          },
+          update: {
+            title: 'Проверка и подтверждение ответа',
+            description: 'Вам предаставлено доступ для проверки и подтверждения листа оценки сотрудника. Переходите по записям для подтверждения оценки.',
+            form: {
+              //
+            },
+            actions: {
+              makeOrChangeDecisionButton: 'Принять или изменить решение',
+              modal: {
+                title: 'Ваше решение',
+                content: {
+                  verification_status: 'Решение',
+                  message: 'Сопроводительное письмо'
+                },
+                footer: {
+                  cancelButton: 'Отмена',
+                  updateButton: 'Сохранить'
+                }
+              }
+            }
+          },
+          list: {
+            title: 'Лист оценки',
+            description: 'Утвердите оценочный лист до окончания текущего срока рейтинга с материалами',
+            form: {
+              score: '{score} баллов'
+            },
+            actions: {
+              updateButton: 'Утвердить заявки'
             }
           }
         }

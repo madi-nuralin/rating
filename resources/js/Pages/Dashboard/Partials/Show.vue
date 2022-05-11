@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h3 class="text-base font-medium text-gray-900 dark:text-gray-100">
+		<h3 class="text-sm uppercase font-medium text-gray-900 dark:text-gray-100">
             <slot name="title"></slot>
         </h3>
 

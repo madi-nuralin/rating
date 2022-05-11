@@ -69,7 +69,7 @@
 					                </div-->
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-					                <Link :href="route('verification.index', {'approver': $page.props.approver.id, 'rating': $page.props.approver.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">
+					                <Link :href="route('approvement.index', {'rating': $page.props.approver.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">
                                         {{ translate[0]('table.view') }}
                                     </Link>
 					              </td>

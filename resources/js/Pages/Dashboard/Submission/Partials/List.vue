@@ -11,12 +11,15 @@
                 </p>
             </div>
 
-            <div>
+            <div>                
                 <breeze-section-border :display="'block'" />
                 <show-name :rating="rating" />
 
                 <breeze-section-border :display="'block'" />
-                <show-description :rating="rating" />
+                <show-approvement :rating="rating" />
+
+                <breeze-section-border :display="'block'" />
+                <show-date :rating="rating" />
 
                 <BreezeSectionBorder :display="'block'" />
                 <show-total :rating="rating" />
@@ -26,9 +29,7 @@
 
                 <BreezeSectionBorder :display="'block'" />
                 <show-verifiers :rating="rating" />
-
-                <BreezeSectionBorder :display="'block'" />
-                <show-date :rating="rating" />
+                
             </div>
         </template>
 
@@ -56,6 +57,7 @@
     import BreezeSectionTitle from '@/Components/SectionTitle.vue'
     import BreezeAccordion from '@/Components/Accordion.vue'
 
+    import ShowApprovement from '../../Partials/ShowApprovement.vue'
     import ShowTotal from '../../Partials/ShowTotal.vue'
     import ShowScore from '../../Partials/ShowScore.vue'
     import ShowName from '../../Partials/ShowName.vue'
@@ -76,6 +78,7 @@
             BreezeSectionTitle,
             BreezeAccordion,
             ShowName,
+            ShowApprovement,
             ShowDescription,
             ShowVerifiers,
             ShowList,

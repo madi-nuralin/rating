@@ -62,6 +62,7 @@ use App\Http\Controllers\Forms\FormFieldOptionController;
 
 use App\Http\Controllers\Dashboard\SubmissionController;
 use App\Http\Controllers\Dashboard\VerificationController;
+use App\Http\Controllers\Dashboard\ApprovementController;
 
 use App\Http\Controllers\OAuth\SocialiteController;
 
@@ -93,6 +94,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('verification', VerificationController::class,
             ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']])
                 ->middleware('verifier');
+        Route::resource('approvement', ApprovementController::class,
+            ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']])
+                ->middleware('approver');
 
         Route::delete('submission-file', [SubmissionController::class, 'destroyFile'])
             ->name('submission-file.destroy');
