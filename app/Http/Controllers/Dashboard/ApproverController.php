@@ -49,9 +49,10 @@ class ApproverController extends Controller
                                 : array()
                             );
                         }
-                    )->paginate(10)->through(function($user) {
+                    )->paginate(10)->through(function($user) use ($approver) {
                         return array_merge(
                             $user->toArray(), [
+                                'is_approved' => $approver->rating->userIsApproved($user),
                                 'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {
                                     return array_merge(
                                         $employement->toArray(), [

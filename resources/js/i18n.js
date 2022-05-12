@@ -354,8 +354,10 @@ var messages = {
               users: 'Users',
               time1: 'Submission begins',
               time2: 'Submission ends',
-              time3: 'Verification begins',
-              time4: 'Verification ends'
+              time3: 'Approvement begins',
+              time4: 'Approvement ends',
+              time5: 'Verification begins',
+              time6: 'Verification ends'
             }
           },
           update: {
@@ -367,8 +369,10 @@ var messages = {
               users: 'Users',
               time1: 'Submission begins',
               time2: 'Submission ends',
-              time3: 'Verification begins',
-              time4: 'Verification ends'
+              time3: 'Approvement begins',
+              time4: 'Approvement ends',
+              time5: 'Verification begins',
+              time6: 'Verification ends'
             }
           },
           delete: {
@@ -677,7 +681,10 @@ var messages = {
           },
           showApprovement: {
             trigger: 'Approvement status',
-            status: 'i'
+            status: [
+              'Not approved',
+              'Approved',
+            ]
           },
           showDescription: {
             trigger: 'Description'
@@ -1667,8 +1674,10 @@ var messages = {
               users: 'Пользователи',
               time1: 'Начало отправки ответов',
               time2: 'Завершение отправки ответов',
-              time3: 'Начало проверки',
-              time4: 'Завершение проверки'
+              time3: 'Начало утверждения',
+              time4: 'Завершение утверждения',
+              time5: 'Начало проверки',
+              time6: 'Завершение проверки'
             }
           },
           update: {
@@ -1680,8 +1689,10 @@ var messages = {
               users: 'Пользователи',
               time1: 'Начало отправки ответов',
               time2: 'Завершение отправки ответов',
-              time3: 'Начало проверки',
-              time4: 'Завершение проверки'
+              time3: 'Начало утверждения',
+              time4: 'Завершение утверждения',
+              time5: 'Начало проверки',
+              time6: 'Завершение проверки'
             }
           },
           delete: {
@@ -1989,7 +2000,7 @@ var messages = {
             trigger: 'Название'
           },
           showApprovement: {
-            trigger: 'Статус утверждения',
+            trigger: 'Статус утверждения заявок',
             status: [
               'Не утверждено',
               'Утверждено',
@@ -2230,6 +2241,11 @@ var messages = {
             },
             actions: {
               updateButton: 'Утвердить заявки'
+            },
+            banner: {
+              messageApprovementNotStarted: 'Невозможно утвердить заявки так как время утверждения заявок еще не началось',
+              messageApprovementIsOverdue: 'Невозможно утвердить заявки так как время утверждения заявок просрочилась',
+              messageApprovementStatusUpdated: 'Заявки успешно утверждены'
             }
           }
         }

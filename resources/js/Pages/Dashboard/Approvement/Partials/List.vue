@@ -3,11 +3,11 @@
         <template #aside>
             <div>
                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    {{ $t('pages.dashboard.submission.list.title') }}
+                    {{ $t('pages.dashboard.approvement.list.title') }}
                 </h3>
 
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-500">
-                    {{ $t('pages.dashboard.submission.list.description') }}
+                    {{ $t('pages.dashboard.approvement.list.description') }}
                 </p>
             </div>
 
@@ -43,9 +43,30 @@
         </template>
 
         <template #actions>
-            <Link class="inline-flex submissions-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('submission.create', {'rating': rating.id})">
+            <breeze-button type="button" class="inline-flex submissions-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" @click="open">
                 {{ $t('pages.dashboard.approvement.list.actions.updateButton') }}
-            </Link>
+            </breeze-button>
+
+            <!-- Confirmation Modal -->
+            <breeze-modal-confirmation :show="opening" @close="opening = false">
+                <template #title>
+                    {{ $t('pages.dashboard.submission.delete.content.modal.title') }}
+                </template>
+
+                <template #content>
+                    {{ $t('pages.dashboard.submission.delete.content.modal.content') }}
+                </template>
+
+                <template #footer>
+                    <breeze-button-secondary @click="opening = false">
+                        {{ $t('pages.dashboard.submission.delete.content.modal.footer.cancelButton') }}
+                    </breeze-button-secondary>
+
+                    <Link class="inline-flex submissions-center px-4 py-2 ml-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" :href="route('approvement.create', {'rating': rating.id, 'user': rating.user.id})" @click="open">
+                        {{ $t('pages.dashboard.approvement.list.actions.updateButton') }}
+                    </Link>
+                </template>
+            </breeze-modal-confirmation>
         </template>
     </BreezeFormSection>
 </template>
@@ -75,6 +96,7 @@
     export default {
         components: {
             BreezeButton,
+            BreezeModalConfirmation,
             BreezeButtonSecondary,
             BreezeFormSection,
             BreezeBadge,
@@ -100,5 +122,11 @@
                 opening: false,
             }
         },
+
+        methods: {
+            open() {
+                this.opening = true;
+            }
+        }
     }
 </script>

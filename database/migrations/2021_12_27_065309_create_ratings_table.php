@@ -19,6 +19,8 @@ class CreateRatingsTable extends Migration
             $table->timestamp('time2')->nullable();
             $table->timestamp('time3')->nullable();
             $table->timestamp('time4')->nullable();
+            $table->timestamp('time5')->nullable();
+            $table->timestamp('time6')->nullable();
             $table->timestamps();
         });
     }

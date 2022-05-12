@@ -42,6 +42,20 @@ class ApprovementController extends Controller
                             ])->get()
                         )
                     ],
+                    'approver' => [
+                        'user' => array_merge(
+                            auth()->user()->toArray(), [
+                                'employements' => auth()->user()->getEmployements(DB::raw('CURRENT_TIMESTAMP()'), NULL)->map(function($employement) {
+                                    return array_merge(
+                                        $employement->toArray(), [
+                                            'department' => $employement->department->toArray(),
+                                            'position' => $employement->position->toArray()
+                                        ]
+                                    );
+                                })
+                            ]
+                        )
+                    ],
                     'is_approved' => $rating->userIsApproved($user),
                     'targets' => collect(ParameterTarget::whereHas(
                         'parameters', function($q) use ($rating) {
@@ -153,7 +167,16 @@ class ApprovementController extends Controller
      */
     public function create()
     {
-        //
+        $input = request()->all();
+
+        $rating = Rating::findOrFail($input['rating']);
+        $user = User::findOrFail($input['user']);
+        $user->approveRating($rating);
+        $user->save();
+
+        return request()->wantsJson()
+                    ? new JsonResponse('', 200)
+                    : back()->with('status', 'approvement-create');
     }
 
     /**
@@ -198,7 +221,7 @@ class ApprovementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

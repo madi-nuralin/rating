@@ -53,8 +53,8 @@ class FeedController extends Controller
                 'verifying' => count(
                     collect(
                         $user->ratings()->where([
-                            ['time3', '<=', DB::raw('current_timestamp()')],
-                            ['time4', '>', DB::raw('current_timestamp()')]
+                            ['time5', '<=', DB::raw('current_timestamp()')],
+                            ['time6', '>', DB::raw('current_timestamp()')]
                         ])->get()
                     )
                 )

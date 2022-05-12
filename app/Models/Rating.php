@@ -31,6 +31,8 @@ class Rating extends Model
         'time2',
         'time3',
         'time4',
+        'time5',
+        'time6',
     ];
 
     protected const HTML_DATE_FORMAT = 'Y-m-d\TH:i';
@@ -83,6 +85,18 @@ class Rating extends Model
         )->format(Rating::MYSQL_DATE_FORMAT);
     }
 
+    public function setTime5($time5) {
+        $this->time5 = DateTime::createFromFormat(
+            Rating::HTML_DATE_FORMAT, $time5
+        )->format(Rating::MYSQL_DATE_FORMAT);
+    }
+
+    public function setTime6($time6) {
+        $this->time6 = DateTime::createFromFormat(
+            Rating::HTML_DATE_FORMAT, $time6
+        )->format(Rating::MYSQL_DATE_FORMAT);
+    }
+
     public function getTime1($dateFormat=null) {
         if (is_null($dateFormat)) {
             return $this->time1;
@@ -109,6 +123,20 @@ class Rating extends Model
             return $this->time4;
         }
     	return date($dateFormat, strtotime($this->time4));
+    }
+
+    public function getTime5($dateFormat=null) {
+        if (is_null($dateFormat)) {
+            return $this->time5;
+        }
+        return date($dateFormat, strtotime($this->time5));
+    }
+
+    public function getTime6($dateFormat=null) {
+        if (is_null($dateFormat)) {
+            return $this->time6;
+        }
+        return date($dateFormat, strtotime($this->time6));
     }
 
     public function getUserScore(User $user, $verificationStatuses = null /*array of ids'*/) {
@@ -148,6 +176,8 @@ class Rating extends Model
     		'time2' => $this->getTime2(Rating::HTML_DATE_FORMAT),
     		'time3' => $this->getTime3(Rating::HTML_DATE_FORMAT),
     		'time4' => $this->getTime4(Rating::HTML_DATE_FORMAT),
+            'time5' => $this->getTime5(Rating::HTML_DATE_FORMAT),
+            'time6' => $this->getTime6(Rating::HTML_DATE_FORMAT),
     		'created_at' => $this->created_at,
     		'updated_at' => $this->updated_at
     	];

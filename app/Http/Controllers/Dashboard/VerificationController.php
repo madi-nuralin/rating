@@ -51,6 +51,21 @@ class VerificationController extends Controller
                             ])->get()
                         )
                     ],
+                    'approver' => [
+                        'user' => array_merge(
+                            auth()->user()->toArray(), [
+                                'employements' => auth()->user()->getEmployements(DB::raw('CURRENT_TIMESTAMP()'), NULL)->map(function($employement) {
+                                    return array_merge(
+                                        $employement->toArray(), [
+                                            'department' => $employement->department->toArray(),
+                                            'position' => $employement->position->toArray()
+                                        ]
+                                    );
+                                })
+                            ]
+                        )
+                    ],
+                    'is_approved' => $rating->userIsApproved($user),
                     'targets' => collect(
                         $rating->parameterTargets()
                                ->where('id', $verifier->parameterTarget->id)

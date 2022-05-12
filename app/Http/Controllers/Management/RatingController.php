@@ -59,11 +59,13 @@ class RatingController extends Controller
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:2048'],
+            'description' => ['nullable', 'string', 'max:2048'],
             'time1' => ['required', 'date'],
             'time2' => ['required', 'date', 'after:time1'],
             'time3' => ['required', 'date', 'after:time2'],
             'time4' => ['required', 'date', 'after:time3'],
+            'time5' => ['required', 'date', 'after:time4'],
+            'time6' => ['required', 'date', 'after:time5'],
             'users' => ['nullable', 'array']
         ])->validateWithBag('createRating');
 
@@ -74,6 +76,8 @@ class RatingController extends Controller
         $rating->setTime2($input['time2']);
         $rating->setTime3($input['time3']);
         $rating->setTime4($input['time4']);
+        $rating->setTime5($input['time5']);
+        $rating->setTime6($input['time6']);
         $rating->setUsers($input['users']);
 
         $rating->save();
@@ -160,11 +164,13 @@ class RatingController extends Controller
 
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:255'],
             'time1' => ['required', 'date'],
             'time2' => ['required', 'date', 'after:time1'],
             'time3' => ['required', 'date', 'after:time2'],
             'time4' => ['required', 'date', 'after:time3'],
+            'time5' => ['required', 'date', 'after:time4'],
+            'time6' => ['required', 'date', 'after:time5'],
             'users' => ['nullable', 'array']
         ])->validateWithBag('updateRating');
 
@@ -176,6 +182,8 @@ class RatingController extends Controller
         $rating->setTime2($input['time2']);
         $rating->setTime3($input['time3']);
         $rating->setTime4($input['time4']);
+        $rating->setTime5($input['time5']);
+        $rating->setTime6($input['time6']);
         $rating->setUsers($input['users']);
 
         $rating->save();

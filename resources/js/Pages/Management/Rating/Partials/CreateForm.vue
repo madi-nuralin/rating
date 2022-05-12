@@ -50,6 +50,18 @@
                 <BreezeInput id="time4" type="datetime-local" class="mt-1 block w-full" v-model="form.time4" />
                 <BreezeInputError :message="form.errors.time4" class="mt-2" />
             </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="time5" :value="$t('pages.management.rating.create.form.time5')" />
+                <BreezeInput id="time5" type="datetime-local" class="mt-1 block w-full" v-model="form.time5" />
+                <BreezeInputError :message="form.errors.time5" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <BreezeLabel for="time6" :value="$t('pages.management.rating.create.form.time6')" />
+                <BreezeInput id="time6" type="datetime-local" class="mt-1 block w-full" v-model="form.time6" />
+                <BreezeInputError :message="form.errors.time6" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -98,6 +110,8 @@
                     time2: '',
                     time3: '',
                     time4: '',
+                    time5: '',
+                    time6: '',
                     users: ''
                 }),
             }

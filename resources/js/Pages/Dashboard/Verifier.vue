@@ -29,7 +29,7 @@
 
                         <!-- Table -->
                         <div class="-mx-6">
-	                        <table class="min-w-full divide-y divide-gray-200">
+	                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
 					          <thead class="bg-gray-50 dark:bg-gray-700">
 					            <tr class="flex flex-col md:table-row">
 					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.user') }}</th>
@@ -40,7 +40,7 @@
 					              </th>
 					            </tr>
 					          </thead>
-					          <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800">
+					          <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-600">
 					            <tr class="flex flex-col md:table-row" v-for="user in $page.props.verifier.users.data" v-if="$page.props.verifier && $page.props.verifier.users">
 					              <td class="px-6 py-4 whitespace-nowrap">
 					                <div class="flex items-center">
@@ -55,10 +55,10 @@
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
 					              	<div v-for="employement in user.employements" v-if="Object.keys(user.employements).length > 0">
-						                <div class="text-sm text-gray-900">{{ employement.position.name }}</div>
+						                <div class="text-sm text-gray-900 dark:text-gray-100">{{ employement.position.name }}</div>
 						                <div class="text-sm text-gray-500">{{ employement.department.name }}</div>
 						            </div>
-						            <div class="text-sm text-gray-500" v-else>
+						            <div class="text-sm text-gray-500 italic" v-else>
 						            	{{ translate[0]('table.employementInfoNotFound') }}
 						            </div>
 					              </td>
