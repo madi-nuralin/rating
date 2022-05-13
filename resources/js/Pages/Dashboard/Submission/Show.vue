@@ -11,7 +11,7 @@
                 <update-form :submission="$page.props.submission"/>
                 <breeze-section-border />
 
-                <delete-form :submission="$page.props.submission" class="mt-10 sm:mt-0" />
+                <delete-form :submission="$page.props.submission" class="mt-10 sm:mt-0" v-if="!$page.props.submission.readonly"/>
             </div>
         </div>
     </BreezeAuthenticatedLayout>

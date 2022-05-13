@@ -116,6 +116,8 @@
         			if (submission.verification && submission.verification.id) {
         				return route('verification.show', {'id': submission.verification.id});
         			}
+        		} else if (this.type == 'approvement') {
+        			return route('approvement.show', {'id': submission.id});
         		}
 
         		return null;

@@ -12,9 +12,14 @@ use DB;
 
 use App\Models\Rating;
 use App\Models\Submission;
-use App\Models\Verifier;
 use App\Models\ParameterTarget;
 use App\Models\User;
+use App\Models\Verifier;
+use App\Models\Verification;
+use App\Models\VerificationStatus;
+use App\Models\Forms\Form;
+use App\Models\Forms\FormField;
+use App\Models\Forms\FormFieldResponce;
 
 class ApprovementController extends Controller
 {
@@ -171,6 +176,20 @@ class ApprovementController extends Controller
 
         $rating = Rating::findOrFail($input['rating']);
         $user = User::findOrFail($input['user']);
+
+        if (strtotime($rating->getTime3()) > time()) {
+            session()->flash('flash.banner', ['pages.dashboard.approvement.list.banner[0]']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        } else if (strtotime($rating->getTime4()) < time()) {
+            session()->flash('flash.banner', ['pages.dashboard.approvement.list.banner[1]']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        } else {
+            session()->flash('flash.banner', ['pages.dashboard.approvement.list.banner[2]']);
+            session()->flash('flash.bannerStyle', 'success');
+        }
+
         $user->approveRating($rating);
         $user->save();
 
@@ -198,7 +217,59 @@ class ApprovementController extends Controller
      */
     public function show($id)
     {
-        //
+        $submission = Submission::findOrFail($id);
+        $parameter = $submission->parameter;
+        $rating = $submission->rating;
+        $form = $rating->parameterForm($parameter);
+        $verifications = $submission->verifications;
+
+        return Inertia::render('Dashboard/Approvement/Show', [
+            'submission' => array_merge(
+                $submission->toArray(), [
+                    'readonly' => true,
+                    'rating' => $submission->rating->toArray(),
+                    'parameter' => array_merge(
+                        $parameter->toArray(), [
+                            'target' => $parameter->parameterTarget->toArray(),
+                            'form' => $form ?
+                                array_merge(
+                                    $form->toArray(), [
+                                        'fields' => $form->fields ?
+                                                    $form->fields->map(function($field) use ($submission) {
+                                            return array_merge(
+                                                $field->toArray(), [
+                                                    'options' => $field->options ?
+                                                                 $field->options->map(function($option) use ($submission) {
+                                                        return $option->toArray();
+                                                    }) : [],
+                                                    'responce' => $submission->formFieldResponces()
+                                                                             ->where('form_field_id', $field->id)
+                                                                             ->first() ?
+                                                                  $submission->formFieldResponces()
+                                                                             ->where('form_field_id', $field->id)
+                                                                             ->first()->toArray() : []
+                                                ]
+                                            );
+                                        }) : []
+                                    ]
+                                ) : []
+                        ]
+                    ),
+                    'verifications' => $verifications ? $verifications->map(function($verification) {
+                        return array_merge(
+                            $verification->toArray(), [
+                                'verifier' => array_merge(
+                                    $verification->verifier->toArray(), [
+                                        'user' => $verification->verifier->user->toArray()
+                                    ]
+                                ),
+                                'verification_status' => $verification->verificationStatus->toArray()
+                            ]
+                        );
+                    }) : []
+                ]
+            )
+        ]);
     }
 
     /**

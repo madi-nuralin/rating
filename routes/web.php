@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']])
                 ->middleware('verifier');
         Route::resource('approvement', ApprovementController::class,
-            ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']])
+            ['only' => ['index', 'create', 'show']])
                 ->middleware('approver');
 
         Route::delete('submission-file', [SubmissionController::class, 'destroyFile'])

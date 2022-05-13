@@ -38,7 +38,7 @@
 
         <template #form>
             <div class="col-span-6">
-                <show-list :rating="rating" :type="'submission'"/>
+                <show-list :rating="rating" :type="'approvement'"/>
             </div>
         </template>
 
