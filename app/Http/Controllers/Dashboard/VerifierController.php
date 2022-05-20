@@ -36,6 +36,7 @@ class VerifierController extends Controller
                     'users' => $verifier->rating->users()->paginate(10)->through(function($user) use ($verifier) {
                         return array_merge(
                             $user->toArray(), [
+                                'is_approved' => $verifier->rating->userIsApproved($user),
                                 'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {
                                     return array_merge(
                                         $employement->toArray(), [

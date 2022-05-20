@@ -28,7 +28,7 @@
 				        </div>
 
                         <!-- Table -->
-                        <div class="-mx-6">
+                        <div class="-mx-6 overflow-x-auto">
 	                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
 					          <thead class="bg-gray-50 dark:bg-gray-700">
 					            <tr class="flex flex-col md:table-row">

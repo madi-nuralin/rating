@@ -336,8 +336,14 @@ class VerificationController extends Controller
         $verificationStatus = VerificationStatus::findOrFail($input['verification_status']);
         $verification = Verification::findOrFail($id);
 
-        if (strtotime($verification->submission->rating->getTime4()) < time()) {
+        if (strtotime($verification->submission->rating->getTime6()) < time()) {
             session()->flash('flash.banner', ['pages.dashboard.submission.update.banner']);
+            session()->flash('flash.bannerStyle', 'danger');
+            return Redirect::back();
+        }
+
+        if (!$verification->submission->rating->userIsApproved($verification->submission->user)) {
+            session()->flash('flash.banner', ['Заявка не подлежит к рассмотрению, так как рейтинг не был утвержден']);
             session()->flash('flash.bannerStyle', 'danger');
             return Redirect::back();
         }

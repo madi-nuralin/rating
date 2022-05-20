@@ -28,12 +28,13 @@
 				        </div>
 
                         <!-- Table -->
-                        <div class="-mx-6">
+                        <div class="-mx-6 overflow-x-auto">
 	                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
 					          <thead class="bg-gray-50 dark:bg-gray-700">
 					            <tr class="flex flex-col md:table-row">
 					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.user') }}</th>
 					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.position') }}</th>
+                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">Статус утверждения</th>
 					              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.progress') }}</th>
 					              <th scope="col" class="relative px-6 py-3">
 					                <span class="sr-only">Edit</span>
@@ -55,13 +56,20 @@
 					              </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
 					              	<div v-for="employement in user.employements" v-if="Object.keys(user.employements).length > 0">
-						                <div class="text-sm text-gray-900 dark:text-gray-100">{{ employement.position.name }}</div>
-						                <div class="text-sm text-gray-500">{{ employement.department.name }}</div>
+						                <div class="text-sm text-gray-900 dark:text-gray-100 truncate">{{ employement.position.name }}</div>
+						                <div class="text-sm text-gray-500 truncate">{{ employement.department.name }}</div>
 						            </div>
 						            <div class="text-sm text-gray-500 italic" v-else>
-						            	{{ translate[0]('table.employementInfoNotFound') }}
+						            	<div class="truncate">{{ translate[0]('table.employementInfoNotFound') }}</div>
 						            </div>
 					              </td>
+                                  <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex justify-start">
+                                      <breeze-badge :color="user.is_approved ? 'green' : 'yellow'">
+                                        {{ $t(`pages.dashboard.partials.showApprovement.status[${user.is_approved ? 1 : 0}]`) }}
+                                      </breeze-badge>
+                                    </div>
+                                  </td>
 					              <td class="px-6 py-4 whitespace-nowrap">
 					              	<div class="flex items-center space-x-2">
 					                	<breeze-progress :color="'indigo'" :rounded="false" :percentage="user.statistics.completed/user.statistics.total * 100" />
@@ -103,6 +111,7 @@ import BreezeLabel from '@/Components/Label.vue'
 import BreezeSelect from '@/Components/Select.vue'
 import BreezeAvatar from '@/Components/Avatar.vue'
 import BreezeProgress from '@/Components/Progress.vue'
+import BreezeBadge from '@/Components/Badge.vue'
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 export default {
@@ -118,6 +127,7 @@ export default {
         BreezeLabel,
         BreezeSelect,
         BreezeProgress,
+        BreezeBadge,
         Link,
         Head,
     },
