@@ -27,7 +27,7 @@
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.position') }}</th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">Статус утверждения</th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.progress') }}</th>
-                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">Загрузить отчет</th>
+                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">Jтчет</th>
                                   <th scope="col" class="relative px-6 py-3">
                                     <span class="sr-only">Edit</span>
                                   </th>
@@ -56,26 +56,26 @@
                                     </div>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex justify-start text-xs">
+                                    <div class="flex justify-start">
                                       <breeze-badge :color="user.is_approved ? 'green' : 'yellow'">
                                         {{ $t(`pages.dashboard.partials.showApprovement.status[${user.is_approved ? 1 : 0}]`) }}
                                       </breeze-badge>
                                     </div>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="grid grid-cols-2 gap-2" v-for="verifier in user.verifiers">
-                                            <div class="flex items-center space-x-2">
+                                    <div class="flex flex-col space-y-2">
+                                        <div class="flex items-center space-x-2" v-for="verifier in user.verifiers">
+                                            <div style="min-width: 40px;">
                                                 <breeze-progress :color="'indigo'" :rounded="false" :percentage="verifier.statistics.completed/verifier.statistics.total * 100" />
-                                                <p class="text-sm text-gray-500">{{ verifier.statistics.completed}} / {{verifier.statistics.total }}</p>
                                             </div>
-                                            <div>
-                                                <breeze-avatar :src="verifier.user.profile_photo_path" :width="'4'"/>
-                                                <span class="ml-2 dark:text-gray-100 text-sm">{{ verifier.user.name }}</span>
-                                            </div>
+                                            <p class="text-sm text-gray-500">{{ verifier.statistics.completed}} / {{verifier.statistics.total }}</p>
+                                            <!--breeze-avatar :src="verifier.user.profile_photo_path" :width="'6'"/-->
+                                            <span class="text-sm text-gray-500">{{ verifier.user.name }}</span>
                                         </div>
+                                    </div>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
-                                      <Link :href="route('rating.overview.downloadReport', {'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">Загрузить отчет</Link>
+                                      <a :href="route('rating.overview.downloadReport', {'rating': $page.props.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110" download>Загрузить отчет</a>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <!--Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">

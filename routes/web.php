@@ -155,7 +155,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                         'only' => ['index']
                     ]
                 );
-                Route::get('{rating}/overview/{user}/downloadReport',  [RatingOverviewController::class, 'downloadReport']);
+                Route::get('{rating}/overview/{user}/downloadReport',  [RatingOverviewController::class, 'downloadReport'])->name('rating.overview.downloadReport');
             });
             Route::resource('parameter', ParameterController::class,
                 ['only' => ['index', 'create', 'store', 'show', 'update', 'destroy']]);
