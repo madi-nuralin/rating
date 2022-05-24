@@ -27,6 +27,7 @@
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.position') }}</th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">Статус утверждения</th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">{{ translate[0]('table.thead.progress') }}</th>
+                                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-100">Загрузить отчет</th>
                                   <th scope="col" class="relative px-6 py-3">
                                     <span class="sr-only">Edit</span>
                                   </th>
@@ -72,6 +73,9 @@
                                                 <span class="ml-2 dark:text-gray-100 text-sm">{{ verifier.user.name }}</span>
                                             </div>
                                         </div>
+                                  </td>
+                                  <td class="px-6 py-4 whitespace-nowrap">
+                                      <Link :href="route('rating.overview.downloadReport', {'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">Загрузить отчет</Link>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <!--Link :href="route('verification.index', {'verifier': $page.props.verifier.id, 'rating': $page.props.verifier.rating.id, 'user': user.id})" class="text-gray-400 hover:text-blue-500 underline hover:scale-110">

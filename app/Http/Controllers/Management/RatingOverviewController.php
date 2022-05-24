@@ -90,6 +90,18 @@ class RatingOverviewController extends Controller
         ]);
     }
 
+    public function downloadReport($rating, $user) 
+    {
+        $rating = Rating::findOrFail($rating);
+        $user = User::findOrFail($user);
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $file = $objWriter->save('storage/app/public/reports/helloWorld.docx');
+
+        return ;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
