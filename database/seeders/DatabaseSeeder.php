@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->seedPositions();
         $this->seedDepartmentTypes();
         $this->seedDepartments();
+        $this->seedDepartmentPositon();
         $this->seedEmployementTypes();
         $this->seedParameterTargets();
         $this->seedParameters();
@@ -144,6 +145,27 @@ class DatabaseSeeder extends Seeder
         }
 
         error_log("Seeded:  positions");
+    }
+
+    protected function seedDepartmentPositon() {
+        error_log("Seeding: department_position");
+
+        $locales = ['en', 'ru'];
+
+        $definitions = json_decode(
+            file_get_contents(
+                resource_path("factories/department_position.json")
+            ), true
+        );
+
+        foreach ($definitions as $definition) {
+            DB::table('department_position')->insert([
+                'department_id' => $definition['department_id'],
+                'position_id' => $definition['position_id']
+            ]);
+        }
+
+        error_log("Seeded:  department_position");
     }
 
     protected function seedParameterTargets() {

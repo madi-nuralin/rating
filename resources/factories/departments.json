@@ -1,106 +1,812 @@
 [
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Media communications and history of Kazakhstan",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Кафедра \"Медиакоммуникации и Истории Казахстана\"",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Computer Engineering and Information Security",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Кафедра Компьютерная инженерия и информационная безопасность",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Mathematical Computer Modeling",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Кафедра Математическое компьютерное моделирование",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Economics and business",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Кафедра Экономика и бизнес",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Radio Engineering, Electronics and Telecommunications",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Кафедра Радиотехника, электроника и телекоммуникации",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Department of Languages",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Кафедра языков",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Military Training Department",
-         "description":"",
-         "abbreviation":""
-      },
-      "ru":{
-         "name":"Военная кафедра",
-         "description":"",
-         "abbreviation":""
-      }
-   },
-   {
-      "department_type_id":1,
-      "en":{
-         "name":"Cathedra \"Information Systems\"",
-         "description":"",
-         "abbreviation":"Cathedra \"IS\""
-      },
-      "ru":{
-         "name":"Кафедра \"Информационные системы\"",
-         "description":"",
-         "abbreviation":"Кафедра \"ИC\""
-      }
-   }
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Administration"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Әкімшілік"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Администрация"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Board"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Басқарма"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Правление"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Financial Directorate"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Қаржы дирекциясы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Финансовая дирекция"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Human Resources Department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Персоналдар мен құжаттаманы басқару бөлімі"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Департамент управления персоналом и документацией"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Legal Department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Заң бөлімі"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Юридический Департамент"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Marketing and PR"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Маркетинг және PR бөлімі"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Департамент маркетинга и PR"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Registrar's office"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Офис-тіркеуші"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Офис регистратор"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Career Center"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Мансап» орталығы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Центр \"Карьера\""
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Academic and Methodological Affairs Department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Оқу-әдістемелік қызмет басқармасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Управление по учебно-методической деятельности"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Center for Continuing Education"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Қосымша білім беру орталығы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Центр дополнительного образования"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Center for Quality Assurance (accreditation, licensing, rating)"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Сапаны қамтамасыз ету орталығы (аккредиттеу, лицензиялау, рейтинг)"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Центр по обеспечению качества (аккредитация, лицензирование, рейтинг)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Youth Policy Office"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Жастар саясаты басқармасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Управление по молодежной политике"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"First aid post"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Медпункт"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Медпункт"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Digital Business School"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Цифрлық бизнес-мектеп "
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Цифровая бизнес-школа "
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Research Affairs Department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Ғылыми-зерттеу қызметі департаменті"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Департамент по научно-исследовательской деятельности"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Mixed Reality Laboratory"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Шын аралас зертхана"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория смешанной реальности "
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Research laboratory (PTF project)"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Ғылыми-зерттеу зертханасы (ПЦФ жобасы )"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Научно исследовательская лаборатория (проект ПЦФ)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"KMG Engineering Laboratory "
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"КМГИ зертханасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория КМГИ"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of training scientific personnel"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Ғылыми кадрларды даярлау департаменті"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Департамент по подготовке научных кадров"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department for International Cooperation and Academic Mobility"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Халықаралық ынтымақтастық және академиялық ұтқырлық департаменті"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Департамент по международному сотрудничеству и академической мобильности"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Library"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кітапхана"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Библиотека"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Rector's Office"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Ректор аппараты"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Аппарат ректора"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Operations and Facilities Department "
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Әкімшілік-шаруашылық департаменті"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Административно-хозяйственный департамент"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"IITU Innovation Center"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":" \"IITU Innovation\" орталығы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":" Центр \"IITU Innovation\""
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Educational laboratories of the departments"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедралардың оқу зертханалары"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Учебные лаборатории кафедр"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Cyber Security Laboratory (CS)"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Киберқауіпсіздік зертханасы (КҚ)"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория кибербезопасности (КБ)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Robotics and Mechatronics Laboratory"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Робототехника және мехатроника зертханасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория Робототехники и мехатроники"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Radio Electronics and Telecommunications Laboratory (RET)"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Радиоэлектроника және телекоммуникациялар зертханасы (РЭТ)"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория радиоэлектроники и телекоммуникации (РЭТ)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Collective Radio Station Laboratory (RET) "
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Ұжымдық радиостанция» зертханасы (РЭТ)"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория \"Коллективная радиостанция\" (РЭТ)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Physics and Computer Simulation Laboratory (RET) "
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Физика және компьютерлік модельдеу құралдары зертханасы (РЭТ)"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Лаборатория Физики и средств компьютерного моделирования (РЭТ)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"IITU TV studio (Multimedia Laboratory)"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"IITU телестудиясы (Мультимедиялық зертхана)"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Телестудия IITU (Мультимедийная лаборатория)"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Faculty of Digital Transformations"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Цифрлық трансформациялар» факультеті"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Факультет \"Цифровые трансформации\""
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Faculty of Computer Technology and Cybersecurity"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Компьютерлік технологиялар және киберқауіпсіздік» факультеті"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Факультет \"Компьютерные технологии и кибербезопасность\""
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"IT Support Department "
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":" Техникалық қызмет көрсету және IT-қолдау бөлімі"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Департамент технического сопровождения и IT-поддержки "
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"System Administration Department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Жүйелік басқару бөлімі"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Отдел системного администрирования"
+        }
+    },
+    {
+        "department_type_id":3,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Software development department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Бағдарламалық жасақтама әзірлеу бөлімі"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Отдел разработки и программного обеспечения"
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Languages"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Тілдер» кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Языков\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Information Systems"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"\"Ақпараттық жүйелер\" кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Информационные системы\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Economics and Business"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"\"Экономика және бизнес\" кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Экономика и бизнес\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Media Communications and History of Kazakhstan"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Медиакоммуникация және Қазақстан тарихы» кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Медиакоммуникации и история Казахстана\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Computer Engineering"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Компьютерлік инженерия» кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Компьютерной инженерии\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Cybersecurity"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Киберқауіпсіздік» кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Кибербезопасность\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Department of Radio Engineering, Electronics and Telecommunications"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Радиотехника, электроника және телекоммуникация» кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Радиотехника, электроника  и телекоммуникации \""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Mathematical and Computer Modeling Department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"«Математикалық және компьютерлік модельдеу» кафедрасы"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Кафедра \"Математическое и компьютерное моделирование\""
+        }
+    },
+    {
+        "department_type_id":1,
+        "en":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Military department"
+        },
+        "kk":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Әскери кафедра"
+        },
+        "ru":{
+            "abbreviation":"",
+            "description":"",
+            "name":"Военная кафедра"
+        }
+    }
 ]
