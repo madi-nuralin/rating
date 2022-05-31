@@ -42,7 +42,7 @@ class UserCommand extends Command
     public function handle()
     {
         $user = User::firstWhere('email', $this->argument('email'));
-
+        
         return $user->roles()->attach(Role::firstWhere('context', $this->argument('role'))->getId());
     }
 }

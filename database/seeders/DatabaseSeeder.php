@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        //User::factory(10)->create();
         $this->seedRoles();
         $this->seedPositions();
         $this->seedDepartmentTypes();
@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
         $this->seedParameterTargets();
         $this->seedParameters();
         $this->seedVerificationStatuses();
+        $this->seedUsers();
     }
 
     protected function seedRoles() {
@@ -343,5 +344,29 @@ class DatabaseSeeder extends Seeder
         }
 
         error_log("Seeded:  verification_statuses");
+    }
+
+    protected function seedUsers() {
+        error_log("Seeding: users");
+
+        $locales = ['en', 'ru'];
+    
+        $definitions = json_decode(
+            file_get_contents(
+                resource_path("factories/users.json")
+            ), true
+        );
+
+        foreach ($definitions as $definition) {
+            $user = User::create([
+                'name' => $definition['name'],
+                'email' => $definition['email'],
+                'password' => Hash::make(Str::random(8)),
+            ]);
+
+            $user->save();
+        }
+
+        error_log("Seeded:  users");
     }
 }
