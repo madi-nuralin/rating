@@ -1,72 +1,1696 @@
 [
-   {
-      "en":{
-         "name":"Professor",
-         "description":"Position of a researcher or teacher"
-      },
-      "ru":{
-         "name":"Профессор",
-         "description":"Должность научного сотрудника или преподавателя"
-      }
-   },
-   {
-      "en":{
-         "name":"Assistant Professor",
-         "description":"Junior professor; usually the first position a successful graduate student receives."
-      },
-      "ru":{
-         "name":"Ассистент-профессор",
-         "description":"Младший профессор; обычно первая должность, которую получает успешный выпускник аспирантуры."
-      }
-   },
-   {
-      "en":{
-         "name":"Associate professor",
-         "description":"Research and teaching position (title) in some, mainly Russian-speaking, countries comparable to the position (title) of associate professor in the educational system"
-      },
-      "ru":{
-         "name":"Ассоциированный профессор",
-         "description":"Научно-преподавательская должность (звание) в некоторых, преимущественно англоязычных, странах, сопоставимая с должностью (званием) доцента в образовательной системе"
-      }
-   },
-   {
-      "en":{
-         "name":"Senior Lecturer",
-         "description":"Лектор высокого академического уровня"
-      },
-      "ru":{
-         "name":"Сениор-лектор",
-         "description":"Speaker which is at a high academic level "
-      }
-   },
-   {
-      "en":{
-         "name":"Lecturer",
-         "description":"Lecturer"
-      },
-      "ru":{
-         "name":"Лектор",
-         "description":"Лектор"
-      }
-   },
-   {
-      "en":{
-         "name":"Tutor",
-         "description":"A teacher who conducts additional classes with a student or multiple students daily, weekly, or monthly"
-      },
-      "ru":{
-         "name":"Тьютор",
-         "description":"Преподаватель, который проводит дополнительные занятия с учеником или с несколькими учениками ежедневно, еженедельно или ежемесячно"
-      }
-   },
-   {
-      "en":{
-         "name":"Head of department",
-         "description":"Head of the department in higher educational institutions"
-      },
-      "ru":{
-         "name":"Заведующий кафедры",
-         "description":"Руководитель кафедры в высших учебных заведениях"
-      }
-   }
+    {
+        "en":{
+            "description":"",
+            "name":"Corporate Secretary"
+        },
+        "kk":{
+            "description":"",
+            "name":"Корпоративтік хатшы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Корпоративный секретарь"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head of Internal Audit Service"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ішкі аудит қызметінің басшысы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Руководитель службы внутреннего аудита"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Chief Auditor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бас аудитор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Главный аудитор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Rector, Chairman of the Board"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ректор, Басқарма төрағасы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ректор, Председатель Правления"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Vice-Rector for Academic and Educational Affairs, Member of the Board"
+        },
+        "kk":{
+            "description":"",
+            "name":"Оқу және тәрбие ісі жөніндегі проректор, Басқарма мүшесі "
+        },
+        "ru":{
+            "description":"",
+            "name":"Проректор по академической и воспитательной деятельности, член Правления"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Vice-Rector for Science and International Affairs, Member of the Board"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ғылыми және халықаралық істер жөніндегі проректор, Басқарма мүшесі "
+        },
+        "ru":{
+            "description":"",
+            "name":"Проректор по научной и международной деятельности, член Правления"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Vice-Rector for Digitalization and Innovation, Member of the Board"
+        },
+        "kk":{
+            "description":"",
+            "name":"Цифрландыру және инновациялар жөніндегі проректор, Басқарма мүшесі "
+        },
+        "ru":{
+            "description":"",
+            "name":"Проректор по цифровизации и инновациям, член Правления"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Financial Director, Member of the Board"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қаржы директоры, Басқарма мүшесі "
+        },
+        "ru":{
+            "description":"",
+            "name":"Финансовый директор, член Правления"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Director"
+        },
+        "kk":{
+            "description":"",
+            "name":"Директордың орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель директора"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Chief Accountant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бас  бухгалтер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Главный бухгалтер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy chief accountant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бас бухгалтердің орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель главного бухгалтера"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior accountant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Аға бухгалтер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Старший бухгалтер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Lead Accountant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Жетекші бухгалтер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ведущий Бухгалтер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Accountant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бухгалтер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Бухгалтер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"HR manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Кадрлар есебін жүргізу менеджері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер по учету кадров"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Personnel manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Персоналдар менеджері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер по персоналу"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Military account manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Әскери есеп жүргізу менеджері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер по воинскому учету"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Office manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Кеңсе менеджері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер канцелярии"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Registrar"
+        },
+        "kk":{
+            "description":"",
+            "name":"Архивариус"
+        },
+        "ru":{
+            "description":"",
+            "name":"Архивариус"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"QMS expert"
+        },
+        "kk":{
+            "description":"",
+            "name":"СМК сарапшысы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Эксперт по СМК"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Health and Safety Engineer"
+        },
+        "kk":{
+            "description":"",
+            "name":"ЕҚжТҚ инженері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инженер по ОТ и ТБ"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Leading Lawyer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Жетекші заңгер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ведущий юрист"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Lawyer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Заңгер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Юрист"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"General manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бас менеджер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Главный менеджер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Digital Marketer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Digital маркетолог "
+        },
+        "ru":{
+            "description":"",
+            "name":"Digital маркетолог "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"SMM manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"SMM менеджер"
+        },
+        "ru":{
+            "description":"",
+            "name":"SMM менеджер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Media manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Media менеджер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Media менеджер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Design manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Design менеджер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Design менеджер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head"
+        },
+        "kk":{
+            "description":"",
+            "name":"Басшы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Начальник "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Head of Methodological Department (EMA REMC)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Әдістемелік бөлім меңгерушісінің орынбасары (РОӘК ОӘБ )"
+        },
+        "ru":{
+            "description":"",
+            "name":"Зам.начальника  метод.отдела (УМО РУМС)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Head for Academic Affairs"
+        },
+        "kk":{
+            "description":"",
+            "name":"Басшының оқу ісі жөніндегі орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Зам.начальника по учебной работе"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Chief Compliance Officer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Басшы-комплаенс офицер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Начальник-комплаенс офицер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Doctor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Дәрігер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Врач"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Nurse"
+        },
+        "kk":{
+            "description":"",
+            "name":"Медбике"
+        },
+        "ru":{
+            "description":"",
+            "name":"Медицинская сестра"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Program Coordinator"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бағдарлама үйлестірушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Координатор программ"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Director"
+        },
+        "kk":{
+            "description":"",
+            "name":"Директордың орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель директора"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Journal editor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Журнал редакторы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Редактор журнала"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Library manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Кітапхана меңгерушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заведующий  библиотекой "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Librarian"
+        },
+        "kk":{
+            "description":"",
+            "name":"Кітапханашы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Библиотекарь"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Bibliographer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Библиограф"
+        },
+        "ru":{
+            "description":"",
+            "name":"Библиограф"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head of the Rector's Office"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ректор аппаратының жетекшісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Руководитель аппарата ректора"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Rector's office manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ректордың офис-менеджері  "
+        },
+        "ru":{
+            "description":"",
+            "name":"Офис-менеджер ректора"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Office Manager of the Vice-Rector for Academic and Educational Affairs"
+        },
+        "kk":{
+            "description":"",
+            "name":"Оқу және тәрбие ісі жөніндегі проректордың офис-менеджері  "
+        },
+        "ru":{
+            "description":"",
+            "name":"Офис-менеджер проректора по академической и воспитательной деятельности"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Office Manager of the Vice-Rector for Science and International Affairs"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ғылыми жұмыстар және халықаралық байланыстар жөніндегі проректордың офис-менеджері  "
+        },
+        "ru":{
+            "description":"",
+            "name":"Офис-менеджер проректора по научной и международной деятельности"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Office Manager of the Vice-Rector for Digitalization and Innovation "
+        },
+        "kk":{
+            "description":"",
+            "name":"Цифрландыру және инновациялар жөніндегі проректордың офис-менеджері  "
+        },
+        "ru":{
+            "description":"",
+            "name":"Офис-менеджер проректора по цифровизации и инновациям"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Regime and Information Security Advisor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Режим және ақпарат қауіпсіздігі бойынша кеңесші"
+        },
+        "ru":{
+            "description":"",
+            "name":"Советник по режиму и информационной безопасности"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Director"
+        },
+        "kk":{
+            "description":"",
+            "name":"Департамент директоры"
+        },
+        "ru":{
+            "description":"",
+            "name":"Директор департамента"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Director for Operations and Facilities"
+        },
+        "kk":{
+            "description":"",
+            "name":"Директордың шаруашылық мәселелер жөніндегі орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель директора по хозяйственнысм вопросам"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Energy Engineer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Инженер-энергетик"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инженер-энергетик"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Telephony systems manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Телефония жүйесі менеджері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер системам телефонии"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Rector's driver"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ректордың жүргізушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Водитель ректора"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Driver"
+        },
+        "kk":{
+            "description":"",
+            "name":"Жүргізуші"
+        },
+        "ru":{
+            "description":"",
+            "name":"Водитель"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Plumber"
+        },
+        "kk":{
+            "description":"",
+            "name":"Слесарь-сантехник "
+        },
+        "ru":{
+            "description":"",
+            "name":"Слесарь-сантехник "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Electrician for repair and maintenance of electrical equipment"
+        },
+        "kk":{
+            "description":"",
+            "name":"Электр жабдықтарын жөндеу және техникалық қызмет көрсету жөніндегі электромонтер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Электромонтер по ремонту и обслуживанию электрооборудования"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Janitor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Аула сыпырушы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Дворник"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Carpenter, general worker "
+        },
+        "kk":{
+            "description":"",
+            "name":"Ағаш ұстасы,  жұмысшы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Плотник, разнорабочий"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"General worker "
+        },
+        "kk":{
+            "description":"",
+            "name":"Жұмысшы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Разнорабочий "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Office cleaner"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қызметтік бөлмелерді жинаушы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Уборщик служебных помещений"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Gardener"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бақша күтуші"
+        },
+        "ru":{
+            "description":"",
+            "name":"Садовник"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Project manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Жоба менеджері"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер по проектам"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Менеджер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Менеджер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Olympic Reserve Center Coach"
+        },
+        "kk":{
+            "description":"",
+            "name":"Олимпиадалық резерв орталығының жаттықтырушысы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Тренер центра олимпийского резерва"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"CS laboratory engineer"
+        },
+        "kk":{
+            "description":"",
+            "name":" КҚ инженер-зертханашы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инженер-лаборант КБ"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head of laboratory"
+        },
+        "kk":{
+            "description":"",
+            "name":"Зертхана меңгерушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Руководитель  лаборатории"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head of RET laboratory"
+        },
+        "kk":{
+            "description":"",
+            "name":" РЭТ зертхана меңгерушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заведующий лабораторией РЭТ"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"RET laboratory engineer"
+        },
+        "kk":{
+            "description":"",
+            "name":"РЭТ инженер-зертханашы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инженер-лаборант РЭТ"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Laboratory engineer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Инженер-зертханашы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инженер-лаборант"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Specialist"
+        },
+        "kk":{
+            "description":"",
+            "name":"Маман"
+        },
+        "ru":{
+            "description":"",
+            "name":"Специалист"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Dean"
+        },
+        "kk":{
+            "description":"",
+            "name":"Декан "
+        },
+        "ru":{
+            "description":"",
+            "name":"Декан "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Dean for Research and Academic Affairs"
+        },
+        "kk":{
+            "description":"",
+            "name":"Деканның ҒЗЖ және оқу ісі жөніндегі орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель декана по НИР и учебной работе"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Dean for educational affairs "
+        },
+        "kk":{
+            "description":"",
+            "name":"Деканның тәрбие ісі жөніндегі орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель декана по воспитательной работе "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (E&B)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі (ЭжБ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (ЭИБ)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (IS)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі (АЖ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (ИС)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (Department of Languages)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі (Тілдер)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (языки)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (Department of Media Communications and History of Kazakhstan)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі( МжҚТ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры( МиИК)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Dean"
+        },
+        "kk":{
+            "description":"",
+            "name":"Декан "
+        },
+        "ru":{
+            "description":"",
+            "name":"Декан "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Dean for Research and Academic Affairs "
+        },
+        "kk":{
+            "description":"",
+            "name":"Деканның ҒЗЖ және оқу ісі жөніндегі орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель декана по НИР и учебной работе "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Deputy Dean for educational affairs "
+        },
+        "kk":{
+            "description":"",
+            "name":"Деканның тәрбие ісі жөніндегі орынбасары "
+        },
+        "ru":{
+            "description":"",
+            "name":"Заместитель декана по воспитательной работе "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (MCM)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі  (МКМ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (МКМ)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (Department of Computer Engineering and Information Security)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі  (КИжАҚ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (КИиИБ)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (RET)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі  (РЭТ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (РЭТ)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Administrator (SIS)"
+        },
+        "kk":{
+            "description":"",
+            "name":" Кафедра әкімшісі (АҚЖ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Администратор  кафедры (СИБ)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Director"
+        },
+        "kk":{
+            "description":"",
+            "name":"Директор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Директор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head"
+        },
+        "kk":{
+            "description":"",
+            "name":"Басшы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Начальник "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Chief Specialist"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бас маман "
+        },
+        "ru":{
+            "description":"",
+            "name":"Главный специалист  "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Programmer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бағдарламашы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Программист"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head of Department"
+        },
+        "kk":{
+            "description":"",
+            "name":"Бөлім бастығы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Начальник отдела"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior Programmer/Developer"
+        },
+        "kk":{
+            "description":"",
+            "name":" Senior бағдарламашы-әзірлеуші "
+        },
+        "ru":{
+            "description":"",
+            "name":"Программист- разработчик Senior"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Junior Programmer/Developer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Junior бағдарламашы-әзірлеуші "
+        },
+        "ru":{
+            "description":"",
+            "name":"Программист- разработчик Junior"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Associate Professor (Russian)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қауымдастырылған профессор (орыс тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассоциированный профессор (русс.яз)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Associate Professor (English)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қауымдастырылған профессор (ағылшын тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассоциированный профессор (англ.яз)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Assistant professor (English)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ассистент-профессор (ағылшын тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассистент-профессор (английский язык)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Assistant professor (Russian)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ассистент-профессор (орыс тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассистент-профессор (русс. яз)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior lecturer (English)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Сениор-лектор (ағылшын тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Сениор-лектор (английский язык)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior lecturer (Russian)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Сениор-лектор(орыс тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Сениор-лектор (русс язык)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior lecturer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Сениор-лектор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Сениор-лектор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Lecturer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Лектор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Лектор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Lecturer (English)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Лектор (ағылшын тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Лектор (англ. яз)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Lecturer (Russian)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Лектор (орыс тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Лектор (русс.яз)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Tutor (English)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Тьютор (ағылшын тілі)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Тьютор (англ. яз)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Professor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Профессор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Профессор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Associate Professor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қауымдастырылған профессор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассоциированный профессор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Assistant professor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Ассистент-профессор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассистент-профессор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Tutor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Тьютор"
+        },
+        "ru":{
+            "description":"",
+            "name":"Тьютор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior physical education coach"
+        },
+        "kk":{
+            "description":"",
+            "name":"Дене тәрбиесі бойынша аға жаттықтырушы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Ст.тренер физкультуры "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Physical education coach"
+        },
+        "kk":{
+            "description":"",
+            "name":"Дене тәрбиесі бойынша жаттықтырушы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Тренер физкультуры "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Professor (foreign)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Профессор (шетел)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Профессор (иностр)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior lecturer (Bolashak)"
+        },
+        "kk":{
+            "description":"",
+            "name":"Сениор-лектор (Болашақ)"
+        },
+        "ru":{
+            "description":"",
+            "name":"Сениор-лектор (Болашак)"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Associate professor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қауымдастырылған профессор "
+        },
+        "ru":{
+            "description":"",
+            "name":"Ассоциированный профессор "
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior lecturer - Deputy Head of Department"
+        },
+        "kk":{
+            "description":"",
+            "name":"Аға оқытушы – кафедра меңгерушісінің орынбасары"
+        },
+        "ru":{
+            "description":"",
+            "name":"Старший преподаватель- заместитель заведующего кафедрой"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior lecturer-head of the cycle"
+        },
+        "kk":{
+            "description":"",
+            "name":"Аға оқытушы-цикл бастығы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Старший преподаватель-начальник цикла"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior Lecturer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Аға оқытушы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Старший преподаватель"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Department Lecturer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Кафедра оқытушысы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Преподаватель кафедры"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Instructor"
+        },
+        "kk":{
+            "description":"",
+            "name":"Нұсқаушы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инструктор"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Education Specialist"
+        },
+        "kk":{
+            "description":"",
+            "name":"Оқу бөлімінің маманы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Специалист учебной части"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Warehouse Manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Қойма меңгерушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заведующий складом"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Laboratory Manager"
+        },
+        "kk":{
+            "description":"",
+            "name":"Зертхана меңгерушісі"
+        },
+        "ru":{
+            "description":"",
+            "name":"Заведующий лабораторией"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Senior Assistant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Аға лаборант"
+        },
+        "ru":{
+            "description":"",
+            "name":"Старший лаборант"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Cycle laboratory assistant"
+        },
+        "kk":{
+            "description":"",
+            "name":"Цикл лаборанты"
+        },
+        "ru":{
+            "description":"",
+            "name":"Лаборант цикла"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Engineer"
+        },
+        "kk":{
+            "description":"",
+            "name":"Инженер"
+        },
+        "ru":{
+            "description":"",
+            "name":"Инженер"
+        }
+    },
+    {
+        "en":{
+            "description":"",
+            "name":"Head"
+        },
+        "kk":{
+            "description":"",
+            "name":"Басшы"
+        },
+        "ru":{
+            "description":"",
+            "name":"Руководитель "
+        }
+    }
 ]

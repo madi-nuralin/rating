@@ -32,15 +32,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        //User::factory(10)->create();
         $this->seedRoles();
         $this->seedPositions();
         $this->seedDepartmentTypes();
         $this->seedDepartments();
+        $this->seedDepartmentPositon();
         $this->seedEmployementTypes();
         $this->seedParameterTargets();
         $this->seedParameters();
         $this->seedVerificationStatuses();
+        $this->seedUsers();
     }
 
     protected function seedRoles() {
@@ -144,6 +146,27 @@ class DatabaseSeeder extends Seeder
         }
 
         error_log("Seeded:  positions");
+    }
+
+    protected function seedDepartmentPositon() {
+        error_log("Seeding: department_position");
+
+        $locales = ['en', 'ru'];
+
+        $definitions = json_decode(
+            file_get_contents(
+                resource_path("factories/department_position.json")
+            ), true
+        );
+
+        foreach ($definitions as $definition) {
+            DB::table('department_position')->insert([
+                'department_id' => $definition['department_id'],
+                'position_id' => $definition['position_id']
+            ]);
+        }
+
+        error_log("Seeded:  department_position");
     }
 
     protected function seedParameterTargets() {
@@ -321,5 +344,29 @@ class DatabaseSeeder extends Seeder
         }
 
         error_log("Seeded:  verification_statuses");
+    }
+
+    protected function seedUsers() {
+        error_log("Seeding: users");
+
+        $locales = ['en', 'ru'];
+    
+        $definitions = json_decode(
+            file_get_contents(
+                resource_path("factories/users.json")
+            ), true
+        );
+
+        foreach ($definitions as $definition) {
+            $user = User::create([
+                'name' => $definition['name'],
+                'email' => $definition['email'],
+                'password' => Hash::make(Str::random(8)),
+            ]);
+
+            $user->save();
+        }
+
+        error_log("Seeded:  users");
     }
 }
