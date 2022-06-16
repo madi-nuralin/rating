@@ -51,17 +51,17 @@
                 <BreezeInputError :message="form.errors.email" class="mt-2" />
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="firstname" :value="$t('pages.profile.updateProfileInformation.form.firstname')" />
-                <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" />
-                <BreezeInputError :message="form.errors.firstname" class="mt-2" />
-            </div>
+<!--            <div class="col-span-6 sm:col-span-4">-->
+<!--                <BreezeLabel for="firstname" :value="$t('pages.profile.updateProfileInformation.form.firstname')" />-->
+<!--                <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" />-->
+<!--                <BreezeInputError :message="form.errors.firstname" class="mt-2" />-->
+<!--            </div>-->
 
-            <div class="col-span-6 sm:col-span-4">
-                <BreezeLabel for="lastname" :value="$t('pages.profile.updateProfileInformation.form.lastname')" />
-                <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" />
-                <BreezeInputError :message="form.errors.lastname" class="mt-2" />
-            </div>
+<!--            <div class="col-span-6 sm:col-span-4">-->
+<!--                <BreezeLabel for="lastname" :value="$t('pages.profile.updateProfileInformation.form.lastname')" />-->
+<!--                <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" />-->
+<!--                <BreezeInputError :message="form.errors.lastname" class="mt-2" />-->
+<!--            </div>-->
         </template>
 
         <template #actions>
