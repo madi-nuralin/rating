@@ -29,10 +29,18 @@ class UserController extends Controller
      */
     public function index()
     {
+        $email = request()->input('email');
+
         return Inertia::render('Management/User/Index', [
-            'users' => User::paginate(10)->through(function($user) {
-                return $user->toArray();
-            }),
+            'users' => User::
+            when(isset($email), function ($q) use ($email) {
+                $q->where('email', 'like', '%' . $email . '%');
+            })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(function ($user) {
+                    return $user->toArray();
+                }),
         ]);
     }
 
@@ -44,7 +52,7 @@ class UserController extends Controller
     public function create()
     {
         return Inertia::render('Management/User/Create', [
-            'roles' => Role::all()->map(function($role) {
+            'roles' => Role::all()->map(function ($role) {
                 return $role->toArray();
             })
         ]);
@@ -53,7 +61,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -95,7 +103,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -105,7 +113,7 @@ class UserController extends Controller
         return Inertia::render('Management/User/Show', [
             'user' => array_merge(
                 $user->toArray(), [
-                    'employements' => $user->employements ? $user->employements->map(function($employement) {
+                    'employements' => $user->employements ? $user->employements->map(function ($employement) {
                         return array_merge(
                             $employement->toArray(), [
                                 'department' => $employement->department->toArray(),
@@ -113,12 +121,12 @@ class UserController extends Controller
                             ]
                         );
                     }) : array(),
-                    'roles' => $user->roles ? $user->roles->map(function($role) {
+                    'roles' => $user->roles ? $user->roles->map(function ($role) {
                         return $role->toArray();
                     }) : array()
                 ]
             ),
-            'employements' => Employement::all()->map(function($employement) {
+            'employements' => Employement::all()->map(function ($employement) {
                 return array_merge(
                     $employement->toArray(), [
                         'department' => $employement->department->toArray(),
@@ -126,7 +134,7 @@ class UserController extends Controller
                     ]
                 );
             }),
-            'roles' => Role::all()->map(function($role) {
+            'roles' => Role::all()->map(function ($role) {
                 return $role->toArray();
             })
         ]);
@@ -135,7 +143,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -146,8 +154,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -182,14 +190,14 @@ class UserController extends Controller
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse('', 200)
-                    : back()->with('status', 'user-updated');
+            ? new JsonResponse('', 200)
+            : back()->with('status', 'user-updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -218,8 +226,8 @@ class UserController extends Controller
     /**
      * Update the given verified user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
      * @return void
      */
     protected function updateVerifiedUser($user, array $input)
