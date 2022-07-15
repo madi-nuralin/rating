@@ -92,15 +92,13 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                email: null,
+                email: this.$page.props.email,
             })
         };
     },
 
     methods: {
         submit(event) {
-            // this.form.email = event;
-
             this.form.get(this.route('user.index', {'email': this.form.email}), {
                 errorBag: 'submit',
                 preserveScroll: true

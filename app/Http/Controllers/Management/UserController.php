@@ -41,6 +41,7 @@ class UserController extends Controller
                 ->through(function ($user) {
                     return $user->toArray();
                 }),
+            'email' => $email
         ]);
     }
 
