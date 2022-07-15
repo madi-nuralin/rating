@@ -16,6 +16,7 @@ use App\Models\Forms\FormField;
 
 class FormFillingStep extends WizardStep
 {
+    # TODO: Надо разобраться где хранится тип поля 'file' и подумать как его отобразить
     public string $title = 'pages.wizards.submission.steps.formFillingStep.title';
 
     public string $slug = 'form-filling';

@@ -49,7 +49,7 @@ class ApproverController extends Controller
                                 : array()
                             );
                         }
-                    )->paginate(10)->through(function($user) use ($approver) {
+                    )->paginate(10)->withQueryString()->through(function($user) use ($approver) {
                         return array_merge(
                             $user->toArray(), [
                                 'is_approved' => $approver->rating->userIsApproved($user),

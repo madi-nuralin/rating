@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+
         <BreezeBanner />
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -24,7 +24,7 @@
                                 <BreezeNavLink :href="route('feed')" :active="route().current('feed')">
                                     <div class="flex flex-col items-center">
                                         <div>
-                                            <svg 
+                                            <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="24"
                                                 height="24"
@@ -46,7 +46,7 @@
                                 <BreezeNavLink :href="route('dashboard-approver')" :active="route().current('dashboard-approver')" v-if="content('approver')">
                                     <div class="flex flex-col items-center">
                                         <div>
-                                            <svg 
+                                            <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="24"
                                                 height="24"
@@ -68,7 +68,7 @@
                                 <BreezeNavLink :href="route('dashboard-verifier')" :active="route().current('dashboard-verifier')" v-if="content('verifier')">
                                     <div class="flex flex-col items-center">
                                         <div>
-                                            <svg 
+                                            <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="24"
                                                 height="24"
@@ -133,7 +133,7 @@
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ $t('layouts.authenticated.linkGroups.manageEntities') }}
                                         </div>
-                                        
+
                                         <BreezeDropdownLink :href="route('position.index')">
                                             {{ $t('layouts.authenticated.links.positions') }}
                                         </BreezeDropdownLink>
@@ -275,7 +275,7 @@
                             <!-- Responsive Management -->
                             <template v-if="content('manager')">
                                 <div class="border-t border-gray-200 dark:border-gray-600"></div>
-                                
+
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ $t('layouts.authenticated.triggers.management') }}
                                 </div>
@@ -297,7 +297,7 @@
                                 </BreezeResponsiveNavLink>
 
                                 <div class="border-t border-gray-200 dark:border-gray-600"></div>
-                                
+
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ $t('layouts.authenticated.linkGroups.manageRating') }}
                                 </div>
@@ -381,9 +381,9 @@ export default {
         },
 
         content(context) {
-            var roles = this.$page.props.auth.user.roles;
+            let roles = this.$page.props.auth.user.roles;
             if (roles) {
-                for (var i=0; i < roles.length; ++i) {
+                for (let i=0; i < roles.length; ++i) {
                     if (roles[i].context == context) {
                         return true;
                     }

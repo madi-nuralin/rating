@@ -55,7 +55,6 @@
                     @input="_form[FIELD[field.id]] = $event"
                     :options="options[FIELD[field.id]]"
                     class="mt-1 block w-full" />
-
                 <BreezeFile v-else-if="field.type == 'file'"
                     :id="FIELD[field.id]"
                     :value="_form[FIELD[field.id]]"
@@ -108,7 +107,7 @@
     import BreezeInputError from '@/Components/InputError.vue'
     import BreezeTextarea from '@/Components/Textarea.vue'
     import BreezeLabel from '@/Components/Label.vue'
-    import BreezeSelect from '@/Components/Select.vue' 
+    import BreezeSelect from '@/Components/Select.vue'
     import BreezeFile from '@/Components/InputFile.vue'
     import ShowSteps from './ShowSteps.vue'
     import ShowTitle from './ShowTitle.vue'
@@ -148,7 +147,6 @@
                     INIT[FIELD[field.id]] = null;
                 }
             }
-
             return {
                 INIT,
                 FIELD,

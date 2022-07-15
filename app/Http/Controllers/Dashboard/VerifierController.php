@@ -9,7 +9,7 @@ use DB;
 
 class VerifierController extends Controller
 {
-    public function get() 
+    public function get()
     {
         $verifier = request()->input('verifier');
 
@@ -33,7 +33,7 @@ class VerifierController extends Controller
             'verifier' => $verifier ? array_merge(
                 $verifier->toArray(), [
                     'rating' => $verifier->rating->toArray(),
-                    'users' => $verifier->rating->users()->paginate(10)->through(function($user) use ($verifier) {
+                    'users' => $verifier->rating->users()->paginate(10)->withQueryString()->through(function($user) use ($verifier) {
                         return array_merge(
                             $user->toArray(), [
                                 'is_approved' => $verifier->rating->userIsApproved($user),
