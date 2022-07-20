@@ -13,6 +13,7 @@ class VerifierController extends Controller
     {
         $verifier = request()->input('verifier');
         $parameter = request()->input('parameter');
+        $isHaveSubmissions = request()->input('isHaveSubmissions');
 
         if (is_null($verifier)) {
             if (auth()->user()->verifiers) {
@@ -43,6 +44,11 @@ class VerifierController extends Controller
                             $q->whereHas('submissions', function ($q) use ($verifier, $parameter) {
                                 $q->where('rating_id', $verifier->rating_id)
                                     ->where('parameter_id', $parameter->id);
+                            });
+                        })
+                        ->when($isHaveSubmissions, function ($q) use ($verifier) {
+                            $q->whereHas('submissions', function ($q) use ($verifier) {
+                                $q->where('rating_id', $verifier->rating_id);
                             });
                         })
                         ->paginate(10)->withQueryString()->through(function ($user) use ($verifier) {
@@ -89,6 +95,8 @@ class VerifierController extends Controller
             ) : [],
             'parameter' => $parameter,
             'parameters' => $verifier->parameterTarget->parameters,
+            'isHaveSubmissions' => $isHaveSubmissions,
+
             'statistics' => [
                 'total' => $verifier ? count($verifier->rating->users) : 0,
                 'last' => $verifier ? count($verifier->rating->users) : 0

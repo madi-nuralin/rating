@@ -12,21 +12,40 @@
                     <div class="p-6 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-800">
 
                         <div class="grid gap-6 grid-cols-8 pb-6">
-                            <div class="col-span-8 sm:col-span-4">
+                            <div class="col-span-8 sm:col-span-6">
                                 <form @submit.prevent="$emit('submitted')">
                                     <breeze-select id="verifier" class="mt-1 block w-full" :value="form.verifier"
                                                    @input="setVerifier" :options="options.verifier" :multiple="false"/>
-                                    <breeze-select id="parameter" class="mt-1 block w-full" :value="form.parameter"
-                                                   @input="setParameter" :options="options.parameter"
-                                                   :multiple="false"/>
+                                    <div class="grid gap-6 grid-cols-8 mt-1">
+                                        <breeze-select id="parameter" class="col-span-6 block w-full"
+                                                       :placeholder="translate[0]('form.parameter')"
+                                                       :value="form.parameter"
+                                                       @input="setParameter" :options="options.parameter"
+                                                       :multiple="false"/>
+                                        <BreezeButton class="col-span-2 block h-full w-full"
+                                                      @click="()=>setParameter(null)">
+                                            <div class="text-center w-full">
+                                                {{ translate[0]('form.parameterClear') }}
+                                            </div>
+                                        </BreezeButton>
+                                    </div>
+                                    <div class="flex mt-1 gap-1 items-center">
+                                        <BreezeCheckbox
+                                            id="isHaveSubmissions"
+                                            class="block"
+                                            :checked="form.isHaveSubmissions"
+                                            @input="setIsHaveSubmissions"/>
+                                        <BreezeLabel for="isHaveSubmissions"
+                                                     :value="translate[0]('form.isHaveSubmissions')"/>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="col-span-8 sm:col-span-2">
+                            <div class="col-span-8 sm:col-span-1">
                                 <p class="text-sm text-gray-800 dark:text-gray-400">
                                     {{ translate[0]('table.header.allParticipants') }}</p>
                                 <h3 class="text-lg dark:text-gray-100">{{ $page.props.statistics.total }}</h3>
                             </div>
-                            <div class="col-span-8 sm:col-span-2">
+                            <div class="col-span-8 sm:col-span-1">
                                 <p class="text-sm text-gray-800 dark:text-gray-400">{{
                                         translate[0]('table.header.last')
                                     }}</p>
@@ -142,12 +161,14 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeFormSection from '@/Components/FormSection.vue'
 import BreezeSectionBorder from '@/Components/SectionBorder.vue'
-import BreezeButtonSecondary from '@/Components/ButtonSecondary.vue'
 import BreezePagination from '@/Components/Pagination'
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeLabel from '@/Components/Label.vue'
+import BreezeInput from '@/Components/Input.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue'
 import BreezeSelect from '@/Components/Select.vue'
+import BreezeButton from '@/Components/Button.vue'
 import BreezeAvatar from '@/Components/Avatar.vue'
 import BreezeProgress from '@/Components/Progress.vue'
 import BreezeBadge from '@/Components/Badge.vue'
@@ -158,13 +179,15 @@ export default {
         BreezeAuthenticatedLayout,
         BreezeFormSection,
         BreezeSectionBorder,
-        BreezeButtonSecondary,
+        BreezeButton,
         BreezePagination,
         BreezeDropdown,
         BreezeDropdownLink,
         BreezeAvatar,
         BreezeLabel,
         BreezeSelect,
+        BreezeInput,
+        BreezeCheckbox,
         BreezeProgress,
         BreezeBadge,
         Link,
@@ -175,7 +198,8 @@ export default {
         return {
             form: this.$inertia.form({
                 verifier: this.$page.props.verifier.id,
-                parameter: this.$page.props.parameter && this.$page.props.parameter.id || null
+                parameter: this.$page.props.parameter && this.$page.props.parameter.id || null,
+                isHaveSubmissions: this.$page.props.isHaveSubmissions
             })
         };
     },
@@ -184,7 +208,8 @@ export default {
         submit(event) {
             this.form.get(route('dashboard-verifier', {
                 'verifier': this.form.verifier,
-                'parameter': this.form.parameter
+                'parameter': this.form.parameter,
+                'isHaveSubmissions': this.form.isHaveSubmissions
             }), {
                 errorBag: 'submit',
                 preserveScroll: true
@@ -199,6 +224,12 @@ export default {
 
         setParameter(event) {
             this.form.parameter = event
+
+            this.submit()
+        },
+
+        setIsHaveSubmissions(event) {
+            this.form.isHaveSubmissions = event.target.checked
 
             this.submit()
         }

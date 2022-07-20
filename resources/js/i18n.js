@@ -736,6 +736,11 @@ let messages = {
                         },
                         employementInfoNotFound: 'Employment information not found',
                         view: 'View'
+                    },
+                    form: {
+                        parameter: 'Parameter',
+                        clearParameter: 'Clear parameter',
+                        isHaveSubmissions: 'Sent'
                     }
                 },
                 approver: {
@@ -2059,6 +2064,11 @@ let messages = {
                         },
                         employementInfoNotFound: 'Информация о занятости не найдено',
                         view: 'Посмотреть'
+                    },
+                    form: {
+                        parameter: 'Параметр',
+                        parameterClear: 'Очистить параметр',
+                        isHaveSubmissions: 'Отправлял'
                     }
                 },
                 approver: {
