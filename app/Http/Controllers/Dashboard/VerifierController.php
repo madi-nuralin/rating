@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Parameter;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use DB;
@@ -49,6 +50,7 @@ class VerifierController extends Controller
                         ->when($isHaveSubmissions, function ($q) use ($verifier) {
                             $q->whereHas('submissions', function ($q) use ($verifier) {
                                 $q->where('rating_id', $verifier->rating_id);
+                                $q->whereIn('parameter_id', $verifier->parameterTarget->parameters->pluck('id')->toArray());
                             });
                         })
                         ->paginate(10)->withQueryString()->through(function ($user) use ($verifier) {
