@@ -15,7 +15,10 @@
                             <div class="col-span-8 sm:col-span-4">
                                 <form @submit.prevent="$emit('submitted')">
                                     <breeze-select id="verifier" class="mt-1 block w-full" :value="form.verifier"
-                                                   @input="submit" :options="options.verifier" :multiple="false"/>
+                                                   @input="setVerifier" :options="options.verifier" :multiple="false"/>
+                                    <breeze-select id="parameter" class="mt-1 block w-full" :value="form.parameter"
+                                                   @input="setParameter" :options="options.parameter"
+                                                   :multiple="false"/>
                                 </form>
                             </div>
                             <div class="col-span-8 sm:col-span-2">
@@ -172,18 +175,32 @@ export default {
         return {
             form: this.$inertia.form({
                 verifier: this.$page.props.verifier.id,
+                parameter: this.$page.props.parameter && this.$page.props.parameter.id || null
             })
         };
     },
 
     methods: {
         submit(event) {
-            this.form.verifier = event;
-
-            this.form.get(route('dashboard-verifier', {'verifier': this.form.verifier}), {
+            this.form.get(route('dashboard-verifier', {
+                'verifier': this.form.verifier,
+                'parameter': this.form.parameter
+            }), {
                 errorBag: 'submit',
                 preserveScroll: true
             });
+        },
+
+        setVerifier(event) {
+            this.form.verifier = event
+
+            this.submit()
+        },
+
+        setParameter(event) {
+            this.form.parameter = event
+
+            this.submit()
         }
     },
 
@@ -205,6 +222,12 @@ export default {
                         'name': verifier.rating.name,
                         'description': verifier.parameter_target.name
                     };
+                }) : Array(),
+                'parameter': this.$page.props.parameters ? this.$page.props.parameters.map(function (parameter) {
+                    return {
+                        'value': parameter.id,
+                        'name': parameter.name
+                    }
                 }) : Array()
             };
         }

@@ -12,6 +12,7 @@ class VerifierController extends Controller
     public function get()
     {
         $verifier = request()->input('verifier');
+        $parameter = request()->input('parameter');
 
         if (is_null($verifier)) {
             if (auth()->user()->verifiers) {
@@ -21,8 +22,12 @@ class VerifierController extends Controller
             $verifier = \App\Models\Verifier::findOrFail($verifier);
         }
 
+        if (isset($parameter)) {
+            $parameter = \App\Models\Parameter::findOrFail($parameter);
+        }
+
         return Inertia::render('Dashboard/Verifier', [
-            'verifiers' => auth()->user()->verifiers ? auth()->user()->verifiers->map(function($verifier) {
+            'verifiers' => auth()->user()->verifiers ? auth()->user()->verifiers->map(function ($verifier) {
                 return array_merge(
                     $verifier->toArray(), [
                         'rating' => $verifier->rating->toArray(),
@@ -33,48 +38,57 @@ class VerifierController extends Controller
             'verifier' => $verifier ? array_merge(
                 $verifier->toArray(), [
                     'rating' => $verifier->rating->toArray(),
-                    'users' => $verifier->rating->users()->paginate(10)->withQueryString()->through(function($user) use ($verifier) {
-                        return array_merge(
-                            $user->toArray(), [
-                                'is_approved' => $verifier->rating->userIsApproved($user),
-                                'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function($employement) {
-                                    return array_merge(
-                                        $employement->toArray(), [
-                                            'department' => $employement->department->toArray(),
-                                            'position' => $employement->position->toArray(),
-                                        ]
-                                    );
-                                }) : array(),
-                                'statistics' => [
-                                    'total' => count(
-                                        collect(
-                                            $verifier->verifications()
-                                                ->whereHas('submission', function($q) use ($user) {
-                                                    $q->where('user_id', $user->id);
-                                                })
-                                            ->get()
+                    'users' => $verifier->rating->users()
+                        ->when(isset($parameter), function ($q) use ($verifier, $parameter) {
+                            $q->whereHas('submissions', function ($q) use ($verifier, $parameter) {
+                                $q->where('rating_id', $verifier->rating_id)
+                                    ->where('parameter_id', $parameter->id);
+                            });
+                        })
+                        ->paginate(10)->withQueryString()->through(function ($user) use ($verifier) {
+                            return array_merge(
+                                $user->toArray(), [
+                                    'is_approved' => $verifier->rating->userIsApproved($user),
+                                    'employements' => $user->employements ? $user->getEmployements(NULL, DB::raw('CURDATE()'))->map(function ($employement) {
+                                        return array_merge(
+                                            $employement->toArray(), [
+                                                'department' => $employement->department->toArray(),
+                                                'position' => $employement->position->toArray(),
+                                            ]
+                                        );
+                                    }) : array(),
+                                    'statistics' => [
+                                        'total' => count(
+                                            collect(
+                                                $verifier->verifications()
+                                                    ->whereHas('submission', function ($q) use ($user) {
+                                                        $q->where('user_id', $user->id);
+                                                    })
+                                                    ->get()
+                                            )
+                                        ),
+                                        'completed' => count(
+                                            collect(
+                                                $verifier->verifications()
+                                                    ->whereHas('submission', function ($q) use ($user) {
+                                                        $q->where('user_id', $user->id);
+                                                    })
+                                                    ->whereHas('verificationStatus', function ($q) {
+                                                        $q->where('context', 'accepted')
+                                                            ->orWhere('context', 'fixed')
+                                                            ->orWhere('context', 'not_accepted');
+                                                    })
+                                                    ->get()
+                                            )
                                         )
-                                    ),
-                                    'completed' => count(
-                                        collect(
-                                            $verifier->verifications()
-                                                ->whereHas('submission', function($q) use ($user) {
-                                                    $q->where('user_id', $user->id);
-                                                })
-                                                ->whereHas('verificationStatus', function($q) {
-                                                    $q->where('context', 'accepted')
-                                                        ->orWhere('context', 'fixed')
-                                                        ->orWhere('context', 'not_accepted');
-                                                })
-                                            ->get()
-                                        )
-                                    )
+                                    ]
                                 ]
-                            ]
-                        );
-                    })
+                            );
+                        })
                 ]
             ) : [],
+            'parameter' => $parameter,
+            'parameters' => $verifier->parameterTarget->parameters,
             'statistics' => [
                 'total' => $verifier ? count($verifier->rating->users) : 0,
                 'last' => $verifier ? count($verifier->rating->users) : 0
@@ -105,7 +119,7 @@ class VerifierController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -116,7 +130,7 @@ class VerifierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     /*public function show($id)
@@ -127,7 +141,7 @@ class VerifierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -138,8 +152,8 @@ class VerifierController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -150,7 +164,7 @@ class VerifierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
