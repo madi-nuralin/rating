@@ -739,7 +739,7 @@ let messages = {
                     },
                     form: {
                         parameter: 'Parameter',
-                        clearParameter: 'Clear parameter',
+                        parameterClear: 'Clear parameter',
                         isHaveSubmissions: 'Sent'
                     }
                 },
