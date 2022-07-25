@@ -739,7 +739,9 @@ let messages = {
                     },
                     form: {
                         parameter: 'Parameter',
+                        email: 'Email',
                         parameterClear: 'Clear parameter',
+                        find: 'Find',
                         isHaveSubmissions: 'Sent'
                     }
                 },
@@ -2067,7 +2069,9 @@ let messages = {
                     },
                     form: {
                         parameter: 'Параметр',
+                        email: 'Почта',
                         parameterClear: 'Очистить параметр',
+                        find: 'Найти',
                         isHaveSubmissions: 'Отправлял'
                     }
                 },

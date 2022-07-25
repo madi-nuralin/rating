@@ -14,6 +14,7 @@ class VerifierController extends Controller
     {
         $verifier = request()->input('verifier');
         $parameter = request()->input('parameter');
+        $email = request()->input('email');
         $isHaveSubmissions = request()->input('isHaveSubmissions');
 
         if (is_null($verifier)) {
@@ -28,9 +29,9 @@ class VerifierController extends Controller
             $parameter = \App\Models\Parameter::findOrFail($parameter);
         }
 
-        if($isHaveSubmissions == 'true'){
+        if ($isHaveSubmissions == 'true') {
             $isHaveSubmissions = true;
-        }else{
+        } else {
             $isHaveSubmissions = false;
         }
 
@@ -58,6 +59,9 @@ class VerifierController extends Controller
                                 $q->where('rating_id', $verifier->rating_id);
                                 $q->whereIn('parameter_id', $verifier->parameterTarget->parameters->pluck('id')->toArray());
                             });
+                        })
+                        ->when($email, function ($q) use($email){
+                            $q->where('email', 'like', '%'.$email.'%');
                         })
                         ->paginate(10)->withQueryString()->through(function ($user) use ($verifier) {
                             return array_merge(
@@ -103,6 +107,7 @@ class VerifierController extends Controller
             ) : [],
             'parameter' => $parameter,
             'parameters' => $verifier->parameterTarget->parameters,
+            'email' => $email,
             'isHaveSubmissions' => $isHaveSubmissions,
 
             'statistics' => [

@@ -29,6 +29,14 @@
                                             </div>
                                         </BreezeButton>
                                     </div>
+                                    <div class="grid gap-6 grid-cols-8 mt-1">
+                                        <BreezeInput type="text"
+                                                     id="email"
+                                                     class="col-span-8 block w-full"
+                                                     :placeholder="translate[0]('form.email')"
+                                                     :value="form.email"
+                                                     @input="setEmail"/>
+                                    </div>
                                     <div class="flex mt-1 gap-1 items-center">
                                         <BreezeCheckbox
                                             id="isHaveSubmissions"
@@ -199,6 +207,7 @@ export default {
             form: this.$inertia.form({
                 verifier: this.$page.props.verifier.id,
                 parameter: this.$page.props.parameter && this.$page.props.parameter.id || null,
+                email: this.$page.props.email,
                 isHaveSubmissions: this.$page.props.isHaveSubmissions
             })
         };
@@ -209,6 +218,7 @@ export default {
             this.form.get(route('dashboard-verifier', {
                 'verifier': this.form.verifier,
                 'parameter': this.form.parameter,
+                'email': this.form.email,
                 'isHaveSubmissions': this.form.isHaveSubmissions
             }), {
                 errorBag: 'submit',
@@ -224,6 +234,12 @@ export default {
 
         setParameter(event) {
             this.form.parameter = event
+
+            this.submit()
+        },
+
+        setEmail(event) {
+            this.form.email = event.target.value
 
             this.submit()
         },
