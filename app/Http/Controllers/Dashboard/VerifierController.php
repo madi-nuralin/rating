@@ -28,6 +28,12 @@ class VerifierController extends Controller
             $parameter = \App\Models\Parameter::findOrFail($parameter);
         }
 
+        if($isHaveSubmissions == 'true'){
+            $isHaveSubmissions = true;
+        }else{
+            $isHaveSubmissions = false;
+        }
+
         return Inertia::render('Dashboard/Verifier', [
             'verifiers' => auth()->user()->verifiers ? auth()->user()->verifiers->map(function ($verifier) {
                 return array_merge(
